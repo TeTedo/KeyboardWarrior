@@ -78,6 +78,7 @@ ul{
 .mainWrapper{
     width: 1300px;
     margin: 0 auto;
+    height: 80vh;
 }
 .main .contents{
     height: 80vh;
@@ -96,8 +97,9 @@ ul{
     background-color: whitesmoke;
     border-radius: 20px;
     width: 700px;
+    height: 2000px;
     border: 2px solid rgb(226, 204, 226);
-    overflow:scroll;
+    overflow: auto;
 }
 .mainWrapper .right{
     width: 250px;
