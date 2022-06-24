@@ -1,0 +1,120 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    height: 100vh;
+    background-color: #8b22f300;
+}
+
+.mainPageHead{
+    width: 100%;
+    height: 80px;
+    background-color:#8b22f3c4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.mainPageHead .mainPageHeadWhole{
+    width: 1000px;
+    height: 50px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.mainPageHead .mianPageHeadLogo{
+    position: absolute;
+    left: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: white;
+}
+.mainPageHead .mainPageHeadSearch{
+width: 60%;
+background-color: white;
+}
+.mainPageHead .mainPageHeadSignUp{
+    position: absolute;
+    right: 100px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: white;
+}
+.mainPageHead .mainPageHeadLogin{
+    position: absolute;
+    right: 30px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.mainPageNav{
+    width: 100%;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.466);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.mainPageNavWhole{
+    width: 300px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.mainPageNavHome, .mainPageNavGame, .mainPageNavMiniGame{
+    margin: auto;
+}
+.mainPageMainSector{
+    width: 70%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    margin: auto;
+}
+.mainPageNavControl{
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+.mainPageNavControlHome,.mainPageNavControlProfile {
+    position: absolute;
+    top: 30px;
+    left: 50px;
+}
+.mainPageNavControlProfile{
+    top: 80px;
+}
+.mainPageMainSector .mainPageMainFeed{
+    width: 800px;
+    height: 100%;
+    border: 1px solid black;
+    position: absolute;
+    left:270px;
+}
+.mainPageCommunity{
+    position: absolute;
+    top: 100px;
+    left: 1100px;
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+.mainPageNotice{
+    position: absolute;
+    top: 400px;
+    left: 1100px;
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
