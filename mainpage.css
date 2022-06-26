@@ -43,9 +43,9 @@ body{
 #profile {
     width: 150px;
     height: 40px;
-    border: 1px solid white;
+    border: 2px solid rgb(226, 204, 226);
     border-radius: 100px;
-    background-color: #855cb3;
+    background-color: whitesmoke;
 }
 
 /* 네브 */
@@ -74,7 +74,7 @@ body{
     width: 100px;
     border-right: 2px solid  rgb(226, 204, 226);
     cursor: pointer;
-    background-color: whitesmoke;
+    background-color:whitesmoke;
 
 }
 .navWrapper a{
@@ -111,6 +111,34 @@ body{
     background-color: whitesmoke;
     border-radius: 20px;
     border: 2px solid rgb(226, 204, 226);
+}
+
+/* 스크롤 */
+.scrollContents{
+    position: fixed;
+    width: 100%;
+    z-index: -999;
+}
+.scrollContentsWrapper{
+    width: 1200px;
+    margin: 0 auto;
+}
+#scrollBtn{
+    width: 50px;
+    height: 50px;
+    /* border: 2px solid #855cb3; */
+    border-radius: 500px;
+    background-color: #855cb3;
+    color: white;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 550px;
+    right: 115px;
+    transition: 0.6s;
+    opacity: 0;
 }
 
 /* 메인 */
