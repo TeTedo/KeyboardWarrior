@@ -135,8 +135,8 @@ body{
     justify-content: center;
     align-items: center;
     position: relative;
-    top: 550px;
-    right: 115px;
+    top: 525px;
+    right: 240px;
     transition: 0.6s;
     opacity: 0;
 }
