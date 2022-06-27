@@ -87,13 +87,13 @@ body{
 }
 
 .wholeGameSlide{
-    width: 1200px;
+    width: 500px;
     height: 500px;
     background-color: whitesmoke;
     margin: 0 auto;
 }
 .wholeGameNav{
-    width: 1200px;
+    width: 500px;
     height: 150px;
     margin: 50px auto 0;
     background-color: whitesmoke;
@@ -139,7 +139,7 @@ body{
     height: 30px;
 }
 .wholeGameNavSort{
-    width: 1100px;
+    width: 400px;
     height: 50px;
     background-color: white;
     margin: 30px auto;
@@ -149,6 +149,7 @@ body{
 }
 .wholeGameNavSort span{
     margin : auto;
+    font-size: 10px;
 }
 .wholeGameNavSort span:hover{
     background-color: rgb(226, 204, 226);
@@ -157,21 +158,24 @@ body{
 }
 
 .wholeGameZone{
-    width: 1200px;
+    width: 500px;
     height: max-content;
     background-color: whitesmoke;
     margin: 0 auto;
     display: flex;
     align-items: center;
 }
+.wholeGameZoneul{
+    display: flex;
+}
 .wholeGameZoneul li{
-    width: 300px;
+    width: 210px;
     height: 300px;
     margin: 20px;
 }
 
 .wholeGameZoneul li img{
-    width: 300px;
+    width: 210px;
     height: 200px;
 }
 .wholeGameZoneul li .ListGameZone{
