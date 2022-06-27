@@ -1,0 +1,204 @@
+* {
+    background-color:  transparent;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+a{
+    color: black;
+    text-decoration: none;
+}
+ul{
+    list-style-type: none;
+}
+body{
+    position: absolute;
+    width: 100%;
+}
+
+/* 탑 */
+.top{
+    background-color: white;
+    position: fixed;
+    width: 100%;
+}
+.topWrapper{
+    height: 100px;
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.topWrapper h1{
+    color: #855cb3;
+}
+.topWrapper input{
+    width: 500px;
+    height: 50px;
+    border: 2px solid rgb(226, 204, 226);
+    border-radius: 10px;
+    background-color: whitesmoke;
+}
+#profile {
+    width: 150px;
+    height: 40px;
+    border: 2px solid rgb(226, 204, 226);
+    border-radius: 100px;
+    background-color: whitesmoke;
+}
+
+/* 네브 */
+.nav{
+    width: 100%;
+    position: fixed;
+    border-bottom: 2px solid rgb(226, 204, 226);
+    border-top: 2px solid rgb(226, 204, 226);
+    top: 100px;
+    background-color: white;
+}
+.navWrapper{
+    width: 1300px;
+    margin: 0 auto;    
+    
+    
+}
+.navWrapper ul{
+    display: flex;
+    justify-content: center;
+    height: 50px;    
+}
+.navWrapper li{
+    text-align: center;
+    height: 50px;
+    width: 100px;
+    border-right: 2px solid  rgb(226, 204, 226);
+    cursor: pointer;
+    background-color:whitesmoke;
+
+}
+.navWrapper a{
+    position: relative;
+    top: 15px;
+    color: #855cb3;
+}
+.space{
+    height: 154px;
+}
+
+.wholeGameSlide{
+    width: 1200px;
+    height: 500px;
+    background-color: whitesmoke;
+    margin: 0 auto;
+}
+.wholeGameNav{
+    width: 1200px;
+    height: 150px;
+    margin: 50px auto 0;
+    background-color: whitesmoke;
+
+}
+.wholeGameNav .wholegamement{
+    color: #855cb3;
+    font-size: 2em;
+    font-weight: bold;
+    margin: auto 20px;
+}
+.wholeGameNavTop{
+    display: flex;
+    position: relative;
+}
+.GameListClick{
+    border: 1px solid rgb(226, 204, 226);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.gameListIcon img{
+    width: 27px;
+    height: 27px;
+    color: white;
+}
+.gameListIcon img:hover{
+    background-color: #855cb3;
+}
+.gameListIcon{
+    margin : auto 3px;
+}
+.searchBar{
+    width: max-content;
+    height: 30px;
+    position: absolute;
+    right: 0;
+    display: flex;
+}
+.searchText{
+    margin: auto 5px;
+    height: 30px;
+}
+.wholeGameNavSort{
+    width: 1100px;
+    height: 50px;
+    background-color: white;
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.wholeGameNavSort span{
+    margin : auto;
+}
+.wholeGameNavSort span:hover{
+    background-color: rgb(226, 204, 226);
+    color: white;
+    font-weight: bold;
+}
+
+.wholeGameZone{
+    width: 1200px;
+    height: max-content;
+    background-color: whitesmoke;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+.wholeGameZoneul li{
+    width: 300px;
+    height: 300px;
+    margin: 20px;
+}
+
+.wholeGameZoneul li img{
+    width: 300px;
+    height: 200px;
+}
+.wholeGameZoneul li .ListGameZone{
+    width: 100%;
+    height: 100px;
+    background-color: white;
+    position: relative;
+    color: #855cb3;
+}
+.ListGameZone .ListGameName{
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-weight: bold;
+    font-size: 20px;
+}
+.ListGameZone .ListGameComment{
+    position: absolute;
+    top: 40px;
+    left: 5px;
+    font-size: 15px;
+    color: black;
+}
+.ListGameZone .ListGameHashTag{
+    position: absolute;
+    top: 70px;
+    left: 5px;
+    font-size: 10px;
+    color: black;
+}
