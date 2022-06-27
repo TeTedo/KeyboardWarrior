@@ -15,11 +15,20 @@ body{
     position: absolute;
     width: 100%;
 }
-
+.fixed{
+    position: fixed;
+    width: 100%;
+}
+.fixedSpace{
+    height: 20px;
+    background-color: white;
+}
+.space{
+    height: 150px;
+}
 /* 탑 */
 .top{
     background-color: white;
-    position: fixed;
     width: 100%;
 }
 .topWrapper{
@@ -39,17 +48,22 @@ body{
     border: 2px solid rgb(226, 204, 226);
     border-radius: 10px;
     background-color: whitesmoke;
+    position: relative;
+    left: -70px;
 }
-#profile {
-    width: 150px;
-    height: 40px;
-    border: 2px solid rgb(226, 204, 226);
-    border-radius: 100px;
-    background-color: whitesmoke;
+#topSearchBtn {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-image: url(./images/search.png);
+    background-size: cover;
+    position: relative;
+    left: -360px;
+    cursor: pointer;
 }
 
 /* 네브 */
-.nav{
+/* .nav{
     width: 100%;
     position: fixed;
     border-bottom: 2px solid rgb(226, 204, 226);
@@ -79,16 +93,16 @@ body{
     position: relative;
     top: 15px;
     color: #855cb3;
-}
-.space{
-    height: 154px;
+} */
+
+.borderLine{
+    border-bottom: 2px solid  rgb(226, 204, 226);;
 }
 
 /* 사이드 */
 .side{
-    position: fixed;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 .sideWrapper{
     width: 1200px;
@@ -98,10 +112,11 @@ body{
 }
 .side .left{
     width: 250px;
-    height: 200px;
+    height: max-content;
     background-color: whitesmoke;
     border-radius: 20px;
     border: 2px solid rgb(226, 204, 226);
+    
 }
 .leftMenu{
     padding: 30px;
@@ -110,20 +125,13 @@ body{
     margin-bottom: 30px;
     border-bottom: 2px solid rgb(226, 204, 226);
     cursor: pointer;
-    /* color: #855cb3; */
+    overflow: auto;
 }
-/* .leftMenu li.start{
-    width: 0;
-    background-color: #855cb3;
-    color: white;
-    border: none;
-}
-.leftMenu li.active{
-    width: 50%;
-    transition:1s;
-} */
 .leftMenudiv{
     color: #855cb3;
+    height: 19.5px;
+    overflow: hidden;
+    font-size: larger;
 }
 .leftMenudiv.start{
     width: 0;
@@ -133,24 +141,45 @@ body{
 }
 .leftMenudiv.active{
     width: 50%;
-    transition:1s;
+    transition:1.5s;
 }
 .side .right{
     width: 250px;
-    height: 300px;
+    height: max-content;
     background-color: whitesmoke;
     border-radius: 20px;
     border: 2px solid rgb(226, 204, 226);
 }
 
+.right .contents{
+    padding: 30px;
+}
+.right .login{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.right li:first-child{
+    margin-bottom: 10px;
+}
+.right .login input{
+    width: 100px;
+}
+.right .join{
+    display: flex;
+    justify-content: space-between;
+    font-size: smaller;
+}
 /* 스크롤 */
 .scrollContents{
     position: fixed;
     width: 100%;
     z-index: -999;
+    height: 50vh;
 }
 .scrollContentsWrapper{
     width: 1200px;
+    height: 100%;
     margin: 0 auto;
 }
 #scrollBtn{
@@ -165,7 +194,7 @@ body{
     justify-content: center;
     align-items: center;
     position: relative;
-    top: 525px;
+    top: 300px;
     right: 200px;
     transition: 0.6s;
     opacity: 0;
