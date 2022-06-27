@@ -52,6 +52,20 @@ for (let i = 1; i<=leftMenuCount; i++){
             allDiv[i-1].classList.add('active')
         }, );
     }
+
+    document.querySelector(`.leftMenu li:nth-child(${i})`).onmouseleave = function(){
+        console.log('나감')
+        for(let i = 1; i<=leftMenuCount; i++){
+            if(allDiv[i-1].classList.contains('start')){
+                allDiv[i-1].classList.remove('start')
+            }
+            if(allDiv[i-1].classList.contains('active')){
+                allDiv[i-1].classList.remove('active')
+            }
+        }   
+    }
+}
+
     // document.querySelectorAll(`.leftMenu li:nth-child(${i})`).onmouseleave = function(){
     //     for(let i = 1; i<=leftMenuCount; i++){
     //         console.log('나감')
@@ -63,7 +77,6 @@ for (let i = 1; i<=leftMenuCount; i++){
     //         }
     //     }   
     // }
-}
 
 // document.querySelectorAll('.leftMenu li').forEach((e,index)=>{
 //     console.log(e)
