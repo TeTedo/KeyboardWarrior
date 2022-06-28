@@ -1,4 +1,4 @@
-//스크롤 버튼
+//스크롤 리모컨 버튼
 window.onscroll = function(){
     let main = document.querySelector('.main div:first-child') 
     if ( main.getBoundingClientRect().top < 120){
@@ -24,9 +24,7 @@ scrollBtn.onclick = function(){
     window.scrollTo({top:0, behavior:"smooth"})
 }
 
-// console.log(document.querySelector(`.leftMenu li a:nth-child(${1})`).classList.contains('hello'))
-
-//사이드메뉴 
+//왼쪽 메뉴바 효과
 let leftMenuCount = document.querySelector('.leftMenu').childElementCount
 allLeftMenuDiv=document.querySelectorAll('.leftMenudiv')
 
