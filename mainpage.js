@@ -4,9 +4,9 @@ window.onscroll = function(){
     if ( main.getBoundingClientRect().top < 120){
        document.querySelector('.scrollContents').style.zIndex = '1' 
        scrollBtn.style.opacity = '1'
-       scrollBtn.style.top = '400px'
+       scrollBtn.style.top = '500px'
        setTimeout(()=>{
-        scrollBtn.style.top = '340px'
+        scrollBtn.style.top = '400px'
        },500)
         
        
@@ -15,7 +15,7 @@ window.onscroll = function(){
         scrollBtn.style.opacity = '0'
         document.querySelector('.scrollContents').style.zIndex = '-999' 
         
-        scrollBtn.style.top = '300px'
+        scrollBtn.style.top = '350px'
         
     }
 }

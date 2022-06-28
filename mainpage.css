@@ -15,19 +15,12 @@ body{
     position: absolute;
     width: 100%;
 }
-.fixed{
-    position: fixed;
-    width: 100%;
-}
-.fixedSpace{
-    height: 20px;
-    background-color: white;
-}
 .space{
     height: 150px;
 }
 /* 탑 */
 .top{
+    position: fixed;
     background-color: white;
     width: 100%;
 }
@@ -49,7 +42,7 @@ body{
     border-radius: 10px;
     background-color: whitesmoke;
     position: relative;
-    left: -70px;
+    left: -70px
 }
 #topSearchBtn {
     width: 30px;
@@ -61,62 +54,34 @@ body{
     left: -360px;
     cursor: pointer;
 }
-
-/* 네브 */
-/* .nav{
-    width: 100%;
+.fixedSpace{
     position: fixed;
-    border-bottom: 2px solid rgb(226, 204, 226);
-    border-top: 2px solid rgb(226, 204, 226);
     top: 100px;
+    height: 20px;
+    width: 100%;
     background-color: white;
 }
-.navWrapper{
-    width: 1300px;
-    margin: 0 auto;    
-}
-.navWrapper ul{
-    display: flex;
-    justify-content: center;
-    height: 50px;    
-}
-.navWrapper li{
-    text-align: center;
-    height: 50px;
-    width: 100px;
-    border-right: 2px solid  rgb(226, 204, 226);
-    cursor: pointer;
-    background-color:whitesmoke;
-
-}
-.navWrapper a{
-    position: relative;
-    top: 15px;
-    color: #855cb3;
-} */
-
 .borderLine{
+    position: fixed;
+    width: 100%;
+    top: 120px;
     border-bottom: 2px solid  rgb(226, 204, 226);;
 }
 
 /* 사이드 */
-.side{
-    width: 100%;
-    margin-top: 40px;
-}
-.sideWrapper{
-    width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-}
-.side .left{
-    width: 250px;
+.left{
+    margin-top: 20px;
+    position: fixed;
     height: max-content;
+    margin-right: 1000px;   
+
+}
+.leftWrapper{
+    margin: 0 auto;
+    width: 250px;
     background-color: whitesmoke;
     border-radius: 20px;
     border: 2px solid rgb(226, 204, 226);
-    
 }
 .leftMenu{
     padding: 30px;
@@ -143,16 +108,21 @@ body{
     width: 50%;
     transition:1.5s;
 }
-.side .right{
+.right{
+    position: fixed;
+    margin-top: 20px;
+    height: auto;
+    margin-left: 1000px;   
+}
+.rightWrapper{
+    margin: 0 auto;
     width: 250px;
-    height: max-content;
+}
+.right .contents{
+    padding: 30px;
     background-color: whitesmoke;
     border-radius: 20px;
     border: 2px solid rgb(226, 204, 226);
-}
-
-.right .contents{
-    padding: 30px;
 }
 .right .login{
     display: flex;
@@ -177,11 +147,7 @@ body{
     z-index: -999;
     height: 50vh;
 }
-.scrollContentsWrapper{
-    width: 1200px;
-    height: 100%;
-    margin: 0 auto;
-}
+
 #scrollBtn{
     width: 50px;
     height: 50px;
@@ -189,13 +155,11 @@ body{
     border-radius: 500px;
     background-color: #855cb3;
     color: white;
-    float: right;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    top: 300px;
-    right: 200px;
+    top: 350px;
     transition: 0.6s;
     opacity: 0;
     font-size: larger;
@@ -206,12 +170,12 @@ body{
     width: 1200px;
     margin: 0 auto;
     height: 80vh;
-}
-.main .contents{
-    height: 80vh;
-    margin-top: 20px;
     display: flex;
     justify-content: center;
+}
+.main .mainContents{
+    height: 80vh;
+    margin-top: 20px;
 }
 .main #mainWrite {
     background-color: whitesmoke;
@@ -221,6 +185,21 @@ body{
     border: 2px solid rgb(226, 204, 226);
     overflow: auto;
     margin-bottom: 20px;
+    padding: 30px;
+}
+.main #mainWrite span{
+    display: flex;
+}
+.main #mainWrite input{
+    width: 100%;
+    margin-left: 20px;
+}
+.main #mainWrite img{
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border: 2px solid ;
+    border-radius: 500px;
 }
 .mainWrapper .center div{
     background-color: whitesmoke;
