@@ -61,7 +61,6 @@ body{
     left: -360px;
     cursor: pointer;
 }
-
 .borderLine{
     border-bottom: 2px solid  rgb(226, 204, 226);;
 }
@@ -168,176 +167,33 @@ body{
     font-size: larger;
 }
 
-.space{
-    height: 150px;
+/* 메인 (여기는 원하는대로 수정)*/
+.mainWrapper{
+    width: 1200px;
+    margin: 0 auto;
+    height: 80vh;
 }
-
-/* 여기서부터 태석 */
-
-/* 개발자모드 */
-
-.AddHiddenPage{
-    display: none;
+.main .contents{
+    height: 80vh;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
 }
-.adminModeAdd{
-    cursor: pointer;
-    position: relative;
-}
-
-.AddPage{
-    width: 250px;
+.main #mainWrite {
+    background-color: whitesmoke;
+    border-radius: 20px;
+    width: 600px;
     height: 200px;
-    background-color: aqua;
-    position: absolute;
-    left :100px;
-    top: -50px;
-    cursor: default;
+    border: 2px solid rgb(226, 204, 226);
+    overflow: auto;
+    margin-bottom: 20px;
 }
-.AddPageGeturl{
-    display: flex;
-}
-.AddPageButton{
-    display: flex;
-    position: absolute;
-    left: 180px;
-    top: 120px;
-    width: max-content;
-}
-.AddPageAddButton, .AddPageCancelButton{
-    margin: 0 10px;
-}
-
-
-
-
-
-/* 위는 개발자모드 */
-
-.wholeGameSlide{
+.mainWrapper .center div{
+    background-color: whitesmoke;
+    border-radius: 20px;
     width: 600px;
     height: 500px;
-    background-color: whitesmoke;
-    margin: 0 auto;
-}
-
-
-.wholeGameNav{
-    width: 600px;
-    height: 150px;
-    margin: 50px auto 0;
-    background-color: whitesmoke;
-}
-.wholeGameNav .wholegamement{
-    color: #855cb3;
-    font-size: 2em;
-    font-weight: bold;
-    margin: auto 20px;
-}
-.wholeGameNavTop{
-    display: flex;
-    position: relative;
-}
-.GameListClick{
-    border: 1px solid rgb(226, 204, 226);
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.gameListIcon img{
-    width: 27px;
-    height: 27px;
-    color: white;
-}
-.gameListIcon img:hover{
-    background-color: #855cb3;
-}
-.gameListIcon{
-    margin : auto 3px;
-}
-.searchBar{
-    width: max-content;
-    height: 30px;
-    position: absolute;
-    right: 0;
-    display: flex;
-}
-.searchText{
-    margin: auto 5px;
-    height: 30px;
-}
-.adminModeAdd{
-    position: absolute;
-    left: 500px;
-    top: 40px;
-}
-.wholeGameNavSort{
-    width: 500px;
-    height: 50px;
-    background-color: white;
-    margin: 30px auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.wholeGameNavSort span{
-    margin : auto;
-    font-size: 15px;
-    font-weight: bold;
-}
-.wholeGameNavSort span:hover{
-    background-color: rgb(226, 204, 226);
-    color: white;
-    font-weight: bold;
-}
-
-.wholeGameZone{
-    width: 600px;
-    height: max-content;
-    background-color: whitesmoke;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-}
-.wholeGameZoneul{
-    display: flex;
-    flex-wrap: wrap;
-}
-.wholeGameZoneul li{
-    width: 260px;
-    height: 300px;
-    margin: 20px;
-}
-
-.wholeGameZoneul li img{
-    width: 260px;
-    height: 200px;
-}
-.wholeGameZoneul li .ListGameZone{
-    width: 100%;
-    height: 100px;
-    background-color: white;
-    position: relative;
-    color: #855cb3;
-}
-.ListGameZone .ListGameName{
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    font-weight: bold;
-    font-size: 20px;
-}
-.ListGameZone .ListGameComment{
-    position: absolute;
-    top: 40px;
-    left: 5px;
-    font-size: 15px;
-    color: black;
-}
-.ListGameZone .ListGameHashTag{
-    position: absolute;
-    top: 70px;
-    left: 5px;
-    font-size: 10px;
-    color: black;
+    border: 2px solid rgb(226, 204, 226);
+    overflow: auto;
+    margin-bottom: 20px;
 }
