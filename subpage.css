@@ -22,6 +22,7 @@ body{
 .fixedSpace{
     height: 20px;
     background-color: white;
+    position: relative;
 }
 .space{
     height: 150px;
@@ -30,6 +31,7 @@ body{
 .top{
     background-color: white;
     width: 100%;
+    position: relative;
 }
 .topWrapper{
     height: 100px;
@@ -141,7 +143,6 @@ body{
 .scrollContents{
     position: fixed;
     width: 100%;
-    z-index: -999;
     height: 50vh;
 }
 .scrollContentsWrapper{
@@ -219,13 +220,89 @@ body{
     background-color: whitesmoke;
     margin: 0 auto;
     position: relative;
-    z-index: 1;
+    overflow: hidden;
+}
+.wholeGameSlideButton{
+    background-color: white;
+    display: inline-block;
+    position: relative;
+    text-align: center;
 }
 
+.wholeGameSlideNextButton{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 55px;
+    left: 540px;
+    z-index: 1;
+}
+.wholeGameSlideNextButton:hover{
+    background-color: white;
+    cursor: pointer;
+}
+.wholeGameSlidePrevButton{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 55px;
+    left: 10px;
+    z-index: 1;
+}
+.wholeGameSlidePrevButton:hover{
+    background-color: white;
+    cursor: pointer;
+}
+
+.wholeGameSlideul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 1s;
+}
+.wholeGameSlideul li img{
+    width: 600px;
+    height: 200px;
+}
+
+/* 임시 CSS 슬라이드쇼 구간 */
+.wholeGameSlideLabel{
+    width: 100%;
+    height: 30px;
+    position: absolute;
+    bottom: 10px;
+    background-color: #855cb3;
+    display: flex;
+    background-color: transparent;
+}
+.wholeGameSlideLabel input{
+    display: none;
+}
+.wholeGameSlideLabel label{
+    width: 100%;
+    height: 40px;
+    display: block;
+    transition: 1s;
+    background-color: transparent;
+    cursor: pointer;
+    border: 1px solid black;
+}
+.wholeGameSlideLabel label div{
+    width: 0px;
+    height: 100%;
+}
+.wholeGameSlideLabel input:checked+label div{
+    width: 100%;
+    background-color: purple;
+    transition: 5s;
+}
+/* 임시 CSS 슬라이드쇼 구간 */
 
 .wholeGameNav{
     width: 600px;
-    height: 150px;
     margin: 50px auto 0;
     background-color: whitesmoke;
     position: relative;
@@ -266,6 +343,17 @@ body{
     display: flex;
 }
 .searchText{
+    width: 250px;
+}
+.searchImg{
+    cursor: pointer;
+    position: absolute;
+    right: 25px;
+    width: 10px;
+    height: 10px;
+
+}
+.searchText{
     margin: auto 5px;
     height: 30px;
 }
@@ -302,7 +390,6 @@ body{
     display: flex;
     align-items: center;
     position: relative;
-    z-index: 1;
 }
 .wholeGameZoneul{
     display: flex;
@@ -325,7 +412,6 @@ body{
     background-color: white;
     position: relative;
     color: #855cb3;
-    z-index: -1;
 }
 .ListGameZone .ListGameName{
     position: absolute;

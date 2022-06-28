@@ -57,9 +57,42 @@
     </div>
 
     <div class="space"></div>
-    
-    <div class="wholeGameSlide">
 
+    <div class="wholeGameSlide">
+        <div class="wholeGameSlideButton">
+            <svg class="wholeGameSlideNextButton" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+            </svg>
+            <svg class="wholeGameSlidePrevButton" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+            </svg>
+        </div>
+        <ul class="wholeGameSlideul">
+            <li class="wholeGameSlidelist"><a href="">
+                <img src="https://rs.nxfs.nexon.com/gameusr/21/1/2FJh07105826755.jpg" alt="">
+                </a></li>
+            <li class="wholeGameSlidelist"><a href="">
+                <img src="https://www.motorgraph.com/news/photo/202102/27140_86146_5436.jpg" alt="">
+                </a></li>
+            <li class="wholeGameSlidelist"><a href="">
+                <img src="https://rs.nxfs.nexon.com/gameusr/21/1/2FJh07105826755.jpg" alt="">
+                </a></li>
+        </ul>
+        <div class="wholeGameSlideLabel">
+            <input type="radio" name="slide" id="Slide0" class="wholeGameSlidebar">
+            <label for="Slide0">
+                <div class="SliderBardiv0"></div>
+            </label>
+            <input type="radio" name="slide" id="Slide1" class="wholeGameSlidebar">
+            <label for="Slide1">
+                <div class="SliderBardiv1"></div>
+            </label>
+            <input type="radio" name="slide" id ="Slide2" class="wholeGameSlidebar">
+            <label for="Slide2">
+                <div class="SliderBardiv"></div>
+            </label>
+            
+        </div>
     </div>
 
     <div class="wholeGameNav">
@@ -72,7 +105,7 @@
             </div>
             <span class="searchBar">    
                 <input class="searchText" type="text">
-                <span class="searchImg"><img width="27px" src="https://cdn-icons-png.flaticon.com/512/122/122932.png" alt=""></span>
+                <span class="searchImg"><img width="27px" src=./images/search.png alt=""></span>
             </span>
             <div class="adminModeAdd">추가하기
                 <div class="AddHiddenPage">
@@ -181,5 +214,6 @@
         </ul>
     </div>
 </body>
+<script src="module.js"></script>
 <script src="subpage.js"></script>
 </html>

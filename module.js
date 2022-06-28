@@ -46,8 +46,6 @@ allLeftMenuDiv=document.querySelectorAll('.leftMenudiv')
 for (let i = 1; i<=leftMenuCount; i++){
     document.querySelector(`.leftMenu li:nth-child(${i})`).onmouseenter = function(){
         for(let i = 1; i<=leftMenuCount; i++){
-            console.log(leftMenuCount)
-            console.log(i)
             if(allLeftMenuDiv[i-1].classList.contains('start')){
                 allLeftMenuDiv[i-1].classList.remove('start')
             }
@@ -64,7 +62,6 @@ for (let i = 1; i<=leftMenuCount; i++){
 
 document.querySelector(`.leftMenu`).onmouseleave = function(){
     for(let i = 1; i<=leftMenuCount; i++){
-        console.log('나감')
         if(allLeftMenuDiv[i-1].classList.contains('start')){
             allLeftMenuDiv[i-1].classList.remove('start')
         }
