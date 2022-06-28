@@ -18,6 +18,7 @@ body{
 .fixed{
     position: fixed;
     width: 100%;
+    z-index: 999;
 }
 .fixedSpace{
     height: 20px;
@@ -71,7 +72,8 @@ body{
 /* 사이드 */
 .side{
     width: 100%;
-    margin-top: 40px;
+    margin-top: 150px;
+    position: fixed;
 }
 .sideWrapper{
     width: 1200px;
@@ -114,7 +116,7 @@ body{
 }
 .side .right{
     width: 250px;
-    height: max-content;
+    height: 150px;
     background-color: whitesmoke;
     border-radius: 20px;
     border: 2px solid rgb(226, 204, 226);
@@ -137,19 +139,16 @@ body{
 .right .join{
     display: flex;
     justify-content: space-between;
-    font-size: smaller;
+    font-size: 11.5px;
 }
 /* 스크롤 */
 .scrollContents{
-    position: fixed;
     width: 100%;
-    height: 50vh;
+    z-index: -999;
+    left: 1100px;
+    top: 340px;
 }
-.scrollContentsWrapper{
-    width: 1200px;
-    height: 100%;
-    margin: 0 auto;
-}
+
 #scrollBtn{
     width: 50px;
     height: 50px;
@@ -157,13 +156,11 @@ body{
     border-radius: 500px;
     background-color: #855cb3;
     color: white;
-    float: right;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    top: 300px;
-    right: 200px;
+    top: 350px;
     transition: 0.6s;
     opacity: 0;
     font-size: larger;
@@ -210,9 +207,12 @@ body{
 
 
 
-
-
 /* 위는 개발자모드 */
+
+.wholeWrapMain{
+    width: 1200px;
+    margin: 0 auto;
+}
 
 .wholeGameSlide{
     width: 600px;
@@ -306,6 +306,7 @@ body{
     margin: 50px auto 0;
     background-color: whitesmoke;
     position: relative;
+    height: 150px;
 }
 .wholeGameNav .wholegamement{
     color: #855cb3;
