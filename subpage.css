@@ -215,9 +215,11 @@ body{
 
 .wholeGameSlide{
     width: 600px;
-    height: 500px;
+    height: 200px;
     background-color: whitesmoke;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
 
@@ -226,6 +228,7 @@ body{
     height: 150px;
     margin: 50px auto 0;
     background-color: whitesmoke;
+    position: relative;
 }
 .wholeGameNav .wholegamement{
     color: #855cb3;
@@ -298,10 +301,13 @@ body{
     margin: 0 auto;
     display: flex;
     align-items: center;
+    position: relative;
+    z-index: 1;
 }
 .wholeGameZoneul{
     display: flex;
     flex-wrap: wrap;
+    position: relative;
 }
 .wholeGameZoneul li{
     width: 260px;
@@ -319,6 +325,7 @@ body{
     background-color: white;
     position: relative;
     color: #855cb3;
+    z-index: -1;
 }
 .ListGameZone .ListGameName{
     position: absolute;
