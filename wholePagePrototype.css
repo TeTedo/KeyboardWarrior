@@ -15,19 +15,12 @@ body{
     position: absolute;
     width: 100%;
 }
-.fixed{
-    position: fixed;
-    width: 100%;
-}
-.fixedSpace{
-    height: 20px;
-    background-color: white;
-}
 .space{
     height: 150px;
 }
 /* 탑 */
 .top{
+    position: fixed;
     background-color: white;
     width: 100%;
 }
@@ -61,28 +54,34 @@ body{
     left: -360px;
     cursor: pointer;
 }
+.fixedSpace{
+    position: fixed;
+    top: 100px;
+    height: 20px;
+    width: 100%;
+    background-color: white;
+}
 .borderLine{
+    position: fixed;
+    width: 100%;
+    top: 120px;
     border-bottom: 2px solid  rgb(226, 204, 226);;
 }
 
 /* 사이드 */
-.side{
-    width: 100%;
-    margin-top: 40px;
+.left{
+    position: fixed;
+    margin-top: 20px;
+    width: 400px;
+    height: max-content;   
+    margin-right: 1000px;
 }
-.sideWrapper{
-    width: 1200px;
+.leftWrapper{
     margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-}
-.side .left{
     width: 250px;
-    height: max-content;
     background-color: whitesmoke;
     border-radius: 20px;
     border: 2px solid rgb(226, 204, 226);
-    
 }
 .leftMenu{
     padding: 30px;
@@ -109,16 +108,22 @@ body{
     width: 50%;
     transition:1.5s;
 }
-.side .right{
+.right{
+    position: fixed;
+    margin-top: 20px;
+    margin-left: 1000px;
+    width: 400px;
+    height: auto;
+}
+.rightWrapper{
+    margin: 0 auto;
     width: 250px;
-    height: max-content;
+}
+.right .contents{
+    padding: 30px;
     background-color: whitesmoke;
     border-radius: 20px;
     border: 2px solid rgb(226, 204, 226);
-}
-
-.right .contents{
-    padding: 30px;
 }
 .right .login{
     display: flex;
@@ -143,11 +148,7 @@ body{
     z-index: -999;
     height: 50vh;
 }
-.scrollContentsWrapper{
-    width: 1200px;
-    height: 100%;
-    margin: 0 auto;
-}
+
 #scrollBtn{
     width: 50px;
     height: 50px;
@@ -155,38 +156,27 @@ body{
     border-radius: 500px;
     background-color: #855cb3;
     color: white;
-    float: right;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    top: 300px;
-    right: 200px;
+    top: 350px;
     transition: 0.6s;
     opacity: 0;
     font-size: larger;
 }
 
-/* 메인 (여기는 원하는대로 수정)*/
+/* 메인 */
 .mainWrapper{
     width: 1200px;
     margin: 0 auto;
     height: 80vh;
-}
-.main .contents{
-    height: 80vh;
-    margin-top: 20px;
     display: flex;
     justify-content: center;
 }
-.main #mainWrite {
-    background-color: whitesmoke;
-    border-radius: 20px;
-    width: 600px;
-    height: 200px;
-    border: 2px solid rgb(226, 204, 226);
-    overflow: auto;
-    margin-bottom: 20px;
+.main .mainContents{
+    height: 80vh;
+    margin-top: 20px;
 }
 .mainWrapper .center div{
     background-color: whitesmoke;
