@@ -15,11 +15,20 @@ body{
     position: absolute;
     width: 100%;
 }
-
+.fixed{
+    position: fixed;
+    width: 100%;
+}
+.fixedSpace{
+    height: 20px;
+    background-color: white;
+}
+.space{
+    height: 150px;
+}
 /* 탑 */
 .top{
     background-color: white;
-    position: fixed;
     width: 100%;
 }
 .topWrapper{
@@ -39,53 +48,129 @@ body{
     border: 2px solid rgb(226, 204, 226);
     border-radius: 10px;
     background-color: whitesmoke;
+    position: relative;
+    left: -70px;
 }
-#profile {
-    width: 150px;
-    height: 40px;
-    border: 2px solid rgb(226, 204, 226);
-    border-radius: 100px;
-    background-color: whitesmoke;
+#topSearchBtn {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-image: url(./images/search.png);
+    background-size: cover;
+    position: relative;
+    left: -360px;
+    cursor: pointer;
 }
 
-/* 네브 */
-.nav{
+.borderLine{
+    border-bottom: 2px solid  rgb(226, 204, 226);;
+}
+
+/* 사이드 */
+.side{
     width: 100%;
-    position: fixed;
+    margin-top: 40px;
+}
+.sideWrapper{
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+.side .left{
+    width: 250px;
+    height: max-content;
+    background-color: whitesmoke;
+    border-radius: 20px;
+    border: 2px solid rgb(226, 204, 226);
+    
+}
+.leftMenu{
+    padding: 30px;
+}
+.leftMenu li{
+    margin-bottom: 30px;
     border-bottom: 2px solid rgb(226, 204, 226);
-    border-top: 2px solid rgb(226, 204, 226);
-    top: 100px;
-    background-color: white;
+    cursor: pointer;
+    overflow: auto;
 }
-.navWrapper{
-    width: 1300px;
-    margin: 0 auto;    
-    
-    
+.leftMenudiv{
+    color: #855cb3;
+    height: 19.5px;
+    overflow: hidden;
+    font-size: larger;
 }
-.navWrapper ul{
+.leftMenudiv.start{
+    width: 0;
+    background-color: #855cb3;
+    color: white;
+    border: none;
+}
+.leftMenudiv.active{
+    width: 50%;
+    transition:1.5s;
+}
+.side .right{
+    width: 250px;
+    height: max-content;
+    background-color: whitesmoke;
+    border-radius: 20px;
+    border: 2px solid rgb(226, 204, 226);
+}
+
+.right .contents{
+    padding: 30px;
+}
+.right .login{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.right li:first-child{
+    margin-bottom: 10px;
+}
+.right .login input{
+    width: 100px;
+}
+.right .join{
+    display: flex;
+    justify-content: space-between;
+    font-size: smaller;
+}
+/* 스크롤 */
+.scrollContents{
+    position: fixed;
+    width: 100%;
+    z-index: -999;
+    height: 50vh;
+}
+.scrollContentsWrapper{
+    width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+}
+#scrollBtn{
+    width: 50px;
+    height: 50px;
+    /* border: 2px solid #855cb3; */
+    border-radius: 500px;
+    background-color: #855cb3;
+    color: white;
+    float: right;
     display: flex;
     justify-content: center;
-    height: 50px;    
-}
-.navWrapper li{
-    text-align: center;
-    height: 50px;
-    width: 100px;
-    border-right: 2px solid  rgb(226, 204, 226);
-    cursor: pointer;
-    background-color:whitesmoke;
-
-}
-.navWrapper a{
+    align-items: center;
     position: relative;
-    top: 15px;
-    color: #855cb3;
-}
-.space{
-    height: 154px;
+    top: 300px;
+    right: 200px;
+    transition: 0.6s;
+    opacity: 0;
+    font-size: larger;
 }
 
+.space{
+    height: 150px;
+}
 
 /* 여기서부터 태석 */
 
@@ -126,7 +211,6 @@ body{
 
 
 
-
 /* 위는 개발자모드 */
 
 .wholeGameSlide{
@@ -135,12 +219,13 @@ body{
     background-color: whitesmoke;
     margin: 0 auto;
 }
+
+
 .wholeGameNav{
     width: 600px;
     height: 150px;
     margin: 50px auto 0;
     background-color: whitesmoke;
-
 }
 .wholeGameNav .wholegamement{
     color: #855cb3;
