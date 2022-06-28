@@ -8,7 +8,6 @@
 </head>
 <link rel="stylesheet" href="./mainpage.css">
 <body>
-    
     <div class="top">
         <div class="topWrapper">
             <a href=""><h1>키보드워리어</h1></a>
@@ -19,15 +18,37 @@
     <div class="fixedSpace"></div>
     <div class="borderLine"></div> 
     <div class="space"></div>
+    <div class="popUp">
+        <div class="popUpWrap">
+            <ul>
+                <li style="margin-bottom:50px ;"><input type="text" id="addImgFile"></li>
+                <li>
+                    <button id="popUpCancle" style="margin-right:10px; margin-left: 150px;">취소</button>
+                    <button id="popUpDone">완료</button>
+                </li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
     <!-- 메인영역 -->
     <div class="main">
         <div class="mainWrapper">
             <div class="mainContents">
                 <div class="center" id="mainContentsList">
                     <div id="mainWrite">
-                        <span>
-                            <img src="" alt="">
-                            <input type="text">
+                        <span class="mainWriteWrapper">
+                            <a href="" id="profileImg"></a>
+                            <span class="mainWriteContents">
+                                <span id="mainWriteContentsaddedImg">
+                                </span>
+                                <textarea onkeydown="resize(this)" onkeyup="resize(this)" placeholder="What's happening?" rows="1"></textarea>
+                                <span class="mainWriteContentsBtns">
+                                    <span class="attributeBtns">
+                                        <button id="addGifBtn"><b>gif</b></button>
+                                    </span>
+                                    <button id="postRegisterBtn"><h3>등록</h3></button>
+                                </span>
+                            </span>
                         </span>
                     </div>
                     <div>a</div>
@@ -80,6 +101,10 @@
 <script src="./mainpage.js"></script>
 <script src="./module.js"></script>
 <script>
+    function resize(obj) {
+    obj.style.height = "30px";
+    obj.style.height = (obj.scrollHeight)+"px";
+}
     new DivGnb(mainContentsList)
     new DivGnb(mainContentsList)
 </script>
