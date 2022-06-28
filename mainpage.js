@@ -60,6 +60,8 @@ document.querySelector(`.leftMenu`).onmouseleave = function(){
         }
     }   
 }
+
+// let divs = new DivGnb(mainContentsList)
 // document.querySelectorAll('.leftMenu li').forEach((e,index)=>{
 //     console.log(e)
 //     console.log(index)

@@ -129,7 +129,7 @@ body{
 }
 .leftMenudiv{
     color: #855cb3;
-    height: 19.5px;
+    height: 24px;
     overflow: hidden;
     font-size: larger;
 }
@@ -213,12 +213,21 @@ body{
     display: flex;
     justify-content: center;
 }
+.main #mainWrite {
+    background-color: whitesmoke;
+    border-radius: 20px;
+    width: 600px;
+    height: 200px;
+    border: 2px solid rgb(226, 204, 226);
+    overflow: auto;
+    margin-bottom: 20px;
+}
 .mainWrapper .center div{
     background-color: whitesmoke;
     border-radius: 20px;
     width: 600px;
     height: 500px;
     border: 2px solid rgb(226, 204, 226);
-    overflow: hidden;
+    overflow: auto;
     margin-bottom: 20px;
 }
