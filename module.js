@@ -1,30 +1,16 @@
-let DivGnb=(
-    function(){
-        function DivGnb(super_id){
-            this.init(super_id)
-        }
-        DivGnb.prototype.init = function(super_id){
-            let id = super_id
-            if(id ==="" || id === null){return}
-            let temp = document.createElement('div')
-            id.appendChild(temp);
-         }
-         return DivGnb
-    }
-)();
-
+//=============홈페이지 이펙트=====================================
 //스크롤 리모컨 버튼
 window.onscroll = function(){
     let main = document.querySelector('.main div:first-child') 
     if ( main.getBoundingClientRect().top < 120){
-       document.querySelector('.scrollContents').style.zIndex = '1' 
-       scrollBtn.style.opacity = '1'
-       scrollBtn.style.top = '400px'
-       setTimeout(()=>{
-        scrollBtn.style.top = '340px'
-       },500)
+        document.querySelector('.scrollContents').style.zIndex = '1' 
+        scrollBtn.style.opacity = '1'
+        scrollBtn.style.top = '400px'
+        setTimeout(()=>{
+            scrollBtn.style.top = '340px'
+        },500)
         
-       
+        
     }
     else{
         scrollBtn.style.opacity = '0'
@@ -70,3 +56,74 @@ document.querySelector(`.leftMenu`).onmouseleave = function(){
         }
     }   
 }
+//======================================================================
+
+let DivGnb=(
+    function(){
+        function DivGnb(super_id){
+            this.init(super_id)
+        }
+        DivGnb.prototype.init = function(super_id){
+            // let id = super_id
+            if(super_id ==="" || super_id === null){return}
+            let temp = document.createElement('div')
+            super_id.appendChild(temp);
+         }
+         return DivGnb
+    }
+)();
+
+let PostGnb=(
+    function(){
+        function PostGnb(super_id,text,url){
+            this.init(super_id,text,url)
+        }
+        PostGnb.prototype.init = function(super_id,text,url){
+            if(super_id ==="" || super_id === null){return}
+
+            let postWrite = document.createElement('div')
+            postWrite.classList.add('postWrite')
+            let postWriteWrapper = document.createElement('span')
+            postWriteWrapper.classList.add('postWriteWrapper')
+            let profileImg = document.createElement('a')
+            profileImg.classList.add('profileImg')
+            let postWriteContents = document.createElement('span')
+            postWriteContents.classList.add('postWriteContents')
+            let postWriteContentsBtns = document.createElement('span')
+            postWriteContentsBtns.classList.add('postWriteContentsBtns')
+            let deleteBtn = document.createElement('button')
+            let modifyBtn = document.createElement('button')
+            let modifyTextarea = document.createElement('textarea')
+            let postWriteContentsText = document.createElement('span')
+            postWriteContentsText.classList.add('postWriteContentsText')
+            
+            
+            
+            super_id.appendChild(postWrite);
+            postWrite.appendChild(postWriteWrapper)
+            postWriteWrapper.appendChild(profileImg)
+            postWriteWrapper.appendChild(postWriteContents)
+            postWriteContents.appendChild(postWriteContentsBtns)
+            postWriteContentsBtns.appendChild(deleteBtn)
+            postWriteContentsBtns.appendChild(modifyBtn)
+            postWriteContents.appendChild(modifyTextarea)
+            postWriteContents.appendChild(postWriteContentsText)
+            
+            deleteBtn.innerHTML = "삭제"
+            modifyBtn.innerHTML = "수정"
+            modifyTextarea.setAttribute('readonly','')
+            modifyTextarea.onkeydown=('resize(this)')
+            modifyTextarea.setAttribute('onkeyup','resize(this)')
+            modifyTextarea.setAttribute('rows','1')
+            postWriteContentsText.innerHTML = text
+            document.querySelector('.postWriteContentsText')
+            
+            if(!(url === undefined)){
+            let postImg = document.createElement('img')
+            postWriteContents.appendChild(postImg)
+            postImg.src = url
+            }
+         }
+         return PostGnb
+    }
+)();

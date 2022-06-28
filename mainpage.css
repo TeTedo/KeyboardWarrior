@@ -197,29 +197,23 @@ body{
     height: 80vh;
     margin-top: 20px;
 }
-.main #mainWrite {
+.main .mainWrite {
     background-color: whitesmoke;
     border-radius: 20px;
     width: 600px;
     min-height: 100px;
     height: auto;
     border: 2px solid rgb(226, 204, 226);
-    overflow: auto;
     margin-bottom: 20px;
     padding: 30px;
     
 }
-.main #mainWrite .mainWriteWrapper{
+.main .mainWrite .mainWriteWrapper{
     display: flex;;
     
 }
 
-.main #mainWrite .mainWriteContents{
-    margin-left: 20px;
-    display: flex;
-    flex-direction: column;
-}
-#profileImg{
+.main .mainWrite .profileImg{
     width: 45px;
     height: 40px;
     background-image: url(./images/profileImg.jpg);
@@ -227,28 +221,10 @@ body{
     border: 1px solid none;
     border-radius: 500px;
 }
-#mainWriteContentsaddedImg{
-    display: none;
-
-    margin-bottom: 10px;
-}
-#mainWriteContentsaddedImg img{
-    width: 476px;
-    height: 320px;
-}
-.main #mainWrite textarea{
-    width: 476px;
-    min-height: 30px;
-    border: none;
-    font-size: x-large;
-    resize: none;
-    border-bottom: 1px solid rgb(226, 204, 226);
-}
-.main #mainWrite textarea::-webkit-scrollbar{
-    display: none;
-}
-:focus-visible{
-    outline: none;
+.main .mainWrite .mainWriteContents{
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column-reverse;
 }
 .mainWriteContentsBtns{
     margin-top: 20px;
@@ -270,12 +246,112 @@ body{
     cursor: pointer;
 
 }
-.mainWrapper .center div{
+.main .mainWrite .mainWriteContents img{
+    width: 476px;
+    height: 320px;
+    margin-bottom: 10px;
+}
+.main .mainWrite textarea{
+    width: 476px;
+    min-height: 30px;
+    border: none;
+    font-size: x-large;
+    resize: none;
+    border-bottom: 1px solid rgb(226, 204, 226);
+}
+.main .mainWrite textarea::-webkit-scrollbar{
+    display: none;
+}
+:focus-visible{
+    outline: none;
+}
+
+/* 포스팅된거 */
+.postWrapper{
+    display: flex;
+    flex-direction: column-reverse;
+
+}
+.main .postWrite {
+    background-color: whitesmoke;
+    border-radius: 20px;
+    width: 600px;
+    min-height: 100px;
+    height: auto;
+    border: 2px solid rgb(226, 204, 226);
+    margin-bottom: 20px;
+    padding: 30px;
+    
+}
+.main .postWrite .postWriteWrapper{
+    display: flex;;
+    
+}
+
+.main .postWrite .profileImg{
+    width: 45px;
+    height: 40px;
+    background-image: url(./images/profileImg.jpg);
+    background-size: cover;
+    border: 1px solid none;
+    border-radius: 500px;
+}
+.main .postWrite .postWriteContents{
+    width: 476px;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column-reverse;
+}
+.postWriteContentsBtns{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+.postWriteContentsBtns button{
+    border: 2px solid rgb(226, 204, 226);
+    border-radius: 30px;
+    color: #855cb3;
+    width: 60px;
+    height: 30px;
+    cursor: pointer;
+    font-weight: bolder;
+    font-size: 15px;
+}
+.postWriteContentsBtns button:nth-child(2){
+    margin-right: 20px;
+}
+.main .postWrite .postWriteContents img{
+    width: 476px;
+    height: 320px;
+    margin-bottom: 10px;
+}
+.postWriteContentsText{
+    width: 476px;
+    font-size: 20px;
+    border-bottom: 1px solid rgb(226, 204, 226);
+}
+.main .postWrite textarea{
+    display: none;
+    width: 476px;
+    min-height: 30px;
+    border: none;
+    font-size: 20px;
+    resize: none;
+    border-bottom: 1px solid rgb(226, 204, 226);
+}
+.main .postWrite textarea::-webkit-scrollbar{
+    display: none;
+}
+:focus-visible{
+    outline: none;
+}
+/* .mainWrapper .center div{
     background-color: whitesmoke;
     border-radius: 20px;
     width: 600px;
     height: 500px;
-    border: 2spx solid rgb(226, 204, 226);
+    border: 2px solid rgb(226, 204, 226);
     overflow: auto;
     margin-bottom: 20px;
-}
+} */
