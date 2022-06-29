@@ -50,6 +50,7 @@ let ListGameName = document.querySelectorAll(".ListGameName")
 let ListGameComment = document.querySelectorAll(".ListGameComment")
 let ListGameHashTag = document.querySelectorAll(".ListGameHashTag")
 let wholeGameZoneulimg = document.querySelectorAll(".wholeGameZoneul li img")
+let HashTagForDevide = document.querySelectorAll(".HashTagForDevide")
 
 //리스트 관련 모듈
 let AboutList = (
@@ -64,26 +65,30 @@ let AboutList = (
             let templist = document.createElement("li");
             let tempa = document.createElement("a");
             let tempimg = document.createElement("img");
-            let ListGameZone = document.createElement("div");
-            ListGameZone.classList.add("ListGameZone");
-            let ListGameName = document.createElement("div");
-            ListGameName.classList.add("ListGameName");
-            let ListGameComment = document.createElement("div");
-            ListGameComment.classList.add("ListGameComment");
-            let ListGameHashTag = document.createElement("div");
-            ListGameHashTag.classList.add("ListGameHashTag");
+            let tempGameZone = document.createElement("div");
+            tempGameZone.classList.add("ListGameZone");
+            let tempGameName = document.createElement("div");
+            tempGameName.classList.add("ListGameName");
+            let tempGameComment = document.createElement("div");
+            tempGameComment.classList.add("ListGameComment");
+            let tempGameHashTag = document.createElement("div");
+            tempGameHashTag.classList.add("ListGameHashTag");
             wholeGameZoneul.appendChild(templist);
             templist.appendChild(tempa);
-            templist.appendChild(ListGameZone);
+            templist.appendChild(tempGameZone);
             tempa.appendChild(tempimg); 
-            ListGameZone.appendChild(ListGameName);
-            ListGameZone.appendChild(ListGameComment);
-            ListGameZone.appendChild(ListGameHashTag);
-            ListGameName.innerHTML = this.name;
-            ListGameComment.innerHTML = this.comment;
-            ListGameHashTag.innerHTML = this.hashtag;
+            tempGameZone.appendChild(tempGameName);
+            tempGameZone.appendChild(tempGameComment);
+            tempGameZone.appendChild(tempGameHashTag);
+            tempGameName.innerHTML = this.name;
+            tempGameComment.innerHTML = this.comment;
             tempimg.src = this.url;
-
+            //해쉬태그 추가
+            for(let i = 0; i<HashTagForDevide.length; i++){
+                if(HashTagForDevide[i].checked){
+                    tempGameHashTag.innerHTML += `${HashTagForDevide[i].value} `
+                }
+            }
             wholeGameZoneullist = document.querySelectorAll(".wholeGameZoneul li");
         }
         AboutList.prototype.addslide = function(){
@@ -190,6 +195,10 @@ function removeDatefromAddGame(){
     AddPageGetcommentInput.value = "";
     AddPageGethastagInput.value = "";
     AddHiddenPage.style.display = "none";
+    for(let i = 0; i<HashTagForDevide.length; i++){
+        HashTagForDevide[i].checked = false;
+    }
+
 }
 
 //게임종류 수정 창 데이터 초기화
@@ -205,6 +214,9 @@ function removeDatefromModifyGame(){
 //게임종류 추가하기
 adminModeAdd.onclick = function(e){
     AddHiddenPage.style.display = "block";
+    if(modifyGameListWholePage.style.display == "block"){
+        modifyGameListWholePage.style.display = "none";
+    }
     AddPageAddButton.onclick = function(e){
         e.stopPropagation();
        new AboutList(AddPageGeturlInput.value,AddPageGetnameInput.value,AddPageGetcommentInput.value,AddPageGethastagInput.value).addgame();
@@ -302,6 +314,9 @@ labelClickFun();
 //슬라이드 추가하기
 addSlidebutton.onclick = function(){
     addSlideWholePage.style.display = "block";
+    if(modifySlideWholePage.style.display == "block"){
+        modifySlideWholePage.style.display = "none"
+    }
     //추가하기 버튼
     addSlideAddButton.onclick = function(e){
         e.stopPropagation();
@@ -319,6 +334,9 @@ addSlidebutton.onclick = function(){
 //슬라이드 수정하기
 modifySlidebutton.onclick = function (){
     modifySlideWholePage.style.display = "block";
+    if(addSlideWholePage.style.display == "block"){
+        addSlideWholePage.style.display = "none"
+    }
     modifySlideButtonModify.onclick = function(e){
         e.stopPropagation();
         new AboutList().modifyslide();
@@ -339,6 +357,9 @@ modifySlidebutton.onclick = function (){
 //게임 리스트 수정하기
 modifyGameListbutton.onclick = function(){
     modifyGameListWholePage.style.display = "block";
+    if(AddHiddenPage.style.display == "block"){
+        AddHiddenPage.style.display = "none"
+    }
     modifyGameListButtonModify.onclick = function(e){
         e.stopPropagation();
         new AboutList().modifygamelist();

@@ -250,7 +250,7 @@ body{
 
 .AddPage{
     width: 250px;
-    height: 130px;
+    height: 150px;
     background-color: aqua;
     position: absolute;
     left :100px;
@@ -263,7 +263,7 @@ body{
     display: flex;
     position: absolute;
     left: 180px;
-    top: 120px;
+    top: 140px;
     width: max-content;
 }
 .AddPageAddButton, .AddPageCancelButton{
