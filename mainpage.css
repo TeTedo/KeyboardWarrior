@@ -273,7 +273,7 @@ body{
 }
 .main .mainWrite textarea{
     width: 476px;
-    min-height: 30px;
+    height: 30px;
     border: none;
     font-size: x-large;
     resize: none;
