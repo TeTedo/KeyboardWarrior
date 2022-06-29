@@ -30,6 +30,18 @@
             </ul>
         </div>
     </div>
+    <div class="ModifyPopUp">
+        <div class="ModifyPopUpWrap">
+            <ul>
+                <li style="margin-bottom:50px ;"><input type="text" id="modifyImgFile"></li>
+                <li>
+                    <button id="ModifyPopUpCancle" style="margin-right:10px; margin-left: 150px;">취소</button>
+                    <button id="ModifyPopUpDone">완료</button>
+                </li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
     <!-- 메인영역 -->
     <div class="main">
         <div class="mainWrapper">
@@ -55,10 +67,18 @@
                             <a href="" class="profileImg"></a>
                             <span class="postWriteContents">
                                 <span class="postWriteContentsBtns">
-                                    <button>삭제</button>
-                                    <button>수정</button>
+                                    <span class="mainBtns">
+                                        <button class="modifyBtn">수정</button>
+                                        <button class="deleteBtn">삭제</button>
+                                    </span>
+                                    <span class="subBtns">
+                                        <button class="subBtnFirst">1번사진</button>
+                                        <button class="subBtnSecond">2번사진</button>
+                                        <button class="subBtnThird">3번사진</button>
+                                        <button class="subBtnFourth">4번사진</button>
+                                    </span>
                                 </span>
-                                <textarea readonly onkeydown="resize(this)" onkeyup="resize(this)" rows="1"></textarea>
+                                <textarea class="modifyTextarea" onkeydown="resize(this)" onkeyup="resize(this)" rows="1"></textarea>
                                 <span class="postWriteContentsText">가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사
                                 </span>
                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxDMmAlbcv0Z0jL2V6HS6Kn26pyQDJY2V8spe_eIPK6Q&s" alt="">
@@ -112,7 +132,5 @@
     obj.style.height = "30px";
     obj.style.height = (obj.scrollHeight)+"px";
 }
-    new DivGnb(mainContentsList)
-    new DivGnb(mainContentsList)
 </script>
 </html>
