@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="./mainpage.css">
+<body>
+    <div class="top">
+        <div class="topWrapper">
+            <a href=""><h1>키보드워리어</h1></a>
+            <input type="text">
+            <button id="topSearchBtn"></button>
+        </div>
+    </div>
+    <div class="fixedSpace"></div>
+    <div class="borderLine"></div> 
+    <div class="space"></div>
+    <div class="popUp">
+        <div class="popUpWrap">
+            <ul>
+                <li style="margin-bottom:50px ;"><input type="text" id="addImgFile"></li>
+                <li>
+                    <button id="popUpCancle" style="margin-right:10px; margin-left: 150px;">취소</button>
+                    <button id="popUpDone">완료</button>
+                </li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+    <div class="ModifyPopUp">
+        <div class="ModifyPopUpWrap">
+            <ul>
+                <li style="margin-bottom:50px ;"><input type="text" id="modifyImgFile"></li>
+                <li>
+                    <button id="ModifyPopUpCancle" style="margin-right:10px; margin-left: 150px;">취소</button>
+                    <button id="ModifyPopUpDone">완료</button>
+                </li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 메인영역 -->
+    <div class="main">
+        <div class="mainWrapper">
+            <div class="mainContents">
+                <div class="center" id="mainContentsList">
+                    <div class="mainWrite">
+                        <span class="mainWriteWrapper">
+                            <a href="" class="profileImg"></a>
+                            <span class="mainWriteContents">
+                                <span class="mainWriteContentsBtns">
+                                    <span class="attributeBtns">
+                                        <button id="addGifBtn">gif</button>
+                                    </span>
+                                    <button id="postRegisterBtn"><h3>등록</h3></button>
+                                </span>
+                                <textarea id="mainWriteText" onkeydown="resize(this)" onkeyup="resize(this)" placeholder="What's happening?" ></textarea>
+                            </span>
+                        </span>
+                    </div>
+                    <div class="postWrapper" id="postWrapper">
+                    <div class="postWrite">
+                        <span class="postWriteWrapper">
+                            <a href="" class="profileImg"></a>
+                            <span class="postWriteContents">
+                                <span class="postWriteContentsBtns">
+                                    <span class="mainBtns">
+                                        <button class="modifyBtn">수정</button>
+                                        <button class="deleteBtn">삭제</button>
+                                    </span>
+                                    <button class="modifyAddImgBtn">gif</button>
+                                </span>
+                                <textarea class="modifyTextarea" onkeydown="resize(this)" onkeyup="resize(this)" style="height: 192px;">가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사</textarea>
+                                <span class=postWriteContentsImgWrapper>
+                                    <button class="postWriteContentsImgBtn">X</button>
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxDMmAlbcv0Z0jL2V6HS6Kn26pyQDJY2V8spe_eIPK6Q&s" alt="">
+                                </span>
+                            </span>
+                        </span>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="left">
+                <div class="leftWrapper">
+                    <ul class="leftMenu">
+                        <li><div class="leftMenudiv">Home</div></li>
+                        <li><div class="leftMenudiv">Community</div></li>
+                        <li><div class="leftMenudiv">Item&nbsp;trade</div></li>
+                        <li><div class="leftMenudiv">Mini&nbsp;Games</div></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="right">
+                <div class="rightWrapper">
+                    <div class="contents">
+                        <div class="login">
+                            <ul>
+                                <li>ID:</li>
+                                <li>PW:</li>
+                            </ul>
+                            <ul>
+                                <li><input type="text"></li>
+                                <li><input type="text"></li>
+                            </ul>
+                            <button>로그인</button>
+                        </div>
+                        <div class="join">
+                            <a href="./join.html">회원가입</a>
+                            <a href="">아이디/비밀번호 찾기</a>
+                        </div>
+                    </div>
+                    <div class="scrollContents">
+                            <a id="scrollBtn" href=""><h1>⇧</h1></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./main_effect.js"></script>
+<script src="./posting_module.js"></script>
+<script src="./mainpage.js"></script>
+<script>
+    function resize(obj) {
+    obj.style.height = "30px";
+    obj.style.height = (obj.scrollHeight)+"px";
+}
+</script>
+</html>
