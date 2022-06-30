@@ -1,0 +1,418 @@
+* {
+    background-color:  transparent;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+a{
+    color: black;
+    text-decoration: none;
+}
+ul{
+    list-style-type: none;
+}
+body{
+    position: absolute;
+    width: 100%;
+}
+.space{
+    height: 150px;
+}
+.popUp{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: -999;
+    display: none;
+}
+.popUpWrap{
+    width: 500px;
+    height: 200px;
+    margin: 0 auto;
+    background-color: whitesmoke;
+    position: relative;
+    top: 166px;
+    left: 27px;
+    border: 2px solid #855cb3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ModifyPopUp{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: -999;
+    display: none;
+}
+.ModifyPopUpWrap{
+    width: 500px;
+    height: 200px;
+    margin: 0 auto;
+    background-color: whitesmoke;
+    position: relative;
+    top: 166px;
+    left: 27px;
+    border: 2px solid #855cb3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* 탑 */
+.top{
+    position: fixed;
+    background-color: white;
+    width: 100%;
+    z-index: 999;
+}
+.topWrapper{
+    height: 100px;
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.topWrapper h1{
+    color: #855cb3;
+}
+.topWrapper input{
+    width: 500px;
+    height: 50px;
+    border: 2px solid rgb(226, 204, 226);
+    border-radius: 10px;
+    background-color: whitesmoke;
+    position: relative;
+    left: -70px
+}
+#topSearchBtn {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-image: url(../images/search.png);
+    background-size: cover;
+    position: relative;
+    left: -360px;
+    cursor: pointer;
+}
+.fixedSpace{
+    position: fixed;
+    top: 100px;
+    height: 20px;
+    width: 100%;
+    background-color: white;
+    z-index: 999;
+}
+.borderLine{
+    position: fixed;
+    width: 100%;
+    top: 120px;
+    border-bottom: 2px solid  rgb(226, 204, 226);;
+}
+
+/* 사이드 */
+.left{
+    margin-top: 20px;
+    position: fixed;
+    height: max-content;
+    margin-right: 1000px;   
+
+}
+.leftWrapper{
+    margin: 0 auto;
+    width: 250px;
+    background-color: whitesmoke;
+    border-radius: 20px;
+    border: 2px solid rgb(226, 204, 226);
+}
+.leftMenu{
+    padding: 30px;
+}
+.leftMenu li{
+    margin-bottom: 30px;
+    border-bottom: 2px solid rgb(226, 204, 226);
+    cursor: pointer;
+    overflow: auto;
+}
+.leftMenudiv{
+    color: #855cb3;
+    height: 24px;
+    overflow: hidden;
+    font-size: larger;
+}
+.leftMenudiv.start{
+    width: 0;
+    background-color: #855cb3;
+    color: white;
+    border: none;
+}
+.leftMenudiv.active{
+    width: 50%;
+    transition:1.5s;
+}
+.right{
+    position: fixed;
+    margin-top: 20px;
+    height: auto;
+    margin-left: 1000px;   
+}
+.rightWrapper{
+    margin: 0 auto;
+    width: 250px;
+}
+.right .contents{
+    padding: 30px;
+    background-color: whitesmoke;
+    border-radius: 20px;
+    border: 2px solid rgb(226, 204, 226);
+}
+.right .login{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.right li:first-child{
+    margin-bottom: 10px;
+}
+.right .login input{
+    width: 100px;
+}
+.right .join{
+    display: flex;
+    justify-content: space-between;
+    font-size: 11.5px;
+}
+/* 스크롤 */
+.scrollContents{
+    position: fixed;
+    width: 100%;
+    z-index: -999;
+    height: 50vh;
+}
+
+#scrollBtn{
+    width: 50px;
+    height: 50px;
+    /* border: 2px solid #855cb3; */
+    border-radius: 500px;
+    background-color: #855cb3;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 350px;
+    transition: 0.6s;
+    opacity: 0;
+    font-size: larger;
+}
+
+/* 메인 */
+.mainWrapper{
+    width: 1200px;
+    margin: 0 auto;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+}
+.main .mainContents{
+    height: 80vh;
+    margin-top: 20px;
+}
+
+/* 글작성칸 */
+.main .mainWrite {
+    background-color: whitesmoke;
+    border-radius: 20px;
+    width: 600px;
+    min-height: 100px;
+    height: auto;
+    border: 2px solid rgb(226, 204, 226);
+    margin-bottom: 20px;
+    padding: 30px;
+    
+}
+.main .mainWrite .mainWriteWrapper{
+    display: flex;;
+    
+}
+
+.main .mainWrite .profileImg{
+    width: 45px;
+    height: 40px;
+    background-image: url(../images/profileImg.jpg);
+    background-size: cover;
+    border: 1px solid none;
+    border-radius: 500px;
+}
+.main .mainWrite .mainWriteContents{
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column-reverse;
+}
+.mainWriteContentsBtns{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.mainWriteContentsBtns .attributeBtns button{
+    color: #855cb3;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+}
+.mainWriteContentsBtns #postRegisterBtn{
+    border: 2px solid rgb(226, 204, 226);
+    border-radius: 30px;
+    color: #855cb3;
+    width: 60px;
+    height: 30px;
+    cursor: pointer;
+
+}
+.mainWriteContents .mainWriteContentsImgWrapper{
+    margin-bottom: 10px;
+}
+.mainWriteContentsImgWrapper img{
+    width: 476px;
+    height: 320px;
+}
+.mainWriteContentsImgWrapper button{
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: -324px;
+    left: 455px;
+}
+.main .mainWrite textarea{
+    width: 476px;
+    height: 30px;
+    border: none;
+    font-size: x-large;
+    resize: none;
+    border-bottom: 1px solid rgb(226, 204, 226);
+}
+.main .mainWrite textarea::-webkit-scrollbar{
+    display: none;
+}
+:focus-visible{
+    outline: none;
+}
+
+/* 포스팅된거 */
+.postWrapper{
+    display: flex;
+    flex-direction: column-reverse;
+
+}
+.main .postWrite {
+    background-color: whitesmoke;
+    border-radius: 20px;
+    width: 600px;
+    min-height: 100px;
+    height: auto;
+    border: 2px solid rgb(226, 204, 226);
+    margin-bottom: 20px;
+    padding: 30px;
+    
+}
+.main .postWrite .postWriteWrapper{
+    display: flex;;
+    
+}
+
+.main .postWrite .profileImg{
+    width: 45px;
+    height: 40px;
+    background-image: url(../images/profileImg.jpg);
+    background-size: cover;
+    border: 1px solid none;
+    border-radius: 500px;
+}
+.main .postWrite .postWriteContents{
+    width: 476px;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column-reverse;
+}
+.postWriteContentsBtns{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+}
+.postWriteContentsBtns .mainBtns button{
+    border: 2px solid rgb(226, 204, 226);
+    border-radius: 30px;
+    color: #855cb3;
+    width: 60px;
+    height: 30px;
+    cursor: pointer;
+    font-weight: bolder;
+    font-size: 15px;
+}
+.postWriteContentsBtns .mainBtns button:nth-child(1){
+    margin-right: 20px;
+}
+.postWriteContentsBtns .modifyAddImgBtn{
+    display: none;
+    border: none;
+    margin-right: 10px;
+    cursor: pointer;
+    color: #855cb3;
+    font-weight: 600;
+    font-size: 13px;
+}
+.postWriteContents .postWriteContentsImgWrapper{
+    margin-bottom: 10px;
+}
+.postWriteContentsImgWrapper img{
+    width: 476px;
+    height: 320px;
+}
+.postWriteContentsImgWrapper button{
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 21px;
+    left: 455px;
+}
+.main .postWrite .postWriteContents img{
+    width: 476px;
+    height: 320px;
+    margin-bottom: 10px;
+}
+.postWriteContentsText{
+    width: 476px;
+    font-size: 20px;
+    border-bottom: 1px solid rgb(226, 204, 226);
+    /* 자동줄내림 */
+    word-break: break-all; 
+}
+.main .postWrite .modifyTextarea{
+    width: 476px;
+    min-height: 30px;
+    border: none;
+    font-size: 20px;
+    resize: none;
+    border-bottom: 1px solid rgb(226, 204, 226);
+    word-break: break-all;
+}
+.main .postWrite textarea::-webkit-scrollbar{
+    display: none;
+}
+:focus-visible{
+    outline: none;
+}
+/* .mainWrapper .center div{
+    background-color: whitesmoke;
+    border-radius: 20px;
+    width: 600px;
+    height: auto;
+    border: 2px solid rgb(226, 204, 226);
+    padding: 30px;
+    margin-bottom: 20px;
+} */
