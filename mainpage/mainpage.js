@@ -51,7 +51,7 @@ popUpDone.onclick = function(){
 해결할일
 1: 이미지 수정눌러야 삭제버튼 뜨게 만들고, 수정칸에서 이미지 추가 삽입 가능한 버튼 만들기
 2: 글쓸때 줄바꿈한거는 span에서 적용안되니깐 그냥 textarea로 쭉하고 attribute에 readonly 넣기
-3: 
+3: 해쉬태그관련
 4: 
 5: 
 */

@@ -10,7 +10,15 @@ let postWriteContentsImgBtnsArr = document.querySelectorAll('.postWriteContentsI
 let modifyBtnsArr = document.querySelectorAll('.modifyBtn')
 let deleteBtnsArr = document.querySelectorAll('.deleteBtn')
 let modifyAddImgBtnsArr = document.querySelectorAll('.modifyAddImgBtn')
+let CategoryinModify = document.querySelectorAll('.CategoryinModify')
+let postWriteGameHashTag = document.querySelectorAll('.postWriteGameHashTag')
+let postWriteHashTag = document.querySelectorAll('.postWriteHashTag')
+let chooseCategoryinModify = document.querySelectorAll('.chooseCategoryinModify')
+let chooseGameinModify = document.querySelectorAll('.chooseGameinModify')
 
+let postWriteGameTag = document.querySelectorAll(".postWriteGameTag")
+let chooseGame = document.querySelector(".chooseGame")
+let chooseCategory = document.querySelector(".chooseCategory")
 // let imgUrlsArr = document.querySelectorAll('.mainWriteContentsImgWrapper')
 
 
@@ -86,6 +94,20 @@ let PostGnb=(
 
                 }
             }
+
+            //해쉬태그 추가
+            let tempGameTag = document.createElement("div")
+            tempGameTag.classList.add("postWriteGameTag")
+            let tempGameHashTag = document.createElement("span")
+            tempGameHashTag.classList.add("postWriteGameHashTag")
+            let tempHashTag = document.createElement("span")
+            tempHashTag.classList.add("postWriteHashTag")
+            
+            postWrite.appendChild(tempGameTag);
+            tempGameTag.appendChild(tempGameHashTag);
+            tempGameTag.appendChild(tempHashTag);
+            tempGameHashTag.innerHTML = chooseGame.value
+            tempHashTag.innerHTML = chooseCategory.value
          }
          return PostGnb
     }
@@ -100,9 +122,11 @@ let PostGnb=(
                 modifyTextareasArr[i].style.height = `${modifyTextareasArr[i].scrollHeight}px`
                 modifyTextareasArr[i].removeAttribute('readonly')
                 modifyAddImgBtnsArr[i].style.display = 'block'
+                postWriteGameTag[i].style.display = "none"
+                CategoryinModify[i].style.display = "block"
                 for(let k = 0; k<postWriteContentsArr[i].children.length-2; k++){
                     postWriteContentsArr[i].children[k+2].children[0].style.display='block'
-                }                
+                }
                 // buttonDisplay()
                 modifyBtnsArr[i].innerText = "완료"
             }
@@ -118,6 +142,12 @@ let PostGnb=(
                     postWriteContentsArr[i].children[k+2].children[0].style.display='none'
                 }
                 modifyBtnsArr[i].innerText = "수정"
+                postWriteGameTag[i].style.display = "block"
+                CategoryinModify[i].style.display = "none"
+                //수정에서 해쉬태그 추가
+                postWriteGameHashTag[i].innerHTML = chooseGameinModify[i].value
+                postWriteHashTag[i].innerHTML = chooseCategoryinModify[i].value
+
             }
         }
         //수정에서 사진추가
@@ -226,6 +256,7 @@ postRegisterBtn.onclick = function(){
     }
 
     BtnAttribute()
+    
 }
 
 BtnAttribute()  
