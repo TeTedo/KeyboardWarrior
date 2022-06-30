@@ -163,7 +163,7 @@ let PostGnb=(
 
         //사진삭제버튼
         function modifiyImgDelete(){
-            for(let m = 0; m<postWriteContentsArr[i].children.length-3; m++){
+            for(let m = 0; m<postWriteContentsArr[i].children.length-2; m++){
                 postWriteContentsArr[i].children[m+2].children[0].onclick = function(){
                     console.log('삭제버튼 활성화')
                     // console.log(i)
