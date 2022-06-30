@@ -392,8 +392,7 @@ body{
     /* 자동줄내림 */
     word-break: break-all; 
 }
-.main .postWrite textarea{
-    display: none;
+.main .postWrite .modifyTextarea{
     width: 476px;
     min-height: 30px;
     border: none;

@@ -2,7 +2,6 @@
 let postWritesArr = document.querySelectorAll('.postWrite')
 let postWriteContentsArr = document.querySelectorAll('.postWriteContents')
 let modifyTextareasArr = document.querySelectorAll('.modifyTextarea')
-let postWriteContentsTextsArr = document.querySelectorAll('.postWriteContentsText')
 let postWriteContentsBtnsArr = document.querySelectorAll('.postWriteContentsBtns')
 
 let postWriteContentsImgWrappersArr = document.querySelectorAll('.postWriteContentsImgWrapper')
@@ -46,8 +45,6 @@ let PostGnb=(
     
             let modifyTextarea = document.createElement('textarea')
             modifyTextarea.classList.add('modifyTextarea')
-            let postWriteContentsText = document.createElement('span')
-            postWriteContentsText.classList.add('postWriteContentsText')
             
             super_id.appendChild(postWrite);
             postWrite.appendChild(postWriteWrapper)
@@ -59,7 +56,6 @@ let PostGnb=(
             mainBtns.appendChild(modifyBtn)
             mainBtns.appendChild(deleteBtn)
             postWriteContents.appendChild(modifyTextarea)
-            postWriteContents.appendChild(postWriteContentsText)
             
             deleteBtn.innerHTML = "삭제"
             modifyBtn.innerHTML = "수정"
@@ -67,7 +63,9 @@ let PostGnb=(
             modifyTextarea.setAttribute('onkeydown','resize(this)')
             modifyTextarea.setAttribute('onkeyup','resize(this)')
             modifyTextarea.setAttribute('rows','1')
-            postWriteContentsText.innerHTML = text
+            modifyTextarea.setAttribute('readonly','')
+            modifyTextarea.innerHTML = text
+
             modifyAddImgBtn.innerHTML = "gif"
             
             
@@ -93,18 +91,14 @@ let PostGnb=(
     }
 )();
 
-
  //수정버튼, 삭제버튼 펑션
  function BtnAttribute(){
     for(let i = 0; i<postWritesArr.length; i++){
         //수정버튼
         modifyBtnsArr[i].onclick = function(){
             if(modifyBtnsArr[i].innerText==="수정"){
-                let originText = postWriteContentsTextsArr[i].innerHTML
-                modifyTextareasArr[i].innerHTML = originText
-                modifyTextareasArr[i].style.height = `${postWriteContentsTextsArr[i].scrollHeight}px`
-                modifyTextareasArr[i].style.display='block'
-                postWriteContentsTextsArr[i].style.display='none'
+                modifyTextareasArr[i].style.height = `${modifyTextareasArr[i].scrollHeight}px`
+                modifyTextareasArr[i].removeAttribute('readonly')
                 modifyAddImgBtnsArr[i].style.display = 'block'
                 modifyBtnsArr[i].innerText = "완료"
             }
@@ -114,79 +108,87 @@ let PostGnb=(
                     alert("내용을 입력해주세요!")
                     return
                 }
-                postWriteContentsTextsArr[i].innerHTML = modifiedText
-                modifyTextareasArr[i].style.display='none'
-                postWriteContentsTextsArr[i].style.display='block'
+                modifyTextareasArr[i].setAttribute('readonly','')
                 modifyAddImgBtnsArr[i].style.display = 'none'
                 modifyBtnsArr[i].innerText = "수정"
             }
         }
         //수정에서 사진추가
-        // for(let k = 0; k<4; k++){
-            modifyAddImgBtnsArr[i].onclick = function(){
-                document.querySelector('.ModifyPopUp').style.zIndex = '0'
-                document.querySelector('.ModifyPopUp').style.display = 'block'
+        
+        modifyAddImgBtnsArr[i].onclick = function(){
+            document.querySelector('.ModifyPopUp').style.zIndex = '1'
+            document.querySelector('.ModifyPopUp').style.display = 'block'
 
-                ModifyPopUpCancle.onclick = function(){
-                    document.querySelector('.ModifyPopUp').style.zIndex = '-999'
-                    document.querySelector('.ModifyPopUp').style.display = 'none'
-                    modifyImgFile.value = ""
-                } 
-                ModifyPopUpDone.onclick = function(){
-                    document.querySelector('.ModifyPopUp').style.zIndex = '-999'
-                    document.querySelector('.ModifyPopUp').style.display = 'none'
-                    let modifyImgFileUrl = modifyImgFile.value
-                    modifyImgFile.value = ""
-                    if (modifyImgFileUrl === "" || modifyImgFileUrl === null){return}
+            ModifyPopUpCancle.onclick = function(){
+                document.querySelector('.ModifyPopUp').style.zIndex = '-999'
+                document.querySelector('.ModifyPopUp').style.display = 'none'
+                modifyImgFile.value = ""
+            } 
+            ModifyPopUpDone.onclick = function(){
+                document.querySelector('.ModifyPopUp').style.zIndex = '-999'
+                document.querySelector('.ModifyPopUp').style.display = 'none'
+                let modifyImgFileUrl = modifyImgFile.value
+                modifyImgFile.value = ""
+                if (modifyImgFileUrl === "" || modifyImgFileUrl === null){return}
 
-                    
-                    let postWriteContentsImgWrapper = document.createElement('span')
-                    postWriteContentsImgWrapper.classList.add('postWriteContentsImgWrapper')
-                    let postWriteContentsImgBtn = document.createElement('button')
-                    postWriteContentsImgBtn.classList.add('postWriteContentsImgBtn')
-                    postWriteContentsImgBtn.innerHTML = "X"
-                    let postWriteContentsImg = document.createElement('img')
-                    postWriteContentsImg.src = modifyImgFileUrl
-
-                    postWriteContentsArr[i].appendChild(postWriteContentsImgWrapper)
-                    postWriteContentsImgWrapper.appendChild(postWriteContentsImgBtn)
-                    postWriteContentsImgWrapper.appendChild(postWriteContentsImg)
-                    
-                    postWriteContentsArr = document.querySelectorAll('.postWriteContents')
-                    modifiyImgDelete()
-                }
                 
-            // }
+                let postWriteContentsImgWrapper = document.createElement('span')
+                postWriteContentsImgWrapper.classList.add('postWriteContentsImgWrapper')
+                let postWriteContentsImgBtn = document.createElement('button')
+                postWriteContentsImgBtn.classList.add('postWriteContentsImgBtn')
+                postWriteContentsImgBtn.innerHTML = "X"
+                let postWriteContentsImg = document.createElement('img')
+                postWriteContentsImg.src = modifyImgFileUrl
+
+                postWriteContentsArr[i].appendChild(postWriteContentsImgWrapper)
+                console.log(postWriteContentsArr[i])
+                postWriteContentsImgWrapper.appendChild(postWriteContentsImgBtn)
+                postWriteContentsImgWrapper.appendChild(postWriteContentsImg)
+                
+                modifyBtnsArr = document.querySelectorAll('.modifyBtn')
+                deleteBtnsArr = document.querySelectorAll('.deleteBtn')
+                modifyAddImgBtnsArr = document.querySelectorAll('.modifyAddImgBtn')
+                
+                
+                postWritesArr = document.querySelectorAll('.postWrite')
+                modifyTextareasArr = document.querySelectorAll('.modifyTextarea')
+                
+                postWriteContentsArr = document.querySelectorAll('.postWriteContents')
+                postWriteContentsImgWrappersArr = document.querySelectorAll('.postWriteContentsImgWrapper')
+                postWriteContentsImgBtnsArr = document.querySelectorAll('.postWriteContentsImgBtn')
+                modifiyImgDelete()
+            }
         }
 
-          //사진삭제버튼
-          function modifiyImgDelete(){
-            for(let m = 0; m<postWriteContentsArr[i].children.length-3; m++){
-                postWriteContentsArr[i].children[m+3].children[0].onclick = function(e){
-                    e.stopPropagation();
-                    console.log('삭제버튼 활성화')
-                    console.log(m)
-                    console.log(postWriteContentsArr[i].childElementCount-3)
-                    console.log(postWriteContentsArr[i].children)
-                    postWriteContentsArr[i].removeChild(postWriteContentsArr[i].children[m+3])
-                    console.log(postWriteContentsArr[i].children)
-                    console.log(postWriteContentsArr[i].childElementCount-3)
-                    postWriteContentsImgWrappersArr = document.querySelectorAll('.postWriteContentsImgWrapper')
-                    postWriteContentsArr = document.querySelectorAll('.postWriteContents')
+
+        //사진삭제버튼
+        function modifiyImgDelete(){
+            for(let m = 0; m<postWriteContentsArr[i].children.length-2; m++){
+                postWriteContentsArr[i].children[m+2].children[0].onclick = function(e){
+
+                    e.target.parentElement.parentElement.removeChild(e.target.parentElement);
+                    // console.log('삭제버튼 활성화')
+                    // // console.log(i)
+                    // console.log(m)
+                    // console.log(postWriteContentsArr[i].childElementCount-2)
+                    // // console.log(postWritesArr.length)
+                    // console.log(postWriteContentsArr[i].children)
+                    // // console.log(postWriteContentsArr[i].children[m+3])
+                    // postWriteContentsArr[i].removeChild(postWriteContentsArr[i].children[m+2])
+                    // console.log(postWriteContentsArr[i].childElementCount-2)
+                    // postWriteContentsImgWrappersArr = document.querySelectorAll('.postWriteContentsImgWrapper')
+                    // postWriteContentsArr = document.querySelectorAll('.postWriteContents')
                     
                 }
             }
         }
         modifiyImgDelete()
 
-        
-
         //포스팅삭제버튼
         deleteBtnsArr[i].onclick = function(){
             document.querySelector('.postWrapper').removeChild(postWritesArr[i])   
         }
     }
-          
 }
 
 //포스팅모듈 실행
@@ -197,7 +199,6 @@ postRegisterBtn.onclick = function(){
         alert('포스팅할 내용을 작성해 주세요!')
         return
     }
-    // console.log(imgUrlsArr)
     if (imgUrlsArr.length === 0){
         new PostGnb(postWrapper,text,imgUrlsArr)    
         mainWriteText.value = ""
@@ -215,7 +216,6 @@ postRegisterBtn.onclick = function(){
     postWritesArr = document.querySelectorAll('.postWrite')
     postWriteContentsArr = document.querySelectorAll('.postWriteContents')
     modifyTextareasArr = document.querySelectorAll('.modifyTextarea')
-    postWriteContentsTextsArr = document.querySelectorAll('.postWriteContentsText')
     postWriteContentsBtnsArr = document.querySelectorAll('.postWriteContentsBtns')
 
     postWriteContentsImgWrappersArr = document.querySelectorAll('.postWriteContentsImgWrapper')
@@ -226,7 +226,7 @@ postRegisterBtn.onclick = function(){
     modifyAddImgBtnsArr = document.querySelectorAll('.modifyAddImgBtn')
 
     for (let i = 0; i<postWritesArr.length; i++){
-        modifyTextareasArr[i].style.height = `${postWriteContentsTextsArr[i].scrollHeight}px`
+        modifyTextareasArr[i].style.height = `${modifyTextareasArr[i].scrollHeight}px`
     }
 
     BtnAttribute()

@@ -1,7 +1,7 @@
 //이미지첨부버튼
 
 addGifBtn.onclick = function(){
-    document.querySelector('.popUp').style.zIndex = '0'
+    document.querySelector('.popUp').style.zIndex = '1'
     document.querySelector('.popUp').style.display = 'block'
 }
 popUpCancle.onclick = function(){
@@ -12,7 +12,6 @@ popUpCancle.onclick = function(){
 popUpDone.onclick = function(){
     document.querySelector('.popUp').style.zIndex = '-999'
     document.querySelector('.popUp').style.display = 'none'
-    // mainWriteContentsaddedImg.style.display = 'block'
     let addedImgFileUrl = addImgFile.value
     let mainWriteContentsImgWrapper = document.createElement('span')
     mainWriteContentsImgWrapper.classList.add('mainWriteContentsImgWrapper')
@@ -40,29 +39,7 @@ popUpDone.onclick = function(){
     addImgFile.value=""
 }
 
-//사진수정버튼
 
-// postRegisterBtn.onclick = function(){
-//     let text =  mainWriteText.value
-//     if(text === "" || text === null){
-//         alert('포스팅할 내용을 작성해 주세요!')
-//         return
-//     }
-//     let imgUrl = document.querySelector('.mainWriteContents img')
-//     if (imgUrl === "" || imgUrl === null){
-//         new PostGnb(postWrapper,text)    
-//         mainWriteText.value = ""
-//     }
-//     else{
-//         new PostGnb(postWrapper,text,imgUrl.src)
-//         mainWriteText.value = ""
-//         addImgFile.value= ""
-//         // removeImg = document.querySelector('.mainWriteContents img')
-//         // document.querySelector('.mainWriteContents').removeChild(removeImg)
-//     }
-
-//     // window.scrollTo({top:9999, behavior:"smooth"})
-// }
 
 /*
 해결할일

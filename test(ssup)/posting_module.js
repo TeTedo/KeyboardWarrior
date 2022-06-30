@@ -165,20 +165,7 @@ let PostGnb=(
         function modifiyImgDelete(){
             for(let m = 0; m<postWriteContentsArr[i].children.length-2; m++){
                 postWriteContentsArr[i].children[m+2].children[0].onclick = function(e){
-
                     e.target.parentElement.parentElement.removeChild(e.target.parentElement);
-                    // console.log('삭제버튼 활성화')
-                    // // console.log(i)
-                    // console.log(m)
-                    // console.log(postWriteContentsArr[i].childElementCount-2)
-                    // // console.log(postWritesArr.length)
-                    // console.log(postWriteContentsArr[i].children)
-                    // // console.log(postWriteContentsArr[i].children[m+3])
-                    // postWriteContentsArr[i].removeChild(postWriteContentsArr[i].children[m+2])
-                    // console.log(postWriteContentsArr[i].childElementCount-2)
-                    // postWriteContentsImgWrappersArr = document.querySelectorAll('.postWriteContentsImgWrapper')
-                    // postWriteContentsArr = document.querySelectorAll('.postWriteContents')
-                    
                 }
             }
         }
