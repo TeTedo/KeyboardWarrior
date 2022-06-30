@@ -53,7 +53,7 @@
                             <span class="mainWriteContents">
                                 <span class="mainWriteContentsBtns">
                                     <span class="attributeBtns">
-                                        <button id="addGifBtn"><b>gif</b></button>
+                                        <button id="addGifBtn">gif</button>
                                     </span>
                                     <button id="postRegisterBtn"><h3>등록</h3></button>
                                 </span>
@@ -71,17 +71,15 @@
                                         <button class="modifyBtn">수정</button>
                                         <button class="deleteBtn">삭제</button>
                                     </span>
-                                    <span class="subBtns">
-                                        <button class="subBtnFirst">1번사진</button>
-                                        <button class="subBtnSecond">2번사진</button>
-                                        <button class="subBtnThird">3번사진</button>
-                                        <button class="subBtnFourth">4번사진</button>
-                                    </span>
+                                    <button class="modifyAddImgBtn">gif</button>
                                 </span>
                                 <textarea class="modifyTextarea" onkeydown="resize(this)" onkeyup="resize(this)"></textarea>
                                 <span class="postWriteContentsText">가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사
                                 </span>
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxDMmAlbcv0Z0jL2V6HS6Kn26pyQDJY2V8spe_eIPK6Q&s" alt="">
+                                <span class=postWriteContentsImgWrapper>
+                                    <button class="postWriteContentsImgBtn">X</button>
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxDMmAlbcv0Z0jL2V6HS6Kn26pyQDJY2V8spe_eIPK6Q&s" alt="">
+                                </span>
                             </span>
                         </span>
                     </div>
@@ -125,8 +123,9 @@
         </div>
     </div>
 </body>
-<script src="./main_effect.js"></script>
+<script src="../main_effect.js"></script>
 <script src="../posting_module.js"></script>
+<script src="./mainpage.js"></script>
 <script>
     function resize(obj) {
     obj.style.height = "30px";

@@ -14,37 +14,59 @@ popUpDone.onclick = function(){
     document.querySelector('.popUp').style.display = 'none'
     // mainWriteContentsaddedImg.style.display = 'block'
     let addedImgFileUrl = addImgFile.value
-    let temp = document.createElement('img')
-    temp.src = addedImgFileUrl
-    document.querySelector('.mainWriteContents').appendChild(temp)
+    let mainWriteContentsImgWrapper = document.createElement('span')
+    mainWriteContentsImgWrapper.classList.add('mainWriteContentsImgWrapper')
+    let mainWriteContentsImgBtn = document.createElement('button')
+    mainWriteContentsImgBtn.classList.add('mainWriteContentsImgBtn')
+    let mainWriteContentsImg = document.createElement('img')
+    mainWriteContentsImg.classList.add('mainWriteContentsImg')
+
+    document.querySelector('.mainWriteContents').appendChild(mainWriteContentsImgWrapper)
+    mainWriteContentsImgWrapper.appendChild(mainWriteContentsImg)
+    mainWriteContentsImgWrapper.appendChild(mainWriteContentsImgBtn)
+    mainWriteContentsImgBtn.innerHTML = "X"
+
+    mainWriteContentsImgWrappersArr = document.querySelectorAll('.mainWriteContentsImgWrapper')
+    mainWriteContentsImgBtnsArr = document.querySelectorAll('.mainWriteContentsImgBtn')
+    mainWriteContentsImgsArr = document.querySelectorAll('.mainWriteContentsImg')
+
+    for (let i = 0; i<mainWriteContentsImgWrappersArr.length; i++){
+        mainWriteContentsImgBtnsArr[i].onclick = function(){
+            document.querySelector('.mainWriteContents').removeChild(mainWriteContentsImgWrappersArr[i])
+        }
+    }
+
+    mainWriteContentsImg.src = addedImgFileUrl
     addImgFile.value=""
 }
 
-postRegisterBtn.onclick = function(){
-    let text =  mainWriteText.value
-    if(text === "" || text === null){
-        alert('포스팅할 내용을 작성해 주세요!')
-        return
-    }
-    let imgUrl = document.querySelector('.mainWriteContents img')
-    if (imgUrl === "" || imgUrl === null){
-        new PostGnb(postWrapper,text)    
-        mainWriteText.value = ""
-    }
-    else{
-        new PostGnb(postWrapper,text,imgUrl.src)
-        mainWriteText.value = ""
-        addImgFile.value= ""
-        removeImg = document.querySelector('.mainWriteContents img')
-        document.querySelector('.mainWriteContents').removeChild(removeImg)
-    }
+//사진수정버튼
 
-    // window.scrollTo({top:9999, behavior:"smooth"})
-}
+// postRegisterBtn.onclick = function(){
+//     let text =  mainWriteText.value
+//     if(text === "" || text === null){
+//         alert('포스팅할 내용을 작성해 주세요!')
+//         return
+//     }
+//     let imgUrl = document.querySelector('.mainWriteContents img')
+//     if (imgUrl === "" || imgUrl === null){
+//         new PostGnb(postWrapper,text)    
+//         mainWriteText.value = ""
+//     }
+//     else{
+//         new PostGnb(postWrapper,text,imgUrl.src)
+//         mainWriteText.value = ""
+//         addImgFile.value= ""
+//         // removeImg = document.querySelector('.mainWriteContents img')
+//         // document.querySelector('.mainWriteContents').removeChild(removeImg)
+//     }
+
+//     // window.scrollTo({top:9999, behavior:"smooth"})
+// }
 
 /*
 해결할일
-1: 수정눌러서 이미지 수정할때 이미지 추가버튼을 만들고, 각각 이미지를 삭제할수있는 버튼을 따로 만들자
+1: 이미지 수정눌러야 삭제버튼 뜨게 만들고, 수정칸에서 이미지 추가 삽입 가능한 버튼 만들기
 2: 글쓸때 줄바꿈한거는 span에서 적용안되니깐 그냥 textarea로 쭉하고 attribute에 readonly 넣기
 3: 
 4: 

@@ -63,6 +63,7 @@ body{
     position: fixed;
     background-color: white;
     width: 100%;
+    z-index: 999;
 }
 .topWrapper{
     height: 100px;
@@ -100,6 +101,7 @@ body{
     height: 20px;
     width: 100%;
     background-color: white;
+    z-index: 999;
 }
 .borderLine{
     position: fixed;
@@ -217,6 +219,8 @@ body{
     height: 80vh;
     margin-top: 20px;
 }
+
+/* 글작성칸 */
 .main .mainWrite {
     background-color: whitesmoke;
     border-radius: 20px;
@@ -256,6 +260,8 @@ body{
     color: #855cb3;
     border: none;
     cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
 }
 .mainWriteContentsBtns #postRegisterBtn{
     border: 2px solid rgb(226, 204, 226);
@@ -266,10 +272,19 @@ body{
     cursor: pointer;
 
 }
-.main .mainWrite .mainWriteContents img{
+.mainWriteContents .mainWriteContentsImgWrapper{
+    margin-bottom: 10px;
+}
+.mainWriteContentsImgWrapper img{
     width: 476px;
     height: 320px;
-    margin-bottom: 10px;
+}
+.mainWriteContentsImgWrapper button{
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: -324px;
+    left: 455px;
 }
 .main .mainWrite textarea{
     width: 476px;
@@ -342,14 +357,28 @@ body{
 .postWriteContentsBtns .mainBtns button:nth-child(1){
     margin-right: 20px;
 }
-.postWriteContentsBtns .subBtns{
+.postWriteContentsBtns .modifyAddImgBtn{
     display: none;
-}
-.postWriteContentsBtns .subBtns button{
     border: none;
     margin-right: 10px;
     cursor: pointer;
     color: #855cb3;
+    font-weight: 600;
+    font-size: 13px;
+}
+.postWriteContents .postWriteContentsImgWrapper{
+    margin-bottom: 10px;
+}
+.postWriteContentsImgWrapper img{
+    width: 476px;
+    height: 320px;
+}
+.postWriteContentsImgWrapper button{
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 21px;
+    left: 455px;
 }
 .main .postWrite .postWriteContents img{
     width: 476px;
