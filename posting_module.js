@@ -93,6 +93,7 @@ let PostGnb=(
     }
 )();
 
+
  //수정버튼, 삭제버튼 펑션
  function BtnAttribute(){
     for(let i = 0; i<postWritesArr.length; i++){
@@ -148,57 +149,44 @@ let PostGnb=(
                     postWriteContentsImg.src = modifyImgFileUrl
 
                     postWriteContentsArr[i].appendChild(postWriteContentsImgWrapper)
-                    console.log(postWriteContentsArr[i])
                     postWriteContentsImgWrapper.appendChild(postWriteContentsImgBtn)
                     postWriteContentsImgWrapper.appendChild(postWriteContentsImg)
                     
-                    modifyBtnsArr = document.querySelectorAll('.modifyBtn')
-                    deleteBtnsArr = document.querySelectorAll('.deleteBtn')
-                    modifyAddImgBtnsArr = document.querySelectorAll('.modifyAddImgBtn')
-                    
-                    
-                    postWritesArr = document.querySelectorAll('.postWrite')
-                    modifyTextareasArr = document.querySelectorAll('.modifyTextarea')
-                    postWriteContentsTextsArr = document.querySelectorAll('.postWriteContentsText')
-                    
                     postWriteContentsArr = document.querySelectorAll('.postWriteContents')
-                    postWriteContentsImgWrappersArr = document.querySelectorAll('.postWriteContentsImgWrapper')
-                    postWriteContentsImgBtnsArr = document.querySelectorAll('.postWriteContentsImgBtn')
                     modifiyImgDelete()
                 }
                 
             // }
         }
 
-
-        //사진삭제버튼
-        function modifiyImgDelete(){
+          //사진삭제버튼
+          function modifiyImgDelete(){
             for(let m = 0; m<postWriteContentsArr[i].children.length-3; m++){
-                postWriteContentsArr[i].children[m+3].children[0].onclick = function(){
+                postWriteContentsArr[i].children[m+3].children[0].onclick = function(e){
+                    e.stopPropagation();
                     console.log('삭제버튼 활성화')
-                    // console.log(i)
                     console.log(m)
                     console.log(postWriteContentsArr[i].childElementCount-3)
-                    // console.log(postWritesArr.length)
                     console.log(postWriteContentsArr[i].children)
-                    // console.log(postWriteContentsArr[i].children[m+3])
                     postWriteContentsArr[i].removeChild(postWriteContentsArr[i].children[m+3])
+                    console.log(postWriteContentsArr[i].children)
                     console.log(postWriteContentsArr[i].childElementCount-3)
                     postWriteContentsImgWrappersArr = document.querySelectorAll('.postWriteContentsImgWrapper')
                     postWriteContentsArr = document.querySelectorAll('.postWriteContents')
-                    // postWriteContentsBtnsArr = document.querySelectorAll('.postWriteContentsBtns')
-                    // postWriteContentsTextsArr = document.querySelectorAll('.postWriteContentsText')
                     
                 }
             }
         }
         modifiyImgDelete()
 
+        
+
         //포스팅삭제버튼
         deleteBtnsArr[i].onclick = function(){
             document.querySelector('.postWrapper').removeChild(postWritesArr[i])   
         }
     }
+          
 }
 
 //포스팅모듈 실행

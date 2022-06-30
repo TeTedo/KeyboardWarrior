@@ -418,24 +418,6 @@ body{
     display: flex;
     position: relative;
 }
-.GameListClick{
-    border: 1px solid rgb(226, 204, 226);
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.gameListIcon img{
-    width: 27px;
-    height: 27px;
-    color: white;
-}
-.gameListIcon img:hover{
-    background-color: #855cb3;
-}
-.gameListIcon{
-    margin : auto 3px;
-}
 .searchBar{
     width: max-content;
     height: 30px;
@@ -472,10 +454,12 @@ body{
     justify-content: center;
     align-items: center;
 }
+
 .wholeGameNavSort span{
     margin : auto;
     font-size: 15px;
     font-weight: bold;
+    cursor: pointer;
 }
 .wholeGameNavSort span:hover{
     background-color: rgb(226, 204, 226);

@@ -51,6 +51,8 @@ let ListGameComment = document.querySelectorAll(".ListGameComment")
 let ListGameHashTag = document.querySelectorAll(".ListGameHashTag")
 let wholeGameZoneulimg = document.querySelectorAll(".wholeGameZoneul li img")
 let HashTagForDevide = document.querySelectorAll(".HashTagForDevide")
+let wholeGameNavSortFilter = document.querySelectorAll(".wholeGameNavSortFilter")
+let wholeGameNavSort = document.querySelector(".wholeGameNavSort")
 
 //리스트 관련 모듈
 let AboutList = (
@@ -63,6 +65,7 @@ let AboutList = (
         }
         AboutList.prototype.addgame = function(){
             let templist = document.createElement("li");
+            templist.classList.add("#전체");
             let tempa = document.createElement("a");
             let tempimg = document.createElement("img");
             let tempGameZone = document.createElement("div");
@@ -86,7 +89,8 @@ let AboutList = (
             //해쉬태그 추가
             for(let i = 0; i<HashTagForDevide.length; i++){
                 if(HashTagForDevide[i].checked){
-                    tempGameHashTag.innerHTML += `${HashTagForDevide[i].value} `
+                    tempGameHashTag.innerHTML += `${HashTagForDevide[i].value} `;
+                    templist.classList.add(HashTagForDevide[i].value);
                 }
             }
             wholeGameZoneullist = document.querySelectorAll(".wholeGameZoneul li");
@@ -375,3 +379,18 @@ modifyGameListbutton.onclick = function(){
         removeDatefromModifyGame();
     }
 }
+
+//메뉴 필터링
+function menufilteringFun(){
+    for(let i = 0;i<wholeGameNavSortFilter.length;i++){
+        wholeGameNavSortFilter[i].onclick = function(){
+            for(let k = 0; k<wholeGameZoneullist.length; k++){
+                wholeGameZoneullist[k].style.display = "none"
+                if(wholeGameZoneullist[k].classList.contains(wholeGameNavSortFilter[i].innerHTML)){
+                    wholeGameZoneullist[k].style.display = "block"
+                }
+            }
+        }
+    }
+}
+menufilteringFun();
