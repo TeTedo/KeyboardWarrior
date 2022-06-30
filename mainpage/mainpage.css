@@ -280,6 +280,7 @@ body{
     height: 320px;
 }
 .mainWriteContentsImgWrapper button{
+    display: none;
     width: 20px;
     height: 20px;
     position: relative;
@@ -374,6 +375,7 @@ body{
     height: 320px;
 }
 .postWriteContentsImgWrapper button{
+    display: none;
     width: 20px;
     height: 20px;
     position: relative;

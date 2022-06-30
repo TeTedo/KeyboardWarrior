@@ -100,6 +100,10 @@ let PostGnb=(
                 modifyTextareasArr[i].style.height = `${modifyTextareasArr[i].scrollHeight}px`
                 modifyTextareasArr[i].removeAttribute('readonly')
                 modifyAddImgBtnsArr[i].style.display = 'block'
+                for(let k = 0; k<postWriteContentsArr[i].children.length-2; k++){
+                    postWriteContentsArr[i].children[k+2].children[0].style.display='block'
+                }                
+                // buttonDisplay()
                 modifyBtnsArr[i].innerText = "완료"
             }
             else if(modifyBtnsArr[i].innerText==="완료"){
@@ -110,6 +114,9 @@ let PostGnb=(
                 }
                 modifyTextareasArr[i].setAttribute('readonly','')
                 modifyAddImgBtnsArr[i].style.display = 'none'
+                for(let k = 0; k<postWriteContentsArr[i].children.length-2; k++){
+                    postWriteContentsArr[i].children[k+2].children[0].style.display='none'
+                }
                 modifyBtnsArr[i].innerText = "수정"
             }
         }
@@ -157,6 +164,7 @@ let PostGnb=(
                 postWriteContentsImgWrappersArr = document.querySelectorAll('.postWriteContentsImgWrapper')
                 postWriteContentsImgBtnsArr = document.querySelectorAll('.postWriteContentsImgBtn')
                 modifiyImgDelete()
+                buttonDisplay(i)
             }
         }
 
@@ -165,19 +173,7 @@ let PostGnb=(
         function modifiyImgDelete(){
             for(let m = 0; m<postWriteContentsArr[i].children.length-2; m++){
                 postWriteContentsArr[i].children[m+2].children[0].onclick = function(e){
-
                     e.target.parentElement.parentElement.removeChild(e.target.parentElement);
-                    // console.log('삭제버튼 활성화')
-                    // // console.log(i)
-                    // console.log(m)
-                    // console.log(postWriteContentsArr[i].childElementCount-2)
-                    // // console.log(postWritesArr.length)
-                    // console.log(postWriteContentsArr[i].children)
-                    // // console.log(postWriteContentsArr[i].children[m+3])
-                    // postWriteContentsArr[i].removeChild(postWriteContentsArr[i].children[m+2])
-                    // console.log(postWriteContentsArr[i].childElementCount-2)
-                    // postWriteContentsImgWrappersArr = document.querySelectorAll('.postWriteContentsImgWrapper')
-                    // postWriteContentsArr = document.querySelectorAll('.postWriteContents')
                     
                 }
             }
@@ -233,3 +229,21 @@ postRegisterBtn.onclick = function(){
 }
 
 BtnAttribute()  
+
+function buttonDisplay(i){
+    postWritesArr = document.querySelectorAll('.postWrite')
+    postWriteContentsArr = document.querySelectorAll('.postWriteContents')
+    modifyTextareasArr = document.querySelectorAll('.modifyTextarea')
+    postWriteContentsBtnsArr = document.querySelectorAll('.postWriteContentsBtns')
+
+    postWriteContentsImgWrappersArr = document.querySelectorAll('.postWriteContentsImgWrapper')
+    postWriteContentsImgBtnsArr = document.querySelectorAll('.postWriteContentsImgBtn')
+
+    modifyBtnsArr = document.querySelectorAll('.modifyBtn')
+    deleteBtnsArr = document.querySelectorAll('.deleteBtn')
+    modifyAddImgBtnsArr = document.querySelectorAll('.modifyAddImgBtn')
+    console.log(postWriteContentsArr[i])
+    for(let k = 0; k<postWriteContentsArr[i].children.length-2; k++){
+        postWriteContentsArr[i].children[k+2].children[0].style.display='block'
+    }
+}

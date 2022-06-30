@@ -3,6 +3,8 @@
 addGifBtn.onclick = function(){
     document.querySelector('.popUp').style.zIndex = '1'
     document.querySelector('.popUp').style.display = 'block'
+    mainWriteContents = document.querySelector('.mainWriteContents')
+    
 }
 popUpCancle.onclick = function(){
     document.querySelector('.popUp').style.zIndex = '-999'
@@ -37,6 +39,10 @@ popUpDone.onclick = function(){
 
     mainWriteContentsImg.src = addedImgFileUrl
     addImgFile.value=""
+
+    for(let k = 0; k<mainWriteContents.children.length-2; k++){
+        mainWriteContents.children[k+2].children[1].style.display='block'
+    }
 }
 
 
