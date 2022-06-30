@@ -88,7 +88,7 @@ body{
     width: 30px;
     height: 30px;
     border: none;
-    background-image: url(./images/search.png);
+    background-image: url(../images/search.png);
     background-size: cover;
     position: relative;
     left: -360px;
@@ -236,7 +236,7 @@ body{
 .main .mainWrite .profileImg{
     width: 45px;
     height: 40px;
-    background-image: url(./images/profileImg.jpg);
+    background-image: url(../images/profileImg.jpg);
     background-size: cover;
     border: 1px solid none;
     border-radius: 500px;
@@ -311,7 +311,7 @@ body{
 .main .postWrite .profileImg{
     width: 45px;
     height: 40px;
-    background-image: url(./images/profileImg.jpg);
+    background-image: url(../images/profileImg.jpg);
     background-size: cover;
     border: 1px solid none;
     border-radius: 500px;
