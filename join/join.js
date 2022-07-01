@@ -5,8 +5,6 @@ passwordTest = new RegExp(/(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d
 nameTest = new RegExp(/[^가-힣]/g)
 numTest = new RegExp(/[^0-9]/g)
 emailTest = new RegExp(/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/)
-let link = 'https://naver.com'
-
 
 let a
 finishBtn.onclick = function () {
@@ -111,14 +109,14 @@ finishBtn.onclick = function () {
         else {
             if (_num2.length < 3 || _num2.length > 4) {
 
-                mobileWarn.innerHTML += " 2번째칸 3~4자리수로 넣으세요."
+                mobileWarn.innerHTML += " 2번째칸 3~4자리로 입력하세요."
             }
             else {
                 count++
             }
             if (!(_num3.length == 4)) {
 
-                mobileWarn.innerHTML += " 3번째칸 4자리수로 넣으세요."
+                mobileWarn.innerHTML += " 3번째칸 4자리로 입력하세요."
             }
             else {
                 count++
@@ -150,23 +148,25 @@ finishBtn.onclick = function () {
         checkBox1Warn.innerHTML = ""
     }
     else {
-        checkBox1Warn.innerHTML = "체크해주세요."
+        checkBox1Warn.innerHTML = "박스를 체크해주세요."
     }
     if (checkBox2.checked) {
         checkBox2Warn.innerHTML = ""
     }
     else {
-        checkBox2Warn.innerHTML = "체크해주세요."
+        checkBox2Warn.innerHTML = "박스를 체크해주세요."
     }
 
     //회원가입 성공
     if (count == 7 && checkBox1.checked && checkBox2.checked) {
         alert("회원가입 성공")
-        location.replace(link)
+        location.replace("../mainpage/mainpage.html")
     }
 }
 
-
+cancleBtn.onclick = function(){
+    location.replace("../mainpage/mainpage.html")
+}
 
 
 
