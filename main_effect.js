@@ -59,8 +59,14 @@ document.querySelector(`.leftMenu`).onmouseleave = function(){
 }
 //======================================================================
 
+//================메뉴창 이동=======================================
 
-
+MenuCommunity.onclick = function(){
+    location.replace("../subpage/subpage.html")
+}
+MenuHome.onclick = function(){
+    location.replace("../mainpage/mainpage.html")
+}
 
 
 
