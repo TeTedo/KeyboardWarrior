@@ -107,7 +107,8 @@ body{
     position: fixed;
     width: 100%;
     top: 120px;
-    border-bottom: 2px solid  rgb(226, 204, 226);;
+    border-bottom: 2px solid  rgb(226, 204, 226);
+    z-index: 1;
 }
 
 /* 사이드 */
@@ -147,7 +148,7 @@ body{
     border: none;
 }
 .leftMenudiv.active{
-    width: 50%;
+    width: 60%;
     transition:1.5s;
 }
 .right{
@@ -230,13 +231,17 @@ body{
     border: 2px solid rgb(226, 204, 226);
     margin-bottom: 20px;
     padding: 30px;
-    
+    position: relative;
 }
 .main .mainWrite .mainWriteWrapper{
     display: flex;;
     
 }
-
+.chooseGame{
+    position: absolute;
+    top: 5px;
+    left: 90px;
+}
 .main .mainWrite .profileImg{
     width: 45px;
     height: 40px;
@@ -262,6 +267,9 @@ body{
     cursor: pointer;
     font-weight: 600;
     font-size: 13px;
+}
+.chooseCategory{
+    margin : 10px 270px 0 0;
 }
 .mainWriteContentsBtns #postRegisterBtn{
     border: 2px solid rgb(226, 204, 226);
@@ -317,13 +325,27 @@ body{
     border: 2px solid rgb(226, 204, 226);
     margin-bottom: 20px;
     padding: 30px;
+    position: relative;
     
 }
 .main .postWrite .postWriteWrapper{
     display: flex;;
     
 }
-
+.postWriteGameTag{
+    position: absolute;
+    left: 90px;
+    bottom: 35px;
+    cursor: pointer;
+    opacity: 0.5;
+    display: flex;
+}
+.CategoryinModify{
+    position: absolute;
+    bottom: 35px;
+    left: 150px;
+    display: none;
+}
 .main .postWrite .profileImg{
     width: 45px;
     height: 40px;

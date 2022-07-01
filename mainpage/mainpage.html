@@ -55,11 +55,23 @@
                                     <span class="attributeBtns">
                                         <button id="addGifBtn">gif</button>
                                     </span>
+                                    <select name="chooseCategory" class="chooseCategory">
+                                        <option value="#일상" selected>일상</option>
+                                        <option value="#공략">공략
+                                        </option>
+                                        <option value="#거래">거래
+                                        </option>
+                                    </select>
                                     <button id="postRegisterBtn"><h3>등록</h3></button>
                                 </span>
                                 <textarea id="mainWriteText" onkeydown="resize(this)" onkeyup="resize(this)" placeholder="What's happening?" ></textarea>
                             </span>
                         </span>
+                        <select name="chooseGame" class="chooseGame">
+                            <option value="#game1" selected>game1</option>
+                            <option value="#game2">game2</option>
+                            <option value="#game3">game3</option>
+                        </select>
                     </div>
                     <div class="postWrapper" id="postWrapper">
                     <div class="postWrite">
@@ -80,6 +92,24 @@
                                 </span>
                             </span>
                         </span>
+                        <div class="postWriteGameTag">
+                            <span class="postWriteGameHashTag">#game1</span>
+                            <span class="postWriteHashTag">#일상</span>
+                        </div>
+                        <div class="CategoryinModify">
+                            <select name="chooseGameinModify" class="chooseGameinModify">
+                                <option value="#game1" selected>game1</option>
+                                <option value="#game2">game2</option>
+                                <option value="#game3">game3</option>
+                            </select>
+                            <select name="chooseCategoryinModify" class="chooseCategoryinModify">
+                                <option value="#일상" selected>일상</option>
+                                <option value="#공략">공략
+                                </option>
+                                <option value="#거래">거래
+                                </option>
+                            </select>
+                        </div>
                     </div>
                     </div>
                 </div>

@@ -6,8 +6,46 @@
 body{
     width: 100%;
     height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 1%;
+}
+
+.minigamepage{
+    background-color: transparent;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 690px;
+    left: 700px;
+    overflow: hidden;
+    display: none;
+    transition: 1s;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url();
+}
+
+.maincanvas{
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 800px;
+    height: 800px;
+    border: 1px solid black;
+}
+
+.profilesector{
+    position: absolute;
+    width: 350px;
+    height: 300px;
+    background-color: aqua;
+    top: 5%;
+    left: 70%;
+}
+.chattingsector{
+    position: absolute;
+    width: 350px;
+    height: 450px;
+    background-color: aqua;
+    bottom: 9%;
+    left: 70%;
 }
