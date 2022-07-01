@@ -10,7 +10,15 @@ let postWriteContentsImgBtnsArr = document.querySelectorAll('.postWriteContentsI
 let modifyBtnsArr = document.querySelectorAll('.modifyBtn')
 let deleteBtnsArr = document.querySelectorAll('.deleteBtn')
 let modifyAddImgBtnsArr = document.querySelectorAll('.modifyAddImgBtn')
+let CategoryinModify = document.querySelectorAll('.CategoryinModify')
+let postWriteGameHashTag = document.querySelectorAll('.postWriteGameHashTag')
+let postWriteHashTag = document.querySelectorAll('.postWriteHashTag')
+let chooseCategoryinModify = document.querySelectorAll('.chooseCategoryinModify')
+let chooseGameinModify = document.querySelectorAll('.chooseGameinModify')
 
+let postWriteGameTag = document.querySelectorAll(".postWriteGameTag")
+let chooseGame = document.querySelector(".chooseGame")
+let chooseCategory = document.querySelector(".chooseCategory")
 // let imgUrlsArr = document.querySelectorAll('.mainWriteContentsImgWrapper')
 
 
@@ -86,6 +94,60 @@ let PostGnb=(
 
                 }
             }
+
+            //해쉬태그 추가
+            let tempGameTag = document.createElement("div")
+            tempGameTag.classList.add("postWriteGameTag")
+            let tempGameHashTag = document.createElement("span")
+            tempGameHashTag.classList.add("postWriteGameHashTag")
+            let tempHashTag = document.createElement("span")
+            tempHashTag.classList.add("postWriteHashTag")
+
+            let tempinModify = document.createElement("div")
+            tempinModify.classList.add("CategoryinModify")
+            let tempGameinModify = document.createElement("select")
+            tempGameinModify.classList.add("chooseGameinModify")
+            let tempGameoption1 = document.createElement("option")
+            tempGameoption1.value = "#game1"; tempGameoption1.innerHTML = "game1"; 
+            let tempGameoption2 = document.createElement("option")
+            tempGameoption2.value = "#game2"; tempGameoption2.innerHTML = "game2";
+            let tempGameoption3 = document.createElement("option")
+            tempGameoption3.value = "#game3"; tempGameoption3.innerHTML = "game3";
+            let tempCategoryinModify = document.createElement("select")
+            tempCategoryinModify.classList.add("chooseCategoryinModify")
+            let tempCategoryoption1 = document.createElement("option")
+            tempCategoryoption1.value = "#일상"; tempCategoryoption1.innerHTML = "일상";
+            let tempCategoryoption2 = document.createElement("option")
+            tempCategoryoption2.value = "#공략"; tempCategoryoption2.innerHTML = "공략";
+            let tempCategoryoption3 = document.createElement("option")
+            tempCategoryoption3.value = "#거래"; tempCategoryoption3.innerHTML = "거래";
+            
+            
+
+            postWrite.appendChild(tempGameTag);
+            tempGameTag.appendChild(tempGameHashTag);
+            tempGameTag.appendChild(tempHashTag);
+            tempGameHashTag.innerHTML = chooseGame.value
+            tempHashTag.innerHTML = chooseCategory.value
+
+            postWrite.appendChild(tempinModify);
+            tempinModify.appendChild(tempGameinModify);
+            tempinModify.appendChild(tempCategoryinModify);
+            tempGameinModify.appendChild(tempGameoption1);
+            tempGameinModify.appendChild(tempGameoption2);
+            tempGameinModify.appendChild(tempGameoption3);
+            tempCategoryinModify.appendChild(tempCategoryoption1);
+            tempCategoryinModify.appendChild(tempCategoryoption2);
+            tempCategoryinModify.appendChild(tempCategoryoption3);
+
+            
+
+            postWriteGameTag = document.querySelectorAll(".postWriteGameTag")
+            CategoryinModify = document.querySelectorAll('.CategoryinModify')
+            chooseGameinModify = document.querySelectorAll('.chooseGameinModify')
+            chooseCategoryinModify = document.querySelectorAll('.chooseCategoryinModify')
+            postWriteGameHashTag = document.querySelectorAll('.postWriteGameHashTag')
+            postWriteHashTag = document.querySelectorAll('.postWriteHashTag')
          }
          return PostGnb
     }
@@ -96,10 +158,19 @@ let PostGnb=(
     for(let i = 0; i<postWritesArr.length; i++){
         //수정버튼
         modifyBtnsArr[i].onclick = function(){
+            
             if(modifyBtnsArr[i].innerText==="수정"){
                 modifyTextareasArr[i].style.height = `${modifyTextareasArr[i].scrollHeight}px`
                 modifyTextareasArr[i].removeAttribute('readonly')
                 modifyAddImgBtnsArr[i].style.display = 'block'
+
+                
+                postWriteGameTag[i].style.display = "none"
+                CategoryinModify[i].style.display = "block"
+                for(let k = 0; k<postWriteContentsArr[i].children.length-2; k++){
+                    postWriteContentsArr[i].children[k+2].children[0].style.display='block'
+                }
+                // buttonDisplay()
                 modifyBtnsArr[i].innerText = "완료"
             }
             else if(modifyBtnsArr[i].innerText==="완료"){
@@ -110,7 +181,17 @@ let PostGnb=(
                 }
                 modifyTextareasArr[i].setAttribute('readonly','')
                 modifyAddImgBtnsArr[i].style.display = 'none'
+                for(let k = 0; k<postWriteContentsArr[i].children.length-2; k++){
+                    postWriteContentsArr[i].children[k+2].children[0].style.display='none'
+                }
                 modifyBtnsArr[i].innerText = "수정"
+                postWriteGameTag[i].style.display = "block"
+                CategoryinModify[i].style.display = "none"
+                //수정에서 해쉬태그 추가
+                
+                postWriteGameHashTag[i].innerHTML = chooseGameinModify[i].value
+                postWriteHashTag[i].innerHTML = chooseCategoryinModify[i].value
+
             }
         }
         //수정에서 사진추가
@@ -157,6 +238,7 @@ let PostGnb=(
                 postWriteContentsImgWrappersArr = document.querySelectorAll('.postWriteContentsImgWrapper')
                 postWriteContentsImgBtnsArr = document.querySelectorAll('.postWriteContentsImgBtn')
                 modifiyImgDelete()
+                buttonDisplay(i)
             }
         }
 
@@ -166,6 +248,7 @@ let PostGnb=(
             for(let m = 0; m<postWriteContentsArr[i].children.length-2; m++){
                 postWriteContentsArr[i].children[m+2].children[0].onclick = function(e){
                     e.target.parentElement.parentElement.removeChild(e.target.parentElement);
+                    
                 }
             }
         }
@@ -217,6 +300,25 @@ postRegisterBtn.onclick = function(){
     }
 
     BtnAttribute()
+    
 }
 
 BtnAttribute()  
+
+function buttonDisplay(i){
+    postWritesArr = document.querySelectorAll('.postWrite')
+    postWriteContentsArr = document.querySelectorAll('.postWriteContents')
+    modifyTextareasArr = document.querySelectorAll('.modifyTextarea')
+    postWriteContentsBtnsArr = document.querySelectorAll('.postWriteContentsBtns')
+
+    postWriteContentsImgWrappersArr = document.querySelectorAll('.postWriteContentsImgWrapper')
+    postWriteContentsImgBtnsArr = document.querySelectorAll('.postWriteContentsImgBtn')
+
+    modifyBtnsArr = document.querySelectorAll('.modifyBtn')
+    deleteBtnsArr = document.querySelectorAll('.deleteBtn')
+    modifyAddImgBtnsArr = document.querySelectorAll('.modifyAddImgBtn')
+    console.log(postWriteContentsArr[i])
+    for(let k = 0; k<postWriteContentsArr[i].children.length-2; k++){
+        postWriteContentsArr[i].children[k+2].children[0].style.display='block'
+    }
+}
