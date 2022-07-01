@@ -107,7 +107,8 @@ body{
     position: fixed;
     width: 100%;
     top: 120px;
-    border-bottom: 2px solid  rgb(226, 204, 226);;
+    border-bottom: 2px solid  rgb(226, 204, 226);
+    z-index: 1;
 }
 
 /* 사이드 */
@@ -147,7 +148,7 @@ body{
     border: none;
 }
 .leftMenudiv.active{
-    width: 50%;
+    width: 60%;
     transition:1.5s;
 }
 .right{
