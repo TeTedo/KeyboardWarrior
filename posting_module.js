@@ -20,7 +20,6 @@ let chooseGameinModify = document.querySelectorAll('.chooseGameinModify')
 let postWriteGameTag = document.querySelectorAll(".postWriteGameTag")
 let chooseGame = document.querySelector(".chooseGame")
 let chooseCategory = document.querySelector(".chooseCategory")
-// let imgUrlsArr = document.querySelectorAll('.mainWriteContentsImgWrapper')
 
 //슬라이드 변수
 let wholeGameSlide = document.querySelectorAll('.wholeGameSlide')
@@ -205,8 +204,12 @@ let PostGnb=(
                 modifyAddImgBtnsArr[i].style.display = 'block'
                 postWriteGameTag[i].style.display = "none"
                 CategoryinModify[i].style.display = "block"
-                postWriteContentsArr[i].querySelectorAll('.postWriteContentsImgWrapper').style.display = "block";
-                postWriteContentsArr[i].querySelectorAll('.wholeGameSlide').style.display = "none";
+                let Imgtemp = postWriteContentsArr[i].querySelectorAll('.postWriteContentsImgWrapper')
+                for(let k = 0; k<Imgtemp.length; k++){
+                    Imgtemp[k].style.display = "block";
+                }
+                postWriteContentsArr[i].querySelector('.wholeGameSlide').style.display = "none";
+               
 
                 for(let k = 0; k<postWriteContentsArr[i].children.length-2; k++){
                     postWriteContentsArr[i].children[k+2].children[0].style.display='block'
@@ -228,13 +231,19 @@ let PostGnb=(
                 modifyBtnsArr[i].innerText = "수정"
                 postWriteGameTag[i].style.display = "block"
                 CategoryinModify[i].style.display = "none"
+
+                let lololo = postWriteContentsArr[i].querySelectorAll('.postWriteContentsImgWrapper')
+                for(let k = 0; k<lololo.length; k++){
+                    lololo[k].style.display = "none";
+                }
+                postWriteContentsArr[i].querySelector('.wholeGameSlideButton').style.display = "block";
+
                 //수정에서 해쉬태그 추가
                 
                 postWriteGameHashTag[i].innerHTML = chooseGameinModify[i].value
                 postWriteHashTag[i].innerHTML = chooseCategoryinModify[i].value
 
-                postWriteContentsArr[i].querySelectorAll('.postWriteContentsImgWrapper').style.display = "block";
-                postWriteContentsArr[i].querySelectorAll('.wholeGameSlide').style.display = "none";
+                postWriteContentsArr[i].querySelector('.wholeGameSlide').style.display = "block";
 
             }
         }
@@ -250,13 +259,16 @@ let PostGnb=(
                 modifyImgFile.value = ""
             } 
             ModifyPopUpDone.onclick = function(){
+                //팝업창끄기
                 document.querySelector('.ModifyPopUp').style.zIndex = '-999'
                 document.querySelector('.ModifyPopUp').style.display = 'none'
+                //첨부한 이미지 url 받아오기
                 let modifyImgFileUrl = modifyImgFile.value
                 modifyImgFile.value = ""
                 if (modifyImgFileUrl === "" || modifyImgFileUrl === null){return}
 
-                
+                //수정창에 사진 추가
+                //일반사진 추가
                 let postWriteContentsImgWrapper = document.createElement('span')
                 postWriteContentsImgWrapper.classList.add('postWriteContentsImgWrapper')
                 let postWriteContentsImgBtn = document.createElement('button')
@@ -272,16 +284,30 @@ let PostGnb=(
                 modifyBtnsArr = document.querySelectorAll('.modifyBtn')
                 deleteBtnsArr = document.querySelectorAll('.deleteBtn')
                 modifyAddImgBtnsArr = document.querySelectorAll('.modifyAddImgBtn')
-                
-                
                 postWritesArr = document.querySelectorAll('.postWrite')
                 modifyTextareasArr = document.querySelectorAll('.modifyTextarea')
-                
                 postWriteContentsArr = document.querySelectorAll('.postWriteContents')
                 postWriteContentsImgWrappersArr = document.querySelectorAll('.postWriteContentsImgWrapper')
                 postWriteContentsImgBtnsArr = document.querySelectorAll('.postWriteContentsImgBtn')
-                modifiyImgDelete()
+                //슬라이드사진 추가
+                let tempGameSlidelist = document.createElement("li");
+                tempGameSlidelist.classList.add("wholeGameSlidelist");
+                let tempGameSlideImg = document.createElement("img")
+                wholeGameSlideul[i].appendChild(tempGameSlidelist)
+                tempGameSlideImg.src =postWriteContentsImg.src
+                tempGameSlidelist.appendChild(tempGameSlideImg)
+
+                //추간된 사진 보이게하기
+                let Imgtemp = postWriteContentsArr[i].querySelectorAll('.postWriteContentsImgWrapper')
+                for(let k = 0; k<Imgtemp.length; k++){
+                    Imgtemp[k].style.display = "block";
+                }
+                //X버튼 보이게하기
                 buttonDisplay(i)
+
+                //X버튼누르면 사진 삭제
+                modifiyImgDelete()
+
             }
         }
 
@@ -290,10 +316,9 @@ let PostGnb=(
         function modifiyImgDelete(){
             for(let m = 0; m<postWriteContentsArr[i].children.length-2; m++){
                 postWriteContentsArr[i].children[m+2].children[0].onclick = function(e){
-                    if(e.target == postWriteContentsImgBtnsArr[i]){
+                    console.log(e.target)
+                    if(e.target.classList.contains('wholeGameSlideNextButton') || e.target.classList.contains('wholeGameSlidePrevButton') ){return}
                     e.target.parentElement.parentElement.removeChild(e.target.parentElement);
-                    }
-                    
                 }
             }
         }
@@ -403,3 +428,6 @@ function SlideFun(){
     }
 }
 SlideFun();
+
+
+//수정에서 사진추가 안됨
