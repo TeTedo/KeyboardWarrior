@@ -247,7 +247,10 @@ let PostGnb=(
         function modifiyImgDelete(){
             for(let m = 0; m<postWriteContentsArr[i].children.length-2; m++){
                 postWriteContentsArr[i].children[m+2].children[0].onclick = function(e){
-                    e.target.parentElement.parentElement.removeChild(e.target.parentElement);
+                    console.log(e.target)
+                    // if(e.target == postWriteContentsImgBtnsArr){
+                    // e.target.parentElement.parentElement.removeChild(e.target.parentElement);
+                    // }
                     
                 }
             }
@@ -322,3 +325,80 @@ function buttonDisplay(i){
         postWriteContentsArr[i].children[k+2].children[0].style.display='block'
     }
 }
+
+
+
+//슬라이드
+let wholeGameSlideNextButton = document.querySelector(".wholeGameSlideNextButton");
+let wholeGameSlidePrevButton = document.querySelector(".wholeGameSlidePrevButton");
+let wholeGameSlideul = document.querySelector(".wholeGameSlideul");
+let wholeGameSlidelist = document.querySelectorAll(".wholeGameSlidelist");
+let wholeGameSlidebar = document.querySelectorAll(".wholeGameSlidebar");
+
+//슬라이드 넘기기
+
+let index = 0;
+wholeGameSlideul.style.left = 0;
+let intervalFun;
+
+function SlideSkipFun(){
+        index += 1;
+        if(index>wholeGameSlidebar.length-1){
+            wholeGameSlideul.style.left = 0;
+            index = 0;
+            wholeGameSlidebar[index].checked = true;
+        }
+        else{
+            wholeGameSlideul.style.left = parseInt(wholeGameSlideul.style.left) -476 +"px";
+            wholeGameSlidebar[index].checked = true;
+        }
+}
+
+//첫화면 슬라이드 자동 넘기기
+
+setTimeout(()=>{
+    wholeGameSlidebar[index].checked = true;
+    intervalFun = setInterval(()=>{
+        SlideSkipFun();
+    },5000)    
+}
+,500)
+
+
+//오른쪽으로 가는 버튼
+wholeGameSlideNextButton.onclick = function(){
+    console.log("gdgd")
+    clearInterval(intervalFun);
+    index += 1;
+    if(index>wholeGameSlidebar.length-1){
+        wholeGameSlideul.style.left = 0;
+        index = 0;
+        wholeGameSlidebar[index].checked = true;
+    }
+    else{
+    wholeGameSlideul.style.left = parseInt(wholeGameSlideul.style.left) -476 +"px";
+    wholeGameSlidebar[index].checked = true;
+    }
+    intervalFun = setInterval(()=>{
+        SlideSkipFun();
+    },5000)
+}
+
+//왼쪽으로 가는 버튼
+wholeGameSlidePrevButton.onclick = function(){
+    index -= 1;
+    clearInterval(intervalFun);
+    if(index<0){
+        wholeGameSlideul.style.left = -(wholeGameSlidebar.length-1)*476 + "px";
+        index = wholeGameSlidebar.length-1;
+        wholeGameSlidebar[index].checked = true;
+    }
+    else{
+    wholeGameSlideul.style.left = parseInt(wholeGameSlideul.style.left) +476 +"px";
+    wholeGameSlidebar[index].checked = true;
+    }
+    intervalFun = setInterval(()=>{
+        SlideSkipFun();
+    },5000)   
+}
+

@@ -16,12 +16,19 @@ let postWriteHashTag = document.querySelectorAll('.postWriteHashTag')
 let chooseCategoryinModify = document.querySelectorAll('.chooseCategoryinModify')
 let chooseGameinModify = document.querySelectorAll('.chooseGameinModify')
 
+
 let postWriteGameTag = document.querySelectorAll(".postWriteGameTag")
 let chooseGame = document.querySelector(".chooseGame")
 let chooseCategory = document.querySelector(".chooseCategory")
 // let imgUrlsArr = document.querySelectorAll('.mainWriteContentsImgWrapper')
 
-
+//슬라이드 변수
+let wholeGameSlide = document.querySelectorAll('.wholeGameSlide')
+let wholeGameSlideButton = document.querySelectorAll('.wholeGameSlideButton')
+let wholeGameSlideNextButton = document.querySelectorAll('.wholeGameSlideNextButton')
+let wholeGameSlidePrevButton = document.querySelectorAll('.wholeGameSlidePrevButton')
+let wholeGameSlideul = document.querySelectorAll('.wholeGameSlideul')
+let wholeGameSlidelist = document.querySelectorAll('.wholeGameSlidelist')
 
 let PostGnb=(
     function(){
@@ -75,11 +82,35 @@ let PostGnb=(
             modifyTextarea.innerHTML = text
 
             modifyAddImgBtn.innerHTML = "gif"
+
             
             
+
+            //그림추가
             imgUrlsArr = document.querySelectorAll('.mainWriteContentsImgWrapper')
             if(!(imgUrlsArr.length === 0)){
+
+                //슬라이드 ul 추가
+                let tempGameSlide = document.createElement("div");
+                tempGameSlide.classList.add("wholeGameSlide");
+                let tempGameSlideButton = document.createElement("div");
+                tempGameSlideButton.classList.add("wholeGameSlideButton");
+                let tempGameSlideNextButton = document.createElement("div");
+                tempGameSlideNextButton.classList.add("wholeGameSlideNextButton");
+                let tempGameSlidePrevButton = document.createElement("div");
+                tempGameSlidePrevButton.classList.add("wholeGameSlidePrevButton");
+                let tempGameSlideul = document.createElement("ul");
+                tempGameSlideul.classList.add("wholeGameSlideul");
+                
+
+                postWriteContents.appendChild(tempGameSlide);
+                tempGameSlide.appendChild(tempGameSlideButton);
+                tempGameSlideButton.appendChild(tempGameSlideNextButton);
+                tempGameSlideButton.appendChild(tempGameSlidePrevButton);
+                tempGameSlide.appendChild(tempGameSlideul);
+
                 for (let i = 0; i<imgUrlsArr.length; i++){
+                    //일반그림추가
                     let postWriteContentsImgWrapper = document.createElement('span')
                     postWriteContentsImgWrapper.classList.add('postWriteContentsImgWrapper')
                     let postWriteContentsImgBtn = document.createElement('button')
@@ -92,6 +123,13 @@ let PostGnb=(
                     postWriteContentsImgWrapper.appendChild(postWriteContentsImgBtn)
                     postWriteContentsImgWrapper.appendChild(postWriteContentsImg)
 
+                    //슬라이드 그림추가 
+                    let tempGameSlidelist = document.createElement("li");
+                    tempGameSlidelist.classList.add("wholeGameSlidelist");
+                    let tempGameSlideImg = document.createElement("img")
+                    tempGameSlideul.appendChild(tempGameSlidelist)
+                    tempGameSlideImg.src =postWriteContentsImg.src
+                    tempGameSlidelist.appendChild(tempGameSlideImg)
                 }
             }
 
@@ -148,6 +186,8 @@ let PostGnb=(
             chooseCategoryinModify = document.querySelectorAll('.chooseCategoryinModify')
             postWriteGameHashTag = document.querySelectorAll('.postWriteGameHashTag')
             postWriteHashTag = document.querySelectorAll('.postWriteHashTag')
+
+
          }
          return PostGnb
     }
@@ -163,10 +203,11 @@ let PostGnb=(
                 modifyTextareasArr[i].style.height = `${modifyTextareasArr[i].scrollHeight}px`
                 modifyTextareasArr[i].removeAttribute('readonly')
                 modifyAddImgBtnsArr[i].style.display = 'block'
-
-                
                 postWriteGameTag[i].style.display = "none"
                 CategoryinModify[i].style.display = "block"
+                postWriteContentsArr[i].querySelectorAll('.postWriteContentsImgWrapper').style.display = "block";
+                postWriteContentsArr[i].querySelectorAll('.wholeGameSlide').style.display = "none";
+
                 for(let k = 0; k<postWriteContentsArr[i].children.length-2; k++){
                     postWriteContentsArr[i].children[k+2].children[0].style.display='block'
                 }
@@ -191,6 +232,9 @@ let PostGnb=(
                 
                 postWriteGameHashTag[i].innerHTML = chooseGameinModify[i].value
                 postWriteHashTag[i].innerHTML = chooseCategoryinModify[i].value
+
+                postWriteContentsArr[i].querySelectorAll('.postWriteContentsImgWrapper').style.display = "block";
+                postWriteContentsArr[i].querySelectorAll('.wholeGameSlide').style.display = "none";
 
             }
         }
@@ -222,7 +266,6 @@ let PostGnb=(
                 postWriteContentsImg.src = modifyImgFileUrl
 
                 postWriteContentsArr[i].appendChild(postWriteContentsImgWrapper)
-                console.log(postWriteContentsArr[i])
                 postWriteContentsImgWrapper.appendChild(postWriteContentsImgBtn)
                 postWriteContentsImgWrapper.appendChild(postWriteContentsImg)
                 
@@ -247,7 +290,9 @@ let PostGnb=(
         function modifiyImgDelete(){
             for(let m = 0; m<postWriteContentsArr[i].children.length-2; m++){
                 postWriteContentsArr[i].children[m+2].children[0].onclick = function(e){
+                    if(e.target == postWriteContentsImgBtnsArr[i]){
                     e.target.parentElement.parentElement.removeChild(e.target.parentElement);
+                    }
                     
                 }
             }
@@ -300,7 +345,7 @@ postRegisterBtn.onclick = function(){
     }
 
     BtnAttribute()
-    
+    SlideFun()
 }
 
 BtnAttribute()  
@@ -317,8 +362,44 @@ function buttonDisplay(i){
     modifyBtnsArr = document.querySelectorAll('.modifyBtn')
     deleteBtnsArr = document.querySelectorAll('.deleteBtn')
     modifyAddImgBtnsArr = document.querySelectorAll('.modifyAddImgBtn')
-    console.log(postWriteContentsArr[i])
     for(let k = 0; k<postWriteContentsArr[i].children.length-2; k++){
         postWriteContentsArr[i].children[k+2].children[0].style.display='block'
     }
 }
+
+//슬라이드 함수
+function SlideFun(){
+    wholeGameSlide = document.querySelectorAll('.wholeGameSlide')
+    wholeGameSlideButton = document.querySelectorAll('.wholeGameSlideButton')
+    wholeGameSlideNextButton = document.querySelectorAll('.wholeGameSlideNextButton')
+    wholeGameSlidePrevButton = document.querySelectorAll('.wholeGameSlidePrevButton')
+    wholeGameSlideul = document.querySelectorAll('.wholeGameSlideul')
+    wholeGameSlidelist = document.querySelectorAll('.wholeGameSlidelist')
+    let index=0;
+    for(let i =0; i<wholeGameSlide.length;i++){
+        wholeGameSlideul[i].style.left = "0px"
+        wholeGameSlide[i].onclick = function(e){
+            if(e.target.classList.contains("wholeGameSlideNextButton")){
+                index++;
+                if(index>wholeGameSlideul[i].childElementCount-1){
+                    index = 0;
+                    wholeGameSlideul[i].style.left = "0px"
+                }
+                else{
+                wholeGameSlideul[i].style.left = parseInt(wholeGameSlideul[i].style.left) -476 + "px"
+                }
+            }
+            if(e.target.classList.contains("wholeGameSlidePrevButton")){
+                index--;
+                if(index<0){
+                    index = wholeGameSlideul[i].childElementCount-1
+                    wholeGameSlideul[i].style.left = -476*(wholeGameSlideul[i].childElementCount-1) + "px"
+                }
+                else{
+                wholeGameSlideul[i].style.left = parseInt(wholeGameSlideul[i].style.left) +476 + "px"
+                }
+            }
+        }
+    }
+}
+SlideFun();

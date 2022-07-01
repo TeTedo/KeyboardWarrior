@@ -391,6 +391,7 @@ body{
 }
 .postWriteContents .postWriteContentsImgWrapper{
     margin-bottom: 10px;
+    display: none;
 }
 .postWriteContentsImgWrapper img{
     width: 476px;
@@ -409,6 +410,63 @@ body{
     height: 320px;
     margin-bottom: 10px;
 }
+/* 슬라이드구간 */
+.wholeGameSlide{
+    width: 476px;
+    height: 320px;
+    background-color: whitesmoke;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+.wholeGameSlideButton{
+    background-color: white;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+}
+
+.wholeGameSlideNextButton{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 130px;
+    left: 420px;
+    z-index: 1;
+}
+.wholeGameSlideNextButton:hover{
+    background-color: white;
+    cursor: pointer;
+}
+.wholeGameSlidePrevButton{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 130px;
+    left: 10px;
+    z-index: 1;
+}
+.wholeGameSlidePrevButton:hover{
+    background-color: white;
+    cursor: pointer;
+}
+
+.wholeGameSlideul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 1s;
+}
+.wholeGameSlideul li img{
+    width: 600px;
+    height: 200px;
+}
+/* 슬라이드구간 */
+
 .postWriteContentsText{
     width: 476px;
     font-size: 20px;
