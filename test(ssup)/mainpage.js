@@ -100,7 +100,7 @@ function SlideSkipFun(){
             wholeGameSlidebar[index].checked = true;
         }
         else{
-            wholeGameSlideul.style.left = parseInt(wholeGameSlideul.style.left) -600 +"px";
+            wholeGameSlideul.style.left = parseInt(wholeGameSlideul.style.left) -476 +"px";
             wholeGameSlidebar[index].checked = true;
         }
 }
@@ -123,7 +123,7 @@ wholeGameSlideNextButton.onclick = function(){
         wholeGameSlidebar[index].checked = true;
     }
     else{
-    wholeGameSlideul.style.left = parseInt(wholeGameSlideul.style.left) -600 +"px";
+    wholeGameSlideul.style.left = parseInt(wholeGameSlideul.style.left) -476 +"px";
     wholeGameSlidebar[index].checked = true;
     }
     intervalFun = setInterval(()=>{
@@ -136,12 +136,12 @@ wholeGameSlidePrevButton.onclick = function(){
     index -= 1;
     clearInterval(intervalFun);
     if(index<0){
-        wholeGameSlideul.style.left = -(wholeGameSlidebar.length-1)*600 + "px";
+        wholeGameSlideul.style.left = -(wholeGameSlidebar.length-1)*476 + "px";
         index = wholeGameSlidebar.length-1;
         wholeGameSlidebar[index].checked = true;
     }
     else{
-    wholeGameSlideul.style.left = parseInt(wholeGameSlideul.style.left) +600 +"px";
+    wholeGameSlideul.style.left = parseInt(wholeGameSlideul.style.left) +476 +"px";
     wholeGameSlidebar[index].checked = true;
     }
     intervalFun = setInterval(()=>{
@@ -155,7 +155,7 @@ function labelClickFun(){
     for (let i = 0 ; i<wholeGameSlidebar.length ; i++){
         wholeGameSlidebar[i].onclick = function(){
             clearInterval(intervalFun);
-            wholeGameSlideul.style.left = -i*600 + "px";
+            wholeGameSlideul.style.left = -i*476 + "px";
             index = i;
             intervalFun = setInterval(()=>{
                 SlideSkipFun();
