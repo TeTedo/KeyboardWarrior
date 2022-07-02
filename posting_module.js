@@ -294,7 +294,7 @@ let PostGnb=(
                 postWriteContentsImgWrappersArr = document.querySelectorAll('.postWriteContentsImgWrapper')
                 postWriteContentsImgBtnsArr = document.querySelectorAll('.postWriteContentsImgBtn')
 
-                //2022.07.02 오류 : 글만 등록후 사진추가할때 슬라이드 만들기 오류, 기존 이미지 있는 글 수정할때 이미지 추가하면 이미지 안보임 오류
+                //2022.07.02 오류 : 글만 등록후 사진추가할때 슬라이드 만들기 오류, 기존 이미지 있는 글 수정할때 이미지 추가하면 이미지 안보임 오류;;
                 // //슬라이드사진 추가
                 // if(!postWriteContentsArr[i].children.classList.contains("wholeGameSlide")){
                 //     console.log("gd")
