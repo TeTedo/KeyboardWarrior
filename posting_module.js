@@ -208,7 +208,11 @@ let PostGnb=(
                 for(let k = 0; k<Imgtemp.length; k++){
                     Imgtemp[k].style.display = "block";
                 }
-                postWriteContentsArr[i].querySelector('.wholeGameSlide').style.display = "none";
+
+                //2022.07.02 글만쓰고 수정버튼 누를때 오류 잡기 - if 조건 추가
+                if(postWriteContentsArr[i].querySelector('.wholeGameSlide') !== null){
+                    postWriteContentsArr[i].querySelector('.wholeGameSlide').style.display = "none";
+                }
                
 
                 for(let k = 0; k<postWriteContentsArr[i].children.length-2; k++){
@@ -289,7 +293,16 @@ let PostGnb=(
                 postWriteContentsArr = document.querySelectorAll('.postWriteContents')
                 postWriteContentsImgWrappersArr = document.querySelectorAll('.postWriteContentsImgWrapper')
                 postWriteContentsImgBtnsArr = document.querySelectorAll('.postWriteContentsImgBtn')
-                //슬라이드사진 추가
+
+                //2022.07.02 오류 : 글만 등록후 사진추가할때 슬라이드 만들기 오류, 기존 이미지 있는 글 수정할때 이미지 추가하면 이미지 안보임 오류
+                // //슬라이드사진 추가
+                // if(!postWriteContentsArr[i].children.classList.contains("wholeGameSlide")){
+                //     console.log("gd")
+                //     let tempGameSlideul = document.createElement("ul");
+                //     wholeGameSlide.appendChild(tempGameSlideul)
+                //     tempGameSlideul.classList.add("wholeGameSlideul");
+                //     wholeGameSlideul = document.querySelectorAll('.wholeGameSlideul');
+                // }
                 let tempGameSlidelist = document.createElement("li");
                 tempGameSlidelist.classList.add("wholeGameSlidelist");
                 let tempGameSlideImg = document.createElement("img")
@@ -316,7 +329,6 @@ let PostGnb=(
         function modifiyImgDelete(){
             for(let m = 0; m<postWriteContentsArr[i].children.length-2; m++){
                 postWriteContentsArr[i].children[m+2].children[0].onclick = function(e){
-                    console.log(e.target)
                     if(e.target.classList.contains('wholeGameSlideNextButton') || e.target.classList.contains('wholeGameSlidePrevButton') ){return}
                     e.target.parentElement.parentElement.removeChild(e.target.parentElement);
                 }
@@ -429,5 +441,3 @@ function SlideFun(){
 }
 SlideFun();
 
-
-//수정에서 사진추가 안됨
