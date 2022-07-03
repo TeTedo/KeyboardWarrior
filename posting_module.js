@@ -214,10 +214,10 @@ let renewalArr = function(){
  function BtnAttribute(){
     for(let i = 0; i<postWritesArr.length; i++){
         //수정버튼
-        modifyBtnsArr[i].onclick = function(){
+        modifyBtnsArr[i].onclick = function(e){
 
             //수정버튼 눌렸을때
-            if(modifyBtnsArr[i].innerText==="수정"){
+            if(e.target.innerText==="수정"){
                 modifyTextareasArr[i].style.height = `${modifyTextareasArr[i].scrollHeight}px`
                 modifyTextareasArr[i].removeAttribute('readonly')
                 modifyAddImgBtnsArr[i].style.display = 'block'
@@ -237,7 +237,7 @@ let renewalArr = function(){
             }
 
             //완료버튼 눌렀을때
-            else if(modifyBtnsArr[i].innerText==="완료"){
+            else if(e.target.innerText==="완료"){
                 let modifiedText = modifyTextareasArr[i].value
                 if(modifiedText === ""){
                     alert("내용을 입력해주세요!")
@@ -358,10 +358,10 @@ let renewalArr = function(){
                 postWriteContentsArr[i].children[m+3].children[0].onclick = function(e){
                     if(e.target.classList.contains('wholeGameSlideNextButton') || e.target.classList.contains('wholeGameSlidePrevButton') ){return}
                     e.target.parentElement.parentElement.removeChild(e.target.parentElement);
+                    renewalArr()
                 }
             }
             //삭제하고 변수 초기화
-            renewalArr()
         }
         modifiyImgDelete()
 
@@ -375,6 +375,8 @@ let renewalArr = function(){
             .parentElement.parentElement)
             //삭제하고 변수 초기화
             renewalArr() 
+            // 07.03 민섭: postWritesArr.length가 줄어들테니깐 반복구문 다시실행시킴
+            BtnAttribute()
         }
     }
 }
