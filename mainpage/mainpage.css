@@ -4,6 +4,21 @@
     padding: 0;
     box-sizing: border-box;
 }
+@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 100;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.otf) format('opentype');}
+
+@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 300;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.otf) format('opentype');}
+
+@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 400;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.otf) format('opentype');}
+
+@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 500;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.otf) format('opentype');}
+
+@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 700;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.otf) format('opentype');}
+
+@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 900;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.otf) format('opentype');}
+
+body, h1, h2, h3, h4, h5, h6, input, textarea, select {
+	font-family: 'Noto Sans KR', sans-serif;
+}
 a{
     color: black;
     text-decoration: none;
@@ -64,26 +79,37 @@ body{
     background-color: white;
     width: 100%;
     z-index: 999;
+    background-color: black;
 }
 .topWrapper{
     height: 100px;
     width: 1200px;
-    margin: 0 auto;
+    margin: 20px auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.topWrapper h1{
-    color: #855cb3;
+.navmenuBar{
+    display: flex;
+    width: 300px;
+    height: 25px;
+    font-size: 20px;
+    justify-content: space-between;
+    margin-left: 70px;
+}
+.navmenuCommunity, .navmenuMinigame{
+    color: white;
 }
 .topWrapper input{
-    width: 500px;
-    height: 50px;
-    border: 2px solid rgb(226, 204, 226);
-    border-radius: 10px;
+    width: 380px;
+    height: 55px;
+    border-radius: 2px;
     background-color: whitesmoke;
     position: relative;
-    left: -70px
+    left: 200px;
+    font-size: 17px;
+    padding: 15px;
+    border: solid 1px #131313;
 }
 #topSearchBtn {
     width: 30px;
@@ -95,100 +121,81 @@ body{
     left: -360px;
     cursor: pointer;
 }
-.fixedSpace{
-    position: fixed;
-    top: 100px;
-    height: 20px;
-    width: 100%;
-    background-color: white;
-    z-index: 999;
-}
-.borderLine{
-    position: fixed;
-    width: 100%;
-    top: 120px;
-    border-bottom: 2px solid  rgb(226, 204, 226);
-    z-index: 1;
-}
-
 /* 사이드 */
 .left{
-    margin-top: 20px;
     position: fixed;
-    height: max-content;
-    margin-right: 1000px;   
-
+    margin-top: 45px;
+    height: auto;
+    margin-left: -920px;   
 }
 .leftWrapper{
-    margin: 0 auto;
-    width: 250px;
-    background-color: whitesmoke;
-    border-radius: 20px;
-    border: 2px solid rgb(226, 204, 226);
+    width: 284px;
+    height: 313px;
+    border-radius: 2px;
+    border: solid 0.5px #272727;
+    background-color: #fff;
+    position: relative;
 }
-.leftMenu{
-    padding: 30px;
+.leftWrapperShadow{
+    width: 284px;
+    height: 313px;
+    position: absolute;
+    left: 7px;
+    top: 5px;
+    background-color: black;
+    z-index: -1;
+    border-radius: 2px;
 }
-.leftMenu li{
-    margin-bottom: 30px;
-    border-bottom: 2px solid rgb(226, 204, 226);
-    cursor: pointer;
-    overflow: auto;
+.contents .contentsWrappertologin{
+    height: 230px;
+    width: 225;
+    position: absolute;
+    top: 35px;
+    left: 30px;
 }
-.leftMenudiv{
-    color: #855cb3;
-    height: 24px;
-    overflow: hidden;
-    font-size: larger;
+.contentsWrappertologin .forlogin{
+    width: 16px;
+  height: 21px;
+  font-size: 15px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #000;
+  margin: 0 0 7px;
 }
-.leftMenudiv.start{
-    width: 0;
-    background-color: #855cb3;
-    color: white;
-    border: none;
+.contentsWrappertologin .forlogininput{
+    width: 100%;
+    height: max-content;
+    margin : 0 0 18px;
+    padding: 5px;
+    font-size: 15px;
 }
-.leftMenudiv.active{
-    width: 60%;
-    transition:1.5s;
+.contentsWrappertologin .forloginbutton{
+    width: 226px;
+    height: 43px;
+    padding: 10px 78px 12px 79px;
+    border-radius: 2px;
+    background-color: #f1f1f1;
+    font-size: 15px;
+    margin: 14px 0 7px;
 }
-.right{
-    position: fixed;
-    margin-top: 20px;
-    height: auto;
-    margin-left: 1000px;   
-}
-.rightWrapper{
-    margin: 0 auto;
-    width: 250px;
-}
-.right .contents{
-    padding: 30px;
-    background-color: whitesmoke;
-    border-radius: 20px;
-    border: 2px solid rgb(226, 204, 226);
-}
-.right .login{
+.contentsWrappertologin .join{
+    width: 100%;
     display: flex;
+    font-size: 14px;
     justify-content: space-between;
-    margin-bottom: 20px;
-}
-.right li:first-child{
-    margin-bottom: 10px;
-}
-.right .login input{
-    width: 100px;
-}
-.right .join{
-    display: flex;
-    justify-content: space-between;
-    font-size: 11.5px;
+
 }
 /* 스크롤 */
 .scrollContents{
     position: fixed;
-    width: 100%;
+    width: 50px;
     z-index: -999;
     height: 50vh;
+    left: 620px;
 }
 
 #scrollBtn{
@@ -196,7 +203,7 @@ body{
     height: 50px;
     /* border: 2px solid #855cb3; */
     border-radius: 500px;
-    background-color: #855cb3;
+    background-color: black;
     color: white;
     display: flex;
     justify-content: center;
@@ -218,20 +225,21 @@ body{
 }
 .main .mainContents{
     height: 80vh;
-    margin-top: 20px;
+    margin-top: 45px;
+    margin-left: 560px;
 }
 
 /* 글작성칸 */
 .main .mainWrite {
     background-color: whitesmoke;
-    border-radius: 20px;
-    width: 600px;
-    min-height: 100px;
+    width: 930px;
+    min-height: 0px;
     height: auto;
-    border: 2px solid rgb(226, 204, 226);
     margin-bottom: 20px;
     padding: 30px;
     position: relative;
+    box-sizing: border-box;
+    border: solid 0.5px #000;
 }
 .main .mainWrite .mainWriteWrapper{
     display: flex;;
@@ -267,18 +275,25 @@ body{
     cursor: pointer;
     font-weight: 600;
     font-size: 13px;
+    box-sizing: content-box;
 }
 .chooseCategory{
     margin : 10px 270px 0 0;
 }
 .mainWriteContentsBtns #postRegisterBtn{
-    border: 2px solid rgb(226, 204, 226);
-    border-radius: 30px;
-    color: #855cb3;
-    width: 60px;
-    height: 30px;
+    width: 175px;
+    height: 100%;
+    border-radius: 2px;
     cursor: pointer;
-
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: #f1f1f1;
+    color: #8e8e8e;
+    border-left: 0.5px solid #000;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 0;
 }
 .mainWriteContents .mainWriteContentsImgWrapper{
     margin-bottom: 10px;
@@ -319,7 +334,7 @@ body{
 .main .postWrite {
     background-color: whitesmoke;
     border-radius: 20px;
-    width: 600px;
+    width: 930px;
     min-height: 100px;
     height: auto;
     border: 2px solid rgb(226, 204, 226);
