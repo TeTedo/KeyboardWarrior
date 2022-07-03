@@ -64,26 +64,36 @@ body{
     background-color: white;
     width: 100%;
     z-index: 999;
+    background-color: black;
 }
 .topWrapper{
     height: 100px;
     width: 1200px;
-    margin: 0 auto;
+    margin: 20px auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.topWrapper h1{
-    color: #855cb3;
+.navmenuBar{
+    display: flex;
+    width: 240px;
+    height: 25px;
+    font-size: 17px;
+    justify-content: space-between;
+    margin-left: 50px;
+}
+.navmenuCommunity, .navmenuMinigame{
+    color: white;
 }
 .topWrapper input{
-    width: 500px;
-    height: 50px;
-    border: 2px solid rgb(226, 204, 226);
-    border-radius: 10px;
+    width: 380px;
+    height: 55px;
+    border-radius: 2px;
     background-color: whitesmoke;
     position: relative;
-    left: -70px
+    left: 200px;
+    font-size: 30px;
+    border: solid 1px #131313;
 }
 #topSearchBtn {
     width: 30px;
@@ -100,7 +110,7 @@ body{
     top: 100px;
     height: 20px;
     width: 100%;
-    background-color: white;
+    background-color: black;
     z-index: 999;
 }
 .borderLine{
