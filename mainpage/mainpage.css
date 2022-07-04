@@ -195,7 +195,7 @@ body{
     width: 50px;
     z-index: -999;
     height: 50vh;
-    left: 620px;
+    left: 30%;
 }
 
 #scrollBtn{
@@ -226,12 +226,12 @@ body{
 .main .mainContents{
     height: 80vh;
     margin-top: 45px;
-    margin-left: 560px;
+    margin-left: 570px;
 }
 
 /* 글작성칸 */
 .main .mainWrite {
-    background-color: whitesmoke;
+    background-color: #fff;
     width: 930px;
     min-height: 0px;
     height: auto;
@@ -240,6 +240,16 @@ body{
     position: relative;
     box-sizing: border-box;
     border: solid 0.5px #000;
+}
+.mainWriteShadow{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    position: absolute;
+    top: 5px;
+    left: 7px;
+    z-index: -1;
+
 }
 .main .mainWrite .mainWriteWrapper{
     display: flex;;
@@ -262,6 +272,7 @@ body{
     margin-left: 20px;
     display: flex;
     flex-direction: column-reverse;
+    margin-top: 10px;
 }
 .mainWriteContentsBtns{
     margin-top: 20px;
@@ -269,16 +280,34 @@ body{
     justify-content: space-between;
     align-items: center;
 }
+.mainWriteText::placeholder{
+    opacity: 0.5;
+}
 .mainWriteContentsBtns .attributeBtns button{
-    color: #855cb3;
     border: none;
     cursor: pointer;
     font-weight: 600;
-    font-size: 13px;
+    font-size: 14px;
     box-sizing: content-box;
+    border: 1px solid #3b3b3b;
+    background-color: #fff;
+    color: #3b3b3b;
+    padding: 3px 10px;
 }
 .chooseCategory{
-    margin : 10px 270px 0 0;
+    display: flex;
+}
+.chooseCategory .Category{
+    margin : 0 15px 0 0;
+    border: 1px solid black;
+    width: 74px;
+    height: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 13px;
+    font-size: 14px;
+    color: #3b3b3b;
 }
 .mainWriteContentsBtns #postRegisterBtn{
     width: 175px;
@@ -311,12 +340,13 @@ body{
     left: 455px;
 }
 .main .mainWrite textarea{
-    width: 476px;
+    width: 600px;
     height: 30px;
     border: none;
-    font-size: x-large;
+    font-size: medium;
     resize: none;
-    border-bottom: 1px solid rgb(226, 204, 226);
+    border-bottom: 1px solid #707070;
+    padding-left: 3px;
 }
 .main .mainWrite textarea::-webkit-scrollbar{
     display: none;
@@ -325,6 +355,34 @@ body{
     outline: none;
 }
 
+/* 해쉬태그*/
+.postHashTag{
+    display: flex;
+    align-items: center;
+    margin: 40px 0 40px 40px;
+}
+.postHashTagtoClick{
+    margin-right: 30px;
+    border: solid 0.8px #3b3b3b;
+    width: 86px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+    position: relative;
+    background-color: white;
+}
+.postHashTagtoClick .postHashTagtoClickShadow{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    position: absolute;
+    border-radius: 16px;
+    z-index: -1;
+    top: 5px;
+    left: 5px;
+}
 /* 포스팅된거 */
 .postWrapper{
     display: flex;
@@ -333,15 +391,23 @@ body{
 }
 .main .postWrite {
     background-color: whitesmoke;
-    border-radius: 20px;
+    border-radius: 2px;
     width: 930px;
     min-height: 100px;
     height: auto;
-    border: 2px solid rgb(226, 204, 226);
     margin-bottom: 20px;
     padding: 30px;
     position: relative;
-    
+    border: 0.3px solid black;
+}
+.postWriteShadow{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: black;
+    top: 5px;
+    left: 7px;
+    z-index: -1;
 }
 .main .postWrite .postWriteWrapper{
     display: flex;;
@@ -349,31 +415,50 @@ body{
 }
 .postWriteGameTag{
     position: absolute;
-    left: 90px;
-    bottom: 35px;
+    left: 50px;
+    bottom: 10px;
     cursor: pointer;
     opacity: 0.5;
     display: flex;
 }
-.CategoryinModify{
-    position: absolute;
-    bottom: 35px;
-    left: 150px;
-    display: none;
+.postWriteTop{
+    width: 100%;
+    height: 100px;
+    border-bottom: 1px solid #dbdbdb;
+    margin: 0 0 20px 20px;
+    position: relative;
+}
+.postWriteTop .profileID{
+    display: inline;
+    margin: 20px 0 0 100px;   
+    font-size: 25px;
+    font-weight: bold;
+}
+.postWriteTop .profileTime{
+    width: max-content;
+    height: 30px;
+    margin: 10px 0 0 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #828282;
 }
 .main .postWrite .profileImg{
-    width: 45px;
-    height: 40px;
+    width: 80px;
+    height: 80px;
     background-image: url(../images/profileImg.jpg);
     background-size: cover;
     border: 1px solid none;
     border-radius: 500px;
+    position: absolute;
+    display: inline;
 }
 .main .postWrite .postWriteContents{
-    width: 476px;
+    width: 350px;
     margin-left: 20px;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: row-reverse;
+    position: relative;
 }
 .postWriteContentsBtns{
     margin-top: 20px;
@@ -381,19 +466,28 @@ body{
     flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
+    position: absolute;
+    z-index: 2;
 }
 .postWriteContentsBtns .mainBtns button{
-    border: 2px solid rgb(226, 204, 226);
-    border-radius: 30px;
-    color: #855cb3;
     width: 60px;
     height: 30px;
     cursor: pointer;
     font-weight: bolder;
     font-size: 15px;
+    position: absolute;
 }
-.postWriteContentsBtns .mainBtns button:nth-child(1){
-    margin-right: 20px;
+.postWriteContentsBtns .mainBtns .modifyBtn{
+    top: -93px;
+    left: -100px;
+    border-radius: 9.5px;
+}
+.postWriteContentsBtns .mainBtns .deleteBtn{
+    top: -140px;
+    left: 450px;
+    border-radius: 99%;
+    width: 50px;
+    height: 50px;
 }
 .postWriteContentsBtns .modifyAddImgBtn{
     display: none;
@@ -421,13 +515,13 @@ body{
     left: 455px;
 }
 .main .postWrite .postWriteContents img{
-    width: 476px;
+    width: 350px;
     height: 320px;
     margin-bottom: 10px;
 }
 /* 슬라이드구간 */
 .wholeGameSlide{
-    width: 476px;
+    width: 350px;
     height: 320px;
     background-color: whitesmoke;
     margin: 0 auto;
@@ -447,8 +541,11 @@ body{
     height: 50px;
     position: absolute;
     top: 130px;
-    left: 420px;
+    left: 290px;
     z-index: 1;
+    background-image: url(../images/arrowright.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .wholeGameSlideNextButton:hover{
     background-color: white;
@@ -461,6 +558,9 @@ body{
     top: 130px;
     left: 10px;
     z-index: 1;
+    background-image: url(../images/arrowleft.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .wholeGameSlidePrevButton:hover{
     background-color: white;
@@ -476,27 +576,33 @@ body{
     left: 0;
     transition: 1s;
 }
+.wholeGameSlideul li{
+    width: 350px;
+    height: 100%;
+}
 .wholeGameSlideul li img{
-    width: 600px;
+    width: 350px;
     height: 200px;
 }
 /* 슬라이드구간 */
 
 .postWriteContentsText{
-    width: 476px;
+    width: 350px;
     font-size: 20px;
     border-bottom: 1px solid rgb(226, 204, 226);
     /* 자동줄내림 */
     word-break: break-all; 
 }
 .main .postWrite .modifyTextarea{
-    width: 476px;
+    width: 440px;
     min-height: 30px;
+    max-height: 320px;
     border: none;
     font-size: 20px;
     resize: none;
-    border-bottom: 1px solid rgb(226, 204, 226);
     word-break: break-all;
+    position: absolute;
+    left: 400px;
 }
 .main .postWrite textarea::-webkit-scrollbar{
     display: none;

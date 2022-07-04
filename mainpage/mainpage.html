@@ -51,49 +51,61 @@
             <div class="mainContents">
                 <div class="center" id="mainContentsList">
                     <div class="mainWrite">
+                        <div class="mainWriteShadow"></div>
                         <span class="mainWriteWrapper">
-                            <a href="" class="profileImg"></a>
                             <span class="mainWriteContents">
                                 <span class="mainWriteContentsBtns">
+                                    <div class="chooseCategory">
+                                       <div class="Category">#공략</div>
+                                       <div class="Category">#일상</div>
+                                       <div class="Category">#거래</div>
+                                    </div>
                                     <span class="attributeBtns">
-                                        <button id="addGifBtn">gif</button>
+                                        <button id="addGifBtn">사진올리기</button>
                                     </span>
-                                    <select name="chooseCategory" class="chooseCategory">
-                                        <option value="#일상" selected>일상</option>
-                                        <option value="#공략">공략
-                                        </option>
-                                        <option value="#거래">거래
-                                        </option>
-                                    </select>
-                                    <button id="postRegisterBtn"><h3>등록</h3></button>
+                                    <button id="postRegisterBtn"><h3>등 록</h3></button>
                                 </span>
-                                <textarea id="mainWriteText" onkeydown="resize(this)" onkeyup="resize(this)" placeholder="What's happening?" ></textarea>
+                                <textarea id="mainWriteText" class="mainWriteText" onkeydown="resize(this)" onkeyup="resize(this)" placeholder="What's happening?" ></textarea>
                             </span>
                         </span>
-                        <select name="chooseGame" class="chooseGame">
-                            <option value="#game1" selected>game1</option>
-                            <option value="#game2">game2</option>
-                            <option value="#game3">game3</option>
-                        </select>
+                        
+                    </div>
+                    <div class="postHashTag">
+                        <div class="postHashTagtoClick">#공략
+                            <div class="postHashTagtoClickShadow"></div>
+                        </div>
+                        <div class="postHashTagtoClick">#일상
+                            <div class="postHashTagtoClickShadow"></div>
+                        </div>
+                        <div class="postHashTagtoClick">#거래
+                            <div class="postHashTagtoClickShadow"></div>
+                        </div>
                     </div>
                     <div class="postWrapper" id="postWrapper">
                     <div class="postWrite">
-                        <span class="postWriteWrapper">
+                        <div class="postWriteShadow"></div>
+                        <div class="postWriteTop">
                             <a href="" class="profileImg"></a>
+                            <div class="profileID">
+                                test용 ID
+                            </div>
+                            <div class="profileTime">현재시간</div>
+                        </div>
+                        <span class="postWriteWrapper">
                             <span class="postWriteContents">
                                 <span class="postWriteContentsBtns">
                                     <span class="mainBtns">
                                         <button class="modifyBtn">수정</button>
-                                        <button class="deleteBtn">삭제</button>
+                                        <button class="deleteBtn">X</button>
                                     </span>
-                                    <button class="modifyAddImgBtn">gif</button>
+                                    <button class="modifyAddImgBtn">사진올리기</button>
                                 </span>
                                 <textarea class="modifyTextarea" onkeydown="resize(this)" onkeyup="resize(this)" style="height: 192px;">가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사</textarea>
                                 <!-- 슬라이드 -->
                                 <div class="wholeGameSlide">
                                     <div class="wholeGameSlideButton">
-                                        <div class="wholeGameSlideNextButton">오른쪽</div>
-                                       <div class="wholeGameSlidePrevButton">왼쪽</div>
+                                        <div class="wholeGameSlideNextButton"></div>
+                                    <div class="wholeGameSlidePrevButton"></div>
                                     </div>
                                     <ul class="wholeGameSlideul">
                                         <li class="wholeGameSlidelist">
@@ -122,25 +134,10 @@
                                 </span>
                             </span>
                         </span>
-                        <div class="postWriteGameTag">
-                            <span class="postWriteGameHashTag">#game1</span>
-                            <span class="postWriteHashTag">#일상</span>
+                            <div class="postWriteGameTag">
+                                <span class="postWriteHashTag">#일상</span>
+                            </div>
                         </div>
-                        <div class="CategoryinModify">
-                            <select name="chooseGameinModify" class="chooseGameinModify">
-                                <option value="#game1" selected>game1</option>
-                                <option value="#game2">game2</option>
-                                <option value="#game3">game3</option>
-                            </select>
-                            <select name="chooseCategoryinModify" class="chooseCategoryinModify">
-                                <option value="#일상" selected>일상</option>
-                                <option value="#공략">공략
-                                </option>
-                                <option value="#거래">거래
-                                </option>
-                            </select>
-                        </div>
-                    </div>
                     </div>
                 </div>
             </div>
@@ -165,15 +162,19 @@
                 </div>
             </div>
         </div>
+        <div class="right">
+
+        </div>
     </div>
 </body>
 <script src="../main_effect.js"></script>
 <script src="../posting_module.js"></script>
 <script src="./mainpage.js"></script>
 <script>
-    function resize(obj) {
+    function resize(obj,subj) {
     obj.style.height = "30px";
-    obj.style.height = (obj.scrollHeight)+"px";
+    obj.style.height = (obj.scrollHeight) - 1
+    +"px";
 }
 </script>
 </html>

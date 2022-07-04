@@ -7,14 +7,6 @@ let postWriteContentsImgBtnsArr = document.querySelectorAll('.postWriteContentsI
 let modifyBtnsArr = document.querySelectorAll('.modifyBtn')
 let deleteBtnsArr = document.querySelectorAll('.deleteBtn')
 let modifyAddImgBtnsArr = document.querySelectorAll('.modifyAddImgBtn')
-let CategoryinModify = document.querySelectorAll('.CategoryinModify')
-let postWriteGameHashTag = document.querySelectorAll('.postWriteGameHashTag')
-let postWriteHashTag = document.querySelectorAll('.postWriteHashTag')
-let chooseCategoryinModify = document.querySelectorAll('.chooseCategoryinModify')
-let chooseGameinModify = document.querySelectorAll('.chooseGameinModify')
-let postWriteGameTag = document.querySelectorAll(".postWriteGameTag")
-let chooseGame = document.querySelector(".chooseGame")
-let chooseCategory = document.querySelector(".chooseCategory")
 //슬라이드 변수
 let wholeGameSlide = document.querySelectorAll('.wholeGameSlide')
 let wholeGameSlideButton = document.querySelectorAll('.wholeGameSlideButton')
@@ -22,6 +14,9 @@ let wholeGameSlideNextButton = document.querySelectorAll('.wholeGameSlideNextBut
 let wholeGameSlidePrevButton = document.querySelectorAll('.wholeGameSlidePrevButton')
 let wholeGameSlideul = document.querySelectorAll('.wholeGameSlideul')
 let wholeGameSlidelist = document.querySelectorAll('.wholeGameSlidelist')
+
+let mainWriteShadow = document.querySelectorAll('.mainWriteShadow')
+
 
 //포스팅 작성 모듈
 let PostGnb=(
@@ -34,6 +29,16 @@ let PostGnb=(
 
             let postWrite = document.createElement('div')
             postWrite.classList.add('postWrite')
+
+            let temppostWirteShadow = document.createElement("div");
+            temppostWirteShadow.classList.add("postWriteShadow");
+            let temppostWriteTop = document.createElement("div");
+            temppostWriteTop.classList.add("postWriteTop");
+            let tempprofileID = document.createElement("div");
+            tempprofileID.classList.add("profileID");
+            let tempprofileTime = document.createElement("div");
+            tempprofileTime.classList.add("profileTime");
+
             let postWriteWrapper = document.createElement('span')
             postWriteWrapper.classList.add('postWriteWrapper')
             let profileImg = document.createElement('a')
@@ -50,14 +55,19 @@ let PostGnb=(
             deleteBtn.classList.add('deleteBtn')
             let modifyBtn = document.createElement('button')
             modifyBtn.classList.add('modifyBtn')
-
-    
+            
+            
+            
             let modifyTextarea = document.createElement('textarea')
             modifyTextarea.classList.add('modifyTextarea')
             
             super_id.appendChild(postWrite);
+            postWrite.appendChild(temppostWirteShadow);
+            postWrite.appendChild(temppostWriteTop);
             postWrite.appendChild(postWriteWrapper)
-            postWriteWrapper.appendChild(profileImg)
+            temppostWriteTop.appendChild(profileImg);
+            temppostWriteTop.appendChild(tempprofileID);
+            temppostWriteTop.appendChild(tempprofileTime);
             postWriteWrapper.appendChild(postWriteContents)
             postWriteContents.appendChild(postWriteContentsBtns)
             postWriteContentsBtns.appendChild(mainBtns)
@@ -66,9 +76,27 @@ let PostGnb=(
             mainBtns.appendChild(deleteBtn)
             postWriteContents.appendChild(modifyTextarea)
             
-            deleteBtn.innerHTML = "삭제"
+            deleteBtn.innerHTML = "X"
             modifyBtn.innerHTML = "수정"
 
+            //테스트용 ID
+            tempprofileID.innerHTML = "테스트ID"
+            //현재시간 띄우기
+            let tempDate = new Date().toLocaleDateString();
+            let tempHours = pad(new Date().getHours());
+            let tempMinutes = pad(new Date().getMinutes());
+            
+            function pad(number){
+                let str = "" + number;
+                if(str.length==2){
+                    str = number
+                }
+                return str
+            }
+
+            tempprofileTime.innerHTML = tempDate + " " + tempHours + ":"+ tempMinutes;
+
+            ///
             modifyTextarea.setAttribute('onkeydown','resize(this)')
             modifyTextarea.setAttribute('onkeyup','resize(this)')
             modifyTextarea.setAttribute('rows','1')
@@ -101,6 +129,7 @@ let PostGnb=(
             //그림추가
             imgUrlsArr = document.querySelectorAll('.mainWriteContentsImgWrapper')
             if(!(imgUrlsArr.length === 0)){
+                
                 for (let i = 0; i<imgUrlsArr.length; i++){
                     //일반그림추가
                     let postWriteContentsImgWrapper = document.createElement('span')
@@ -131,50 +160,15 @@ let PostGnb=(
             }
             else{
                 tempGameSlide.style.display = 'none'
+
+                //태석 그림 추가 안하면 텍스트창 왼쪽으로 붙이기
+                modifyTextarea.style.left = "0px";
+                modifyTextarea.style.top = "-10px";
+                modifyTextarea.style.width = "850px";
+
             }
 
-            //해쉬태그 추가
-            let tempGameTag = document.createElement("div")
-            tempGameTag.classList.add("postWriteGameTag")
-            let tempGameHashTag = document.createElement("span")
-            tempGameHashTag.classList.add("postWriteGameHashTag")
-            let tempHashTag = document.createElement("span")
-            tempHashTag.classList.add("postWriteHashTag")
 
-            let tempinModify = document.createElement("div")
-            tempinModify.classList.add("CategoryinModify")
-            let tempGameinModify = document.createElement("select")
-            tempGameinModify.classList.add("chooseGameinModify")
-            let tempGameoption1 = document.createElement("option")
-            tempGameoption1.value = "#game1"; tempGameoption1.innerHTML = "game1"; 
-            let tempGameoption2 = document.createElement("option")
-            tempGameoption2.value = "#game2"; tempGameoption2.innerHTML = "game2";
-            let tempGameoption3 = document.createElement("option")
-            tempGameoption3.value = "#game3"; tempGameoption3.innerHTML = "game3";
-            let tempCategoryinModify = document.createElement("select")
-            tempCategoryinModify.classList.add("chooseCategoryinModify")
-            let tempCategoryoption1 = document.createElement("option")
-            tempCategoryoption1.value = "#일상"; tempCategoryoption1.innerHTML = "일상";
-            let tempCategoryoption2 = document.createElement("option")
-            tempCategoryoption2.value = "#공략"; tempCategoryoption2.innerHTML = "공략";
-            let tempCategoryoption3 = document.createElement("option")
-            tempCategoryoption3.value = "#거래"; tempCategoryoption3.innerHTML = "거래";
-
-            postWrite.appendChild(tempGameTag);
-            tempGameTag.appendChild(tempGameHashTag);
-            tempGameTag.appendChild(tempHashTag);
-            tempGameHashTag.innerHTML = chooseGame.value
-            tempHashTag.innerHTML = chooseCategory.value
-
-            postWrite.appendChild(tempinModify);
-            tempinModify.appendChild(tempGameinModify);
-            tempinModify.appendChild(tempCategoryinModify);
-            tempGameinModify.appendChild(tempGameoption1);
-            tempGameinModify.appendChild(tempGameoption2);
-            tempGameinModify.appendChild(tempGameoption3);
-            tempCategoryinModify.appendChild(tempCategoryoption1);
-            tempCategoryinModify.appendChild(tempCategoryoption2);
-            tempCategoryinModify.appendChild(tempCategoryoption3);
 
             renewalArr()
          }
@@ -194,14 +188,6 @@ let renewalArr = function(){
  modifyBtnsArr = document.querySelectorAll('.modifyBtn')
  deleteBtnsArr = document.querySelectorAll('.deleteBtn')
  modifyAddImgBtnsArr = document.querySelectorAll('.modifyAddImgBtn')
- CategoryinModify = document.querySelectorAll('.CategoryinModify')
- postWriteGameHashTag = document.querySelectorAll('.postWriteGameHashTag')
- postWriteHashTag = document.querySelectorAll('.postWriteHashTag')
- chooseCategoryinModify = document.querySelectorAll('.chooseCategoryinModify')
- chooseGameinModify = document.querySelectorAll('.chooseGameinModify')
- postWriteGameTag = document.querySelectorAll(".postWriteGameTag")
- chooseGame = document.querySelector(".chooseGame")
- chooseCategory = document.querySelector(".chooseCategory")
  wholeGameSlide = document.querySelectorAll('.wholeGameSlide')
  wholeGameSlideButton = document.querySelectorAll('.wholeGameSlideButton')
  wholeGameSlideNextButton = document.querySelectorAll('.wholeGameSlideNextButton')
@@ -221,8 +207,6 @@ let renewalArr = function(){
                 modifyTextareasArr[i].style.height = `${modifyTextareasArr[i].scrollHeight}px`
                 modifyTextareasArr[i].removeAttribute('readonly')
                 modifyAddImgBtnsArr[i].style.display = 'block'
-                postWriteGameTag[i].style.display = "none"
-                CategoryinModify[i].style.display = "block"
                 //이미지 리스트형식으로 보이게하고
                 let Imgtemp = postWriteContentsArr[i].querySelectorAll('.postWriteContentsImgWrapper')
                 for(let k = 0; k<Imgtemp.length; k++){
@@ -234,6 +218,7 @@ let renewalArr = function(){
                 //사진위에x버튼 보이게하고
                 buttonDisplay(i)
                 modifyBtnsArr[i].innerText = "완료"
+                
             }
 
             //완료버튼 눌렀을때
@@ -245,8 +230,6 @@ let renewalArr = function(){
                 }
                 modifyTextareasArr[i].setAttribute('readonly','')
                 modifyAddImgBtnsArr[i].style.display = 'none'
-                postWriteGameTag[i].style.display = "block"
-                CategoryinModify[i].style.display = "none"
 
                 //사진위x버튼 안보이게하고
                 for(let k = 0; k<postWriteContentsArr[i].children.length-3; k++){
@@ -299,9 +282,6 @@ let renewalArr = function(){
                     postWriteContentsArr[i].querySelector('.wholeGameSlideNextButton').style.display = "block";
                 }
                 modifyBtnsArr[i].innerText = "수정"
-                //수정에서 해쉬태그 추가
-                postWriteGameHashTag[i].innerHTML = chooseGameinModify[i].value
-                postWriteHashTag[i].innerHTML = chooseCategoryinModify[i].value
             }
         }
 
@@ -401,17 +381,17 @@ function SlideFun(){
                     wholeGameSlideul[i].style.left = "0px"
                 }
                 else{
-                    wholeGameSlideul[i].style.left = parseInt(wholeGameSlideul[i].style.left) -476 + "px"
+                    wholeGameSlideul[i].style.left = parseInt(wholeGameSlideul[i].style.left) -350 + "px"
                 }
             }
             if(e.target.classList.contains("wholeGameSlidePrevButton")){
-                index--;
+                index--; 
                 if(index<0){
                     index = wholeGameSlideul[i].childElementCount-1
-                    wholeGameSlideul[i].style.left = -476*(wholeGameSlideul[i].childElementCount-1) + "px"
+                    wholeGameSlideul[i].style.left = -350*(wholeGameSlideul[i].childElementCount-1) + "px"
                 }
                 else{
-                    wholeGameSlideul[i].style.left = parseInt(wholeGameSlideul[i].style.left) +476 + "px"
+                    wholeGameSlideul[i].style.left = parseInt(wholeGameSlideul[i].style.left) +350 + "px"
                 }
             }
         }
@@ -452,7 +432,7 @@ postRegisterBtn.onclick = function(){
     SlideFun()
 }
 
-BtnAttribute()  
+BtnAttribute()
 SlideFun();
 // deletePost()
 
