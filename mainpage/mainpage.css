@@ -382,7 +382,7 @@ body{
 }
 .postWriteContentsBtns .modifyAddImgBtn{
     display: none;
-    border: none;
+    border: none;  
     margin-right: 10px;
     cursor: pointer;
     color: #855cb3;
