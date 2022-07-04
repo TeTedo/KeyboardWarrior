@@ -57,7 +57,8 @@ let PostGnb=(
             modifyBtn.classList.add('modifyBtn')
             
             
-            
+            let tempmodifyTextareaWrap = document.createElement("div")
+            tempmodifyTextareaWrap.classList.add("modifyTextareaWrap")
             let modifyTextarea = document.createElement('textarea')
             modifyTextarea.classList.add('modifyTextarea')
             
@@ -74,7 +75,8 @@ let PostGnb=(
             postWriteContentsBtns.appendChild(modifyAddImgBtn)
             mainBtns.appendChild(modifyBtn)
             mainBtns.appendChild(deleteBtn)
-            postWriteContents.appendChild(modifyTextarea)
+            postWriteContents.appendChild(tempmodifyTextareaWrap)
+            tempmodifyTextareaWrap.appendChild(modifyTextarea)
             
             deleteBtn.innerHTML = "X"
             modifyBtn.innerHTML = "수정"
@@ -103,7 +105,7 @@ let PostGnb=(
             modifyTextarea.setAttribute('readonly','')
             modifyTextarea.innerHTML = text
 
-            modifyAddImgBtn.innerHTML = "gif"
+            modifyAddImgBtn.innerHTML = "사진올리기"
 
             // 7/2 민섭 수정: 이미지 있을때나 없을때나 슬라이드형식은 만들어둬야해서 슬라이드추가를 그림추가 조건문 밖으로 뺌
             //슬라이드 ul 추가
@@ -162,9 +164,7 @@ let PostGnb=(
                 tempGameSlide.style.display = 'none'
 
                 //태석 그림 추가 안하면 텍스트창 왼쪽으로 붙이기
-                modifyTextarea.style.left = "0px";
-                modifyTextarea.style.top = "-10px";
-                modifyTextarea.style.width = "850px";
+                tempmodifyTextareaWrap.classList.add("active")
 
             }
 
@@ -282,12 +282,13 @@ let renewalArr = function(){
                     postWriteContentsArr[i].querySelector('.wholeGameSlideNextButton').style.display = "block";
                 }
                 modifyBtnsArr[i].innerText = "수정"
+                SlideFun();
             }
         }
 
         //수정에서 사진추가 팝업창
         modifyAddImgBtnsArr[i].onclick = function(){
-            document.querySelector('.ModifyPopUp').style.zIndex = '1'
+            document.querySelector('.ModifyPopUp').style.zIndex = '3'
             document.querySelector('.ModifyPopUp').style.display = 'block'
 
             ModifyPopUpCancle.onclick = function(){
@@ -303,7 +304,8 @@ let renewalArr = function(){
                 let modifyImgFileUrl = modifyImgFile.value
                 modifyImgFile.value = ""
                 if (modifyImgFileUrl === "" || modifyImgFileUrl === null){return}
-
+                let tempmodifyTextareaWrap  = document.querySelectorAll(".modifyTextareaWrap")
+                tempmodifyTextareaWrap[i].classList.remove("active")
                 //수정창에 사진 추가
                 ///일반사진 추가
                 let postWriteContentsImgWrapper = document.createElement('span')

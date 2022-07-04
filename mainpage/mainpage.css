@@ -54,21 +54,19 @@ body{
     justify-content: center;
 }
 .ModifyPopUp{
-    width: 100%;
-    height: 100%;
     position: fixed;
     z-index: -999;
     display: none;
+    left: 50%;
 }
 .ModifyPopUpWrap{
     width: 500px;
     height: 200px;
-    margin: 0 auto;
-    background-color: whitesmoke;
+    background-color: white;
     position: relative;
     top: 166px;
     left: 27px;
-    border: 2px solid #855cb3;
+    border: 2px solid #313131;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -454,21 +452,23 @@ body{
     display: inline;
 }
 .main .postWrite .postWriteContents{
-    width: 350px;
+    /* 여기사이즈 조절 */
     margin-left: 20px;
     display: flex;
-    flex-direction: row-reverse;
     position: relative;
+    width: 100%;
+    flex-direction: column;
 }
 .postWriteContentsBtns{
-    margin-top: 20px;
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
     position: absolute;
     z-index: 2;
+    top: -100px;
 }
+
 .postWriteContentsBtns .mainBtns button{
     width: 60px;
     height: 30px;
@@ -478,29 +478,34 @@ body{
     position: absolute;
 }
 .postWriteContentsBtns .mainBtns .modifyBtn{
-    top: -93px;
-    left: -100px;
+    top: 28px;
     border-radius: 9.5px;
+    left: 230px;
 }
 .postWriteContentsBtns .mainBtns .deleteBtn{
-    top: -140px;
-    left: 450px;
+    top: -40px;
     border-radius: 99%;
     width: 50px;
     height: 50px;
+    left: 820px;
 }
 .postWriteContentsBtns .modifyAddImgBtn{
     display: none;
-    border: none;  
-    margin-right: 10px;
     cursor: pointer;
-    color: #855cb3;
-    font-weight: 600;
-    font-size: 13px;
+    border: 1px solid #3b3b3b;
+    background-color: #fff;
+    color: black;
+    font-size: 14px;
+    position: absolute;
+    top: -13px;
+    left: 230px;
+    width: 90px;
+    height: 25px;
 }
 .postWriteContents .postWriteContentsImgWrapper{
-    margin-bottom: 10px;
     display: none;
+    margin-top: -20px;
+
 }
 .postWriteContentsImgWrapper img{
     width: 476px;
@@ -512,19 +517,19 @@ body{
     height: 20px;
     position: relative;
     top: 21px;
-    left: 455px;
+    left: 330px;
 }
 .main .postWrite .postWriteContents img{
     width: 350px;
     height: 320px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 /* 슬라이드구간 */
 .wholeGameSlide{
     width: 350px;
     height: 320px;
     background-color: whitesmoke;
-    margin: 0 auto;
+    margin-right: 500px;
     position: relative;
     overflow: hidden;
     margin-bottom: 10px;
@@ -593,16 +598,26 @@ body{
     /* 자동줄내림 */
     word-break: break-all; 
 }
+.modifyTextareaWrap{
+    width: 450px;
+    height: 100%;
+    position: absolute;
+    left: 400px;
+}
 .main .postWrite .modifyTextarea{
-    width: 440px;
+    width: 100%;
     min-height: 30px;
     max-height: 320px;
     border: none;
     font-size: 20px;
     resize: none;
     word-break: break-all;
-    position: absolute;
-    left: 400px;
+    position: relative;
+}
+.main .postWrite .active{
+    position: relative;
+    left: 0;
+    width: 840px;
 }
 .main .postWrite textarea::-webkit-scrollbar{
     display: none;
