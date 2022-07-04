@@ -1,7 +1,7 @@
 //이미지첨부버튼
 
 addGifBtn.onclick = function(){
-    document.querySelector('.popUp').style.zIndex = '1'
+    document.querySelector('.popUp').style.zIndex = '2'
     document.querySelector('.popUp').style.display = 'block'
     mainWriteContents = document.querySelector('.mainWriteContents')
     

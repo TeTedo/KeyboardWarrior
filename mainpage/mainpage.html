@@ -10,13 +10,16 @@
 <body>
     <div class="top">
         <div class="topWrapper">
-            <a href=""><h1>키보드워리어</h1></a>
+            <a href=""><img src="../images/mainlogo.png" alt="">
+            </a>
+            <div class="navmenuBar">
+                <a href=""><div class="navmenuCommunity">COMMUNITY</div></a>
+                <a href=""><div class="navmenuMinigame">MINIGAME</div></a>
+            </div>
             <input type="text">
             <button id="topSearchBtn"></button>
         </div>
     </div>
-    <div class="fixedSpace"></div>
-    <div class="borderLine"></div> 
     <div class="space"></div>
     <div class="popUp">
         <div class="popUpWrap">
@@ -86,10 +89,6 @@
                                     <button class="modifyAddImgBtn">gif</button>
                                 </span>
                                 <textarea class="modifyTextarea" onkeydown="resize(this)" onkeyup="resize(this)" style="height: 192px;">가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사</textarea>
-                                <span class=postWriteContentsImgWrapper>
-                                    <button class="postWriteContentsImgBtn">X</button>
-                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxDMmAlbcv0Z0jL2V6HS6Kn26pyQDJY2V8spe_eIPK6Q&s" alt="">
-                                </span>
                                 <!-- 슬라이드 -->
                                 <div class="wholeGameSlide">
                                     <div class="wholeGameSlideButton">
@@ -98,7 +97,7 @@
                                     </div>
                                     <ul class="wholeGameSlideul">
                                         <li class="wholeGameSlidelist">
-                                            <img src="https://rs.nxfs.nexon.com/gameusr/21/1/2FJh07105826755.jpg" alt="">
+                                            <img src="../images/Example.jpeg" alt="">
                                         </li>
                                         <li class="wholeGameSlidelist">
                                             <img src="https://www.motorgraph.com/news/photo/202102/27140_86146_5436.jpg" alt="">
@@ -109,6 +108,18 @@
                                     </ul>
                                 </div>
                                 <!-- 슬라이드 -->
+                                <span class=postWriteContentsImgWrapper>
+                                    <button class="postWriteContentsImgBtn">X</button>
+                                    <img src="../images/Example.jpeg" alt="">
+                                </span>
+                                <span class=postWriteContentsImgWrapper>
+                                    <button class="postWriteContentsImgBtn">X</button>
+                                    <img src="https://www.motorgraph.com/news/photo/202102/27140_86146_5436.jpg" alt="">
+                                </span>
+                                <span class=postWriteContentsImgWrapper>
+                                    <button class="postWriteContentsImgBtn">X</button>
+                                    <img src="https://rs.nxfs.nexon.com/gameusr/21/1/2FJh07105826755.jpg" alt="">
+                                </span>
                             </span>
                         </span>
                         <div class="postWriteGameTag">
@@ -135,35 +146,21 @@
             </div>
             <div class="left">
                 <div class="leftWrapper">
-                    <ul class="leftMenu">
-                        <li id="MenuHome"><div class="leftMenudiv">Home</div></li>
-                        <li id="MenuCommunity"><div class="leftMenudiv">Community</div></li>
-                        <li><div class="leftMenudiv">Item&nbsp;trade</div></li>
-                        <li id="MenuMiniGames"><div class="leftMenudiv">Mini&nbsp;Games</div></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="right">
-                <div class="rightWrapper">
+                    <div class="leftWrapperShadow"></div>
                     <div class="contents">
-                        <div class="login">
-                            <ul>
-                                <li>ID:</li>
-                                <li>PW:</li>
-                            </ul>
-                            <ul>
-                                <li><input type="text"></li>
-                                <li><input type="text"></li>
-                            </ul>
-                            <button>로그인</button>
-                        </div>
-                        <div class="join">
-                            <a href="../join/join.html">회원가입</a>
-                            <a href="">아이디/비밀번호 찾기</a>
-                        </div>
-                    </div>
-                    <div class="scrollContents">
-                            <a id="scrollBtn" href=""><h1>⇧</h1></a>
+                        <div class="contentsWrappertologin">
+                            <div class="forlogin">ID</div>
+                            <input type="text" class="forlogininput">
+                            <div class="forlogin">PASSWORD</div>
+                            <input type="password" class="forlogininput">
+                            <div class="forloginbutton">로그인하기</div>
+                            <div class="join">
+                                <a href="../join/join.html">회원가입</a>
+                                <a href="">아이디/비밀번호 찾기</a>
+                            </div>
+                            <div class="scrollContents">
+                                    <a id="scrollBtn" href=""><h1>⇧</h1></a>
+                            </div>
                     </div>
                 </div>
             </div>
