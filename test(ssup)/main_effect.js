@@ -26,7 +26,7 @@ scrollBtn.onclick = function(e){
     window.scrollTo({top:0, behavior:"smooth"})
 }
 
-//왼쪽 메뉴바 저승으로
+
 // //왼쪽 메뉴바 효과
 // let leftMenuCount = document.querySelector('.leftMenu').childElementCount
 // allLeftMenuDiv=document.querySelectorAll('.leftMenudiv')
