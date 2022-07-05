@@ -45,7 +45,59 @@ popUpDone.onclick = function(){
     }
 }
 
+//로그인 기능 관련
 
+//ID PW 한글자라도 입력하면 로그인하기 버튼 활성화
+let forlogininput = document.querySelectorAll(".forlogininput")
+let forloginbutton = document.querySelector(".forloginbutton")
+
+forlogininput[0].onkeydown = function(e){
+    //아이디입력시 비밀번호에 입력되있으면 클래스리스트 추가
+    if(!forlogininput[1].value.length==0){
+        if(!forloginbutton.classList.contains("forloginactive")){
+            forloginbutton.classList.add("forloginactive")}
+    }
+    else{
+        forloginbutton.classList.remove("forloginactive")
+    }
+    //아이디 입력수가 1일때 백스페이스 누르면 클래스리스트 제거
+    if(e.keyCode == 8){
+        if(forlogininput[0].value.length<=1){
+            forloginbutton.classList.remove("forloginactive")
+        }
+    }
+}
+forlogininput[1].onkeydown = function(e){
+    //비밀번호입력시 아이디에 입력되있으면 클래스리스트 추가
+    if(!forlogininput[0].value.length==0){
+        if(!forloginbutton.classList.contains("forloginactive")){
+        forloginbutton.classList.add("forloginactive")}
+    }
+    else{
+        forloginbutton.classList.remove("forloginactive")
+    }
+    //비밀번호 입력수가 1일때 백스페이스 누르면 클래스리스트 제거
+    if(e.keyCode == 8){
+        if(forlogininput[1].value.length<=1){
+            forloginbutton.classList.remove("forloginactive")
+        }
+    }
+}
+
+//로그인하기 버튼 클릭
+forloginbutton.onclick= function(){
+    if(!forloginbutton.classList.contains("forloginactive")){
+        return
+    }
+    else if(forlogininput[0].value == "admin" && forlogininput[1].value == "admin"){
+        alert("테스트 모드입니다.")
+        let leftWrapper = document.querySelector(".leftWrapper")
+        let loginsuccess = document.querySelector(".loginsuccess")
+        leftWrapper.style.display = "none"
+        loginsuccess.style.display = "block"
+    }
+
+}
 /*
 해결할일
 1: 이미지 수정눌러야 삭제버튼 뜨게 만들고, 수정칸에서 이미지 추가 삽입 가능한 버튼 만들기

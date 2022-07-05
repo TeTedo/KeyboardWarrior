@@ -16,6 +16,12 @@ let wholeGameSlideul = document.querySelectorAll('.wholeGameSlideul')
 let wholeGameSlidelist = document.querySelectorAll('.wholeGameSlidelist')
 
 let mainWriteShadow = document.querySelectorAll('.mainWriteShadow')
+let likemotion = document.querySelectorAll(".likemotion");
+let likedivcount = document.querySelectorAll(".likedivcount");
+let likedivimg = document.querySelectorAll(".likediv img");
+let likediv = document.querySelectorAll(".likediv");
+let recommentdiv = document.querySelectorAll(".recommentdiv");
+
 
 
 //포스팅 작성 모듈
@@ -27,8 +33,26 @@ let PostGnb=(
         PostGnb.prototype.init = function(super_id,text,imgUrlsArr){
             if(super_id ==="" || super_id === null){return}
 
-            let postWrite = document.createElement('div')
-            postWrite.classList.add('postWrite')
+            let postWrite = document.createElement('div');
+            postWrite.classList.add('postWrite');
+
+            let templikemotion = document.createElement('canvas');
+            templikemotion.classList.add("likemotion");
+
+            let templikerecommentbutton = document.createElement('div');
+            templikerecommentbutton.classList.add("likerecommentbutton");
+            let templikediv = document.createElement('div');
+            templikediv.classList.add("likediv");
+            let temprecommentdiv = document.createElement('div');
+            temprecommentdiv.classList.add("recommentdiv");
+            let templikedivcount = document.createElement('div');
+            templikedivcount.classList.add("likedivcount");
+            let temprecommentdivcount = document.createElement('div');
+            temprecommentdivcount.classList.add("recommentdivcount");
+            let templikedivimg = document.createElement('img');
+            templikedivimg.src = "/images/emptyheart.png";
+            let temprecommentdivimg = document.createElement('img');
+            temprecommentdivimg.src = "/images/recomment.png";
 
             let temppostWirteShadow = document.createElement("div");
             temppostWirteShadow.classList.add("postWriteShadow");
@@ -63,13 +87,21 @@ let PostGnb=(
             modifyTextarea.classList.add('modifyTextarea')
             
             super_id.appendChild(postWrite);
+            postWrite.appendChild(templikemotion);
             postWrite.appendChild(temppostWirteShadow);
             postWrite.appendChild(temppostWriteTop);
             postWrite.appendChild(postWriteWrapper)
+            postWrite.appendChild(templikerecommentbutton)
             temppostWriteTop.appendChild(profileImg);
             temppostWriteTop.appendChild(tempprofileID);
             temppostWriteTop.appendChild(tempprofileTime);
             postWriteWrapper.appendChild(postWriteContents)
+            templikerecommentbutton.appendChild(templikediv)
+            templikerecommentbutton.appendChild(temprecommentdiv)
+            templikediv.appendChild(templikedivimg)
+            temprecommentdiv.appendChild(temprecommentdivimg)
+            templikediv.appendChild(templikedivcount)
+            temprecommentdiv.appendChild(temprecommentdivcount)
             postWriteContents.appendChild(postWriteContentsBtns)
             postWriteContentsBtns.appendChild(mainBtns)
             postWriteContentsBtns.appendChild(modifyAddImgBtn)
@@ -81,6 +113,8 @@ let PostGnb=(
             deleteBtn.innerHTML = "X"
             modifyBtn.innerHTML = "수정"
 
+            templikedivcount.innerHTML = 0;
+            temprecommentdivcount.innerHTML = 0;
             //테스트용 ID
             tempprofileID.innerHTML = "테스트ID"
             //현재시간 띄우기
@@ -90,8 +124,8 @@ let PostGnb=(
             
             function pad(number){
                 let str = "" + number;
-                if(str.length==2){
-                    str = number
+                if(str.length==1){
+                    str = "0" + number
                 }
                 return str
             }
@@ -171,6 +205,7 @@ let PostGnb=(
 
 
             renewalArr()
+            likemotionFunction();
          }
          return PostGnb
     }
@@ -194,6 +229,11 @@ let renewalArr = function(){
  wholeGameSlidePrevButton = document.querySelectorAll('.wholeGameSlidePrevButton')
  wholeGameSlideul = document.querySelectorAll('.wholeGameSlideul')
  wholeGameSlidelist = document.querySelectorAll('.wholeGameSlidelist')
+ likemotion = document.querySelectorAll(".likemotion");
+ likedivcount = document.querySelectorAll(".likedivcount");
+ likedivimg = document.querySelectorAll(".likediv img");
+ likediv = document.querySelectorAll(".likediv");
+ recommentdiv = document.querySelectorAll(".recommentdiv");
 }
 
  //수정버튼, 삭제버튼 함수
@@ -350,8 +390,6 @@ let renewalArr = function(){
 
         //포스팅삭제버튼
         deleteBtnsArr[i].onclick = function(e){
-            console.log(e.target.parentElement.parentElement.parentElement.parentElement
-            .parentElement.parentElement)
             e.target.parentElement.parentElement.parentElement
             .parentElement.parentElement.parentElement.removeChild
             (e.target.parentElement.parentElement.parentElement
@@ -439,3 +477,95 @@ BtnAttribute()
 SlideFun();
 // deletePost()
 
+// //좋아요 function
+let likemotionFunction = function(){
+    for(let i = 0 ; i<postWritesArr.length; i++){
+        likediv[i].onclick = function(){
+            likedivimg[i].src = "/images/fullheart.png"
+            likedivcount[i].innerHTML = Number(likedivcount[i].innerHTML) + 1;
+        }
+        postWritesArr[i].ondblclick = function(){
+            likemotion[i].style.display = "none";
+            if(likemotion[i].style.display == "none"){
+                likemotion[i].style.display = "block";
+                //하트그리기 function
+                let dblclickeffect = function(){
+                    let context = likemotion[i].getContext('2d');
+                    let img = document.createElement("img");
+                    img.src = "/images/fullheart.png"
+                    let sizefordraw = 50;
+                    let sizeforx = 130;
+                    let sizefory = 10;
+                    img.onload = function drawingheart(){
+                        context.clearRect(0,0,likemotion[i].width,likemotion[i].height);
+                        if(sizefordraw>45){   
+                            context.drawImage(img,sizeforx,sizefory,sizefordraw,sizefordraw);
+                            sizefordraw -= 0.2;
+                            sizeforx += 2.8;
+                            sizefory -=0.2;
+
+                        }
+                        else if(sizefordraw>40){
+                            context.drawImage(img,sizeforx,sizefory,sizefordraw,sizefordraw);
+                            sizefordraw -= 0.2;
+                            sizeforx += 2;
+                            sizefory +=1;
+                        }
+                        else if(sizefordraw>35){
+                            context.drawImage(img,sizeforx,sizefory,sizefordraw,sizefordraw);
+                            sizefordraw -= 0.2;
+                            sizeforx -= 2;
+                            sizefory +=(40/25);
+                        }
+                        else if(sizefordraw>30){
+                            context.drawImage(img,sizeforx,sizefory,sizefordraw,sizefordraw);
+                            sizefordraw -= 0.2;
+                            sizeforx -= (30/25);
+                            sizefory +=(20/25);
+                        }
+                        else if(sizefordraw>25){
+                            context.drawImage(img,sizeforx,sizefory,sizefordraw,sizefordraw);
+                            sizefordraw -= 0.2;
+                            sizeforx += (30/25);
+                            sizefory +=(20/25);
+                        }
+                        else if(sizefordraw>20){
+                            context.drawImage(img,sizeforx,sizefory,sizefordraw,sizefordraw);
+                            sizefordraw -= 0.2;
+                            sizeforx += (20/25);
+                            sizefory +=(20/25);
+                        }
+                        else if(sizefordraw>15){
+                            context.drawImage(img,sizeforx,sizefory,sizefordraw,sizefordraw);
+                            sizefordraw -= 0.2;
+                            sizeforx += (7/25);
+                            sizefory +=(10/25);
+                        }
+                        else if(sizefordraw>10){
+                            context.drawImage(img,sizeforx,sizefory,sizefordraw,sizefordraw);
+                            sizefordraw -= 0.2;
+                        }
+                        else{
+                            likemotion[i].style.display = "none"
+                            likedivimg[i].src = "/images/fullheart.png"
+                            likedivcount[i].innerHTML = Number(likedivcount[i].innerHTML) + 1;
+
+                            return}
+                        requestAnimationFrame(drawingheart);
+                    // context.drawImage(img,130,10,50,50);
+                    // context.drawImage(img,200,5,45,45)
+                    // context.drawImage(img,250,30,40,40)
+                    // context.drawImage(img,200,70,35,35)
+                    // context.drawImage(img,170,90,30,30)
+                    // context.drawImage(img,200,110,25,25)
+                    // context.drawImage(img,220,130,20,20)
+                    // context.drawImage(img,227,140,10,10)
+                    }
+                }
+
+                dblclickeffect();
+            }
+        }
+    }
+}
+likemotionFunction();

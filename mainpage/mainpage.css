@@ -116,7 +116,7 @@ body{
     background-image: url(../images/search.png);
     background-size: cover;
     position: relative;
-    left: -360px;
+    left: 130px;
     cursor: pointer;
 }
 /* 사이드 */
@@ -180,6 +180,11 @@ body{
     font-size: 15px;
     margin: 14px 0 7px;
 }
+.contentsWrappertologin .forloginactive{
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
 .contentsWrappertologin .join{
     width: 100%;
     display: flex;
@@ -187,14 +192,77 @@ body{
     justify-content: space-between;
 
 }
+
+/* 로그인 활성화창 */
+.loginsuccess{
+    width: 284px;
+    height: 313px;
+    border-radius: 2px;
+    border: solid 0.5px #272727;
+    background-color: #fff;
+    position: relative;
+    display: none;
+}
+.loginsuccess .loginsuccessprofileImg{
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    top: 15px;
+    left: 82px;
+}
+.loginsuccessprofileImgWrap{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.loginsuccess .loginsuccessprofileImgShadow{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    position: absolute;
+    top: 3px;
+    left: 7px;
+    border-radius: 500px;
+}
+.loginsuccess .loginsuccessprofileImgWrap .loginsuccessprofileImgWrapimg{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 500px;
+}
+.loginsuccessprofileId{
+    margin: 150px auto 0;
+    height: 25px;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+}
+.loginsuccessprofileMessage{
+    margin: 20px auto;
+    width: 160px;
+    text-align: center;
+    font-size: 13px;
+}
+.loginsuccessprofileModify{
+    border: 1px solid #828282;
+    margin: 0 auto;
+    width: 60px;
+    border-radius: 9.5px;
+    color: #828282;
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
+}
 /* 스크롤 */
 .scrollContents{
     position: fixed;
-    width: 50px;
     z-index: -999;
+    width: 50px;
     height: 50vh;
-    left: 30%;
+    margin-left: 250px;
 }
+
 
 #scrollBtn{
     width: 50px;
@@ -370,6 +438,7 @@ body{
     border-radius: 16px;
     position: relative;
     background-color: white;
+    cursor: pointer;
 }
 .postHashTagtoClick .postHashTagtoClickShadow{
     width: 100%;
@@ -398,6 +467,18 @@ body{
     position: relative;
     border: 0.3px solid black;
 }
+.likemotion{
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    position: absolute;
+    background-color: black;
+    top: 0;
+    left: 0;
+    opacity: 0.3;
+    animation-fill-mode: forwards;
+    display: none;
+}
 .postWriteShadow{
     width: 100%;
     height: 100%;
@@ -418,6 +499,31 @@ body{
     cursor: pointer;
     opacity: 0.5;
     display: flex;
+}
+.likerecommentbutton{
+    position: absolute;
+    bottom: 2px;
+    height: 30px;
+    display: flex;
+    width: 300px;
+    right: -40px;
+}
+.likediv, .recommentdiv{
+    width: 100px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 15px;
+    position: relative;
+}
+.likediv{
+    margin-right: 20px;
+}
+.likediv img, .recommentdiv img{
+    width: 20px;
+    height: 20px;
 }
 .postWriteTop{
     width: 100%;
