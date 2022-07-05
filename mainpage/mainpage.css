@@ -375,7 +375,7 @@ body{
     font-size: 14px;
     color: #3b3b3b;
 }
-.mainWriteContentsBtns #postRegisterBtn{
+.mainWriteContentsBtns .postRegisterBtn{
     width: 175px;
     height: 100%;
     border-radius: 2px;
@@ -389,6 +389,11 @@ body{
     border-top: 0;
     border-right: 0;
     border-bottom: 0;
+}
+.mainWriteContentsBtns .forregisteractive{
+    background-color: rgba(0, 0, 0, 0.185);
+    color: white;
+    cursor: pointer;
 }
 .mainWriteContents .mainWriteContentsImgWrapper{
     margin-bottom: 10px;

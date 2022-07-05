@@ -98,6 +98,22 @@ forloginbutton.onclick= function(){
     }
 
 }
+//등록버튼 활성화
+let mainWriteText = document.querySelector(".mainWriteText")
+mainWriteText.onkeydown = function(e){
+    let Btn = document.querySelector(".postRegisterBtn")
+    if(mainWriteText.value.length >= 0){
+        Btn.classList.add("forregisteractive");
+    }
+    else{
+        Btn.classList.remove("forregisteractive");
+    }
+    if(e.keyCode == 8){
+        if(mainWriteText.value.length<=1){
+            Btn.classList.remove("forregisteractive")
+        }
+    }
+}
 /*
 해결할일
 1: 이미지 수정눌러야 삭제버튼 뜨게 만들고, 수정칸에서 이미지 추가 삽입 가능한 버튼 만들기
