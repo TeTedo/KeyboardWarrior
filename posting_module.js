@@ -645,6 +645,10 @@ let hashTagFilter = function(){
             else{
                 postHashTagtoClick[i].classList.remove('selectedCategory')
                 renewalArr();
+                //전체 보여주기
+                for(let j =0; j<postWritesArr.length; j++){
+                    postWritesArr[j].style.display = "block"
+                }
             }
         }
     }
