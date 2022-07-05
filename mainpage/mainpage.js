@@ -61,10 +61,11 @@ forlogininput[0].onkeydown = function(e){
         forloginbutton.classList.remove("forloginactive")
     }
     //아이디 입력수가 1일때 백스페이스 누르면 클래스리스트 제거
-    if(e.keyCode == 8){
-        if(forlogininput[0].value.length<=1){
-            forloginbutton.classList.remove("forloginactive")
-        }
+}
+//키 다 입력시 길이 0이면 비활성화
+forlogininput[0].onkeyup = function(){
+    if(forlogininput[0].value.length==0){
+        forloginbutton.classList.remove("forloginactive")
     }
 }
 forlogininput[1].onkeydown = function(e){
@@ -76,14 +77,13 @@ forlogininput[1].onkeydown = function(e){
     else{
         forloginbutton.classList.remove("forloginactive")
     }
-    //비밀번호 입력수가 1일때 백스페이스 누르면 클래스리스트 제거
-    if(e.keyCode == 8){
-        if(forlogininput[1].value.length<=1){
-            forloginbutton.classList.remove("forloginactive")
-        }
+}
+//키 다 입력시 길이 0이면 비활성화
+forlogininput[1].onkeyup = function(){
+    if(forlogininput[1].value.length==0){
+        forloginbutton.classList.remove("forloginactive")
     }
 }
-
 //로그인하기 버튼 클릭
 forloginbutton.onclick= function(){
     if(!forloginbutton.classList.contains("forloginactive")){
@@ -95,23 +95,26 @@ forloginbutton.onclick= function(){
         let loginsuccess = document.querySelector(".loginsuccess")
         leftWrapper.style.display = "none"
         loginsuccess.style.display = "block"
+        let mainBtns = document.querySelectorAll('.mainBtns')
+        mainBtns[0].style.display = "block"
     }
 
 }
 //등록버튼 활성화
 let mainWriteText = document.querySelector(".mainWriteText")
+let Btn = document.querySelector(".postRegisterBtn")
 mainWriteText.onkeydown = function(e){
-    let Btn = document.querySelector(".postRegisterBtn")
     if(mainWriteText.value.length >= 0){
         Btn.classList.add("forregisteractive");
     }
     else{
         Btn.classList.remove("forregisteractive");
     }
-    if(e.keyCode == 8){
-        if(mainWriteText.value.length<=1){
-            Btn.classList.remove("forregisteractive")
-        }
+}
+//키 다 입력시 길이 0이면 비활성화
+mainWriteText.onkeyup = function(){
+    if(mainWriteText.value.length==0){
+        Btn.classList.remove("forregisteractive")
     }
 }
 /*

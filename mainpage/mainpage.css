@@ -374,12 +374,16 @@ body{
     border-radius: 13px;
     font-size: 14px;
     color: #3b3b3b;
+    cursor: pointer;
+}
+.chooseCategory .selectedCategory{
+    background-color: black;
+    color: white;
 }
 .mainWriteContentsBtns .postRegisterBtn{
     width: 175px;
     height: 100%;
     border-radius: 2px;
-    cursor: pointer;
     position: absolute;
     right: 0;
     top: 0;
@@ -445,6 +449,10 @@ body{
     background-color: white;
     cursor: pointer;
 }
+.postHashTag .selectedCategory{
+    background-color: black;
+    color: white;
+}
 .postHashTagtoClick .postHashTagtoClickShadow{
     width: 100%;
     height: 100%;
@@ -501,9 +509,10 @@ body{
     position: absolute;
     left: 50px;
     bottom: 10px;
-    cursor: pointer;
     opacity: 0.5;
-    display: flex;
+}
+.postWriteGameTag span{
+    cursor: pointer;
 }
 .likerecommentbutton{
     position: absolute;
@@ -579,7 +588,9 @@ body{
     z-index: 2;
     top: -100px;
 }
-
+.postWriteContentsBtns .mainBtns{
+    display: none;
+}
 .postWriteContentsBtns .mainBtns button{
     width: 60px;
     height: 30px;

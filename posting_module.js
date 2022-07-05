@@ -16,11 +16,18 @@ let wholeGameSlideul = document.querySelectorAll('.wholeGameSlideul')
 let wholeGameSlidelist = document.querySelectorAll('.wholeGameSlidelist')
 
 let mainWriteShadow = document.querySelectorAll('.mainWriteShadow')
+
+//좋아요 태그
 let likemotion = document.querySelectorAll(".likemotion");
 let likedivcount = document.querySelectorAll(".likedivcount");
 let likedivimg = document.querySelectorAll(".likediv img");
 let likediv = document.querySelectorAll(".likediv");
 let recommentdiv = document.querySelectorAll(".recommentdiv");
+
+//해쉬태그 관련
+let chooseCategory = document.querySelector(".chooseCategory");
+let Category = document.querySelectorAll(".Category");
+let postHashTagtoClick = document.querySelectorAll(".postHashTagtoClick");
 
 
 
@@ -86,18 +93,27 @@ let PostGnb=(
             let modifyTextarea = document.createElement('textarea')
             modifyTextarea.classList.add('modifyTextarea')
             
+            //해쉬태그
+            let temppostWriteGameTag = document.createElement('div');
+            temppostWriteGameTag.classList.add('postWriteGameTag');
+            let temppostWriteHashTag = document.createElement('span');
+            temppostWriteHashTag.classList.add('postWriteHashTag');
+
+
             super_id.appendChild(postWrite);
             postWrite.appendChild(templikemotion);
             postWrite.appendChild(temppostWirteShadow);
             postWrite.appendChild(temppostWriteTop);
             postWrite.appendChild(postWriteWrapper)
-            postWrite.appendChild(templikerecommentbutton)
+            postWrite.appendChild(temppostWriteGameTag);
+            postWrite.appendChild(templikerecommentbutton);
             temppostWriteTop.appendChild(profileImg);
             temppostWriteTop.appendChild(tempprofileID);
             temppostWriteTop.appendChild(tempprofileTime);
-            postWriteWrapper.appendChild(postWriteContents)
-            templikerecommentbutton.appendChild(templikediv)
-            templikerecommentbutton.appendChild(temprecommentdiv)
+            postWriteWrapper.appendChild(postWriteContents);
+            temppostWriteGameTag.appendChild(temppostWriteHashTag);
+            templikerecommentbutton.appendChild(templikediv);
+            templikerecommentbutton.appendChild(temprecommentdiv);
             templikediv.appendChild(templikedivimg)
             temprecommentdiv.appendChild(temprecommentdivimg)
             templikediv.appendChild(templikedivcount)
@@ -202,7 +218,12 @@ let PostGnb=(
 
             }
 
-
+            //해쉬태그 추가
+            for(let i = 0; i<Category.length; i++){
+                if(Category[i].classList.contains('selectedCategory')){
+                    temppostWriteHashTag.innerHTML = Category[i].innerHTML;
+                }
+            }
 
             renewalArr()
             likemotionFunction();
@@ -448,6 +469,17 @@ postRegisterBtn.onclick = function(){
         alert('포스팅할 내용을 작성해 주세요!')
         return
     }
+    //해쉬태그 선택
+    let CategoryCount = 0;
+    for(let i = 0; i<Category.length; i++){
+        if(Category[i].classList.contains('selectedCategory')){
+            CategoryCount += 1;
+        }
+    }
+    if(CategoryCount==0){
+        alert('해쉬태그를 선택하세요')
+        return
+    }
     if (imgUrlsArr.length === 0){
         new PostGnb(postWrapper,text,imgUrlsArr)    
         mainWriteText.value = ""
@@ -569,3 +601,52 @@ let likemotionFunction = function(){
     }
 }
 likemotionFunction();
+
+//글 등록시 해쉬태그 설정
+let hashTagSelect = function(){
+    for(let i = 0; i<Category.length; i++){
+        Category[i].onclick = function(){
+            if(!Category[i].classList.contains('selectedCategory')){
+                //선택된거 말고 다른거 선택 해제 후 선택
+                for(let k = 0; k<Category.length; k++){
+                    Category[k].classList.remove('selectedCategory');
+                }
+                Category[i].classList.add('selectedCategory');
+            }
+            else{
+                Category[i].classList.remove('selectedCategory');
+            }
+        }
+    }
+}
+hashTagSelect();
+
+//해쉬태그 필터 클릭시
+let hashTagFilter = function(){
+    for(let i = 0; i<postHashTagtoClick.length; i++){
+        postHashTagtoClick[i].onclick = function(){
+            if(!postHashTagtoClick[i].classList.contains('selectedCategory')){
+                for(let k = 0; k<postHashTagtoClick.length; k++){
+                    postHashTagtoClick[k].classList.remove('selectedCategory')
+                }
+                postHashTagtoClick[i].classList.add('selectedCategory')
+                renewalArr();
+                //해쉬태그 같은것만 보여주기
+                for(let j =0; j<postWritesArr.length; j++){
+                    let tofindHastag = postWritesArr[j].querySelector('.postWriteHashTag')
+                    if(tofindHastag.innerHTML != postHashTagtoClick[i].innerText){
+                        postWritesArr[j].style.display = "none"
+                    }
+                    else{
+                        postWritesArr[j].style.display = "block"
+                    }
+                }
+            }
+            else{
+                postHashTagtoClick[i].classList.remove('selectedCategory')
+                renewalArr();
+            }
+        }
+    }
+}
+hashTagFilter();
