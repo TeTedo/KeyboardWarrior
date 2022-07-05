@@ -224,6 +224,7 @@ let renewalArr = function(){
             //완료버튼 눌렀을때
             else if(e.target.innerText==="완료"){
                 let modifiedText = modifyTextareasArr[i].value
+                modifyTextareasArr[i].style.height = `${modifyTextareasArr[i].scrollHeight}px`
                 if(modifiedText === ""){
                     alert("내용을 입력해주세요!")
                     return
