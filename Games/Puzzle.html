@@ -7,7 +7,17 @@
     <style>
       canvas {
         background: #eee;
-        margin-right: 50px;
+      }
+      .canvasesWrap{
+        width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .btnsWrap{
+        width: 1200px;
+        margin: 0 auto
       }
       .btns_start{
         display: none;
@@ -29,29 +39,40 @@
   </head>
 
   <body>
-    <h1>Puzzle</h1>
-    <canvas class="canvas" width="500" height="500">이 브라우저는 캔버스를 지원하지 않습니다.</canvas>
-    <canvas class="canvas2" width="500" height="500">이 브라우저는 캔버스를 지원하지 않습니다.</canvas>
-    <div class="input_div">
-        <h4>사진 url을 넣어주세요</h4>
-        <input id="inputUrl" type="text">
-        <button id="btnUrl" style="margin-right: 20px;" >확인</button>
-        <button id="defaultImg" >기본이미지로하기</button>
+    <h1 style="text-align: center;">Puzzle</h1>
+    <div class="canvases">
+      <div class="canvasesWrap">
+      <canvas class="canvas" width="500" height="500">이 브라우저는 캔버스를 지원하지 않습니다.</canvas>
+      <canvas class="canvas2" width="500" height="500">이 브라우저는 캔버스를 지원하지 않습니다.</canvas>
+      </div>
     </div>
-    <div class="btns_level">
-      <h4>난이도를 선택하세요</h4>
-      <button btn-level='4by4'>4X4</button>
-      <button btn-level='5by5'>5X5</button>
-      <button btn-level='8by8'>8X8</button>
-      <button btn-level='10by10'>10X10</button>
+    <div class="btns">
+    <div class="btnsWrap">
+      <div class="input_div">
+          <h4>사진 url을 넣어주세요</h4>
+          <input id="inputUrl" type="text">
+          <button id="btnUrl" style="margin-right: 20px;" >확인</button>
+          <button id="defaultImg" >기본이미지로하기</button>
+      </div>
+      <div class="btns_level">
+        <h4>난이도를 선택하세요</h4>
+        <button btn-level='4by4'>4X4</button>
+        <button btn-level='5by5'>5X5</button>
+        <button btn-level='8by8'>8X8</button>
+        <button btn-level='10by10'>10X10</button>
+        <button btn-level='16by16'>16X16</button>
+        <button btn-level='20by20'>20X20</button>
+        <button btn-level='25by25'>25X25</button>
+      </div>
+      <div class="btns_start">
+        <button btn-for='start'>시작</button>
+      </div>
+      <div class="timer"></div>
+      <div class="record"></div>
+      <canvas class="canvasMixed" width="500" height="500" style="display:none ;">이 브라우저는 캔버스를 지원하지 않습니다.</canvas>
+      <canvas class="canvasLined" width="500" height="500" style="display:none ;" >이 브라우저는 캔버스를 지원하지 않습니다.</canvas>             
+    </div>  
     </div>
-    <div class="btns_start">
-      <button btn-for='start'>시작</button>
-    </div>
-    <div class="timer"></div>
-    <div class="record"></div>
-    <canvas class="canvasMixed" width="500" height="500" style="display:none ;">이 브라우저는 캔버스를 지원하지 않습니다.</canvas>
-    <canvas class="canvasLined" width="500" height="500" style="display:none ;" >이 브라우저는 캔버스를 지원하지 않습니다.</canvas>    
     
   </body>
 
@@ -412,6 +433,36 @@
                   btns_start.style.display = 'block'
                   btns_level.style.display = 'none'
                   start(10,putPuzzleImgUrl)
+                   break;
+
+              case '16by16':
+              context.clearRect(0,0,500,500)
+                  contextMixed.clearRect(0,0,500,500)
+                  contextLined.clearRect(0,0,500,500)
+                  context2.clearRect(0,0,500,500)
+                  btns_start.style.display = 'block'
+                  btns_level.style.display = 'none'
+                  start(16,putPuzzleImgUrl)
+                  break;
+
+              case '20by20':
+              context.clearRect(0,0,500,500)
+                  contextMixed.clearRect(0,0,500,500)
+                  contextLined.clearRect(0,0,500,500)
+                  context2.clearRect(0,0,500,500)
+                  btns_start.style.display = 'block'
+                  btns_level.style.display = 'none'
+                  start(20,putPuzzleImgUrl)
+                  break;
+
+              case '25by25':
+              context.clearRect(0,0,500,500)
+                  contextMixed.clearRect(0,0,500,500)
+                  contextLined.clearRect(0,0,500,500)
+                  context2.clearRect(0,0,500,500)
+                  btns_start.style.display = 'block'
+                  btns_level.style.display = 'none'
+                  start(25,putPuzzleImgUrl)
                   break;
           }
         }
