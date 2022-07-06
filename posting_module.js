@@ -258,6 +258,7 @@ let PostGnb=(
             likemotionFunction();
             displayRecommentBox();
             addRecommentFun();
+            mainSearchFun();
          }
          return PostGnb
     }
@@ -289,6 +290,7 @@ let renewalArr = function(){
  recommentBox = document.querySelectorAll('.recommentBox');
  recommentPost = document.querySelectorAll(".recommentPost");
  recommentBoxinput = document.querySelectorAll(".recommentBoxinput");
+ recommentdivcount = document.querySelectorAll(".recommentdivcount");
 }
 
  //수정버튼, 삭제버튼 함수
@@ -546,13 +548,22 @@ SlideFun();
 // //좋아요 function
 let likemotionFunction = function(){
     for(let i = 0 ; i<postWritesArr.length; i++){
+        let fullheartStatus = 0;
         likediv[i].onclick = function(){
+            if(fullheartStatus == 0){
             likedivimg[i].src = "/images/fullheart.png"
             likedivcount[i].innerHTML = Number(likedivcount[i].innerHTML) + 1;
+            fullheartStatus += 1;
+            }
+            else{
+                //좋아요 취소
+                likedivimg[i].src = "/images/emptyheart.png"
+                likedivcount[i].innerHTML = Number(likedivcount[i].innerHTML) - 1;
+                fullheartStatus = 0;
+            }
         }
         postWritesArr[i].ondblclick = function(){
             let toFunStop = postWritesArr[i].querySelector('.recommentBox');
-            let toFUnstopImg = postWritesArr[i].querySelector('.likediv img');
             if(toFunStop.style.display == "block"){
                 return
             }
@@ -561,12 +572,15 @@ let likemotionFunction = function(){
                 return
             }
             //좋아요취소
-            if(toFUnstopImg.src == "http://127.0.0.1:5502/images/fullheart.png"){
+            if(fullheartStatus == 1){
+                likedivimg[i].src = "/images/emptyheart.png"
+                likedivcount[i].innerHTML = Number(likedivcount[i].innerHTML) - 1;
+                fullheartStatus = 0;
                 return
             }
-            console.log(toFUnstopImg.src)
             likemotion[i].style.display = "none";
             if(likemotion[i].style.display == "none"){
+                fullheartStatus += 1;
                 likemotion[i].style.display = "block";
                 //하트그리기 function
                 let dblclickeffect = function(){
@@ -764,7 +778,8 @@ let addRecommentFun = function(){
             temprecommentrepositoryTimeStamp.innerHTML = tempDate + " " + tempHours + ":"+ tempMinutes;
             //댓글작성한거 값 가져가기
             temprecommentComment.value = recommentBoxinput[i].value
-
+            recommentdivcount[i].innerHTML = Number(recommentdivcount[i].innerHTML) + 1;
+            recommentBoxinput[i].value = ""
             modifyDeleteRecomment();
         }
     }
@@ -795,8 +810,28 @@ let modifyDeleteRecomment = function(){
             //댓글 삭제
             temprecommentrepositoryDelete[k].onclick = function(){
                 this.parentElement.parentElement.parentElement.removeChild(this.parentElement.parentElement);
+                recommentdivcount[i].innerHTML = Number(recommentdivcount[i].innerHTML) - 1;
             }
         }
     }
 }
 modifyDeleteRecomment();
+
+
+//검색기능
+let mainSearch = document.querySelector('.mainSearch')
+let topSearchBtn = document.querySelector('.topSearchBtn')
+let mainSearchFun = function(){
+    topSearchBtn.onclick = function(){
+        let searchSomething = mainSearch.value;
+        let searchSomethingreg = new RegExp(searchSomething,'igm');
+        for(let i = 0; i<postWritesArr.length; i++){
+            let tosearch = postWritesArr[i].querySelector('.modifyTextarea').value;
+            postWritesArr[i].style.display = "none"
+            if(tosearch.match(searchSomethingreg)){
+                postWritesArr[i].style.display = "block"
+            }
+        }
+    }
+}
+mainSearchFun();

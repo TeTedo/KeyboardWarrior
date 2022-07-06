@@ -45,6 +45,25 @@ popUpDone.onclick = function(){
     }
 }
 
+
+//등록버튼 활성화
+let mainWriteText = document.querySelector(".mainWriteText")
+let Btn = document.querySelector(".postRegisterBtn")
+mainWriteText.onkeydown = function(e){
+    if(mainWriteText.value.length >= 0){
+        Btn.classList.add("forregisteractive");
+    }
+    else{
+        Btn.classList.remove("forregisteractive");
+    }
+}
+//키 다 입력시 길이 0이면 비활성화
+mainWriteText.onkeyup = function(){
+    if(mainWriteText.value.length==0){
+        Btn.classList.remove("forregisteractive")
+    }
+}
+
 //로그인 기능 관련
 
 //ID PW 한글자라도 입력하면 로그인하기 버튼 활성화
@@ -99,23 +118,6 @@ forloginbutton.onclick= function(){
         mainBtns[0].style.display = "block"
     }
 
-}
-//등록버튼 활성화
-let mainWriteText = document.querySelector(".mainWriteText")
-let Btn = document.querySelector(".postRegisterBtn")
-mainWriteText.onkeydown = function(e){
-    if(mainWriteText.value.length >= 0){
-        Btn.classList.add("forregisteractive");
-    }
-    else{
-        Btn.classList.remove("forregisteractive");
-    }
-}
-//키 다 입력시 길이 0이면 비활성화
-mainWriteText.onkeyup = function(){
-    if(mainWriteText.value.length==0){
-        Btn.classList.remove("forregisteractive")
-    }
 }
 /*
 해결할일

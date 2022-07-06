@@ -10,66 +10,28 @@
 <body>
 
 
-<div class="fixed">
     <div class="top">
         <div class="topWrapper">
-            <a href="../mainpage/mainpage.html"><h1>키보드워리어</h1></a>
-            <input type="text">
-            <button id="topSearchBtn"></button>
+            <a href=""><img src="../images/mainlogo.png" alt="">
+            </a>
+            <div class="navmenuBar">
+                <a href=""><div class="navmenuCommunity">COMMUNITY</div></a>
+                <a href=""><div class="navmenuMinigame">MINIGAME</div></a>
+            </div>
+            <input type="text" class="mainSearch">
+            <button class="topSearchBtn"></button>
         </div>
     </div>
-    <div class="fixedSpace"></div>
-    <div class="borderLine"></div> 
-</div>
-
-<div class="side">
-    <div class="sideWrapper">
-        <div class="left">
-            <ul class="leftMenu">
-                <li id="MenuHome"><div class="leftMenudiv">Home</div></li>
-                <li id="MenuCommunity"><div class="leftMenudiv">Community</div></li>
-                <li><div class="leftMenudiv">Item&nbsp;trade</div></li>
-                <li id="MenuMiniGames"><div class="leftMenudiv">Mini&nbsp;Games</div></li>
-            </ul>
-        </div>
-        <div class="right">
-            <div class="contents">
-                <div class="login">
-                    <ul>
-                        <li>ID:</li>
-                        <li>PW:</li>
-                    </ul>
-                    <ul>
-                        <li><input type="text"></li>
-                        <li><input type="text"></li>
-                    </ul>
-                    <button>로그인</button>
-                </div>
-                <div class="join">
-                    <a href="../join/join.html">회원가입</a>
-                    <a href="">아이디/비밀번호 찾기</a>
-                </div>
-            </div>
-            <div class="scrollContents">
-                <a id="scrollBtn" href=""><h1>⇧</h1></a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="space"></div>
-
-
+    <div class="space"></div>
+    
 <div class="wholeWrapMain">
     <div class="main">
         <div class="wholeGameSlide">
             <div class="wholeGameSlideButton">
-                <svg class="wholeGameSlideNextButton" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
-                </svg>
-                <svg class="wholeGameSlidePrevButton" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
-                </svg>
+                <img class="wholeGameSlideNextButton" src="../images/arrowright.png">
+                </img>
+                <img class="wholeGameSlidePrevButton" src="../images/arrowleft.png">
+                </img>
             </div>
             <ul class="wholeGameSlideul">
                 <li class="wholeGameSlidelist"><a href="">
@@ -108,12 +70,12 @@
             </div>
             
         </div>
+        <div class="slideButtonAddModify">
             <div class="addSlidebutton">
-                추가
+                추가하기
                 <div class="addSlideWholePage">
                     <div class="getImgurlForSlide">
-                        <input type="text" placeholder="이미지url" class="getImgurlForSlidetext"> &nbsp;
-                        <input type="file">
+                        <input type="text" placeholder="이미지url" class="getImgurlForSlidetext">
                     </div>
                     <input type="text" placeholder="게임설명" class="getTextForSlide">
                     <div class="addSlideButton">
@@ -123,7 +85,7 @@
                 </div>
             </div>
             <div class="modifySlidebutton">
-                편집
+                편집하기
                 <div class="modifySlideWholePage">
                     <input type="text" placeholder="편집할 슬라이드 번호" class="numberOfModifySlide">
                     <input type="text" placeholder="수정 url" class="modifySlideurl">
@@ -135,6 +97,42 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="left">
+            <div class="leftWrapper">
+                <div class="leftWrapperShadow"></div>
+                <div class="contents">
+                    <div class="contentsWrappertologin">
+                        <div class="forlogin">ID</div>
+                        <input type="text" class="forlogininput">
+                        <div class="forlogin">PASSWORD</div>
+                        <input type="password" class="forlogininput">
+                        <div class="forloginbutton">로그인하기</div>
+                        <div class="join">
+                            <a href="../join/join.html">회원가입</a>
+                            <a href="">아이디/비밀번호 찾기</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="loginsuccess">
+                <div class="leftWrapperShadow"></div>
+                <div class="loginsuccessprofileImg">
+                    <div class="loginsuccessprofileImgWrap">
+                        <div class="loginsuccessprofileImgShadow"></div>
+                        <img class="loginsuccessprofileImgWrapimg" src="../images/profileImg.jpg" alt="">
+                    </div>
+                </div>
+                <div class="loginsuccessprofileId">테스트ID</div>
+                <div class="loginsuccessprofileMessage">인생은 바람과도 같은 것
+                    시간은 금이다
+                    시간을 아껴서 쓰자잉!</div>
+                <div class="loginsuccessprofileModify">수정하기</div>
+            </div>
+            <div class="scrollContents">
+                    <a id="scrollBtn" href=""><h1>⇧</h1></a>
+            </div>
+        </div>
     </div>
 
     <div class="wholeGameNav">
@@ -148,8 +146,7 @@
                 <div class="AddHiddenPage">
                     <div class="AddPage">
                         <div class="AddPageGeturl">
-                            <input  class="AddPageGeturlInput" placeholder="url" type="text"> &nbsp;
-                            <input class="AddPageGeturlInput" type="file" value="찾아보기">
+                            <input  class="AddPageGeturlInput" placeholder="url" type="text">
                         </div>
                         <div class="AddPageGetname">
                             <input class="AddPageGetnameInput" placeholder="게임 이름" type="text">
@@ -176,10 +173,10 @@
 
                             </div>
                         </div>
-                    </div>
-                    <div class="AddPageButton">
-                        <div class="AddPageAddButton">추가</div>
-                        <div class="AddPageCancelButton">취소</div>
+                        <div class="AddPageButtonAddCancel">
+                            <div class="AddPageAddButton">추가</div>
+                            <div class="AddPageCancelButton">취소</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -214,6 +211,7 @@
     <div class="wholeGameZone">
         <ul class="wholeGameZoneul">
             <li class="#전체">
+                <div class="wholeGameZoneulShadow"></div>
                 <a href="">
                 <img src="https://rs.nxfs.nexon.com/gameusr/21/1/2FJh07105826755.jpg" alt="">
                 </a>
@@ -246,8 +244,9 @@
         </ul>
     </div>
 </div>
+
 </body>
-<script src="../module.js"></script>
+<script src="../define.js"></script>
 <script src="../main_effect.js"></script>
 <script src="subpage.js"></script>
 </html>

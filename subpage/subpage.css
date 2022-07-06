@@ -4,6 +4,21 @@
     padding: 0;
     box-sizing: border-box;
 }
+@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 100;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.otf) format('opentype');}
+
+@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 300;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.otf) format('opentype');}
+
+@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 400;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.otf) format('opentype');}
+
+@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 500;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.otf) format('opentype');}
+
+@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 700;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.otf) format('opentype');}
+
+@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 900;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.otf) format('opentype');}
+
+body, h1, h2, h3, h4, h5, h6, input, textarea, select {
+	font-family: 'Noto Sans KR', sans-serif;
+}
 a{
     color: black;
     text-decoration: none;
@@ -15,146 +30,245 @@ body{
     position: absolute;
     width: 100%;
 }
-.fixed{
-    position: fixed;
-    width: 100%;
-    z-index: 999;
-}
-.fixedSpace{
-    height: 20px;
-    background-color: white;
-    position: relative;
-}
 .space{
     height: 150px;
 }
+.popUp{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: -999;
+    display: none;
+}
+.popUpWrap{
+    width: 500px;
+    height: 200px;
+    margin: 0 auto;
+    background-color: whitesmoke;
+    position: relative;
+    top: 166px;
+    left: 27px;
+    border: 2px solid #855cb3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ModifyPopUp{
+    position: fixed;
+    z-index: -999;
+    display: none;
+    left: 50%;
+}
+.ModifyPopUpWrap{
+    width: 500px;
+    height: 200px;
+    background-color: white;
+    position: relative;
+    top: 166px;
+    left: 27px;
+    border: 2px solid #313131;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 /* 탑 */
 .top{
+    position: fixed;
     background-color: white;
     width: 100%;
-    position: relative;
+    z-index: 999;
+    background-color: black;
 }
 .topWrapper{
     height: 100px;
     width: 1200px;
-    margin: 0 auto;
+    margin: 20px auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.topWrapper h1{
-    color: #855cb3;
+.navmenuBar{
+    display: flex;
+    width: 300px;
+    height: 25px;
+    font-size: 20px;
+    justify-content: space-between;
+    margin-left: 70px;
+}
+.navmenuCommunity, .navmenuMinigame{
+    color: white;
 }
 .topWrapper input{
-    width: 500px;
-    height: 50px;
-    border: 2px solid rgb(226, 204, 226);
-    border-radius: 10px;
+    width: 380px;
+    height: 55px;
+    border-radius: 2px;
     background-color: whitesmoke;
     position: relative;
-    left: -70px;
+    left: 200px;
+    font-size: 17px;
+    padding: 15px;
+    border: solid 1px #131313;
 }
-#topSearchBtn {
+.topSearchBtn {
     width: 30px;
     height: 30px;
     border: none;
     background-image: url(../images/search.png);
     background-size: cover;
     position: relative;
-    left: -360px;
+    left: 130px;
     cursor: pointer;
 }
-
-.borderLine{
-    border-bottom: 2px solid  rgb(226, 204, 226);;
-}
-
 /* 사이드 */
-.side{
-    width: 100%;
-    margin-top: 150px;
+.left{
     position: fixed;
+    margin-top: -344px; 
+    margin-left: -287px;
 }
-.sideWrapper{
-    width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
+.leftWrapper{
+    width: 284px;
+    height: 313px;
+    border-radius: 2px;
+    border: solid 0.5px #272727;
+    background-color: #fff;
+    position: relative;
 }
-.side .left{
-    width: 250px;
+.leftWrapperShadow{
+    width: 284px;
+    height: 313px;
+    position: absolute;
+    left: 7px;
+    top: 5px;
+    background-color: black;
+    z-index: -1;
+    border-radius: 2px;
+}
+.contents .contentsWrappertologin{
+    height: 230px;
+    width: 225;
+    position: absolute;
+    top: 35px;
+    left: 30px;
+}
+.contentsWrappertologin .forlogin{
+    width: 16px;
+  height: 21px;
+  font-size: 15px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #000;
+  margin: 0 0 7px;
+}
+.contentsWrappertologin .forlogininput{
+    width: 100%;
     height: max-content;
-    background-color: whitesmoke;
-    border-radius: 20px;
-    border: 2px solid rgb(226, 204, 226);
-    
+    margin : 0 0 18px;
+    padding: 5px;
+    font-size: 15px;
 }
-.leftMenu{
-    padding: 30px;
+.contentsWrappertologin .forloginbutton{
+    width: 226px;
+    height: 43px;
+    padding: 10px 78px 12px 79px;
+    border-radius: 2px;
+    background-color: #f1f1f1;
+    font-size: 15px;
+    margin: 14px 0 7px;
 }
-.leftMenu li{
-    margin-bottom: 30px;
-    border-bottom: 2px solid rgb(226, 204, 226);
-    cursor: pointer;
-    overflow: auto;
-}
-.leftMenudiv{
-    color: #855cb3;
-    height: 24px;
-    overflow: hidden;
-    font-size: larger;
-}
-.leftMenudiv.start{
-    width: 0;
-    background-color: #855cb3;
+.contentsWrappertologin .forloginactive{
+    background-color: black;
     color: white;
-    border: none;
+    cursor: pointer;
 }
-.leftMenudiv.active{
-    width: 60%;
-    transition:1.5s;
-}
-.side .right{
-    width: 250px;
-    height: 150px;
-    background-color: whitesmoke;
-    border-radius: 20px;
-    border: 2px solid rgb(226, 204, 226);
+.contentsWrappertologin .join{
+    width: 100%;
+    display: flex;
+    font-size: 14px;
+    justify-content: space-between;
+
 }
 
-.right .contents{
-    padding: 30px;
+/* 로그인 활성화창 */
+.loginsuccess{
+    width: 284px;
+    height: 313px;
+    border-radius: 2px;
+    border: solid 0.5px #272727;
+    background-color: #fff;
+    position: relative;
+    display: none;
 }
-.right .login{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
+.loginsuccess .loginsuccessprofileImg{
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    top: 15px;
+    left: 82px;
 }
-.right li:first-child{
-    margin-bottom: 10px;
+.loginsuccessprofileImgWrap{
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
-.right .login input{
-    width: 100px;
+
+.loginsuccess .loginsuccessprofileImgShadow{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    position: absolute;
+    top: 3px;
+    left: 7px;
+    border-radius: 500px;
 }
-.right .join{
-    display: flex;
-    justify-content: space-between;
-    font-size: 11.5px;
+.loginsuccess .loginsuccessprofileImgWrap .loginsuccessprofileImgWrapimg{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 500px;
+}
+.loginsuccessprofileId{
+    margin: 150px auto 0;
+    height: 25px;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+}
+.loginsuccessprofileMessage{
+    margin: 20px auto;
+    width: 160px;
+    text-align: center;
+    font-size: 13px;
+}
+.loginsuccessprofileModify{
+    border: 1px solid #828282;
+    margin: 0 auto;
+    width: 60px;
+    border-radius: 9.5px;
+    color: #828282;
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
 }
 /* 스크롤 */
 .scrollContents{
-    width: 100%;
+    position: fixed;
     z-index: -999;
-    left: 1100px;
-    top: 340px;
+    width: 50px;
+    height: 50vh;
+    margin-left: 250px;
 }
+
 
 #scrollBtn{
     width: 50px;
     height: 50px;
     /* border: 2px solid #855cb3; */
     border-radius: 500px;
-    background-color: #855cb3;
+    background-color: black;
     color: white;
     display: flex;
     justify-content: center;
@@ -166,30 +280,37 @@ body{
     font-size: larger;
 }
 
-.space{
-    height: 150px;
-}
-
 /* 여기서부터 태석 */
 
 /* 개발자모드 */
 
 /* 슬라이드에 추가 */
+.slideButtonAddModify{
+    position: absolute;
+    top: 470px;
+    right: 200px;
+    margin: auto;
 
+}
 .addSlidebutton{
     width: 100px;
     height: 150px;
     position: relative;
-    left :820px;
     cursor: pointer;
     display: inline;
+    border: 1px solid #828282;
+    color: #828282;
+    border-radius: 9.5px;
+    text-align: center;
+    margin-right: 10px;
 }
 .addSlideWholePage{
-    width: 250px;
+    width: 190px;
     height: 85px;
-    background-color: aqua;
+    background-color: black;
+    color: white;
     position: absolute;
-    left: 100px;
+    left: 140px;
     top: -30px;
     cursor: default;
     display: none;
@@ -214,25 +335,32 @@ body{
     width: 100px;
     height: 150px;
     position: relative;
-    left :830px;
     cursor: pointer;
     display: inline;
+    border: 1px solid #828282;
+    color: #828282;
+    border-radius: 9.5px;
+    text-align: center;
 }
 .modifySlideWholePage{
-    width: 250px;
+    width: 190px;
     height: 100px;
-    background-color: aqua;
+    background-color: black;
+    color: white;
     position: absolute;
-    left: 50px;
+    left: 60px;
     top: -30px;
     cursor: default;
     display: none;
+}
+input{
+    color: white;
 }
 .modifySlideButtonMDC{
     width: 120px;
     height: 30px;
     position: relative;
-    left :100px;
+    left :50px;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
@@ -251,10 +379,12 @@ body{
 .AddPage{
     width: 250px;
     height: 150px;
-    background-color: aqua;
+    background-color: black;
     position: absolute;
     left :100px;
+    top: 0;
     cursor: default;
+    color: white;
 }
 .AddPageGeturl{
     display: flex;
@@ -266,24 +396,33 @@ body{
     top: 140px;
     width: max-content;
 }
-.AddPageAddButton, .AddPageCancelButton{
-    margin: 0 10px;
+.AddPageButtonAddCancel{
+    display: flex;
+}
+.AddPageAddButton{
+    margin: 0 50px;
+    cursor: pointer;
+}
+.AddPageCancelButton{
+    cursor: pointer;
 }
 
 /* 게임리스트 수정 */
 
 .modifyGameListbutton{
     position: absolute;
-    left: 550px;
-    top: 40px;
+    left: 450px;
+    top: 5px;
     cursor: pointer;
 }
 .modifyGameListbutton .modifyGameListWholePage{
     position: absolute;
-    left: 50px;
-    background-color: aqua;
+    top: 0;
+    left: 40px;
+    background-color: black;
     cursor: default;
     display: none;
+    color: white;
 }
 .modifyGameListbutton .modifyGameListButtonMDC{
     cursor: pointer;
@@ -294,17 +433,22 @@ body{
 /* 위는 개발자모드 */
 
 .wholeWrapMain{
-    width: 1200px;
-    margin: 0 auto;
+    width: 900px;
+    margin: -5px auto;
+}
+.main{
+    margin-left: 135px;
 }
 
 .wholeGameSlide{
-    width: 600px;
-    height: 200px;
+    width: 930px;
+    height: 270px;
     background-color: whitesmoke;
-    margin: 0 auto;
+    margin: 50px auto;
     position: relative;
     overflow: hidden;
+    margin-left: 135px;
+    border: 1px solid black;
 }
 .wholeGameSlideButton{
     background-color: white;
@@ -314,11 +458,11 @@ body{
 }
 
 .wholeGameSlideNextButton{
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     position: absolute;
-    top: 55px;
-    left: 540px;
+    top: 100px;
+    left: 890px;
     z-index: 1;
 }
 .wholeGameSlideNextButton:hover{
@@ -326,10 +470,10 @@ body{
     cursor: pointer;
 }
 .wholeGameSlidePrevButton{
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     position: absolute;
-    top: 55px;
+    top: 100px;
     left: 10px;
     z-index: 1;
 }
@@ -348,8 +492,8 @@ body{
     transition: 1s;
 }
 .wholeGameSlideul li img{
-    width: 600px;
-    height: 200px;
+    width: 930px;
+    height: 270px;
 }
 
 /* 임시 CSS 슬라이드쇼 구간 */
@@ -358,7 +502,6 @@ body{
     height: 30px;
     position: absolute;
     bottom: 10px;
-    background-color: #855cb3;
     display: flex;
     background-color: transparent;
 }
@@ -376,7 +519,7 @@ body{
     transition: 1s;
     background-color: transparent;
     cursor: pointer;
-    border: 1px solid black;
+    border: 0.5px solid black;
 }
 
 .wholeGameSlideLabel label .SliderBardiv{
@@ -388,7 +531,7 @@ body{
 }
 .wholeGameSlideLabel input:checked+label .SliderBardiv{
     width: 100%;
-    background-color: purple;
+    background-color: white;
     transition: 5s;
 }
 .wholeGameSlideLabel label .wholeGameSlideLabelInnerText{
@@ -402,15 +545,15 @@ body{
 /* 임시 CSS 슬라이드쇼 구간 */
 
 .wholeGameNav{
-    width: 600px;
+    width: 930px;
     margin: 50px auto 0;
-    background-color: whitesmoke;
     position: relative;
     height: 150px;
+    margin-left: 270px;
 }
 .wholeGameNav .wholegamement{
-    color: #855cb3;
-    font-size: 2em;
+    color: black;
+    font-size: 24px;
     font-weight: bold;
     margin: auto 20px;
 }
@@ -422,7 +565,8 @@ body{
     width: max-content;
     height: 30px;
     position: absolute;
-    right: 0;
+    top: 5px;
+    right: 550px;
     display: flex;
 }
 .searchText{
@@ -442,8 +586,8 @@ body{
 }
 .adminModeAdd{
     position: absolute;
-    left: 500px;
-    top: 40px;
+    left: 400px;
+    top: 5px;
 }
 .wholeGameNavSort{
     width: 500px;
@@ -462,59 +606,75 @@ body{
     cursor: pointer;
 }
 .wholeGameNavSort span:hover{
-    background-color: rgb(226, 204, 226);
+    background-color: black;
     color: white;
     font-weight: bold;
+    border-radius: 10px;
 }
 
 .wholeGameZone{
-    width: 600px;
+    width: 930px;
     height: max-content;
-    background-color: whitesmoke;
     margin: 0 auto;
     display: flex;
     align-items: center;
     position: relative;
+    margin-left: 270px;
 }
 .wholeGameZoneul{
     display: flex;
     flex-wrap: wrap;
     position: relative;
 }
+.wholeGameZoneulShadow{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    top: 4px;
+    left: 4px;
+    z-index: -1;
+}
+
 .wholeGameZoneul li{
     width: 260px;
     height: 300px;
     margin: 20px;
+    border: 1px solid black;
+    padding: 15px;
+    position: relative;
 }
 
 .wholeGameZoneul li img{
-    width: 260px;
-    height: 200px;
+    width: 100%;
+    height: 50%;
 }
 .wholeGameZoneul li .ListGameZone{
     width: 100%;
     height: 100px;
     background-color: white;
     position: relative;
-    color: #855cb3;
+    color: black;
 }
 .ListGameZone .ListGameName{
     position: absolute;
-    top: 5px;
+    top: 15px;
     left: 5px;
     font-weight: bold;
     font-size: 20px;
 }
 .ListGameZone .ListGameComment{
     position: absolute;
-    top: 40px;
+    top: 60px;
     left: 5px;
     font-size: 15px;
     color: black;
+    width: 100%;
+    border-bottom: solid 0.5px #d2d2d2;
 }
 .ListGameZone .ListGameHashTag{
     position: absolute;
-    top: 70px;
+    top: 100px;
     left: 5px;
     font-size: 10px;
     color: black;
