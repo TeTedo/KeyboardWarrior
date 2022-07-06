@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<link rel="stylesheet" href="mainpage.css">
+<link rel="stylesheet" href="./subgamepage.css">
 <body>
     <div class="top">
         <div class="topWrapper">
-            <a href="mainpage.html"><img src="../images/mainlogo.png" alt="">
+            <a href="../mainpage/mainpage.html"><img src="../images/mainlogo.png" alt="">
             </a>
             <div class="navmenuBar">
                 <a href="../subpage/subpage.html"><div class="navmenuCommunity">COMMUNITY</div></a>
@@ -55,6 +55,11 @@
                         <span class="mainWriteWrapper">
                             <span class="mainWriteContents">
                                 <span class="mainWriteContentsBtns">
+                                    <div class="chooseCategory">
+                                       <div class="Category">#공략</div>
+                                       <div class="Category">#일상</div>
+                                       <div class="Category">#거래</div>
+                                    </div>
                                     <span class="attributeBtns">
                                         <button id="addGifBtn">사진올리기</button>
                                     </span>
@@ -65,6 +70,17 @@
                         </span>
                         
                     </div>
+                    <div class="postHashTag">
+                            <div class="postHashTagtoClick">#공략
+                                <div class="postHashTagtoClickShadow"></div>
+                            </div>
+                            <div class="postHashTagtoClick">#일상
+                                <div class="postHashTagtoClickShadow"></div>
+                            </div>
+                            <div class="postHashTagtoClick">#거래
+                                <div class="postHashTagtoClickShadow"></div>
+                            </div>
+                        </div>
                         <div class="postWrapper" id="postWrapper">
                         <div class="postWrite">
                             <canvas class="likemotion"></canvas>
@@ -123,6 +139,7 @@
                             </span>
                             <div class="postWriteBottom">
                                 <div class="postWriteGameTag">
+                                    <span class="postWriteHashTag">#일상</span>
                                 </div>
                                 <div class="likerecommentbutton">
                                     <div class="likediv">
@@ -196,8 +213,19 @@
         </div>
     </div>
 </body>
-<script src="mainpage.js"></script>
-<script src='../main_effect.js'></script>
-<script src="../subgamepage/subgamepage.js"></script>
-
+<script src="../main_effect.js"></script>
+<script src="../posting_module.js"></script>
+<script src="./subgamepage.js"></script>
+<script>
+    function resize(obj) {
+    obj.style.height = "30px";
+    obj.style.height = (obj.scrollHeight) - 1
+    +"px";
+    }
+    function resize2(obj) {
+    obj.style.height = "15px";
+    obj.style.height = (obj.scrollHeight) - 1
+    +"px";
+}
+</script>
 </html>

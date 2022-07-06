@@ -13,7 +13,18 @@ forlogininput[0].onkeydown = function(e){
     else{
         forloginbutton.classList.remove("forloginactive")
     }
-    //아이디 입력수가 1일때 백스페이스 누르면 클래스리스트 제거
+    //엔터로 로그인
+    if(e.keyCode == 13){
+        if(forlogininput[0].value == "admin" && forlogininput[1].value == "admin"){
+            alert("테스트 모드입니다.")
+            let leftWrapper = document.querySelector(".leftWrapper")
+            let loginsuccess = document.querySelector(".loginsuccess")
+            leftWrapper.style.display = "none"
+            loginsuccess.style.display = "block"
+            
+        }
+    }
+
 }
 //키 다 입력시 길이 0이면 비활성화
 forlogininput[0].onkeyup = function(){
@@ -29,6 +40,17 @@ forlogininput[1].onkeydown = function(e){
     }
     else{
         forloginbutton.classList.remove("forloginactive")
+    }
+    //엔터로 로그인
+    if(e.keyCode == 13){
+        if(forlogininput[0].value == "admin" && forlogininput[1].value == "admin"){
+            alert("테스트 모드입니다.")
+            let leftWrapper = document.querySelector(".leftWrapper")
+            let loginsuccess = document.querySelector(".loginsuccess")
+            leftWrapper.style.display = "none"
+            loginsuccess.style.display = "block"
+            
+        }
     }
 }
 //키 다 입력시 길이 0이면 비활성화
@@ -48,6 +70,6 @@ forloginbutton.onclick= function(){
         let loginsuccess = document.querySelector(".loginsuccess")
         leftWrapper.style.display = "none"
         loginsuccess.style.display = "block"
+        
     }
-
 }

@@ -76,7 +76,10 @@ let AboutList = (
             tempGameComment.classList.add("ListGameComment");
             let tempGameHashTag = document.createElement("div");
             tempGameHashTag.classList.add("ListGameHashTag");
+            let tempwholeGameZoneulShadow = document.createElement("div");
+            tempwholeGameZoneulShadow.classList.add("wholeGameZoneulShadow");
             wholeGameZoneul.appendChild(templist);
+            templist.appendChild(tempwholeGameZoneulShadow);
             templist.appendChild(tempa);
             templist.appendChild(tempGameZone);
             tempa.appendChild(tempimg); 
@@ -384,9 +387,23 @@ modifyGameListbutton.onclick = function(){
 function menufilteringFun(){
     for(let i = 0;i<wholeGameNavSortFilter.length;i++){
         wholeGameNavSortFilter[i].onclick = function(){
+            if(!wholeGameNavSortFilter[i].classList.contains('filterSelected')){
+                for(let j = 0 ; j<wholeGameNavSortFilter.length;j++){
+                    //모든 클래스 제거
+                    wholeGameNavSortFilter[j].classList.remove("filterSelected")
+                }
+                wholeGameNavSortFilter[i].classList.add("filterSelected")
+            }
+            else{
+                wholeGameNavSortFilter[i].classList.remove("filterSelected")
+                //전체보여주기
+                for(let h = 0; h<wholeGameNavSortFilter.length;h++){
+                    wholeGameZoneullist[h].style.display = "block"
+                }
+            }
             for(let k = 0; k<wholeGameZoneullist.length; k++){
                 wholeGameZoneullist[k].style.display = "none"
-                if(wholeGameZoneullist[k].classList.contains(wholeGameNavSortFilter[i].innerHTML)){
+                if(wholeGameZoneullist[k].classList.contains(wholeGameNavSortFilter[i].innerText)){
                     wholeGameZoneullist[k].style.display = "block"
                 }
             }
@@ -394,3 +411,36 @@ function menufilteringFun(){
     }
 }
 menufilteringFun();
+
+//게임 검색기능
+let searchText = document.querySelector('.searchText');
+let searchImg = document.querySelector('.searchImg');
+let gameSearchFun = function(){
+    searchImg.onclick = function(){
+        let searchSomething = searchText.value;
+        let searchSomethingreg = new RegExp(searchSomething,'igm');
+        for(let i = 0; i<wholeGameZoneullist.length; i++){
+            let tosearch = wholeGameZoneullist[i].querySelector('.ListGameName').innerHTML;
+            wholeGameZoneullist[i].style.display = "none"
+            if(tosearch.match(searchSomethingreg)){
+                wholeGameZoneullist[i].style.display = "block"
+            }
+        }
+        searchText.value = ""
+    }
+    searchText.onkeydown = function(e){
+        if(e.keyCode == 13){
+        let searchSomething = searchText.value;
+        let searchSomethingreg = new RegExp(searchSomething,'igm');
+        for(let i = 0; i<wholeGameZoneullist.length; i++){
+            let tosearch = wholeGameZoneullist[i].querySelector('.ListGameName').innerHTML;
+            wholeGameZoneullist[i].style.display = "none"
+            if(tosearch.match(searchSomethingreg)){
+                wholeGameZoneullist[i].style.display = "block"
+            }
+        }
+        searchText.value = ""
+        }
+    }
+}
+gameSearchFun();

@@ -832,6 +832,21 @@ let mainSearchFun = function(){
                 postWritesArr[i].style.display = "block"
             }
         }
+        mainSearch.value = ""
+    }
+    mainSearch.onkeydown = function(e){
+        if(e.keyCode == 13){
+            let searchSomething = mainSearch.value;
+            let searchSomethingreg = new RegExp(searchSomething,'igm');
+            for(let i = 0; i<postWritesArr.length; i++){
+                let tosearch = postWritesArr[i].querySelector('.modifyTextarea').value;
+                postWritesArr[i].style.display = "none"
+                if(tosearch.match(searchSomethingreg)){
+                    postWritesArr[i].style.display = "block"
+                }
+            }
+            mainSearch.value = ""
+        }
     }
 }
 mainSearchFun();
