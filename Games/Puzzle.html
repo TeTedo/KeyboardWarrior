@@ -15,6 +15,12 @@
       .btns_level{
         display: none;
       }
+      .timer{
+        display: none;
+      }
+      .record{
+        display: none;
+      }
       img{
         width: 500px;
         height: 500px;
@@ -42,6 +48,8 @@
     <div class="btns_start">
       <button btn-for='start'>시작</button>
     </div>
+    <div class="timer"></div>
+    <div class="record"></div>
     <canvas class="canvasMixed" width="500" height="500" style="display:none ;">이 브라우저는 캔버스를 지원하지 않습니다.</canvas>
     <canvas class="canvasLined" width="500" height="500" style="display:none ;" >이 브라우저는 캔버스를 지원하지 않습니다.</canvas>    
     
@@ -62,7 +70,10 @@
     const btns_start = document.querySelector('.btns_start');
     const btns_level = document.querySelector('.btns_level')
     const input_div = document.querySelector('.input_div')
+    const timer = document.querySelector('.timer')
+    const record = document.querySelector('.record')
     let putPuzzleImgUrl
+    let timeCounter
     
     //이미지경로 첨부해서 실행시킬때
     btnUrl.onclick = function(){
@@ -84,325 +95,329 @@
     
     //시작버튼 누르면 실행되는거
     function start(level,puzzleImgUrl){
-        console.log('실행됨')
-        const ImgElem = new Image(500,500); //이미지 생성자
-        // ImgElem.src = '../images/puzzle.png';
-        ImgElem.src = puzzleImgUrl;
-        ImgElem.onload = function(){
-      //원본이미지그리기
-      context.drawImage(ImgElem, 0, 0, 500, 500)
-      contextLined.drawImage(ImgElem,0,0,500,500)
+      const ImgElem = new Image(500,500); //이미지 생성자
+      ImgElem.src = puzzleImgUrl;
+      ImgElem.onload = function(){
+        //원본이미지그리기
+        context.drawImage(ImgElem, 0, 0, 500, 500)
+        contextLined.drawImage(ImgElem,0,0,500,500)
 
-      //퍼즐난이도설정
+        //퍼즐난이도설정
 
-      let puzzleSize = 500/level
+        let puzzleSize = 500/level
 
-      //원본이미지 받아서 섞은이미지그리기
-      let randomNumArr1 = new Array()
-      let b = new Array()
-      let hunnitArr = new Array()
-      
-      function random_NumArr(Arr){
+        //원본이미지 받아서 섞은이미지그리기
+        let randomNumArr1 = new Array()
+        let b = new Array()
+        let hunnitArr = new Array()
+        
+        function random_NumArr(Arr){
 
-        for (let i = 0; i < (500/puzzleSize); i++){
-          randomNum = Math.floor(Math.random()*(500/puzzleSize))
-          if(Arr.includes(randomNum)){
-            i--;
+          for (let i = 0; i < (500/puzzleSize); i++){
+            randomNum = Math.floor(Math.random()*(500/puzzleSize))
+            if(Arr.includes(randomNum)){
+              i--;
+            }
+            else{
+              Arr.push(randomNum);
+            }
           }
-          else{
-            Arr.push(randomNum);
-          }
+          return Arr
         }
-        return Arr
-      }
-      random_NumArr(randomNumArr1)
+        random_NumArr(randomNumArr1)
 
-      for (let i = 0; i < (500/puzzleSize); i++) {
-        for (let k = 0; k < (500/puzzleSize); k++) {
-          a = new Array()
-          a.push(randomNumArr1[i])
-          a.push(randomNumArr1[k])
-          b.push(a)
-        }
-      }
-      for (let i = 0; i < (500/puzzleSize)**2; i++){
-          randomNum = Math.floor(Math.random()*((500/puzzleSize)**2))
-          if(hunnitArr.includes(randomNum)){
-            i--;
-          }
-          else{
-            hunnitArr.push(randomNum);
+        for (let i = 0; i < (500/puzzleSize); i++) {
+          for (let k = 0; k < (500/puzzleSize); k++) {
+            a = new Array()
+            a.push(randomNumArr1[i])
+            a.push(randomNumArr1[k])
+            b.push(a)
           }
         }
+        for (let i = 0; i < (500/puzzleSize)**2; i++){
+            randomNum = Math.floor(Math.random()*((500/puzzleSize)**2))
+            if(hunnitArr.includes(randomNum)){
+              i--;
+            }
+            else{
+              hunnitArr.push(randomNum);
+            }
+          }
 
-      let k
-      const ImgElemRe = new Image()
-      const url2 = canvas.toDataURL('image/png')
-      ImgElemRe.src = url2
-      ImgElemRe.onload = function(){
-        for (let i = 0; i < (500/puzzleSize)**2; i++) {
-            k=hunnitArr[i]
-            contextMixed.drawImage(ImgElemRe, puzzleSize*b[i][0], puzzleSize*b[i][1], puzzleSize, puzzleSize, puzzleSize*b[k][0], puzzleSize*b[k][1], puzzleSize, puzzleSize) //이미지의 100,100위치에서 200,200만큼의 크기를 잘라서 캔버스의 0,0위치에 100,100크기로 그린다
-            // contextMixed.drawImage(ImgElem,0,0,500,500)
-              ///줄긋기
-              for (let i = 0; i <= 500/puzzleSize; i++) {
-                contextMixed.beginPath();
-                //가로줄
-                contextMixed.moveTo(puzzleSize*i,0);
-                contextMixed.lineTo(puzzleSize*i,500);
-                contextMixed.stroke()
-                //세로줄
-                contextMixed.moveTo(0,puzzleSize*i)
-                contextMixed.lineTo(500,puzzleSize*i);
-                contextMixed.stroke() 
-                
-                contextLined.beginPath();
-                contextLined.moveTo(puzzleSize*i,0);
-                contextLined.lineTo(puzzleSize*i,500);
-                contextLined.stroke()
-                contextLined.moveTo(0,puzzleSize*i)
-                contextLined.lineTo(500,puzzleSize*i);
-                contextLined.stroke()  
-              }
-        }
-      }
-
-      //퍼즐만들기
-      let btnFor
-      btns_start.onclick = function(e){
-        console.log('시작버튼눌림')
-        btnFor=e.target.getAttribute('btn-for')
-        switch (btnFor) {
-          case 'start':
-            console.log('start버튼눌림')
-            let rotateCount = 0
-            const ImgElem2 = new Image();
-            
-            //섞은이미지 받아오기
-            const url = canvasMixed.toDataURL('image/png')
-            ImgElem2.src = url
-            ImgElem2.onload = function(){
-              // 섞은이미지 canvas2에 그리기
-              let rotationValue = 0
-              if (rotateCount==0) {
-                let rotate = function(){
-                  context2.resetTransform();
-                  context2.clearRect(0,0,500,500)
-                  context2.translate(250,250);
-                  context2.rotate(radian(rotationValue))
-                  context2.drawImage(ImgElem2, 0, 0, 250, 250, -250,-250,250,250)
-                  context2.drawImage(ImgElem2, 250, 0, 250, 250, 0,-250,250,250)
-                  context2.drawImage(ImgElem2, 0, 250, 250, 250, -250,0,250,250)
-                  context2.drawImage(ImgElem2, 250, 250, 250, 250, 0,0,250,250)
-              
-                  if(rotationValue==360){
-                    context2.resetTransform();
-                    return;
-                  }
-                  rotationValue +=5;
-                  requestAnimationFrame(rotate) 
+        let k
+        const ImgElemRe = new Image()
+        const url2 = canvas.toDataURL('image/png')
+        ImgElemRe.src = url2
+        ImgElemRe.onload = function(){
+          for (let i = 0; i < (500/puzzleSize)**2; i++) {
+              k=hunnitArr[i]
+              contextMixed.drawImage(ImgElemRe, puzzleSize*b[i][0], puzzleSize*b[i][1], puzzleSize, puzzleSize, puzzleSize*b[k][0], puzzleSize*b[k][1], puzzleSize, puzzleSize) //이미지의 100,100위치에서 200,200만큼의 크기를 잘라서 캔버스의 0,0위치에 100,100크기로 그린다
+              // contextMixed.drawImage(ImgElem,0,0,500,500)
+                ///줄긋기
+                for (let i = 0; i <= 500/puzzleSize; i++) {
+                  contextMixed.beginPath();
+                  //가로줄
+                  contextMixed.moveTo(puzzleSize*i,0);
+                  contextMixed.lineTo(puzzleSize*i,500);
+                  contextMixed.stroke()
+                  //세로줄
+                  contextMixed.moveTo(0,puzzleSize*i)
+                  contextMixed.lineTo(500,puzzleSize*i);
+                  contextMixed.stroke() 
+                  
+                  contextLined.beginPath();
+                  contextLined.moveTo(puzzleSize*i,0);
+                  contextLined.lineTo(puzzleSize*i,500);
+                  contextLined.stroke()
+                  contextLined.moveTo(0,puzzleSize*i)
+                  contextLined.lineTo(500,puzzleSize*i);
+                  contextLined.stroke()  
                 }
-                rotate();
-                rotateCount++       
-              }
-              else{
-                  context2.drawImage(ImgElem2, 0, 0, 500, 500)
-              }
-              
-              let mousePos = {x: 0, y:0}
-              let mouseDown
-              let clickStart = {x: 0, y: 0}
-              let clickEnd = {x:0, y:0}
-              let originImgData 
-              let puzzleImgData 
-              let len 
-              let correctCount
+          }
+        }
 
-              canvas2.onmousedown = function(e){ 
-                mousePos.x = e.offsetX;
-                mousePos.y = e.offsetY;
+        //퍼즐만들기
+        let btnFor
+        btns_start.onclick = function(e){
+          btns_start.style.display = 'none'
+          timer.style.display = 'block'
+
+          btnFor=e.target.getAttribute('btn-for')
+          switch (btnFor) {
+            case 'start':
+              let rotateCount = 0
+              const ImgElem2 = new Image();
+              
+              //섞은이미지 받아오기
+              let url = canvasMixed.toDataURL('image/png')
+              ImgElem2.src = url
+              ImgElem2.onload = function(){
+                // 섞은이미지 canvas2에 그리기
+                let rotationValue = 0
+                if (rotateCount==0) {
+                  let rotate = function(){
+                    context2.resetTransform();
+                    context2.clearRect(0,0,500,500)
+                    context2.translate(250,250);
+                    context2.rotate(radian(rotationValue))
+                    context2.drawImage(ImgElem2, 0, 0, 250, 250, -250,-250,250,250)
+                    context2.drawImage(ImgElem2, 250, 0, 250, 250, 0,-250,250,250)
+                    context2.drawImage(ImgElem2, 0, 250, 250, 250, -250,0,250,250)
+                    context2.drawImage(ImgElem2, 250, 250, 250, 250, 0,0,250,250)
                 
-                for(let i = 0; i<500/puzzleSize ; i++){
-                  for(let k = 0; k<500/puzzleSize; k++){
-                    if (mousePos.x>puzzleSize*i &&
-                        mousePos.x<puzzleSize*(i+1) &&
-                        mousePos.y>puzzleSize*k &&
-                        mousePos.y<puzzleSize*(k+1)
-                        ) {
-                        clickStart = {x: i, y: k};
-                        mouseDown = true;
+                    if(rotationValue==360){
+                      context2.resetTransform();
+
+                      //타이머시작
+                      let time = 0;
+                      let minute ;
+                      let sec ;
+                      let secDivBy100;
+                      timeCounter = setInterval(() => {
+                        minute = parseInt(time/6000);
+                        sec = parseInt((time%6000)/100);
+                        secDivBy100 = time%100;
+                        timer.innerHTML = `${minute}분 ${sec}초 ${secDivBy100}`; 
+                        time++;
                         
+                        if (correctCount>980000){
+                          clearInterval(timeCounter)
+                        }
+                      }, 10);  
+                      
+                      return timeCounter;
+                    }
+                    rotationValue +=5;
+                    requestAnimationFrame(rotate) 
+                  }
+                  rotate();
+                  rotateCount++ 
+                }
+                else{
+                    context2.drawImage(ImgElem2, 0, 0, 500, 500)
+                }
+                
+                let mousePos = {x: 0, y:0}
+                let mouseDown
+                let clickStart = {x: 0, y: 0}
+                let clickEnd = {x:0, y:0}
+                let originImgData 
+                let puzzleImgData 
+                let len 
+                let correctCount
+
+                canvas2.onmousedown = function(e){ 
+                  mousePos.x = e.offsetX;
+                  mousePos.y = e.offsetY;
+                  
+                  for(let i = 0; i<500/puzzleSize ; i++){
+                    for(let k = 0; k<500/puzzleSize; k++){
+                      if (mousePos.x>puzzleSize*i &&
+                          mousePos.x<puzzleSize*(i+1) &&
+                          mousePos.y>puzzleSize*k &&
+                          mousePos.y<puzzleSize*(k+1)
+                          ) {
+                          clickStart = {x: i, y: k};
+                          mouseDown = true;
+                          
+                        }
+                      }
+                    }
+                  }
+                canvas2.onmousemove = function(e){ 
+                  mousePos.x = e.offsetX;
+                  mousePos.y = e.offsetY;
+                  
+                  if (mouseDown){
+                    
+                  }
+                }
+                canvas2.onmouseup = function(e){ 
+                  mousePos.x = e.offsetX;
+                  mousePos.y = e.offsetY;
+                  for(let i = 0; i<500/puzzleSize ; i++){
+                      for(let k = 0; k<500/puzzleSize; k++){
+                      if (mousePos.x>puzzleSize*i &&
+                          mousePos.x<puzzleSize*(i+1) &&
+                          mousePos.y>puzzleSize*k &&
+                          mousePos.y<puzzleSize*(k+1)
+                          ) {
+                          clickEnd = {x: i, y: k}
+
+                          //드래그 끝난점에 있는 퍼즐이미지 지워주고
+                          context2.clearRect(puzzleSize*clickEnd.x, puzzleSize*clickEnd.y, puzzleSize, puzzleSize)
+                          //클릭 시작점에있는 퍼즐 이미지 드래그 끝난점에 넣어주고  
+                          context2.drawImage(ImgElem2, puzzleSize*clickStart.x, puzzleSize*clickStart.y, puzzleSize, puzzleSize, puzzleSize*clickEnd.x, puzzleSize*clickEnd.y, puzzleSize, puzzleSize);
+                          //클릭 시작점에 있던 퍼즐 이미지 지워주고
+                          context2.clearRect(puzzleSize*clickStart.x, puzzleSize*clickStart.y, puzzleSize, puzzleSize)
+                          //클릭 끝난점에 있는 퍼즐 이미지 클릭 시작점에 넣어줌
+                          context2.drawImage(ImgElem2, puzzleSize*clickEnd.x, puzzleSize*clickEnd.y, puzzleSize, puzzleSize, puzzleSize*clickStart.x, puzzleSize*clickStart.y, puzzleSize, puzzleSize); 
+
+                          //좌표 초기화시켜주고
+                          clickStart = null;
+                          clickEnd = null;
+                          //바꾼이미지 다시 저장해서 넣어주기
+                          url = canvas2.toDataURL('image/png')
+                          ImgElem2.src = url
+
+                          mouseDown = false
+                          
+                          //이미지 비교해서 퍼즐 완성됐는지 확인
+                          originImgData = contextLined.getImageData(0,0,500,500).data;
+                          puzzleImgData = context2.getImageData(0,0,500,500).data;
+                          len = originImgData.length
+                          correctCount = 0;
+                          for(let i = 0; i<len; i++){
+                            if(originImgData[i]===puzzleImgData[i]){
+                              correctCount++
+                            }
+                          }
+
+                          //퍼즐 다 맞췄을때
+                          if(correctCount > 980000){
+                            timeRecord = timer.innerHTML;
+                            record.innerHTML = timeRecord;
+                            timer.style.display='none';
+                            record.style.display='block';
+                            const SuccessedImgElm = new Image();
+                            const url3 = canvas.toDataURL('image/png')
+                            SuccessedImgElm.src = url3
+                            SuccessedImgElm.onload = function(){
+
+                              let rotate = function(){
+                                context2.resetTransform();
+                                context2.clearRect(0,0,500,500)
+                                context2.translate(250,250);
+                                context2.rotate(radian(rotationValue))
+
+
+                                context2.drawImage(SuccessedImgElm, 0, 0, 250, 250, -250,-250,250,250)
+                                context2.drawImage(SuccessedImgElm, 250, 0, 250, 250, 0,-250,250,250)
+                                context2.drawImage(SuccessedImgElm, 0, 250, 250, 250, -250,0,250,250)
+                                context2.drawImage(SuccessedImgElm, 250, 250, 250, 250, 0,0,250,250)
+                            
+                                if(rotationValue==360){
+                                  context2.resetTransform();
+                                  setTimeout(() => {
+                                    alert(`성공! 기록: ${timeRecord}`)                                    
+                                    location.reload()
+                                  }, 1);
+                                  return;
+                                }
+                                rotationValue +=3;
+                                requestAnimationFrame(rotate) 
+                              }
+                              rotate()                             
+                            }
+                          }
+                          
+                          //전체한번 지워주고
+                          context2.clearRect(0, 0, 500, 500)
                       }
                     }
                   }
                 }
-              canvas2.onmousemove = function(e){ 
-                mousePos.x = e.offsetX;
-                mousePos.y = e.offsetY;
-                
-                if (mouseDown){
-                  
-                }
               }
-              canvas2.onmouseup = function(e){ 
-                mousePos.x = e.offsetX;
-                mousePos.y = e.offsetY;
-                for(let i = 0; i<500/puzzleSize ; i++){
-                    for(let k = 0; k<500/puzzleSize; k++){
-                    if (mousePos.x>puzzleSize*i &&
-                        mousePos.x<puzzleSize*(i+1) &&
-                        mousePos.y>puzzleSize*k &&
-                        mousePos.y<puzzleSize*(k+1)
-                        ) {
-                        clickEnd = {x: i, y: k}
-                          
-                        //드래그 끝난점에 있는 퍼즐이미지 클릭 시작점에넣어주기
-                        // context2.drawImage(ImgElem2, 100*clickEnd.x, 100*clickEnd.y, 100, 100, 100*clickStart.x, 100*clickStart.y, 100, 100);  
-                        //저장된 퍼즐이미지 클릭 시작점에 넣어주기
-                        // context2.drawImage(ImgElem2, 0, 500, 100, 100, 100*clickStart.x, 100*clickStart.y, 100, 100); 
-
-                        //드래그 끝난점에 있는 퍼즐이미지 지워주고
-                        context2.clearRect(puzzleSize*clickEnd.x, puzzleSize*clickEnd.y, puzzleSize, puzzleSize)
-                        //클릭 시작점에있는 퍼즐 이미지 드래그 끝난점에 넣어주고  
-                        context2.drawImage(ImgElem2, puzzleSize*clickStart.x, puzzleSize*clickStart.y, puzzleSize, puzzleSize, puzzleSize*clickEnd.x, puzzleSize*clickEnd.y, puzzleSize, puzzleSize);
-                        //클릭 시작점에 있던 퍼즐 이미지 지워주고
-                        context2.clearRect(puzzleSize*clickStart.x, puzzleSize*clickStart.y, puzzleSize, puzzleSize)
-                        //클릭 끝난점에 있는 퍼즐 이미지 클릭 시작점에 넣어줌
-                        context2.drawImage(ImgElem2, puzzleSize*clickEnd.x, puzzleSize*clickEnd.y, puzzleSize, puzzleSize, puzzleSize*clickStart.x, puzzleSize*clickStart.y, puzzleSize, puzzleSize);  
-                        
-                        
-
-                        //좌표 초기화시켜주고
-                        clickStart = null;
-                        clickEnd = null;
-                        //바꾼이미지 다시 저장해서 넣어주기
-                        const url = canvas2.toDataURL('image/png')
-                        ImgElem2.src = url
-
-                        mouseDown = false
-                        
-                        //이미지 비교해서 완성됐는지 확인
-                        originImgData = contextLined.getImageData(0,0,500,500).data;
-                        puzzleImgData = context2.getImageData(0,0,500,500).data;
-                        len = originImgData.length
-                        correctCount = 0;
-                        for(let i = 0; i<len; i++){
-                          if(originImgData[i]===puzzleImgData[i]){
-                            correctCount++
-                          }
-                        }
-
-                        if(correctCount > 980000){
-                          const SuccessedImgElm = new Image();
-                          const url3 = canvas.toDataURL('image/png')
-                          SuccessedImgElm.src = url3
-                          SuccessedImgElm.onload = function(){
-
-                          let rotate = function(){
-                            context2.resetTransform();
-                            context2.clearRect(0,0,500,500)
-                            context2.translate(250,250);
-                            context2.rotate(radian(rotationValue))
-
-
-                            context2.drawImage(SuccessedImgElm, 0, 0, 250, 250, -250,-250,250,250)
-                            context2.drawImage(SuccessedImgElm, 250, 0, 250, 250, 0,-250,250,250)
-                            context2.drawImage(SuccessedImgElm, 0, 250, 250, 250, -250,0,250,250)
-                            context2.drawImage(SuccessedImgElm, 250, 250, 250, 250, 0,0,250,250)
-                        
-                            if(rotationValue==360){
-                              context2.resetTransform();
-                              return;
-                            }
-                            rotationValue +=3;
-                            requestAnimationFrame(rotate) 
-                          }
-
-                          rotate()
-                          setTimeout(() => {
-                            alert('성공!')
-                            location.reload()
-                          }, 2000);
-                          return
-                          }
-                        }
-                        
-                        //전체한번 지워주고
-                        context2.clearRect(0, 0, 500, 500)
-                    }
-                  }
-                }
-              }
-            }
-            break;
-        
-          case 'mix':
-            console.log('섞기버튼눌림')
-            break;
-          return ImgElem2
+              break;
+          
+            case 'mix':
+              break;
+            return ImgElem2
+          }
         }
+        
       }
-      
-    }
     }
     
     //레벨선택버튼 누르면 시작되는거
     function levelSelection(putPuzzleImgUrl){
         btns_level.onclick = function(e){
-        btnLevel=e.target.getAttribute('btn-level')
-        switch (btnLevel) {
-            case '4by4':
-                context.clearRect(0,0,500,500)
-                contextMixed.clearRect(0,0,500,500)
-                contextLined.clearRect(0,0,500,500)
-                context2.clearRect(0,0,500,500)
-                btns_start.style.display = 'block'
-                btns_level.style.display = 'none'
-                start(4,putPuzzleImgUrl)
-                break;
-        
-            case '5by5':
-            context.clearRect(0,0,500,500)
-                contextMixed.clearRect(0,0,500,500)
-                contextLined.clearRect(0,0,500,500)
-                context2.clearRect(0,0,500,500)
-                btns_start.style.display = 'block'
-                btns_level.style.display = 'none'
-                start(5,putPuzzleImgUrl)
-                break;
+          btnLevel=e.target.getAttribute('btn-level')
+          switch (btnLevel) {
+              case '4by4':
+                  context.clearRect(0,0,500,500)
+                  contextMixed.clearRect(0,0,500,500)
+                  contextLined.clearRect(0,0,500,500)
+                  context2.clearRect(0,0,500,500)
+                  btns_start.style.display = 'block'
+                  btns_level.style.display = 'none'
+                  start(4,putPuzzleImgUrl)
+                  break;
+          
+              case '5by5':
+              context.clearRect(0,0,500,500)
+                  contextMixed.clearRect(0,0,500,500)
+                  contextLined.clearRect(0,0,500,500)    
+                  context2.clearRect(0,0,500,500)
+                  btns_start.style.display = 'block'
+                  btns_level.style.display = 'none'
+                  start(5,putPuzzleImgUrl)
+                  break;
 
-            case '8by8':
-            context.clearRect(0,0,500,500)
-                contextMixed.clearRect(0,0,500,500)
-                contextLined.clearRect(0,0,500,500)
-                context2.clearRect(0,0,500,500)
-                btns_start.style.display = 'block'
-                btns_level.style.display = 'none'
-                start(8,putPuzzleImgUrl)
-                break;
-                
-            case '10by10':
-            context.clearRect(0,0,500,500)
-                contextMixed.clearRect(0,0,500,500)
-                contextLined.clearRect(0,0,500,500)
-                context2.clearRect(0,0,500,500)
-                btns_start.style.display = 'block'
-                btns_level.style.display = 'none'
-                start(10,putPuzzleImgUrl)
-                break;
+              case '8by8':
+              context.clearRect(0,0,500,500)
+                  contextMixed.clearRect(0,0,500,500)
+                  contextLined.clearRect(0,0,500,500)
+                  context2.clearRect(0,0,500,500)
+                  btns_start.style.display = 'block'
+                  btns_level.style.display = 'none'
+                  start(8,putPuzzleImgUrl)
+                  break;
+                  
+              case '10by10':
+              context.clearRect(0,0,500,500)
+                  contextMixed.clearRect(0,0,500,500)
+                  contextLined.clearRect(0,0,500,500)
+                  context2.clearRect(0,0,500,500)
+                  btns_start.style.display = 'block'
+                  btns_level.style.display = 'none'
+                  start(10,putPuzzleImgUrl)
+                  break;
+          }
         }
-    }
-    }
+    } 
     
     </script>
-
-  <!-- <script id="canvasTemp">
-    const canvasTemp = document.querySelector('.canvasTemp');
-    const contexTemp = canvasTemp.getContext('2d');
-    const ImgTemp = new Image()
-  </script> -->
-  
-  
 </html>
 
 
