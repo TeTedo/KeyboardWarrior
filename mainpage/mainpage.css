@@ -479,6 +479,7 @@ body{
     padding: 30px;
     position: relative;
     border: 0.3px solid black;
+    padding-bottom: 0;
 }
 .likemotion{
     width: 100%;
@@ -501,26 +502,26 @@ body{
     left: 7px;
     z-index: -1;
 }
-.main .postWrite .postWriteWrapper{
-    display: flex;;
-    
+
+.postWriteBottom{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #dbdbdb;
+    height: 50px;
+    margin-left: 20px;
+    width: 100%;
 }
 .postWriteGameTag{
-    position: absolute;
-    left: 50px;
-    bottom: 10px;
     opacity: 0.5;
+    display: inline;
 }
 .postWriteGameTag span{
     cursor: pointer;
 }
 .likerecommentbutton{
-    position: absolute;
-    bottom: 2px;
     height: 30px;
     display: flex;
     width: 300px;
-    right: -40px;
 }
 .likediv, .recommentdiv{
     width: 100px;
@@ -570,6 +571,54 @@ body{
     border-radius: 500px;
     position: absolute;
     display: inline;
+}
+.recommentBox{
+    width: 100%;
+    padding: 20px;
+    align-items: center;
+}
+.forWriteRecomment{
+    display: flex;
+}
+.recommentBoxinput{
+    border: none;
+    border-bottom: 1px solid #c4c4c4;
+    resize: none;
+    font-size: 17px;
+    padding-left: 3px;
+}
+.recommentPost{
+    margin-left : 10px;
+    border: 1px solid black;
+    border-radius: 15px;
+    width: 50px;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.recommentrepository{
+    width: 80%;
+    margin-top: 20px;
+    border-bottom: 1px solid #c4c4c4;
+    font-size: 20px;
+    display: flex;
+    padding-bottom: 5px;
+    position: relative;
+}
+.recommentrepositoryTimeStamp{
+    position: absolute;
+    right: -90px;
+    top: 10px;
+    font-size: 15px;
+}
+.recommentrepository img{
+    width: 30px;
+    border-radius: 500px;
+}
+.recommentrepository .recommentComment{
+    margin-left: 10px;
 }
 .main .postWrite .postWriteContents{
     /* 여기사이즈 조절 */

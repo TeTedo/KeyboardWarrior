@@ -22,7 +22,10 @@ let likemotion = document.querySelectorAll(".likemotion");
 let likedivcount = document.querySelectorAll(".likedivcount");
 let likedivimg = document.querySelectorAll(".likediv img");
 let likediv = document.querySelectorAll(".likediv");
+
+//댓글 태그
 let recommentdiv = document.querySelectorAll(".recommentdiv");
+let recommentdivcount = document.querySelectorAll(".recommentdivcount");
 
 //해쉬태그 관련
 let chooseCategory = document.querySelector(".chooseCategory");
@@ -654,3 +657,10 @@ let hashTagFilter = function(){
     }
 }
 hashTagFilter();
+
+//댓글누르기 function
+for(let i = 0 ; i<postWritesArr.length; i++){
+    recommentdiv.onclick = function(){
+        
+    }
+}
