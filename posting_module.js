@@ -32,7 +32,18 @@ let chooseCategory = document.querySelector(".chooseCategory");
 let Category = document.querySelectorAll(".Category");
 let postHashTagtoClick = document.querySelectorAll(".postHashTagtoClick");
 
+//현재시간 띄우기
+let tempDate = new Date().toLocaleDateString();
+let tempHours = pad(new Date().getHours());
+let tempMinutes = pad(new Date().getMinutes());
 
+function pad(number){
+    let str = "" + number;
+    if(str.length==1){
+        str = "0" + number
+    }
+    return str
+}
 
 //포스팅 작성 모듈
 let PostGnb=(
@@ -48,7 +59,10 @@ let PostGnb=(
 
             let templikemotion = document.createElement('canvas');
             templikemotion.classList.add("likemotion");
+            //좋아요 관련
 
+            let temppostWriteBottom = document.createElement('div');
+            temppostWriteBottom.classList.add("postWriteBottom");
             let templikerecommentbutton = document.createElement('div');
             templikerecommentbutton.classList.add("likerecommentbutton");
             let templikediv = document.createElement('div');
@@ -103,13 +117,26 @@ let PostGnb=(
             temppostWriteHashTag.classList.add('postWriteHashTag');
 
 
+            //댓글창
+            let temprecommentBox = document.createElement('div');
+            temprecommentBox.classList.add('recommentBox');
+            let tempforWriteRecomment = document.createElement('div');
+            tempforWriteRecomment.classList.add('forWriteRecomment');
+            let temprecommentBoxinput = document.createElement('textarea');
+            temprecommentBoxinput.classList.add('recommentBoxinput');
+            let temprecommentPost = document.createElement('div');
+            temprecommentPost.classList.add('recommentPost');
+
             super_id.appendChild(postWrite);
             postWrite.appendChild(templikemotion);
             postWrite.appendChild(temppostWirteShadow);
             postWrite.appendChild(temppostWriteTop);
             postWrite.appendChild(postWriteWrapper)
-            postWrite.appendChild(temppostWriteGameTag);
-            postWrite.appendChild(templikerecommentbutton);
+            //좋아요 관련
+            postWrite.appendChild(temppostWriteBottom)
+            temppostWriteBottom.appendChild(temppostWriteGameTag);
+            temppostWriteBottom.appendChild(templikerecommentbutton);
+            postWrite.appendChild(temprecommentBox);
             temppostWriteTop.appendChild(profileImg);
             temppostWriteTop.appendChild(tempprofileID);
             temppostWriteTop.appendChild(tempprofileTime);
@@ -121,6 +148,11 @@ let PostGnb=(
             temprecommentdiv.appendChild(temprecommentdivimg)
             templikediv.appendChild(templikedivcount)
             temprecommentdiv.appendChild(temprecommentdivcount)
+            //댓글
+            temprecommentBox.appendChild(tempforWriteRecomment)
+            tempforWriteRecomment.appendChild(temprecommentBoxinput)
+            tempforWriteRecomment.appendChild(temprecommentPost)
+
             postWriteContents.appendChild(postWriteContentsBtns)
             postWriteContentsBtns.appendChild(mainBtns)
             postWriteContentsBtns.appendChild(modifyAddImgBtn)
@@ -136,21 +168,15 @@ let PostGnb=(
             temprecommentdivcount.innerHTML = 0;
             //테스트용 ID
             tempprofileID.innerHTML = "테스트ID"
-            //현재시간 띄우기
-            let tempDate = new Date().toLocaleDateString();
-            let tempHours = pad(new Date().getHours());
-            let tempMinutes = pad(new Date().getMinutes());
             
-            function pad(number){
-                let str = "" + number;
-                if(str.length==1){
-                    str = "0" + number
-                }
-                return str
-            }
 
             tempprofileTime.innerHTML = tempDate + " " + tempHours + ":"+ tempMinutes;
 
+            //댓글창
+            temprecommentBoxinput.setAttribute('onkeydown','resize2(this)');temprecommentBoxinput.setAttribute('onkeyup','resize2(this)');
+            temprecommentBoxinput.setAttribute('rows','1');
+            temprecommentBoxinput.setAttribute('cols','110');
+            temprecommentPost.innerHTML = "입력"
             ///
             modifyTextarea.setAttribute('onkeydown','resize(this)')
             modifyTextarea.setAttribute('onkeyup','resize(this)')
@@ -230,6 +256,8 @@ let PostGnb=(
 
             renewalArr()
             likemotionFunction();
+            displayRecommentBox();
+            addRecommentFun();
          }
          return PostGnb
     }
@@ -258,6 +286,9 @@ let renewalArr = function(){
  likedivimg = document.querySelectorAll(".likediv img");
  likediv = document.querySelectorAll(".likediv");
  recommentdiv = document.querySelectorAll(".recommentdiv");
+ recommentBox = document.querySelectorAll('.recommentBox');
+ recommentPost = document.querySelectorAll(".recommentPost");
+ recommentBoxinput = document.querySelectorAll(".recommentBoxinput");
 }
 
  //수정버튼, 삭제버튼 함수
@@ -520,6 +551,20 @@ let likemotionFunction = function(){
             likedivcount[i].innerHTML = Number(likedivcount[i].innerHTML) + 1;
         }
         postWritesArr[i].ondblclick = function(){
+            let toFunStop = postWritesArr[i].querySelector('.recommentBox');
+            let toFUnstopImg = postWritesArr[i].querySelector('.likediv img');
+            if(toFunStop.style.display == "block"){
+                return
+            }
+            //실행되고 있을떄 return
+            if(likemotion[i].style.display == "block"){
+                return
+            }
+            //좋아요취소
+            if(toFUnstopImg.src == "http://127.0.0.1:5502/images/fullheart.png"){
+                return
+            }
+            console.log(toFUnstopImg.src)
             likemotion[i].style.display = "none";
             if(likemotion[i].style.display == "none"){
                 likemotion[i].style.display = "block";
@@ -573,12 +618,14 @@ let likemotionFunction = function(){
                         else if(sizefordraw>15){
                             context.drawImage(img,sizeforx,sizefory,sizefordraw,sizefordraw);
                             sizefordraw -= 0.2;
-                            sizeforx += (7/25);
+                            sizeforx -= (7/25);
                             sizefory +=(10/25);
                         }
                         else if(sizefordraw>10){
                             context.drawImage(img,sizeforx,sizefory,sizefordraw,sizefordraw);
                             sizefordraw -= 0.2;
+                            sizeforx -= (3/25);
+                            sizefory -=(3/25);
                         }
                         else{
                             likemotion[i].style.display = "none"
@@ -659,8 +706,97 @@ let hashTagFilter = function(){
 hashTagFilter();
 
 //댓글누르기 function
-for(let i = 0 ; i<postWritesArr.length; i++){
-    recommentdiv.onclick = function(){
-        
+let recommentBox = document.querySelectorAll('.recommentBox')
+let displayRecommentBox = function(){
+    for(let i = 0 ; i<postWritesArr.length; i++){
+
+        recommentBox[i].style.display = "none"
+
+        recommentdiv[i].onclick = function(){
+            let recommentdivimg = recommentdiv[i].querySelector('img')
+            if(recommentBox[i].style.display == "none"){
+                recommentBox[i].style.display = "block"
+                recommentdivimg.src = "/images/fullrecomment.png"
+            }
+            else{
+                recommentBox[i].style.display = "none"
+                recommentdivimg.src = "/images/recomment.png"
+            }
+        }
     }
 }
+displayRecommentBox();
+
+//댓글 추가 function
+let recommentPost = document.querySelectorAll(".recommentPost");
+let recommentBoxinput = document.querySelectorAll(".recommentBoxinput");
+let addRecommentFun = function(){
+    for(let i = 0; i<postWritesArr.length; i++){
+        recommentPost[i].onclick = function(){
+            let temprecommentrepository = document.createElement('div')
+            temprecommentrepository.classList.add('recommentrepository')
+            let temprecommentrepositoryWrap = document.createElement('div')
+            temprecommentrepositoryWrap.classList.add('recommentrepositoryWrap')
+            let temprecommentrepositoryWrapimg = document.createElement('img')
+            let temprecommentComment = document.createElement('textarea')
+            temprecommentComment.classList.add('recommentComment')
+            let temprecommentrepositoryTimeStamp = document.createElement('div')
+            temprecommentrepositoryTimeStamp.classList.add('recommentrepositoryTimeStamp')
+            let temprecommentrepositoryModify = document.createElement('div')
+            temprecommentrepositoryModify.classList.add('recommentrepositoryModify')
+            let temprecommentrepositoryDelete = document.createElement('div')
+            temprecommentrepositoryDelete.classList.add('recommentrepositoryDelete')
+            temprecommentComment.setAttribute('onkeydown','resize2(this)');temprecommentComment.setAttribute('onkeyup','resize2(this)');
+            temprecommentComment.setAttribute('rows','1');
+            temprecommentComment.setAttribute('readonly','');
+            temprecommentrepositoryWrapimg.src = '/images/profileImg.jpg'
+            temprecommentrepositoryModify.innerHTML = "수정"
+            temprecommentrepositoryDelete.innerHTML = "X"
+            recommentBox[i].appendChild(temprecommentrepository);
+            temprecommentrepository.appendChild(temprecommentrepositoryWrap);
+            temprecommentrepositoryWrap.appendChild(temprecommentrepositoryWrapimg);
+            temprecommentrepositoryWrap.appendChild(temprecommentComment);
+            temprecommentrepositoryWrap.appendChild(temprecommentrepositoryTimeStamp);
+            temprecommentrepositoryWrap.appendChild(temprecommentrepositoryModify);
+            temprecommentrepositoryWrap.appendChild(temprecommentrepositoryDelete);
+
+            //현재시간
+            temprecommentrepositoryTimeStamp.innerHTML = tempDate + " " + tempHours + ":"+ tempMinutes;
+            //댓글작성한거 값 가져가기
+            temprecommentComment.value = recommentBoxinput[i].value
+
+            modifyDeleteRecomment();
+        }
+    }
+}
+addRecommentFun();
+
+//댓글 수정
+let recommentrepositoryModify = document.querySelectorAll('.recommentrepositoryModify');
+
+let modifyDeleteRecomment = function(){
+    for(let i = 0; i<postWritesArr.length; i++){
+        let temprecommentrepositoryModify = postWritesArr[i].querySelectorAll('.recommentrepositoryModify')
+        let temprecommentComment = postWritesArr[i].querySelectorAll('.recommentComment')
+        let temprecommentrepositoryDelete = postWritesArr[i].querySelectorAll('.recommentrepositoryDelete')
+        for(let k = 0; k<temprecommentrepositoryModify.length; k++){
+            //댓글수정
+            temprecommentrepositoryModify[k].onclick = function(){
+                if(temprecommentrepositoryModify[k].innerHTML == "수정"){
+                    temprecommentComment[k].removeAttribute('readonly')
+                    temprecommentrepositoryModify[k].innerHTML = "완료"
+                }
+                else{
+                    temprecommentComment[k].setAttribute('readonly',"")
+                    temprecommentrepositoryModify[k].innerHTML = "수정"
+                }
+            }
+
+            //댓글 삭제
+            temprecommentrepositoryDelete[k].onclick = function(){
+                this.parentElement.parentElement.parentElement.removeChild(this.parentElement.parentElement);
+            }
+        }
+    }
+}
+modifyDeleteRecomment();
