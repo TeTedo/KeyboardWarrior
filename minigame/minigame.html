@@ -178,17 +178,6 @@
                                 <div class="ListGameHashTag">게임 해쉬태그</div>
                             </div>
                         </li>
-                        <li class="#전체">
-                            <div class="wholeGameZoneulShadow"></div>
-                            <a href="">
-                            <img src="https://rs.nxfs.nexon.com/gameusr/21/1/2FJh07105826755.jpg" alt="">
-                            </a>
-                            <div class="ListGameZone">
-                                <div class="ListGameName">여기는 게임이름</div>
-                                <div class="ListGameComment">여기는 게임코멘트</div>
-                                <div class="ListGameHashTag">게임 해쉬태그</div>
-                            </div>
-                        </li>
                     </ul>
                 </div>          
             </div>
@@ -224,6 +213,7 @@
                 }
                 gameArea = document.createElement('div');
                 gameAreaWrapper.appendChild(gameArea);
+                gameArea.classList.add('gameArea')
 
                 //게임추가할떄 여기에 넣기
                 gameName=gameBtns[i].getAttribute('game_name');
@@ -237,8 +227,8 @@
                         console.log('드로잉 클릭됨')
                         break;    
                 }
-                
-                gameArea.style.minHeight='702px'
+
+                // gameArea.style.minHeight='702px'
                 setTimeout(() => {
                     window.scrollTo({top:1000,behavior:"smooth"})
                 }, 100);

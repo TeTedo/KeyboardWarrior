@@ -16,6 +16,7 @@
 
 @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 900;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.otf) format('opentype');}
 
+
 body, h1, h2, h3, h4, h5, h6, input, textarea, select {
 	font-family: 'Noto Sans KR', sans-serif;
 }
@@ -532,12 +533,33 @@ body{
     justify-content: center; */
 }
 .gameAreaWrapper{
+    position: relative;
     width: 100%;
     display: flex;
-    
+    animation-name: drop;
+    animation-duration: 2.5s;
 }
 .gameArea{
     width: 1340px;
-    margin: 0 auto;
+    margin-top: 110px;
+    min-height: 650px;   
 }
+@keyframes drop{
+    0%{
+        top: -1000px;
+    }
+    50%{
+        top: 200px;
+    }
+    80%{
+        top:-150px
+    }
+    85%{
+        top:-150px
+    }
+    100%{
+        top:0
+    }
+}
+
 /* 메인 */
