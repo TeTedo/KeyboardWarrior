@@ -88,13 +88,18 @@ body{
     justify-content: space-between;
     align-items: center;
 }
+.navContents{
+    display: flex;
+    width: 930px;
+    justify-content: space-between;
+    align-items: center;
+}
 .navmenuBar{
     display: flex;
     width: 300px;
     height: 25px;
     font-size: 20px;
     justify-content: space-between;
-    margin-left: 70px;
 }
 .navmenuCommunity, .navmenuMinigame{
     color: white;
@@ -104,8 +109,8 @@ body{
     height: 55px;
     border-radius: 2px;
     background-color: whitesmoke;
-    /* position: relative;
-    left: 200px; */
+    position: relative;
+    left: 34px;
     font-size: 17px;
     padding: 15px;
     border: solid 1px #131313;
@@ -117,8 +122,8 @@ body{
     background-image: url(../images/search.png);
     background-size: cover;
     position: relative;
-    left: -40px;
     top: 9px;
+    left: -5px;
     cursor: pointer;
 }
 /* 사이드 */
@@ -357,7 +362,6 @@ body{
     position: relative;
     display: flex;
     position: relative;
-    margin-left: 20px;
 }
 .wholeGameNavTop .wholegamement{
     color: black;
@@ -441,7 +445,7 @@ body{
     margin-top: 20px;
     display: flex;
     position: relative;
-    width: 900px;
+    width: 930px;
     justify-content: space-between;
 }
 .wholeGameZoneulShadow{
@@ -457,7 +461,6 @@ body{
 .wholeGameZoneul li{
     width: 260px;
     height: 300px;
-    margin: 20px;
     padding: 15px;
     border: 1px solid black;
     position: relative;
