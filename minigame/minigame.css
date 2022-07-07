@@ -82,7 +82,7 @@ body{
 }
 .topWrapper{
     height: 100px;
-    width: 1200px;
+    width: 1340px;
     margin: 20px auto;
     display: flex;
     justify-content: space-between;
@@ -104,8 +104,8 @@ body{
     height: 55px;
     border-radius: 2px;
     background-color: whitesmoke;
-    position: relative;
-    left: 200px;
+    /* position: relative;
+    left: 200px; */
     font-size: 17px;
     padding: 15px;
     border: solid 1px #131313;
@@ -117,13 +117,14 @@ body{
     background-image: url(../images/search.png);
     background-size: cover;
     position: relative;
-    left: 130px;
+    left: -40px;
+    top: 9px;
     cursor: pointer;
 }
 /* 사이드 */
 .left{
     /* position: fixed; */
-    margin-top: 45px;
+    /* margin-top: 45px; */
     height: auto;
     display: flex;
     justify-content: space-between;
@@ -437,10 +438,11 @@ body{
     color: white;
 }
 .wholeGameZoneul{
+    margin-top: 20px;
     display: flex;
-    flex-wrap: wrap;
     position: relative;
     width: 900px;
+    justify-content: space-between;
 }
 .wholeGameZoneulShadow{
     position: absolute;
@@ -456,15 +458,19 @@ body{
     width: 260px;
     height: 300px;
     margin: 20px;
-    border: 1px solid black;
     padding: 15px;
+    border: 1px solid black;
     position: relative;
     background-color: white;
 }
-
+.wholeGameZone button{
+    border: none;
+    height: 50%;
+    cursor: pointer;
+}
 .wholeGameZoneul li img{
     width: 100%;
-    height: 50%;
+    /* height: 50%; */
 }
 .wholeGameZoneul li .ListGameZone{
     width: 100%;
@@ -472,18 +478,19 @@ body{
     background-color: white;
     position: relative;
     color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.ListGameZoneWrapper{
+    width: 248px;
+    margin: 0 auto;
 }
 .ListGameZone .ListGameName{
-    position: absolute;
-    top: 15px;
-    left: 5px;
     font-weight: bold;
     font-size: 20px;
 }
 .ListGameZone .ListGameComment{
-    position: absolute;
-    top: 60px;
-    left: 5px;
     font-size: 15px;
     color: black;
     width: 100%;
@@ -526,8 +533,11 @@ body{
     font-size: larger;
 }
 
+.main{
+    margin-top: 45px;
+}
 .mainWrapper{
-    width: 1200px;
+    width: 1340px;
     margin: 0 auto;
     /* display: flex;
     justify-content: center; */
