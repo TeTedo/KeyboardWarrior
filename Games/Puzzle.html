@@ -52,7 +52,8 @@
           <h4>사진 url을 넣어주세요</h4>
           <input id="inputUrl" type="text">
           <button id="btnUrl" style="margin-right: 20px;" >확인</button>
-          <button id="defaultImg" >기본이미지로하기</button>
+          <button id="defaultImg" >기본이미지1로하기</button>
+          <button id="defaultImg2" >기본이미지2로하기</button>
       </div>
       <div class="btns_level">
         <h4>난이도를 선택하세요</h4>
@@ -110,6 +111,12 @@
     defaultImg.onclick = function(){
         
         levelSelection('./images/puzzle.png')
+        btns_level.style.display='block'
+        input_div.style.display='none'
+    }
+    defaultImg2.onclick = function(){
+        
+        levelSelection('./images/puzzle2.jpeg')
         btns_level.style.display='block'
         input_div.style.display='none'
     }
