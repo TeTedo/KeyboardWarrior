@@ -16,6 +16,24 @@
 
 @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 900;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.otf) format('opentype');}
 
+@keyframes fadein{
+    from{
+        opacity: 0;
+        left : 570px;
+    }
+    to {
+        opacity: 1;
+        left : 0px;
+    }
+}
+@keyframes fadeinShadow{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 0;
+    }
+}
 
 body, h1, h2, h3, h4, h5, h6, input, textarea, select {
 	font-family: 'Noto Sans KR', sans-serif;
@@ -481,18 +499,9 @@ body{
     position: relative;
     border: 0.3px solid black;
     padding-bottom: 0;
-    -webkit-animation: fadein 3s;
+    opacity: 0;
 }
-@keyframes fadein{
-    from{
-        opacity: 0;
-        left : 570px;
-    }
-    to {
-        opacity: 1;
-        left : 0px;
-    }
-}
+
 .contentTransPorter{
     position: absolute;
     border: 1px solid black;
@@ -528,16 +537,8 @@ body{
     top: 5px;
     left: 7px;
     z-index: -1;
-    -webkit-animation: fadeinShadow 3s;
 }
-@keyframes fadeinShadow{
-    from{
-        opacity: 0;
-    }
-    to{
-        opacity: 0;
-    }
-}
+
 .postWriteBottom{
     display: flex;
     justify-content: space-between;
@@ -612,6 +613,7 @@ body{
     padding: 20px;
     align-items: center;
     display: none;
+    overflow: hidden;
 }
 .forWriteRecomment{
     display: flex;
@@ -682,7 +684,8 @@ body{
     right: -140px;
 }
 .recommentrepositoryDelete{
-    right: -200px;
+    right: -180px;
+    width: 30px;
 }
 .main .postWrite .postWriteContents{
     /* 여기사이즈 조절 */
@@ -777,11 +780,11 @@ body{
 }
 
 .wholeGameSlideNextButton{
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     position: absolute;
     top: 130px;
-    left: 290px;
+    left: 310px;
     z-index: 1;
     background-image: url(../images/arrowright.png);
     background-repeat: no-repeat;
@@ -792,8 +795,8 @@ body{
     cursor: pointer;
 }
 .wholeGameSlidePrevButton{
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     position: absolute;
     top: 130px;
     left: 10px;

@@ -16,7 +16,7 @@ let wholeGameSlideul = document.querySelectorAll('.wholeGameSlideul')
 let wholeGameSlidelist = document.querySelectorAll('.wholeGameSlidelist')
 
 let mainWriteShadow = document.querySelectorAll('.mainWriteShadow')
-
+let postWriteShadow = document.querySelectorAll('.postWriteShadow')
 //좋아요 태그
 let likemotion = document.querySelectorAll(".likemotion");
 let likedivcount = document.querySelectorAll(".likedivcount");
@@ -299,6 +299,7 @@ let renewalArr = function(){
  recommentPost = document.querySelectorAll(".recommentPost");
  recommentBoxinput = document.querySelectorAll(".recommentBoxinput");
  recommentdivcount = document.querySelectorAll(".recommentdivcount");
+ postWriteShadow = document.querySelectorAll('.postWriteShadow')
 }
 
  //수정버튼, 삭제버튼 함수
