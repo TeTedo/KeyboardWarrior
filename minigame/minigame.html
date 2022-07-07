@@ -193,12 +193,12 @@
                 </div>          
             </div>
             <div class="gameAreaWrapper">
-                <div class="gameArea">
-                    <!-- 이부분이 게임이 추가될 영역 -->
+                <!-- <div class="gameArea">
+                    이부분이 게임이 추가될 영역 -->
                             
 
-                    <!-- 이부분이 게임이 추가될 영역 -->
-                </div>
+                    <!-- 이부분이 게임이 추가될 영역
+                </div> -->
             </div>
         </div>
     </div>
@@ -208,7 +208,8 @@
 <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
 <script type="text/javascript">
     const gameBtns = document.querySelectorAll('.gameBtns')
-    const gameArea = document.querySelector('.gameArea')
+    const gameAreaWrapper = document.querySelector('.gameAreaWrapper')
+    let gameArea
     let gameName
     gamesCount = gameBtns.length
     $(document).ready(function(){
@@ -216,7 +217,16 @@
             $(gameBtns[i]).click(function(e){
                 let href
                 e.preventDefault();
-                gameName=gameBtns[i].getAttribute('game_name');;
+                //전에 실행중인 게임 있으면 없애기
+                console.log(gameAreaWrapper.childElementCount)
+                if(!(gameAreaWrapper.childElementCount===0)){
+                    gameAreaWrapper.removeChild(gameArea);
+                }
+                gameArea = document.createElement('div');
+                gameAreaWrapper.appendChild(gameArea);
+
+                //게임추가할떄 여기에 넣기
+                gameName=gameBtns[i].getAttribute('game_name');
                 switch (gameName) {
                     case 'puzzle':
                         href = './Games/Puzzle_in_page.html';
@@ -227,7 +237,7 @@
                         console.log('드로잉 클릭됨')
                         break;    
                 }
-                console.log("여기까지옴")
+                
                 gameArea.style.minHeight='702px'
                 setTimeout(() => {
                     window.scrollTo({top:1000,behavior:"smooth"})
