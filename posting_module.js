@@ -859,15 +859,3 @@ let mainSearchFun = function(){
 }
 mainSearchFun();
 
-
-//스크롤 내리면 효과
-//스크롤시 옆으로 쑥 나오는거
-window.onscrollDown = function(){
-    for(let i = 0; i<postWritesArr.length;i++){
-    
-    console.log(1)
-    let postWritesArrTop = postWritesArr[i].getBoundingClientRect();
-    console.log(postWritesArrTop.top)
-    console.log(postWritesArrTop.bottom)
-    } 
-}
