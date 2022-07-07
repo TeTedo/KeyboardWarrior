@@ -121,12 +121,16 @@ body{
 }
 /* 사이드 */
 .left{
-    position: fixed;
+    /* position: fixed; */
     margin-top: 45px;
     height: auto;
-    margin-left: -920px;   
+    display: flex;
+    justify-content: space-between;
+    width: 1340px;
+    /* margin-left: -920px;    */
 }
 .leftWrapper{
+    margin-top: 20px;
     width: 284px;
     height: 313px;
     border-radius: 2px;
@@ -254,6 +258,246 @@ body{
     text-align: center;
     cursor: pointer;
 }
+.adminModeAdd{
+    cursor: pointer;
+    position: absolute;
+    display: none;
+    left: 400px;
+    top: 5px;
+}
+
+/* 게임리스트 수정 */
+
+.modifyGameListbutton{
+    position: absolute;
+    left: 450px;
+    top: 5px;
+    cursor: pointer;
+    display: none;
+}
+.modifyGameListbutton .modifyGameListWholePage{
+    position: absolute;
+    top: 0;
+    left: 40px;
+    background-color: black;
+    cursor: default;
+    display: none;
+    color: white;
+    z-index: 1;
+}
+.modifyGameListbutton .modifyGameListButtonMDC{
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+}
+.modifyGameListHashTag{
+    display: none;
+}
+
+/* 게임리스트에 추가 */
+.AddHiddenPage{
+    display: none;
+    position: relative;
+    z-index: 1;
+    top: -20px;
+}
+.adminModeAdd{
+    cursor: pointer;
+    position: relative;
+    display: none;
+}
+
+.AddPage{
+    width: 250px;
+    background-color: black;
+    position: absolute;
+    left :100px;
+    top: 0;
+    cursor: default;
+    color: white;
+}
+.AddPageGeturl{
+    display: flex;
+}
+.AddPageGethastagInput{
+    display: none;
+    /* display: flex; */
+}
+.AddPageButton{
+    display: flex;
+    position: absolute;
+    left: 180px;
+    top: 140px;
+    width: max-content;
+}
+.AddPage input{
+    background-color: white;
+}
+.AddPageButtonAddCancel{
+    display: flex;
+}
+.AddPageAddButton{
+    margin: 0 50px;
+    cursor: pointer;
+}
+.AddPageCancelButton{
+    cursor: pointer;
+}
+
+/* 게임메뉴 */
+.wholeGameZone{
+    width: 930px;
+    height: max-content;
+    align-items: center;
+}
+.wholeGameNavTop{
+    width: 930px;
+    position: relative;
+    display: flex;
+    position: relative;
+    margin-left: 20px;
+}
+.wholeGameNavTop .wholegamement{
+    color: black;
+    font-size: 24px;
+    font-weight: bold;
+}
+.searchBar{
+    width: max-content;
+    height: 30px;
+    position: absolute;
+    top: 5px;
+    right: 550px;
+    display: flex;
+}
+.searchText{
+    width: 250px;
+}
+.searchImg{
+    cursor: pointer;
+    position: absolute;
+    right: 25px;
+    width: 10px;
+    height: 10px;
+
+}
+.searchText{
+    margin: auto 5px;
+    height: 30px;
+}
+.adminModeAdd{
+    position: absolute;
+    left: 400px;
+    top: 5px;
+}
+.wholeGameNavSort{
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wholeGameNavSort .wholeGameNavSortFilter{
+    margin : auto;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100px;
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    position: relative;
+    background-color: #fff;
+}
+.wholeGameNavSortFilterShadow{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    background-color: black;
+    border-radius: 16px;
+    z-index: -1;
+}
+.wholeGameNavSort span:hover{
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    border-radius: 16px;
+}
+
+.wholeGameNavSort .filterSelected{
+    background-color: black;
+    color: white;
+}
+.wholeGameZoneul{
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    width: 900px;
+}
+.wholeGameZoneulShadow{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    top: 4px;
+    left: 4px;
+    z-index: -1;
+}
+
+.wholeGameZoneul li{
+    width: 260px;
+    height: 300px;
+    margin: 20px;
+    border: 1px solid black;
+    padding: 15px;
+    position: relative;
+    background-color: white;
+}
+
+.wholeGameZoneul li img{
+    width: 100%;
+    height: 50%;
+}
+.wholeGameZoneul li .ListGameZone{
+    width: 100%;
+    height: 100px;
+    background-color: white;
+    position: relative;
+    color: black;
+}
+.ListGameZone .ListGameName{
+    position: absolute;
+    top: 15px;
+    left: 5px;
+    font-weight: bold;
+    font-size: 20px;
+}
+.ListGameZone .ListGameComment{
+    position: absolute;
+    top: 60px;
+    left: 5px;
+    font-size: 15px;
+    color: black;
+    width: 100%;
+    border-bottom: solid 0.5px #d2d2d2;
+}
+.ListGameZone .ListGameHashTag{
+    position: absolute;
+    top: 100px;
+    left: 5px;
+    font-size: 10px;
+    color: black;
+    display: none;
+}
+
+
 /* 스크롤 */
 .scrollContents{
     position: fixed;
@@ -282,13 +526,13 @@ body{
 }
 
 .mainWrapper{
-    width: 100%;
-    display: flex;
-    justify-content: center;
+    width: 1200px;
+    margin: 0 auto;
+    /* display: flex;
+    justify-content: center; */
 }
-.mainContents{
-    width: 930px;
-    height: max-content;
+.gameArea{
+    width: 1340px;
     margin-top: 45px;
     margin-left: 570px;
     position: relative;

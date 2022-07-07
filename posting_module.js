@@ -456,6 +456,9 @@ let renewalArr = function(){
         //포스팅삭제버튼
         deleteBtnsArr[i].onclick = function(e){
             e.target.parentElement.parentElement.parentElement
+            .parentElement.parentElement.style.display
+
+            e.target.parentElement.parentElement.parentElement
             .parentElement.parentElement.parentElement.removeChild
             (e.target.parentElement.parentElement.parentElement
             .parentElement.parentElement)
@@ -525,7 +528,7 @@ postRegisterBtn.onclick = function(){
         return
     }
     if (imgUrlsArr.length === 0){
-        new PostGnb(postWrapper,text,imgUrlsArr)    
+        new PostGnb(postWrapper,text,imgUrlsArr) 
         mainWriteText.value = ""
         mainWriteText.style.height = '29px'
     }
