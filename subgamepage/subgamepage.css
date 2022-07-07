@@ -16,6 +16,7 @@
 
 @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 900;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.otf) format('opentype');}
 
+
 body, h1, h2, h3, h4, h5, h6, input, textarea, select {
 	font-family: 'Noto Sans KR', sans-serif;
 }
@@ -480,6 +481,32 @@ body{
     position: relative;
     border: 0.3px solid black;
     padding-bottom: 0;
+    -webkit-animation: fadein 3s;
+}
+@keyframes fadein{
+    from{
+        opacity: 0;
+        left : 570px;
+    }
+    to {
+        opacity: 1;
+        left : 0px;
+    }
+}
+.contentTransPorter{
+    position: absolute;
+    border: 1px solid black;
+    width: 600px;
+    height: 300px;
+    bottom: -50px;
+    left: -600px;
+}
+.contentTire{
+    position: absolute;
+    width: 600px;
+    height: 150px;
+    left: 200px;
+    bottom: -50px;
 }
 .likemotion{
     width: 100%;
@@ -501,8 +528,16 @@ body{
     top: 5px;
     left: 7px;
     z-index: -1;
+    -webkit-animation: fadeinShadow 3s;
 }
-
+@keyframes fadeinShadow{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 0;
+    }
+}
 .postWriteBottom{
     display: flex;
     justify-content: space-between;
@@ -613,6 +648,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    -webkit-animation: fadein 3s;
 }
 .recommentrepositoryTimeStamp{
     position: absolute;

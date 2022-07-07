@@ -127,7 +127,15 @@ let PostGnb=(
             let temprecommentPost = document.createElement('div');
             temprecommentPost.classList.add('recommentPost');
 
+            //캔버스창
+            let tempcontentTransPorter = document.createElement('canvas')
+            tempcontentTransPorter.classList.add("contentTransPorter")
+            let tempcontentTire = document.createElement('canvas')
+            tempcontentTire.classList.add("contentTire")
+
             super_id.appendChild(postWrite);
+            postWrite.appendChild(tempcontentTransPorter);
+            postWrite.appendChild(tempcontentTire);
             postWrite.appendChild(templikemotion);
             postWrite.appendChild(temppostWirteShadow);
             postWrite.appendChild(temppostWriteTop);
@@ -853,3 +861,16 @@ let mainSearchFun = function(){
     }
 }
 mainSearchFun();
+
+
+//스크롤 내리면 효과
+//스크롤시 옆으로 쑥 나오는거
+window.onscrollDown = function(){
+    for(let i = 0; i<postWritesArr.length;i++){
+    
+    console.log(1)
+    let postWritesArrTop = postWritesArr[i].getBoundingClientRect();
+    console.log(postWritesArrTop.top)
+    console.log(postWritesArrTop.bottom)
+    } 
+}
