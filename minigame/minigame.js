@@ -220,23 +220,4 @@ gameSearchFun();
 
 //게임나타나는버튼
 
-const gamebtns = document.querySelectorAll('.gameBtns')
-const gameArea = document.querySelector('.gameArea')
-let gameName
-gamesCount = gamebtns.length
-for (let i = 0; i < gamesCount; i++) {
-    gamebtns[i].onclick=function(){
-        gameName=gamebtns[i].getAttribute('game_name')
-        switch (gameName) {
-            case 'puzzle':
-                console.log('퍼즐 클릭됨')
 
-                break;
-            
-            case 'drawing':
-                console.log('드로잉 클릭됨')
-                break;    
-        }
-    }
-}
-    
