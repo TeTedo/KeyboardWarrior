@@ -31,10 +31,10 @@
       .record{
         display: none;
       }
-      img{
+      /* img{
         width: 500px;
         height: 500px;
-      }
+      } */
       
     </style>
   </head>
@@ -73,7 +73,6 @@
       <div class="timer"></div>
       <div class="record"></div>
       <canvas class="canvasMixed" width="500" height="500" style="display:none ;">이 브라우저는 캔버스를 지원하지 않습니다.</canvas>
-      <canvas class="canvasLined" width="500" height="500" style="display:none ;" >이 브라우저는 캔버스를 지원하지 않습니다.</canvas>             
     </div>  
     </div>
     
@@ -89,8 +88,6 @@
     const contextMixed = canvasMixed.getContext('2d');
     const canvas2 = document.querySelector('.canvas2');
     const context2 = canvas2.getContext('2d');
-    const canvasLined = document.querySelector('.canvasLined');
-    const contextLined = canvasLined.getContext('2d');
     const btns_start = document.querySelector('.btns_start');
     const btns_level = document.querySelector('.btns_level')
     const input_div = document.querySelector('.input_div')
@@ -112,19 +109,19 @@
     //기본이미지로할때
     defaultImg.onclick = function(){
         
-        levelSelection('./images/puzzle.png')
+        levelSelection('./Games/images/puzzle.png')
         btns_level.style.display='block'
         input_div.style.display='none'
     }
     defaultImg2.onclick = function(){
         
-        levelSelection('./images/puzzle2.jpeg')
+        levelSelection('./Games/images/puzzle2.jpeg')
         btns_level.style.display='block'
         input_div.style.display='none'
     }
     defaultImg3.onclick = function(){
         
-        levelSelection('./images/puzzle3.jpeg')
+        levelSelection('./Games/images/puzzle3.jpeg')
         btns_level.style.display='block'
         input_div.style.display='none'
     }
@@ -136,7 +133,6 @@
       ImgElem.onload = function(){
         //원본이미지그리기
         context.drawImage(ImgElem, 0, 0, 500, 500)
-        contextLined.drawImage(ImgElem,0,0,500,500)
 
         //퍼즐난이도설정
 
@@ -200,14 +196,6 @@
                   contextMixed.moveTo(0,puzzleSize*i)
                   contextMixed.lineTo(500,puzzleSize*i);
                   contextMixed.stroke() 
-                  
-                  contextLined.beginPath();
-                  contextLined.moveTo(puzzleSize*i,0);
-                  contextLined.lineTo(puzzleSize*i,500);
-                  contextLined.stroke()
-                  contextLined.moveTo(0,puzzleSize*i)
-                  contextLined.lineTo(500,puzzleSize*i);
-                  contextLined.stroke()  
                 }
           }
         }
@@ -215,12 +203,12 @@
         //퍼즐만들기
         let btnFor
         btns_start.onclick = function(e){
-          btns_start.style.display = 'none'
-          timer.style.display = 'block'
 
           btnFor=e.target.getAttribute('btn-for')
           switch (btnFor) {
             case 'start':
+              btns_start.style.display = 'none'
+              timer.style.display = 'block'
               let rotateCount = 0
               const ImgElem2 = new Image();
               
@@ -236,10 +224,7 @@
                     context2.clearRect(0,0,500,500)
                     context2.translate(250,250);
                     context2.rotate(radian(rotationValue))
-                    context2.drawImage(ImgElem2, 0, 0, 250, 250, -250,-250,250,250)
-                    context2.drawImage(ImgElem2, 250, 0, 250, 250, 0,-250,250,250)
-                    context2.drawImage(ImgElem2, 0, 250, 250, 250, -250,0,250,250)
-                    context2.drawImage(ImgElem2, 250, 250, 250, 250, 0,0,250,250)
+                    context2.drawImage(ImgElem2, 0, 0, 500, 500, -250,-250,500,500)
                 
                     if(rotationValue==360){
                       context2.resetTransform();
@@ -339,7 +324,7 @@
                           mouseDown = false
                           
                           //이미지 비교해서 퍼즐 완성됐는지 확인
-                          originImgData = contextLined.getImageData(0,0,500,500).data;
+                          originImgData = context.getImageData(0,0,500,500).data;
                           puzzleImgData = context2.getImageData(0,0,500,500).data;
                           len = originImgData.length
                           correctCount = 0;
@@ -348,9 +333,9 @@
                               correctCount++
                             }
                           }
-
+                          console.log(correctCount)
                           //퍼즐 다 맞췄을때
-                          if(correctCount > 980000){
+                          if(correctCount > 930000){
                             timeRecord = timer.innerHTML;
                             record.innerHTML = timeRecord;
                             timer.style.display='none';
@@ -367,16 +352,17 @@
                                 context2.rotate(radian(rotationValue))
 
 
-                                context2.drawImage(SuccessedImgElm, 0, 0, 250, 250, -250,-250,250,250)
-                                context2.drawImage(SuccessedImgElm, 250, 0, 250, 250, 0,-250,250,250)
-                                context2.drawImage(SuccessedImgElm, 0, 250, 250, 250, -250,0,250,250)
-                                context2.drawImage(SuccessedImgElm, 250, 250, 250, 250, 0,0,250,250)
+                                context2.drawImage(ImgElem2, 0, 0, 500, 500, -250,-250,500,500)
                             
                                 if(rotationValue==360){
                                   context2.resetTransform();
                                   setTimeout(() => {
                                     alert(`성공! 기록: ${timeRecord}`)                                    
-                                    location.reload()
+                                    record.style.display = 'none';
+                                    input_div.style.display = 'block';
+                                    context.clearRect(0,0,500,500);
+                                    context2.clearRect(0,0,500,500);
+                                    contextMixed.clearRect(0,0,500,500);
                                   }, 1);
                                   return;
                                 }
@@ -413,7 +399,6 @@
               case '4by4':
                   context.clearRect(0,0,500,500)
                   contextMixed.clearRect(0,0,500,500)
-                  contextLined.clearRect(0,0,500,500)
                   context2.clearRect(0,0,500,500)
                   btns_start.style.display = 'block'
                   btns_level.style.display = 'none'
@@ -422,8 +407,7 @@
           
               case '5by5':
               context.clearRect(0,0,500,500)
-                  contextMixed.clearRect(0,0,500,500)
-                  contextLined.clearRect(0,0,500,500)    
+                  contextMixed.clearRect(0,0,500,500)    
                   context2.clearRect(0,0,500,500)
                   btns_start.style.display = 'block'
                   btns_level.style.display = 'none'
@@ -433,7 +417,6 @@
               case '8by8':
               context.clearRect(0,0,500,500)
                   contextMixed.clearRect(0,0,500,500)
-                  contextLined.clearRect(0,0,500,500)
                   context2.clearRect(0,0,500,500)
                   btns_start.style.display = 'block'
                   btns_level.style.display = 'none'
@@ -443,7 +426,6 @@
               case '10by10':
               context.clearRect(0,0,500,500)
                   contextMixed.clearRect(0,0,500,500)
-                  contextLined.clearRect(0,0,500,500)
                   context2.clearRect(0,0,500,500)
                   btns_start.style.display = 'block'
                   btns_level.style.display = 'none'
@@ -453,7 +435,6 @@
               case '16by16':
               context.clearRect(0,0,500,500)
                   contextMixed.clearRect(0,0,500,500)
-                  contextLined.clearRect(0,0,500,500)
                   context2.clearRect(0,0,500,500)
                   btns_start.style.display = 'block'
                   btns_level.style.display = 'none'
@@ -463,7 +444,6 @@
               case '20by20':
               context.clearRect(0,0,500,500)
                   contextMixed.clearRect(0,0,500,500)
-                  contextLined.clearRect(0,0,500,500)
                   context2.clearRect(0,0,500,500)
                   btns_start.style.display = 'block'
                   btns_level.style.display = 'none'
@@ -473,7 +453,6 @@
               case '25by25':
               context.clearRect(0,0,500,500)
                   contextMixed.clearRect(0,0,500,500)
-                  contextLined.clearRect(0,0,500,500)
                   context2.clearRect(0,0,500,500)
                   btns_start.style.display = 'block'
                   btns_level.style.display = 'none'

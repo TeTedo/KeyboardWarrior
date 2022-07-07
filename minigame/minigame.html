@@ -192,49 +192,57 @@
                     </ul>
                 </div>          
             </div>
-            <div class="gameArea">
-                <!-- 이부분이 게임이 추가될 영역 -->
-                <h1 style="text-align: center;">Puzzle</h1>
-                <div class="canvases">
-                  <div class="canvasesWrap">
-                  <canvas class="canvas" width="500" height="500">이 브라우저는 캔버스를 지원하지 않습니다.</canvas>
-                  <canvas class="canvas2" width="500" height="500">이 브라우저는 캔버스를 지원하지 않습니다.</canvas>
-                  </div>
+            <div class="gameAreaWrapper">
+                <div class="gameArea">
+                    <!-- 이부분이 게임이 추가될 영역 -->
+                            
+
+                    <!-- 이부분이 게임이 추가될 영역 -->
                 </div>
-                <div class="btns">
-                <div class="btnsWrap">
-                  <div class="input_div">
-                      <h4>사진 url을 넣어주세요</h4>
-                      <input id="inputUrl" type="text">
-                      <button id="btnUrl" style="margin-right: 20px;" >확인</button>
-                      <button id="defaultImg" >기본이미지1로하기</button>
-                      <button id="defaultImg2" >기본이미지2로하기</button>
-                      <button id="defaultImg3" >기본이미지3로하기</button>
-                  </div>
-                  <div class="btns_level">
-                    <h4>난이도를 선택하세요</h4>
-                    <button btn-level='4by4'>4X4</button>
-                    <button btn-level='5by5'>5X5</button>
-                    <button btn-level='8by8'>8X8</button>
-                    <button btn-level='10by10'>10X10</button>
-                    <button btn-level='16by16'>16X16</button>
-                    <button btn-level='20by20'>20X20</button>
-                    <button btn-level='25by25'>25X25</button>
-                  </div>
-                  <div class="btns_start">
-                    <button btn-for='start'>시작</button>
-                  </div>
-                  <div class="timer"></div>
-                  <div class="record"></div>
-                  <canvas class="canvasMixed" width="500" height="500" style="display:none ;">이 브라우저는 캔버스를 지원하지 않습니다.</canvas>
-                  <canvas class="canvasLined" width="500" height="500" style="display:none ;" >이 브라우저는 캔버스를 지원하지 않습니다.</canvas>             
-                </div>  
-                </div>
-                <!-- 이부분이 게임이 추가될 영역 -->
-                </div>
+            </div>
         </div>
     </div>
+
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
+<script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+<script type="text/javascript">
+    const gameBtns = document.querySelectorAll('.gameBtns')
+    const gameArea = document.querySelector('.gameArea')
+    let gameName
+    gamesCount = gameBtns.length
+    $(document).ready(function(){
+        for (let i = 0; i < gamesCount; i++) {
+            $(gameBtns[i]).click(function(e){
+                let href
+                e.preventDefault();
+                gameName=gameBtns[i].getAttribute('game_name');;
+                switch (gameName) {
+                    case 'puzzle':
+                        href = './Games/Puzzle_in_page.html';
+                        $(gameArea).load(href);
+                        break;
+                    
+                    case 'drawing':
+                        console.log('드로잉 클릭됨')
+                        break;    
+                }
+                console.log("여기까지옴")
+                gameArea.style.minHeight='702px'
+                setTimeout(() => {
+                    window.scrollTo({top:1000,behavior:"smooth"})
+                }, 100);
+            })
+        }
+    })
+    
+</script>
+
+
+
+
+
+
 <script src="minigame.js"></script>
 <script src="./define_minigame.js"></script>
 </html>

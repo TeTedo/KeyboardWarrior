@@ -531,10 +531,13 @@ body{
     /* display: flex;
     justify-content: center; */
 }
+.gameAreaWrapper{
+    width: 100%;
+    display: flex;
+    
+}
 .gameArea{
     width: 1340px;
-    margin-top: 45px;
-    margin-left: 570px;
-    position: relative;
+    margin: 0 auto;
 }
 /* 메인 */
