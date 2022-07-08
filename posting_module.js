@@ -32,6 +32,9 @@ let chooseCategory = document.querySelector(".chooseCategory");
 let Category = document.querySelectorAll(".Category");
 let postHashTagtoClick = document.querySelectorAll(".postHashTagtoClick");
 
+//스크롤 이벤트용
+let toStopDrawFun = [];
+
 //현재시간 띄우기
 let tempDate = new Date().toLocaleDateString();
 let tempHours = pad(new Date().getHours());
@@ -261,6 +264,9 @@ let PostGnb=(
                     temppostWriteHashTag.innerHTML = Category[i].innerHTML;
                 }
             }
+
+            //스크롤 이벤트용
+            toStopDrawFun.push("")
 
             renewalArr()
             likemotionFunction();

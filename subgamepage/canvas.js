@@ -12,8 +12,19 @@
 //     queryName.style.webkitAnimationDuration = time
 // }
 //스크롤시 옆으로 쑥 나오는거
+
+
 let distinguishScroll = 0;
+//스크롤 이벤트용
+for(let i =0; i<postWritesArr.length;i++){
+    toStopDrawFun.push("")
+}
+
 window.onscroll = function(){
+    // console.log(window.scrollY)
+    console.log(window.scrollY + window.innerHeight-postWritesArr[1].getBoundingClientRect().bottom)
+    // console.log(window.scrollY-postWritesArr[1].getBoundingClientRect().top)
+
     let distinguishScrollUpDown;
     //스크롤 업다운 구별
     if(distinguishScroll<window.scrollY){
@@ -44,6 +55,7 @@ window.onscroll = function(){
             let img = new Image();
             img.src = "../images/contentTire.png"
             img.onload = function(){
+                contentTire.style.display = "block"
             //첫번째 바퀴
             contentTireCtx.clearRect(0,0,contentTire.width,contentTire.height);
             contentTireCtx.save();
@@ -57,9 +69,10 @@ window.onscroll = function(){
             contentTireCtx.rotate(-radian(degree))
             contentTireCtx.drawImage(img,-25,-25,50,50);
             contentTireCtx.restore();
-        
+            
             degree += 1;
             if(degree == 180){
+                contentTire.style.display = "none"
                 return
             }
             
@@ -72,38 +85,52 @@ window.onscroll = function(){
         let postWritesArrBottom = postWritesArr[i].getBoundingClientRect().bottom;
         //스크롤 올릴때
         if(distinguishScrollUpDown == "Up"){
-            if(postWritesArrTop>15){
+            //효과 off
+            if(window.scrollY-postWritesArrTop<-600){
+                postWritesArr[i].style.webkitAnimationName = ""
+                postWriteShadow[i].style.webkitAnimationName = ""
+                postWritesArr[i].style.opacity = 0;
+                contentTireDrawFun("stop")
+                toStopDrawFun[i] = 0;
+            }
+            //효과 on
+            else if(postWritesArrTop>15){
                 
                 postWritesArr[i].style.webkitAnimationName = "fadein"
                 postWritesArr[i].style.webkitAnimationDuration = "3s"
                 postWriteShadow[i].style.webkitAnimationName = "fadeinShadow"
                 postWriteShadow[i].style.webkitAnimationDuration = "3s"
                 postWritesArr[i].style.opacity = 1;
+                if(toStopDrawFun[i] ==1){
+                    return
+                }
                 contentTireDrawFun();
-            }
-            if(postWritesArrTop>1650){
-                postWritesArr[i].style.webkitAnimationName = ""
-                postWriteShadow[i].style.webkitAnimationName = ""
-                postWritesArr[i].style.opacity = 0;
-                contentTireDrawFun("stop")
-            }
+                toStopDrawFun[i] = 1;
+            }   
         }
     
         //스크롤 내릴때
         else{
-            if(postWritesArrBottom<1420){ 
-                postWritesArr[i].style.webkitAnimationName = "fadein"
-                postWritesArr[i].style.webkitAnimationDuration = "3s"
-                postWriteShadow[i].style.webkitAnimationName = "fadeinShadow"
-                postWriteShadow[i].style.webkitAnimationDuration = "3s"
-                postWritesArr[i].style.opacity = 1;
-                contentTireDrawFun();
-            }
+            //효과 off
             if(postWritesArrBottom<150){
                 postWritesArr[i].style.webkitAnimationName = ""
                 postWriteShadow[i].style.webkitAnimationName = ""
                 postWritesArr[i].style.opacity = 0;
                 contentTireDrawFun("stop")
+                toStopDrawFun[i] = 0;
+            }
+            //효과 on
+            else if(window.scrollY + window.innerHeight-postWritesArrTop>600){ 
+                postWritesArr[i].style.webkitAnimationName = "fadein"
+                postWritesArr[i].style.webkitAnimationDuration = "3s"
+                postWriteShadow[i].style.webkitAnimationName = "fadeinShadow"
+                postWriteShadow[i].style.webkitAnimationDuration = "3s"
+                postWritesArr[i].style.opacity = 1;
+                if(toStopDrawFun[i] ==1){
+                    return
+                }
+                contentTireDrawFun();
+                toStopDrawFun[i] = 1;
             }
         }
     } 
