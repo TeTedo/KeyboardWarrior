@@ -3,6 +3,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    background-color: whitesmoke;
 }
 
 
@@ -74,7 +75,7 @@ nav button{
     position: absolute;
     display: flex;
     overflow: hidden;
-    z-index: -1;
+    /* z-index: -1; */
 }
 
 .maindraw{
@@ -226,14 +227,20 @@ nav button{
     position: absolute;
     bottom: 50px;
     display: flex;
+    justify-content: center;
     background-color: rgb(230, 208, 235);
+}
+.gamecontrol .rule{
+    display: flex;
+    align-items: center;
 }
 
 .gamecontrol .gamebutton{
-    width: 500px;
+    width: 600px;
     height: 80px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .gamecontrol .leftbutton {

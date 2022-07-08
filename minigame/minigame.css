@@ -74,16 +74,17 @@ body{
 }
 /* 탑 */
 .top{
-    position: fixed;
-    background-color: white;
     width: 100%;
     z-index: 999;
+    height: 140px;
     background-color: black;
+    display: flex;
+    align-items: center;
 }
 .topWrapper{
     height: 100px;
     width: 1340px;
-    margin: 20px auto;
+    margin: 0px auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -551,11 +552,16 @@ body{
     display: flex;
     animation-name: drop;
     animation-duration: 2.5s;
+    margin-top: 110px;
+    background-color: whitesmoke;
 }
 .gameArea{
     width: 1340px;
-    margin-top: 110px;
-    min-height: px;   
+    min-height: 900px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-top: 2px dotted;
 }
 @keyframes drop{
     0%{
