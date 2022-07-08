@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 인형뽑기</title>
+</head>
+<link rel="stylesheet" href="인형뽑기.css">
+
+<body>
+    <div class="wholepage">
+        <!-- 네비게이션바 -->
+        <nav>
+            <button class="startbutton">게임시작</button>
+            <button class="retrybutton">종료하기</button>
+        </nav>
+
+        <!-- 몸체 -->
+        <div class="dolldraw">
+            <div class="maindraw">
+                <!-- 크레인 -->
+                <div class="drawcrane">
+                    <div class="cranehand">
+                        <img src="images/cranehand.png" alt="">
+                    </div>
+                </div>
+
+                <div class="board">
+
+
+                    <!-- 메인보드 -->
+                    <div class="mainboard">
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="background1"></div>
+            <div class="background2"></div>
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <!-- 바구니 -->
+            <div class="bowl">
+                <div class="bowlcolumn"></div>
+            </div>
+            <!-- 상황판 -->
+            <div class="currentboard">
+                <div class="scoreboard">
+                    <div class="currentscorement">현재 점수</div>
+                    <div class="currentscore">0</div>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- 게임 컨트롤러 -->
+        <div class="gamecontrol">
+            <div class="gamebutton">
+                <div class="rule">같은 인형을 두개 바구니에 넣으면 점수 획득</div>
+                <button class="leftbutton"><strong>⇐</strong></button>
+                <button class="rightbutton"><strong>⇒</strong></button>
+                <button class="pickbutton"><strong>⇓</strong></button>
+            </div>
+                <div class="보류">추가기능</div>
+        </div>
+    </div>
+</body>
+<script src="인형뽑기.js"></script>
+</html>
