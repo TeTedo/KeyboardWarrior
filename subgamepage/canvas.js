@@ -22,7 +22,11 @@ for(let i =0; i<postWritesArr.length;i++){
 
 window.onscroll = function(){
     // console.log(window.scrollY)
-    console.log(window.scrollY + window.innerHeight-postWritesArr[1].getBoundingClientRect().bottom)
+    console.log(window.innerHeight- postWritesArr[2].getBoundingClientRect().bottom)
+    // console.log(window.innerHeight- postWritesArr[3].getBoundingClientRect().top)
+    // console.log(window.innerHeight- postWritesArr[4].getBoundingClientRect().top)
+    // console.log(window.innerHeight- postWritesArr[0].getBoundingClientRect().top)
+    // console.log(postWritesArr[0].getBoundingClientRect().top  + window.pageYOffset)
     // console.log(window.scrollY-postWritesArr[1].getBoundingClientRect().top)
 
     let distinguishScrollUpDown;
@@ -86,41 +90,41 @@ window.onscroll = function(){
         //스크롤 올릴때
         if(distinguishScrollUpDown == "Up"){
             //효과 off
-            if(window.scrollY-postWritesArrTop<-600){
+            if(window.innerHeight- postWritesArrTop<50){
                 postWritesArr[i].style.webkitAnimationName = ""
                 postWriteShadow[i].style.webkitAnimationName = ""
                 postWritesArr[i].style.opacity = 0;
                 contentTireDrawFun("stop")
                 toStopDrawFun[i] = 0;
             }
-            //효과 on
-            else if(postWritesArrTop>15){
+            // //효과 on
+            // else if(postWritesArrTop>15){
                 
-                postWritesArr[i].style.webkitAnimationName = "fadein"
-                postWritesArr[i].style.webkitAnimationDuration = "3s"
-                postWriteShadow[i].style.webkitAnimationName = "fadeinShadow"
-                postWriteShadow[i].style.webkitAnimationDuration = "3s"
-                postWritesArr[i].style.opacity = 1;
-                if(toStopDrawFun[i] ==1){
-                    return
-                }
-                contentTireDrawFun();
-                toStopDrawFun[i] = 1;
-            }   
+            //     postWritesArr[i].style.webkitAnimationName = "fadein"
+            //     postWritesArr[i].style.webkitAnimationDuration = "3s"
+            //     postWriteShadow[i].style.webkitAnimationName = "fadeinShadow"
+            //     postWriteShadow[i].style.webkitAnimationDuration = "3s"
+            //     postWritesArr[i].style.opacity = 1;
+            //     if(toStopDrawFun[i] ==1){
+            //         return
+            //     }
+            //     contentTireDrawFun();
+            //     toStopDrawFun[i] = 1;
+            // }   
         }
     
         //스크롤 내릴때
         else{
             //효과 off
-            if(postWritesArrBottom<150){
-                postWritesArr[i].style.webkitAnimationName = ""
-                postWriteShadow[i].style.webkitAnimationName = ""
-                postWritesArr[i].style.opacity = 0;
-                contentTireDrawFun("stop")
-                toStopDrawFun[i] = 0;
-            }
-            //효과 on
-            else if(window.scrollY + window.innerHeight-postWritesArrTop>600){ 
+            // if(postWritesArrBottom<150){
+            //     postWritesArr[i].style.webkitAnimationName = ""
+            //     postWriteShadow[i].style.webkitAnimationName = ""
+            //     postWritesArr[i].style.opacity = 0;
+            //     toStopDrawFun[i] = 0;
+            // }
+            // //효과 on
+            // else
+             if(window.innerHeight- postWritesArr[i].getBoundingClientRect().top>180){ 
                 postWritesArr[i].style.webkitAnimationName = "fadein"
                 postWritesArr[i].style.webkitAnimationDuration = "3s"
                 postWriteShadow[i].style.webkitAnimationName = "fadeinShadow"
