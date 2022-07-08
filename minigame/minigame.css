@@ -555,7 +555,7 @@ body{
 .gameArea{
     width: 1340px;
     margin-top: 110px;
-    min-height: 650px;   
+    min-height: px;   
 }
 @keyframes drop{
     0%{

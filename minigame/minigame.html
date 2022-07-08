@@ -162,7 +162,7 @@
                         </li>
                         <li class="#전체">
                             <div class="wholeGameZoneulShadow"></div>
-                            <button class="gameBtns" game_name = 'drawing'>
+                            <button class="gameBtns" game_name = 'PickingDoll'>
                             <img src="https://rs.nxfs.nexon.com/gameusr/21/1/2FJh07105826755.jpg" alt="">
                             </button>
                             <div class="ListGameZone">
@@ -223,12 +223,14 @@
                 gameName=gameBtns[i].getAttribute('game_name');
                 switch (gameName) {
                     case 'puzzle':
-                        href = './Games/Puzzle_in_page.html';
+                        href = './Games/Puzzle/Puzzle_in_page.html';
                         $(gameArea).load(href);
                         break;
                     
-                    case 'drawing':
-                        console.log('드로잉 클릭됨')
+                    case 'PickingDoll':
+                        console.log('인형뽑기클릭됨')
+                        href = './Games/PickingDoll/PickingDoll.html';
+                        $(gameArea).load(href);
                         break;    
                 }
 

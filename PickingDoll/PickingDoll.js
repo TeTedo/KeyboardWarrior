@@ -68,7 +68,7 @@ startbutton.onclick = function(){
             //사진종류 5개 => 1~5 
             let ranNum = Math.floor(Math.random()*5+1);
             let ranImg = document.createElement("img");
-            ranImg.src = `images/${ranNum}.png`;
+            ranImg.src = `./Games/PickingDoll/images/${ranNum}.png`;
             columnobject[i].appendChild(ranImg);
             //배열에 추가
             gamearray.push(ranNum)
