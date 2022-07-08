@@ -22,6 +22,29 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
 @keyframes identifier {
     
 }
+@keyframes fadeinShadow{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 0;
+    }
+}
+
+@keyframes fadein{
+    0%{
+        opacity: 0;
+        left : 570px;
+    }
+    50%{
+        opacity: 1;
+        left : -50px;
+    }
+    100% {
+        opacity: 1;
+        left : 0px;
+    }
+}
 a{
     color: black;
     text-decoration: none;
@@ -483,6 +506,11 @@ body{
     position: relative;
     border: 0.3px solid black;
     padding-bottom: 0;
+    opacity: 0;
+    -moz-animation: fadein 3s;
+}
+.postWrite:last-child{
+    opacity: 1;
 }
 .likemotion{
     width: 100%;

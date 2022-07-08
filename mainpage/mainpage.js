@@ -16,7 +16,7 @@ let wholeGameSlideul = document.querySelectorAll('.wholeGameSlideul')
 let wholeGameSlidelist = document.querySelectorAll('.wholeGameSlidelist')
 
 let mainWriteShadow = document.querySelectorAll('.mainWriteShadow')
-
+let postWriteShadow = document.querySelectorAll('.postWriteShadow')
 //좋아요 태그
 let likemotion = document.querySelectorAll(".likemotion");
 let likedivcount = document.querySelectorAll(".likedivcount");
@@ -36,6 +36,9 @@ let postHashTagtoClick = document.querySelectorAll(".postHashTagtoClick");
 let tempDate = new Date().toLocaleDateString();
 let tempHours = pad(new Date().getHours());
 let tempMinutes = pad(new Date().getMinutes());
+
+//스크롤 이벤트용
+let toStopDrawFun = [];
 
 function pad(number){
     let str = "" + number;
@@ -206,7 +209,12 @@ let PostGnb=(
             tempGameSlideButton.appendChild(tempGameSlidePrevButton);
             tempGameSlide.appendChild(tempGameSlideul);
             
-
+            //애니메이션 추가
+            postWrite.style.webkitAnimationName = "fadein"
+            postWrite.style.webkitAnimationDuration = "3s"
+            temppostWirteShadow.style.webkitAnimationName = "fadeinShadow"
+            temppostWirteShadow.style.webkitAnimationDuration = "3s"
+            postWrite.style.opacity = 1;
             //그림추가
             imgUrlsArr = document.querySelectorAll('.mainWriteContentsImgWrapper')
             if(!(imgUrlsArr.length === 0)){
@@ -254,6 +262,10 @@ let PostGnb=(
                 }
             }
 
+            //스크롤 이벤트용
+            toStopDrawFun.push("")
+
+
             renewalArr()
             likemotionFunction();
             displayRecommentBox();
@@ -291,6 +303,7 @@ let renewalArr = function(){
  recommentPost = document.querySelectorAll(".recommentPost");
  recommentBoxinput = document.querySelectorAll(".recommentBoxinput");
  recommentdivcount = document.querySelectorAll(".recommentdivcount");
+ postWriteShadow = document.querySelectorAll('.postWriteShadow')
 }
 
  //수정버튼, 삭제버튼 함수

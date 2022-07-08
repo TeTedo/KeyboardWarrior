@@ -18,7 +18,6 @@ for(let i =0; i<postWritesArr.length;i++){
 }
 
 window.onscroll = function(){
-
     let distinguishScrollUpDown;
     //스크롤 업다운 구별
     if(distinguishScroll<window.scrollY){

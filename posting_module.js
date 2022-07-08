@@ -180,7 +180,7 @@ let PostGnb=(
             //테스트용 ID
             tempprofileID.innerHTML = "테스트ID"
             
-
+            //현재시간 넣어주기
             tempprofileTime.innerHTML = tempDate + " " + tempHours + ":"+ tempMinutes;
 
             //댓글창
@@ -218,6 +218,12 @@ let PostGnb=(
             tempGameSlide.appendChild(tempGameSlideul);
             
 
+            //애니메이션 추가
+            postWrite.style.webkitAnimationName = "fadein"
+            postWrite.style.webkitAnimationDuration = "3s"
+            temppostWirteShadow.style.webkitAnimationName = "fadeinShadow"
+            temppostWirteShadow.style.webkitAnimationDuration = "3s"
+            postWrite.style.opacity = 1;
             //그림추가
             imgUrlsArr = document.querySelectorAll('.mainWriteContentsImgWrapper')
             if(!(imgUrlsArr.length === 0)){
