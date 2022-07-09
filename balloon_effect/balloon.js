@@ -56,8 +56,8 @@ redBallon.onload = function(){
         requestAnimationFrame(balloonDraw)
     }
     
-    let popEventCount = 0
     function balloonPopEvent(X,Y){
+    let popEventCount = 0
         function balloonPopDraw(){
             context.drawImage(balloonPop,X,Y,popWidth,popHeight)
             // context.drawImage(balloonPop,0,0,popWidth,popHeight)
