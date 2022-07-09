@@ -16,7 +16,28 @@
 
 @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 900;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.otf) format('opentype');}
 
-
+@-webkit-keyframes slideanimationleft{
+    0%{
+        left: 10px;
+    }
+    50%{
+        left: 20px;
+    }
+    100%{
+        left: 10px;
+    }
+}
+@-webkit-keyframes slideanimationright{
+    0%{
+        left: 310px;
+    }
+    50%{
+        left: 320px
+    }
+    100%{
+        left: 310px;
+    }
+}
 
 body, h1, h2, h3, h4, h5, h6, input, textarea, select {
 	font-family: 'Noto Sans KR', sans-serif;
@@ -485,9 +506,11 @@ body{
     opacity: 0;
     -moz-animation: fadein 3s;
 }
-.postWrite:last-child{
+.postWrite:last-child,.postWrite:nth-last-child(2),.postWrite:nth-last-child(3){
     opacity: 1;
+    -moz-animation: fadein 3s;
 }
+
 @keyframes fadeinShadow{
     from{
         opacity: 0;
@@ -803,9 +826,11 @@ body{
     background-size: cover;
 }
 .wholeGameSlideNextButton:hover{
-    background-color: white;
+    -webkit-animation: slideanimationright 1s;
+    animation-iteration-count: infinite;
     cursor: pointer;
 }
+
 .wholeGameSlidePrevButton{
     width: 30px;
     height: 30px;
@@ -818,8 +843,10 @@ body{
     background-size: cover;
 }
 .wholeGameSlidePrevButton:hover{
-    background-color: white;
     cursor: pointer;
+    -webkit-animation: slideanimationleft 1s;
+    animation-iteration-count: infinite;
+    
 }
 
 .wholeGameSlideul{
