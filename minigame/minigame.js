@@ -160,6 +160,12 @@ modifyGameListbutton.onclick = function(){
 function menufilteringFun(){
     for(let i = 0;i<wholeGameNavSortFilter.length;i++){
         wholeGameNavSortFilter[i].onclick = function(){
+            for(let k = 0; k<wholeGameZoneullist.length; k++){
+                wholeGameZoneullist[k].style.display = "none"
+                if(wholeGameZoneullist[k].classList.contains(wholeGameNavSortFilter[i].innerText)){
+                    wholeGameZoneullist[k].style.display = "block"
+                }
+            }
             if(!wholeGameNavSortFilter[i].classList.contains('filterSelected')){
                 for(let j = 0 ; j<wholeGameNavSortFilter.length;j++){
                     //모든 클래스 제거
@@ -170,14 +176,8 @@ function menufilteringFun(){
             else{
                 wholeGameNavSortFilter[i].classList.remove("filterSelected")
                 //전체보여주기
-                for(let h = 0; h<wholeGameNavSortFilter.length;h++){
+                for(let h = 0; h<wholeGameZoneullist.length;h++){
                     wholeGameZoneullist[h].style.display = "block"
-                }
-            }
-            for(let k = 0; k<wholeGameZoneullist.length; k++){
-                wholeGameZoneullist[k].style.display = "none"
-                if(wholeGameZoneullist[k].classList.contains(wholeGameNavSortFilter[i].innerText)){
-                    wholeGameZoneullist[k].style.display = "block"
                 }
             }
         }

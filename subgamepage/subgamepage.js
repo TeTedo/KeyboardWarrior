@@ -146,8 +146,12 @@ forloginbutton.onclick= function(){
             mainBtns[i].style.display = "block"
         }
     }
-
 }
+
+
+// //키보드로 마우스 움직이기
+// window.onkeydown = fucntion(e){
+// }
 /*
 해결할일
 1: 이미지 수정눌러야 삭제버튼 뜨게 만들고, 수정칸에서 이미지 추가 삽입 가능한 버튼 만들기
