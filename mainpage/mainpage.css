@@ -516,7 +516,8 @@ body {
   align-items: center;
   justify-content: space-between;
 }
-.profilefollowButton , .profilemessageButton{
+.profilefollowButton,
+.profilemessageButton {
   outline: none;
   border: none;
   width: 70px;
@@ -530,8 +531,8 @@ body {
   justify-content: center;
   font-weight: bold;
 }
-.profilefollowButton{
-  width:50px;
+.profilefollowButton {
+  width: 50px;
 }
 .main .mainWrite .mainWriteContents {
   margin-left: 20px;
@@ -1107,5 +1108,8 @@ body {
   background-image: url(./images/keyboardwarrior.png);
 }
 #posting3Img {
-  background-image: url(./images/OdinProfile.png);
+  background-image: url(./images/GameChosumProflie.png);
+}
+#posting4Img {
+  background-image: url(./images/GameMecaProfile.gif);
 }
