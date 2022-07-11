@@ -1,0 +1,43 @@
+html {
+  cursor: url(../images/maincursor.png) 12.5 12, auto;
+}
+cursor {
+  width: 20px;
+  height: 20px;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+.canvas {
+  background-color: transparent;
+  /* width: 100%;
+  height: 100%; */
+  /* width: 1600px;
+  height: 1500px; */
+  position: fixed;
+  z-index: -9999;
+  display: none;
+  top: 0px;
+}
+.balloonBtn {
+  position: relative;
+  top: 300px;
+}
+#balloonStartBtn {
+  width: 50px;
+  height: 100px;
+  cursor: pointer;
+}
+/* .balloonBtn:hover {
+  animation: balloonMove;
+  top: 500px;
+}
+@keyframes balloonMove {
+  0% {
+    top: 0px;
+  }
+  100% {
+    top: 300px;
+  }
+} */
