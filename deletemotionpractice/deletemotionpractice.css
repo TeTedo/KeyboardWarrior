@@ -1,0 +1,29 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.Wrap{
+    width: 100%;
+    height: 100vh;
+    transform-style: preserve-3d;
+    perspective: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+
+}
+.block{
+    width: 5%;
+    height: 5%;
+    animation: animation 3s ease-in-out forwards;
+    background-color: black;
+}
+@keyframes animation{
+    0%{
+        transform: translateZ(2000px);
+    }
+    100%{
+        transform: translateZ(0px);
+    }
+}

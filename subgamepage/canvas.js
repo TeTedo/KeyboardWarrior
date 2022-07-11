@@ -12,13 +12,30 @@
 
 
 let distinguishScroll = 0;
+let savePlace = document.querySelector('.savePlace')
 //스크롤 이벤트용
 for(let i =0; i<postWritesArr.length;i++){
     toStopDrawFun.push("")
 }
 
 window.onscroll = function(){
+    let main = document.querySelector(".main div:first-child");
+    if (main.getBoundingClientRect().top < 100) {
+        document.querySelector(".scrollContents").style.zIndex = "1";
+        scrollBtn.style.opacity = "1";
+        savePlace.style.opacity = "1";
+        scrollBtn.style.top = "400px";
+        setTimeout(() => {
+        scrollBtn.style.top = "340px";
+        }, 500);
+    } 
+    else {
+        scrollBtn.style.opacity = "0";
+        savePlace.style.opacity = "0";
+        document.querySelector(".scrollContents").style.zIndex = "-999";
 
+        scrollBtn.style.top = "300px";
+    }
     let distinguishScrollUpDown;
     //스크롤 업다운 구별
     if(distinguishScroll<window.scrollY){
@@ -123,6 +140,7 @@ window.onscroll = function(){
             // }
             // //효과 on
             // else
+            
             if(window.innerHeight- postWritesArrBottom>-100){
                 return
             }
@@ -148,3 +166,15 @@ window.onscroll = function(){
         }
     } 
 }
+
+//스크롤 위치 저장
+let savePoint = 0;
+savePlace.onclick = function(){
+    savePoint = document.body.getBoundingClientRect().top
+}
+
+//스크롤 버튼 클릭시
+scrollBtn.onclick = function (e) {
+    e.preventDefault(); //a태그가 비어있으면 새로고침되는거 방지
+    window.scrollTo({ top: -savePoint, behavior: "smooth" });
+  };
