@@ -93,7 +93,7 @@ h6,
 input,
 textarea,
 select {
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: "Noto Sans KR, sans-serif";
 }
 @keyframes identifier {
 }
@@ -402,7 +402,7 @@ body {
   opacity: 0;
   font-size: larger;
 }
-.savePlace{
+.savePlace {
   position: absolute;
   top: 360px;
   border: 1px solid black;
@@ -553,7 +553,7 @@ body {
   width: 600px;
   height: 30px;
   border: none;
-  font-size: medium;
+  font-size: 20px;
   resize: none;
   border-bottom: 1px solid #707070;
   padding-left: 3px;
@@ -647,11 +647,13 @@ body {
     left: 0px;
   }
 }
-.postWrite:last-child,.postWrite:nth-last-child(2),.postWrite:nth-last-child(3){
+.postWrite:last-child,
+.postWrite:nth-last-child(2),
+.postWrite:nth-last-child(3) {
   opacity: 1;
   -moz-animation: fadein 3s;
 }
-.deletemotion{
+.deletemotion {
   position: absolute;
   top: 0;
   left: 0;
@@ -663,18 +665,18 @@ body {
   perspective: 500px;
   z-index: 9999;
 }
-.deleteblock{
+.deleteblock {
   width: 5%;
   height: 5%;
   animation: deleteanimation 3s ease-in-out forwards;
   background-color: white;
 }
-@keyframes deleteanimation{
-  0%{
-      transform: translateZ(2000px);
+@keyframes deleteanimation {
+  0% {
+    transform: translateZ(2000px);
   }
-  100%{
-      transform: translateZ(0px);
+  100% {
+    transform: translateZ(0px);
   }
 }
 .likemotion {
