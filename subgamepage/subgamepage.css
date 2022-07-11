@@ -371,6 +371,20 @@ body{
     top: 5px;
     left: 90px;
 }
+.profileImgContent{
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+}
+.profileImgContent:hover{
+    transition: 0.6s;
+    width: 250px;
+    background-color: white;
+    border-radius: 15px;
+    color: black;
+}
 .main .mainWrite .profileImg{
     width: 45px;
     height: 40px;
@@ -378,6 +392,46 @@ body{
     background-size: cover;
     border: 1px solid none;
     border-radius: 500px;
+}
+.followerCount{
+    position: relative;
+    transform: translate(100px,-20px);
+    display: none;
+}
+.followCount{
+    position: relative;
+    transform: translate(130px,-20px);
+    display: none;
+}
+.profileImgContent:hover .followerCount, .profileImgContent:hover .followCount{
+    display: block;
+}
+.followerCountNum, .followCountNum{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.profileButton{
+    width: 130px;
+    transform: translate(0px, 20px);
+    display: none;
+}
+.profileImgContent:hover .profileButton{
+    display: block;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.profileImgContent:hover .profileButton button{
+    outline: none;
+    border: none;
+    width: 60px;
+    color: white;
+    border-radius: 5px;
+    background-color: black;
+    box-shadow: 0 10px 5px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
 }
 .main .mainWrite .mainWriteContents{
     margin-left: 20px;

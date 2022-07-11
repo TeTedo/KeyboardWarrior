@@ -1,26 +1,26 @@
 //=============홈페이지 이펙트=====================================
 //스크롤 리모컨 버튼
-window.onscroll = function () {
-  let main = document.querySelector(".main div:first-child");
-  if (main.getBoundingClientRect().top < 120) {
-    document.querySelector(".scrollContents").style.zIndex = "1";
-    scrollBtn.style.opacity = "1";
-    scrollBtn.style.top = "400px";
-    setTimeout(() => {
-      scrollBtn.style.top = "340px";
-    }, 500);
-  } else {
-    scrollBtn.style.opacity = "0";
-    document.querySelector(".scrollContents").style.zIndex = "-999";
+// window.onscroll = function () {
+//   let main = document.querySelector(".main div:first-child");
+//   if (main.getBoundingClientRect().top < 120) {
+//     document.querySelector(".scrollContents").style.zIndex = "1";
+//     scrollBtn.style.opacity = "1";
+//     scrollBtn.style.top = "400px";
+//     setTimeout(() => {
+//       scrollBtn.style.top = "340px";
+//     }, 500);
+//   } else {
+//     scrollBtn.style.opacity = "0";
+//     document.querySelector(".scrollContents").style.zIndex = "-999";
 
-    scrollBtn.style.top = "300px";
-  }
-};
+//     scrollBtn.style.top = "300px";
+//   }
+// };
 
-scrollBtn.onclick = function (e) {
-  e.preventDefault(); //a태그가 비어있으면 새로고침되는거 방지
-  window.scrollTo({ top: 0, behavior: "smooth" });
-};
+// scrollBtn.onclick = function (e) {
+//   e.preventDefault(); //a태그가 비어있으면 새로고침되는거 방지
+//   window.scrollTo({ top: 0, behavior: "smooth" });
+// };
 
 //왼쪽 메뉴바 저승으로
 // //왼쪽 메뉴바 효과
