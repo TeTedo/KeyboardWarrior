@@ -496,6 +496,7 @@ body {
 .profileImgContent:hover .followerCount,
 .profileImgContent:hover .followCount {
   display: block;
+  font-weight: bold;
 }
 .followerCountNum,
 .followCountNum {

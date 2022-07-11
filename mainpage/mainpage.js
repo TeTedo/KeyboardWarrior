@@ -202,6 +202,41 @@ let PostGnb = (function () {
 
     modifyAddImgBtn.innerHTML = "사진올리기";
 
+
+
+    //프로필 이미지 호버효과 추가
+    let tempprofileImgContent = document.createElement('div')
+    tempprofileImgContent.classList.add('profileImgContent')
+    let tempfollowerCount = document.createElement('div')
+    tempfollowerCount.classList.add('followerCount')
+    let tempfollowerCountNum = document.createElement('div')
+    tempfollowerCountNum.classList.add('followerCountNum')
+    let tempfollowCount = document.createElement('div')
+    tempfollowCount.classList.add('followCount')
+    let tempfollowCountNum = document.createElement('div')
+    tempfollowCountNum.classList.add('followCountNum')
+    let tempprofileButton = document.createElement('div')
+    tempprofileButton.classList.add('profileButton')
+    let tempprofilefollowButton = document.createElement('button')
+    tempprofilefollowButton.classList.add('profilefollowButton')
+    let tempprofilemessageButton = document.createElement('button')
+    tempprofilemessageButton.classList.add('profilemessageButton')
+    temppostWriteTop.prepend(tempprofileImgContent);
+    tempprofileImgContent.appendChild(profileImg);
+    tempprofileImgContent.appendChild(tempfollowerCount);
+    tempprofileImgContent.appendChild(tempfollowCount);
+    tempprofileImgContent.appendChild(tempprofileButton);
+    tempfollowerCount.appendChild(tempfollowerCountNum);
+    tempfollowCount.appendChild(tempfollowCountNum);
+    tempprofileButton.appendChild(tempprofilefollowButton);
+    tempprofileButton.appendChild(tempprofilemessageButton);
+
+    tempfollowerCount.innerText = "Follower"
+    tempfollowCount.innerText = "Follow"
+    tempprofilefollowButton.innerHTML = "Follow"
+    tempprofilemessageButton.innerHTML = "Message"
+    //프로필 호버 효과
+    
     // 7/2 민섭 수정: 이미지 있을때나 없을때나 슬라이드형식은 만들어둬야해서 슬라이드추가를 그림추가 조건문 밖으로 뺌
     //슬라이드 ul 추가
     let tempGameSlide = document.createElement("div");
