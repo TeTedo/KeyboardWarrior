@@ -466,9 +466,9 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-.mainWriteText::placeholder {
+/* .mainWriteText::placeholder {
   opacity: 0.5;
-}
+} */
 .mainWriteContentsBtns .attributeBtns button {
   border: none;
   cursor: pointer;

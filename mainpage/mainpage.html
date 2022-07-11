@@ -86,6 +86,7 @@
                     onkeydown="resize(this)"
                     onkeyup="resize(this)"
                     placeholder="What's happening?"
+                    style="height: 30px"
                   ></textarea>
                 </span>
               </span>
@@ -111,9 +112,10 @@
                     <div class="modifyTextareaWrap">
                       <textarea
                         class="modifyTextarea"
+                        id="posting1"
                         onkeydown="resize(this)"
                         onkeyup="resize(this)"
-                        style="height: 192px"
+                        style="height: 500px"
                       >
 											가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사
 											</textarea
@@ -263,4 +265,12 @@
   <script src="scrollevent.js"></script>
   <script src="../balloon_effect/balloon.js"></script>
   <script src="../mouseevent.js"></script>
+  <script>
+    function resize(obj) {}
+    function resize2(obj) {
+      console.log("resize2활성화");
+      obj.style.height = "15px";
+      obj.style.height = obj.scrollHeight - 1 + "px";
+    }
+  </script>
 </html>
