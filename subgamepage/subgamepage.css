@@ -437,7 +437,6 @@ body {
   top: 5px;
   left: 90px;
 }
-<<<<<<< HEAD
 .profileImgContent{
     position: absolute;
     width: 90px;
@@ -505,21 +504,6 @@ body {
     display: flex;
     flex-direction: column-reverse;
     margin-top: 10px;
-=======
-.main .mainWrite .profileImg {
-  width: 45px;
-  height: 40px;
-  background-image: url(../images/profileImg.jpg);
-  background-size: cover;
-  border: 1px solid none;
-  border-radius: 500px;
-}
-.main .mainWrite .mainWriteContents {
-  margin-left: 20px;
-  display: flex;
-  flex-direction: column-reverse;
-  margin-top: 10px;
->>>>>>> origin/main
 }
 .mainWriteContentsBtns {
   margin-top: 20px;
