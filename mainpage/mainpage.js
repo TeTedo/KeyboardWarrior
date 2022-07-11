@@ -27,6 +27,10 @@ let likediv = document.querySelectorAll(".likediv");
 let recommentdiv = document.querySelectorAll(".recommentdiv");
 let recommentdivcount = document.querySelectorAll(".recommentdivcount");
 
+//삭제 모션 이벤트용
+let deletemotion = document.querySelectorAll('.deletemotion')
+let deleteblock = document.querySelectorAll('.deleteblock')
+
 //해쉬태그 관련
 let chooseCategory = document.querySelector(".chooseCategory");
 let Category = document.querySelectorAll(".Category");
@@ -304,6 +308,8 @@ let renewalArr = function(){
  recommentBoxinput = document.querySelectorAll(".recommentBoxinput");
  recommentdivcount = document.querySelectorAll(".recommentdivcount");
  postWriteShadow = document.querySelectorAll('.postWriteShadow')
+ deletemotion = document.querySelectorAll('.deletemotion');
+ deleteblock = document.querySelectorAll('.deleteblock');
 }
 
  //수정버튼, 삭제버튼 함수
@@ -460,14 +466,31 @@ let renewalArr = function(){
 
         //포스팅삭제버튼
         deleteBtnsArr[i].onclick = function(e){
-            e.target.parentElement.parentElement.parentElement
-            .parentElement.parentElement.parentElement.removeChild
-            (e.target.parentElement.parentElement.parentElement
-            .parentElement.parentElement)
-            //삭제하고 변수 초기화
-            renewalArr() 
-            // 07.03 민섭: postWritesArr.length가 줄어들테니깐 반복구문 다시실행시킴
-            BtnAttribute()
+             //삭제 모션
+             let tempdeletemotion = document.createElement('div')
+             tempdeletemotion.classList.add('deletemotion');
+             postWritesArr[i].prepend(tempdeletemotion)
+             for(let h = 0; h<400; h++){
+                 let randNum = Math.random()*3
+                 let tempdeleteblock = document.createElement('div');
+                 tempdeleteblock.classList.add('deleteblock');
+                 tempdeleteblock.style.animationDuration = randNum + 's'
+                 
+                 tempdeletemotion.appendChild(tempdeleteblock);
+             }
+             setTimeout(()=>{
+                 
+             },3000)
+             setTimeout(()=>{
+                 e.target.parentElement.parentElement.parentElement
+             .parentElement.parentElement.parentElement.removeChild
+             (e.target.parentElement.parentElement.parentElement
+             .parentElement.parentElement)
+             //삭제하고 변수 초기화
+             renewalArr() 
+             // 07.03 민섭: postWritesArr.length가 줄어들테니깐 반복구문 다시실행시킴
+             BtnAttribute()
+             },3500) 
         }
     }
 }

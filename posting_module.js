@@ -23,6 +23,11 @@ let likedivcount = document.querySelectorAll(".likedivcount");
 let likedivimg = document.querySelectorAll(".likediv img");
 let likediv = document.querySelectorAll(".likediv");
 
+//삭제 모션 이벤트용
+let deletemotion = document.querySelectorAll('.deletemotion')
+let deleteblock = document.querySelectorAll('.deleteblock')
+
+
 //댓글 태그
 let recommentdiv = document.querySelectorAll(".recommentdiv");
 let recommentdivcount = document.querySelectorAll(".recommentdivcount");
@@ -131,14 +136,14 @@ let PostGnb=(
             temprecommentPost.classList.add('recommentPost');
 
             //캔버스창
-            let tempcontentTransPorter = document.createElement('canvas')
-            tempcontentTransPorter.classList.add("contentTransPorter")
-            let tempcontentTire = document.createElement('canvas')
-            tempcontentTire.classList.add("contentTire")
+            // let tempcontentTransPorter = document.createElement('canvas')
+            // tempcontentTransPorter.classList.add("contentTransPorter")
+            // let tempcontentTire = document.createElement('canvas')
+            // tempcontentTire.classList.add("contentTire")
 
             super_id.appendChild(postWrite);
-            postWrite.appendChild(tempcontentTransPorter);
-            postWrite.appendChild(tempcontentTire);
+            // postWrite.appendChild(tempcontentTransPorter);
+            // postWrite.appendChild(tempcontentTire);
             postWrite.appendChild(templikemotion);
             postWrite.appendChild(temppostWirteShadow);
             postWrite.appendChild(temppostWriteTop);
@@ -311,7 +316,9 @@ let renewalArr = function(){
  recommentPost = document.querySelectorAll(".recommentPost");
  recommentBoxinput = document.querySelectorAll(".recommentBoxinput");
  recommentdivcount = document.querySelectorAll(".recommentdivcount");
- postWriteShadow = document.querySelectorAll('.postWriteShadow')
+ postWriteShadow = document.querySelectorAll('.postWriteShadow');
+ deletemotion = document.querySelectorAll('.deletemotion');
+ deleteblock = document.querySelectorAll('.deleteblock');
 }
 
  //수정버튼, 삭제버튼 함수
@@ -468,10 +475,23 @@ let renewalArr = function(){
 
         //포스팅삭제버튼
         deleteBtnsArr[i].onclick = function(e){
-            e.target.parentElement.parentElement.parentElement
-            .parentElement.parentElement.style.display
-
-            e.target.parentElement.parentElement.parentElement
+            //삭제 모션
+            let tempdeletemotion = document.createElement('div')
+            tempdeletemotion.classList.add('deletemotion');
+            postWritesArr[i].prepend(tempdeletemotion)
+            for(let h = 0; h<400; h++){
+                let randNum = Math.random()*3
+                let tempdeleteblock = document.createElement('div');
+                tempdeleteblock.classList.add('deleteblock');
+                tempdeleteblock.style.animationDuration = randNum + 's'
+                
+                tempdeletemotion.appendChild(tempdeleteblock);
+            }
+            setTimeout(()=>{
+                
+            },3000)
+            setTimeout(()=>{
+                e.target.parentElement.parentElement.parentElement
             .parentElement.parentElement.parentElement.removeChild
             (e.target.parentElement.parentElement.parentElement
             .parentElement.parentElement)
@@ -479,6 +499,7 @@ let renewalArr = function(){
             renewalArr() 
             // 07.03 민섭: postWritesArr.length가 줄어들테니깐 반복구문 다시실행시킴
             BtnAttribute()
+            },3500) 
         }
     }
 }
@@ -874,4 +895,5 @@ let mainSearchFun = function(){
     }
 }
 mainSearchFun();
+
 
