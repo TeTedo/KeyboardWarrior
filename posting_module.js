@@ -161,7 +161,7 @@ let PostGnb = (function () {
     temppostWriteBottom.appendChild(temppostWriteGameTag);
     temppostWriteBottom.appendChild(templikerecommentbutton);
     postWrite.appendChild(temprecommentBox);
-    temppostWriteTop.appendChild(profileImg);
+    
     temppostWriteTop.appendChild(tempprofileID);
     temppostWriteTop.appendChild(tempprofileTime);
     postWriteWrapper.appendChild(postWriteContents);
@@ -187,6 +187,39 @@ let PostGnb = (function () {
 
     deleteBtn.innerHTML = "X";
     modifyBtn.innerHTML = "수정";
+
+    //프로필 이미지 호버효과 추가
+    let tempprofileImgContent = document.createElement('div')
+    tempprofileImgContent.classList.add('profileImgContent')
+    let tempfollowerCount = document.createElement('div')
+    tempfollowerCount.classList.add('followerCount')
+    let tempfollowerCountNum = document.createElement('div')
+    tempfollowerCountNum.classList.add('followerCountNum')
+    let tempfollowCount = document.createElement('div')
+    tempfollowCount.classList.add('followCount')
+    let tempfollowCountNum = document.createElement('div')
+    tempfollowCountNum.classList.add('followCountNum')
+    let tempprofileButton = document.createElement('div')
+    tempprofileButton.classList.add('profileButton')
+    let tempprofilefollowButton = document.createElement('button')
+    tempprofilefollowButton.classList.add('profilefollowButton')
+    let tempprofilemessageButton = document.createElement('button')
+    tempprofilemessageButton.classList.add('profilemessageButton')
+    temppostWriteTop.prepend(tempprofileImgContent);
+    tempprofileImgContent.appendChild(profileImg);
+    tempprofileImgContent.appendChild(tempfollowerCount);
+    tempprofileImgContent.appendChild(tempfollowCount);
+    tempprofileImgContent.appendChild(tempprofileButton);
+    tempfollowerCount.appendChild(tempfollowerCountNum);
+    tempfollowCount.appendChild(tempfollowCountNum);
+    tempprofileButton.appendChild(tempprofilefollowButton);
+    tempprofileButton.appendChild(tempprofilemessageButton);
+
+    tempfollowerCount.innerText = "Follower"
+    tempfollowCount.innerText = "Follow"
+    tempprofilefollowButton.innerHTML = "Follow"
+    tempprofilemessageButton.innerHTML = "Message"
+    //프로필 호버 효과
 
     templikedivcount.innerHTML = 0;
     temprecommentdivcount.innerHTML = 0;
