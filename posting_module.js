@@ -46,6 +46,11 @@ let chooseCategory = document.querySelector(".chooseCategory");
 let Category = document.querySelectorAll(".Category");
 let postHashTagtoClick = document.querySelectorAll(".postHashTagtoClick");
 
+//프로필 이미지 팔로우
+let profilefollowButton = document.querySelectorAll('.profilefollowButton')
+let followerCountNum = document.querySelectorAll('.followerCountNum')
+
+
 //스크롤 이벤트용
 let toStopDrawFun = [];
 
@@ -201,9 +206,9 @@ let PostGnb = (function () {
     tempfollowCountNum.classList.add('followCountNum')
     let tempprofileButton = document.createElement('div')
     tempprofileButton.classList.add('profileButton')
-    let tempprofilefollowButton = document.createElement('button')
+    let tempprofilefollowButton = document.createElement('div')
     tempprofilefollowButton.classList.add('profilefollowButton')
-    let tempprofilemessageButton = document.createElement('button')
+    let tempprofilemessageButton = document.createElement('div')
     tempprofilemessageButton.classList.add('profilemessageButton')
     temppostWriteTop.prepend(tempprofileImgContent);
     tempprofileImgContent.appendChild(profileImg);
@@ -323,6 +328,7 @@ let PostGnb = (function () {
     displayRecommentBox();
     addRecommentFun();
     mainSearchFun();
+    clickProfileFollowButton();
   };
   return PostGnb;
 })();
@@ -367,6 +373,8 @@ let renewalArr = function () {
   postWriteShadow = document.querySelectorAll(".postWriteShadow");
   deletemotion = document.querySelectorAll(".deletemotion");
   deleteblock = document.querySelectorAll(".deleteblock");
+  profilefollowButton = document.querySelectorAll('.profilefollowButton')
+  followerCountNum = document.querySelectorAll('.followerCountNum')
 };
 
 //수정버튼, 삭제버튼 함수
@@ -1030,3 +1038,24 @@ let mainSearchFun = function () {
   };
 };
 mainSearchFun();
+
+
+//이미지 프로필 팔로우 누르면 팔로워 숫자 +1
+let clickProfileFollowButton = function(){
+    for(let i = 0; i<postWritesArr.length;i++){
+        profilefollowButton[i].onclick = function(){
+            if(profilefollowButton[i].style.backgroundColor!="white"){
+                profilefollowButton[i].style.backgroundColor = "white"
+                profilefollowButton[i].style.color = "black"
+                followerCountNum[i].innerText = parseInt(followerCountNum[i].innerText) + 1;
+            }
+            else{
+                profilefollowButton[i].style.backgroundColor = "black"
+                profilefollowButton[i].style.color = "white"
+                followerCountNum[i].innerHTML = parseInt(followerCountNum[i].innerText) - 1;
+            }
+
+        }
+    }
+}
+clickProfileFollowButton();
