@@ -33,6 +33,10 @@ let likedivcount = document.querySelectorAll(".likedivcount");
 let likedivimg = document.querySelectorAll(".likediv img");
 let likediv = document.querySelectorAll(".likediv");
 
+//프로필 이미지 팔로우
+let profilefollowButton = document.querySelectorAll('.profilefollowButton')
+let followerCountNum = document.querySelectorAll('.followerCountNum')
+
 //댓글 태그
 let recommentdiv = document.querySelectorAll(".recommentdiv");
 let recommentdivcount = document.querySelectorAll(".recommentdivcount");
@@ -132,6 +136,8 @@ let PostGnb = (function () {
     temppostWriteGameTag.classList.add("postWriteGameTag");
     let temppostWriteHashTag = document.createElement("span");
     temppostWriteHashTag.classList.add("postWriteHashTag");
+
+    
 
     //댓글창
     let temprecommentBox = document.createElement("div");
@@ -236,7 +242,7 @@ let PostGnb = (function () {
     tempprofilefollowButton.innerHTML = "Follow"
     tempprofilemessageButton.innerHTML = "Message"
     //프로필 호버 효과
-    
+
     // 7/2 민섭 수정: 이미지 있을때나 없을때나 슬라이드형식은 만들어둬야해서 슬라이드추가를 그림추가 조건문 밖으로 뺌
     //슬라이드 ul 추가
     let tempGameSlide = document.createElement("div");
@@ -316,6 +322,7 @@ let PostGnb = (function () {
     displayRecommentBox();
     addRecommentFun();
     mainSearchFun();
+    clickProfileFollowButton();
   };
   return PostGnb;
 })();
@@ -360,6 +367,8 @@ let renewalArr = function () {
   postWriteShadow = document.querySelectorAll(".postWriteShadow");
   deletemotion = document.querySelectorAll(".deletemotion");
   deleteblock = document.querySelectorAll(".deleteblock");
+  profilefollowButton = document.querySelectorAll('.profilefollowButton');
+  followerCountNum = document.querySelectorAll('.followerCountNum');
 };
 
 //수정버튼, 삭제버튼 함수
@@ -1019,3 +1028,22 @@ let mainSearchFun = function () {
   };
 };
 mainSearchFun();
+//이미지 프로필 팔로우 누르면 팔로워 숫자 +1
+let clickProfileFollowButton = function(){
+    for(let i = 0; i<postWritesArr.length;i++){
+        profilefollowButton[i].onclick = function(){
+            if(profilefollowButton[i].style.backgroundColor!="white"){
+                profilefollowButton[i].style.backgroundColor = "white"
+                profilefollowButton[i].style.color = "black"
+                followerCountNum[i].innerText = parseInt(followerCountNum[i].innerText) + 1;
+            }
+            else{
+                profilefollowButton[i].style.backgroundColor = "black"
+                profilefollowButton[i].style.color = "white"
+                followerCountNum[i].innerHTML = parseInt(followerCountNum[i].innerText) - 1;
+            }
+
+        }
+    }
+}
+clickProfileFollowButton();

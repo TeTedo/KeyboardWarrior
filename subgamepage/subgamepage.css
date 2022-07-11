@@ -490,15 +490,22 @@ body {
     align-items: center;
     justify-content: space-between;
 }
-.profileImgContent:hover .profileButton button{
+.profilefollowButton , .profilemessageButton{
     outline: none;
     border: none;
-    width: 60px;
+    width: 70px;
     color: white;
     border-radius: 5px;
     background-color: black;
     box-shadow: 0 10px 5px rgba(0, 0, 0, 0.5);
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+.profilefollowButton{
+    width:50px;
 }
 .main .mainWrite .mainWriteContents{
     margin-left: 20px;
