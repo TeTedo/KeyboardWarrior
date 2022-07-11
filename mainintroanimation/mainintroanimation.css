@@ -41,9 +41,13 @@
 @keyframes deletewords{
     0%{
         opacity: 1;
+        transform: translateZ(0);
+        animation: ease-in-out backwards;
     }
     100%{
-        opacity: 0;
+        opacity: 1;
+        transform: translateZ(2000px);
+        animation: ease-in-out backwards;
     }
 }
 
@@ -51,15 +55,15 @@
     0%{
         opacity: 1;
         filter: blur(0);
-        transform: translate(0,0) rotate(0deg) scale(1);
+        /* transform: translateX(0)translateY(0) rotate(0deg) scale(1); */
     }
     50%{
         opacity: 1;
         pointer-events: none;
     }
     100%{
-        filter: blur(20px);
+        filter: blur(15px);
         opacity: 0;
-        transform: translate(300px,-300px) rotate(720deg) scale(4);
+        /* transform: translateX(300px)translateY(-300px) rotate(720deg) scale(4); */
     }
 }

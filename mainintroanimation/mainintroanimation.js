@@ -11,6 +11,8 @@ for(let i = 0; i <400; i++){
     tempblock.style.animationDuration = randNum + 's'
 }
 
+block = document.querySelectorAll('.block')
+
 setTimeout(()=>{
     for(let i = 0;i<smokeWords.length;i++){
         let randNum = Math.random() * 3.5
@@ -21,10 +23,17 @@ setTimeout(()=>{
 },5500)
 
 setTimeout(()=>{
-    mainPageIntro.style.animationName = "deletewords"
-    mainPageIntro.style.animationDuration = "2s"
-},7500)
+    for(let i = 0; i <400; i++){
+        mainPageIntro.style.backgroundColor = "transparent"
+        let randNum = Math.random() * 5
+        block[i].style.animationName = 'deletewords'
+        console.log(block[i].style.animationName);
+        block[i].style.animationDuration = randNum + 's'
+    }
+    // mainPageIntro.style.animationName = "deletewords"
+    // mainPageIntro.style.animationDuration = "2s"
+},8500)
 
 setTimeout(()=>{
     mainPageIntro.style.display = "none"
-},8500)
+},12500)
