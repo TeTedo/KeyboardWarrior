@@ -1,253 +1,339 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<link rel="stylesheet" href="minigame.css">
-<body>
+  </head>
+  <link rel="stylesheet" href="minigame.css" />
+  <body>
     <div class="top">
-        <div class="topWrapper">
-            <a href="mainpage.html"><img src="../images/mainlogo.png" alt="">
-            </a>
-            <div class="navContents">
-                <div class="navmenuBar">
-                    <a href="../subpage/subpage.html"><div class="navmenuCommunity">COMMUNITY</div></a>
-                    <a href="../minigamepage/minigamepage.html"><div class="navmenuMinigame">MINIGAME</div></a>
-                </div>
-                <div class="navSearch">
-                    <input type="text" class="mainSearch">
-                    <button class="topSearchBtn"></button>
-                </div>
-            </div>
+      <div class="topWrapper">
+        <a href="../mainpage/mainpage.html"
+          ><img src="../images/mainlogo.png" alt="" />
+        </a>
+        <div class="navContents">
+          <div class="navmenuBar">
+            <a href="../subpage/subpage.html"
+              ><div class="navmenuCommunity">COMMUNITY</div></a
+            >
+            <a href="../minigame/minigame.html"
+              ><div class="navmenuMinigame">MINIGAME</div></a
+            >
+          </div>
+          <div class="navSearch">
+            <input type="text" class="mainSearch" />
+            <button class="topSearchBtn"></button>
+          </div>
         </div>
+      </div>
     </div>
     <div class="popUp">
-        <div class="popUpWrap">
-            <ul>
-                <li style="margin-bottom:50px ;"><input type="text" id="addImgFile"></li>
-                <li>
-                    <button id="popUpCancle" style="margin-right:10px; margin-left: 150px;">취소</button>
-                    <button id="popUpDone">완료</button>
-                </li>
-                <li></li>
-            </ul>
-        </div>
+      <div class="popUpWrap">
+        <ul>
+          <li style="margin-bottom: 50px">
+            <input type="text" id="addImgFile" />
+          </li>
+          <li>
+            <button
+              id="popUpCancle"
+              style="margin-right: 10px; margin-left: 150px"
+            >
+              취소
+            </button>
+            <button id="popUpDone">완료</button>
+          </li>
+          <li></li>
+        </ul>
+      </div>
     </div>
     <div class="ModifyPopUp">
-        <div class="ModifyPopUpWrap">
-            <ul>
-                <li style="margin-bottom:50px ;"><input type="text" id="modifyImgFile"></li>
-                <li>
-                    <button id="ModifyPopUpCancle" style="margin-right:10px; margin-left: 150px;">취소</button>
-                    <button id="ModifyPopUpDone">완료</button>
-                </li>
-                <li></li>
-            </ul>
-        </div>
+      <div class="ModifyPopUpWrap">
+        <ul>
+          <li style="margin-bottom: 50px">
+            <input type="text" id="modifyImgFile" />
+          </li>
+          <li>
+            <button
+              id="ModifyPopUpCancle"
+              style="margin-right: 10px; margin-left: 150px"
+            >
+              취소
+            </button>
+            <button id="ModifyPopUpDone">완료</button>
+          </li>
+          <li></li>
+        </ul>
+      </div>
     </div>
     <!-- 메인영역 -->
     <div class="main">
-        <div class="mainWrapper">
-            <div class="left">
-                <div class="leftWrapper">
-                    <div class="leftWrapperShadow"></div>
-                    <div class="contents">
-                        <div class="contentsWrappertologin">
-                            <div class="forlogin">ID</div>
-                            <input type="text" class="forlogininput">
-                            <div class="forlogin">PASSWORD</div>
-                            <input type="password" class="forlogininput">
-                            <div class="forloginbutton">로그인하기</div>
-                            <div class="join">
-                                <a href="../join/join.html">회원가입</a>
-                                <a href="">아이디/비밀번호 찾기</a>
-                            </div>
-                        </div>
-                    </div>
+      <div class="mainWrapper">
+        <div class="left">
+          <div class="leftWrapper">
+            <div class="leftWrapperShadow"></div>
+            <div class="contents">
+              <div class="contentsWrappertologin">
+                <div class="forlogin">ID</div>
+                <input type="text" class="forlogininput" />
+                <div class="forlogin">PASSWORD</div>
+                <input type="password" class="forlogininput" />
+                <div class="forloginbutton">로그인하기</div>
+                <div class="join">
+                  <a href="../join/join.html">회원가입</a>
+                  <a href="">아이디/비밀번호 찾기</a>
                 </div>
-                <div class="loginsuccess">
-                    <div class="leftWrapperShadow"></div>
-                    <div class="loginsuccessprofileImg">
-                        <div class="loginsuccessprofileImgWrap">
-                            <div class="loginsuccessprofileImgShadow"></div>
-                            <img class="loginsuccessprofileImgWrapimg" src="../images/profileImg.jpg" alt="">
-                        </div>
-                    </div>
-                    <div class="loginsuccessprofileId">테스트ID</div>
-                    <div class="loginsuccessprofileMessage">인생은 바람과도 같은 것
-                        시간은 금이다
-                        시간을 아껴서 쓰자잉!</div>
-                    <div class="loginsuccessprofileModify">수정하기</div>
-                </div>
-                <!-- <div class="scrollContents">
+              </div>
+            </div>
+          </div>
+          <div class="loginsuccess">
+            <div class="leftWrapperShadow"></div>
+            <div class="loginsuccessprofileImg">
+              <div class="loginsuccessprofileImgWrap">
+                <div class="loginsuccessprofileImgShadow"></div>
+                <img
+                  class="loginsuccessprofileImgWrapimg"
+                  src="../images/profileImg.jpg"
+                  alt=""
+                />
+              </div>
+            </div>
+            <div class="loginsuccessprofileId">테스트ID</div>
+            <div class="loginsuccessprofileMessage">
+              인생은 바람과도 같은 것 시간은 금이다 시간을 아껴서 쓰자잉!
+            </div>
+            <div class="loginsuccessprofileModify">수정하기</div>
+          </div>
+          <!-- <div class="scrollContents">
                         <a id="scrollBtn" href=""><h1>⇧</h1></a>
                 </div> -->
-                
-                <div class="wholeGameZone">
-                    <div class="wholeGameNavTop">
-                        <span class="wholegamement">전체게임</span>
-                        <span class="searchBar">    
-                            <input class="searchText" type="text">
-                            <span class="searchImg"><img width="27px" src="../images/search.png" alt=""></span>
-                        </span>
-                        <div class="adminModeAdd">추가
-                            <div class="AddHiddenPage">
-                                <div class="AddPage">
-                                    <div class="AddPageGeturl">
-                                        <input  class="AddPageGeturlInput" placeholder="url" type="text">
-                                    </div>
-                                    <div class="AddPageGetname">
-                                        <input  class="AddPageGetnameInput" placeholder="게임 이름" type="text">
-                                    </div>
-                                    <div class="AddPageGetcomment">
-                                        <input  class="AddPageGetcommentInput" placeholder="게임 설명" type="text">
-                                    </div>
-                                    <div class="AddPageGethastag">
-                                        <div class="AddPageGethastagInput">
-                                            <input type="checkbox" class="HashTagForDevide" value="#인기게임">
-                                            인기게임
-                                            <input type="checkbox" class="HashTagForDevide" value="#RPG">
-                                            RPG
-                                            <input type="checkbox" class="HashTagForDevide" value="#액션RPG">
-                                            액션RPG <br>
-                                            <input type="checkbox" class="HashTagForDevide" value="#FPS">
-                                            FPS
-                                            <input type="checkbox" class="HashTagForDevide" value="#캐쥬얼">
-                                            캐쥬얼
-                                            <input type="checkbox" class="HashTagForDevide" value="#스포츠">
-                                            스포츠
-                                            <input type="checkbox" class="HashTagForDevide" value="#전략">
-                                            전략
-            
-                                        </div>
-                                    </div>
-                                    <div class="AddPageButtonAddCancel">
-                                        <div class="AddPageAddButton">추가</div>
-                                        <div class="AddPageCancelButton">취소</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modifyGameListbutton">
-                            편집
-                            <div class="modifyGameListWholePage">
-                                <input  type="text" placeholder="편집할 게임 번호" class="numberOfModifyGameList">
-                                <input  type="text" placeholder="수정 url" class="modifyGameListurl">
-                                <input  type="text" placeholder="수정 이름" class="modifyGameListName">
-                                <input  type="text" placeholder="수정 설명" class="modifyGameListComment">
-                                <input  type="text" placeholder="수정 해쉬태그" class="modifyGameListHashTag">
-                                <div class="modifyGameListButtonMDC">
-                                    <div class="modifyGameListButtonModify">수정</div>
-                                    <div class="modifyGameListButtonDelete">삭제</div>
-                                    <div class="modifyGameListButtonCancel">취소</div>
-                                </div>
-                            </div>
-                        </div>
+
+          <div class="wholeGameZone">
+            <div class="wholeGameNavTop">
+              <span class="wholegamement">전체게임</span>
+              <span class="searchBar">
+                <input class="searchText" type="text" />
+                <span class="searchImg"
+                  ><img width="27px" src="../images/search.png" alt=""
+                /></span>
+              </span>
+              <div class="adminModeAdd">
+                추가
+                <div class="AddHiddenPage">
+                  <div class="AddPage">
+                    <div class="AddPageGeturl">
+                      <input
+                        class="AddPageGeturlInput"
+                        placeholder="url"
+                        type="text"
+                      />
                     </div>
-                    <ul class="wholeGameZoneul">
-                        <li class="#전체">
-                            <div class="wholeGameZoneulShadow"></div>
-                            <button class="gameBtns" game_name = 'puzzle'>
-                            <img src="https://rs.nxfs.nexon.com/gameusr/21/1/2FJh07105826755.jpg" alt="">
-                            </button>
-                            <div class="ListGameZone">
-                                <div class="ListGameName">퍼즐</div>
-                                <div class="ListGameComment">퍼즐을 빠르게 풀어보세요!</div>
-                                <div class="ListGameHashTag">게임 해쉬태그</div>
-                            </div>
-                        </li>
-                        <li class="#전체">
-                            <div class="wholeGameZoneulShadow"></div>
-                            <button class="gameBtns" game_name = 'PickingDoll'>
-                            <img src="https://rs.nxfs.nexon.com/gameusr/21/1/2FJh07105826755.jpg" alt="">
-                            </button>
-                            <div class="ListGameZone">
-                                <div class="ListGameName">인형뽑기</div>
-                                <div class="ListGameComment">귀여운 인형들을 뽑아보세요!</div>
-                                <div class="ListGameHashTag">게임 해쉬태그</div>
-                            </div>
-                        </li>
-                        <li class="#전체">
-                            <div class="wholeGameZoneulShadow"></div>
-                            <a href="">
-                            <img src="https://rs.nxfs.nexon.com/gameusr/21/1/2FJh07105826755.jpg" alt="">
-                            </a>
-                            <div class="ListGameZone">
-                                <div class="ListGameName">여기는 게임이름</div>
-                                <div class="ListGameComment">여기는 게임코멘트</div>
-                                <div class="ListGameHashTag">게임 해쉬태그</div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>          
+                    <div class="AddPageGetname">
+                      <input
+                        class="AddPageGetnameInput"
+                        placeholder="게임 이름"
+                        type="text"
+                      />
+                    </div>
+                    <div class="AddPageGetcomment">
+                      <input
+                        class="AddPageGetcommentInput"
+                        placeholder="게임 설명"
+                        type="text"
+                      />
+                    </div>
+                    <div class="AddPageGethastag">
+                      <div class="AddPageGethastagInput">
+                        <input
+                          type="checkbox"
+                          class="HashTagForDevide"
+                          value="#인기게임"
+                        />
+                        인기게임
+                        <input
+                          type="checkbox"
+                          class="HashTagForDevide"
+                          value="#RPG"
+                        />
+                        RPG
+                        <input
+                          type="checkbox"
+                          class="HashTagForDevide"
+                          value="#액션RPG"
+                        />
+                        액션RPG <br />
+                        <input
+                          type="checkbox"
+                          class="HashTagForDevide"
+                          value="#FPS"
+                        />
+                        FPS
+                        <input
+                          type="checkbox"
+                          class="HashTagForDevide"
+                          value="#캐쥬얼"
+                        />
+                        캐쥬얼
+                        <input
+                          type="checkbox"
+                          class="HashTagForDevide"
+                          value="#스포츠"
+                        />
+                        스포츠
+                        <input
+                          type="checkbox"
+                          class="HashTagForDevide"
+                          value="#전략"
+                        />
+                        전략
+                      </div>
+                    </div>
+                    <div class="AddPageButtonAddCancel">
+                      <div class="AddPageAddButton">추가</div>
+                      <div class="AddPageCancelButton">취소</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modifyGameListbutton">
+                편집
+                <div class="modifyGameListWholePage">
+                  <input
+                    type="text"
+                    placeholder="편집할 게임 번호"
+                    class="numberOfModifyGameList"
+                  />
+                  <input
+                    type="text"
+                    placeholder="수정 url"
+                    class="modifyGameListurl"
+                  />
+                  <input
+                    type="text"
+                    placeholder="수정 이름"
+                    class="modifyGameListName"
+                  />
+                  <input
+                    type="text"
+                    placeholder="수정 설명"
+                    class="modifyGameListComment"
+                  />
+                  <input
+                    type="text"
+                    placeholder="수정 해쉬태그"
+                    class="modifyGameListHashTag"
+                  />
+                  <div class="modifyGameListButtonMDC">
+                    <div class="modifyGameListButtonModify">수정</div>
+                    <div class="modifyGameListButtonDelete">삭제</div>
+                    <div class="modifyGameListButtonCancel">취소</div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="gameAreaWrapper">
-                <!-- <div class="gameArea">
-                    이부분이 게임이 추가될 영역 -->
-                            
-
-                    <!-- 이부분이 게임이 추가될 영역
-                </div> -->
-            </div>
+            <ul class="wholeGameZoneul">
+              <li class="#전체">
+                <div class="wholeGameZoneulShadow"></div>
+                <button class="gameBtns" game_name="puzzle">
+                  <img
+                    src="https://rs.nxfs.nexon.com/gameusr/21/1/2FJh07105826755.jpg"
+                    alt=""
+                  />
+                </button>
+                <div class="ListGameZone">
+                  <div class="ListGameName">퍼즐</div>
+                  <div class="ListGameComment">퍼즐을 빠르게 풀어보세요!</div>
+                  <div class="ListGameHashTag">게임 해쉬태그</div>
+                </div>
+              </li>
+              <li class="#전체">
+                <div class="wholeGameZoneulShadow"></div>
+                <button class="gameBtns" game_name="PickingDoll">
+                  <img
+                    src="https://rs.nxfs.nexon.com/gameusr/21/1/2FJh07105826755.jpg"
+                    alt=""
+                  />
+                </button>
+                <div class="ListGameZone">
+                  <div class="ListGameName">인형뽑기</div>
+                  <div class="ListGameComment">귀여운 인형들을 뽑아보세요!</div>
+                  <div class="ListGameHashTag">게임 해쉬태그</div>
+                </div>
+              </li>
+              <li class="#전체">
+                <div class="wholeGameZoneulShadow"></div>
+                <a href="">
+                  <img
+                    src="https://rs.nxfs.nexon.com/gameusr/21/1/2FJh07105826755.jpg"
+                    alt=""
+                  />
+                </a>
+                <div class="ListGameZone">
+                  <div class="ListGameName">여기는 게임이름</div>
+                  <div class="ListGameComment">여기는 게임코멘트</div>
+                  <div class="ListGameHashTag">게임 해쉬태그</div>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
+        <div class="gameAreaWrapper">
+          <!-- <div class="gameArea">
+                    이부분이 게임이 추가될 영역 -->
+
+          <!-- 이부분이 게임이 추가될 영역
+                </div> -->
+        </div>
+      </div>
     </div>
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+  <script type="text/javascript">
+    const gameBtns = document.querySelectorAll(".gameBtns");
+    const gameAreaWrapper = document.querySelector(".gameAreaWrapper");
+    let gameArea;
+    let gameName;
+    gamesCount = gameBtns.length;
+    $(document).ready(function () {
+      for (let i = 0; i < gamesCount; i++) {
+        $(gameBtns[i]).click(function (e) {
+          let href;
+          e.preventDefault();
+          //전에 실행중인 게임 있으면 없애기
+          console.log(gameAreaWrapper.childElementCount);
+          if (!(gameAreaWrapper.childElementCount === 0)) {
+            gameAreaWrapper.removeChild(gameArea);
+          }
+          gameArea = document.createElement("div");
+          gameAreaWrapper.appendChild(gameArea);
+          gameArea.classList.add("gameArea");
 
-</body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
-<script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
-<script type="text/javascript">
-    const gameBtns = document.querySelectorAll('.gameBtns')
-    const gameAreaWrapper = document.querySelector('.gameAreaWrapper')
-    let gameArea
-    let gameName
-    gamesCount = gameBtns.length
-    $(document).ready(function(){
-        for (let i = 0; i < gamesCount; i++) {
-            $(gameBtns[i]).click(function(e){
-                let href
-                e.preventDefault();
-                //전에 실행중인 게임 있으면 없애기
-                console.log(gameAreaWrapper.childElementCount)
-                if(!(gameAreaWrapper.childElementCount===0)){
-                    gameAreaWrapper.removeChild(gameArea);
-                }
-                gameArea = document.createElement('div');
-                gameAreaWrapper.appendChild(gameArea);
-                gameArea.classList.add('gameArea')
+          //게임추가할떄 여기에 넣기
+          gameName = gameBtns[i].getAttribute("game_name");
+          switch (gameName) {
+            case "puzzle":
+              href = "./Games/Puzzle/Puzzle_in_page.html";
+              $(gameArea).load(href);
+              break;
 
-                //게임추가할떄 여기에 넣기
-                gameName=gameBtns[i].getAttribute('game_name');
-                switch (gameName) {
-                    case 'puzzle':
-                        href = './Games/Puzzle/Puzzle_in_page.html';
-                        $(gameArea).load(href);
-                        break;
-                    
-                    case 'PickingDoll':
-                        console.log('인형뽑기클릭됨')
-                        href = './Games/PickingDoll/PickingDoll.html';
-                        $(gameArea).load(href);
-                        break;    
-                }
+            case "PickingDoll":
+              console.log("인형뽑기클릭됨");
+              href = "./Games/PickingDoll/PickingDoll.html";
+              $(gameArea).load(href);
+              break;
+          }
 
-                // gameArea.style.minHeight='702px'
-                setTimeout(() => {
-                    window.scrollTo({top:1000,behavior:"smooth"})
-                }, 100);
-            })
-        }
-    })
-    
-</script>
+          // gameArea.style.minHeight='702px'
+          setTimeout(() => {
+            window.scrollTo({ top: 1000, behavior: "smooth" });
+          }, 100);
+        });
+      }
+    });
+  </script>
 
-
-
-
-
-
-<script src="minigame.js"></script>
-<script src="./define_minigame.js"></script>
+  <script src="minigame.js"></script>
+  <script src="./define_minigame.js"></script>
 </html>

@@ -1,138 +1,248 @@
-:focus-visible{
-    outline: none;
+:focus-visible {
+  outline: none;
 }
 * {
-    background-color:  transparent;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-a{
-    color: black;
-    text-decoration: none;
+a {
+  color: black;
+  text-decoration: none;
 }
-ul{
-    list-style-type: none;
+ul {
+  list-style-type: none;
 }
-body{
-    position: absolute;
-    width: 100%;
+body {
+  position: absolute;
+  width: 100%;
 }
-p{
-    margin: 0;
+p {
+  margin: 0;
 }
-li{
-    margin-bottom: 20px;
+li {
+  margin-bottom: 20px;
+  height: 55px;
 }
-h5{
-    margin: 0;
-    color: #855cb3;
-    height: 16px;
+h5 {
+  margin: 0;
+  color: black;
+}
+html {
+  cursor: url(../images/maincursor.png) 12.5 12, auto;
+}
+cursor {
+  width: 20px;
+  height: 20px;
+}
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 100;
+  src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff2)
+      format("woff2"),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff)
+      format("woff"),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.otf)
+      format("opentype");
 }
 
-.mainContentsWrapper{
-    width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 300;
+  src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff2)
+      format("woff2"),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff)
+      format("woff"),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.otf)
+      format("opentype");
+}
+
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 400;
+  src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff2)
+      format("woff2"),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff)
+      format("woff"),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.otf)
+      format("opentype");
+}
+
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 500;
+  src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff2)
+      format("woff2"),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff)
+      format("woff"),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.otf)
+      format("opentype");
+}
+
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 700;
+  src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff2)
+      format("woff2"),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff)
+      format("woff"),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.otf)
+      format("opentype");
+}
+
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 900;
+  src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff2)
+      format("woff2"),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff)
+      format("woff"),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.otf)
+      format("opentype");
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+textarea,
+select {
+  font-family: "Noto Sans KR, sans-serif";
+}
+
+.mainContentsWrapper {
+  width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 /* 탑 */
-.top{
-    position: fixed;
-    background-color: white;
-    width: 100%;
+.top {
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+  height: 140px;
+  background-color: black;
+  display: flex;
+  align-items: center;
 }
-.topWrapper{
-    height: 100px;
-    width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.topWrapper {
+  height: 100px;
+  width: 1340px;
+  margin: 0px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.topWrapper h1{
-    color: #855cb3;
+.navContents {
+  display: flex;
+  width: 930px;
+  justify-content: space-between;
+  align-items: center;
 }
-.topWrapper input{
-    width: 500px;
-    height: 50px;
-    border: 2px solid rgb(226, 204, 226);
-    border-radius: 10px;
-    background-color: whitesmoke;
-    position: relative;
-    left: -70px;
+.navmenuBar {
+  display: flex;
+  width: 300px;
+  height: 25px;
+  font-size: 20px;
+  justify-content: space-between;
 }
-#topSearchBtn {
-    width: 30px;
-    height: 30px;
-    border: none;
-    background-image: url(../images/search.png);
-    background-size: cover;
-    position: relative;
-    left: -360px;
-    cursor: pointer;
+.navmenuCommunity,
+.navmenuMinigame {
+  color: white;
 }
-.fixedSpace{
-    position: fixed;
-    top: 100px;
-    height: 20px;
-    width: 100%;
-    background-color: white;
+.topWrapper input {
+  width: 380px;
+  height: 55px;
+  border-radius: 2px;
+  background-color: whitesmoke;
+  position: relative;
+  left: 34px;
+  font-size: 17px;
+  padding: 15px;
+  border: solid 1px #131313;
 }
-.borderLine{
-    position: fixed;
-    width: 100%;
-    top: 120px;
-    border-bottom: 2px solid  rgb(226, 204, 226);;
+.topSearchBtn {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-image: url(../images/search.png);
+  background-size: cover;
+  position: relative;
+  left: -105px;
+  cursor: pointer;
 }
-.space{
-    height: 150px;
+.fixedSpace {
+  position: fixed;
+  top: 100px;
+  height: 20px;
+  width: 100%;
+  background-color: white;
 }
-.join_cover{
-    width: 1000px;
-    margin: 0 auto;
-    padding-bottom: 30px;
+.borderLine {
+  position: fixed;
+  width: 100%;
+  top: 120px;
+  border-bottom: 2px solid rgb(226, 204, 226);
 }
-.mobile input{
-    width: 50px;
+.space {
+  height: 150px;
 }
-#inputNum1{
-    width: 50px;
-    padding: 1px 2px 1px 2px;
-    
+.join_cover {
+  width: 1000px;
+  margin: 0 auto;
+  padding-bottom: 30px;
 }
-.agree_cover{
-    width: 1000px;
-    margin: 0 auto;
+.mobile input {
+  width: 50px;
 }
-.checkbox{
-    margin-top: 1px;
+#inputNum1 {
+  width: 50px;
+  padding: 1px 2px 1px 2px;
 }
-.use_agree{
-    width: 582px;
+.agree_cover {
+  width: 1000px;
+  margin: 0 auto;
 }
-.use_agree .Box_cover{
-    margin-bottom: 20px;
+.checkbox {
+  margin-top: 1px;
 }
-.use_agree .Box{
-    display: flex;
-    justify-content: space-between;
+.use_agree {
+  width: 582px;
 }
-.textbox{
-    font-size: x-small;
-    border: 1px solid black;
-    height: 100px;
-    overflow: auto;
+.use_agree .Box_cover {
+  margin-bottom: 20px;
 }
-.finish_cover{
-    width: 1000px;
-    margin: 0 auto;
-    display: flex;
+.use_agree .Box {
+  display: flex;
+  justify-content: space-between;
 }
-.finish_cover button{
-    width: 70px;
-    height: 30px;
-    margin-right: 30px;
+.textbox {
+  font-size: x-small;
+  border: 1px solid black;
+  height: 100px;
+  overflow: auto;
+}
+.finish_cover {
+  width: 1000px;
+  margin: 0 auto;
+  display: flex;
+}
+.finish_cover button {
+  width: 70px;
+  height: 30px;
+  margin-right: 30px;
 }

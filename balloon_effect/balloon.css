@@ -33,12 +33,17 @@ cursor {
 
 #balloonStartBtn:hover {
   animation: balloonMove;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
 }
 @keyframes balloonMove {
   0% {
     top: 0px;
   }
-  100% {
+  50% {
     top: -40px;
+  }
+  100% {
+    top: 0px;
   }
 }
