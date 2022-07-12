@@ -559,7 +559,6 @@ function BtnAttribute() {
 
     //포스팅삭제버튼
     deleteBtnsArr[i].onclick = function (e) {
-      console.log("삭제버튼");
       if (!window.confirm("삭제하시겠습니까?")) {
         return;
       }

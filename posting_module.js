@@ -47,9 +47,8 @@ let Category = document.querySelectorAll(".Category");
 let postHashTagtoClick = document.querySelectorAll(".postHashTagtoClick");
 
 //프로필 이미지 팔로우
-let profilefollowButton = document.querySelectorAll('.profilefollowButton')
-let followerCountNum = document.querySelectorAll('.followerCountNum')
-
+let profilefollowButton = document.querySelectorAll(".profilefollowButton");
+let followerCountNum = document.querySelectorAll(".followerCountNum");
 
 //스크롤 이벤트용
 let toStopDrawFun = [];
@@ -166,7 +165,7 @@ let PostGnb = (function () {
     temppostWriteBottom.appendChild(temppostWriteGameTag);
     temppostWriteBottom.appendChild(templikerecommentbutton);
     postWrite.appendChild(temprecommentBox);
-    
+
     temppostWriteTop.appendChild(tempprofileID);
     temppostWriteTop.appendChild(tempprofileTime);
     postWriteWrapper.appendChild(postWriteContents);
@@ -194,22 +193,22 @@ let PostGnb = (function () {
     modifyBtn.innerHTML = "수정";
 
     //프로필 이미지 호버효과 추가
-    let tempprofileImgContent = document.createElement('div')
-    tempprofileImgContent.classList.add('profileImgContent')
-    let tempfollowerCount = document.createElement('div')
-    tempfollowerCount.classList.add('followerCount')
-    let tempfollowerCountNum = document.createElement('div')
-    tempfollowerCountNum.classList.add('followerCountNum')
-    let tempfollowCount = document.createElement('div')
-    tempfollowCount.classList.add('followCount')
-    let tempfollowCountNum = document.createElement('div')
-    tempfollowCountNum.classList.add('followCountNum')
-    let tempprofileButton = document.createElement('div')
-    tempprofileButton.classList.add('profileButton')
-    let tempprofilefollowButton = document.createElement('div')
-    tempprofilefollowButton.classList.add('profilefollowButton')
-    let tempprofilemessageButton = document.createElement('div')
-    tempprofilemessageButton.classList.add('profilemessageButton')
+    let tempprofileImgContent = document.createElement("div");
+    tempprofileImgContent.classList.add("profileImgContent");
+    let tempfollowerCount = document.createElement("div");
+    tempfollowerCount.classList.add("followerCount");
+    let tempfollowerCountNum = document.createElement("div");
+    tempfollowerCountNum.classList.add("followerCountNum");
+    let tempfollowCount = document.createElement("div");
+    tempfollowCount.classList.add("followCount");
+    let tempfollowCountNum = document.createElement("div");
+    tempfollowCountNum.classList.add("followCountNum");
+    let tempprofileButton = document.createElement("div");
+    tempprofileButton.classList.add("profileButton");
+    let tempprofilefollowButton = document.createElement("div");
+    tempprofilefollowButton.classList.add("profilefollowButton");
+    let tempprofilemessageButton = document.createElement("div");
+    tempprofilemessageButton.classList.add("profilemessageButton");
     temppostWriteTop.prepend(tempprofileImgContent);
     tempprofileImgContent.appendChild(profileImg);
     tempprofileImgContent.appendChild(tempfollowerCount);
@@ -220,10 +219,10 @@ let PostGnb = (function () {
     tempprofileButton.appendChild(tempprofilefollowButton);
     tempprofileButton.appendChild(tempprofilemessageButton);
 
-    tempfollowerCount.innerText = "Follower"
-    tempfollowCount.innerText = "Follow"
-    tempprofilefollowButton.innerHTML = "Follow"
-    tempprofilemessageButton.innerHTML = "Message"
+    tempfollowerCount.innerText = "Follower";
+    tempfollowCount.innerText = "Follow";
+    tempprofilefollowButton.innerHTML = "Follow";
+    tempprofilemessageButton.innerHTML = "Message";
     //프로필 호버 효과
 
     templikedivcount.innerHTML = 0;
@@ -373,8 +372,8 @@ let renewalArr = function () {
   postWriteShadow = document.querySelectorAll(".postWriteShadow");
   deletemotion = document.querySelectorAll(".deletemotion");
   deleteblock = document.querySelectorAll(".deleteblock");
-  profilefollowButton = document.querySelectorAll('.profilefollowButton')
-  followerCountNum = document.querySelectorAll('.followerCountNum')
+  profilefollowButton = document.querySelectorAll(".profilefollowButton");
+  followerCountNum = document.querySelectorAll(".followerCountNum");
 };
 
 //수정버튼, 삭제버튼 함수
@@ -569,6 +568,9 @@ function BtnAttribute() {
 
     //포스팅삭제버튼
     deleteBtnsArr[i].onclick = function (e) {
+      if (!window.confirm("삭제하시겠습니까?")) {
+        return;
+      }
       //삭제 모션
       let tempdeletemotion = document.createElement("div");
       tempdeletemotion.classList.add("deletemotion");
@@ -1039,23 +1041,22 @@ let mainSearchFun = function () {
 };
 mainSearchFun();
 
-
 //이미지 프로필 팔로우 누르면 팔로워 숫자 +1
-let clickProfileFollowButton = function(){
-    for(let i = 0; i<postWritesArr.length;i++){
-        profilefollowButton[i].onclick = function(){
-            if(profilefollowButton[i].style.backgroundColor!="white"){
-                profilefollowButton[i].style.backgroundColor = "white"
-                profilefollowButton[i].style.color = "black"
-                followerCountNum[i].innerText = parseInt(followerCountNum[i].innerText) + 1;
-            }
-            else{
-                profilefollowButton[i].style.backgroundColor = "black"
-                profilefollowButton[i].style.color = "white"
-                followerCountNum[i].innerHTML = parseInt(followerCountNum[i].innerText) - 1;
-            }
-
-        }
-    }
-}
+let clickProfileFollowButton = function () {
+  for (let i = 0; i < postWritesArr.length; i++) {
+    profilefollowButton[i].onclick = function () {
+      if (profilefollowButton[i].style.backgroundColor != "white") {
+        profilefollowButton[i].style.backgroundColor = "white";
+        profilefollowButton[i].style.color = "black";
+        followerCountNum[i].innerText =
+          parseInt(followerCountNum[i].innerText) + 1;
+      } else {
+        profilefollowButton[i].style.backgroundColor = "black";
+        profilefollowButton[i].style.color = "white";
+        followerCountNum[i].innerHTML =
+          parseInt(followerCountNum[i].innerText) - 1;
+      }
+    };
+  }
+};
 clickProfileFollowButton();
