@@ -34,8 +34,8 @@ let likedivimg = document.querySelectorAll(".likediv img");
 let likediv = document.querySelectorAll(".likediv");
 
 //프로필 이미지 팔로우
-let profilefollowButton = document.querySelectorAll('.profilefollowButton')
-let followerCountNum = document.querySelectorAll('.followerCountNum')
+let profilefollowButton = document.querySelectorAll(".profilefollowButton");
+let followerCountNum = document.querySelectorAll(".followerCountNum");
 
 //댓글 태그
 let recommentdiv = document.querySelectorAll(".recommentdiv");
@@ -137,8 +137,6 @@ let PostGnb = (function () {
     let temppostWriteHashTag = document.createElement("span");
     temppostWriteHashTag.classList.add("postWriteHashTag");
 
-    
-
     //댓글창
     let temprecommentBox = document.createElement("div");
     temprecommentBox.classList.add("recommentBox");
@@ -208,25 +206,23 @@ let PostGnb = (function () {
 
     modifyAddImgBtn.innerHTML = "사진올리기";
 
-
-
     //프로필 이미지 호버효과 추가
-    let tempprofileImgContent = document.createElement('div')
-    tempprofileImgContent.classList.add('profileImgContent')
-    let tempfollowerCount = document.createElement('div')
-    tempfollowerCount.classList.add('followerCount')
-    let tempfollowerCountNum = document.createElement('div')
-    tempfollowerCountNum.classList.add('followerCountNum')
-    let tempfollowCount = document.createElement('div')
-    tempfollowCount.classList.add('followCount')
-    let tempfollowCountNum = document.createElement('div')
-    tempfollowCountNum.classList.add('followCountNum')
-    let tempprofileButton = document.createElement('div')
-    tempprofileButton.classList.add('profileButton')
-    let tempprofilefollowButton = document.createElement('button')
-    tempprofilefollowButton.classList.add('profilefollowButton')
-    let tempprofilemessageButton = document.createElement('button')
-    tempprofilemessageButton.classList.add('profilemessageButton')
+    let tempprofileImgContent = document.createElement("div");
+    tempprofileImgContent.classList.add("profileImgContent");
+    let tempfollowerCount = document.createElement("div");
+    tempfollowerCount.classList.add("followerCount");
+    let tempfollowerCountNum = document.createElement("div");
+    tempfollowerCountNum.classList.add("followerCountNum");
+    let tempfollowCount = document.createElement("div");
+    tempfollowCount.classList.add("followCount");
+    let tempfollowCountNum = document.createElement("div");
+    tempfollowCountNum.classList.add("followCountNum");
+    let tempprofileButton = document.createElement("div");
+    tempprofileButton.classList.add("profileButton");
+    let tempprofilefollowButton = document.createElement("button");
+    tempprofilefollowButton.classList.add("profilefollowButton");
+    let tempprofilemessageButton = document.createElement("button");
+    tempprofilemessageButton.classList.add("profilemessageButton");
     temppostWriteTop.prepend(tempprofileImgContent);
     tempprofileImgContent.appendChild(profileImg);
     tempprofileImgContent.appendChild(tempfollowerCount);
@@ -237,10 +233,10 @@ let PostGnb = (function () {
     tempprofileButton.appendChild(tempprofilefollowButton);
     tempprofileButton.appendChild(tempprofilemessageButton);
 
-    tempfollowerCount.innerText = "Follower"
-    tempfollowCount.innerText = "Follow"
-    tempprofilefollowButton.innerHTML = "Follow"
-    tempprofilemessageButton.innerHTML = "Message"
+    tempfollowerCount.innerText = "Follower";
+    tempfollowCount.innerText = "Follow";
+    tempprofilefollowButton.innerHTML = "Follow";
+    tempprofilemessageButton.innerHTML = "Message";
     //프로필 호버 효과
 
     // 7/2 민섭 수정: 이미지 있을때나 없을때나 슬라이드형식은 만들어둬야해서 슬라이드추가를 그림추가 조건문 밖으로 뺌
@@ -367,8 +363,8 @@ let renewalArr = function () {
   postWriteShadow = document.querySelectorAll(".postWriteShadow");
   deletemotion = document.querySelectorAll(".deletemotion");
   deleteblock = document.querySelectorAll(".deleteblock");
-  profilefollowButton = document.querySelectorAll('.profilefollowButton');
-  followerCountNum = document.querySelectorAll('.followerCountNum');
+  profilefollowButton = document.querySelectorAll(".profilefollowButton");
+  followerCountNum = document.querySelectorAll(".followerCountNum");
 };
 
 //수정버튼, 삭제버튼 함수
@@ -563,6 +559,10 @@ function BtnAttribute() {
 
     //포스팅삭제버튼
     deleteBtnsArr[i].onclick = function (e) {
+      console.log("삭제버튼");
+      if (!window.confirm("삭제하시겠습니까?")) {
+        return;
+      }
       //삭제 모션
       let tempdeletemotion = document.createElement("div");
       tempdeletemotion.classList.add("deletemotion");
@@ -1029,21 +1029,21 @@ let mainSearchFun = function () {
 };
 mainSearchFun();
 //이미지 프로필 팔로우 누르면 팔로워 숫자 +1
-let clickProfileFollowButton = function(){
-    for(let i = 0; i<postWritesArr.length;i++){
-        profilefollowButton[i].onclick = function(){
-            if(profilefollowButton[i].style.backgroundColor!="white"){
-                profilefollowButton[i].style.backgroundColor = "white"
-                profilefollowButton[i].style.color = "black"
-                followerCountNum[i].innerText = parseInt(followerCountNum[i].innerText) + 1;
-            }
-            else{
-                profilefollowButton[i].style.backgroundColor = "black"
-                profilefollowButton[i].style.color = "white"
-                followerCountNum[i].innerHTML = parseInt(followerCountNum[i].innerText) - 1;
-            }
-
-        }
-    }
-}
+let clickProfileFollowButton = function () {
+  for (let i = 0; i < postWritesArr.length; i++) {
+    profilefollowButton[i].onclick = function () {
+      if (profilefollowButton[i].style.backgroundColor != "white") {
+        profilefollowButton[i].style.backgroundColor = "white";
+        profilefollowButton[i].style.color = "black";
+        followerCountNum[i].innerText =
+          parseInt(followerCountNum[i].innerText) + 1;
+      } else {
+        profilefollowButton[i].style.backgroundColor = "black";
+        profilefollowButton[i].style.color = "white";
+        followerCountNum[i].innerHTML =
+          parseInt(followerCountNum[i].innerText) - 1;
+      }
+    };
+  }
+};
 clickProfileFollowButton();
