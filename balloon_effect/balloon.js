@@ -14,7 +14,6 @@ blueBallon.src = "/balloon_effect/images/blue.png";
 greenBallon.src = "/balloon_effect/images/green.png";
 balloonPop.src = "/balloon_effect/images/pop.png";
 
-console.log(canvas.width, canvas.height);
 let balloonPosXArr = new Array();
 let balloonPosYArr = new Array();
 

@@ -27,7 +27,6 @@ setTimeout(()=>{
         mainPageIntro.style.backgroundColor = "transparent"
         let randNum = Math.random() * 5
         block[i].style.animationName = 'deletewords'
-        console.log(block[i].style.animationName);
         block[i].style.animationDuration = randNum + 's'
     }
     // mainPageIntro.style.animationName = "deletewords"
