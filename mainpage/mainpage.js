@@ -37,6 +37,9 @@ let likediv = document.querySelectorAll(".likediv");
 let profilefollowButton = document.querySelectorAll(".profilefollowButton");
 let followerCountNum = document.querySelectorAll(".followerCountNum");
 
+// 07.12 smokeanimation
+let modifyTextareaWrap = document.querySelectorAll('.modifyTextareaWrap')
+
 //댓글 태그
 let recommentdiv = document.querySelectorAll(".recommentdiv");
 let recommentdivcount = document.querySelectorAll(".recommentdivcount");
@@ -562,7 +565,7 @@ function BtnAttribute() {
       if (!window.confirm("삭제하시겠습니까?")) {
         return;
       }
-      //삭제 모션
+      //삭제 모션 1 
       let tempdeletemotion = document.createElement("div");
       tempdeletemotion.classList.add("deletemotion");
       postWritesArr[i].prepend(tempdeletemotion);
@@ -574,6 +577,20 @@ function BtnAttribute() {
 
         tempdeletemotion.appendChild(tempdeleteblock);
       }
+
+      //07.12 smokeanimation
+      // let forsmokeMotionDiv = document.createElement('div');
+      // forsmokeMotionDiv.classList.add('forsmokeMotionDiv');
+      // modifyTextareaWrap[i].appendChild(forsmokeMotionDiv);
+      // forsmokeMotionDiv.innerHTML = modifyTextareasArr[i].textContent.replace(/\s/gm,"<span>$&</span>");
+      // let forsmokeanimation = forsmokeMotionDiv[i].querySelectorAll('span');
+      // modifyTextareasArr[i].value = ""
+      // for(let k = 0 ; k<forsmokeanimation.length;k++){
+      //   let forsmokeanimationRanNum = Math.random() *2
+      //   forsmokeanimation[k].style.animationName = 'smokeAnimation';
+      //   forsmokeanimation[k].style.animationDuration = forsmokeanimationRanNum + 's';
+      // }
+
       setTimeout(() => {}, 3000);
       setTimeout(() => {
         e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.removeChild(
