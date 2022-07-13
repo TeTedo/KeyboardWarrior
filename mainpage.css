@@ -96,29 +96,7 @@ select {
 }
 @keyframes identifier {
 }
-@keyframes fadeinShadow {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 0;
-    }
-}
 
-@keyframes fadein {
-    0% {
-        opacity: 0;
-        left: 570px;
-    }
-    50% {
-        opacity: 1;
-        left: -50px;
-    }
-    100% {
-        opacity: 1;
-        left: 0px;
-    }
-}
 @keyframes slideanimationleft {
     0% {
         left: 10px;
@@ -712,13 +690,11 @@ body {
     border: 0.3px solid black;
     padding-bottom: 0;
     opacity: 0;
-    -moz-animation: fadein 3s;
 }
 .postWrite:last-child,
 .postWrite:nth-last-child(2),
 .postWrite:nth-last-child(3) {
     opacity: 1;
-    -moz-animation: fadein 3s;
 }
 
 @keyframes fadeinShadow {

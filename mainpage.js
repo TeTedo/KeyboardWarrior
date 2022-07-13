@@ -1,3 +1,4 @@
+let postWrapper = document.querySelector('.postWrapper')
 let postWritesArr = document.querySelectorAll(".postWrite");
 let postWriteContentsArr = document.querySelectorAll(".postWriteContents");
 let modifyTextareasArr = document.querySelectorAll(".modifyTextarea");
@@ -26,7 +27,6 @@ let wholeGameSlideul = document.querySelectorAll(".wholeGameSlideul");
 let wholeGameSlidelist = document.querySelectorAll(".wholeGameSlidelist");
 
 let mainWriteShadow = document.querySelectorAll(".mainWriteShadow");
-let postWriteShadow = document.querySelectorAll(".postWriteShadow");
 //좋아요 태그
 let likemotion = document.querySelectorAll(".likemotion");
 let likedivcount = document.querySelectorAll(".likedivcount");
@@ -103,8 +103,6 @@ let PostGnb = (function () {
     let temprecommentdivimg = document.createElement("img");
     temprecommentdivimg.src = "/images/recomment.png";
 
-    let temppostWirteShadow = document.createElement("div");
-    temppostWirteShadow.classList.add("postWriteShadow");
     let temppostWriteTop = document.createElement("div");
     temppostWriteTop.classList.add("postWriteTop");
     let tempprofileID = document.createElement("div");
@@ -152,7 +150,6 @@ let PostGnb = (function () {
 
     super_id.appendChild(postWrite);
     postWrite.appendChild(templikemotion);
-    postWrite.appendChild(temppostWirteShadow);
     postWrite.appendChild(temppostWriteTop);
     postWrite.appendChild(postWriteWrapper);
     //좋아요 관련
@@ -264,8 +261,6 @@ let PostGnb = (function () {
     //애니메이션 추가
     postWrite.style.webkitAnimationName = "fadein";
     postWrite.style.webkitAnimationDuration = "3s";
-    temppostWirteShadow.style.webkitAnimationName = "fadeinShadow";
-    temppostWirteShadow.style.webkitAnimationDuration = "3s";
     postWrite.style.opacity = 1;
     //그림추가
     imgUrlsArr = document.querySelectorAll(".mainWriteContentsImgWrapper");
@@ -322,6 +317,7 @@ let PostGnb = (function () {
     addRecommentFun();
     mainSearchFun();
     clickProfileFollowButton();
+    mainFilter();
   };
   return PostGnb;
 })();
@@ -363,7 +359,6 @@ let renewalArr = function () {
   recommentPost = document.querySelectorAll(".recommentPost");
   recommentBoxinput = document.querySelectorAll(".recommentBoxinput");
   recommentdivcount = document.querySelectorAll(".recommentdivcount");
-  postWriteShadow = document.querySelectorAll(".postWriteShadow");
   deletemotion = document.querySelectorAll(".deletemotion");
   deleteblock = document.querySelectorAll(".deleteblock");
   profilefollowButton = document.querySelectorAll(".profilefollowButton");
@@ -1066,12 +1061,36 @@ clickProfileFollowButton();
 
 // 07.13 필터 버튼 추가
 let filterButton = document.querySelectorAll('.filterButton');
-for(let i = 0; i<filterButton.length; i++){
-  filterButton[i].onclick = function(){
-    for(let k = 0 ; k<filterButton.length; k++){
-      filterButton[k].classList.remove('filterButtonactive');
+let mainFilter = function(){
+  for(let i = 0; i<filterButton.length; i++){
+    filterButton[i].onclick = function(){
+      //클릭한게 이미 눌려있는 경우
+      if(filterButton[i].classList.contains('filterButtonactive')){
+        filterButton[i].classList.remove('filterButtonactive');
+      }
+      //클릭한게 새롭게 눌리는 경우
+      else{ 
+        for(let k = 0 ; k<filterButton.length; k++){
+          filterButton[k].classList.remove('filterButtonactive');
+        }
+      filterButton[i].classList.add('filterButtonactive');
+      }
+      mainLikeSortFunction();
     }
-  filterButton[i].classList.add('filterButtonactive');
-  
+  }
+}
+mainFilter();
+
+filterButton[1].onclick = function(){
+  let CountNumLike;
+  let mainSortArray = [];
+  for(let i = 0 ; i<postWritesArr.length ; i++){
+    CountNumLike = Number(likedivcount[i].innerText);
+    mainSortArray.push([CountNumLike,postWritesArr[i]])
+  }
+  mainSortArray.sort((a,b)=>a[0]-b[0]);
+  for(let i = 0 ; i<mainSortArray.length; i++){
+    postWrapper.appendChild(mainSortArray[i][1])
+    postWritesArr[i].style.animationName = "fadein"
   }
 }

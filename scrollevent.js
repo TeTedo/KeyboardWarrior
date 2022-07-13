@@ -16,6 +16,7 @@ for (let i = 0; i < postWritesArr.length; i++) {
 }
 
 window.onscroll = function () {
+  postWritesArr = document.querySelectorAll('.postWrite')
   let main = document.querySelector(".main div:first-child");
   if (main.getBoundingClientRect().top < 100) {
       document.querySelector(".scrollContents").style.zIndex = "1";
@@ -99,9 +100,7 @@ window.onscroll = function () {
       //효과 off
       if (window.innerHeight - postWritesArrTop < 50) {
         postWritesArr[i].style.webkitAnimationName = "";
-        postWriteShadow[i].style.webkitAnimationName = "";
         postWritesArr[i].style.webkitAnimationDuration = "";
-        postWriteShadow[i].style.webkitAnimationDuration = "";
         postWritesArr[i].style.opacity = 0;
         // contentTireDrawFun("stop")
         // toStopDrawFun[i] = 0;
@@ -137,10 +136,8 @@ window.onscroll = function () {
         return;
       }
       if (window.innerHeight - postWritesArrTop > 50) {
-        postWritesArr[i].style.webkitAnimationName = "fadein";
-        postWritesArr[i].style.webkitAnimationDuration = "3s";
-        postWriteShadow[i].style.webkitAnimationName = "fadeinShadow";
-        postWriteShadow[i].style.webkitAnimationDuration = "3s";
+        postWritesArr[i].style.AnimationName = "fadein";
+        postWritesArr[i].style.AnimationDuration = "3s";
         postWritesArr[i].style.opacity = 1;
         if (toStopDrawFun[i] == 1) {
           return;
@@ -148,10 +145,8 @@ window.onscroll = function () {
         // contentTireDrawFun();
         // toStopDrawFun[i] = 1;
       } else {
-        postWritesArr[i].style.webkitAnimationName = "";
-        postWriteShadow[i].style.webkitAnimationName = "";
-        postWritesArr[i].style.webkitAnimationDuration = "";
-        postWriteShadow[i].style.webkitAnimationDuration = "";
+        postWritesArr[i].style.AnimationName = "";
+        postWritesArr[i].style.AnimationDuration = "";
         postWritesArr[i].style.opacity = 0;
       }
     }
