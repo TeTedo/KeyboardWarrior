@@ -55,7 +55,7 @@
         </div>
         <div class="btns">
             <div class="btnsWrap">
-                <div class="input_div">
+                <div class="input_div" style="height: 49px">
                     <h4>사진 url을 넣어주세요</h4>
                     <input id="inputUrl" type="text" />
                     <button id="btnUrl" style="margin-right: 20px">확인</button>
@@ -63,7 +63,7 @@
                     <button id="defaultImg2">기본이미지2로하기</button>
                     <button id="defaultImg3">기본이미지3로하기</button>
                 </div>
-                <div class="btns_level">
+                <div class="btns_level" style="height: 49px">
                     <h4>난이도를 선택하세요</h4>
                     <button btn-level="4by4">4X4</button>
                     <button btn-level="5by5">5X5</button>
@@ -73,11 +73,11 @@
                     <button btn-level="20by20">20X20</button>
                     <button btn-level="25by25">25X25</button>
                 </div>
-                <div class="btns_start">
+                <div class="btns_start" style="height: 49px">
                     <button btn-for="start">시작</button>
                 </div>
-                <div class="timer"></div>
-                <div class="record"></div>
+                <div class="timer" style="height: 49px"></div>
+                <div class="record" style="height: 49px"></div>
                 <canvas class="canvasMixed" width="500" height="500" style="display: none"
                     >이 브라우저는 캔버스를 지원하지 않습니다.</canvas
                 >
@@ -115,7 +115,7 @@
         };
         //기본이미지로할때
         defaultImg.onclick = function () {
-            levelSelection('./Games/Puzzle/images/puzzle.png');
+            levelSelection('./Games/Puzzle/images/puzzle.jpeg');
             btns_level.style.display = 'block';
             input_div.style.display = 'none';
         };
@@ -309,9 +309,28 @@
                                     mousePos.y = e.offsetY;
 
                                     if (mouseDown) {
+                                        context2.drawImage(ImgElem2, 0, 0, 500, 500);
+                                        context2.clearRect(
+                                            puzzleSize * clickStart.x,
+                                            puzzleSize * clickStart.y,
+                                            puzzleSize,
+                                            puzzleSize
+                                        );
+                                        context2.drawImage(
+                                            ImgElem2,
+                                            puzzleSize * clickStart.x,
+                                            puzzleSize * clickStart.y,
+                                            puzzleSize,
+                                            puzzleSize,
+                                            mousePos.x - puzzleSize / 2,
+                                            mousePos.y - puzzleSize / 2,
+                                            puzzleSize,
+                                            puzzleSize
+                                        );
                                     }
                                 };
                                 canvas2.onmouseup = function (e) {
+                                    context2.drawImage(ImgElem2, 0, 0, 500, 500);
                                     mousePos.x = e.offsetX;
                                     mousePos.y = e.offsetY;
                                     if (mouseDown) {
@@ -413,11 +432,11 @@
                                                                 );
 
                                                                 context2.drawImage(
-                                                                    ImgElem2,
+                                                                    ImgElem,
                                                                     0,
                                                                     0,
-                                                                    500,
-                                                                    500,
+                                                                    1000,
+                                                                    1000,
                                                                     -250,
                                                                     -250,
                                                                     500,
