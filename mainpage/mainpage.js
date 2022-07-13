@@ -1063,3 +1063,15 @@ let clickProfileFollowButton = function () {
   }
 };
 clickProfileFollowButton();
+
+// 07.13 필터 버튼 추가
+let filterButton = document.querySelectorAll('.filterButton');
+for(let i = 0; i<filterButton.length; i++){
+  filterButton[i].onclick = function(){
+    for(let k = 0 ; k<filterButton.length; k++){
+      filterButton[k].classList.remove('filterButtonactive');
+    }
+  filterButton[i].classList.add('filterButtonactive');
+  
+  }
+}

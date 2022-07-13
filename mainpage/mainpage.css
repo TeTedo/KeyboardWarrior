@@ -681,6 +681,39 @@ body {
   top: 5px;
   left: 5px;
 }
+
+/* 07.13 필터 버튼 추가 */
+.filterButtonsDiv{
+  display: flex;
+  align-items: center;
+  justify-content:space-around;
+  margin: 30px auto;
+  width: 500px;
+  left: 0;
+  transform: translateX(-200px);
+}
+.filterButton{
+  margin-right: 30px;
+  border: solid 0.8px #3b3b3b;
+  width: 86px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+  position: relative;
+  background-color: white;
+  cursor: pointer;
+  box-shadow: 3px 4px 0px black;
+  font-weight: bold;
+}
+
+.filterButtonactive{
+  background-color: black;
+  color: white;
+  box-shadow: none;
+}
+
 /* 포스팅된거 */
 .postWrapper {
   display: flex;
