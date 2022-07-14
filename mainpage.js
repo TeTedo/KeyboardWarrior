@@ -324,6 +324,7 @@ let PostGnb = (function () {
     clickProfileFollowButton();
     mainFilter();
     SlideFun();
+    BtnAttribute();
   };
   return PostGnb;
 })();
@@ -1035,6 +1036,7 @@ modifyDeleteRecomment();
 let mainSearch = document.querySelector(".mainSearch");
 let topSearchBtn = document.querySelector(".topSearchBtn");
 let mainSearchFun = function () {
+  //저장
   topSearchBtn.onclick = function () {
     let searchSomething = mainSearch.value;
     let searchSomethingreg = new RegExp(searchSomething, "igm");
@@ -1155,6 +1157,7 @@ let mainFilter = function(){
       mainSearchFun();
       clickProfileFollowButton();
       SlideFun();
+      BtnAttribute();
     }
   }
 }

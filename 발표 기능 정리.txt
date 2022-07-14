@@ -1,0 +1,47 @@
+메인 페이지
+1. 입장이펙트
+1-2. 글내리면 이펙트
+1-3. 슬라이드, 슬라이드 버튼 이펙트
+1-4. 프로필 호버 => 팔로우 누르면 숫자 올라가는거
+
+2. 글등록 - 글씨가 있어야 버튼 활성화
+3. 사진 올리기 https://image.canon-ci.co.kr/pds/editor/images/000062/20180404151051869_70ODYPB7.png
+4. 실시간 시간 찍히는거
+5. 좋아요 , 댓글 누르면 숫자 올라가는거, 좋아요 더블클릭
+6. 댓글 시간 실시간 올라가는거, 수정, 삭제
+7. 필터 하나씩 누르고, 2번째에 댓글 2개 추가해서 다시 누르기
+8. 검색기능 키워드 : 키보드워리어
+
+9. 로그인 - 아이디 비밀번호 인풋이 들어가있어야 로그인하기 버튼 활성화
+10. 수정 
+11. 수정에서 이미지 삭제, 사진올리기 https://image.canon-ci.co.kr/pds/editor/images/000062/20180404151051869_70ODYPB7.png , 글수정
+12. 삭제 이펙트
+
+13. 풍선
+14. 위치저장 , 스크롤 버튼
+
+커뮤니티
+1. 슬라이드
+1-1 시간 되면 자동으로 다음 넘어감
+1-2 옆으로가는 버튼 클릭
+1-3 레이블 클릭하면 넘어감
+
+2. 필터
+3. 게임 검색
+
+4.로그인
+4-1 슬라이드 추가,편집
+1. 추가  https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RWvdBD?ver=29ec&q=90&m=6&h=195&w=348&b=%23FFFFFFFF&l=f&o=t&aim=true
+2. 편집 http://cdn.gamemeca.com/gmdata/0000/306/973/kbg_130719_stone_m1.jpg 몬스터 팡팡
+3. 삭제
+
+5. 전체게임 추가,편집
+1. 추가 https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RWvdBD?ver=29ec&q=90&m=6&h=195&w=348&b=%23FFFFFFFF&l=f&o=t&aim=true 마인크래프트 환영합니다!
+2. 이름 , 설명, 해쉬태그 추가되는거 설명
+3. 다시 필터 보여주기
+4. 편집
+5. 수정 : 위와 같습니다
+6. 삭제는 보여주기
+
+7.메이플스토리, 리니지 한번씩 들어가기
+
