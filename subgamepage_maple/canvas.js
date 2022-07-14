@@ -141,9 +141,7 @@ window.onscroll = function(){
             // //효과 on
             // else
             
-            if(window.innerHeight- postWritesArrBottom>-100){
-                return
-            }
+            
              if(window.innerHeight- postWritesArrTop>50){ 
                 postWritesArr[i].style.webkitAnimationName = "fadein"
                 postWritesArr[i].style.webkitAnimationDuration = "3s"
@@ -156,13 +154,13 @@ window.onscroll = function(){
                 // contentTireDrawFun();
                 // toStopDrawFun[i] = 1;
             }
-            else{
-                postWritesArr[i].style.webkitAnimationName = ""
-                postWriteShadow[i].style.webkitAnimationName = ""
-                postWritesArr[i].style.webkitAnimationDuration = ""
-                postWriteShadow[i].style.webkitAnimationDuration = ""
-                postWritesArr[i].style.opacity = 0;
-            }
+            // else{
+            //     postWritesArr[i].style.webkitAnimationName = ""
+            //     postWriteShadow[i].style.webkitAnimationName = ""
+            //     postWritesArr[i].style.webkitAnimationDuration = ""
+            //     postWriteShadow[i].style.webkitAnimationDuration = ""
+            //     postWritesArr[i].style.opacity = 0;
+            // }
         }
     } 
 }
