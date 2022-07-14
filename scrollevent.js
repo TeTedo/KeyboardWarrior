@@ -99,8 +99,8 @@ window.onscroll = function () {
     if (distinguishScrollUpDown == "Up") {
       //효과 off
       if (window.innerHeight - postWritesArrTop < 50) {
-        postWritesArr[i].style.webkitAnimationName = "";
-        postWritesArr[i].style.webkitAnimationDuration = "";
+        postWritesArr[i].style.animationName = "";
+        postWritesArr[i].style.animationDuration = "";
         postWritesArr[i].style.opacity = 0;
         // contentTireDrawFun("stop")
         // toStopDrawFun[i] = 0;
@@ -132,12 +132,9 @@ window.onscroll = function () {
       // }
       // //효과 on
       // else
-      if (window.innerHeight - postWritesArrBottom > -100) {
-        return;
-      }
       if (window.innerHeight - postWritesArrTop > 50) {
-        postWritesArr[i].style.AnimationName = "fadein";
-        postWritesArr[i].style.AnimationDuration = "3s";
+        postWritesArr[i].style.animationName = "fadein";
+        postWritesArr[i].style.animationDuration = "3s";
         postWritesArr[i].style.opacity = 1;
         if (toStopDrawFun[i] == 1) {
           return;
@@ -145,8 +142,8 @@ window.onscroll = function () {
         // contentTireDrawFun();
         // toStopDrawFun[i] = 1;
       } else {
-        postWritesArr[i].style.AnimationName = "";
-        postWritesArr[i].style.AnimationDuration = "";
+        postWritesArr[i].style.animationName = "";
+        postWritesArr[i].style.animationDuration = "";
         postWritesArr[i].style.opacity = 0;
       }
     }

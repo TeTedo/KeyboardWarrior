@@ -37,6 +37,10 @@ let likediv = document.querySelectorAll(".likediv");
 let profilefollowButton = document.querySelectorAll(".profilefollowButton");
 let followerCountNum = document.querySelectorAll(".followerCountNum");
 
+//07.14 mainFilter
+let profileTime = document.querySelectorAll('.profileTime');
+let forTimeSort = document.querySelectorAll('.forTimeSort')
+
 // 07.12 smokeanimation
 let modifyTextareaWrap = document.querySelectorAll('.modifyTextareaWrap')
 
@@ -53,21 +57,9 @@ let chooseCategory = document.querySelector(".chooseCategory");
 let Category = document.querySelectorAll(".Category");
 let postHashTagtoClick = document.querySelectorAll(".postHashTagtoClick");
 
-//현재시간 띄우기
-let tempDate = new Date().toLocaleDateString();
-let tempHours = pad(new Date().getHours());
-let tempMinutes = pad(new Date().getMinutes());
 
 //스크롤 이벤트용
 let toStopDrawFun = [];
-
-function pad(number) {
-  let str = "" + number;
-  if (str.length == 1) {
-    str = "0" + number;
-  }
-  return str;
-}
 
 //포스팅 작성 모듈
 let PostGnb = (function () {
@@ -189,6 +181,19 @@ let PostGnb = (function () {
     //테스트용 ID
     tempprofileID.innerHTML = "테스트ID";
 
+    //현재시간 띄우기
+    let tempDate = new Date().toLocaleDateString();
+    let tempHours = pad(new Date().getHours());
+    let tempMinutes = pad(new Date().getMinutes());
+
+
+    function pad(number) {
+      let str = "" + number;
+      if (str.length == 1) {
+        str = "0" + number;
+      }
+      return str;
+    }
     tempprofileTime.innerHTML = tempDate + " " + tempHours + ":" + tempMinutes;
 
     //댓글창
@@ -318,6 +323,7 @@ let PostGnb = (function () {
     mainSearchFun();
     clickProfileFollowButton();
     mainFilter();
+    SlideFun();
   };
   return PostGnb;
 })();
@@ -325,6 +331,7 @@ let PostGnb = (function () {
 
 //어레이변수들 초기화 함수
 let renewalArr = function () {
+  postWrapper = document.querySelector('.postWrapper')
   postWritesArr = document.querySelectorAll(".postWrite");
   postWriteContentsArr = document.querySelectorAll(".postWriteContents");
   modifyTextareasArr = document.querySelectorAll(".modifyTextarea");
@@ -363,6 +370,8 @@ let renewalArr = function () {
   deleteblock = document.querySelectorAll(".deleteblock");
   profilefollowButton = document.querySelectorAll(".profilefollowButton");
   followerCountNum = document.querySelectorAll(".followerCountNum");
+  //07.14 mainFilter
+  profileTime = document.querySelectorAll('.profileTime');
 };
 
 //수정버튼, 삭제버튼 함수
@@ -837,9 +846,9 @@ let likemotionFunction = function () {
             // context.drawImage(img,227,140,10,10)
           };
         };
-
         dblclickeffect();
       }
+      renewalArr();
     };
   }
 };
@@ -858,6 +867,7 @@ let hashTagSelect = function () {
       } else {
         Category[i].classList.remove("selectedCategory");
       }
+      renewalArr();
     };
   }
 };
@@ -911,6 +921,7 @@ let displayRecommentBox = function () {
         recommentBox[i].style.display = "none";
         recommentdivimg.src = "/images/recomment.png";
       }
+      renewalArr();
     };
   }
 };
@@ -954,6 +965,18 @@ let addRecommentFun = function () {
       temprecommentrepositoryWrap.appendChild(temprecommentrepositoryDelete);
 
       //현재시간
+      let tempDate = new Date().toLocaleDateString();
+      let tempHours = pad(new Date().getHours());
+      let tempMinutes = pad(new Date().getMinutes());
+
+
+      function pad(number) {
+        let str = "" + number;
+        if (str.length == 1) {
+          str = "0" + number;
+        }
+        return str;
+      }
       temprecommentrepositoryTimeStamp.innerHTML =
         tempDate + " " + tempHours + ":" + tempMinutes;
       //댓글작성한거 값 가져가기
@@ -962,6 +985,7 @@ let addRecommentFun = function () {
         Number(recommentdivcount[i].innerHTML) + 1;
       recommentBoxinput[i].value = "";
       modifyDeleteRecomment();
+      renewalArr();
     };
   }
 };
@@ -1043,20 +1067,22 @@ mainSearchFun();
 let clickProfileFollowButton = function () {
   for (let i = 0; i < postWritesArr.length; i++) {
     profilefollowButton[i].onclick = function () {
-      if (profilefollowButton[i].style.backgroundColor != "white") {
-        profilefollowButton[i].style.backgroundColor = "white";
-        profilefollowButton[i].style.color = "black";
-        followerCountNum[i].innerText =
-          parseInt(followerCountNum[i].innerText) + 1;
+      if (this.style.backgroundColor != "white") {
+        this.style.backgroundColor = "white";
+        this.style.color = "black";
+        this.parentElement.parentElement.querySelector(".followerCount .followerCountNum").innerText =
+          parseInt(this.parentElement.parentElement.querySelector(".followerCount .followerCountNum").innerText) + 1;
       } else {
-        profilefollowButton[i].style.backgroundColor = "black";
-        profilefollowButton[i].style.color = "white";
-        followerCountNum[i].innerHTML =
-          parseInt(followerCountNum[i].innerText) - 1;
+        this.style.backgroundColor = "black";
+        this.style.color = "white";
+        this.parentElement.parentElement.querySelector(".followerCount .followerCountNum").innerHTML =
+          parseInt(this.parentElement.parentElement.querySelector(".followerCount .followerCountNum").innerText) - 1;
       }
+      renewalArr();
     };
   }
 };
+
 clickProfileFollowButton();
 
 // 07.13 필터 버튼 추가
@@ -1073,24 +1099,64 @@ let mainFilter = function(){
         for(let k = 0 ; k<filterButton.length; k++){
           filterButton[k].classList.remove('filterButtonactive');
         }
-      filterButton[i].classList.add('filterButtonactive');
+        filterButton[i].classList.add('filterButtonactive');
       }
-      mainLikeSortFunction();
+
+      //필터 로직
+      let CountNum = 0;
+      let mainSortArray = [];
+      let forCountArray = [profileTime,likedivcount,recommentdiv]
+      if(filterButton[i].classList.contains('filterButtonactive')){
+        if(i !== 0 ){
+        for(let k = 0 ; k<postWritesArr.length ; k++){
+          CountNum = Number(forCountArray[i][k].innerText);
+          mainSortArray.push([CountNum,postWritesArr[k]]);
+        }
+          mainSortArray.sort((a,b)=>a[0]-b[0]);
+          
+          for(let k = 0 ; k<mainSortArray.length; k++){
+            postWrapper.appendChild(mainSortArray[k][1]);
+            postWritesArr[k].style.animationName = "fadein";
+            postWritesArr[k].style.opacity = 1;
+          }
+        }
+        else{
+          for(let k = 0 ; k<postWritesArr.length ; k++){
+            CountNum = new Date(forCountArray[i][k].innerText);
+            mainSortArray.push([CountNum,postWritesArr[k]]);
+          }
+          mainSortArray.sort((a,b)=>a[0]-b[0]);
+          
+          for(let k = 0 ; k<mainSortArray.length; k++){
+            postWrapper.appendChild(mainSortArray[k][1]);
+            postWritesArr[k].style.animationName = "fadein";
+            postWritesArr[k].style.opacity = 1;
+          }
+        }
+      }
+      else{
+        for(let k = 0 ; k<postWritesArr.length ; k++){
+          CountNum = new Date(forCountArray[0][k].innerText);
+          mainSortArray.push([CountNum,postWritesArr[k]]);
+        }
+        mainSortArray.sort((a,b)=>a[0]-b[0]);
+        
+        for(let k = 0 ; k<mainSortArray.length; k++){
+          postWrapper.appendChild(mainSortArray[k][1]);
+          postWritesArr[k].style.animationName = "fadein";
+          postWritesArr[k].style.opacity = 1;
+        }
+      }
+      
+      renewalArr();
+      likemotionFunction();
+      displayRecommentBox();
+      addRecommentFun();
+      mainSearchFun();
+      clickProfileFollowButton();
+      SlideFun();
     }
   }
 }
 mainFilter();
 
-filterButton[1].onclick = function(){
-  let CountNumLike;
-  let mainSortArray = [];
-  for(let i = 0 ; i<postWritesArr.length ; i++){
-    CountNumLike = Number(likedivcount[i].innerText);
-    mainSortArray.push([CountNumLike,postWritesArr[i]])
-  }
-  mainSortArray.sort((a,b)=>a[0]-b[0]);
-  for(let i = 0 ; i<mainSortArray.length; i++){
-    postWrapper.appendChild(mainSortArray[i][1])
-    postWritesArr[i].style.animationName = "fadein"
-  }
-}

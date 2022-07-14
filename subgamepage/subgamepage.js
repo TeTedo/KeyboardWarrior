@@ -61,7 +61,6 @@ mainWriteText.onkeydown = function () {
   } else {
     Btn.classList.remove("forregisteractive");
   }
-  console.log("resize활성화");
   mainWriteText.style.height = "30px";
   mainWriteText.style.height = mainWriteText.scrollHeight - 1 + "px";
 };
