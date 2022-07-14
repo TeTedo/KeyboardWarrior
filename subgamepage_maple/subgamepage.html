@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <link rel="stylesheet" href="./subgamepage.css" />
+    <body>
+        <div class="top">
+            <div class="topWrapper">
+                <a href="../index.html"><img src="../images/mainlogo.png" alt="" /> </a>
+                <div class="navmenuBar">
+                    <a href="../subpage/subpage.html"
+                        ><div class="navmenuCommunity">COMMUNITY</div></a
+                    >
+                    <a href="../minigamepage/minigamepage.html"
+                        ><div class="navmenuMinigame">MINIGAME</div></a
+                    >
+                </div>
+                <input type="text" class="mainSearch" />
+                <button class="topSearchBtn"></button>
+            </div>
+        </div>
+        <div class="space"></div>
+        <div class="popUp">
+            <div class="popUpWrap">
+                <ul>
+                    <li style="margin-bottom: 50px">
+                        <input type="text" id="addImgFile" />
+                    </li>
+                    <li>
+                        <button id="popUpCancle" style="margin-right: 10px; margin-left: 150px">
+                            취소
+                        </button>
+                        <button id="popUpDone">완료</button>
+                    </li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+        <div class="ModifyPopUp">
+            <div class="ModifyPopUpWrap">
+                <ul>
+                    <li style="margin-bottom: 50px">
+                        <input type="text" id="modifyImgFile" />
+                    </li>
+                    <li>
+                        <button
+                            id="ModifyPopUpCancle"
+                            style="margin-right: 10px; margin-left: 150px"
+                        >
+                            취소
+                        </button>
+                        <button id="ModifyPopUpDone">완료</button>
+                    </li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+        <!-- 메인영역 -->
+        <div class="main">
+            <div class="mainWrapper">
+                <div class="mainContents">
+                    <div class="center" id="mainContentsList">
+                        <div class="mainWrite">
+                            <div class="mainWriteShadow"></div>
+                            <span class="mainWriteWrapper">
+                                <span class="mainWriteContents">
+                                    <span class="mainWriteContentsBtns">
+                                        <div class="chooseCategory">
+                                            <div class="Category">#공략</div>
+                                            <div class="Category">#일상</div>
+                                            <div class="Category">#거래</div>
+                                        </div>
+                                        <span class="attributeBtns">
+                                            <button id="addGifBtn">사진올리기</button>
+                                        </span>
+                                        <button id="postRegisterBtn" class="postRegisterBtn">
+                                            <h3>등 록</h3>
+                                        </button>
+                                    </span>
+                                    <textarea
+                                        id="mainWriteText"
+                                        class="mainWriteText"
+                                        onkeydown="resize(this)"
+                                        onkeyup="resize(this)"
+                                        placeholder="What's happening?"
+                                    ></textarea>
+                                </span>
+                            </span>
+                        </div>
+                        <div class="postHashTag">
+                            <div class="postHashTagtoClick">
+                                #공략
+                                <div class="postHashTagtoClickShadow"></div>
+                            </div>
+                            <div class="postHashTagtoClick">
+                                #일상
+                                <div class="postHashTagtoClickShadow"></div>
+                            </div>
+                            <div class="postHashTagtoClick">
+                                #거래
+                                <div class="postHashTagtoClickShadow"></div>
+                            </div>
+                        </div>
+                        <div class="postWrapper" id="postWrapper">
+                            <!-- 두번째 포스팅 시작 -->
+                            <div class="postWrite">
+                                <!-- <div class="deletemotion">
+                                    <div class="deleteblock"></div>
+                </div> -->
+                                <!-- <canvas class="contentTransPorter"></canvas> -->
+                                <!-- <canvas class="contentTire"></canvas> -->
+                                <canvas class="likemotion"></canvas>
+                                <div class="postWriteShadow"></div>
+                                <div class="postWriteTop">
+                                    <div class="profileImgContent">
+                                        <a href="" class="profileImg" id="subProfile2"></a>
+                                        <div class="followerCount">
+                                            follower
+                                            <div class="followerCountNum">180</div>
+                                        </div>
+                                        <div class="followCount">
+                                            follow
+                                            <div class="followCountNum">200</div>
+                                        </div>
+                                        <div class="profileButton">
+                                            <div class="profilefollowButton">follow</div>
+                                            <div class="profilemessageButton">message</div>
+                                        </div>
+                                    </div>
+                                    <div class="profileID">장범준</div>
+                                    <div class="profileTime">2022. 7. 10. 16:00</div>
+                                </div>
+                                <span class="postWriteWrapper">
+                                    <span class="postWriteContents">
+                                        <span class="postWriteContentsBtns">
+                                            <span class="mainBtns">
+                                                <button class="modifyBtn">수정</button>
+                                                <button class="deleteBtn">X</button>
+                                            </span>
+                                            <button class="modifyAddImgBtn">사진올리기</button>
+                                        </span>
+                                        <div class="modifyTextareaWrap">
+                                            <textarea
+                                                class="modifyTextarea"
+                                                onkeydown="resize(this)"
+                                                onkeyup="resize(this)"
+                                                style="height: 320px"
+                                                readonly
+                                            >
+모라스 ~ 문브릿지 일일 퀘스트 가이드입니다.
+
+테네브리스 지역부터는 개체 종류가 급격히 적어져 난이도가 굉장히 자유롭습니다.
+그 중에서도 문브릿지는 자유 그 자체...
+
+또한 테네브리스에서는 경험치와 더불어 검은 마법사 도전 재료인 염원의 불꽃을 보상으로 제공합니다.
+해당 지역에 상응하는 심볼이 따로 없으니 뉴비 분들은 참고해주세요.
+
+아무튼 현재 미궁/리멘 지역은 작업 중이며 하이퍼 버닝이 끝나는 문브릿지까지 먼저 작업하였습니다.
+(문브릿지 PDF 파일은 테네브리스 전체 작업에서 함께 업로드해드리겠습니다)
+
+그림으로 보실 분들은 클릭하면 확대되며, 검색을 요하시는 분들은 PDF 다운 후 사용해주시길 바랍니다.
+
+저작권 명시된 상태에서 자유롭게 퍼가셔도 됩니당.
+(참고로 이미지에 출저가 '플러스'로 되있는데 이전 이름입니다!! ㅠㅠ)</textarea
+                                            >
+                                        </div>
+                                        <!-- 슬라이드 -->
+                                        <div class="wholeGameSlide">
+                                            <div class="wholeGameSlideButton">
+                                                <div class="wholeGameSlideNextButton"></div>
+                                                <div class="wholeGameSlidePrevButton"></div>
+                                            </div>
+                                            <ul class="wholeGameSlideul">
+                                                <li class="wholeGameSlidelist">
+                                                    <img src="./images/maple1.jpeg" alt="" />
+                                                </li>
+                                                <li class="wholeGameSlidelist">
+                                                    <img src="./images/maple2.jpeg" alt="" />
+                                                </li>
+                                                <li class="wholeGameSlidelist">
+                                                    <img src="./images/maple3.jpeg" alt="" />
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- 슬라이드 -->
+                                        <span class="postWriteContentsImgWrapper">
+                                            <button class="postWriteContentsImgBtn">X</button>
+                                            <img src="./images/maple1.jpeg" alt="" />
+                                        </span>
+                                        <span class="postWriteContentsImgWrapper">
+                                            <button class="postWriteContentsImgBtn">X</button>
+                                            <img src="./images/maple2.jpeg" alt="" />
+                                        </span>
+                                        <span class="postWriteContentsImgWrapper">
+                                            <button class="postWriteContentsImgBtn">X</button>
+                                            <img src="./images/maple3.jpeg" alt="" />
+                                        </span>
+                                    </span>
+                                </span>
+                                <div class="postWriteBottom">
+                                    <div class="postWriteGameTag">
+                                        <span class="postWriteHashTag">#공략</span>
+                                    </div>
+                                    <div class="likerecommentbutton">
+                                        <div class="likediv">
+                                            <img src="../images/emptyheart.png" alt="" />
+                                            <div class="likedivcount">3</div>
+                                        </div>
+                                        <div class="recommentdiv">
+                                            <img src="../images/recomment.png" alt="" />
+                                            <div class="recommentdivcount">1</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="recommentBox">
+                                    <div class="forWriteRecomment">
+                                        <textarea
+                                            class="recommentBoxinput"
+                                            cols="110"
+                                            rows="1"
+                                            onkeydown="resize2(this)"
+                                            onkeyup="resize2(this)"
+                                        ></textarea>
+                                        <div class="recommentPost">입력</div>
+                                    </div>
+                                    <div class="recommentrepository">
+                                        <div class="recommentrepositoryWrap">
+                                            <img src="../images/profileImg.jpg" alt="" />
+                                            <textarea
+                                                rows="1"
+                                                onkeydown="resize2(this)"
+                                                onkeyup="resize2(this)"
+                                                class="recommentComment"
+                                                readonly
+                                            >
+테스트용</textarea
+                                            >
+                                            <div class="recommentrepositoryTimeStamp">현재시간</div>
+                                            <div class="recommentrepositoryModify">수정</div>
+                                            <div class="recommentrepositoryDelete">X</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 두번째 포스팅 끝 -->
+                            <!-- 네번째 포스팅 시작 -->
+                            <div class="postWrite">
+                                <!-- <div class="deletemotion">
+                                  <div class="deleteblock"></div>
+              </div> -->
+                                <!-- <canvas class="contentTransPorter"></canvas> -->
+                                <!-- <canvas class="contentTire"></canvas> -->
+                                <canvas class="likemotion"></canvas>
+                                <div class="postWriteShadow"></div>
+                                <div class="postWriteTop">
+                                    <div class="profileImgContent">
+                                        <a href="" class="profileImg" id="subProfile4"></a>
+                                        <div class="followerCount">
+                                            follower
+                                            <div class="followerCountNum">100</div>
+                                        </div>
+                                        <div class="followCount">
+                                            follow
+                                            <div class="followCountNum">888</div>
+                                        </div>
+                                        <div class="profileButton">
+                                            <div class="profilefollowButton">follow</div>
+                                            <div class="profilemessageButton">message</div>
+                                        </div>
+                                    </div>
+                                    <div class="profileID">맬맬</div>
+                                    <div class="profileTime">2022. 7. 13. 14:52</div>
+                                </div>
+                                <span class="postWriteWrapper">
+                                    <span class="postWriteContents">
+                                        <span class="postWriteContentsBtns">
+                                            <span class="mainBtns">
+                                                <button class="modifyBtn">수정</button>
+                                                <button class="deleteBtn">X</button>
+                                            </span>
+                                            <button class="modifyAddImgBtn">사진올리기</button>
+                                        </span>
+                                        <div class="modifyTextareaWrap">
+                                            <textarea
+                                                class="modifyTextarea"
+                                                onkeydown="resize(this)"
+                                                onkeyup="resize(this)"
+                                                style="height: 400px"
+                                                readonly
+                                            >
+해외 메이플 카트라이더 콜라보
+
+뭐야 왜 우린 안줘요
+
+                                          </textarea
+                                            >
+                                        </div>
+                                        <!-- 슬라이드 -->
+                                        <div class="wholeGameSlide">
+                                            <div class="wholeGameSlideButton">
+                                                <div class="wholeGameSlideNextButton"></div>
+                                                <div class="wholeGameSlidePrevButton"></div>
+                                            </div>
+                                            <ul class="wholeGameSlideul">
+                                                <li class="wholeGameSlidelist">
+                                                    <img src="./images/mapleKart.gif" alt="" />
+                                                </li>
+                                                <li class="wholeGameSlidelist">
+                                                    <img src="./images/mapleKart2.gif" alt="" />
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- 슬라이드 -->
+                                        <span class="postWriteContentsImgWrapper">
+                                            <button class="postWriteContentsImgBtn">X</button>
+                                            <img src="./images/mapleKart.gif" alt="" />
+                                        </span>
+                                        <span class="postWriteContentsImgWrapper">
+                                            <button class="postWriteContentsImgBtn">X</button>
+                                            <img src="./images/mapleKart2.gif" alt="" />
+                                        </span>
+                                    </span>
+                                </span>
+                                <div class="postWriteBottom">
+                                    <div class="postWriteGameTag">
+                                        <span class="postWriteHashTag">#일상</span>
+                                    </div>
+                                    <div class="likerecommentbutton">
+                                        <div class="likediv">
+                                            <img src="../images/emptyheart.png" alt="" />
+                                            <div class="likedivcount">12</div>
+                                        </div>
+                                        <div class="recommentdiv">
+                                            <img src="../images/recomment.png" alt="" />
+                                            <div class="recommentdivcount">3</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="recommentBox">
+                                    <div class="forWriteRecomment">
+                                        <textarea
+                                            class="recommentBoxinput"
+                                            cols="110"
+                                            rows="1"
+                                            onkeydown="resize2(this)"
+                                            onkeyup="resize2(this)"
+                                        ></textarea>
+                                        <div class="recommentPost">입력</div>
+                                    </div>
+                                    <!-- 첫댓글시작 -->
+                                    <div class="recommentrepository">
+                                        <div class="recommentrepositoryWrap">
+                                            <img src="./images/CommentProfile1.png" alt="" />
+                                            <textarea
+                                                rows="1"
+                                                onkeydown="resize2(this)"
+                                                onkeyup="resize2(this)"
+                                                class="recommentComment"
+                                                readonly
+                                            >
+아 저거 두개 다 의자구나
+첫번째거 뭔가했네 ㅋㅋㅋㅋㅋ</textarea
+                                            >
+                                            <div class="recommentrepositoryTimeStamp">
+                                                2022. 7. 13. 15:32
+                                            </div>
+                                            <div class="recommentrepositoryModify">수정</div>
+                                            <div class="recommentrepositoryDelete">X</div>
+                                        </div>
+                                    </div>
+                                    <!-- 두번째댓글시작 -->
+                                    <div class="recommentrepository">
+                                        <div class="recommentrepositoryWrap">
+                                            <img src="./images/CommentProfile2.png" alt="" />
+                                            <textarea
+                                                rows="1"
+                                                onkeydown="resize2(this)"
+                                                onkeyup="resize2(this)"
+                                                class="recommentComment"
+                                                readonly
+                                            >
+우리도 이번에 카트 콜라보 할 때 내주지 않을까</textarea
+                                            >
+                                            <div class="recommentrepositoryTimeStamp">
+                                                2022. 7. 13. 17:00
+                                            </div>
+                                            <div class="recommentrepositoryModify">수정</div>
+                                            <div class="recommentrepositoryDelete">X</div>
+                                        </div>
+                                    </div>
+                                    <!-- 세번째댓글시작 -->
+                                    <div class="recommentrepository">
+                                        <div class="recommentrepositoryWrap">
+                                            <img src="./images/CommentProfile3.jpeg" alt="" />
+                                            <textarea
+                                                rows="1"
+                                                onkeydown="resize2(this)"
+                                                onkeyup="resize2(this)"
+                                                class="recommentComment"
+                                                readonly
+                                            >
+와 진짜 갖고싶다 익시드 차는거까지 표현해놨네 ㅋㅋㅋㅋㅋㅋㅋㅋㅋ</textarea
+                                            >
+                                            <div class="recommentrepositoryTimeStamp">
+                                                2022. 7. 14. 10:15
+                                            </div>
+                                            <div class="recommentrepositoryModify">수정</div>
+                                            <div class="recommentrepositoryDelete">X</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 네번째 포스팅 끝 -->
+                        </div>
+                    </div>
+                </div>
+                <div class="left">
+                    <div class="leftWrapper">
+                        <div class="leftWrapperShadow"></div>
+                        <div class="contents">
+                            <div class="contentsWrappertologin">
+                                <div class="forlogin">ID</div>
+                                <input type="text" class="forlogininput" />
+                                <div class="forlogin">PASSWORD</div>
+                                <input type="password" class="forlogininput" />
+                                <div class="forloginbutton">로그인하기</div>
+                                <div class="join">
+                                    <a href="../join/join.html">회원가입</a>
+                                    <a href="">아이디/비밀번호 찾기</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="loginsuccess">
+                        <div class="leftWrapperShadow"></div>
+                        <div class="loginsuccessprofileImg">
+                            <div class="loginsuccessprofileImgWrap">
+                                <div class="loginsuccessprofileImgShadow"></div>
+                                <img
+                                    class="loginsuccessprofileImgWrapimg"
+                                    src="../images/profileImg.jpg"
+                                    alt=""
+                                />
+                            </div>
+                        </div>
+                        <div class="loginsuccessprofileId">테스트ID</div>
+                        <div class="loginsuccessprofileMessage">
+                            인생은 바람과도 같은 것 시간은 금이다 시간을 아껴서 쓰자잉!
+                        </div>
+                        <div class="loginsuccessprofileModify">수정하기</div>
+                    </div>
+                    <div class="scrollContents">
+                        <a id="scrollBtn" href=""><h1>⇧</h1></a>
+                        <div class="savePlace">위치저장</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="../posting_module.js"></script>
+    <script src="./subgamepage.js"></script>
+    <script src="canvas.js"></script>
+    <script src="../mouseevent.js"></script>
+    <script>
+        function resize(obj) {
+            obj.style.height = '30px';
+            obj.style.height = obj.scrollHeight - 1 + 'px';
+        }
+        function resize2(obj) {
+            obj.style.height = '15px';
+            obj.style.height = obj.scrollHeight - 1 + 'px';
+        }
+    </script>
+</html>

@@ -10,7 +10,7 @@
     <body>
         <div class="top">
             <div class="topWrapper">
-                <a href="../mainpage/mainpage.html"><img src="../images/mainlogo.png" alt="" /> </a>
+                <a href="../index.html"><img src="../images/mainlogo.png" alt="" /> </a>
                 <div class="navContents">
                     <div class="navmenuBar">
                         <a href="../subpage/subpage.html"
@@ -252,15 +252,12 @@
                             </li>
                             <li class="#전체">
                                 <div class="wholeGameZoneulShadow"></div>
-                                <a href="">
-                                    <img
-                                        src="https://rs.nxfs.nexon.com/gameusr/21/1/2FJh07105826755.jpg"
-                                        alt=""
-                                    />
-                                </a>
+                                <button class="gameBtns" game_name="BallBar">
+                                    <img src="./images/BallBar.png" alt="" />
+                                </button>
                                 <div class="ListGameZone">
-                                    <div class="ListGameName">여기는 게임이름</div>
-                                    <div class="ListGameComment">여기는 게임코멘트</div>
+                                    <div class="ListGameName">공튀겨서 벽돌뿌시기(미완)</div>
+                                    <div class="ListGameComment">벽돌을 빠르게 뿌시세요!</div>
                                     <div class="ListGameHashTag">게임 해쉬태그</div>
                                 </div>
                             </li>
@@ -313,6 +310,11 @@
                         case 'PickingDoll':
                             console.log('인형뽑기클릭됨');
                             href = './Games/PickingDoll/PickingDoll.html';
+                            $(gameArea).load(href);
+                            break;
+
+                        case 'BallBar':
+                            href = './Games/BallBar/BallBar.html';
                             $(gameArea).load(href);
                             break;
                     }

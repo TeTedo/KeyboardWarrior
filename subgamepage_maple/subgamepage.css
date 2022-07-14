@@ -1,0 +1,1090 @@
+* {
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    cursor: url(../images/maincursor.png) 12.5 12, auto;
+}
+cursor {
+    width: 20px;
+    height: 20px;
+}
+@font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 100;
+    src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff2) format('woff2'),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff) format('woff'),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 300;
+    src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff2) format('woff2'),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff) format('woff'),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 400;
+    src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff2) format('woff2'),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff) format('woff'),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 500;
+    src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff2) format('woff2'),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff) format('woff'),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 700;
+    src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff2) format('woff2'),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff) format('woff'),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 900;
+    src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff2) format('woff2'),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff) format('woff'),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.otf) format('opentype');
+}
+
+@-webkit-keyframes slideanimationleft {
+    0% {
+        left: 10px;
+    }
+    50% {
+        left: 20px;
+    }
+    100% {
+        left: 10px;
+    }
+}
+@-webkit-keyframes slideanimationright {
+    0% {
+        left: 310px;
+    }
+    50% {
+        left: 320px;
+    }
+    100% {
+        left: 310px;
+    }
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+textarea,
+select {
+    font-family: 'Noto Sans KR, sans-serif';
+}
+a {
+    color: black;
+    text-decoration: none;
+}
+ul {
+    list-style-type: none;
+}
+body {
+    position: absolute;
+    width: 100%;
+}
+.space {
+    height: 150px;
+}
+.popUp {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: -999;
+    display: none;
+}
+.popUpWrap {
+    width: 500px;
+    height: 200px;
+    margin: 0 auto;
+    background-color: whitesmoke;
+    position: relative;
+    top: 166px;
+    left: 27px;
+    border: 2px solid #855cb3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ModifyPopUp {
+    position: fixed;
+    z-index: -999;
+    display: none;
+    left: 50%;
+}
+.ModifyPopUpWrap {
+    width: 500px;
+    height: 200px;
+    background-color: white;
+    position: relative;
+    top: 166px;
+    left: 27px;
+    border: 2px solid #313131;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* 탑 */
+.top {
+    position: fixed;
+    background-color: white;
+    width: 100%;
+    z-index: 999;
+    background-color: black;
+}
+.topWrapper {
+    height: 100px;
+    width: 1200px;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navmenuBar {
+    display: flex;
+    width: 300px;
+    height: 25px;
+    font-size: 20px;
+    justify-content: space-between;
+    margin-left: 70px;
+}
+.navmenuCommunity,
+.navmenuMinigame {
+    color: white;
+}
+.topWrapper input {
+    width: 380px;
+    height: 55px;
+    border-radius: 2px;
+    background-color: whitesmoke;
+    position: relative;
+    left: 200px;
+    font-size: 17px;
+    padding: 15px;
+    border: solid 1px #131313;
+}
+.topSearchBtn {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-image: url(../images/search.png);
+    background-size: cover;
+    position: relative;
+    left: 130px;
+    cursor: pointer;
+}
+/* 사이드 */
+.left {
+    position: fixed;
+    margin-top: 45px;
+    height: auto;
+    margin-left: -920px;
+}
+.leftWrapper {
+    width: 284px;
+    height: 313px;
+    border-radius: 2px;
+    border: solid 0.5px #272727;
+    background-color: #fff;
+    position: relative;
+}
+.leftWrapperShadow {
+    width: 284px;
+    height: 313px;
+    position: absolute;
+    left: 7px;
+    top: 5px;
+    background-color: black;
+    z-index: -1;
+    border-radius: 2px;
+}
+.contents .contentsWrappertologin {
+    height: 230px;
+    width: 225;
+    position: absolute;
+    top: 35px;
+    left: 30px;
+}
+.contentsWrappertologin .forlogin {
+    width: 16px;
+    height: 21px;
+    font-size: 15px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #000;
+    margin: 0 0 7px;
+}
+.contentsWrappertologin .forlogininput {
+    width: 100%;
+    height: max-content;
+    margin: 0 0 18px;
+    padding: 5px;
+    font-size: 15px;
+}
+.contentsWrappertologin .forloginbutton {
+    width: 226px;
+    height: 43px;
+    padding: 10px 78px 12px 79px;
+    border-radius: 2px;
+    background-color: #f1f1f1;
+    font-size: 13px;
+    margin: 14px 0 7px;
+}
+.contentsWrappertologin .forloginactive {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+.contentsWrappertologin .join {
+    width: 100%;
+    display: flex;
+    font-size: 14px;
+    justify-content: space-between;
+}
+
+/* 로그인 활성화창 */
+.loginsuccess {
+    width: 284px;
+    height: 313px;
+    border-radius: 2px;
+    border: solid 0.5px #272727;
+    background-color: #fff;
+    position: relative;
+    display: none;
+}
+.loginsuccess .loginsuccessprofileImg {
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    top: 15px;
+    left: 82px;
+}
+.loginsuccessprofileImgWrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.loginsuccess .loginsuccessprofileImgShadow {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    position: absolute;
+    top: 3px;
+    left: 7px;
+    border-radius: 500px;
+}
+.loginsuccess .loginsuccessprofileImgWrap .loginsuccessprofileImgWrapimg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 500px;
+}
+.loginsuccessprofileId {
+    margin: 150px auto 0;
+    height: 25px;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+}
+.loginsuccessprofileMessage {
+    margin: 20px auto;
+    width: 160px;
+    text-align: center;
+    font-size: 13px;
+}
+.loginsuccessprofileModify {
+    border: 1px solid #828282;
+    margin: 0 auto;
+    width: 60px;
+    border-radius: 9.5px;
+    color: #828282;
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
+}
+/* 스크롤 */
+.scrollContents {
+    position: fixed;
+    z-index: -999;
+    width: 50px;
+    height: 50vh;
+    margin-left: 250px;
+}
+
+#scrollBtn {
+    width: 50px;
+    height: 50px;
+    /* border: 2px solid #855cb3; */
+    border-radius: 500px;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 350px;
+    transition: 0.6s;
+    opacity: 0;
+    font-size: larger;
+}
+.savePlace {
+    position: absolute;
+    top: 360px;
+    border: 1px solid black;
+    border-radius: 15px;
+    width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    color: white;
+    right: 70px;
+    opacity: 0;
+    cursor: pointer;
+    transition: 0.6s;
+}
+/* 메인 */
+.mainWrapper {
+    width: 100%;
+    margin: 0 auto;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+}
+.main .mainContents {
+    height: 80vh;
+    margin-top: 45px;
+    margin-left: 570px;
+}
+
+/* 글작성칸 */
+.main .mainWrite {
+    background-color: #fff;
+    width: 930px;
+    min-height: 0px;
+    height: auto;
+    margin-bottom: 20px;
+    padding: 30px;
+    position: relative;
+    box-sizing: border-box;
+    border: solid 0.5px #000;
+}
+.mainWriteShadow {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    position: absolute;
+    top: 5px;
+    left: 7px;
+    z-index: -1;
+}
+.main .mainWrite .mainWriteWrapper {
+    display: flex;
+}
+.chooseGame {
+    position: absolute;
+    top: 5px;
+    left: 90px;
+}
+.profileImgContent {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+}
+.profileImgContent:hover {
+    transition: 0.6s;
+    width: 250px;
+    background-color: white;
+    border-radius: 15px;
+    color: black;
+}
+.main .mainWrite .profileImg {
+    width: 45px;
+    height: 40px;
+    background-image: url(../images/profileImg.jpg);
+    background-size: cover;
+    border: 1px solid none;
+    border-radius: 500px;
+}
+.followerCount {
+    position: relative;
+    transform: translate(100px, -20px);
+    display: none;
+}
+.followCount {
+    position: relative;
+    transform: translate(130px, -20px);
+    display: none;
+}
+.profileImgContent:hover .followerCount,
+.profileImgContent:hover .followCount {
+    display: block;
+    font-weight: bold;
+}
+.followerCountNum,
+.followCountNum {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.profileButton {
+    width: 130px;
+    transform: translate(0px, 20px);
+    display: none;
+}
+.profileImgContent:hover .profileButton {
+    display: block;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.profilefollowButton,
+.profilemessageButton {
+    outline: none;
+    border: none;
+    width: 70px;
+    color: white;
+    border-radius: 5px;
+    background-color: black;
+    box-shadow: 0 10px 5px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+.profilefollowButton {
+    width: 50px;
+}
+.main .mainWrite .mainWriteContents {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column-reverse;
+    margin-top: 10px;
+}
+.mainWriteContentsBtns {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* .mainWriteText::placeholder{
+    opacity: 0.5;
+} */
+.mainWriteContentsBtns .attributeBtns button {
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    box-sizing: content-box;
+    border: 1px solid #3b3b3b;
+    background-color: #fff;
+    color: #3b3b3b;
+    padding: 3px 10px;
+}
+.chooseCategory {
+    display: flex;
+}
+.chooseCategory .Category {
+    margin: 0 15px 0 0;
+    border: 1px solid black;
+    width: 74px;
+    height: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 13px;
+    font-size: 14px;
+    color: #3b3b3b;
+    cursor: pointer;
+}
+.chooseCategory .selectedCategory {
+    background-color: black;
+    color: white;
+}
+.mainWriteContentsBtns .postRegisterBtn {
+    width: 175px;
+    height: 100%;
+    border-radius: 2px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: #f1f1f1;
+    color: #8e8e8e;
+    border-left: 0.5px solid #000;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 0;
+}
+.mainWriteContentsBtns .forregisteractive {
+    background-color: rgba(0, 0, 0, 0.185);
+    color: white;
+    cursor: pointer;
+}
+.mainWriteContents .mainWriteContentsImgWrapper {
+    margin-bottom: 10px;
+}
+.mainWriteContentsImgWrapper img {
+    width: 476px;
+    height: 320px;
+}
+.mainWriteContentsImgWrapper button {
+    display: none;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: -324px;
+    left: 455px;
+}
+.main .mainWrite textarea {
+    width: 600px;
+    height: 30px;
+    border: none;
+    font-size: 20px;
+    resize: none;
+    border-bottom: 1px solid #707070;
+    padding-left: 3px;
+}
+.main .mainWrite textarea::-webkit-scrollbar {
+    display: none;
+}
+:focus-visible {
+    outline: none;
+}
+
+/* 해쉬태그*/
+.postHashTag {
+    display: flex;
+    align-items: center;
+    margin: 40px 0 40px 40px;
+}
+.postHashTagtoClick {
+    margin-right: 30px;
+    border: solid 0.8px #3b3b3b;
+    width: 86px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+    position: relative;
+    background-color: white;
+    cursor: pointer;
+}
+.postHashTag .selectedCategory {
+    background-color: black;
+    color: white;
+}
+.postHashTagtoClick .postHashTagtoClickShadow {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    position: absolute;
+    border-radius: 16px;
+    z-index: -1;
+    top: 5px;
+    left: 5px;
+}
+/* 포스팅된거 */
+.postWrapper {
+    display: flex;
+    flex-direction: column-reverse;
+}
+.main .postWrite {
+    background-color: whitesmoke;
+    border-radius: 2px;
+    width: 930px;
+    min-height: 100px;
+    height: auto;
+    margin-bottom: 20px;
+    padding: 30px;
+    position: relative;
+    border: 0.3px solid black;
+    padding-bottom: 0;
+    opacity: 0;
+    -moz-animation: fadein 3s;
+}
+.postWrite:last-child,
+.postWrite:nth-last-child(2),
+.postWrite:nth-last-child(3) {
+    opacity: 1;
+    -moz-animation: fadein 3s;
+}
+
+@keyframes fadeinShadow {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes fadein {
+    0% {
+        opacity: 0;
+        left: 570px;
+    }
+    50% {
+        opacity: 1;
+        left: -50px;
+    }
+    100% {
+        opacity: 1;
+        left: 0px;
+    }
+}
+
+/* .contentTransPorter{
+    position: absolute;
+    border: 1px solid black;
+    width: 600px;
+    height: 300px;
+    bottom: -50px;
+    left: -600px;
+    display: none;
+}
+.contentTire{
+    position: absolute;
+    width: 600px;
+    height: 150px;
+    left: 200px;
+    bottom: -50px;
+    display: none;
+} */
+
+.deletemotion {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    transform-style: preserve-3d;
+    perspective: 500px;
+    z-index: 9999;
+}
+.deleteblock {
+    width: 5%;
+    height: 5%;
+    animation: deleteanimation 3s ease-in-out forwards;
+    background-color: white;
+}
+@keyframes deleteanimation {
+    0% {
+        transform: translateZ(2000px);
+    }
+    100% {
+        transform: translateZ(0px);
+    }
+}
+.likemotion {
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    position: absolute;
+    background-color: black;
+    top: 0;
+    left: 0;
+    opacity: 0.3;
+    animation-fill-mode: forwards;
+    display: none;
+}
+.postWriteShadow {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: black;
+    top: 5px;
+    left: 7px;
+    z-index: -1;
+}
+
+.postWriteBottom {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #dbdbdb;
+    height: 50px;
+    margin-left: 20px;
+    width: 100%;
+}
+.postWriteGameTag {
+    opacity: 0.5;
+    display: inline;
+}
+.postWriteGameTag span {
+    cursor: pointer;
+}
+.likerecommentbutton {
+    height: 30px;
+    display: flex;
+    width: 300px;
+}
+.likediv,
+.recommentdiv {
+    width: 100px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 15px;
+    position: relative;
+}
+.likediv {
+    margin-right: 20px;
+}
+.likediv img,
+.recommentdiv img {
+    width: 20px;
+    height: 20px;
+}
+.postWriteTop {
+    width: 100%;
+    height: 100px;
+    border-bottom: 1px solid #dbdbdb;
+    margin: 0 0 20px 20px;
+    position: relative;
+}
+.postWriteTop .profileID {
+    display: inline;
+    margin: 20px 0 0 100px;
+    font-size: 25px;
+    font-weight: bold;
+}
+.postWriteTop .profileTime {
+    width: max-content;
+    height: 30px;
+    margin: 10px 0 0 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #828282;
+}
+.main .postWrite .profileImg {
+    width: 80px;
+    height: 80px;
+    background-image: url(../images/profileImg.jpg);
+    background-size: cover;
+    border: 1px solid none;
+    border-radius: 500px;
+    position: absolute;
+    display: inline;
+}
+.recommentBox {
+    width: 100%;
+    padding: 20px;
+    align-items: center;
+    display: none;
+    overflow: hidden;
+}
+.forWriteRecomment {
+    display: flex;
+}
+.recommentBoxinput {
+    border: none;
+    border-bottom: 1px solid #c4c4c4;
+    resize: none;
+    font-size: 17px;
+    padding-left: 3px;
+}
+.recommentPost {
+    margin-left: 10px;
+    border: 1px solid black;
+    border-radius: 15px;
+    width: 50px;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.recommentrepository {
+    width: 80%;
+    margin-top: 20px;
+    border-bottom: 1px solid #c4c4c4;
+    font-size: 20px;
+    padding-bottom: 5px;
+}
+.recommentrepositoryWrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-animation: fadein 3s;
+}
+.recommentrepositoryTimeStamp {
+    position: absolute;
+    right: -80px;
+    top: 20px;
+    font-size: 10px;
+}
+.recommentrepository img {
+    width: 30px;
+    border-radius: 500px;
+}
+.recommentrepository .recommentComment {
+    margin-left: 10px;
+    width: 100%;
+    font-size: 15;
+    border: none;
+    resize: none;
+    height: 100%;
+}
+.recommentrepositoryDelete,
+.recommentrepositoryModify {
+    border: 1px solid black;
+    border-radius: 500px;
+    width: 50px;
+    text-align: center;
+    cursor: pointer;
+    position: absolute;
+    font-size: 13px;
+    top: 15px;
+}
+.recommentrepositoryModify {
+    right: -140px;
+}
+.recommentrepositoryDelete {
+    right: -180px;
+    width: 30px;
+}
+.main .postWrite .postWriteContents {
+    /* 여기사이즈 조절 */
+    margin-left: 20px;
+    display: flex;
+    position: relative;
+    width: 100%;
+    flex-direction: column;
+}
+.postWriteContentsBtns {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    z-index: 2;
+    top: -100px;
+}
+.postWriteContentsBtns .mainBtns {
+    display: none;
+}
+.postWriteContentsBtns .mainBtns button {
+    width: 60px;
+    height: 30px;
+    cursor: pointer;
+    font-weight: bolder;
+    font-size: 15px;
+    position: absolute;
+}
+.postWriteContentsBtns .mainBtns .modifyBtn {
+    top: 28px;
+    border-radius: 9.5px;
+    left: 230px;
+}
+.postWriteContentsBtns .mainBtns .deleteBtn {
+    top: -40px;
+    border-radius: 99%;
+    width: 50px;
+    height: 50px;
+    left: 820px;
+}
+.postWriteContentsBtns .modifyAddImgBtn {
+    display: none;
+    cursor: pointer;
+    border: 1px solid #3b3b3b;
+    background-color: #fff;
+    color: black;
+    font-size: 14px;
+    position: absolute;
+    top: -13px;
+    left: 230px;
+    width: 90px;
+    height: 25px;
+}
+.postWriteContents .postWriteContentsImgWrapper {
+    display: none;
+    margin-top: -20px;
+}
+.postWriteContentsImgWrapper img {
+    width: 476px;
+    height: 320px;
+}
+.postWriteContentsImgWrapper button {
+    display: none;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 21px;
+    left: 330px;
+}
+.main .postWrite .postWriteContents img {
+    width: 350px;
+    height: 320px;
+    margin-bottom: 5px;
+}
+/* 슬라이드구간 */
+.wholeGameSlide {
+    width: 350px;
+    height: 320px;
+    background-color: whitesmoke;
+    margin-right: 500px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+.wholeGameSlideButton {
+    background-color: white;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+}
+
+.wholeGameSlideNextButton {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 130px;
+    left: 310px;
+    z-index: 1;
+    background-image: url(../images/arrowright.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.wholeGameSlideNextButton:hover {
+    -webkit-animation: slideanimationright 1s;
+    animation-iteration-count: infinite;
+    cursor: pointer;
+}
+
+.wholeGameSlidePrevButton {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 130px;
+    left: 10px;
+    z-index: 1;
+    background-image: url(../images/arrowleft.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.wholeGameSlidePrevButton:hover {
+    cursor: pointer;
+    -webkit-animation: slideanimationleft 1s;
+    animation-iteration-count: infinite;
+}
+
+.wholeGameSlideul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 1s;
+}
+.wholeGameSlideul li {
+    width: 350px;
+    height: 100%;
+}
+.wholeGameSlideul li img {
+    width: 350px;
+    height: 200px;
+}
+/* 슬라이드구간 */
+
+.postWriteContentsText {
+    width: 350px;
+    font-size: 20px;
+    border-bottom: 1px solid rgb(226, 204, 226);
+    /* 자동줄내림 */
+    word-break: break-all;
+}
+.modifyTextareaWrap {
+    width: 450px;
+    height: 100%;
+    position: absolute;
+    left: 400px;
+}
+.main .postWrite .modifyTextarea {
+    width: 100%;
+    min-height: 30px;
+    max-height: 320px;
+    border: none;
+    font-size: 20px;
+    resize: none;
+    word-break: break-all;
+    position: relative;
+}
+.main .postWrite .active {
+    position: relative;
+    left: 0;
+    width: 840px;
+}
+.main .postWrite textarea::-webkit-scrollbar {
+    display: none;
+}
+:focus-visible {
+    outline: none;
+}
+/* .mainWrapper .center div{
+    background-color: whitesmoke;
+    border-radius: 20px;
+    width: 600px;
+    height: auto;
+    border: 2px solid rgb(226, 204, 226);
+    padding: 30px;
+    margin-bottom: 20px;
+} */
+
+#subProfile1 {
+    background-image: url(./images/rinijiLogo.png);
+}
+#subProfile2 {
+    background-image: url(./images/maplelogo.png);
+}
+#subProfile3 {
+    background-image: url(./images/rinijiLogo.png);
+}
+#subProfile4 {
+    background-image: url(./images/maplelogo.png);
+}
