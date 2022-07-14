@@ -8,6 +8,9 @@
             canvas {
                 background: #eee;
             }
+            h1 {
+                text-align: center;
+            }
             .canvases {
                 margin-top: 70px;
             }
@@ -28,6 +31,9 @@
             .btns_level {
                 display: none;
             }
+            .space {
+                display: none;
+            }
             .timer {
                 display: none;
             }
@@ -42,7 +48,9 @@
     </head>
 
     <body>
-        <h1 style="text-align: center">Puzzle</h1>
+        <h1 class="title" style="height: 47px">Puzzle</h1>
+        <h1 class="timer" style="height: 47px"></h1>
+        <h1 class="record" style="height: 47px"></h1>
         <div class="canvases">
             <div class="canvasesWrap">
                 <canvas class="canvas" width="500" height="500"
@@ -76,8 +84,7 @@
                 <div class="btns_start" style="height: 49px">
                     <button btn-for="start">시작</button>
                 </div>
-                <div class="timer" style="height: 49px"></div>
-                <div class="record" style="height: 49px"></div>
+                <div class="space" style="height: 49px">화이팅!</div>
                 <canvas class="canvasMixed" width="500" height="500" style="display: none"
                     >이 브라우저는 캔버스를 지원하지 않습니다.</canvas
                 >
@@ -100,6 +107,8 @@
         const input_div = document.querySelector('.input_div');
         const timer = document.querySelector('.timer');
         const record = document.querySelector('.record');
+        const space = document.querySelector('.space');
+        const title = document.querySelector('.title');
         let putPuzzleImgUrl;
         let timeCounter;
 
@@ -218,6 +227,8 @@
                     switch (btnFor) {
                         case 'start':
                             btns_start.style.display = 'none';
+                            title.style.display = 'none';
+                            space.style.display = 'block';
                             timer.style.display = 'block';
                             let rotateCount = 0;
                             const ImgElem2 = new Image();
@@ -260,12 +271,7 @@
                                                 secDivBy100 = time % 100;
                                                 timer.innerHTML = `${minute}분 ${sec}초 ${secDivBy100}`;
                                                 time++;
-
-                                                if (correctCount > 980000) {
-                                                    clearInterval(timeCounter);
-                                                }
                                             }, 10);
-
                                             return timeCounter;
                                         }
                                         rotationValue += 5;
@@ -415,6 +421,7 @@
                                                     console.log(correctCount);
                                                     //퍼즐 다 맞췄을때
                                                     if (correctCount > 930000) {
+                                                        clearInterval(timeCounter);
                                                         timeRecord = timer.innerHTML;
                                                         record.innerHTML = timeRecord;
                                                         timer.style.display = 'none';
@@ -451,6 +458,9 @@
                                                                         );
                                                                         record.style.display =
                                                                             'none';
+                                                                        // timer.innerHTML = null;
+                                                                        title.style.display =
+                                                                            'block';
                                                                         input_div.style.display =
                                                                             'block';
                                                                         context.clearRect(

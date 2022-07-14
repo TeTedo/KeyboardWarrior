@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <link rel="stylesheet" href="./subgamepage.css" />
+    <body>
+        <div class="top">
+            <div class="topWrapper">
+                <a href="../index.html"><img src="../images/mainlogo.png" alt="" /> </a>
+                <div class="navmenuBar">
+                    <a href="../subpage/subpage.html"
+                        ><div class="navmenuCommunity">COMMUNITY</div></a
+                    >
+                    <a href="../minigamepage/minigamepage.html"
+                        ><div class="navmenuMinigame">MINIGAME</div></a
+                    >
+                </div>
+                <input type="text" class="mainSearch" />
+                <button class="topSearchBtn"></button>
+            </div>
+        </div>
+        <div class="space"></div>
+        <div class="popUp">
+            <div class="popUpWrap">
+                <ul>
+                    <li style="margin-bottom: 50px">
+                        <input type="text" id="addImgFile" />
+                    </li>
+                    <li>
+                        <button id="popUpCancle" style="margin-right: 10px; margin-left: 150px">
+                            취소
+                        </button>
+                        <button id="popUpDone">완료</button>
+                    </li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+        <div class="ModifyPopUp">
+            <div class="ModifyPopUpWrap">
+                <ul>
+                    <li style="margin-bottom: 50px">
+                        <input type="text" id="modifyImgFile" />
+                    </li>
+                    <li>
+                        <button
+                            id="ModifyPopUpCancle"
+                            style="margin-right: 10px; margin-left: 150px"
+                        >
+                            취소
+                        </button>
+                        <button id="ModifyPopUpDone">완료</button>
+                    </li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+        <!-- 메인영역 -->
+        <div class="main">
+            <div class="mainWrapper">
+                <div class="mainContents">
+                    <div class="center" id="mainContentsList">
+                        <div class="mainWrite">
+                            <div class="mainWriteShadow"></div>
+                            <span class="mainWriteWrapper">
+                                <span class="mainWriteContents">
+                                    <span class="mainWriteContentsBtns">
+                                        <div class="chooseCategory">
+                                            <div class="Category">#공략</div>
+                                            <div class="Category">#일상</div>
+                                            <div class="Category">#거래</div>
+                                        </div>
+                                        <span class="attributeBtns">
+                                            <button id="addGifBtn">사진올리기</button>
+                                        </span>
+                                        <button id="postRegisterBtn" class="postRegisterBtn">
+                                            <h3>등 록</h3>
+                                        </button>
+                                    </span>
+                                    <textarea
+                                        id="mainWriteText"
+                                        class="mainWriteText"
+                                        onkeydown="resize(this)"
+                                        onkeyup="resize(this)"
+                                        placeholder="What's happening?"
+                                    ></textarea>
+                                </span>
+                            </span>
+                        </div>
+                        <div class="postHashTag">
+                            <div class="postHashTagtoClick">
+                                #공략
+                                <div class="postHashTagtoClickShadow"></div>
+                            </div>
+                            <div class="postHashTagtoClick">
+                                #일상
+                                <div class="postHashTagtoClickShadow"></div>
+                            </div>
+                            <div class="postHashTagtoClick">
+                                #거래
+                                <div class="postHashTagtoClickShadow"></div>
+                            </div>
+                        </div>
+                        <div class="postWrapper" id="postWrapper">
+                            <!-- 첫번째 포스팅 시작 -->
+                            <div class="postWrite">
+                                <!-- <div class="deletemotion">
+                                    <div class="deleteblock"></div>
+                </div> -->
+                                <!-- <canvas class="contentTransPorter"></canvas> -->
+                                <!-- <canvas class="contentTire"></canvas> -->
+                                <canvas class="likemotion"></canvas>
+                                <div class="postWriteShadow"></div>
+                                <div class="postWriteTop">
+                                    <div class="profileImgContent">
+                                        <a href="" class="profileImg" id="subProfile1"></a>
+                                        <div class="followerCount">
+                                            follower
+                                            <div class="followerCountNum">333</div>
+                                        </div>
+                                        <div class="followCount">
+                                            follow
+                                            <div class="followCountNum">55</div>
+                                        </div>
+                                        <div class="profileButton">
+                                            <div class="profilefollowButton">follow</div>
+                                            <div class="profilemessageButton">message</div>
+                                        </div>
+                                    </div>
+                                    <div class="profileID">최고의 유격수</div>
+                                    <div class="profileTime">2020. 7. 9. 11:11</div>
+                                </div>
+                                <span class="postWriteWrapper">
+                                    <span class="postWriteContents">
+                                        <span class="postWriteContentsBtns">
+                                            <span class="mainBtns">
+                                                <button class="modifyBtn">수정</button>
+                                                <button class="deleteBtn">X</button>
+                                            </span>
+                                            <button class="modifyAddImgBtn">사진올리기</button>
+                                        </span>
+                                        <div class="modifyTextareaWrap">
+                                            <textarea
+                                                class="modifyTextarea"
+                                                onkeydown="resize(this)"
+                                                onkeyup="resize(this)"
+                                                style="height: 400px"
+                                                readonly
+                                            >
+[논란 1 : 혹한의 창 vs 양손창?]
+
+아래 이미지를 보시면 알 수 있겠지만 리니지 상에 창의 무기 코드가
+한손검, 양손검처럼 분리되어 있지 않고 하나의 '창'입니다.
+그래서 공속도 같을 수 밖에 없습니다.
+PC 리니지에서 실험하였을 때 공속이 같았고(본인 실험),
+모바일 에서도 공속이 같았습니다.(혹창이 없어서 지인께 확인 요청)
+
+
+[논란 2 : 촐기, 용기, 변신이 있는데 지금 공속은 무의미하다.]
+
+기사로 예를 들겠습니다. (※ h = hit, s = sec)
+가속이 +0%일 때 단검은 1.315h/s, 양손검은 1.170h/s으로
+단검이 12.39% 빠릅니다.
+
+가속이 +94%일 때
+단검은 (1.315*1.94) = 2.5511h/s, 
+양손검은 (1.170*1.94) = 2.2698h/s 입니다.
+
+1.315와 1.170 그리고 2.5511과 2.2698 이렇게 보면 차이가 커지는 것처럼 볼 수 있겠으나,
+단위가 h가 아니라 h/s이기 때문에
+
+2.5511 / 2.2698 = 1.1239316
+1.315 / 1.170 = 1.1239316 이렇게 공속 +0%일 때의 차이를 그대로 가져가게 되는 것입니다.
+
+그래서 +0%일 때의 h/s만 파악하더라도 해당 무기들의 공격력 차이를 알 수 있는 것입니다.
+                                            
+                                            </textarea>
+                                        </div>
+                                        <!-- 슬라이드 -->
+                                        <div class="wholeGameSlide">
+                                            <div class="wholeGameSlideButton">
+                                                <div class="wholeGameSlideNextButton"></div>
+                                                <div class="wholeGameSlidePrevButton"></div>
+                                            </div>
+                                            <ul class="wholeGameSlideul">
+                                                <li class="wholeGameSlidelist">
+                                                    <img src="./images/riniji1.jpeg" alt="" />
+                                                </li>
+                                                <li class="wholeGameSlidelist">
+                                                    <img src="./images/riniji2.jpeg" alt="" />
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- 슬라이드 -->
+                                        <span class="postWriteContentsImgWrapper">
+                                            <button class="postWriteContentsImgBtn">X</button>
+                                            <img src="./images/riniji1.jpeg" alt="" />
+                                        </span>
+                                        <span class="postWriteContentsImgWrapper">
+                                            <button class="postWriteContentsImgBtn">X</button>
+                                            <img src="./images/riniji2.jpeg" alt="" />
+                                        </span>
+                                    </span>
+                                </span>
+                                <div class="postWriteBottom">
+                                    <div class="postWriteGameTag">
+                                        <span class="postWriteHashTag">#공략</span>
+                                    </div>
+                                    <div class="likerecommentbutton">
+                                        <div class="likediv">
+                                            <img src="../images/emptyheart.png" alt="" />
+                                            <div class="likedivcount">3</div>
+                                        </div>
+                                        <div class="recommentdiv">
+                                            <img src="../images/recomment.png" alt="" />
+                                            <div class="recommentdivcount">1</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="recommentBox">
+                                    <div class="forWriteRecomment">
+                                        <textarea
+                                            class="recommentBoxinput"
+                                            cols="110"
+                                            rows="1"
+                                            onkeydown="resize2(this)"
+                                            onkeyup="resize2(this)"
+                                        ></textarea>
+                                        <div class="recommentPost">입력</div>
+                                    </div>
+                                    <div class="recommentrepository">
+                                        <div class="recommentrepositoryWrap">
+                                            <img src="../images/profileImg.jpg" alt="" />
+                                            <textarea
+                                                rows="1"
+                                                onkeydown="resize2(this)"
+                                                onkeyup="resize2(this)"
+                                                class="recommentComment"
+                                                readonly
+                                            >
+테스트용</textarea
+                                            >
+                                            <div class="recommentrepositoryTimeStamp">현재시간</div>
+                                            <div class="recommentrepositoryModify">수정</div>
+                                            <div class="recommentrepositoryDelete">X</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 첫번째 포스팅 끝 -->
+                            <!-- 세번째 포스팅 시작 -->
+                            <div class="postWrite">
+                                <!-- <div class="deletemotion">
+                                    <div class="deleteblock"></div>
+                </div> -->
+                                <!-- <canvas class="contentTransPorter"></canvas> -->
+                                <!-- <canvas class="contentTire"></canvas> -->
+                                <canvas class="likemotion"></canvas>
+                                <div class="postWriteShadow"></div>
+                                <div class="postWriteTop">
+                                    <div class="profileImgContent">
+                                        <a href="" class="profileImg" id="subProfile3"></a>
+                                        <div class="followerCount">
+                                            follower
+                                            <div class="followerCountNum">10</div>
+                                        </div>
+                                        <div class="followCount">
+                                            follow
+                                            <div class="followCountNum">25</div>
+                                        </div>
+                                        <div class="profileButton">
+                                            <div class="profilefollowButton">follow</div>
+                                            <div class="profilemessageButton">message</div>
+                                        </div>
+                                    </div>
+                                    <div class="profileID">히포킹</div>
+                                    <div class="profileTime">2022. 7. 12. 11:32</div>
+                                </div>
+                                <span class="postWriteWrapper">
+                                    <span class="postWriteContents">
+                                        <span class="postWriteContentsBtns">
+                                            <span class="mainBtns">
+                                                <button class="modifyBtn">수정</button>
+                                                <button class="deleteBtn">X</button>
+                                            </span>
+                                            <button class="modifyAddImgBtn">사진올리기</button>
+                                        </span>
+                                        <div class="modifyTextareaWrap">
+                                            <textarea
+                                                class="modifyTextarea"
+                                                onkeydown="resize(this)"
+                                                onkeyup="resize(this)"
+                                                style="height: 400px"
+                                                readonly
+                                            >
+라바3 (이전이후) 민반짝 사고 화2단9파장 2.5 ㅍㅍ전섭최저
+
+https://open.kakao.com/o/sRU15wnb
+
+따끈 따끈 띄움
+
+민반짝 1200 ㅅ
+
+                                            </textarea>
+                                        </div>
+                                        <!-- 슬라이드 -->
+                                        <div class="wholeGameSlide">
+                                            <div class="wholeGameSlideButton">
+                                                <div class="wholeGameSlideNextButton"></div>
+                                                <div class="wholeGameSlidePrevButton"></div>
+                                            </div>
+                                            <ul class="wholeGameSlideul">
+                                                <li class="wholeGameSlidelist">
+                                                    <img src="./images/rinijiTrade.jpeg" alt="" />
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- 슬라이드 -->
+                                        <span class="postWriteContentsImgWrapper">
+                                            <button class="postWriteContentsImgBtn">X</button>
+                                            <img src="./images/rinijiTrade.jpeg" alt="" />
+                                        </span>
+                                    </span>
+                                </span>
+                                <div class="postWriteBottom">
+                                    <div class="postWriteGameTag">
+                                        <span class="postWriteHashTag">#거래</span>
+                                    </div>
+                                    <div class="likerecommentbutton">
+                                        <div class="likediv">
+                                            <img src="../images/emptyheart.png" alt="" />
+                                            <div class="likedivcount">3</div>
+                                        </div>
+                                        <div class="recommentdiv">
+                                            <img src="../images/recomment.png" alt="" />
+                                            <div class="recommentdivcount">1</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="recommentBox">
+                                    <div class="forWriteRecomment">
+                                        <textarea
+                                            class="recommentBoxinput"
+                                            cols="110"
+                                            rows="1"
+                                            onkeydown="resize2(this)"
+                                            onkeyup="resize2(this)"
+                                        ></textarea>
+                                        <div class="recommentPost">입력</div>
+                                    </div>
+                                    <div class="recommentrepository">
+                                        <div class="recommentrepositoryWrap">
+                                            <img src="../images/profileImg.jpg" alt="" />
+                                            <textarea
+                                                rows="1"
+                                                onkeydown="resize2(this)"
+                                                onkeyup="resize2(this)"
+                                                class="recommentComment"
+                                                readonly
+                                            >
+테스트용</textarea
+                                            >
+                                            <div class="recommentrepositoryTimeStamp">현재시간</div>
+                                            <div class="recommentrepositoryModify">수정</div>
+                                            <div class="recommentrepositoryDelete">X</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 세번째 포스팅 끝 -->
+                        </div>
+                    </div>
+                </div>
+                <div class="left">
+                    <div class="leftWrapper">
+                        <div class="leftWrapperShadow"></div>
+                        <div class="contents">
+                            <div class="contentsWrappertologin">
+                                <div class="forlogin">ID</div>
+                                <input type="text" class="forlogininput" />
+                                <div class="forlogin">PASSWORD</div>
+                                <input type="password" class="forlogininput" />
+                                <div class="forloginbutton">로그인하기</div>
+                                <div class="join">
+                                    <a href="../join/join.html">회원가입</a>
+                                    <a href="">아이디/비밀번호 찾기</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="loginsuccess">
+                        <div class="leftWrapperShadow"></div>
+                        <div class="loginsuccessprofileImg">
+                            <div class="loginsuccessprofileImgWrap">
+                                <div class="loginsuccessprofileImgShadow"></div>
+                                <img
+                                    class="loginsuccessprofileImgWrapimg"
+                                    src="../images/profileImg.jpg"
+                                    alt=""
+                                />
+                            </div>
+                        </div>
+                        <div class="loginsuccessprofileId">테스트ID</div>
+                        <div class="loginsuccessprofileMessage">
+                            인생은 바람과도 같은 것 시간은 금이다 시간을 아껴서 쓰자잉!
+                        </div>
+                        <div class="loginsuccessprofileModify">수정하기</div>
+                    </div>
+                    <div class="scrollContents">
+                        <a id="scrollBtn" href=""><h1>⇧</h1></a>
+                        <div class="savePlace">위치저장</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="../posting_module.js"></script>
+    <script src="./subgamepage.js"></script>
+    <script src="canvas.js"></script>
+    <script src="../mouseevent.js"></script>
+    <script>
+        function resize(obj) {
+            obj.style.height = '30px';
+            obj.style.height = obj.scrollHeight - 1 + 'px';
+        }
+        function resize2(obj) {
+            obj.style.height = '15px';
+            obj.style.height = obj.scrollHeight - 1 + 'px';
+        }
+    </script>
+</html>

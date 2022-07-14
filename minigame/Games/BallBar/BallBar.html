@@ -9,10 +9,20 @@
     <style>
         canvas {
             background-color: whitesmoke;
+            border: 2px solid black;
+        }
+        .canvasWrap {
+            width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     </style>
     <body>
-        <canvas class="canvas" width="500" height="700"></canvas>
+        <div class="canvasWrap">
+            <canvas class="canvas" width="500" height="700"></canvas>
+        </div>
     </body>
-    <script src="./BAllBar.js"></script>
+    <script src="./Games/BallBar/BallBar.js"></script>
 </html>

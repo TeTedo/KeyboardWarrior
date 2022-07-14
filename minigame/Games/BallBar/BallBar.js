@@ -5,6 +5,8 @@ function radian(angle) {
     return (angle * Math.PI) / 180;
 }
 
+let gameContinue;
+
 //막대 변수들
 const barWidth = 125;
 const barHeight = 20;
@@ -25,26 +27,28 @@ const brickHeight = 20;
 const bricksBundleHeight = (canvas.height * 2) / 5;
 let bricksCol = 0;
 let bricksRow = 0;
-let tempArr = new Array()
-let bricksPosArr = new Array()
+let tempArr = new Array();
+let bricksPosArr = new Array();
 for (let i = 0; i < bricksBundleHeight / brickHeight; i++) {
     for (let k = 0; k < canvas.width / brickWidth; k++) {
-        tempArr = []
-        tempArr.push(k*brickWidth)
-        tempArr.push(i*brickHeight)
-        bricksPosArr.push(tempArr)        
+        tempArr = [];
+        tempArr.push(k * brickWidth);
+        tempArr.push(i * brickHeight);
+        bricksPosArr.push(tempArr);
     }
 }
 
 //반복그리기
-function draw(){
+function draw() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     // context.beginPath()
     // context.arc(0,0,10,0,radian(360),false)
     // context.fill()
-
-    ballDraw()
-    barDraw()
+    if (gameContinue == 'no') {
+        return;
+    }
+    ballDraw();
+    barDraw();
     bricksDraw();
 
     requestAnimationFrame(draw);
@@ -63,10 +67,14 @@ function ballDraw() {
     }
     //바닦에 부딪치는 경우
     else if (ballPos.y + ballRadius >= canvas.height) {
-        alert('죽음')
+        // alert('죽음');
+        if (!window.confirm('이어서하시겠습니까?')) {
+            gameContinue = 'no';
+            return;
+        }
         barXMove = 0;
         barYMove = 0;
-        barStart = { x: canvas.width / 2 - barWidth / 2, y: canvas.height - barHeight - 20 }
+        barStart = { x: canvas.width / 2 - barWidth / 2, y: canvas.height - barHeight - 20 };
         barSpeed = 20;
         barXPos = barStart.x + barXMove;
         ballStart = { x: barStart.x + barWidth / 2, y: barStart.y - barHeight - 15 };
@@ -81,22 +89,25 @@ function ballDraw() {
     }
     // 막대에 부딪치면 튀기는 부분
     if (
-        ballPos.y + ballRadius >= barStart.y  &&
-        ballPos.y + ballRadius <= barStart.y+barHeight/2  &&
-        ballPos.x >= barXPos &&
-        ballPos.x <= barXPos + barWidth
+        ballPos.y + ballRadius >= barStart.y &&
+        ballPos.y + ballRadius <= barStart.y + barHeight / 2 &&
+        ballPos.x + ballRadius >= barXPos &&
+        ballPos.x - ballRadius <= barXPos + barWidth
     ) {
         Yspeed -= Yspeed * 2;
     }
     //벽돌에 부딪치면 튀기는 부분
-    for(let i = 0; i<bricksPosArr.length; i++){
-        if (ballPos.y <= bricksPosArr[i][1] + brickHeight + ballRadius &&
+    for (let i = 0; i < bricksPosArr.length; i++) {
+        if (
+            ballPos.y - ballRadius <= bricksPosArr[i][1] + brickHeight &&
+            ballPos.y - ballRadius >= bricksPosArr[i][1] &&
             ballPos.x >= bricksPosArr[i][0] &&
-            ballPos.x <= bricksPosArr[i][0] + brickWidth){
-                bricksPosArr[i][0] = -9999
-                // bricksPosArr[i][1] = 300
-                Yspeed -= Yspeed * 2;
-            }
+            ballPos.x <= bricksPosArr[i][0] + brickWidth
+        ) {
+            bricksPosArr[i][0] = -9999;
+            // bricksPosArr[i][1] = 300
+            Yspeed -= Yspeed * 2;
+        }
     }
 
     // 공그리는부분
@@ -115,23 +126,53 @@ function ballDraw() {
 // ballDraw()
 
 //막대그리기 펑션
-function barDraw(){
+function barDraw() {
     context.fillRect(barStart.x + barXMove, barStart.y + barYMove, barWidth, barHeight);
-    requestAnimationFrame(barDraw)
+    requestAnimationFrame(barDraw);
 }
 
 //벽돌 그리기 펑션
 function bricksDraw() {
-    for(let i = 0; i<bricksPosArr.length; i++){
-        context.strokeRect(bricksPosArr[i][0], bricksPosArr[i][1], brickWidth, brickHeight)
+    for (let i = 0; i < bricksPosArr.length; i++) {
+        context.strokeRect(bricksPosArr[i][0], bricksPosArr[i][1], brickWidth, brickHeight);
     }
 }
+// function bricksDraw() {
+//     for (let i = 0; i < bricksPosArr.length / 5; i++) {
+//         context.fillRect(bricksPosArr[i * 5][0], bricksPosArr[i * 5][1], brickWidth, brickHeight);
+//         context.fill();
+//         // context.fillStyle();
+//         context.strokeRect(
+//             bricksPosArr[i * 5 + 1][0],
+//             bricksPosArr[i * 5 + 1][1],
+//             brickWidth,
+//             brickHeight
+//         );
+//         context.strokeRect(
+//             bricksPosArr[i * 5 + 2][0],
+//             bricksPosArr[i * 5 + 2][1],
+//             brickWidth,
+//             brickHeight
+//         );
+//         context.strokeRect(
+//             bricksPosArr[i * 5 + 3][0],
+//             bricksPosArr[i * 5 + 3][1],
+//             brickWidth,
+//             brickHeight
+//         );
+//         context.strokeRect(
+//             bricksPosArr[i * 5 + 4][0],
+//             bricksPosArr[i * 5 + 4][1],
+//             brickWidth,
+//             brickHeight
+//         );
+//     }
+// }
 
 //막대 움직이는 이벤트
 window.onkeydown = function (e) {
-    
-    console.log(barXPos)
-    
+    console.log(barXPos);
+
     switch (e.keyCode) {
         case 37:
             if (barXPos <= 0) {
@@ -155,4 +196,3 @@ window.onkeydown = function (e) {
     }
     barXPos = barStart.x + barXMove;
 };
-

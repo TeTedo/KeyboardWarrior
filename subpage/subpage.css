@@ -3,43 +3,94 @@
     padding: 0;
     box-sizing: border-box;
 }
-@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 100;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.otf) format('opentype');}
-
-@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 300;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.otf) format('opentype');}
-
-@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 400;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.otf) format('opentype');}
-
-@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 500;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.otf) format('opentype');}
-
-@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 700;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.otf) format('opentype');}
-
-@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 900;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.otf) format('opentype');}
-
-body, h1, h2, h3, h4, h5, h6, input, textarea, select {
-	font-family: 'Noto Sans KR', sans-serif;
+@font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 100;
+    src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff2) format('woff2'),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff) format('woff'),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.otf) format('opentype');
 }
-a{
+
+@font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 300;
+    src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff2) format('woff2'),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff) format('woff'),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 400;
+    src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff2) format('woff2'),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff) format('woff'),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 500;
+    src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff2) format('woff2'),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff) format('woff'),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 700;
+    src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff2) format('woff2'),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff) format('woff'),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 900;
+    src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff2) format('woff2'),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff) format('woff'),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.otf) format('opentype');
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+textarea,
+select {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+a {
     color: black;
     text-decoration: none;
 }
-ul{
+ul {
     list-style-type: none;
 }
-body{
+body {
     position: absolute;
     width: 100%;
 }
-.space{
+.space {
     height: 150px;
 }
-.popUp{
+.popUp {
     width: 100%;
     height: 100%;
     position: fixed;
     z-index: -999;
     display: none;
 }
-.popUpWrap{
+.popUpWrap {
     width: 500px;
     height: 200px;
     margin: 0 auto;
@@ -52,13 +103,13 @@ body{
     align-items: center;
     justify-content: center;
 }
-.ModifyPopUp{
+.ModifyPopUp {
     position: fixed;
     z-index: -999;
     display: none;
     left: 50%;
 }
-.ModifyPopUpWrap{
+.ModifyPopUpWrap {
     width: 500px;
     height: 200px;
     background-color: white;
@@ -71,14 +122,14 @@ body{
     justify-content: center;
 }
 /* 탑 */
-.top{
+.top {
     position: fixed;
     background-color: white;
     width: 100%;
     z-index: 999;
     background-color: black;
 }
-.topWrapper{
+.topWrapper {
     height: 100px;
     width: 1200px;
     margin: 20px auto;
@@ -86,7 +137,7 @@ body{
     justify-content: space-between;
     align-items: center;
 }
-.navmenuBar{
+.navmenuBar {
     display: flex;
     width: 300px;
     height: 25px;
@@ -94,10 +145,11 @@ body{
     justify-content: space-between;
     margin-left: 70px;
 }
-.navmenuCommunity, .navmenuMinigame{
+.navmenuCommunity,
+.navmenuMinigame {
     color: white;
 }
-.topWrapper input{
+.topWrapper input {
     width: 380px;
     height: 55px;
     border-radius: 2px;
@@ -119,12 +171,12 @@ body{
     cursor: pointer;
 }
 /* 사이드 */
-.left{
+.left {
     position: fixed;
-    margin-top: -320px; 
+    margin-top: -320px;
     margin-left: -287px;
 }
-.leftWrapper{
+.leftWrapper {
     width: 284px;
     height: 313px;
     border-radius: 2px;
@@ -132,7 +184,7 @@ body{
     background-color: #fff;
     position: relative;
 }
-.leftWrapperShadow{
+.leftWrapperShadow {
     width: 284px;
     height: 313px;
     position: absolute;
@@ -142,34 +194,34 @@ body{
     z-index: -1;
     border-radius: 2px;
 }
-.contents .contentsWrappertologin{
+.contents .contentsWrappertologin {
     height: 230px;
     width: 225;
     position: absolute;
     top: 35px;
     left: 30px;
 }
-.contentsWrappertologin .forlogin{
+.contentsWrappertologin .forlogin {
     width: 16px;
-  height: 21px;
-  font-size: 15px;
-  font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: left;
-  color: #000;
-  margin: 0 0 7px;
+    height: 21px;
+    font-size: 15px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #000;
+    margin: 0 0 7px;
 }
-.contentsWrappertologin .forlogininput{
+.contentsWrappertologin .forlogininput {
     width: 100%;
     height: max-content;
-    margin : 0 0 18px;
+    margin: 0 0 18px;
     padding: 5px;
     font-size: 15px;
 }
-.contentsWrappertologin .forloginbutton{
+.contentsWrappertologin .forloginbutton {
     width: 226px;
     height: 43px;
     padding: 10px 78px 12px 79px;
@@ -178,21 +230,20 @@ body{
     font-size: 15px;
     margin: 14px 0 7px;
 }
-.contentsWrappertologin .forloginactive{
+.contentsWrappertologin .forloginactive {
     background-color: black;
     color: white;
     cursor: pointer;
 }
-.contentsWrappertologin .join{
+.contentsWrappertologin .join {
     width: 100%;
     display: flex;
     font-size: 14px;
     justify-content: space-between;
-
 }
 
 /* 로그인 활성화창 */
-.loginsuccess{
+.loginsuccess {
     width: 284px;
     height: 313px;
     border-radius: 2px;
@@ -201,20 +252,20 @@ body{
     position: relative;
     display: none;
 }
-.loginsuccess .loginsuccessprofileImg{
+.loginsuccess .loginsuccessprofileImg {
     width: 120px;
     height: 120px;
     position: absolute;
     top: 15px;
     left: 82px;
 }
-.loginsuccessprofileImgWrap{
+.loginsuccessprofileImgWrap {
     position: relative;
     width: 100%;
     height: 100%;
 }
 
-.loginsuccess .loginsuccessprofileImgShadow{
+.loginsuccess .loginsuccessprofileImgShadow {
     width: 100%;
     height: 100%;
     background-color: black;
@@ -223,26 +274,26 @@ body{
     left: 7px;
     border-radius: 500px;
 }
-.loginsuccess .loginsuccessprofileImgWrap .loginsuccessprofileImgWrapimg{
+.loginsuccess .loginsuccessprofileImgWrap .loginsuccessprofileImgWrapimg {
     width: 100%;
     height: 100%;
     position: absolute;
     border-radius: 500px;
 }
-.loginsuccessprofileId{
+.loginsuccessprofileId {
     margin: 150px auto 0;
     height: 25px;
     font-size: 18px;
     text-align: center;
     font-weight: bold;
 }
-.loginsuccessprofileMessage{
+.loginsuccessprofileMessage {
     margin: 20px auto;
     width: 160px;
     text-align: center;
     font-size: 13px;
 }
-.loginsuccessprofileModify{
+.loginsuccessprofileModify {
     border: 1px solid #828282;
     margin: 0 auto;
     width: 60px;
@@ -253,7 +304,7 @@ body{
     cursor: pointer;
 }
 /* 스크롤 */
-.scrollContents{
+.scrollContents {
     position: fixed;
     z-index: -999;
     width: 50px;
@@ -261,8 +312,7 @@ body{
     margin-left: 250px;
 }
 
-
-#scrollBtn{
+#scrollBtn {
     width: 50px;
     height: 50px;
     /* border: 2px solid #855cb3; */
@@ -284,14 +334,14 @@ body{
 /* 개발자모드 */
 
 /* 슬라이드에 추가 */
-.slideButtonAddModify{
+.slideButtonAddModify {
     position: absolute;
     margin: auto;
     right: -300px;
     top: 280px;
     display: none;
 }
-.addSlidebutton{
+.addSlidebutton {
     width: 100px;
     height: 150px;
     position: relative;
@@ -303,7 +353,7 @@ body{
     text-align: center;
     margin-right: 10px;
 }
-.addSlideWholePage{
+.addSlideWholePage {
     width: 190px;
     height: 85px;
     background-color: black;
@@ -314,24 +364,25 @@ body{
     cursor: default;
     display: none;
 }
-.getImgurlForSlide{
+.getImgurlForSlide {
     display: flex;
     color: white;
 }
-.addSlideButton{
+.addSlideButton {
     display: flex;
     position: absolute;
     top: 50px;
     left: 90px;
 }
-.addSlideAddButton, .addSlideCancelButton{
+.addSlideAddButton,
+.addSlideCancelButton {
     margin: 5px;
     cursor: pointer;
 }
 
 /* 슬라이드 수정하기 */
 
-.modifySlidebutton{
+.modifySlidebutton {
     width: 100px;
     height: 150px;
     position: relative;
@@ -342,7 +393,7 @@ body{
     border-radius: 9.5px;
     text-align: center;
 }
-.modifySlideWholePage{
+.modifySlideWholePage {
     width: 190px;
     height: 100px;
     background-color: black;
@@ -353,11 +404,11 @@ body{
     cursor: default;
     display: none;
 }
-.modifySlideButtonMDC{
+.modifySlideButtonMDC {
     width: 120px;
     height: 30px;
     position: relative;
-    left :50px;
+    left: 50px;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
@@ -365,59 +416,59 @@ body{
 }
 
 /* 게임리스트에 추가 */
-.AddHiddenPage{
+.AddHiddenPage {
     display: none;
     position: relative;
     z-index: 1;
     top: -20px;
 }
-.adminModeAdd{
+.adminModeAdd {
     cursor: pointer;
     position: relative;
     display: none;
 }
 
-.AddPage{
+.AddPage {
     width: 250px;
     height: 150px;
     background-color: black;
     position: absolute;
-    left :100px;
+    left: 100px;
     top: 0;
     cursor: default;
     color: white;
 }
-.AddPageGeturl{
+.AddPageGeturl {
     display: flex;
 }
-.AddPageButton{
+.AddPageButton {
     display: flex;
     position: absolute;
     left: 180px;
     top: 140px;
     width: max-content;
 }
-.AddPageButtonAddCancel{
+.AddPageButtonAddCancel {
     display: flex;
 }
-.AddPageAddButton{
+.AddPageAddButton {
     margin: 0 50px;
     cursor: pointer;
 }
-.AddPageCancelButton{
+.AddPageCancelButton {
     cursor: pointer;
 }
 
 /* 게임리스트 수정 */
 
-.modifyGameListbutton{
+.modifyGameListbutton {
     position: absolute;
     left: 450px;
     top: 5px;
     cursor: pointer;
     display: none;
 }
-.modifyGameListbutton .modifyGameListWholePage{
+.modifyGameListbutton .modifyGameListWholePage {
     position: absolute;
     top: 0;
     left: 40px;
@@ -427,7 +478,7 @@ body{
     color: white;
     z-index: 1;
 }
-.modifyGameListbutton .modifyGameListButtonMDC{
+.modifyGameListbutton .modifyGameListButtonMDC {
     cursor: pointer;
     display: flex;
     justify-content: space-around;
@@ -435,16 +486,16 @@ body{
 
 /* 위는 개발자모드 */
 
-.wholeWrapMain{
+.wholeWrapMain {
     width: 900px;
     margin: -5px auto;
 }
-.main{
+.main {
     margin-left: 135px;
     position: relative;
 }
 
-.wholeGameSlide{
+.wholeGameSlide {
     width: 930px;
     height: 270px;
     background-color: whitesmoke;
@@ -454,14 +505,14 @@ body{
     margin-left: 135px;
     border: 1px solid black;
 }
-.wholeGameSlideButton{
+.wholeGameSlideButton {
     background-color: white;
     display: inline-block;
     position: relative;
     text-align: center;
 }
 
-.wholeGameSlideNextButton{
+.wholeGameSlideNextButton {
     width: 30px;
     height: 30px;
     position: absolute;
@@ -469,11 +520,11 @@ body{
     left: 890px;
     z-index: 1;
 }
-.wholeGameSlideNextButton:hover{
+.wholeGameSlideNextButton:hover {
     background-color: white;
     cursor: pointer;
 }
-.wholeGameSlidePrevButton{
+.wholeGameSlidePrevButton {
     width: 30px;
     height: 30px;
     position: absolute;
@@ -481,12 +532,12 @@ body{
     left: 10px;
     z-index: 1;
 }
-.wholeGameSlidePrevButton:hover{
+.wholeGameSlidePrevButton:hover {
     background-color: white;
     cursor: pointer;
 }
 
-.wholeGameSlideul{
+.wholeGameSlideul {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -495,13 +546,13 @@ body{
     left: 0;
     transition: 1s;
 }
-.wholeGameSlideul li img{
+.wholeGameSlideul li img {
     width: 930px;
     height: 270px;
 }
 
 /* 임시 CSS 슬라이드쇼 구간 */
-.wholeGameSlideLabel{
+.wholeGameSlideLabel {
     width: 100%;
     height: 30px;
     position: absolute;
@@ -509,63 +560,69 @@ body{
     display: flex;
     background-color: transparent;
 }
-.wholeGameSlideLabel input{
+.wholeGameSlideLabel input {
     display: none;
 }
-.fillColordiv{
+.fillColordiv {
     width: 100%;
     position: relative;
 }
-.wholeGameSlideLabel label{
+.wholeGameSlideLabel label {
     width: 100%;
     height: 40px;
     display: block;
     transition: 1s;
-    background-color: transparent;
+    /* background-color: transparent; */
+    background-color: rgba(0, 0, 0, 0.3);
     cursor: pointer;
-    border: 0.5px solid black;
+    border: 1px solid black;
 }
-
-.wholeGameSlideLabel label .SliderBardiv{
+.wholeGameSlideLabel label .SliderBardiv {
     width: 0px;
     height: 40px;
-    box-sizing:content-box;
+    box-sizing: content-box;
     position: absolute;
     top: 0;
 }
-.wholeGameSlideLabel input:checked+label .SliderBardiv{
+.wholeGameSlideLabel input:checked + label .SliderBardiv {
     width: 100%;
-    background-color: white;
+    /* background-color: white; */
+    background-color: rgba(255, 255, 255, 0.5);
     transition: 5s;
 }
-.wholeGameSlideLabel label .wholeGameSlideLabelInnerText{
+.wholeGameSlideLabel label .wholeGameSlideLabelInnerText {
     font-size: 25px;
     text-align: center;
     width: 100%;
     height: 100%;
     position: absolute;
     z-index: 1;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: white;
+}
+.wholeGameSlideLabel input:checked + label .wholeGameSlideLabelInnerText {
+    color: black;
 }
 /* 임시 CSS 슬라이드쇼 구간 */
 
-.wholeGameNav{
+.wholeGameNav {
     width: 930px;
     margin: 50px auto 0;
     position: relative;
     height: 150px;
     margin-left: 270px;
 }
-.wholeGameNav .wholegamement{
+.wholeGameNav .wholegamement {
     color: black;
     font-size: 24px;
     font-weight: bold;
     margin: auto 20px;
 }
-.wholeGameNavTop{
+.wholeGameNavTop {
     display: flex;
     position: relative;
 }
-.searchBar{
+.searchBar {
     width: max-content;
     height: 30px;
     position: absolute;
@@ -573,27 +630,26 @@ body{
     right: 550px;
     display: flex;
 }
-.searchText{
+.searchText {
     width: 250px;
 }
-.searchImg{
+.searchImg {
     cursor: pointer;
     position: absolute;
     right: 25px;
     width: 10px;
     height: 10px;
-
 }
-.searchText{
+.searchText {
     margin: auto 5px;
     height: 30px;
 }
-.adminModeAdd{
+.adminModeAdd {
     position: absolute;
     left: 400px;
     top: 5px;
 }
-.wholeGameNavSort{
+.wholeGameNavSort {
     width: 100%;
     height: 50px;
     margin: 30px 0;
@@ -602,8 +658,8 @@ body{
     align-items: center;
 }
 
-.wholeGameNavSort .wholeGameNavSortFilter{
-    margin : auto;
+.wholeGameNavSort .wholeGameNavSortFilter {
+    margin: auto;
     font-size: 15px;
     font-weight: bold;
     cursor: pointer;
@@ -613,11 +669,11 @@ body{
     border-radius: 16px;
     display: flex;
     justify-content: center;
-    align-items:center;
+    align-items: center;
     position: relative;
     background-color: #fff;
 }
-.wholeGameNavSortFilterShadow{
+.wholeGameNavSortFilterShadow {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -627,18 +683,18 @@ body{
     border-radius: 16px;
     z-index: -1;
 }
-.wholeGameNavSort span:hover{
+.wholeGameNavSort span:hover {
     background-color: black;
     color: white;
     font-weight: bold;
     border-radius: 16px;
 }
 
-.wholeGameNavSort .filterSelected{
+.wholeGameNavSort .filterSelected {
     background-color: black;
     color: white;
 }
-.wholeGameZone{
+.wholeGameZone {
     width: 930px;
     height: max-content;
     margin: 0 auto;
@@ -647,12 +703,12 @@ body{
     position: relative;
     margin-left: 270px;
 }
-.wholeGameZoneul{
+.wholeGameZoneul {
     display: flex;
     flex-wrap: wrap;
     position: relative;
 }
-.wholeGameZoneulShadow{
+.wholeGameZoneulShadow {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -662,7 +718,7 @@ body{
     z-index: -1;
 }
 
-.wholeGameZoneul li{
+.wholeGameZoneul li {
     width: 260px;
     height: 300px;
     margin: 20px;
@@ -672,25 +728,25 @@ body{
     background-color: white;
 }
 
-.wholeGameZoneul li img{
+.wholeGameZoneul li img {
     width: 100%;
     height: 50%;
 }
-.wholeGameZoneul li .ListGameZone{
+.wholeGameZoneul li .ListGameZone {
     width: 100%;
     height: 100px;
     background-color: white;
     position: relative;
     color: black;
 }
-.ListGameZone .ListGameName{
+.ListGameZone .ListGameName {
     position: absolute;
     top: 15px;
     left: 5px;
     font-weight: bold;
     font-size: 20px;
 }
-.ListGameZone .ListGameComment{
+.ListGameZone .ListGameComment {
     position: absolute;
     top: 60px;
     left: 5px;
@@ -699,7 +755,7 @@ body{
     width: 100%;
     border-bottom: solid 0.5px #d2d2d2;
 }
-.ListGameZone .ListGameHashTag{
+.ListGameZone .ListGameHashTag {
     position: absolute;
     top: 100px;
     left: 5px;
