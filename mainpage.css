@@ -92,7 +92,7 @@ h6,
 input,
 textarea,
 select {
-    font-family: 'Noto Sans KR, sans-serif';
+    font-family: 'Noto Sans KR', sans-serif;
 }
 @keyframes identifier {
 }
