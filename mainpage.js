@@ -57,7 +57,6 @@ let chooseCategory = document.querySelector(".chooseCategory");
 let Category = document.querySelectorAll(".Category");
 let postHashTagtoClick = document.querySelectorAll(".postHashTagtoClick");
 
-
 //스크롤 이벤트용
 let toStopDrawFun = [];
 
@@ -71,8 +70,8 @@ let PostGnb = (function () {
       return;
     }
 
-    let postWrite = document.createElement("div");
-    postWrite.classList.add("postWrite");
+    let postWrite = document.createElement('div')
+    postWrite.classList.add('postWrite')
 
     let templikemotion = document.createElement("canvas");
     templikemotion.classList.add("likemotion");
