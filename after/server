@@ -1,0 +1,12 @@
+방식        라우터      내용
+get         /          기본 페이지
+post        /login     로그인, 로그인후 다시 /로 복귀
+get         /signuplink    회원가입페이지로 이동
+post        /signup    회원가입 정보 받기
+get         /find      아이디/비밀번호 찾기
+post        /findid    아이디 찾기
+post        /findpw    비밀번호 찾기
+get         /community 커뮤니티 입장
+get         /minigame  미니게임 입장
+
+
