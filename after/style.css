@@ -24,8 +24,8 @@ nav {
   font-size: 30px;
 }
 
-#community,
-#minigame {
+nav #community,
+nav #minigame {
   font-size: 20px;
 }
 
@@ -36,6 +36,29 @@ nav {
   padding: 10px;
   font-size: 20px;
 }
+
+#mainContent {
+  width: 70%;
+  height: 100%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: black;
+}
+#mainContent #mainPost {
+  width: 100%;
+  height: 300px;
+  background-color: white;
+  position: relative;
+}
+#mainContent #mainPost > input {
+  position: absolute;
+  top: 20%;
+  width: 100%;
+  height: 30%;
+  padding-left: 1%;
+  font-size: 25px;
+}
 @media only screen and (max-width: 768px) {
   nav {
     font-size: 20px;
@@ -44,8 +67,17 @@ nav {
   #minigame {
     font-size: 15px;
   }
+  #mainContent {
+    width: 80%;
+  }
+  #mainContent #mainPost {
+    height: 200px;
+  }
+  #mainContent #mainPost > input {
+    font-size: 20px;
+  }
 }
-@media only screen and (max-width: 426px) {
+@media only screen and (max-width: 425px) {
   nav {
     font-size: 20px;
   }
@@ -55,5 +87,14 @@ nav {
   }
   #mainSearch {
     width: 50%;
+  }
+  #mainContent {
+    width: 90%;
+  }
+  #mainContent #mainPost {
+    height: 100px;
+  }
+  #mainContent #mainPost > input {
+    font-size: 15px;
   }
 }
