@@ -1,0 +1,13 @@
+1. 회원가입
+비밀번호, 아이디, 이메일, 이름, 폰번호 저장
+비밀번호는 bcrypt로 암호화시켜서 mysql에 저장
+아이디, 이메일, 이름, 폰번호는 그대로 mysql에 저장
+
+2. 로그인
+로그인성공시 env파일에 있는 비밀키로 accessToken(10분만료), refresToken(2시간 만료) 발급
+세션파일에 accessToken, refresToken값을 access_token, refresh_token을 키로해서 넣기
+
+3. 글작성
+
+
+
