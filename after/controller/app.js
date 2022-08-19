@@ -7,6 +7,7 @@ app.listen(PORT, () => {
 });
 
 app.use(express.static(__dirname));
-const loginNode = require("./login/loginServer.js");
-const joinNode = require("./join/joinServer");
+const loginNode = require("../views/login/loginServer.js");
+const joinNode = require("../router/join/join.js");
 app.use(loginNode, joinNode);
+console.log(app);
