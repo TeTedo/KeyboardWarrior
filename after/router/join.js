@@ -1,14 +1,22 @@
 const express = require("express");
-const app = express();
 const router = express.Router();
-const fs = require("fs");
-
-// body-parser 역할
-app.use(express.urlencoded({ extended: false }));
+const User = require("../model/users");
 
 router.get("/join", (req, res) => {
     res.render("join/join");
 });
-router.post("/join", (req, res) => {});
+router.post("/join", (req, res) => {
+    const { user_id, user_pw, name, nick_name, mobile_number, email } =
+        req.body;
+    User.create({
+        user_id,
+        user_pw,
+        name,
+        nick_name,
+        mobile_number,
+        email,
+    });
+    res.redirect("/login");
+});
 
 module.exports = router;

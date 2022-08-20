@@ -15,11 +15,12 @@ ul {
     list-style-type: none;
 }
 body {
-    position: absolute;
     width: 100%;
+    height: max-content;
 }
 p {
     margin: 0;
+    font-size: small;
 }
 li {
     margin-bottom: 20px;
@@ -121,14 +122,6 @@ select {
     font-family: "Noto Sans KR, sans-serif";
 }
 
-.mainContentsWrapper {
-    width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
 /* 탑 */
 .top {
     position: fixed;
@@ -185,64 +178,55 @@ select {
     left: -105px;
     cursor: pointer;
 }
-.fixedSpace {
-    position: fixed;
-    top: 100px;
-    height: 20px;
-    width: 100%;
-    background-color: white;
-}
-.borderLine {
-    position: fixed;
-    width: 100%;
-    top: 120px;
-    border-bottom: 2px solid rgb(226, 204, 226);
-}
 .space {
     height: 150px;
 }
-.join_cover {
-    width: 1000px;
-    margin: 0 auto;
-    padding-bottom: 30px;
+
+.contents {
+    margin-top: 2%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
-.mobile input {
+
+.join {
+    margin-bottom: 20px;
+}
+.join .mobile input {
     width: 50px;
 }
-#inputNum1 {
+.join .mobile select {
     width: 50px;
     padding: 1px 2px 1px 2px;
 }
-.agree_cover {
-    width: 1000px;
-    margin: 0 auto;
-}
-.checkbox {
-    margin-top: 1px;
-}
-.use_agree {
+
+.agree {
     width: 582px;
 }
-.use_agree .Box_cover {
+.agree .box {
     margin-bottom: 20px;
 }
-.use_agree .Box {
+.agree .box .tittle {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
-.textbox {
+.agree .box .textbox {
     font-size: x-small;
     border: 1px solid black;
     height: 100px;
     overflow: auto;
 }
-.finish_cover {
-    width: 1000px;
-    margin: 0 auto;
-    display: flex;
+
+.btns {
+    margin-top: 5%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
-.finish_cover button {
-    width: 70px;
-    height: 30px;
-    margin-right: 30px;
+.btns button {
+    width: 60px;
+}
+.btns button:first-child {
+    margin-right: 40px;
 }
