@@ -8,6 +8,7 @@
 </head>
 
 <link rel="stylesheet" href="join.css">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <body>
     <div class="top">
         <div class="topWrapper">
@@ -28,7 +29,7 @@
     <div class="mainContents">
         <div class="mainContentsWrapper"> 
             <div class="join">
-                <div class="join_cover">
+                <form class="join_cover" method="post">
                     <ul>
                         <li><h2><strong>회원가입</strong></h3></li>
                         <li>
@@ -81,7 +82,7 @@
                         </li>
                         <li></li>
                     </ul>
-                </div>
+                </form>
             </div>
             <div class="agree">
                 <div class="agree_cover">
@@ -177,5 +178,149 @@
             </div>
         </div>
     </div>
-<script src="join.js"></script>
+</body>
+<script>
+window.onload = ()=>{
+const idTest = new RegExp(/[^a-z0-9]/g);
+const passwordTest = new RegExp(
+    /(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]/
+);
+const nameTest = new RegExp(/[^가-힣]/g);
+const numTest = new RegExp(/[^0-9]/g);
+const emailTest = new RegExp(
+    /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/
+);
+
+let a;
+finishBtn.onclick = function () {
+    const id = inputId.value;
+    const password = inputPassword.value;
+    const passwordRe = inputPasswordRe.value;
+    const name = inputName.value;
+    const firstNum = inputNum1.value;
+    const middleNum = inputNum2.value;
+    const lastNum = inputNum3.value;
+    const mobileNumber = firstNum + middleNum + lastNum;
+    const email = inputEmail.value;
+    let count = 0;
+
+    if (id.length == 0) {
+        idWarn.innerHTML = "입력하세요.";
+    } else {
+        idWarn.innerHTML = "";
+        if (idTest.test(id)) {
+            idWarn.innerHTML = "영소문자 혹은 숫자만 쓰세요.";
+        } else {
+            if (id.length < 4 || id.length > 16) {
+                idWarn.innerHTML = "4~16자로 쓰세요.";
+            } else {
+                count++;
+            }
+        }
+    }
+
+    //패스워드
+    if (password.length == 0) {
+        passwordWarn.innerHTML = "입력하세요.";
+    } else {
+        if (passwordTest.test(password)) {
+            if (password.length < 8 || password.length > 16) {
+                passwordWarn.innerHTML = "Password를 8~16자 사이로 쓰세요.";
+            } else {
+                passwordWarn.innerHTML = "";
+                count++;
+            }
+        } else {
+            passwordWarn.innerHTML = "Password형식이 틀렸습니다.";
+        }
+    }
+
+    //패스워드 확인
+    if (passwordRe.length == 0) {
+        passwordConfirmWarn.innerHTML = "입력하세요.";
+    } else {
+        if (!(password == passwordRe)) {
+            passwordConfirmWarn.innerHTML = "비밀번호랑 같게 쓰세요.";
+        } else {
+            passwordConfirmWarn.innerHTML = "";
+            count++;
+        }
+    }
+
+    //이름
+    if (name.length == 0) {
+        nameWarn.innerHTML = "입력하세요.";
+    } else {
+        if (nameTest.test(name)) {
+            nameWarn.innerHTML = "한글 글자만 넣어주세요.";
+        } else {
+            nameWarn.innerHTML = "";
+            count++;
+        }
+    }
+
+    //번호
+    if (middleNum.length == 0 || lastNum.length == 0) {
+        mobileWarn.innerHTML = "빠짐없이 입력해주세요.";
+    } else {
+        mobileWarn.innerHTML = "";
+        if (numTest.test(middleNum) || numTest.test(lastNum)) {
+            mobileWarn.innerHTML = "숫자만 입력하세요.";
+        } else {
+            if (middleNum.length < 3 || middleNum.length > 4) {
+                mobileWarn.innerHTML += " 2번째칸 3~4자리로 입력하세요.";
+            } else {
+                count++;
+            }
+            if (!(lastNum.length == 4)) {
+                mobileWarn.innerHTML += " 3번째칸 4자리로 입력하세요.";
+            } else {
+                count++;
+            }
+        }
+    }
+
+    //이메일
+    if (email.length == 0) {
+        emailWarn.innerHTML = "입력하세요.";
+    } else {
+        emailTest.innerHTML = "";
+        if (emailTest.test(email)) {
+            emailWarn.innerHTML = "";
+
+            count++;
+        } else {
+            emailWarn.innerHTML = "이메일 형식이 틀렸습니다.";
+        }
+    }
+
+    //이용약관
+    if (checkBox1.checked) {
+        checkBox1Warn.innerHTML = "";
+    } else {
+        checkBox1Warn.innerHTML = "박스를 체크해주세요.";
+    }
+    if (checkBox2.checked) {
+        checkBox2Warn.innerHTML = "";
+    } else {
+        checkBox2Warn.innerHTML = "박스를 체크해주세요.";
+    }
+
+    //회원가입 성공
+    if (count == 7 && checkBox1.checked && checkBox2.checked) {
+        alert("키보드워리어 회원이되신걸 환영합니다");
+        $.ajax({
+
+        })
+        location.replace("/login");
+    }
+};
+
+cancleBtn.onclick = function () {
+    location.replace("/login");
+};
+}
+</script>
+
+
 </html>
