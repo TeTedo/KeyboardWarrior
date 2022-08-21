@@ -73,7 +73,7 @@
                             <option value="018">018</option>
                             <option value="019">019</option>
                         </select>
-
+                        -
                         <input type="tel" id="inputNum2" />
                         -
                         <input type="tel" id="inputNum3" />
@@ -248,9 +248,10 @@
                 <button id="finishBtn">완료</button>
                 <button id="cancleBtn">취소</button>
             </div>
+            <div><%= userIds%></div>
         </div>
     </body>
-    <script>
+    <!-- <script>
         window.onload = () => {
             const idTest = new RegExp(/[^a-z0-9]/g);
             const passwordTest = new RegExp(
@@ -273,12 +274,11 @@
                 const middleNum = inputNum2.value;
                 const lastNum = inputNum3.value;
                 const mobileNumber = firstNum + middleNum + lastNum;
-                console.log(mobileNumber);
                 const email = inputEmail.value;
                 let count = 0;
 
                 if (id.length == 0) {
-                    idWarn.innerHTML = "입력하세요.";
+                    idWarn.innerHTML = "아이디를 입력하세요.";
                 } else {
                     idWarn.innerHTML = "";
                     if (idTest.test(id)) {
@@ -407,5 +407,9 @@
                 location.replace("/login");
             };
         };
+    </script> -->
+    <script src="./test.js"></script>
+    <script>
+        console.log(userIds);
     </script>
 </html>
