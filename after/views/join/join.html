@@ -67,13 +67,13 @@
                         <h4>MOBILE</h4>
                         <select name="" id="inputNum1">
                             <option value="010">010</option>
-                            <option value="010">011</option>
-                            <option value="010">016</option>
-                            <option value="010">017</option>
-                            <option value="010">018</option>
-                            <option value="010">019</option>
+                            <option value="011">011</option>
+                            <option value="016">016</option>
+                            <option value="017">017</option>
+                            <option value="018">018</option>
+                            <option value="019">019</option>
                         </select>
-                        -
+
                         <input type="tel" id="inputNum2" />
                         -
                         <input type="tel" id="inputNum3" />
@@ -273,6 +273,7 @@
                 const middleNum = inputNum2.value;
                 const lastNum = inputNum3.value;
                 const mobileNumber = firstNum + middleNum + lastNum;
+                console.log(mobileNumber);
                 const email = inputEmail.value;
                 let count = 0;
 
