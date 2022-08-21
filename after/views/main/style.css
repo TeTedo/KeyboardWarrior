@@ -10,33 +10,38 @@
   display: flex;
   color: white;
   position: relative;
-}
-.medium_menu,
-.small_menu {
-  display: none;
+  justify-content: space-between;
 }
 
-nav {
-  width: 70%;
+#mainPageTop > div {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#mainPageTop > ul {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  font-size: 30px;
 }
-
-nav #community,
-nav #minigame {
-  font-size: 20px;
+#mainPageTop > ul > li {
+  list-style: none;
 }
-
-#mainSearch {
-  margin: auto 10% auto auto;
-  height: 30px;
-  width: 20%;
-  padding: 10px;
-  font-size: 20px;
+#mainPageNav {
+  width: 30%;
+  display: flex;
 }
-
+#mainPageSign {
+  width: 10%;
+}
+#mainPageLogo {
+  width: 5%;
+}
+.mainPageLogo_notionLogo,
+.mainPageLogo_githubLogo {
+  width: 30px;
+}
 #mainContent {
   width: 70%;
   height: 100%;
@@ -47,54 +52,41 @@ nav #minigame {
 }
 #mainContent #mainPost {
   width: 100%;
-  height: 300px;
+  height: 500px;
   background-color: white;
   position: relative;
+  margin-top: 100px;
 }
-#mainContent #mainPost > input {
-  position: absolute;
-  top: 20%;
+
+#mainContent #mainPost #mainPost_top {
   width: 100%;
-  height: 30%;
-  padding-left: 1%;
-  font-size: 25px;
+  height: 20%;
+  border-bottom: 1px solid black;
 }
+#mainContent #mainPost #mainPost_middle {
+  width: 100%;
+  height: 70%;
+  border-bottom: 1px solid black;
+}
+#mainContent #mainPost #mainPost_bottom {
+  width: 100%;
+  height: 10%;
+  border-bottom: 1px solid black;
+}
+
 @media only screen and (max-width: 768px) {
-  nav {
-    font-size: 20px;
-  }
-  #community,
-  #minigame {
-    font-size: 15px;
-  }
   #mainContent {
     width: 80%;
   }
   #mainContent #mainPost {
-    height: 200px;
-  }
-  #mainContent #mainPost > input {
-    font-size: 20px;
+    height: 300px;
   }
 }
 @media only screen and (max-width: 425px) {
-  nav {
-    font-size: 20px;
-  }
-  #community,
-  #minigame {
-    display: none;
-  }
-  #mainSearch {
-    width: 50%;
-  }
   #mainContent {
     width: 90%;
   }
   #mainContent #mainPost {
-    height: 100px;
-  }
-  #mainContent #mainPost > input {
-    font-size: 15px;
+    height: 200px;
   }
 }
