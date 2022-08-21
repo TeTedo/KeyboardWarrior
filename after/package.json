@@ -1,11 +1,12 @@
 {
     "scripts": {
-        "test": "nodemon controller/app.js"
+        "start": "nodemon controller/app.js"
     },
     "devDependencies": {
         "nodemon": "^2.0.19"
     },
     "dependencies": {
+        "bcrypt": "^5.0.1",
         "dotenv": "^16.0.1",
         "ejs": "^3.1.8",
         "express": "^4.18.1",
