@@ -6,23 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="main/style.css" />
   <body>
     <div id="mainPageTop">
-      <div class="medium_menu"></div>
-      <div class="small_menu"></div>
-
-      <nav>
-        <span id="mainLogo">이건 메인로고</span>
-        <span id="community">COMMUNITY</span>
-        <span id="minigame">MINI GAME</span>
-      </nav>
-      <input id="mainSearch" />
+      <div id="mainLogo">이건 메인로고</div>
+      <ul id="mainPageNav">
+        <li>COMMUNITY</li>
+        <li>MINI GAME</li>
+      </ul>
+      <ul id="mainPageSign">
+        <li>회원가입</li>
+        <li>로그인</li>
+      </ul>
+      <ul id="mainPageLogo">
+        <li>
+          <a href="https://github.com/TeTedo/KeyboardWarrior.git"
+            ><img
+              class="mainPageLogo_githubLogo"
+              src="http://rajlab.org/icons/github_white.png"
+              alt="github"
+            />
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.notion.so/Keyboard-Warrior-888a144aa79f437e8f726910c42617a8"
+          >
+            <img
+              class="mainPageLogo_notionLogo"
+              src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png"
+              alt="notion"
+            />
+          </a>
+        </li>
+      </ul>
     </div>
 
     <div id="mainContent">
       <div id="mainPost">
-        <input type="text" placeholder="What's happening?" />
+        <div id="mainPost_top"></div>
+        <div id="mainPost_middle"></div>
+        <div id="mainPost_bottom"></div>
       </div>
     </div>
   </body>
