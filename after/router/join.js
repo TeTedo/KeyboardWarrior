@@ -4,7 +4,6 @@ const User = require("../model/users");
 const bcrypt = require("bcrypt");
 
 router.get("/join", (req, res) => {
-    // res.render("join/join");
     User.findAll({}).then(allData => {
         const dbIds = [];
         const dbNickNames = [];
@@ -12,8 +11,6 @@ router.get("/join", (req, res) => {
             dbIds.push(eachData.user_id);
             dbNickNames.push(eachData.nick_name);
         });
-        console.log(dbIds);
-        console.log(dbNickNames);
         res.render("join/join", { dbIds, dbNickNames });
     });
 });

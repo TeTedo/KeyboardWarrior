@@ -90,7 +90,7 @@
                 <div class="box">
                     <div class="tittle">
                         <h4>[필수]이용약관 동의</h4>
-                        <span>
+                        <span class="descriptionText">
                             이용약관에 동의하십니까?
                             <input
                                 type="checkbox"
@@ -199,7 +199,7 @@
                 <div class="box">
                     <div class="tittle">
                         <h4>[필수]개인정보 수집 및 이용 동의</h4>
-                        <span>
+                        <span class="descriptionText">
                             개인정보 수집 및 이용에 동의하십니까?
                             <input
                                 type="checkbox"
@@ -252,13 +252,14 @@
     </body>
     <script>
         window.onload = () => {
-            const idTest = new RegExp(/[^a-z0-9]/g);
+            // 한글자 입력될때마다 이벤트발생해서 그 글자에대한 검사이므로 g 빼버림
+            const idTest = new RegExp(/[^a-z0-9]/);
             const passwordTest = new RegExp(
                 /(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]/
             );
-            const nameTest = new RegExp(/[^가-힣]/g);
-            const nickNameTest = new RegExp(/[^가-힣a-z0-9]/g);
-            const numTest = new RegExp(/[^0-9]/g);
+            const nameTest = new RegExp(/[^가-힣]/);
+            const nickNameTest = new RegExp(/[^가-힣a-z0-9]/);
+            const numTest = new RegExp(/[^0-9]/);
             const emailTest = new RegExp(
                 /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/
             );
@@ -438,14 +439,19 @@
                 }
             }
             inputId.onkeyup = () => checkId();
+            // inputId.onkeydown = () => checkId();
             inputPassword.onkeyup = () => checkPw();
+            // inputPassword.onkeydown = () => checkPw();
             inputPasswordRe.onkeyup = () => checkPwRe();
+            // inputPasswordRe.onkeydown = () => checkPwRe();
             inputName.onkeyup = () => checkName();
-            inputName.onkeydown = () => checkName();
+            // inputName.onkeydown = () => checkName();
             inputNickName.onkeyup = () => checkNickName();
-            inputNickName.onkeydown = () => checkNickName();
+            // inputNickName.onkeydown = () => checkNickName();
             mobile.onkeyup = () => checkMobileNum();
+            // mobile.onkeydown = () => checkMobileNum();
             inputEmail.onkeyup = () => checkEmail();
+            // inputEmail.onkeydown = () => checkEmail();
             checkBox1.oninput = () => checkAgree1();
             checkBox2.oninput = () => checkAgree2();
             finishBtn.onclick = function () {
