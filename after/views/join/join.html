@@ -248,35 +248,43 @@
                 <button id="finishBtn">완료</button>
                 <button id="cancleBtn">취소</button>
             </div>
-            <div><%= userIds%></div>
         </div>
     </body>
-    <!-- <script>
+    <script>
         window.onload = () => {
             const idTest = new RegExp(/[^a-z0-9]/g);
             const passwordTest = new RegExp(
                 /(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]/
             );
             const nameTest = new RegExp(/[^가-힣]/g);
+            const nickNameTest = new RegExp(/[^가-힣a-z0-9]/g);
             const numTest = new RegExp(/[^0-9]/g);
             const emailTest = new RegExp(
                 /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/
             );
 
-            let a;
-            finishBtn.onclick = function () {
-                const id = inputId.value;
-                const password = inputPassword.value;
-                const passwordRe = inputPasswordRe.value;
-                const name = inputName.value;
-                const nickName = inputNickName.value;
-                const firstNum = inputNum1.value;
-                const middleNum = inputNum2.value;
-                const lastNum = inputNum3.value;
-                const mobileNumber = firstNum + middleNum + lastNum;
-                const email = inputEmail.value;
-                let count = 0;
+            const mobile = document.querySelector(".mobile");
+            let id;
+            let password;
+            let passwordRe;
+            let name;
+            let nickName;
+            let mobileNumber;
+            let email;
+            let isIdConfirmed;
+            let isPwConfirmed;
+            let isPwReConfirmed;
+            let isNameConfirmed;
+            let isNickNameConfirmed;
+            let isMiddleNumConfirmed;
+            let isLastNumConfirmed;
+            let isEmailConfiremd;
 
+            function checkId() {
+                const dbIds = "<%= dbIds%>".split(",");
+                idWarn.style.color = "red";
+                id = inputId.value;
+                isIdConfirmed = false;
                 if (id.length == 0) {
                     idWarn.innerHTML = "아이디를 입력하세요.";
                 } else {
@@ -287,12 +295,21 @@
                         if (id.length < 4 || id.length > 16) {
                             idWarn.innerHTML = "4~16자로 쓰세요.";
                         } else {
-                            count++;
+                            if (dbIds.includes(id)) {
+                                idWarn.innerHTML = `'${id}' 는 사용중인 아이디입니다.`;
+                            } else {
+                                idWarn.style.color = "green";
+                                idWarn.innerHTML = `'${id}' 는 사용 가능한 아이디입니다.`;
+                                isIdConfirmed = !isIdConfirmed;
+                                return id;
+                            }
                         }
                     }
                 }
-
-                //패스워드
+            }
+            function checkPw() {
+                password = inputPassword.value;
+                isPwConfirmed = false;
                 if (password.length == 0) {
                     passwordWarn.innerHTML = "입력하세요.";
                 } else {
@@ -301,15 +318,17 @@
                             passwordWarn.innerHTML =
                                 "Password를 8~16자 사이로 쓰세요.";
                         } else {
-                            passwordWarn.innerHTML = "";
-                            count++;
+                            passwordWarn.innerHTML = ``;
+                            isPwConfirmed = !isPwConfirmed;
                         }
                     } else {
                         passwordWarn.innerHTML = "Password형식이 틀렸습니다.";
                     }
                 }
-
-                //패스워드 확인
+            }
+            function checkPwRe() {
+                passwordRe = inputPasswordRe.value;
+                isPwReConfirmed = false;
                 if (passwordRe.length == 0) {
                     passwordConfirmWarn.innerHTML = "입력하세요.";
                 } else {
@@ -318,23 +337,54 @@
                             "비밀번호랑 같게 쓰세요.";
                     } else {
                         passwordConfirmWarn.innerHTML = "";
-                        count++;
+                        isPwReConfirmed = !isPwReConfirmed;
                     }
                 }
-
-                //이름
+            }
+            function checkName() {
+                name = inputName.value;
+                isNameConfirmed = false;
                 if (name.length == 0) {
-                    nameWarn.innerHTML = "입력하세요.";
+                    nameWarn.innerHTML = "입력해주세요.";
                 } else {
                     if (nameTest.test(name)) {
                         nameWarn.innerHTML = "한글 글자만 넣어주세요.";
                     } else {
                         nameWarn.innerHTML = "";
-                        count++;
+                        isNameConfirmed = !isNameConfirmed;
                     }
                 }
-
-                //번호
+            }
+            function checkNickName() {
+                const dbNickNames = "<%= dbNickNames%>".split(",");
+                console.log(dbNickNames);
+                nickNameWarn.style.color = "red";
+                nickName = inputNickName.value;
+                isNickNameConfirmed = false;
+                if (nickName.length == 0) {
+                    nickNameWarn.innerHTML = "입력해주세요.";
+                } else {
+                    if (nickNameTest.test(nickName)) {
+                        nickNameWarn.innerHTML =
+                            "한글, 영문자, 숫자만 사용해주세요.";
+                    } else {
+                        if (dbNickNames.includes(nickName)) {
+                            nickNameWarn.innerHTML = `'${nickName}' 는(은) 사용중인 닉네임 입니다.`;
+                        } else {
+                            nickNameWarn.style.color = "green";
+                            nickNameWarn.innerHTML = `'${nickName}' 는(은) 사용가능한 닉네임 입니다.`;
+                            isNickNameConfirmed = !isNickNameConfirmed;
+                        }
+                    }
+                }
+            }
+            function checkMobileNum() {
+                firstNum = inputNum1.value;
+                middleNum = inputNum2.value;
+                lastNum = inputNum3.value;
+                isMiddleNumConfirmed = false;
+                isLastNumConfirmed = false;
+                mobileNumber = firstNum + middleNum + lastNum;
                 if (middleNum.length == 0 || lastNum.length == 0) {
                     mobileWarn.innerHTML = "빠짐없이 입력해주세요.";
                 } else {
@@ -346,46 +396,81 @@
                             mobileWarn.innerHTML +=
                                 " 2번째칸 3~4자리로 입력하세요.";
                         } else {
-                            count++;
+                            isMiddleNumConfirmed = !isMiddleNumConfirmed;
                         }
                         if (!(lastNum.length == 4)) {
                             mobileWarn.innerHTML +=
                                 " 3번째칸 4자리로 입력하세요.";
                         } else {
-                            count++;
+                            isLastNumConfirmed = !isLastNumConfirmed;
                         }
                     }
                 }
-
-                //이메일
+            }
+            function checkEmail() {
+                email = inputEmail.value;
+                isEmailConfiremd = false;
                 if (email.length == 0) {
-                    emailWarn.innerHTML = "입력하세요.";
+                    emailWarn.innerHTML = "입력해주세요.";
                 } else {
                     emailTest.innerHTML = "";
                     if (emailTest.test(email)) {
                         emailWarn.innerHTML = "";
-
-                        count++;
+                        isEmailConfiremd = !isEmailConfiremd;
+                        return email;
                     } else {
                         emailWarn.innerHTML = "이메일 형식이 틀렸습니다.";
                     }
                 }
-
-                //이용약관
+            }
+            function checkAgree1() {
                 if (checkBox1.checked) {
                     checkBox1Warn.innerHTML = "";
                 } else {
                     checkBox1Warn.innerHTML = "박스를 체크해주세요.";
                 }
+            }
+            function checkAgree2() {
                 if (checkBox2.checked) {
                     checkBox2Warn.innerHTML = "";
                 } else {
                     checkBox2Warn.innerHTML = "박스를 체크해주세요.";
                 }
-
+            }
+            inputId.onkeyup = () => checkId();
+            inputPassword.onkeyup = () => checkPw();
+            inputPasswordRe.onkeyup = () => checkPwRe();
+            inputName.onkeyup = () => checkName();
+            inputName.onkeydown = () => checkName();
+            inputNickName.onkeyup = () => checkNickName();
+            inputNickName.onkeydown = () => checkNickName();
+            mobile.onkeyup = () => checkMobileNum();
+            inputEmail.onkeyup = () => checkEmail();
+            checkBox1.oninput = () => checkAgree1();
+            checkBox2.oninput = () => checkAgree2();
+            finishBtn.onclick = function () {
+                //이용약관
+                checkId();
+                checkPw();
+                checkPwRe();
+                checkName();
+                checkNickName();
+                checkMobileNum();
+                checkEmail();
                 //회원가입 성공
-                // if (count == 7 && checkBox1.checked && checkBox2.checked) {
-                if (true) {
+                if (
+                    isIdConfirmed &&
+                    isPwConfirmed &&
+                    isPwReConfirmed &&
+                    isNameConfirmed &&
+                    isNickNameConfirmed &&
+                    isMiddleNumConfirmed &&
+                    isLastNumConfirmed &&
+                    isEmailConfiremd &&
+                    checkBox1.checked &&
+                    checkBox2.checked
+                ) {
+                    // if (true) {
                     alert("키보드워리어 회원이되신걸 환영합니다");
                     $.ajax({
                         url: "/join",
@@ -407,9 +492,5 @@
                 location.replace("/login");
             };
         };
-    </script> -->
-    <script src="./test.js"></script>
-    <script>
-        console.log(userIds);
     </script>
 </html>
