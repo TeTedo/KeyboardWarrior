@@ -38,4 +38,5 @@ const login = require("../router/login");
 const join = require("../router/join");
 const main = require("../router/main");
 const community_hub = require("../router/community_hub");
-app.use(login, join, main, community_hub);
+const minigame = require("../router/minigame");
+app.use(login, join, main, community_hub, minigame);

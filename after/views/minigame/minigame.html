@@ -45,36 +45,6 @@
                 <span>검색</span>
             </div>
         </div>
-        <!-- 여기까지 탑 공통 부분 -->
-        <div id="mainContents">
-            <div id="mainContents_whole">
-                <div class="scrollItems"></div>
-            </div>
-        </div>
-        <div class="trash" style="height: 2000px"></div>
+        <!-- 여기까지가 공통 탑부분 -->
     </body>
-    <script>
-        const box = document.getElementById("mainContents_whole");
-        const items = document.querySelector(".scrollItems");
-        let enter;
-        console.log(box);
-        let leftPos = 0;
-        // box.onscroll = () => {
-        //     console.log("활동중");
-        //     if (enter) {
-        //         console.log("실행중");
-        //         items.scrollTo({ left: leftPos });
-        //         leftPos++;
-        //     }
-        // };
-        window.onscroll = e => {
-            console.log(e.path);
-        };
-        box.onmouseenter = () => {
-            enter = true;
-        };
-        box.onmouseout = () => {
-            enter = false;
-        };
-    </script>
 </html>
