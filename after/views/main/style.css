@@ -68,53 +68,75 @@
   padding: 5px;
 }
 /* 여기까지 공통 부분 */
-
 #mainContent {
-  width: 70%;
-  height: 100%;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: black;
-}
-#mainContent #mainPost {
-  width: 100%;
+  width: 1000px;
   height: 500px;
+  background-color: black;
+  margin: auto;
+  display: flex;
+  border: 1px solid;
+  overflow: hidden;
+}
+#mainPost {
+  width: 290px;
+  height: 450px;
   background-color: white;
-  position: relative;
-  margin-top: 100px;
-  border: 1px solid black;
+  margin: 30px 20px;
+}
+#mainPost_top {
+  width: 290px;
+  height: 100px;
+  display: flex;
+  border: 1px solid;
 }
 
-#mainContent #mainPost #mainPost_top {
-  width: 100%;
-  height: 20%;
-  border-bottom: 1px solid black;
+#mainPost_top_profileimg > img {
+  border-radius: 50%;
+  width: 100px;
 }
-#mainContent #mainPost #mainPost_middle {
+#mainPost_top_button {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   width: 100%;
-  height: 70%;
-  border-bottom: 1px solid black;
+  font-size: 50px;
 }
-#mainContent #mainPost #mainPost_bottom {
+#mainPost_top_button > li {
+  list-style: none;
+}
+#mainPost_top_button > li:nth-child(1) > i:nth-child(2) {
+  display: none;
+}
+#mainPost_middle {
+  width: 290px;
+  height: 200px;
+  border: 1px solid;
+}
+#mainPost_middle_img {
   width: 100%;
-  height: 10%;
-  border-bottom: 1px solid black;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
+#mainPost_middle_img > img {
+  width: 280px;
+  height: 190px;
+}
+#mainPost_bottom {
+  width: 290px;
+  height: 150px;
+}
+#mainPost_bottom_recomment {
+  width: 290px;
+}
+#mainPost_bottom_recomment > span {
+  margin: 10px;
+}
+/* middle size */
 @media only screen and (max-width: 768px) {
-  #mainContent {
-    width: 80%;
-  }
-  #mainContent #mainPost {
-    height: 300px;
-  }
 }
+
+/* small size */
 @media only screen and (max-width: 425px) {
-  #mainContent {
-    width: 90%;
-  }
-  #mainContent #mainPost {
-    height: 200px;
-  }
 }

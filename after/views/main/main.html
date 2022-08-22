@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <script
+      src="https://kit.fontawesome.com/3264d39625.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <link rel="stylesheet" href="main/style.css" />
   <body>
@@ -47,19 +51,52 @@
     </div>
     <!-- 여기까지 탑 공통 부분 -->
 
+    <!-- 포스팅 시작 -->
     <div id="mainContent">
       <div id="mainPost">
         <div id="mainPost_top">
-          <div id="mainPost_top_profileImg"></div>
-          <ul id="mainPost_top_info"></ul>
-          <ul id="mainPost_top_relate"></ul>
+          <div id="mainPost_top_profileimg">
+            <img src="./images/profileimg.jpg" alt="" />
+          </div>
+          <ul id="mainPost_top_button">
+            <li>
+              <i class="fa-solid fa-heart"></i
+              ><i class="fa-solid fa-heart-circle-check"></i>
+            </li>
+            <li><i class="fa-solid fa-share-nodes"></i></li>
+          </ul>
         </div>
         <div id="mainPost_middle">
-          <div id="mainPost_middle_img"></div>
+          <div id="mainPost_middle_img">
+            <img src="./images/Example.jpeg" alt="" />
+          </div>
           <div id="mainPost_middle_text"></div>
         </div>
+        <ul id="mainPost_bottom">
+          <li id="mainPost_bottom_recomment">
+            <span>아이디</span>
+            <span>여기서부터 댓글</span>
+          </li>
+        </ul>
+      </div>
+      <!-- 포스팅 1개끝 -->
+
+      <div id="mainPost">
+        <div id="mainPost_top"></div>
+        <div id="mainPost_middle"></div>
+        <div id="mainPost_bottom"></div>
+      </div>
+      <div id="mainPost">
+        <div id="mainPost_top"></div>
+        <div id="mainPost_middle"></div>
+        <div id="mainPost_bottom"></div>
+      </div>
+      <div id="mainPost">
+        <div id="mainPost_top"></div>
+        <div id="mainPost_middle"></div>
         <div id="mainPost_bottom"></div>
       </div>
     </div>
   </body>
+  <script src="./main/main.js"></script>
 </html>
