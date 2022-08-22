@@ -75,7 +75,10 @@
   margin: auto;
   display: flex;
   border: 1px solid;
-  overflow: hidden;
+  overflow: auto;
+}
+#mainContent::-webkit-scrollbar {
+  display: none;
 }
 #mainPost {
   width: 290px;
@@ -93,6 +96,9 @@
 #mainPost_top_profileimg > img {
   border-radius: 50%;
   width: 100px;
+}
+#mainPost_top_profileimg > img:hover {
+  width: 100%;
 }
 #mainPost_top_button {
   display: flex;
