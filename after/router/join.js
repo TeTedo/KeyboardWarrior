@@ -6,11 +6,18 @@ const bcrypt = require("bcrypt");
 router.get("/join", (req, res) => {
     // res.render("join/join");
     User.findAll({}).then(allData => {
-        const userIds = allData.map(eachData => eachData.user_id);
-        res.render("join/join", { userIds });
-        console.log(userIds);
+        const dbIds = [];
+        const dbNickNames = [];
+        allData.map(eachData => {
+            dbIds.push(eachData.user_id);
+            dbNickNames.push(eachData.nick_name);
+        });
+        console.log(dbIds);
+        console.log(dbNickNames);
+        res.render("join/join", { dbIds, dbNickNames });
     });
 });
+
 router.post("/join", (req, res) => {
     const { user_id, user_pw, name, nick_name, mobile_number, email } =
         req.body;

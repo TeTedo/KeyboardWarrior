@@ -28,6 +28,7 @@ window.onload = () => {
     let isEmailConfiremd;
 
     function checkId() {
+        console.log(userIds);
         id = inputId.value;
         isIdConfirmed = false;
         if (id.length == 0) {

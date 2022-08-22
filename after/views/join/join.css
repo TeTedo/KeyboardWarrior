@@ -187,6 +187,7 @@ select {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    height: 1000px;
 }
 
 .join {
@@ -205,6 +206,7 @@ select {
 }
 .agree .box {
     margin-bottom: 20px;
+    height: 135px;
 }
 .agree .box .tittle {
     display: flex;
@@ -219,13 +221,14 @@ select {
 }
 
 .btns {
-    margin-top: 5%;
+    margin-top: 20px;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
 }
 .btns button {
     width: 60px;
+    height: 30px;
 }
 .btns button:first-child {
     margin-right: 40px;
