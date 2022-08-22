@@ -1,3 +1,4 @@
+const userIds = require("../../router/join");
 window.onload = () => {
     const idTest = new RegExp(/[^a-z0-9]/g);
     const passwordTest = new RegExp(
@@ -28,6 +29,7 @@ window.onload = () => {
     let isEmailConfiremd;
 
     function checkId() {
+        console.log(userIds);
         id = inputId.value;
         isIdConfirmed = false;
         if (id.length == 0) {

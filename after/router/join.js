@@ -7,8 +7,8 @@ router.get("/join", (req, res) => {
     // res.render("join/join");
     User.findAll({}).then(allData => {
         const userIds = allData.map(eachData => eachData.user_id);
+        module.exports = userIds;
         res.render("join/join", { userIds });
-        console.log(userIds);
     });
 });
 router.post("/join", (req, res) => {
