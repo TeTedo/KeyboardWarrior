@@ -1,0 +1,70 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#mainPageTop {
+    background-color: black;
+    width: 100%;
+    height: 150px;
+    display: flex;
+    color: white;
+    position: relative;
+    justify-content: space-between;
+}
+
+#mainPageTop > div {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#mainPageTop > ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+#mainPageTop > ul > li {
+    list-style: none;
+}
+#mainPageNav {
+    width: 30%;
+    display: flex;
+}
+#mainPageSign {
+    width: 10%;
+}
+#mainPageSign > li > a,
+#mainPageNav > li > a,
+#mainLogo > a {
+    text-decoration: none;
+    color: white;
+}
+#mainPageLogo {
+    width: 5%;
+}
+.mainPageLogo_notionLogo,
+.mainPageLogo_githubLogo {
+    width: 30px;
+}
+#mainPageSearch {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+#mainPageSearch_whole {
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+#mainPageSearch_searchBar {
+    height: 50px;
+    width: 90%;
+    font-size: 30px;
+    padding: 5px;
+}
+/* 여기까지 공통 부분 */
