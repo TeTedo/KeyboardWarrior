@@ -6,13 +6,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
     </head>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="community_hub/style.css" />
     <body>
         <div id="mainPageTop">
             <div id="mainLogo"><a href="/">이건 메인로고</a></div>
             <ul id="mainPageNav">
-                <li><a href="/community_hub">COMMUNITY</a></li>
-                <li><a href="/minigame">MINI GAME</a></li>
+                <li><a href="">COMMUNITY</a></li>
+                <li><a href="">MINI GAME</a></li>
             </ul>
             <ul id="mainPageSign">
                 <li><a href="/join">회원가입</a></li>
@@ -51,25 +51,30 @@
                 <div class="scrollItems"></div>
             </div>
         </div>
-        <!-- <div class="trash" style="height: 2000px"></div> -->
+        <div class="trash" style="height: 2000px"></div>
     </body>
     <script>
         const box = document.getElementById("mainContents_whole");
         const items = document.querySelector(".scrollItems");
-        let move = 0;
-        box.onwheel = e => {
-            // if (e.wheelDelta > 0) {
-            //     console.log("스크롤업");
-            //     move += 10;
-            // } else {
-            //     console.log("스크롤다운");
-            //     move -= 10;
-            // }
-            const maxScroll = items.offsetWidth - box.offsetWidth;
-            move += e.wheelDelta > 0 ? 10 : -10;
-            move = move < 0 ? 0 : move;
-            move = move > maxScroll ? maxScroll : move;
-            box.scrollTo(move, 0);
+        let enter;
+        console.log(box);
+        let leftPos = 0;
+        // box.onscroll = () => {
+        //     console.log("활동중");
+        //     if (enter) {
+        //         console.log("실행중");
+        //         items.scrollTo({ left: leftPos });
+        //         leftPos++;
+        //     }
+        // };
+        window.onscroll = e => {
+            console.log(e.path);
+        };
+        box.onmouseenter = () => {
+            enter = true;
+        };
+        box.onmouseout = () => {
+            enter = false;
         };
     </script>
 </html>
