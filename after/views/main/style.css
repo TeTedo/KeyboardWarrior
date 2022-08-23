@@ -93,7 +93,8 @@
   margin: auto;
   display: flex;
   border: 1px solid;
-  overflow: hidden;
+  overflow-x: scroll;
+  overflow-y: hidden;
   position: relative;
   margin-top: 50px;
 }
