@@ -375,7 +375,6 @@
             }
             function checkNickName() {
                 const dbNickNames = "<%= dbNickNames%>".split(",");
-                console.log(dbNickNames);
                 nickNameWarn.style.color = "red";
                 nickName = inputNickName.value;
                 isNickNameConfirmed = false;
@@ -455,20 +454,13 @@
                     checkBox2Warn.innerHTML = "박스를 체크해주세요.";
                 }
             }
-            inputId.onkeyup = () => checkId();
-            // inputId.onkeydown = () => checkId();
-            inputPassword.onkeyup = () => checkPw();
-            // inputPassword.onkeydown = () => checkPw();
-            inputPasswordRe.onkeyup = () => checkPwRe();
-            // inputPasswordRe.onkeydown = () => checkPwRe();
-            inputName.onkeyup = () => checkName();
-            // inputName.onkeydown = () => checkName();
-            inputNickName.onkeyup = () => checkNickName();
-            // inputNickName.onkeydown = () => checkNickName();
-            mobile.onkeyup = () => checkMobileNum();
-            // mobile.onkeydown = () => checkMobileNum();
-            inputEmail.onkeyup = () => checkEmail();
-            // inputEmail.onkeydown = () => checkEmail();
+            inputId.oninput = () => checkId();
+            inputPassword.oninput = () => checkPw();
+            inputPasswordRe.oninput = () => checkPwRe();
+            inputName.oninput = () => checkName();
+            inputNickName.oninput = () => checkNickName();
+            mobile.oninput = () => checkMobileNum();
+            inputEmail.oninput = () => checkEmail();
             checkBox1.oninput = () => checkAgree1();
             checkBox2.oninput = () => checkAgree2();
             finishBtn.onclick = function () {
