@@ -6,10 +6,6 @@ ul {
     list-style-type: none;
 }
 
-li {
-    margin-bottom: 20px;
-    height: 55px;
-}
 h5 {
     margin: 0;
     color: red;
@@ -80,6 +76,10 @@ h5 {
     left: 50%;
     transform: translateX(-50%);
     height: 1000px;
+}
+.contents li {
+    margin-bottom: 20px;
+    height: 55px;
 }
 
 .join {
