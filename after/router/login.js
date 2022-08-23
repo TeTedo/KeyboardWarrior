@@ -6,6 +6,7 @@ const Token = require("../model/tokens");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const dot = require("dotenv");
+const session = require("express-session");
 dot.config();
 
 router.get("/login", (req, res) => {
@@ -21,8 +22,9 @@ router.post("/login", (req, res) => {
       const data = result.dataValues;
       bcrypt.compare(user_pw, data.user_pw, (err, same) => {
         if (same) {
+          //로그인 성공
           // access token
-          const accessToken = jwt.sign(
+          const access_token = jwt.sign(
             {
               alg: "HS256",
               typ: "JWT",
@@ -35,7 +37,7 @@ router.post("/login", (req, res) => {
           );
 
           // refresh token
-          const refreshToken = jwt.sign(
+          const refresh_token = jwt.sign(
             {
               alg: "HS256",
               typ: "JWT",
@@ -47,9 +49,17 @@ router.post("/login", (req, res) => {
             }
           );
 
-          // insert tokens to Token table
-          Token.create();
-          res.redirect("/");
+          Token.update(
+            {
+              access_token,
+              refresh_token,
+            },
+            {
+              where: { user_id },
+            }
+          ).then(() => {
+            res.redirect("/");
+          });
         } else {
           console.log("비밀번호 오류 입니다.");
         }
