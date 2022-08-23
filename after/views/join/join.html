@@ -9,23 +9,40 @@
     <link rel="stylesheet" href="join.css" />
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <body>
-        <div class="top">
-            <div class="topWrapper">
-                <a href="../mainpage/mainpage.html"
-                    ><img src="../images/mainlogo.png" alt="" />
-                </a>
-                <div class="navmenuBar">
-                    <a href="../subpage/subpage.html">
-                        <div class="navmenuCommunity">COMMUNITY</div>
-                    </a>
-                    <a href="../minigame/minigame.html">
-                        <div class="navmenuMinigame">MINIGAME</div>
-                    </a>
-                </div>
-                <input type="text" class="mainSearch" />
-                <button class="topSearchBtn"></button>
+        <div id="mainPageTop_for_fix">
+            <div id="mainPageTop">
+                <div id="mainLogo"><a href="/">이건 메인로고</a></div>
+                <ul id="mainPageNav">
+                    <li><a href="/community_hub">COMMUNITY</a></li>
+                    <li><a href="/minigame">MINI GAME</a></li>
+                </ul>
+                <ul id="mainPageSign">
+                    <li><a href="/join">회원가입</a></li>
+                    <li><a href="/login">로그인</a></li>
+                </ul>
+                <ul id="mainPageLogo">
+                    <li>
+                        <a href="https://github.com/TeTedo/KeyboardWarrior.git"
+                            ><img
+                                class="mainPageLogo_githubLogo"
+                                src="http://rajlab.org/icons/github_white.png"
+                                alt="github"
+                        /></a>
+                    </li>
+                    <li>
+                        <a
+                            href="https://www.notion.so/Keyboard-Warrior-888a144aa79f437e8f726910c42617a8"
+                            ><img
+                                class="mainPageLogo_notionLogo"
+                                src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png"
+                                alt="notion"
+                        /></a>
+                    </li>
+                </ul>
             </div>
         </div>
+
+        <!-- 여기까지가 공통 탑부분 -->
         <div class="space"></div>
         <div class="contents">
             <div class="join">

@@ -68,24 +68,6 @@
   padding: 5px;
 }
 /* 여기까지 공통 부분 */
-
-/* 사이드바 */
-#sideBar {
-  width: 400px;
-  height: 800px;
-  background-color: black;
-  opacity: 0.5;
-  position: absolute;
-  z-index: 999;
-  overflow: hidden;
-}
-
-#sideBar #sideBar_top {
-  width: 100%;
-  height: 200px;
-  background-color: beige;
-}
-/* 포스팅 */
 #mainContent {
   width: 1000px;
   height: 500px;
@@ -93,15 +75,10 @@
   margin: auto;
   display: flex;
   border: 1px solid;
-  overflow: hidden;
-  position: relative;
-  margin-top: 50px;
+  overflow: auto;
 }
-#mainContentWrap {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  position: absolute;
+#mainContent::-webkit-scrollbar {
+  display: none;
 }
 #mainPost {
   width: 290px;
@@ -163,9 +140,9 @@
   margin: 10px;
 }
 /* middle size */
-@media screen and (max-width: 768px) {
+@media only screen and (max-width: 768px) {
 }
 
 /* small size */
-@media screen and (max-width: 425px) {
+@media only screen and (max-width: 425px) {
 }
