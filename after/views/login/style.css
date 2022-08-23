@@ -1,0 +1,90 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+#mainPageTop {
+  background-color: black;
+  width: 100%;
+  height: 150px;
+  display: flex;
+  color: white;
+  position: relative;
+  justify-content: space-between;
+}
+
+#mainPageTop > div {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#mainPageTop > ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+#mainPageTop > ul > li {
+  list-style: none;
+}
+#mainPageNav {
+  width: 30%;
+  display: flex;
+}
+#mainPageSign {
+  width: 10%;
+}
+#mainPageSign > li > a,
+#mainPageNav > li > a,
+#mainLogo > a {
+  text-decoration: none;
+  color: white;
+}
+#mainPageLogo {
+  width: 5%;
+}
+.mainPageLogo_notionLogo,
+.mainPageLogo_githubLogo {
+  width: 30px;
+}
+
+/* 로그인 */
+#loginSector {
+  width: 500px;
+  height: 300px;
+  border: 1px solid black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30px;
+  box-sizing: border-box;
+}
+#loginSector_input {
+  width: 100%;
+  height: 150px;
+}
+#loginSector_input > div {
+  font-size: 20px;
+}
+#loginSector_input > div > input {
+  width: 100%;
+  height: 40px;
+  padding: 5px;
+  font-size: 20px;
+  box-sizing: border-box;
+}
+#loginSector_loginBtn {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* middle size */
+@media screen and (max-width: 768px) {
+}
+
+/* small size */
+@media screen and (max-width: 425px) {
+}
