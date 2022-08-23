@@ -22,7 +22,7 @@ class User extends Sequelize.Model {
                     allowNull: false,
                 },
                 mobile_number: {
-                    type: Sequelize.NUMBER(12),
+                    type: Sequelize.STRING,
                     allowNull: false,
                 },
                 email: {
