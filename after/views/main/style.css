@@ -98,13 +98,16 @@
   position: relative;
   margin-top: 50px;
 }
+#mainContent::-webkit-scrollbar {
+  display: none;
+}
 #mainContentWrap {
-  width: 100%;
+  width: max-content;
   height: 100%;
   display: flex;
-  position: absolute;
+  position: relative;
 }
-#mainPost {
+.mainPost {
   width: 290px;
   height: 450px;
   background-color: white;
