@@ -39,37 +39,50 @@
             </ul>
         </div>
 
-        <div id="mainPageSearch">
-            <div id="mainPageSearch_whole">
-                <input type="text" id="mainPageSearch_searchBar" />
-                <span>검색</span>
-            </div>
-        </div>
         <!-- 여기까지 탑 공통 부분 -->
-        <div id="mainContents">
-            <div id="mainContents_whole">
-                <div class="scrollItems"></div>
+
+        <div id="mainContent">
+            <div id="mainContentWrap">
+                <div class="mainPost" style="background-color: tomato"></div>
+                <div class="mainPost" style="background-color: blue"></div>
+                <div class="mainPost" style="background-color: green"></div>
+                <div class="mainPost" style="background-color: pink"></div>
+                <div class="mainPost" style="background-color: orange"></div>
+                <div class="mainPost"></div>
+                <div class="mainPost"></div>
+                <div class="mainPost"></div>
+                <div class="mainPost"></div>
+                <div class="mainPost"></div>
+                <div class="mainPost"></div>
+                <div class="mainPost"></div>
+                <div class="mainPost"></div>
+                <div class="mainPost"></div>
+                <div class="mainPost"></div>
+                <div class="mainPost"></div>
+                <div class="mainPost"></div>
+                <div class="mainPost"></div>
+                <div class="mainPost"></div>
+                <div class="mainPost"></div>
             </div>
         </div>
-        <!-- <div class="trash" style="height: 2000px"></div> -->
     </body>
     <script>
-        const box = document.getElementById("mainContents_whole");
-        const items = document.querySelector(".scrollItems");
+        const box = document.getElementById("mainContent");
+        const items = document.getElementById("mainContentWrap");
         let move = 0;
+        let isOnScroll = true;
+        let time;
         box.onwheel = e => {
-            // if (e.wheelDelta > 0) {
-            //     console.log("스크롤업");
-            //     move += 10;
-            // } else {
-            //     console.log("스크롤다운");
-            //     move -= 10;
-            // }
             const maxScroll = items.offsetWidth - box.offsetWidth;
-            move += e.wheelDelta > 0 ? 10 : -10;
-            move = move < 0 ? 0 : move;
-            move = move > maxScroll ? maxScroll : move;
-            box.scrollTo(move, 0);
+            if (isOnScroll) {
+                console.log("스크롤됨");
+                isOnScroll = false;
+                setTimeout(() => (isOnScroll = true), 1000);
+                move += e.wheelDelta > 0 ? 485 : -485;
+                move = move < 0 ? 0 : move;
+                move = move > maxScroll ? maxScroll : move;
+                box.scrollTo({ left: move, behavior: "smooth" });
+            } else return;
         };
     </script>
 </html>

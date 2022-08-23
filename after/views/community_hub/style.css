@@ -48,44 +48,32 @@
 .mainPageLogo_githubLogo {
     width: 30px;
 }
-#mainPageSearch {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-}
-#mainPageSearch_whole {
-    width: 70%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-#mainPageSearch_searchBar {
-    height: 50px;
-    width: 90%;
-    font-size: 30px;
-    padding: 5px;
-}
 /* 여기까지 공통 부분 */
 
-#mainContents {
-    width: 100%;
-    height: 500px;
-    position: relative;
-    background-color: aliceblue;
-}
-#mainContents_whole {
+#mainContent {
     width: 1000px;
     height: 500px;
-    background-color: antiquewhite;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    background-color: black;
+    margin: auto;
+    display: flex;
+    border: 1px solid;
     overflow-x: scroll;
+    /* overflow-y: hidden; */
+    position: relative;
+    margin-top: 50px;
 }
-.scrollItems {
-    width: 3000px;
+/* #mainContent::-webkit-scrollbar {
+    display: none;
+} */
+#mainContentWrap {
+    width: max-content;
     height: 100%;
+    display: flex;
+    position: absolute;
+}
+#mainContentWrap .mainPost {
+    width: 455px;
+    height: 450px;
+    background-color: white;
+    margin: 30px 0px 0px 30px;
 }
