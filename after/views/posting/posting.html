@@ -5,8 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/3264d39625.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
+  <link rel="stylesheet" href="style.css" />
   <body>
     <div id="mainPageTop">
       <div id="mainLogo"><a href="/">이건 메인로고</a></div>
@@ -38,21 +42,22 @@
         </li>
       </ul>
     </div>
-    <form action="/login" method="post">
-      <div id="loginSector">
-        <div id="loginSector_input">
-          <div id="loginSector_input_id">
-            <div>ID</div>
-            <input type="text" name="user_id" />
+
+    <div id="posting">
+      <div id="posting_left"></div>
+      <div id="posting_right">
+        <textarea></textarea>
+        <div id="posting_right_bottom">
+          <div id="posting_right_bottom_uploadImg">
+            <i class="fa-solid fa-image"></i>
           </div>
-          <div id="loginSector_input_pw">
-            <div>PW</div>
-            <input type="password" name="user_pw" />
+          <div id="posting_right_bottom_postingBtn">
+            <div id="posting_right_bottom_postingBtn_post">등록</div>
+            <a id="posting_right_bottom_postingBtn_cancel" href="/">취소</a>
           </div>
         </div>
-        <button type="submit" id="loginSector_loginBtn">로그인</button>
       </div>
-    </form>
+    </div>
   </body>
-  <script src="login.js"></script>
+  <script src="posting.js"></script>
 </html>
