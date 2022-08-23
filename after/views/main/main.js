@@ -24,5 +24,4 @@ mainContentWrap.onwheel = function (e) {
     mainContentWrap.style.left =
       parseInt(mainContentWrap.style.left) + 30 + "px";
   }
-  console.log(mainContentWrap.style.left);
 };
