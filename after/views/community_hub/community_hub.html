@@ -43,26 +43,31 @@
 
         <div id="mainContent">
             <div id="mainContentWrap">
+                <div class="mainPost">
+                    <video autoplay muted loop>
+                        <source
+                            src="https://rr3---sn-ab02a0nfpgxapox-bh2s7.googlevideo.com/videoplayback?expire=1661289583&ei=D_AEY4a0BI-84AKAyJLQDg&ip=125.242.99.6&id=o-AB3TPkLKxgkuzUj6pki27OPHKSsaA929GikLarqlWdzP&itag=22&source=youtube&requiressl=yes&mh=rm&mm=31%2C29&mn=sn-ab02a0nfpgxapox-bh2s7%2Csn-ab02a0nfpgxapox-bh2zz&ms=au%2Crdu&mv=m&mvi=3&pl=24&ctier=A&pfa=5&initcwndbps=1850000&hightc=yes&vprv=1&mime=video%2Fmp4&ns=a1DDpq8ZEaqbXoZAvFcjCdYH&cnr=14&ratebypass=yes&dur=30.069&lmt=1576381217503018&mt=1661267593&fvip=1&fexp=24001373%2C24007246&c=WEB&rbqsm=fr&txp=5535432&n=Xlo1uYzc_OgPYu&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cctier%2Cpfa%2Chightc%2Cvprv%2Cmime%2Cns%2Ccnr%2Cratebypass%2Cdur%2Clmt&sig=AOq0QJ8wRQIhAPvhRyXJ1ytnJv4gtCstGO9sCp9TAj_3hjgZJd5B93gEAiAE-hzBFaSMfmWoRwtbBN4V81qJvKcrBwptDgM1fm6XpA%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&lsig=AG3C_xAwRQIgBRsoZe_YAC8Rz8g4f2widdn0SunkSrV4LupBI4dhvLwCIQCJG_ikX2zLBRuLbizDfyIfdyV6JhZxFHcJ0zowzEDsvg%3D%3D"
+                            type="video/mp4"
+                        />
+                    </video>
+                    <span>hello</span>
+                    <div></div>
+                </div>
+                <div class="mainPost">2</div>
+                <div class="mainPost">3</div>
                 <div class="mainPost" style="background-color: tomato"></div>
                 <div class="mainPost" style="background-color: blue"></div>
                 <div class="mainPost" style="background-color: green"></div>
                 <div class="mainPost" style="background-color: pink"></div>
                 <div class="mainPost" style="background-color: orange"></div>
-                <div class="mainPost"></div>
-                <div class="mainPost"></div>
-                <div class="mainPost"></div>
-                <div class="mainPost"></div>
-                <div class="mainPost"></div>
-                <div class="mainPost"></div>
-                <div class="mainPost"></div>
-                <div class="mainPost"></div>
-                <div class="mainPost"></div>
-                <div class="mainPost"></div>
-                <div class="mainPost"></div>
-                <div class="mainPost"></div>
-                <div class="mainPost"></div>
-                <div class="mainPost"></div>
-                <div class="mainPost"></div>
+            </div>
+            <div id="mainTitleWrap">
+                <div class="mainTitle"><a href="">FIFFA ONLINE 4</a></div>
+                <div class="mainTitle"></div>
+                <div class="mainTitle"></div>
+                <div class="mainTitle"></div>
+                <div class="mainTitle"></div>
+                <div class="mainTitle"></div>
             </div>
         </div>
     </body>
@@ -73,14 +78,15 @@
         let isOnScroll = true;
         let time;
         box.onwheel = e => {
-            const maxScroll = items.offsetWidth - box.offsetWidth;
+            const maxScroll = items.offsetWidth - box.offsetWidth + 2;
             if (isOnScroll) {
                 console.log("스크롤됨");
                 isOnScroll = false;
                 setTimeout(() => (isOnScroll = true), 1000);
                 move += e.wheelDelta > 0 ? 485 : -485;
                 move = move < 0 ? 0 : move;
-                move = move > maxScroll ? maxScroll : move;
+                move = move > maxScroll ? 0 : move;
+                console.log(move);
                 box.scrollTo({ left: move, behavior: "smooth" });
             } else return;
         };
