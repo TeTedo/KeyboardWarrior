@@ -58,7 +58,7 @@
     /* display: flex; */
     border: 1px solid;
     overflow-x: scroll;
-    /* overflow-y: hidden; */
+    overflow-y: hidden;
     position: relative;
     margin-top: 50px;
 }
@@ -86,7 +86,7 @@
     margin: 30px 30px 0px 30px;
 }
 #mainContentWrap .mainPost > video {
-    width: 800px;
+    width: max-content;
     transform: translate(-50%, -50%);
     position: absolute;
     left: 50%;
@@ -100,7 +100,7 @@
 }
 #mainTitleWrap .mainTitle {
     width: 455px;
-    background-color: white;
+    background-color: black;
     margin: 15px 0px 30px 30px;
     display: flex;
     align-items: center;
@@ -108,7 +108,15 @@
 }
 #mainTitleWrap .mainTitle > a {
     text-decoration: none;
-    color: black;
+    color: rgb(120, 116, 116);
     font-weight: bold;
     font-size: 35px;
+    cursor: pointer;
+}
+#mainTitleWrap .mainTitle > a:hover {
+    color: #fff;
+    transition: 0.5s;
+    font-size: 55px;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff, 0 0 80px #fff,
+        0 0 120px #fff, 0 0 240px #fff;
 }
