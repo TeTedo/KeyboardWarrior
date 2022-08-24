@@ -6,6 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
     </head>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
     <link rel="stylesheet" href="style.css" />
     <body>
         <div id="mainPageTop">
@@ -44,9 +46,16 @@
         <div id="mainContent">
             <div id="mainContentWrap">
                 <div class="mainPost">
-                    <video autoplay muted loop>
+                    <video
+                        id="fifa"
+                        autoplay
+                        muted
+                        loop
+                        preload="auto"
+                        controls
+                    >
                         <source
-                            src="https://rr3---sn-ab02a0nfpgxapox-bh2s7.googlevideo.com/videoplayback?expire=1661289583&ei=D_AEY4a0BI-84AKAyJLQDg&ip=125.242.99.6&id=o-AB3TPkLKxgkuzUj6pki27OPHKSsaA929GikLarqlWdzP&itag=22&source=youtube&requiressl=yes&mh=rm&mm=31%2C29&mn=sn-ab02a0nfpgxapox-bh2s7%2Csn-ab02a0nfpgxapox-bh2zz&ms=au%2Crdu&mv=m&mvi=3&pl=24&ctier=A&pfa=5&initcwndbps=1850000&hightc=yes&vprv=1&mime=video%2Fmp4&ns=a1DDpq8ZEaqbXoZAvFcjCdYH&cnr=14&ratebypass=yes&dur=30.069&lmt=1576381217503018&mt=1661267593&fvip=1&fexp=24001373%2C24007246&c=WEB&rbqsm=fr&txp=5535432&n=Xlo1uYzc_OgPYu&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cctier%2Cpfa%2Chightc%2Cvprv%2Cmime%2Cns%2Ccnr%2Cratebypass%2Cdur%2Clmt&sig=AOq0QJ8wRQIhAPvhRyXJ1ytnJv4gtCstGO9sCp9TAj_3hjgZJd5B93gEAiAE-hzBFaSMfmWoRwtbBN4V81qJvKcrBwptDgM1fm6XpA%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&lsig=AG3C_xAwRQIgBRsoZe_YAC8Rz8g4f2widdn0SunkSrV4LupBI4dhvLwCIQCJG_ikX2zLBRuLbizDfyIfdyV6JhZxFHcJ0zowzEDsvg%3D%3D"
+                            src="https://rr1---sn-ab02a0nfpgxapox-bh2sk.googlevideo.com/videoplayback?expire=1661321975&ei=l24FY8P_MufZs8IPyrqo4A8&ip=119.70.184.149&id=o-ACuI9jN1uKuqMcDqfrMFh345yn3FAwGkS4mFbKFV_SBC&itag=22&source=youtube&requiressl=yes&mh=do&mm=31%2C29&mn=sn-ab02a0nfpgxapox-bh2sk%2Csn-ab02a0nfpgxapox-bh2sd&ms=au%2Crdu&mv=u&mvi=1&pcm2cms=yes&pl=26&ctier=A&pfa=5&hightc=yes&spc=lT-Khsd_xk4dhn-HMJU5Y6c2-da_V77zpXy1ovjgK9ws&vprv=1&mime=video%2Fmp4&ns=HFyM7Gcd_2UH9tqYEhCyqJYH&cnr=14&ratebypass=yes&dur=60.162&lmt=1636728647314860&mt=1661299633&fvip=4&fexp=24001373%2C24007246&c=WEB&rbqsm=fr&txp=5532434&n=VJxledJ__NMwFs&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cctier%2Cpfa%2Chightc%2Cspc%2Cvprv%2Cmime%2Cns%2Ccnr%2Cratebypass%2Cdur%2Clmt&sig=AOq0QJ8wRQIhAMMAp-R3W6cwyPEH6xbdkVPR-HKMC2EDwQri4vQrr8HUAiAVHR2Vehe5zi45imocstFBFgNYDpSQ24HfHNLDUvS1Tg%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpcm2cms%2Cpl&lsig=AG3C_xAwRAIgNC5YQ6bUQVmGZEs0eZ_DJbWLZbMOpM--Q_SBk45E8HwCIBb6d1K6L8kxo_ukOHTY9zl5qVWNqsHvKXNdthdVzUP-"
                             type="video/mp4"
                         />
                     </video>
@@ -70,6 +79,7 @@
                 <div class="mainTitle"></div>
             </div>
         </div>
+        <button id="btn">중지</button>
     </body>
     <script>
         const box = document.getElementById("mainContent");
@@ -79,16 +89,51 @@
         let time;
         box.onwheel = e => {
             const maxScroll = items.offsetWidth - box.offsetWidth + 2;
+            console.log("휠돌리는중");
             if (isOnScroll) {
                 console.log("스크롤됨");
                 isOnScroll = false;
-                setTimeout(() => (isOnScroll = true), 1000);
+                setTimeout(() => (isOnScroll = true), 1700);
                 move += e.wheelDelta > 0 ? 485 : -485;
                 move = move < 0 ? 0 : move;
                 move = move > maxScroll ? 0 : move;
-                console.log(move);
                 box.scrollTo({ left: move, behavior: "smooth" });
-            } else return;
+            } else if (!isOnScroll) {
+                return;
+            }
         };
+        btn.onclick = () => {
+            fifa.removeAttribute("muted");
+        };
+
+        // function slide(e) {
+        //     const maxScroll = items.offsetWidth - box.offsetWidth + 2;
+        //     console.log("스크롤됨");
+        //     move += e.wheelDelta > 0 ? 485 : -485;
+        //     move = move < 0 ? 0 : move;
+        //     move = move > maxScroll ? 0 : move;
+        //     box.scrollTo({ left: move, behavior: "smooth" });
+        // }
+        // function debounce(func, wait = 20, immediate = true) {
+        //     var timeout;
+        //     return function () {
+        //         var context = this,
+        //             args = arguments;
+        //         var later = function () {
+        //             timeout = 0;
+        //         };
+        //         var callNow = !timeout;
+        //         clearTimeout(timeout);
+        //         timeout = setTimeout(later, wait); //얘가 시간지나면 timeout을 0(false)로 만들어줌
+        //         console.log(callNow);
+        //         if (callNow) func.apply(context, args);
+        //     };
+        // }
+
+        // box.addEventListener("wheel", debounce(slide, 120));
+
+        // 1. screenleft 같은걸로 스크롤되는 포스팅 위치잡아서 특정위치에서(화면에보이는) 벗어나면
+        //    동영상 재생 멈추는 기능
+        // 2. 게임이름에 커서 갓다댓을때 호버이펙트 멋잇는거
     </script>
 </html>
