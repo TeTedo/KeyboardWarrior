@@ -7,7 +7,6 @@
         <title>Document</title>
     </head>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
     <link rel="stylesheet" href="style.css" />
     <body>
         <div id="mainPageTop">
@@ -154,7 +153,11 @@
 
         mainTitles.forEach(title => {
             title.onclick = () =>
-                (location.href = `/community/${title.dataset.link}`);
+                $.ajax({
+                    url: `/community/${title.dataset.link}`,
+                    type: "post",
+                    data: {},
+                })((location.href = `/community/${title.dataset.link}`));
             console.log(title.dataset.link);
         });
 
