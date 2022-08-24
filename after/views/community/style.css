@@ -85,6 +85,21 @@
     height: 200px;
     background-color: beige;
 }
+/* 게시판 제목 */
+#communityTitle {
+    width: 100%;
+    height: 100px;
+    position: relative;
+}
+#communityTitle_text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+}
+#communityTitle_text > span {
+}
 /* 포스팅 */
 #mainContent {
     width: 1000px;
@@ -96,7 +111,6 @@
     overflow-x: scroll;
     overflow-y: hidden;
     position: relative;
-    margin-top: 50px;
 }
 #mainContent::-webkit-scrollbar {
     display: none;
@@ -172,4 +186,11 @@
 
 /* small size */
 @media screen and (max-width: 425px) {
+}
+
+#btn {
+    width: 200px;
+    height: 100px;
+    position: absolute;
+    right: 50%;
 }

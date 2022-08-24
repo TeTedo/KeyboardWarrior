@@ -66,6 +66,11 @@
         </div>
 
         <!-- 포스팅 시작 -->
+        <div id="communityTitle">
+            <div id="communityTitle_text">
+                <span><%= data.title %></span>
+            </div>
+        </div>
         <div id="mainContent">
             <div id="mainContentWrap">
                 <div class="mainPost">
@@ -139,9 +144,7 @@
                 </div>
             </div>
         </div>
-        <div id="communityTitle">
-            '<%= data.title %>' 게시판에 오신걸 환영합니다.
-        </div>
+        <button id="btn">글쓰기</button>
     </body>
     <script>
         console.log("hi");
@@ -166,5 +169,6 @@
             }
             mainContent.scrollTo(scrollx, 0);
         };
+        btn.onclick = () => {};
     </script>
 </html>
