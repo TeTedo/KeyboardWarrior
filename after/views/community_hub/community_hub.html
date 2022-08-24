@@ -46,24 +46,20 @@
         <div id="mainContent">
             <div id="mainContentWrap">
                 <div class="mainPost">
-                    <video
-                        id="fifa"
-                        autoplay
-                        muted
-                        loop
-                        preload="auto"
-                        controls
-                    >
-                        <source
-                            src="https://rr1---sn-ab02a0nfpgxapox-bh2sk.googlevideo.com/videoplayback?expire=1661321975&ei=l24FY8P_MufZs8IPyrqo4A8&ip=119.70.184.149&id=o-ACuI9jN1uKuqMcDqfrMFh345yn3FAwGkS4mFbKFV_SBC&itag=22&source=youtube&requiressl=yes&mh=do&mm=31%2C29&mn=sn-ab02a0nfpgxapox-bh2sk%2Csn-ab02a0nfpgxapox-bh2sd&ms=au%2Crdu&mv=u&mvi=1&pcm2cms=yes&pl=26&ctier=A&pfa=5&hightc=yes&spc=lT-Khsd_xk4dhn-HMJU5Y6c2-da_V77zpXy1ovjgK9ws&vprv=1&mime=video%2Fmp4&ns=HFyM7Gcd_2UH9tqYEhCyqJYH&cnr=14&ratebypass=yes&dur=60.162&lmt=1636728647314860&mt=1661299633&fvip=4&fexp=24001373%2C24007246&c=WEB&rbqsm=fr&txp=5532434&n=VJxledJ__NMwFs&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cctier%2Cpfa%2Chightc%2Cspc%2Cvprv%2Cmime%2Cns%2Ccnr%2Cratebypass%2Cdur%2Clmt&sig=AOq0QJ8wRQIhAMMAp-R3W6cwyPEH6xbdkVPR-HKMC2EDwQri4vQrr8HUAiAVHR2Vehe5zi45imocstFBFgNYDpSQ24HfHNLDUvS1Tg%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpcm2cms%2Cpl&lsig=AG3C_xAwRAIgNC5YQ6bUQVmGZEs0eZ_DJbWLZbMOpM--Q_SBk45E8HwCIBb6d1K6L8kxo_ukOHTY9zl5qVWNqsHvKXNdthdVzUP-"
-                            type="video/mp4"
-                        />
+                    <video autoplay muted loop preload="none" controls>
+                        <source src="../videos/fifa.mp4" type="video/mp4" />
                     </video>
-                    <span>hello</span>
-                    <div></div>
                 </div>
-                <div class="mainPost">2</div>
-                <div class="mainPost">3</div>
+                <div class="mainPost">
+                    <video autoplay muted loop preload="none" controls>
+                        <source src="" type="video/mp4" />
+                    </video>
+                </div>
+                <div class="mainPost">
+                    <video autoplay muted loop preload="none" controls>
+                        <source src="../videos/riniji.mp4" type="video/mp4" />
+                    </video>
+                </div>
                 <div class="mainPost" style="background-color: tomato"></div>
                 <div class="mainPost" style="background-color: blue"></div>
                 <div class="mainPost" style="background-color: green"></div>
@@ -71,66 +67,95 @@
                 <div class="mainPost" style="background-color: orange"></div>
             </div>
             <div id="mainTitleWrap">
-                <div class="mainTitle"><a href="">FIFFA ONLINE 4</a></div>
-                <div class="mainTitle"></div>
-                <div class="mainTitle"></div>
+                <div class="mainTitle">
+                    <a href="">FIFFA ONLINE 4</a>
+                </div>
+                <div class="mainTitle">
+                    <a href="">MAPLE STORY</a>
+                </div>
+                <div class="mainTitle"><a href="">리니지</a></div>
                 <div class="mainTitle"></div>
                 <div class="mainTitle"></div>
                 <div class="mainTitle"></div>
             </div>
         </div>
-        <button id="btn">중지</button>
     </body>
     <script>
-        const box = document.getElementById("mainContent");
-        const items = document.getElementById("mainContentWrap");
+        const mainContent = document.getElementById("mainContent");
+        const mainContentWrap = document.getElementById("mainContentWrap");
+        const mainPosts = document.querySelectorAll(".mainPost");
         let move = 0;
         let isOnScroll = true;
         let time;
-        box.onwheel = e => {
-            const maxScroll = items.offsetWidth - box.offsetWidth + 2;
+        mainContent.onwheel = e => slide(e);
+        function slide(e) {
+            mainContent.onwheel = null;
+            const maxScroll =
+                mainContentWrap.offsetWidth - mainContent.offsetWidth + 2;
             console.log("휠돌리는중");
             if (isOnScroll) {
                 console.log("스크롤됨");
                 isOnScroll = false;
-                setTimeout(() => (isOnScroll = true), 1700);
+                setTimeout(
+                    () => (
+                        (isOnScroll = true),
+                        (mainContent.onwheel = e => slide(e))
+                    ),
+                    1000
+                );
                 move += e.wheelDelta > 0 ? 485 : -485;
-                move = move < 0 ? 0 : move;
+                move = move < 0 ? maxScroll : move;
                 move = move > maxScroll ? 0 : move;
-                box.scrollTo({ left: move, behavior: "smooth" });
+                mainContent.scrollTo({ left: move, behavior: "smooth" });
             } else if (!isOnScroll) {
                 return;
             }
-        };
-        btn.onclick = () => {
-            fifa.removeAttribute("muted");
-        };
-
+        }
+        function debounce(func, wait = 20, immediate = true) {
+            var timeout;
+            return function () {
+                var context = this,
+                    args = arguments;
+                var later = function () {
+                    timeout = null;
+                    if (!immediate) func.apply(context, args);
+                };
+                var callNow = immediate && !timeout;
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait); //얘가 시간지나면 timeout을 0(false)로 만들어줌
+                if (callNow) func.apply(context, args);
+            };
+        }
+        mainContent.addEventListener(
+            "scroll",
+            debounce(controlVideo, 20, false)
+        );
+        function controlVideo(e) {
+            mainPosts.forEach(post => {
+                if (
+                    post.getBoundingClientRect().left >= 264 &&
+                    post.getBoundingClientRect().left <= 751
+                ) {
+                    if (post.querySelector("video")) {
+                        post.querySelector("video").play();
+                    }
+                } else {
+                    if (post.querySelector("video")) {
+                        post.querySelector("video").pause();
+                    }
+                }
+            });
+        }
         // function slide(e) {
-        //     const maxScroll = items.offsetWidth - box.offsetWidth + 2;
+        //     const maxScroll = mainContentWrap.offsetWidth - mainContent.offsetWidth + 2;
         //     console.log("스크롤됨");
         //     move += e.wheelDelta > 0 ? 485 : -485;
         //     move = move < 0 ? 0 : move;
         //     move = move > maxScroll ? 0 : move;
-        //     box.scrollTo({ left: move, behavior: "smooth" });
-        // }
-        // function debounce(func, wait = 20, immediate = true) {
-        //     var timeout;
-        //     return function () {
-        //         var context = this,
-        //             args = arguments;
-        //         var later = function () {
-        //             timeout = 0;
-        //         };
-        //         var callNow = !timeout;
-        //         clearTimeout(timeout);
-        //         timeout = setTimeout(later, wait); //얘가 시간지나면 timeout을 0(false)로 만들어줌
-        //         console.log(callNow);
-        //         if (callNow) func.apply(context, args);
-        //     };
+        //     mainContent.scrollTo({ left: move, behavior: "smooth" });
         // }
 
-        // box.addEventListener("wheel", debounce(slide, 120));
+        // mainContent.addEventListener("wheel", debounce(slide, 120));
 
         // 1. screenleft 같은걸로 스크롤되는 포스팅 위치잡아서 특정위치에서(화면에보이는) 벗어나면
         //    동영상 재생 멈추는 기능
