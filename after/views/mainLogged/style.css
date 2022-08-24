@@ -72,18 +72,36 @@
 /* 사이드바 */
 #sideBar {
   width: 400px;
-  height: 800px;
+  height: 750px;
   background-color: black;
   opacity: 0.5;
   position: absolute;
   z-index: 999;
-  overflow: hidden;
+  overflow-y: scroll;
 }
 
 #sideBar #sideBar_top {
   width: 100%;
   height: 200px;
   background-color: beige;
+}
+
+#sideBar_top_up {
+  display: flex;
+  width: 100%;
+  height: 50%;
+}
+#sideBar_top_up > ul {
+  transform: translateX(150px);
+  margin: 30px;
+  font-size: 20px;
+  font-weight: bold;
+}
+#sideBar_top_up > ul > li {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 /* 포스팅 */
 #mainContent {

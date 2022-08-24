@@ -4,7 +4,7 @@ dot.config();
 const { Token } = require("../model");
 
 //로그인 상태인지 확인하는 함수
-const middleware = (req, res, next) => {
+const loginStatus = (req, res, next) => {
   const { access_token, refresh_token } = req.session;
 
   jwt.verify(access_token, process.env.ACCSESS_TOKEN, (err, acc_decoded) => {
@@ -60,6 +60,4 @@ const middleware = (req, res, next) => {
   });
 };
 
-const loginStatus = {};
-loginStatus.middleware = middleware;
 module.exports = loginStatus;

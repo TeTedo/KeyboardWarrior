@@ -1,10 +1,10 @@
 const express = require("express");
-const { middleware } = require("../middleware/loginStatus");
+const loginStatus = require("../middleware/loginStatus");
 const router = express.Router();
 
 router.get(
   "/",
-  middleware,
+  loginStatus,
   (req, res, next) => {
     if (req.session.login) {
       console.log("로그인 되어있는상태로 홈페이지 열었다.");
