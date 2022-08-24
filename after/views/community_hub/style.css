@@ -111,11 +111,12 @@
     color: rgb(120, 116, 116);
     font-weight: bold;
     font-size: 35px;
+    cursor: pointer;
 }
 #mainTitleWrap .mainTitle > a:hover {
     color: #fff;
-    transition: 1s;
-    font-size: 50px;
+    transition: 0.5s;
+    font-size: 55px;
     text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff, 0 0 80px #fff,
         0 0 120px #fff, 0 0 240px #fff;
 }

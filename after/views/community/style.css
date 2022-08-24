@@ -1,0 +1,175 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#mainPageTop {
+    background-color: black;
+    width: 100%;
+    height: 150px;
+    display: flex;
+    color: white;
+    position: relative;
+    justify-content: space-between;
+}
+
+#mainPageTop > div {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#mainPageTop > ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+#mainPageTop > ul > li {
+    list-style: none;
+}
+#mainPageNav {
+    width: 30%;
+    display: flex;
+}
+#mainPageSign {
+    width: 10%;
+}
+#mainPageSign > li > a,
+#mainPageNav > li > a,
+#mainLogo > a {
+    text-decoration: none;
+    color: white;
+}
+#mainPageLogo {
+    width: 5%;
+}
+.mainPageLogo_notionLogo,
+.mainPageLogo_githubLogo {
+    width: 30px;
+}
+#mainPageSearch {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+#mainPageSearch_whole {
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+#mainPageSearch_searchBar {
+    height: 50px;
+    width: 90%;
+    font-size: 30px;
+    padding: 5px;
+}
+/* 여기까지 공통 부분 */
+
+/* 사이드바 */
+#sideBar {
+    width: 400px;
+    height: 800px;
+    background-color: black;
+    opacity: 0.5;
+    position: absolute;
+    z-index: 999;
+    overflow: hidden;
+}
+
+#sideBar #sideBar_top {
+    width: 100%;
+    height: 200px;
+    background-color: beige;
+}
+/* 포스팅 */
+#mainContent {
+    width: 1000px;
+    height: 500px;
+    background-color: black;
+    margin: auto;
+    display: flex;
+    border: 1px solid;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    position: relative;
+    margin-top: 50px;
+}
+#mainContent::-webkit-scrollbar {
+    display: none;
+}
+#mainContentWrap {
+    width: max-content;
+    height: 100%;
+    display: flex;
+    position: relative;
+}
+.mainPost {
+    width: 290px;
+    height: 450px;
+    background-color: white;
+    margin: 30px 20px;
+}
+#mainPost_top {
+    width: 290px;
+    height: 100px;
+    display: flex;
+    border: 1px solid;
+}
+
+#mainPost_top_profileimg > img {
+    border-radius: 50%;
+    width: 100px;
+}
+#mainPost_top_profileimg > img:hover {
+    width: 100%;
+}
+#mainPost_top_button {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    font-size: 50px;
+}
+#mainPost_top_button > li {
+    list-style: none;
+}
+#mainPost_top_button > li:nth-child(1) > i:nth-child(2) {
+    display: none;
+}
+#mainPost_middle {
+    width: 290px;
+    height: 200px;
+    border: 1px solid;
+}
+#mainPost_middle_img {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#mainPost_middle_img > img {
+    width: 280px;
+    height: 190px;
+}
+#mainPost_bottom {
+    width: 290px;
+    height: 150px;
+}
+#mainPost_bottom_recomment {
+    width: 290px;
+}
+#mainPost_bottom_recomment > span {
+    margin: 10px;
+}
+/* middle size */
+@media screen and (max-width: 768px) {
+}
+
+/* small size */
+@media screen and (max-width: 425px) {
+}

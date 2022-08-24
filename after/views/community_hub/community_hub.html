@@ -52,7 +52,7 @@
                 </div>
                 <div class="mainPost">
                     <video autoplay muted loop preload="none" controls>
-                        <source src="" type="video/mp4" />
+                        <source src="../videos/maple.mp4" type="video/mp4" />
                     </video>
                 </div>
                 <div class="mainPost">
@@ -68,12 +68,12 @@
             </div>
             <div id="mainTitleWrap">
                 <div class="mainTitle">
-                    <a href="">FIFFA ONLINE 4</a>
+                    <a data-link="fifa">FIFFA ONLINE 4</a>
                 </div>
                 <div class="mainTitle">
-                    <a href="">MAPLE STORY</a>
+                    <a data-link="maple">MAPLE STORY</a>
                 </div>
-                <div class="mainTitle"><a href="">리니지</a></div>
+                <div class="mainTitle"><a data-link="riniji">리니지</a></div>
                 <div class="mainTitle"></div>
                 <div class="mainTitle"></div>
                 <div class="mainTitle"></div>
@@ -84,6 +84,7 @@
         const mainContent = document.getElementById("mainContent");
         const mainContentWrap = document.getElementById("mainContentWrap");
         const mainPosts = document.querySelectorAll(".mainPost");
+        const mainTitles = document.querySelectorAll(".mainTitle a");
         let move = 0;
         let isOnScroll = true;
         let time;
@@ -94,7 +95,6 @@
                 mainContentWrap.offsetWidth - mainContent.offsetWidth + 2;
             console.log("휠돌리는중");
             if (isOnScroll) {
-                console.log("스크롤됨");
                 isOnScroll = false;
                 setTimeout(
                     () => (
@@ -103,7 +103,7 @@
                     ),
                     1000
                 );
-                move += e.wheelDelta > 0 ? 485 : -485;
+                move += e.wheelDelta < 0 ? 485 : -485;
                 move = move < 0 ? maxScroll : move;
                 move = move > maxScroll ? 0 : move;
                 mainContent.scrollTo({ left: move, behavior: "smooth" });
@@ -131,10 +131,15 @@
             debounce(controlVideo, 20, false)
         );
         function controlVideo(e) {
+            console.log("발동");
             mainPosts.forEach(post => {
                 if (
-                    post.getBoundingClientRect().left >= 264 &&
-                    post.getBoundingClientRect().left <= 751
+                    post.getBoundingClientRect().left -
+                        mainContent.getBoundingClientRect().left >=
+                        30 &&
+                    post.getBoundingClientRect().left -
+                        mainContent.getBoundingClientRect().left <=
+                        520
                 ) {
                     if (post.querySelector("video")) {
                         post.querySelector("video").play();
@@ -146,16 +151,12 @@
                 }
             });
         }
-        // function slide(e) {
-        //     const maxScroll = mainContentWrap.offsetWidth - mainContent.offsetWidth + 2;
-        //     console.log("스크롤됨");
-        //     move += e.wheelDelta > 0 ? 485 : -485;
-        //     move = move < 0 ? 0 : move;
-        //     move = move > maxScroll ? 0 : move;
-        //     mainContent.scrollTo({ left: move, behavior: "smooth" });
-        // }
 
-        // mainContent.addEventListener("wheel", debounce(slide, 120));
+        mainTitles.forEach(title => {
+            title.onclick = () =>
+                (location.href = `/community/${title.dataset.link}`);
+            console.log(title.dataset.link);
+        });
 
         // 1. screenleft 같은걸로 스크롤되는 포스팅 위치잡아서 특정위치에서(화면에보이는) 벗어나면
         //    동영상 재생 멈추는 기능
