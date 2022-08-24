@@ -56,7 +56,7 @@
                 </div>
                 <div class="mainPost">
                     <video autoplay muted loop preload="none" controls>
-                        <source src="../videos/riniji.mp4" type="video/mp4" />
+                        <source src="../videos/lineage.mp4" type="video/mp4" />
                     </video>
                 </div>
                 <div class="mainPost" style="background-color: tomato"></div>
@@ -72,7 +72,7 @@
                 <div class="mainTitle">
                     <a data-link="maple">MAPLE STORY</a>
                 </div>
-                <div class="mainTitle"><a data-link="riniji">리니지</a></div>
+                <div class="mainTitle"><a data-link="lineage">LINEAGE</a></div>
                 <div class="mainTitle"></div>
                 <div class="mainTitle"></div>
                 <div class="mainTitle"></div>
@@ -151,14 +151,15 @@
             });
         }
 
-        mainTitles.forEach(title => {
-            title.onclick = () =>
+        mainTitles.forEach(el => {
+            console.log(el);
+            const title = el.innerText;
+            el.onclick = () =>
                 $.ajax({
-                    url: `/community/${title.dataset.link}`,
+                    url: `/community/${el.dataset.link}`,
                     type: "post",
-                    data: {},
-                })((location.href = `/community/${title.dataset.link}`));
-            console.log(title.dataset.link);
+                    data: { title },
+                })((location.href = `/community/${el.dataset.link}`));
         });
 
         // 1. screenleft 같은걸로 스크롤되는 포스팅 위치잡아서 특정위치에서(화면에보이는) 벗어나면

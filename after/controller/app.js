@@ -25,11 +25,11 @@ sequelize
 
 // 세션 설정
 app.use(
-  session({
-    secret: process.env.SESSION_KEY,
-    resave: false,
-    saveUninitialized: true,
-  })
+    session({
+        secret: process.env.SESSION_KEY,
+        resave: false,
+        saveUninitialized: true,
+    })
 );
 
 // 뷰엔진 설정
