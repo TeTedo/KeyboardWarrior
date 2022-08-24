@@ -29,6 +29,14 @@ class Token extends Sequelize.Model {
       }
     );
   }
+  static associate(db) {
+    db.Token.belongsTo(db.User, {
+      foreignKey: "userId",
+      sourceKey: "user_id",
+      onDelete: "cascade",
+      onUpdate: "cascade",
+    });
+  }
 }
 
 module.exports = Token;
