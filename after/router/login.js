@@ -6,7 +6,6 @@ const Token = require("../model/tokens");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const dot = require("dotenv");
-const session = require("express-session");
 dot.config();
 
 router.get("/login", (req, res) => {
@@ -49,17 +48,33 @@ router.post("/login", (req, res) => {
             }
           );
 
-          Token.update(
-            {
-              access_token,
-              refresh_token,
-            },
-            {
-              where: { user_id },
-            }
-          ).then(() => {
-            res.redirect("/");
-          });
+          // user_id row 있으면 update 있으면 create
+          Token.findOne({
+            where: { user_id },
+          })
+            .then(() => {
+              Token.update(
+                {
+                  access_token,
+                  refresh_token,
+                },
+                {
+                  where: { user_id },
+                }
+              );
+            })
+            .catch(() => {
+              Token.create({
+                user_id,
+                access_token,
+                refresh_token,
+              });
+            })
+            .then(() => {
+              req.session.access_token = access_token;
+              req.session.refresh_token = refresh_token;
+              res.redirect("/");
+            });
         } else {
           console.log("비밀번호 오류 입니다.");
         }

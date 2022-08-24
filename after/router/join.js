@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../model/users");
 const bcrypt = require("bcrypt");
+const Token = require("../model/tokens");
 
 router.get("/join", (req, res) => {
   User.findAll({}).then((allData) => {

@@ -6,8 +6,8 @@ class Token extends Sequelize.Model {
       {
         user_id: {
           type: Sequelize.STRING(16),
-          primaryKey: true,
           allowNull: false,
+          primaryKey: true,
         },
         access_token: {
           type: Sequelize.STRING,

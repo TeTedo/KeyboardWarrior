@@ -2,7 +2,7 @@
 const express = require("express");
 const app = express();
 const ejs = require("ejs");
-
+const session = require("express-session");
 // 서버열기
 const PORT = 3000;
 app.listen(PORT, () => {
@@ -22,6 +22,15 @@ sequelize
 // 여기서 sequelize만 빼왔는데 User 테이블 정보를 어케알고 생성하는거지??
 // model에 index.js에서 init매서드 실행시키면 sequelize안에 정보가 담기는건가?
 // User 테이블은 model폴더 users.js에 있는 생성코드를 index.js에서 init으로 실행시켜줌 -> 그래서 생성됨
+
+// 세션 설정
+app.use(
+  session({
+    secret: process.env.SESSION_KEY,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
 // 뷰엔진 설정
 app.engine("html", ejs.renderFile);

@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-router.get("/community_hub", (req, res) => {
-  res.render("community_hub/community_hub");
+router.get("/:id", (req, res) => {
+  res.render("main/main");
 });
 
 module.exports = router;
