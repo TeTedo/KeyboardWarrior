@@ -165,4 +165,21 @@
     </div>
   </body>
   <script src="./main/main.js"></script>
+  <script>
+    //로그인 되어있을때 사이드바 데이터
+    window.onload = function () {
+      try {
+        if ("<%= data%>") {
+          let data = "<%= JSON.stringify(data)%>";
+          data = data.replaceAll("&#34;", '"');
+          data = JSON.parse(data);
+          console.log(data);
+        }
+      } catch (error) {
+        console.log("에러테스트");
+      } finally {
+        console.log("마지막");
+      }
+    };
+  </script>
 </html>

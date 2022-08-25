@@ -41,14 +41,6 @@ class User extends Sequelize.Model {
       }
     );
   }
-  static associate(db) {
-    db.User.hasMany(db.Token, {
-      foreignKey: "userId",
-      sourceKey: "user_id",
-      onDelete: "cascade",
-      onUpdate: "cascade",
-    });
-  }
 }
 
 module.exports = User;
