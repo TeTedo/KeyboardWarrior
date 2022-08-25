@@ -69,22 +69,27 @@
         const createBtn = document.getElementById(
             "posting_right_bottom_postingBtn_post"
         );
-        const text = document
-            .getElementById("posting_right")
-            .querySelector("textarea");
         const game_name = "<%= game_name %>";
         const user_id = "<%= user_id%>";
+        const nick_name = "<%= nick_name%>";
         createBtn.onclick = () => {
+            const text = document
+                .getElementById("posting_right")
+                .querySelector("textarea").value;
+            const main_html = JSON.stringify(posting.innerHTML);
+            console.log(text);
             $.ajax({
-                url: "/posting/create",
+                url: "/posting/community/create",
                 type: "post",
                 data: {
                     game_name,
                     user_id,
                     nick_name,
-                    html,
+                    text,
+                    main_html,
                 },
             });
+            location.href = `/community/${game_name}`;
         };
     </script>
 </html>

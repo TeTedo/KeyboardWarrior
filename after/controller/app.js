@@ -1,8 +1,10 @@
 // 외부모듈
 const express = require("express");
 const app = express();
+const fs = require("fs");
 const ejs = require("ejs");
 const session = require("express-session");
+
 // 서버열기
 const PORT = 3000;
 app.listen(PORT, () => {
@@ -52,6 +54,7 @@ const minigame = require("../router/minigame");
 const posting = require("../router/posting");
 const logout = require("../router/logout");
 const communityPosting = require("../router/communityPosting");
+const communityPost = require("../router/communityPost");
 app.use(
     login,
     logout,
@@ -61,5 +64,6 @@ app.use(
     posting,
     community_hub,
     community,
-    communityPosting
+    communityPosting,
+    communityPost
 );

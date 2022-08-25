@@ -7,14 +7,21 @@ class CommunityPost extends Sequelize.Model {
                 game_name: {
                     type: Sequelize.STRING(20),
                     allowNull: false,
-                    primaryKey: true,
                 },
-                title: {
-                    type: Sequelize.STRING(20),
+                user_id: {
+                    type: Sequelize.STRING(16),
                     allowNull: false,
                 },
-                post_txt: {
-                    type: Sequelize.STRING,
+                nick_name: {
+                    type: Sequelize.STRING(10),
+                    allowNull: false,
+                },
+                text: {
+                    type: Sequelize.TEXT,
+                    allowNull: false,
+                },
+                main_html: {
+                    type: Sequelize.TEXT,
                     allowNull: false,
                 },
             },
@@ -26,8 +33,16 @@ class CommunityPost extends Sequelize.Model {
                 tableName: "users",
                 charset: "utf8",
                 collate: "utf8_general_ci",
+                modelName: "CommunityPost",
+                tableName: "community_posts",
             }
         );
+    }
+    static associate(db) {
+        db.CommunityPost.belongsTo(db.User, {
+            foreignKey: "user_id",
+            targetKey: "user_id",
+        });
     }
 }
 

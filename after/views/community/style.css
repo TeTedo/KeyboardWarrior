@@ -120,6 +120,7 @@
     height: 100%;
     display: flex;
     position: relative;
+    flex-direction: row-reverse;
 }
 .mainPost {
     width: 290px;
