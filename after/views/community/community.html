@@ -101,53 +101,18 @@
                 </div>
 
                 <!-- 포스팅 1개끝 -->
-
+                <% data.postData.forEach(post=>{%>
                 <div class="mainPost">
                     <div id="mainPost_top"></div>
-                    <div id="mainPost_middle"></div>
+                    <div id="mainPost_middle"><%=post.text%></div>
                     <div id="mainPost_bottom"></div>
                 </div>
-                <div class="mainPost">
-                    <div id="mainPost_top"></div>
-                    <div id="mainPost_middle"></div>
-                    <div id="mainPost_bottom"></div>
-                </div>
-                <div class="mainPost">
-                    <div id="mainPost_top"></div>
-                    <div id="mainPost_middle"></div>
-                    <div id="mainPost_bottom"></div>
-                </div>
-                <div class="mainPost">
-                    <div id="mainPost_top"></div>
-                    <div id="mainPost_middle"></div>
-                    <div id="mainPost_bottom"></div>
-                </div>
-                <div class="mainPost">
-                    <div id="mainPost_top"></div>
-                    <div id="mainPost_middle"></div>
-                    <div id="mainPost_bottom"></div>
-                </div>
-                <div class="mainPost">
-                    <div id="mainPost_top"></div>
-                    <div id="mainPost_middle"></div>
-                    <div id="mainPost_bottom"></div>
-                </div>
-                <div class="mainPost">
-                    <div id="mainPost_top"></div>
-                    <div id="mainPost_middle"></div>
-                    <div id="mainPost_bottom"></div>
-                </div>
-                <div class="mainPost">
-                    <div id="mainPost_top"></div>
-                    <div id="mainPost_middle"></div>
-                    <div id="mainPost_bottom"></div>
-                </div>
+                <%})%>
             </div>
         </div>
         <button id="btn">글쓰기</button>
     </body>
     <script>
-        console.log("hi");
         // scroll evnet
         let scrollx = 0;
         // 가로로 스크롤 이동
@@ -169,7 +134,7 @@
             }
             mainContent.scrollTo(scrollx, 0);
         };
-        const title = "<%= data.title %>";
+
         const gameName = "<%= data.gameName %>";
         btn.onclick = () => {
             location.href = `/posting/${gameName}`;
