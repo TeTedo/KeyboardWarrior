@@ -66,6 +66,7 @@
   height: 100%;
   border: 1px solid black;
 }
+/* 8.25 img css 추가 */
 #posting_left > img {
   width: 100%;
   height: 100%;
@@ -77,10 +78,25 @@
 
 #posting_right > textarea {
   width: 100%;
-  height: 400px;
+  height: 350px;
   padding: 10px;
   font-size: 20px;
   box-sizing: border-box;
+}
+/* 8.25 이미지 미리보기 구역 추가*/
+#posting_right_imagePreview {
+  width: 100%;
+  height: 50px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+/* 8.25 이미지 미리보기 > 이미지 추가 */
+#posting_right_imagePreview > img {
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
 }
 #posting_right_bottom {
   width: 100%;

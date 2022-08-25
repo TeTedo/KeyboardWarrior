@@ -9,6 +9,11 @@
       src="https://kit.fontawesome.com/3264d39625.js"
       crossorigin="anonymous"
     ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
   </head>
   <link rel="stylesheet" href="style.css" />
   <body>
@@ -46,21 +51,22 @@
     <div id="posting">
       <div id="posting_left">
         <!-- 8.25 img 태그 추가 -->
-        <img src="" alt="" />
+        <img src="" alt="이미지를 선택하세요" />
       </div>
       <div id="posting_right">
         <textarea></textarea>
-
+        <!-- 8.25 div추가 -->
+        <div id="posting_right_imagePreview"></div>
         <div id="posting_right_bottom">
           <div id="posting_right_bottom_uploadImg">
             <!-- 8.25 input 태그 추가 -->
-            <input type="file" accept="image/*" onchange="readURL(this)" /><i
+            <input type="file" accept="image/*" /><i
               class="fa-solid fa-image"
             ></i>
           </div>
           <div id="posting_right_bottom_postingBtn">
             <!-- 8.25 id값 없애고 등록에 div대신 a태그 추가 -->
-            <a href="/">등록</a>
+            <a href="" id="sumbit">등록</a>
             <a href="/">취소</a>
           </div>
         </div>
