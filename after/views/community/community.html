@@ -169,6 +169,10 @@
             }
             mainContent.scrollTo(scrollx, 0);
         };
-        btn.onclick = () => {};
+        const title = "<%= data.title %>";
+        const gameName = "<%= data.gameName %>";
+        btn.onclick = () => {
+            location.href = `/posting/${gameName}`;
+        };
     </script>
 </html>
