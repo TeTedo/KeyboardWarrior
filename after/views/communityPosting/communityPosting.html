@@ -72,12 +72,13 @@
         const game_name = "<%= game_name %>";
         const user_id = "<%= user_id%>";
         const nick_name = "<%= nick_name%>";
+        const textAreaDom = document
+            .getElementById("posting_right")
+            .querySelector("textarea");
         createBtn.onclick = () => {
-            const text = document
-                .getElementById("posting_right")
-                .querySelector("textarea").value;
-            const main_html = JSON.stringify(posting.innerHTML);
-            console.log(text);
+            const text = textAreaDom.value;
+            textAreaDom.innerText = text;
+            const main_html = posting.innerHTML;
             $.ajax({
                 url: "/posting/community/create",
                 type: "post",

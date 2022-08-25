@@ -48,8 +48,11 @@
 .mainPageLogo_githubLogo {
     width: 30px;
 }
-/* 여기까지 공통 부분 */
-
+/* 여기까지 공통 탑 부분 */
+#contents {
+    position: relative;
+}
+/* 메인슬라이드 */
 #mainContent {
     width: 1000px;
     height: 700px;
@@ -59,8 +62,8 @@
     border: 1px solid;
     overflow-x: scroll;
     overflow-y: hidden;
-    position: relative;
     margin-top: 50px;
+    position: relative;
 }
 /* #mainContent::-webkit-scrollbar {
     display: none;
@@ -119,4 +122,85 @@
     font-size: 55px;
     text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff, 0 0 80px #fff,
         0 0 120px #fff, 0 0 240px #fff;
+}
+
+/* 여기서부터 스크롤헬퍼 */
+.scrollHelper {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    left: 80%;
+    top: 0;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    border: 10px solid black;
+    border-radius: 50px;
+}
+.scrollHelper_contents {
+    position: absolute;
+    width: max-content;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -60%);
+}
+.scrollHelper_icon {
+    font-size: 100px;
+    font-weight: 600;
+    transform: translateX(-10px);
+    animation: move 0.9s;
+    animation-iteration-count: infinite;
+}
+.scrollHelper_text {
+    font-size: 30px;
+}
+.scrollHelper.active {
+    /* opacity: 1; */
+    animation: timer 3s;
+}
+.scrollHelper_icon.active {
+    font-size: 100px;
+    font-weight: bolder;
+    opacity: 1;
+}
+.scrollHelper_text.active {
+}
+@keyframes timer {
+    0% {
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+@keyframes move {
+    50% {
+        transform: translateX(90px);
+    }
+    100% {
+        transform: translateX(-10px);
+    }
+}
+.scrollHelper_arrow {
+    height: 0;
+    width: 0;
+    border-style: solid;
+    border-color: transparent;
+    border-width: 20px;
+    position: absolute;
+    bottom: -40px;
+    left: 45px;
+}
+.arrow {
+    border-top-color: white;
+}
+.arrow-border {
+    border-top-color: black;
+    bottom: -50px;
 }

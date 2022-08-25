@@ -15,10 +15,6 @@
                 <li><a href="/community_hub">COMMUNITY</a></li>
                 <li><a href="/minigame">MINI GAME</a></li>
             </ul>
-            <ul id="mainPageSign">
-                <li><a href="/join">회원가입</a></li>
-                <li><a href="/login">로그인</a></li>
-            </ul>
             <ul id="mainPageLogo">
                 <li>
                     <a href="https://github.com/TeTedo/KeyboardWarrior.git"
@@ -39,60 +35,89 @@
                 </li>
             </ul>
         </div>
-
         <!-- 여기까지 탑 공통 부분 -->
-
-        <div id="mainContent">
-            <div id="mainContentWrap">
-                <div class="mainPost">
-                    <video autoplay muted loop preload="none" controls>
-                        <source src="../videos/fifa.mp4" type="video/mp4" />
-                    </video>
+        <div id="contents">
+            <div id="mainContent">
+                <div id="mainContentWrap">
+                    <div class="mainPost">
+                        <video autoplay muted loop preload="none" controls>
+                            <source src="../videos/fifa.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                    <div class="mainPost">
+                        <video autoplay muted loop preload="none" controls>
+                            <source
+                                src="../videos/maple.mp4"
+                                type="video/mp4"
+                            />
+                        </video>
+                    </div>
+                    <div class="mainPost">
+                        <video autoplay muted loop preload="none" controls>
+                            <source
+                                src="../videos/lineage.mp4"
+                                type="video/mp4"
+                            />
+                        </video>
+                    </div>
+                    <div
+                        class="mainPost"
+                        style="background-color: tomato"
+                    ></div>
+                    <div class="mainPost" style="background-color: blue"></div>
+                    <div class="mainPost" style="background-color: green"></div>
+                    <div class="mainPost" style="background-color: pink"></div>
+                    <div
+                        class="mainPost"
+                        style="background-color: orange"
+                    ></div>
                 </div>
-                <div class="mainPost">
-                    <video autoplay muted loop preload="none" controls>
-                        <source src="../videos/maple.mp4" type="video/mp4" />
-                    </video>
+                <!-- 여기까지 동영상 슬라이드 -->
+                <div id="mainTitleWrap">
+                    <div class="mainTitle">
+                        <a data-link="fifa">FIFFA ONLINE 4</a>
+                    </div>
+                    <div class="mainTitle">
+                        <a data-link="maple">MAPLE STORY</a>
+                    </div>
+                    <div class="mainTitle">
+                        <a data-link="lineage">LINEAGE</a>
+                    </div>
+                    <div class="mainTitle"></div>
+                    <div class="mainTitle"></div>
+                    <div class="mainTitle"></div>
                 </div>
-                <div class="mainPost">
-                    <video autoplay muted loop preload="none" controls>
-                        <source src="../videos/lineage.mp4" type="video/mp4" />
-                    </video>
-                </div>
-                <div class="mainPost" style="background-color: tomato"></div>
-                <div class="mainPost" style="background-color: blue"></div>
-                <div class="mainPost" style="background-color: green"></div>
-                <div class="mainPost" style="background-color: pink"></div>
-                <div class="mainPost" style="background-color: orange"></div>
+                <!-- 여기까지 게임제목 슬라이드 -->
             </div>
-            <div id="mainTitleWrap">
-                <div class="mainTitle">
-                    <a data-link="fifa">FIFFA ONLINE 4</a>
+            <!-- 여기까지 mainContents -->
+            <div class="scrollHelper">
+                <div class="scrollHelper_contents">
+                    <div class="scrollHelper_icon">➡️</div>
+                    <div class="scrollHelper_text">SCROLL ON!</div>
                 </div>
-                <div class="mainTitle">
-                    <a data-link="maple">MAPLE STORY</a>
-                </div>
-                <div class="mainTitle"><a data-link="lineage">LINEAGE</a></div>
-                <div class="mainTitle"></div>
-                <div class="mainTitle"></div>
-                <div class="mainTitle"></div>
+                <div class="scrollHelper_arrow arrow-border"></div>
+                <div class="scrollHelper_arrow arrow"></div>
             </div>
         </div>
     </body>
+    <!-- <script src="community_hub.js"></script> -->
     <script>
         const mainContent = document.getElementById("mainContent");
         const mainContentWrap = document.getElementById("mainContentWrap");
         const mainPosts = document.querySelectorAll(".mainPost");
         const mainTitles = document.querySelectorAll(".mainTitle a");
+        const scrollHelper = document.querySelector(".scrollHelper");
+        const scrollHelperText = document.querySelector(".scrollHelper_text");
+        const scrollHelperIcon = document.querySelector(".scrollHelper_icon");
         let move = 0;
         let isOnScroll = true;
         let time;
+        // 슬라이드 이벤트
         mainContent.onwheel = e => slide(e);
         function slide(e) {
             mainContent.onwheel = null;
             const maxScroll =
                 mainContentWrap.offsetWidth - mainContent.offsetWidth + 2;
-            console.log("휠돌리는중");
             if (isOnScroll) {
                 isOnScroll = false;
                 setTimeout(
@@ -110,6 +135,7 @@
                 return;
             }
         }
+        // 디바운스 펑션
         function debounce(func, wait = 20, immediate = true) {
             var timeout;
             return function () {
@@ -125,12 +151,8 @@
                 if (callNow) func.apply(context, args);
             };
         }
-        mainContent.addEventListener(
-            "scroll",
-            debounce(controlVideo, 20, false)
-        );
+        // 비디오 슬라이드 재생 중단 기능
         function controlVideo(e) {
-            console.log("발동");
             mainPosts.forEach(post => {
                 if (
                     post.getBoundingClientRect().left -
@@ -150,20 +172,36 @@
                 }
             });
         }
-
+        mainContent.addEventListener(
+            "scroll",
+            debounce(controlVideo, 20, false)
+        );
+        // 게임제목 클릭시 이벤트
         mainTitles.forEach(el => {
-            console.log(el);
             const title = el.innerText;
-            el.onclick = () =>
-                $.ajax({
-                    url: `/community/${el.dataset.link}`,
-                    type: "post",
-                    data: { title },
-                })((location.href = `/community/${el.dataset.link}`));
+            el.onclick = () => {
+                // $.ajax({
+                //     url: `/community/${el.dataset.link}`,
+                //     type: "post",
+                //     data: { title },
+                // })
+                location.href = `/community/${el.dataset.link}`;
+            };
         });
-
-        // 1. screenleft 같은걸로 스크롤되는 포스팅 위치잡아서 특정위치에서(화면에보이는) 벗어나면
-        //    동영상 재생 멈추는 기능
-        // 2. 게임이름에 커서 갓다댓을때 호버이펙트 멋잇는거
+        // 스크롤헬퍼 이벤트
+        function offAnimation() {
+            scrollHelper.classList.remove("active");
+            scrollHelperText.classList.remove("active");
+            scrollHelperIcon.classList.remove("active");
+        }
+        mainContent.onmouseenter = () => {
+            let isOn = true;
+            scrollHelper.classList.add("active");
+            scrollHelperText.classList.add("active");
+            scrollHelperIcon.classList.add("active");
+        };
+        mainContent.onmouseleave = () => {
+            offAnimation();
+        };
     </script>
 </html>

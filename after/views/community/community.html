@@ -23,10 +23,7 @@
                 <li><a href="/community_hub">COMMUNITY</a></li>
                 <li><a href="/minigame">MINI GAME</a></li>
             </ul>
-            <ul id="mainPageSign">
-                <li><a href="/join">회원가입</a></li>
-                <li><a href="/login">로그인</a></li>
-            </ul>
+
             <ul id="mainPageLogo">
                 <li>
                     <a href="https://github.com/TeTedo/KeyboardWarrior.git"
@@ -59,9 +56,33 @@
         <!-- 사이드바 -->
         <div id="sideBar">
             <div id="sideBar_top">
-                <div id="sideBar_top_background"></div>
+                <div id="sideBar_top_up">
+                    <ul>
+                        <li>팔로워</li>
+                        <li>123</li>
+                    </ul>
+                    <ul>
+                        <li>팔로잉</li>
+                        <li>111</li>
+                    </ul>
+                </div>
+                <div id="sideBar_top_down">
+                    <div id="sideBar_top_down_left">
+                        <div><%= data.userIdForProfile %></div>
+                        <div><%= data.nickNameForProfile %></div>
+                    </div>
+                    <div id="sideBar_top_down_right">
+                        <div>
+                            <a href=""><i class="fa-solid fa-bell"></i></a>
+                            <a href=""><i class="fa-solid fa-comments"></i></a>
+                            <a href="/logout"
+                                ><i class="fa-solid fa-right-from-bracket"></i
+                            ></a>
+                        </div>
+                        <a href="/posting">글쓰기</a>
+                    </div>
+                </div>
                 <div id="sideBar_top_profileImg"></div>
-                <a href="/posting">글쓰기</a>
             </div>
         </div>
 
@@ -104,7 +125,9 @@
                 <% data.postData.forEach(post=>{%>
                 <div class="mainPost">
                     <div id="mainPost_top"></div>
-                    <div id="mainPost_middle"><%=post.text%></div>
+                    <div id="mainPost_middle" data-post_id="<%= post.id%>">
+                        <%=post.text%>
+                    </div>
                     <div id="mainPost_bottom"></div>
                 </div>
                 <%})%>
@@ -113,31 +136,43 @@
         <button id="btn">글쓰기</button>
     </body>
     <script>
-        // scroll evnet
-        let scrollx = 0;
-        // 가로로 스크롤 이동
-        mainContent.onwheel = function (e) {
-            console.log("hi");
-            const mainContent = document.querySelector("#mainContent");
-            const mainContentWrap = document.querySelector("#mainContentWrap");
-            const maxScroll =
-                mainContentWrap.offsetWidth - mainContent.offsetWidth;
-            scrollx =
-                scrollx < 0 ? 0 : scrollx > maxScroll ? maxScroll : scrollx;
-            //아래로 스크롤인 경우
-            if (e.deltaY > 0) {
-                scrollx += 30;
-            }
-            //위로 스크롤인경우
-            else {
-                scrollx -= 30;
-            }
-            mainContent.scrollTo(scrollx, 0);
-        };
+        window.onload = () => {
+            // scroll evnet
+            let scrollx = 0;
+            // 가로로 스크롤 이동
+            mainContent.onwheel = function (e) {
+                const mainContent = document.querySelector("#mainContent");
+                const mainContentWrap =
+                    document.querySelector("#mainContentWrap");
 
-        const gameName = "<%= data.gameName %>";
-        btn.onclick = () => {
-            location.href = `/posting/${gameName}`;
+                const maxScroll =
+                    mainContentWrap.offsetWidth - mainContent.offsetWidth;
+
+                scrollx =
+                    scrollx < 0 ? 0 : scrollx > maxScroll ? maxScroll : scrollx;
+                //아래로 스크롤인 경우
+                if (e.deltaY > 0) {
+                    scrollx += 30;
+                }
+                //위로 스크롤인경우
+                else {
+                    scrollx -= 30;
+                }
+                mainContent.scrollTo(scrollx, 0);
+            };
+
+            const gameName = "<%= data.gameName %>";
+            btn.onclick = () => {
+                location.href = `/posting/${gameName}`;
+            };
+
+            const mainPost = document.querySelectorAll("#mainPost_middle");
+            mainPost.forEach(post => {
+                const postId = post.dataset.post_id;
+                post.onclick = () => {
+                    location.href = `/post/${gameName}/${postId}`;
+                };
+            });
         };
     </script>
 </html>
