@@ -1,7 +1,6 @@
 const jwt = require("jsonwebtoken");
 const dot = require("dotenv");
 dot.config();
-const { Token } = require("../model");
 
 //로그인 상태인지 확인하는 함수
 const loginStatus = (req, res, next) => {
@@ -37,14 +36,6 @@ const loginStatus = (req, res, next) => {
               }
             );
 
-            Token.update(
-              {
-                access_token,
-              },
-              {
-                where: { user_id: ref_decoded.userId },
-              }
-            );
             req.session.access_token = accessToken;
             console.log("토큰 교체 완료");
             next();
