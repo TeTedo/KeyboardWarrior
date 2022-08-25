@@ -164,22 +164,40 @@
       </div>
     </div>
   </body>
-  <script src="./main/main.js"></script>
+
   <script>
     //로그인 되어있을때 사이드바 데이터
     window.onload = function () {
-      try {
-        if ("<%= data%>") {
-          let data = "<%= JSON.stringify(data)%>";
-          data = data.replaceAll("&#34;", '"');
-          data = JSON.parse(data);
-          console.log(data);
+      //데이터 받아오기
+      function getData() {
+        let data = "<%= JSON.stringify(data)%>";
+        data = data.replaceAll("&#34;", '"');
+        data = JSON.parse(data);
+        //데이터 있을때
+        if (data) {
+          // 회원가입 로그인 숨기기
+          const mainPageSign = document.querySelector("#mainPageSign");
+          mainPageSign.style.display = "none";
+          //사이드바 띄우기
+          const sideBar = document.querySelector("#sideBar");
+          sideBar.style.display = "block";
+          //사이드바에 값넣기
+          const insertUser = document.querySelectorAll(
+            "#sideBar_top_down_left > div"
+          );
+          insertUser[0].innerHTML = data.user_id;
+          insertUser[1].innerHTML = data.nick_name;
         }
-      } catch (error) {
-        console.log("에러테스트");
-      } finally {
-        console.log("마지막");
+        //데이터 없을때
+        else {
+          // 회원가입 로그인 버튼 띄우기
+          mainPageSign.style.display = "flex";
+          //사이드바 숨기기
+          sideBar.style.display = "none";
+        }
       }
+      getData();
     };
   </script>
+  <script src="./main/main.js"></script>
 </html>

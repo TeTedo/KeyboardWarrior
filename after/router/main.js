@@ -24,7 +24,8 @@ router.get(
     }
   },
   (req, res) => {
-    res.render("main/main");
+    const data = "";
+    res.render("main/main", { data });
   }
 );
 
