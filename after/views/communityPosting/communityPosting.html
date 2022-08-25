@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script
+            src="https://kit.fontawesome.com/3264d39625.js"
+            crossorigin="anonymous"
+        ></script>
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    </head>
+    <link rel="stylesheet" href="style.css" />
+    <body>
+        <div id="mainPageTop">
+            <div id="mainLogo"><a href="/">이건 메인로고</a></div>
+            <ul id="mainPageNav">
+                <li><a href="/community_hub">COMMUNITY</a></li>
+                <li><a href="/minigame">MINI GAME</a></li>
+            </ul>
+            <ul id="mainPageSign">
+                <li><a href="/join">회원가입</a></li>
+                <li><a href="/login">로그인</a></li>
+            </ul>
+            <ul id="mainPageLogo">
+                <li>
+                    <a href="https://github.com/TeTedo/KeyboardWarrior.git"
+                        ><img
+                            class="mainPageLogo_githubLogo"
+                            src="http://rajlab.org/icons/github_white.png"
+                            alt="github"
+                    /></a>
+                </li>
+                <li>
+                    <a
+                        href="https://www.notion.so/Keyboard-Warrior-888a144aa79f437e8f726910c42617a8"
+                        ><img
+                            class="mainPageLogo_notionLogo"
+                            src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png"
+                            alt="notion"
+                    /></a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="posting">
+            <div id="posting_left"></div>
+            <div id="posting_right">
+                <textarea></textarea>
+                <div id="posting_right_bottom">
+                    <div id="posting_right_bottom_uploadImg">
+                        <i class="fa-solid fa-image"></i>
+                    </div>
+                    <div id="posting_right_bottom_postingBtn">
+                        <div id="posting_right_bottom_postingBtn_post">
+                            등록
+                        </div>
+                        <a id="posting_right_bottom_postingBtn_cancel" href="/"
+                            >취소</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="posting.js"></script>
+    <script>
+        const createBtn = document.getElementById(
+            "posting_right_bottom_postingBtn_post"
+        );
+        const text = document
+            .getElementById("posting_right")
+            .querySelector("textarea");
+        const game_name = "<%= game_name %>";
+        const user_id = "<%= user_id%>";
+        createBtn.onclick = () => {
+            $.ajax({
+                url: "/posting/create",
+                type: "post",
+                data: {
+                    game_name,
+                    user_id,
+                    nick_name,
+                    html,
+                },
+            });
+        };
+    </script>
+</html>

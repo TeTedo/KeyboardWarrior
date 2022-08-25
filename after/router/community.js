@@ -28,7 +28,7 @@ router.get("/community/:game_name", (req, res) => {
             res.render("community/community", { data });
             break;
         default:
-            res.redirect("/community_hub");
+            // res.redirect("/community_hub");
             break;
     }
 });
