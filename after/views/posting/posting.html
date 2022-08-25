@@ -44,16 +44,24 @@
     </div>
 
     <div id="posting">
-      <div id="posting_left"></div>
+      <div id="posting_left">
+        <!-- 8.25 img 태그 추가 -->
+        <img src="" alt="" />
+      </div>
       <div id="posting_right">
         <textarea></textarea>
+
         <div id="posting_right_bottom">
           <div id="posting_right_bottom_uploadImg">
-            <i class="fa-solid fa-image"></i>
+            <!-- 8.25 input 태그 추가 -->
+            <input type="file" accept="image/*" onchange="readURL(this)" /><i
+              class="fa-solid fa-image"
+            ></i>
           </div>
           <div id="posting_right_bottom_postingBtn">
-            <div id="posting_right_bottom_postingBtn_post">등록</div>
-            <a id="posting_right_bottom_postingBtn_cancel" href="/">취소</a>
+            <!-- 8.25 id값 없애고 등록에 div대신 a태그 추가 -->
+            <a href="/">등록</a>
+            <a href="/">취소</a>
           </div>
         </div>
       </div>
