@@ -1,109 +1,140 @@
 * {
-  padding: 0;
-  margin: 0;
+    padding: 0;
+    margin: 0;
 }
 
 #mainPageTop {
-  background-color: black;
-  width: 100%;
-  height: 150px;
-  display: flex;
-  color: white;
-  position: relative;
-  justify-content: space-between;
+    background-color: black;
+    width: 100%;
+    height: 150px;
+    display: flex;
+    color: white;
+    position: relative;
+    justify-content: space-between;
 }
 
 #mainPageTop > div {
-  width: 20%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #mainPageTop > ul {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 #mainPageTop > ul > li {
-  list-style: none;
+    list-style: none;
 }
 #mainPageNav {
-  width: 30%;
-  display: flex;
+    width: 30%;
+    display: flex;
 }
 #mainPageSign {
-  width: 10%;
+    width: 10%;
 }
 #mainPageSign > li > a,
 #mainPageNav > li > a,
 #mainLogo > a {
-  text-decoration: none;
-  color: white;
+    text-decoration: none;
+    color: white;
 }
 #mainPageLogo {
-  width: 5%;
+    width: 5%;
 }
 .mainPageLogo_notionLogo,
 .mainPageLogo_githubLogo {
-  width: 30px;
+    width: 30px;
 }
 
 /* 포스팅 부분 */
 #posting {
-  width: 1000px;
-  height: 500px;
-  border: 1px solid black;
-  border-radius: 10px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
+    width: 1000px;
+    height: 500px;
+    border: 1px solid black;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
 }
 #posting_left {
-  width: 100%;
-  height: 100%;
-  border: 1px solid black;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-right: 1px solid black;
+    /* border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px; */
 }
 
 #posting_right {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
-
+/* 여기서부터는 해시태그 */
+.hashTag {
+    border: 0;
+}
+.tagify {
+    width: 100%;
+    font-weight: bold;
+    font-stretch: expanded;
+}
+/* 해시태그 목록 위치 변경 */
+/* input 위치를 옮기는거임 */
+.hashTag .tagify__input {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    margin: 0;
+    order: -1;
+    flex: 100%;
+    border-bottom: 1px solid black;
+}
+/* 여기까지 해시태그 */
 #posting_right > textarea {
-  width: 100%;
-  height: 400px;
-  padding: 10px;
-  font-size: 20px;
-  box-sizing: border-box;
+    width: 100%;
+    height: 400px;
+    padding: 10px;
+    font-size: 20px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid black;
 }
 #posting_right_bottom {
-  width: 100%;
-  height: 100px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 #posting_right_bottom_uploadImg {
-  width: 100px;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    width: 100px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #posting_right_bottom_uploadImg > i {
-  font-size: 30px;
+    font-size: 30px;
 }
 #posting_right_bottom_postingBtn {
-  width: 400px;
-  height: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  font-size: 20px;
-  font-weight: bold;
+    width: 400px;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+#posting_right_bottom_postingBtn > a {
+    text-decoration: none;
+    color: black;
 }
 
 /* middle size */

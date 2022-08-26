@@ -1,79 +1,63 @@
 const express = require("express");
+const getUserId = require("../functions/getUserId");
 const router = express.Router();
 const loginCheck = require("../middleware/loginCheck");
-const { CommunityPost } = require("../model");
+const { CommunityPost, User } = require("../model");
 
-router.get("/community/:game_name", (req, res) => {
+router.get("/community/:game_name", loginCheck, (req, res) => {
     const gameName = req.params.game_name;
-    CommunityPost.findAll({
-        where: { game_name: gameName },
-        raw: true,
-    })
-        .then(e => {
-            const postData = e;
-            let data = {};
-            switch (gameName) {
-                case "fifa":
-                    data = {
-                        gameName,
-                        title: "FIFFA ONLINE 4",
-                        postData,
-                    };
-                    res.render("community/community", { data });
-                    break;
-                case "maple":
-                    data = {
-                        gameName,
-                        title: "MAPLE STORY",
-                        postData,
-                    };
-                    res.render("community/community", { data });
-                    break;
-                case "lineage":
-                    data = {
-                        gameName,
-                        title: "LINEAGE",
-                        postData,
-                    };
-                    res.render("community/community", { data });
-                    break;
-                default:
-                    // res.redirect("/community_hub");
-                    break;
-            }
+    const userIdForProfile = getUserId(req, res);
+    User.findOne({
+        where: { user_id: userIdForProfile },
+    }).then(e => {
+        const nickNameForProfile = e.nick_name;
+        CommunityPost.findAll({
+            where: { game_name: gameName },
+            raw: true,
         })
-        .catch(() => {
-            const postData = null;
-            switch (gameName) {
-                case "fifa":
-                    data = {
-                        gameName,
-                        title: "FIFFA ONLINE 4",
-                        postData,
-                    };
-                    res.render("community/community", { data });
-                    break;
-                case "maple":
-                    data = {
-                        gameName,
-                        title: "MAPLE STORY",
-                        postData,
-                    };
-                    res.render("community/community", { data });
-                    break;
-                case "lineage":
-                    data = {
-                        gameName,
-                        title: "LINEAGE",
-                        postData,
-                    };
-                    res.render("community/community", { data });
-                    break;
-                default:
-                    // res.redirect("/community_hub");
-                    break;
-            }
-        });
+            .then(e => {
+                const postData = e;
+                let data = {};
+                switch (gameName) {
+                    case "fifa":
+                        data = {
+                            gameName,
+                            title: "FIFFA ONLINE 4",
+                            postData,
+                            userIdForProfile,
+                            nickNameForProfile,
+                        };
+                        res.render("community/community", { data });
+                        break;
+                    case "maple":
+                        data = {
+                            gameName,
+                            title: "MAPLE STORY",
+                            postData,
+                            userIdForProfile,
+                            nickNameForProfile,
+                        };
+                        res.render("community/community", { data });
+                        break;
+                    case "lineage":
+                        data = {
+                            gameName,
+                            title: "LINEAGE",
+                            postData,
+                            userIdForProfile,
+                            nickNameForProfile,
+                        };
+                        res.render("community/community", { data });
+                        break;
+                    default:
+                        // res.redirect("/community_hub");
+                        break;
+                }
+            })
+            .catch(e =>
+                res.send("communityPost 테이블 없음 서버 재시작한번 해주세요~")
+            );
+    });
 });
 // router.post();
 
