@@ -185,8 +185,8 @@
           const insertUser = document.querySelectorAll(
             "#sideBar_top_down_left > div"
           );
-          insertUser[0].innerHTML = data.user_id;
-          insertUser[1].innerHTML = data.nick_name;
+          insertUser[0].innerHTML = "<%=user_id %>";
+          insertUser[1].innerHTML = "<%=nick_name %>";
         }
         //데이터 없을때
         else {

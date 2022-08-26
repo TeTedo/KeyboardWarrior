@@ -30,10 +30,13 @@ router.post(
   (req, res) => {
     const { text } = req.body;
     const files = Object.values(req.files);
-    const { user_id } = getUserId(req, res);
+    console.log(getUserInfo(req, res));
+    const { user_id, nick_name } = getUserInfo(req, res);
 
     MainPost.create({
       user_id,
+      nick_name,
+      text,
     });
     res.redirect("/");
   }

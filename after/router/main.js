@@ -11,14 +11,14 @@ router.get(
     // 로그인성공시
     if (req.session.login) {
       console.log("로그인 되어있는상태로 홈페이지 열었다.");
-      const { user_id } = getUserInfo(req, res);
+      const { user_id, nick_name } = getUserInfo(req, res);
 
-      User.findOne({
-        where: { user_id },
-      }).then((result) => {
-        const data = result.dataValues;
-        res.render("main/main", { data });
-      });
+      //   User.findOne({
+      //     where: { user_id },
+      //   }).then((result) => {
+      //     const data = result.dataValues;
+      res.render("main/main", { user_id, nick_name });
+      //   });
     } else {
       next();
     }
