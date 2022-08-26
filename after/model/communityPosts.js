@@ -24,6 +24,11 @@ class CommunityPost extends Sequelize.Model {
                     type: Sequelize.TEXT,
                     allowNull: false,
                 },
+                hashtag_values: {
+                    type: Sequelize.ARRAY(Sequelize.TEXT),
+                    // type: Sequelize.ARRAY(Sequelize.ENUM),
+                    allowNull: true,
+                },
             },
             {
                 sequelize: sequelize,

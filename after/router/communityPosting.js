@@ -19,14 +19,17 @@ router.get("/posting/:game_name", (req, res) => {
     });
 });
 router.post("/posting/community/create", (req, res) => {
-    const { game_name, user_id, nick_name, text, main_html } = req.body;
+    const { game_name, user_id, nick_name, text, main_html, hashtag_values } =
+        req.body;
     // fs.writeFile('../txt/communityPost/')
+    console.log(hashtag_values);
     CommunityPost.create({
         game_name,
         user_id,
         nick_name,
         text,
         main_html,
+        hashtag_values,
     });
 });
 
