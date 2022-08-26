@@ -1,25 +1,19 @@
 //readURL function
-function readURL(input, callback) {
+function readURL(input, index, callback) {
   if (input.files[0]) {
     // 파일 읽고 미리보기 띄우기 위함
     const reader = new FileReader();
-    // 파일을 uploadsImg 폴더에 저장하기 위함
-    const formData = new FormData();
-    //key - value 구조 :  selectImg 라는 키값으로 input.files[0]라는 value를 formData에 추가 -> imgUpload 미들웨어의 매개변수로 키값을 넣어줘야 한다.
-    formData.append("selectImg", input.files[0]);
-    console.log(input.files[0]);
-    console.log(formData);
+
     //파일 읽기 성공했을때마다 실행
     reader.onload = function (e) {
       //큰 화면에 이미지 띄우기
       document.querySelector("#posting_left > img").src = e.target.result;
 
-      //미리보기에 태그 추가
-      const preImg = document.querySelector("#posting_right_imagePreview");
-      preImg.innerHTML += `
-      <img src = ${e.target.result}>
-      `;
-      imgDataArr.push(e.target.result);
+      const imgTag = document.querySelectorAll(
+        "#posting_right_imagePreview > div > img"
+      );
+      imgTag[index].style.display = "block";
+      imgTag[index].src = e.target.result;
       callback();
     };
 
@@ -32,7 +26,7 @@ function readURL(input, callback) {
 
 function clickPreImg() {
   const imgPreview = document.querySelectorAll(
-    "#posting_right_imagePreview > img"
+    "#posting_right_imagePreview > div > img"
   );
 
   imgPreview.forEach((el) => {
@@ -44,37 +38,11 @@ function clickPreImg() {
 }
 
 //함수 실행 부분
-document.querySelector("input[type=file]").onchange = function () {
-  readURL(this, clickPreImg);
-};
-
-//데이터 베이스에 보내기
-const imgDataArr = [];
-document.querySelector("#posting").onsubmit = function () {
-  const textData = document.querySelector("#posting_right > textarea").value;
-  const imgType = [];
-  const imgBaseCode = [];
-  // 파일 확장자명과 base64코드 분리
-  imgDataArr.forEach((el) => {
-    const temp = el
-      .split(/data:image\//)
-      .join("")
-      .split(/;base64,/);
-
-    imgType.push(temp[0]);
-    imgBaseCode.push(temp[1]);
-  }),
-    console.log(imgType);
-  console.log(imgBaseCode);
-  $.ajax({
-    type: "post",
-    url: "/posting",
-    data: {
-      img: {
-        type: imgType,
-        baseCode: imgBaseCode,
-      },
-      text: textData,
-    },
-  });
-};
+document.querySelectorAll("input[type=file]").forEach((el, index) => {
+  el.onchange = function () {
+    // label display none
+    document.querySelectorAll(".fa-image")[index].style.display = "none";
+    // 파일 미리보기
+    readURL(this, index, clickPreImg);
+  };
+});

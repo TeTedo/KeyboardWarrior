@@ -2,9 +2,9 @@ const jwt = require("jsonwebtoken");
 const dot = require("dotenv");
 dot.config();
 
-function getUserId(req, res) {
+function getUserInfo(req, res) {
   const { refresh_token } = req.session;
-  const userId = jwt.verify(
+  const user_id = jwt.verify(
     refresh_token,
     process.env.REFRESH_TOKEN,
     (err, ref_decoded) => {
@@ -12,7 +12,9 @@ function getUserId(req, res) {
     }
   );
 
-  return userId;
+  return {
+    user_id,
+  };
 }
 
-module.exports = getUserId;
+module.exports = getUserInfo;

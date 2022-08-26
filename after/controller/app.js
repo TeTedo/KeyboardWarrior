@@ -38,8 +38,6 @@ app.use(
 app.engine("html", ejs.renderFile);
 app.set("view engine", "html");
 
-// app.use(bodypar.json());
-
 // 바디퍼서
 app.use(express.urlencoded({ extended: true }));
 

@@ -83,7 +83,7 @@
   font-size: 20px;
   box-sizing: border-box;
 }
-/* 8.25 이미지 미리보기 구역 추가*/
+/* 8.25 이미지  추가*/
 #posting_right_imagePreview {
   width: 100%;
   height: 50px;
@@ -92,12 +92,7 @@
   justify-content: space-around;
   align-items: center;
 }
-/* 8.25 이미지 미리보기 > 이미지 추가 */
-#posting_right_imagePreview > img {
-  width: 30px;
-  height: 30px;
-  border: 1px solid black;
-}
+
 #posting_right_bottom {
   width: 100%;
   height: 100px;
@@ -105,15 +100,31 @@
   justify-content: space-around;
   align-items: center;
 }
-#posting_right_bottom_uploadImg {
+/* #posting_right_bottom_uploadImg {
   width: 100px;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+} */
+#posting_right_imagePreview > div {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-#posting_right_bottom_uploadImg > i {
+#posting_right_imagePreview > div > label > i {
   font-size: 30px;
+  cursor: pointer;
+}
+#posting_right_imagePreview > div > img {
+  width: 30px;
+  height: 30px;
+  display: none;
+}
+input[type="file"] {
+  display: none;
 }
 #posting_right_bottom_postingBtn {
   width: 400px;
@@ -128,6 +139,13 @@
 #posting_right_bottom_postingBtn > a {
   text-decoration: none;
   color: black;
+}
+#posting_right_bottom_postingBtn > button {
+  border: 0;
+  background: none;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
 }
 /* middle size */
 @media screen and (max-width: 768px) {

@@ -1,13 +1,9 @@
 const Sequelize = require("sequelize");
 
-class CommunityPost extends Sequelize.Model {
+class MainPost extends Sequelize.Model {
   static init(sequelize) {
     return super.init(
       {
-        game_name: {
-          type: Sequelize.STRING(20),
-          allowNull: false,
-        },
         user_id: {
           type: Sequelize.STRING(16),
           allowNull: false,
@@ -16,21 +12,38 @@ class CommunityPost extends Sequelize.Model {
           type: Sequelize.STRING(10),
           allowNull: false,
         },
+
         text: {
           type: Sequelize.TEXT,
           allowNull: false,
         },
-        main_html: {
+        image1: {
           type: Sequelize.TEXT,
-          allowNull: false,
+          allowNull: true,
+        },
+        image2: {
+          type: Sequelize.TEXT,
+          allowNull: true,
+        },
+        image3: {
+          type: Sequelize.TEXT,
+          allowNull: true,
+        },
+        image4: {
+          type: Sequelize.TEXT,
+          allowNull: true,
+        },
+        image5: {
+          type: Sequelize.TEXT,
+          allowNull: true,
         },
       },
       {
         sequelize: sequelize,
         timestamps: true,
         underscored: true,
-        modelName: "CommunityPost",
-        tableName: "community_posts",
+        modelName: "MainPost",
+        tableName: "MainPosts",
         charset: "utf8",
         collate: "utf8_general_ci",
       }
@@ -44,4 +57,4 @@ class CommunityPost extends Sequelize.Model {
   }
 }
 
-module.exports = CommunityPost;
+module.exports = MainPost;
