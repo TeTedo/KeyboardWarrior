@@ -39,21 +39,21 @@
         <div id="contents">
             <div id="mainContent">
                 <div id="mainContentWrap">
-                    <div class="mainPost">
-                        <video autoplay muted loop preload="none" controls>
+                    <div class="mainPost" data-link="fifa">
+                        <video autoplay muted loop preload="none">
                             <source src="../videos/fifa.mp4" type="video/mp4" />
                         </video>
                     </div>
-                    <div class="mainPost">
-                        <video autoplay muted loop preload="none" controls>
+                    <div class="mainPost" data-link="maple">
+                        <video autoplay muted loop preload="none">
                             <source
                                 src="../videos/maple.mp4"
                                 type="video/mp4"
                             />
                         </video>
                     </div>
-                    <div class="mainPost">
-                        <video autoplay muted loop preload="none" controls>
+                    <div class="mainPost" data-link="lineage">
+                        <video autoplay muted loop preload="none">
                             <source
                                 src="../videos/lineage.mp4"
                                 type="video/mp4"
@@ -186,6 +186,12 @@
                 //     data: { title },
                 // })
                 location.href = `/community/${el.dataset.link}`;
+            };
+        });
+        // 포스트 클릭시 커뮤니티로 이동
+        mainPosts.forEach(post => {
+            post.onclick = () => {
+                location.href = `/community/${post.dataset.link}`;
             };
         });
         // 스크롤헬퍼 이벤트

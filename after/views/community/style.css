@@ -159,6 +159,10 @@
     transform: translate(10px, 20px);
     border-radius: 10px;
 }
+/* 여기까지 공통 탑 + 사이드바 */
+#contents {
+    position: relative;
+}
 /* 게시판 제목 */
 #communityTitle {
     width: 100%;
@@ -267,4 +271,85 @@
     height: 100px;
     position: absolute;
     right: 50%;
+}
+
+/* 여기서부터 스크롤헬퍼 */
+.scrollHelper {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    left: 80%;
+    top: 0;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    border: 10px solid black;
+    border-radius: 50px;
+}
+.scrollHelper_contents {
+    position: absolute;
+    width: max-content;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -60%);
+}
+.scrollHelper_icon {
+    font-size: 100px;
+    font-weight: 600;
+    transform: translateX(-10px);
+    animation: move 0.9s;
+    animation-iteration-count: infinite;
+}
+.scrollHelper_text {
+    font-size: 30px;
+}
+.scrollHelper.active {
+    /* opacity: 1; */
+    animation: timer 3s;
+}
+.scrollHelper_icon.active {
+    font-size: 100px;
+    font-weight: bolder;
+    opacity: 1;
+}
+.scrollHelper_text.active {
+}
+@keyframes timer {
+    0% {
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+@keyframes move {
+    50% {
+        transform: translateX(90px);
+    }
+    100% {
+        transform: translateX(-10px);
+    }
+}
+.scrollHelper_arrow {
+    height: 0;
+    width: 0;
+    border-style: solid;
+    border-color: transparent;
+    border-width: 20px;
+    position: absolute;
+    bottom: -40px;
+    left: 45px;
+}
+.arrow {
+    border-top-color: white;
+}
+.arrow-border {
+    border-top-color: black;
+    bottom: -50px;
 }
