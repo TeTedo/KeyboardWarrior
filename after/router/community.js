@@ -34,8 +34,6 @@ router.get("/community/:game_name", loginCheck, async (req, res) => {
                         gameName,
                         title: "MAPLE STORY",
                         postData,
-                        // hashTag: JSON.stringify(postData.hashtag_values),
-                        hashTag: postData.hashtag_values,
                         userIdForProfile,
                         nickNameForProfile,
                     };

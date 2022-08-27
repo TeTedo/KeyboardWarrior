@@ -144,7 +144,6 @@
                     const hashtag_values = JSON.stringify(
                         tagify.value.map(el => el.value)
                     );
-                    console.log(hashtag_values);
                     $.ajax({
                         url: "/posting/community/create",
                         type: "post",
