@@ -88,7 +88,7 @@
         <div id="sideBar_top_profileImg"></div>
       </div>
     </div>
-
+    <!-- 사이드바 끝 -->
     <!-- 포스팅 시작 -->
     <div id="mainContent">
       <div id="mainContentWrap">
@@ -97,13 +97,15 @@
             <div id="mainPost_top_profileimg">
               <img src="./images/profileimg.jpg" alt="" />
             </div>
-            <ul id="mainPost_top_button">
-              <li>
-                <i class="fa-solid fa-heart"></i
-                ><i class="fa-solid fa-heart-circle-check"></i>
-              </li>
-              <li><i class="fa-solid fa-share-nodes"></i></li>
-            </ul>
+            <div id="mainPost_top_userInfo">
+              <div id="mainPost_top_userInfo_nickName">닉네임</div>
+              <div id="mainPost_top_userInfo_follwer">팔로워숫자</div>
+            </div>
+            <div id="mainPost_top_follwingBtn">
+              <i class="fa-solid fa-user-plus"></i>
+              <i class="fa-solid fa-user-check"></i>
+              <i class="fa-solid fa-message"></i>
+            </div>
           </div>
           <div id="mainPost_middle">
             <div id="mainPost_middle_img">
@@ -111,12 +113,7 @@
             </div>
             <div id="mainPost_middle_text"></div>
           </div>
-          <ul id="mainPost_bottom">
-            <li id="mainPost_bottom_recomment">
-              <span>아이디</span>
-              <span>여기서부터 댓글</span>
-            </li>
-          </ul>
+          <div id="mainPost_bottom"></div>
         </div>
 
         <!-- 포스팅 1개끝 -->

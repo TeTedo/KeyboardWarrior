@@ -12,11 +12,19 @@ class MainPost extends Sequelize.Model {
           type: Sequelize.STRING(10),
           allowNull: false,
         },
-
+        like: {
+          type: Sequelize.INTEGER,
+          allowNull: true,
+        },
+        comment: {
+          type: Sequelize.INTEGER,
+          allowNull: true,
+        },
         text: {
           type: Sequelize.TEXT,
           allowNull: false,
         },
+
         image1: {
           type: Sequelize.TEXT,
           allowNull: true,
