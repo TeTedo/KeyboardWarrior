@@ -114,7 +114,7 @@
     </body>
     <!-- <script src="community_hub.js"></script> -->
     <script>
-        // const contents = document.querySelector(".contents");
+        const contentsWrap = document.getElementById("contentsWrap");
         const mainContent = document.getElementById("mainContent");
         const mainContentWrap = document.getElementById("mainContentWrap");
         const mainPosts = document.querySelectorAll(".mainPost");
@@ -122,13 +122,15 @@
         const scrollHelper = document.querySelector(".scrollHelper");
         const scrollHelperText = document.querySelector(".scrollHelper_text");
         const scrollHelperIcon = document.querySelector(".scrollHelper_icon");
+        const body = document.querySelector("body");
+
+        // 슬라이드 이벤트
         let move = 0;
         let isOnScroll = true;
-        let time;
-        // 슬라이드 이벤트
-        mainContent.onwheel = e => slide(e);
+        contentsWrap.onwheel = e => slide(e);
         function slide(e) {
-            mainContent.onwheel = null;
+            offAnimation(); // 스크롤핼퍼 끄기
+            contentsWrap.onwheel = null;
             const maxScroll =
                 mainContentWrap.offsetWidth - mainContent.offsetWidth + 2;
             if (isOnScroll) {
@@ -136,9 +138,9 @@
                 setTimeout(
                     () => (
                         (isOnScroll = true),
-                        (mainContent.onwheel = e => slide(e))
+                        (contentsWrap.onwheel = e => slide(e))
                     ),
-                    1000
+                    500
                 );
                 move += e.wheelDelta < 0 ? 485 : -485;
                 move = move < 0 ? maxScroll : move;
@@ -148,22 +150,7 @@
                 return;
             }
         }
-        // 디바운스 펑션
-        function debounce(func, wait = 20, immediate = true) {
-            var timeout;
-            return function () {
-                var context = this,
-                    args = arguments;
-                var later = function () {
-                    timeout = null;
-                    if (!immediate) func.apply(context, args);
-                };
-                var callNow = immediate && !timeout;
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait); //얘가 시간지나면 timeout을 0(false)로 만들어줌
-                if (callNow) func.apply(context, args);
-            };
-        }
+
         // 비디오 슬라이드 재생 중단 기능
         function controlVideo(e) {
             mainPosts.forEach(post => {
@@ -185,19 +172,30 @@
                 }
             });
         }
+        function debounce(func, wait = 20, immediate = true) {
+            var timeout;
+            return function () {
+                var context = this,
+                    args = arguments;
+                var later = function () {
+                    timeout = null;
+                    if (!immediate) func.apply(context, args);
+                };
+                var callNow = immediate && !timeout;
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait); //얘가 시간지나면 timeout을 0(false)로 만들어줌
+                if (callNow) func.apply(context, args);
+            };
+        }
         mainContent.addEventListener(
             "scroll",
             debounce(controlVideo, 20, false)
         );
-        // 게임제목 클릭시 이벤트
+
+        // 게임제목 클릭시 커뮤니티로 이동
         mainTitles.forEach(el => {
             const title = el.innerText;
             el.onclick = () => {
-                // $.ajax({
-                //     url: `/community/${el.dataset.link}`,
-                //     type: "post",
-                //     data: { title },
-                // })
                 location.href = `/community/${el.dataset.link}`;
             };
         });
@@ -207,20 +205,23 @@
                 location.href = `/community/${post.dataset.link}`;
             };
         });
+
         // 스크롤헬퍼 이벤트
         function offAnimation() {
             scrollHelper.classList.remove("active");
             scrollHelperText.classList.remove("active");
             scrollHelperIcon.classList.remove("active");
-        }
+        } // 이거 스크롤기능에도 넣어줘야함(스크롤하면 꺼지게)
         contentsWrap.onmouseenter = () => {
-            let isOn = true;
+            body.classList.add("block"); // 작은화면에서 슬라이드할때 윈도우 스크롤 막기용
             scrollHelper.classList.add("active");
             scrollHelperText.classList.add("active");
             scrollHelperIcon.classList.add("active");
         };
         contentsWrap.onmouseleave = () => {
+            body.classList.remove("block");
             offAnimation();
         };
+        contentsWrap.onclick = () => offAnimation();
     </script>
 </html>
