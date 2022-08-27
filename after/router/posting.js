@@ -11,6 +11,12 @@ router.get("/posting", loginCheck, (req, res) => {
 });
 
 // uploadsImg/main 폴더가 없다면 만들어주기
+fs.readdir("uploadsImg", (err) => {
+  if (err) {
+    fs.mkdirSync("uploadsImg");
+  }
+});
+
 fs.readdir("uploadsImg/main", (err) => {
   if (err) {
     fs.mkdirSync("uploadsImg/main");

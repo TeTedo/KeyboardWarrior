@@ -44,6 +44,11 @@ app.use(express.urlencoded({ extended: true }));
 // 사용할 정적폴더
 app.use(express.static("views"));
 
+//모든곳에서 loginStatus 미들웨어 사용
+const loginStatus = require("../middleware/loginStatus");
+// const loginCheck = require("../middleware/loginCheck");
+app.use(loginStatus);
+
 // 라우터
 const login = require("../router/login");
 const join = require("../router/join");
