@@ -131,9 +131,11 @@
                         <div id="mainPost_middle" data-post_id="<%= post.id%>">
                             <%=post.text%>
                         </div>
-                        <% data.hashTag.forEach(hashtag=>{%>
-                        <div id="mainPost_bottom"><%=hashtag%></div>
-                        <%})%>
+                        <div id="mainPost_bottom">
+                            <% post.hashtag_values.forEach(hashtag=>{%>
+                            <span class="hashTag"> <%=hashtag%> </span>
+                            <%})%>
+                        </div>
                     </div>
                     <%})%>
                 </div>

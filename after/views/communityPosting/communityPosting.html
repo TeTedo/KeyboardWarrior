@@ -89,6 +89,7 @@
         const btns = document.querySelector("div[name=btns");
         const game_name = "<%= game_name %>";
         const user_id = "<%= user_id%>";
+        console.log(user_id);
         const nick_name = "<%= nick_name%>";
         const textAreaDom = document
             .getElementById("posting_right")
@@ -140,7 +141,9 @@
                     const text = textAreaDom.value;
                     textAreaDom.innerText = text;
                     const main_html = posting.innerHTML;
-                    const hashtag_values = tagify.value.map(el => el.value);
+                    const hashtag_values = JSON.stringify(
+                        tagify.value.map(el => el.value)
+                    );
                     console.log(hashtag_values);
                     $.ajax({
                         url: "/posting/community/create",
