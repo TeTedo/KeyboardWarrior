@@ -49,6 +49,8 @@ router.post(
     MainPost.create({
       user_id,
       nick_name,
+      like: 0,
+      comment: 0,
       text,
       image1: files[0][0].path,
       image2: files[1][0].path,

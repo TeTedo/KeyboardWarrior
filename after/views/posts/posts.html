@@ -85,7 +85,24 @@
     <!-- 전체를 posts div로 감싸줌 -->
     <div id="posts">
       <!-- 글쓴이 정보 -->
-      <div id="posts_userInfo"></div>
+      <div id="posts_userInfo">
+        <div id="posts_userInfo_left">
+          <div id="posts_userInfo_left_profileImg">
+            <img src="" alt="" />
+          </div>
+          <div id="posts_userInfo_left_info">
+            <div id="posts_userInfo_left_nickName">닉네임</div>
+            <div id="posts_userInfo_left_follow">
+              팔로워 : <span>숫자</span> 팔로잉 : <span>숫자</span>
+            </div>
+          </div>
+        </div>
+        <div id="posts_userInfo_right">
+          <i class="fa-solid fa-user-plus"></i>
+          <i class="fa-solid fa-user-check"></i>
+          <i class="fa-solid fa-message"></i>
+        </div>
+      </div>
       <!-- 글쓴이 정보 끝 -->
       <!-- 포스팅 보여주기 -->
       <div id="posting">
@@ -96,20 +113,22 @@
         <div id="posting_right">
           <textarea name="text" readonly>포스팅 내용</textarea>
           <!-- 8.25 div추가 -->
-          <div id="posting_right_imagePreview">여기다 해쉬태그 넣어?</div>
+          <div id="posting_right_imagePreview">
+            여기다 해쉬태그 넣어? or 날짜?
+          </div>
           <div id="posting_right_bottom">
             <div id="posting_right_bottom_postingBtn">
               <i class="fa-solid fa-heart"></i>좋아요 갯수
-              <i class="fa-solid fa-comment"></i>댓글 갯수
+              <div><i class="fa-solid fa-comment"></i>댓글 갯수</div>
             </div>
           </div>
         </div>
       </div>
       <!-- 포스팅 보여주기 끝 -->
       <!-- 댓글창 -->
-      <div id="posts_commet"></div>
+      <div class="posts_comment"></div>
       <!-- 댓글창 끝 -->
     </div>
   </body>
-  <script src="posting.js"></script>
+  <script src="posts.js"></script>
 </html>

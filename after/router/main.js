@@ -1,8 +1,7 @@
 const express = require("express");
-const loginStatus = require("../middleware/loginStatus");
 const router = express.Router();
-const { User } = require("../model");
 const getUserInfo = require("../functions/getUserInfo");
+const getMainPostInfo = require("../functions/getMainPostInfo");
 
 router.get(
   "/",
@@ -10,14 +9,21 @@ router.get(
     // 로그인성공시
     if (req.session.login) {
       console.log("로그인 되어있는상태로 홈페이지 열었다.");
+      //로그인한 유저 정보
       const { user_id, nick_name } = await getUserInfo(req, res);
-      res.render("main/main", { user_id, nick_name });
+      // 게시글들 정보 받아오기
+      const postData = await getMainPostInfo;
+
+      res.render("main/main", { user_id, nick_name, postData });
     } else {
       next();
     }
   },
-  (req, res) => {
-    res.render("main/main", { user_id: "", nick_name: "" });
+  async (req, res) => {
+    // 게시글들 정보 받아오기
+    const postData = await getMainPostInfo;
+
+    res.render("main/main", { user_id: "", nick_name: "", postData });
   }
 );
 

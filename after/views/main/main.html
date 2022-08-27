@@ -89,7 +89,7 @@
       </div>
     </div>
     <!-- 사이드바 끝 -->
-    <!-- 포스팅 시작 -->
+    <!-- 포스팅 예시 -->
     <div id="mainContent">
       <div id="mainContentWrap">
         <div class="mainPost">
@@ -113,88 +113,87 @@
             </div>
             <div id="mainPost_middle_text"></div>
           </div>
-          <div id="mainPost_bottom"></div>
+          <div id="mainPost_bottom">
+            <i class="fa-solid fa-heart"></i>좋아요 갯수
+            <i class="fa-solid fa-comment"></i>댓글 갯수
+          </div>
         </div>
 
-        <!-- 포스팅 1개끝 -->
-
+        <!-- 포스팅 예시끝 -->
+        <!-- 포스팅구역 -->
         <div class="mainPost">
-          <div id="mainPost_top"></div>
-          <div id="mainPost_middle"></div>
-          <div id="mainPost_bottom"></div>
-        </div>
-        <div class="mainPost">
-          <div id="mainPost_top"></div>
-          <div id="mainPost_middle"></div>
-          <div id="mainPost_bottom"></div>
-        </div>
-        <div class="mainPost">
-          <div id="mainPost_top"></div>
-          <div id="mainPost_middle"></div>
-          <div id="mainPost_bottom"></div>
-        </div>
-        <div class="mainPost">
-          <div id="mainPost_top"></div>
-          <div id="mainPost_middle"></div>
-          <div id="mainPost_bottom"></div>
-        </div>
-        <div class="mainPost">
-          <div id="mainPost_top"></div>
-          <div id="mainPost_middle"></div>
-          <div id="mainPost_bottom"></div>
-        </div>
-        <div class="mainPost">
-          <div id="mainPost_top"></div>
-          <div id="mainPost_middle"></div>
-          <div id="mainPost_bottom"></div>
-        </div>
-        <div class="mainPost">
-          <div id="mainPost_top"></div>
-          <div id="mainPost_middle"></div>
-          <div id="mainPost_bottom"></div>
-        </div>
-        <div class="mainPost">
-          <div id="mainPost_top"></div>
-          <div id="mainPost_middle"></div>
-          <div id="mainPost_bottom"></div>
+          <div id="mainPost_top">
+            <div id="mainPost_top_profileimg">
+              <img src="./images/profileimg.jpg" alt="" />
+            </div>
+            <div id="mainPost_top_userInfo">
+              <div id="mainPost_top_userInfo_nickName">닉네임</div>
+              <div id="mainPost_top_userInfo_follwer">팔로워숫자</div>
+            </div>
+            <div id="mainPost_top_follwingBtn">
+              <i class="fa-solid fa-user-plus"></i>
+              <i class="fa-solid fa-user-check"></i>
+              <i class="fa-solid fa-message"></i>
+            </div>
+          </div>
+          <div id="mainPost_middle">
+            <div id="mainPost_middle_img">
+              <img src="./images/Example.jpeg" alt="" />
+            </div>
+            <div id="mainPost_middle_text"></div>
+          </div>
+          <div id="mainPost_bottom">
+            <i class="fa-solid fa-heart"></i>좋아요 갯수
+            <i class="fa-solid fa-comment"></i>댓글 갯수
+          </div>
         </div>
       </div>
     </div>
   </body>
 
   <script>
-    //로그인 되어있을때 사이드바 데이터
     window.onload = function () {
-      //데이터 받아오기
-      function getData() {
-        // 값이 들어왔나 안들어왔나 체크용
-        const data = "<%= user_id%>";
-        //데이터 있을때
-        if (data) {
-          // 회원가입 로그인 숨기기
-          const mainPageSign = document.querySelector("#mainPageSign");
-          mainPageSign.style.display = "none";
-          //사이드바 띄우기
-          const sideBar = document.querySelector("#sideBar");
-          sideBar.style.display = "block";
-          //사이드바에 값넣기
-          const insertUser = document.querySelectorAll(
-            "#sideBar_top_down_left > div"
-          );
-
-          insertUser[0].innerHTML = "<%=user_id %>";
-          insertUser[1].innerHTML = "<%=nick_name %>";
-        }
-        //데이터 없을때
-        else {
-          // 회원가입 로그인 버튼 띄우기
-          mainPageSign.style.display = "flex";
-          //사이드바 숨기기
-          sideBar.style.display = "none";
-        }
-      }
+      //사이드바 데이터 받아오기
       getData();
     };
+  </script>
+  <script>
+    //로그인 되어있을때 사이드바 데이터 함수
+    function getData() {
+      // 값이 들어왔나 안들어왔나 체크용
+      const data = "<%= user_id%>";
+      //데이터 있을때
+      if (data) {
+        // 회원가입 로그인 숨기기
+        const mainPageSign = document.querySelector("#mainPageSign");
+        mainPageSign.style.display = "none";
+        //사이드바 띄우기
+        const sideBar = document.querySelector("#sideBar");
+        sideBar.style.display = "block";
+        //사이드바에 값넣기
+        const insertUser = document.querySelectorAll(
+          "#sideBar_top_down_left > div"
+        );
+
+        insertUser[0].innerHTML = "<%=user_id %>";
+        insertUser[1].innerHTML = "<%=nick_name %>";
+      }
+      //데이터 없을때
+      else {
+        // 회원가입 로그인 버튼 띄우기
+        mainPageSign.style.display = "flex";
+        //사이드바 숨기기
+        sideBar.style.display = "none";
+      }
+    }
+  </script>
+  <script>
+    // 포스팅 데이터 받아오기 함수
+    // 이중 객체 값 뽑아오기
+    let postData = "<%= JSON.stringify(postData) %>";
+    postData = postData.replaceAll("&#34", '"');
+    // console.log(postData);
+    // console.log(postData);
   </script>
   <script src="./main/main.js"></script>
 </html>

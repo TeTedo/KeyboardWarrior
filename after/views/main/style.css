@@ -237,11 +237,12 @@
 #mainPost_bottom {
   width: 290px;
   height: 150px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 20px;
 }
 
-#mainPost_bottom_recomment > span {
-  margin: 10px;
-}
 /* middle size */
 @media screen and (max-width: 768px) {
 }

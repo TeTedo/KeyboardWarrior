@@ -196,7 +196,7 @@
     justify-content: center;
     align-items: center;
   } */
-
+/* 새로 추가부분 */
 #posting_right_bottom_postingBtn {
   width: 400px;
   height: 100%;
@@ -206,8 +206,9 @@
   font-size: 20px;
   font-weight: bold;
 }
-
-/* 새로 추가부분 */
+#posting_right_bottom_postingBtn > div {
+  cursor: pointer;
+}
 #posts {
   position: absolute;
   width: 1000px;
@@ -224,12 +225,51 @@
   width: 1000px;
   height: 150px;
   border: 1px solid black;
+  display: flex;
+}
+#posts_userInfo_left {
+  width: 700px;
+  display: flex;
+  align-items: center;
+}
+#posts_userInfo_left_profileImg {
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#posts_userInfo_left_profileImg > img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 1px solid black;
+}
+#posts_userInfo_left_nickName {
+  font-size: 30px;
+  font-weight: bold;
+}
+#posts_userInfo_left_follow {
+  margin-top: 10px;
+}
+#posts_userInfo_left_follow > span {
+  font-weight: bold;
+}
+#posts_userInfo_right {
+  width: 300px;
+  display: flex;
+  justify-content: space-around;
+  font-size: 50px;
+  align-items: center;
 }
 /* userInfo 부분 끝 */
 /* 댓글창 */
-#posts_commet {
+.posts_comment {
   width: 1000px;
   height: 200px;
+  display: none;
+}
+.toggle_show {
+  display: block;
 }
 /* 댓글창끝 */
 /* middle size */
