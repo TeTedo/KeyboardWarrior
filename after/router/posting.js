@@ -11,6 +11,12 @@ router.get("/posting", loginCheck, (req, res) => {
 });
 
 // uploadsImg/main 폴더가 없다면 만들어주기
+fs.readdir("uploadsImg", (err) => {
+  if (err) {
+    fs.mkdirSync("uploadsImg");
+  }
+});
+
 fs.readdir("uploadsImg/main", (err) => {
   if (err) {
     fs.mkdirSync("uploadsImg/main");
@@ -30,10 +36,13 @@ router.post(
   (req, res) => {
     const { text } = req.body;
     const files = Object.values(req.files);
-    const { user_id } = getUserId(req, res);
+    console.log(getUserInfo(req, res));
+    const { user_id, nick_name } = getUserInfo(req, res);
 
     MainPost.create({
       user_id,
+      nick_name,
+      text,
     });
     res.redirect("/");
   }

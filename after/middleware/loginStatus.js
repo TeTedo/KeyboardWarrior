@@ -21,6 +21,7 @@ const loginStatus = (req, res, next) => {
             // 로그인 만료
             console.log("로그인 안되있음");
             req.session.login = false;
+
             next();
           } else {
             // accesstoken 다시 만들기

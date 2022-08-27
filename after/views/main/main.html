@@ -170,9 +170,8 @@
     window.onload = function () {
       //데이터 받아오기
       function getData() {
-        let data = "<%= JSON.stringify(data)%>";
-        data = data.replaceAll("&#34;", '"');
-        data = JSON.parse(data);
+        // 값이 들어왔나 안들어왔나 체크용
+        const data = "<%= user_id%>";
         //데이터 있을때
         if (data) {
           // 회원가입 로그인 숨기기
@@ -185,8 +184,9 @@
           const insertUser = document.querySelectorAll(
             "#sideBar_top_down_left > div"
           );
-          insertUser[0].innerHTML = data.user_id;
-          insertUser[1].innerHTML = data.nick_name;
+
+          insertUser[0].innerHTML = "<%=user_id %>";
+          insertUser[1].innerHTML = "<%=nick_name %>";
         }
         //데이터 없을때
         else {
