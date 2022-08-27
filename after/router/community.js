@@ -4,9 +4,9 @@ const router = express.Router();
 const loginCheck = require("../middleware/loginCheck");
 const { CommunityPost, User } = require("../model");
 
-router.get("/community/:game_name", loginCheck, async (req, res) => {
+router.get("/community/:game_name", loginCheck, (req, res) => {
   const gameName = req.params.game_name;
-  const { user_id: userIdForProfile } = await getUserInfo(req, res);
+  const { user_id: userIdForProfile } = getUserInfo(req, res);
   User.findOne({
     where: { user_id: userIdForProfile },
   }).then((e) => {
@@ -34,6 +34,8 @@ router.get("/community/:game_name", loginCheck, async (req, res) => {
               gameName,
               title: "MAPLE STORY",
               postData,
+              // hashTag: JSON.parse(postData.hashtag_values),
+              hashTag: postData.hashtag_values,
               userIdForProfile,
               nickNameForProfile,
             };
