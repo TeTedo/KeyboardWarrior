@@ -30,6 +30,8 @@ router.post("/posting/community/create", (req, res) => {
     // .then(() => {
     //     res.redirect(`/community/${game_name}`);
     // }); 왜안돼지...
+    // 가끔글쓰기 완료하고나서 방금쓴글이 바로 커뮤니티에 안뜨는 오류 발생해서 여기서 데이터넣기 끝내고 redirect로
+    // 커뮤니티에 돌아가야할거 같은데 안먹힌다...
 });
 
 module.exports = router;

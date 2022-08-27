@@ -37,71 +37,84 @@
         </div>
         <!-- 여기까지 탑 공통 부분 -->
         <div id="contents">
-            <div id="mainContent">
-                <div id="mainContentWrap">
-                    <div class="mainPost" data-link="fifa">
-                        <video autoplay muted loop preload="none">
-                            <source src="../videos/fifa.mp4" type="video/mp4" />
-                        </video>
+            <div id="contentsWrap">
+                <div id="mainContent">
+                    <div id="mainContentWrap">
+                        <div class="mainPost" data-link="fifa">
+                            <video autoplay muted loop preload="none">
+                                <source
+                                    src="../videos/fifa.mp4"
+                                    type="video/mp4"
+                                />
+                            </video>
+                        </div>
+                        <div class="mainPost" data-link="maple">
+                            <video autoplay muted loop preload="none">
+                                <source
+                                    src="../videos/maple.mp4"
+                                    type="video/mp4"
+                                />
+                            </video>
+                        </div>
+                        <div class="mainPost" data-link="lineage">
+                            <video autoplay muted loop preload="none">
+                                <source
+                                    src="../videos/lineage.mp4"
+                                    type="video/mp4"
+                                />
+                            </video>
+                        </div>
+                        <div
+                            class="mainPost"
+                            style="background-color: tomato"
+                        ></div>
+                        <div
+                            class="mainPost"
+                            style="background-color: blue"
+                        ></div>
+                        <div
+                            class="mainPost"
+                            style="background-color: green"
+                        ></div>
+                        <div
+                            class="mainPost"
+                            style="background-color: pink"
+                        ></div>
+                        <div
+                            class="mainPost"
+                            style="background-color: orange"
+                        ></div>
                     </div>
-                    <div class="mainPost" data-link="maple">
-                        <video autoplay muted loop preload="none">
-                            <source
-                                src="../videos/maple.mp4"
-                                type="video/mp4"
-                            />
-                        </video>
+                    <!-- 여기까지 동영상 슬라이드 -->
+                    <div id="mainTitleWrap">
+                        <div class="mainTitle">
+                            <a data-link="fifa">FIFFA ONLINE 4</a>
+                        </div>
+                        <div class="mainTitle">
+                            <a data-link="maple">MAPLE STORY</a>
+                        </div>
+                        <div class="mainTitle">
+                            <a data-link="lineage">LINEAGE</a>
+                        </div>
+                        <div class="mainTitle"></div>
+                        <div class="mainTitle"></div>
+                        <div class="mainTitle"></div>
                     </div>
-                    <div class="mainPost" data-link="lineage">
-                        <video autoplay muted loop preload="none">
-                            <source
-                                src="../videos/lineage.mp4"
-                                type="video/mp4"
-                            />
-                        </video>
-                    </div>
-                    <div
-                        class="mainPost"
-                        style="background-color: tomato"
-                    ></div>
-                    <div class="mainPost" style="background-color: blue"></div>
-                    <div class="mainPost" style="background-color: green"></div>
-                    <div class="mainPost" style="background-color: pink"></div>
-                    <div
-                        class="mainPost"
-                        style="background-color: orange"
-                    ></div>
+                    <!-- 여기까지 게임제목 슬라이드 -->
                 </div>
-                <!-- 여기까지 동영상 슬라이드 -->
-                <div id="mainTitleWrap">
-                    <div class="mainTitle">
-                        <a data-link="fifa">FIFFA ONLINE 4</a>
+                <!-- 여기까지 mainContents -->
+                <div class="scrollHelper">
+                    <div class="scrollHelper_contents">
+                        <div class="scrollHelper_icon">➡️</div>
+                        <div class="scrollHelper_text">SCROLL UP!</div>
                     </div>
-                    <div class="mainTitle">
-                        <a data-link="maple">MAPLE STORY</a>
-                    </div>
-                    <div class="mainTitle">
-                        <a data-link="lineage">LINEAGE</a>
-                    </div>
-                    <div class="mainTitle"></div>
-                    <div class="mainTitle"></div>
-                    <div class="mainTitle"></div>
                 </div>
-                <!-- 여기까지 게임제목 슬라이드 -->
-            </div>
-            <!-- 여기까지 mainContents -->
-            <div class="scrollHelper">
-                <div class="scrollHelper_contents">
-                    <div class="scrollHelper_icon">➡️</div>
-                    <div class="scrollHelper_text">SCROLL UP!</div>
-                </div>
-                <div class="scrollHelper_arrow arrow-border"></div>
-                <div class="scrollHelper_arrow arrow"></div>
             </div>
         </div>
     </body>
     <!-- <script src="community_hub.js"></script> -->
     <script>
+        // const contents = document.querySelector(".contents");
         const mainContent = document.getElementById("mainContent");
         const mainContentWrap = document.getElementById("mainContentWrap");
         const mainPosts = document.querySelectorAll(".mainPost");
@@ -200,13 +213,13 @@
             scrollHelperText.classList.remove("active");
             scrollHelperIcon.classList.remove("active");
         }
-        mainContent.onmouseenter = () => {
+        contentsWrap.onmouseenter = () => {
             let isOn = true;
             scrollHelper.classList.add("active");
             scrollHelperText.classList.add("active");
             scrollHelperIcon.classList.add("active");
         };
-        mainContent.onmouseleave = () => {
+        contentsWrap.onmouseleave = () => {
             offAnimation();
         };
     </script>
