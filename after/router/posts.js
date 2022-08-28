@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { MainPost } = require("../model");
+const getUserInfo = require("../functions/getUserInfo");
 
 router.get("/posts/:postId", async (req, res) => {
   const postId = req.params.postId;
@@ -8,8 +9,11 @@ router.get("/posts/:postId", async (req, res) => {
     where: { id: postId },
     raw: true,
   });
-
-  res.render("posts/posts", { postData });
+  const { user_id: userId, nick_name: userNickName } = await getUserInfo(
+    req,
+    res
+  );
+  res.render("posts/posts", { userId, userNickName, postData });
 });
 
 module.exports = router;

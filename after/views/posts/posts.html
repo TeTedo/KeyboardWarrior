@@ -63,8 +63,8 @@
         </div>
         <div id="sideBar_top_down">
           <div id="sideBar_top_down_left">
-            <div>아이디</div>
-            <div>닉네임</div>
+            <div><%= userId%></div>
+            <div><%= userNickName%></div>
           </div>
           <div id="sideBar_top_down_right">
             <div>
@@ -118,8 +118,12 @@
           </div>
           <div id="posting_right_bottom">
             <div id="posting_right_bottom_postingBtn">
-              <i class="fa-solid fa-heart"></i>좋아요 갯수
-              <div><i class="fa-solid fa-comment"></i>댓글 갯수</div>
+              <div>
+                <i class="fa-solid fa-heart"></i><span>좋아요 갯수</span>
+              </div>
+              <div>
+                <i class="fa-solid fa-comment"></i><span>댓글 갯수</span>
+              </div>
             </div>
           </div>
         </div>
@@ -133,7 +137,7 @@
   <script>
     //데이터 집어넣기
     window.onload = function () {
-      // getData();
+      getData();
     };
   </script>
   <script>
@@ -149,12 +153,23 @@
         postData.image4,
         postData.image5,
       ];
+      // image null인부분 삭제
       imageValue.forEach((el, index) => {
         if (!el) {
-          imageValue.splice(index, 1);
+          imageValue.splice(index, 5 - index);
         }
       });
-      console.log(imageValue);
+
+      //닉네임 넣어주기
+      document.querySelector("#posts_userInfo_left_nickName").innerHTML =
+        postData.nick_name;
+      //포스팅 내용 넣어주기
+      document.querySelector("#posting_right > textarea").innerHTML =
+        postData.text;
+      // 좋아요 갯수
+      document.querySelector(".fa-heart + span").innerText = postData.like;
+      // 댓글 갯수
+      document.querySelector(".fa-comment + span").innerText = postData.comment;
     }
   </script>
   <script src="posts.js"></script>

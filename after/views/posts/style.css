@@ -207,6 +207,11 @@
   font-weight: bold;
 }
 #posting_right_bottom_postingBtn > div {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+}
+#posting_right_bottom_postingBtn div:nth-child(2) {
   cursor: pointer;
 }
 #posts {

@@ -154,7 +154,6 @@
       </div>
     </div>
   </body>
-
   <script>
     //로그인 되어있을때 사이드바 데이터 함수
     function getData() {
@@ -184,19 +183,19 @@
         sideBar.style.display = "none";
       }
     }
-  </script>
-  <script>
+
     // 포스팅 데이터 받아오기 함수
     // // 이중 객체 값 뽑아오기
-    function setPost() {
+    function setPost(callback) {
       let postData = "<%= JSON.stringify(postData) %>";
       postData = postData.replaceAll("&#34;", '"');
       postData = postData.replaceAll("\\", "/");
       postData = JSON.parse(postData);
       const postNumArr = Object.keys(postData);
-      console.log(postNumArr);
+
       postNumArr.forEach((el, index) => {
         const {
+          writer,
           writer_nickName,
           writer_like,
           writer_comment,
@@ -209,7 +208,7 @@
           writer_created_at,
         } = postData[el];
         const posts = `
-      <div class="mainPost" data-posts = "${postNumArr[index]}">
+      <div class="mainPost" data-writer = "${writer}">
           <div id="mainPost_top">
             <div id="mainPost_top_profileimg">
               <img src="" alt="프로필이미지공간" />
@@ -222,10 +221,11 @@
               <i class="fa-solid fa-user-plus"></i>
               <i class="fa-solid fa-user-check"></i>
               <i class="fa-solid fa-message"></i>
+              <a href="">수정하기</a>
             </div>
           </div>
           <div id="mainPost_middle">
-            <div id="mainPost_middle_img">
+            <div id="mainPost_middle_img" data-posts = "${postNumArr[index]}">
               <img src="${writer_image1}" alt="" />
             </div>
             <div id="mainPost_middle_text"></div>
@@ -242,12 +242,32 @@
 
         document.querySelector("#mainContentWrap").innerHTML += posts;
       });
+
+      callback();
     }
-  </script>
-  <script>
+
+    // 수정하기 버튼 생성
+    function makeModifyBtn() {
+      const mainPost = document.querySelectorAll(".mainPost");
+      const user_id = "<%= user_id %>";
+      mainPost.forEach((el) => {
+        console.log(user_id);
+        console.log(el.dataset.writer);
+        if (el.dataset.writer == user_id) {
+          el.querySelectorAll("#mainPost_top_follwingBtn > i").forEach(
+            (elem) => {
+              elem.style.display = "none";
+            }
+          );
+          el.querySelector("#mainPost_top_follwingBtn > a").style.display =
+            "flex";
+        }
+      });
+    }
+
     //클릭시 포스트 페이지 이동
     function clickToPost() {
-      const clickMain = document.querySelectorAll(".mainPost");
+      const clickMain = document.querySelectorAll("#mainPost_middle_img");
 
       clickMain.forEach((el) => {
         el.onclick = function () {
@@ -260,7 +280,8 @@
     //사이드바 데이터 받아오기
     getData();
     //포스팅 정렬
-    setPost();
+    setPost(makeModifyBtn);
+
     window.onload = async function () {
       //이미지 클릭시 포스트 이동
       clickToPost();
