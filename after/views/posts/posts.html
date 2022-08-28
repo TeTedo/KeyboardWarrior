@@ -130,5 +130,32 @@
       <!-- 댓글창 끝 -->
     </div>
   </body>
+  <script>
+    //데이터 집어넣기
+    window.onload = function () {
+      // getData();
+    };
+  </script>
+  <script>
+    function getData() {
+      let postData = "<%= JSON.stringify(postData) %>";
+      postData = postData.replaceAll("&#34;", '"');
+      postData = postData.replaceAll("\\", "/");
+      postData = JSON.parse(postData);
+      const imageValue = [
+        postData.image1,
+        postData.image2,
+        postData.image3,
+        postData.image4,
+        postData.image5,
+      ];
+      imageValue.forEach((el, index) => {
+        if (!el) {
+          imageValue.splice(index, 1);
+        }
+      });
+      console.log(imageValue);
+    }
+  </script>
   <script src="posts.js"></script>
 </html>

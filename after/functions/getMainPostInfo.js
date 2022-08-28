@@ -1,41 +1,54 @@
-const { MainPost } = require("../model");
-const writerInfos = [];
+// 테이블 없으면 터짐 => function을 call stack에 먼저 집어넣어서 테이블 생성전에 넣어서 그런가? 잘모르겠음
 
-function getData() {
-  MainPost.findAll({}).then((result) => {
-    for (let i = 0; i < result.length; i++) {
-      const writer = result[i].dataValues.user_id;
-      const writer_nickName = result[i].dataValues.nick_name;
-      const writer_like = result[i].dataValues.like;
-      const writer_comment = result[i].dataValues.comment;
-      const writer_text = result[i].dataValues.text;
-      const writer_image1 = result[i].dataValues.image1;
-      const writer_image2 = result[i].dataValues.image2;
-      const writer_image3 = result[i].dataValues.image3;
-      const writer_image4 = result[i].dataValues.image4;
-      const writer_image5 = result[i].dataValues.image5;
-      const writer_created_at = result[i].dataValues.createdAt;
+//테이블없을때 터짐방지
+const { MainPost, sequelize } = require("../model");
+MainPost.init(sequelize);
 
-      writerInfos.push({
-        writer,
-        writer_nickName,
-        writer_like,
-        writer_comment,
-        writer_text,
-        writer_image1,
-        writer_image2,
-        writer_image3,
-        writer_image4,
-        writer_image5,
-        writer_created_at,
-      });
+let writerInfos = {};
+async function getData() {
+  await MainPost.findAll({
+    raw: true,
+  }).then((result) => {
+    if (result) {
+      for (let i = 0; i < result.length; i++) {
+        const write_id = result[i].id;
+        const writer = result[i].user_id;
+        const writer_nickName = result[i].nick_name;
+        const writer_like = result[i].like;
+        const writer_comment = result[i].comment;
+        const writer_text = result[i].text;
+        const writer_image1 = result[i].image1;
+        const writer_image2 = result[i].image2;
+        const writer_image3 = result[i].image3;
+        const writer_image4 = result[i].image4;
+        const writer_image5 = result[i].image5;
+        const writer_created_at = result[i].createdAt;
+
+        writerInfos[write_id] = {
+          writer,
+          writer_nickName,
+          writer_like,
+          writer_comment,
+          writer_text,
+          writer_image1,
+          writer_image2,
+          writer_image3,
+          writer_image4,
+          writer_image5,
+          writer_created_at,
+        };
+      }
+    } else {
+      //DB에 아무것도 없을때
+      return (writerInfos = null);
     }
   });
 }
-
-const getMainPostInfo = new Promise((resolve, reject) => {
-  getData();
-  resolve(writerInfos);
-});
+async function getMainPostInfo() {
+  await new Promise((resolve, reject) => {
+    resolve(getData());
+  });
+  return writerInfos;
+}
 
 module.exports = getMainPostInfo;

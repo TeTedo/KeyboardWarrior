@@ -5,21 +5,15 @@ const fs = require("fs");
 const imgUpload = require("../middleware/imgUpload");
 const { MainPost } = require("../model");
 const getUserInfo = require("../functions/getUserInfo");
+const getMainPostInfo = require("../functions/getMainPostInfo");
 
 router.get("/posting", loginCheck, (req, res) => {
   res.render("posting/posting");
 });
 
-// uploadsImg/main 폴더가 없다면 만들어주기
-fs.readdir("uploadsImg", (err) => {
+fs.readdir("views/uploadsImg/main", (err) => {
   if (err) {
-    fs.mkdirSync("uploadsImg");
-  }
-});
-
-fs.readdir("uploadsImg/main", (err) => {
-  if (err) {
-    fs.mkdirSync("uploadsImg/main");
+    fs.mkdirSync("views/uploadsImg/main");
   }
 });
 
@@ -45,6 +39,14 @@ router.post(
       }
     }
 
+    //path 바꿔주기
+    for (let i = 0; i < 5; i++) {
+      if (files[i][0].path) {
+        const test = files[i][0].path;
+        files[i][0].path = test.replace("views\\", "");
+      }
+    }
+
     //files 는 배열 형식으로 받아옴 값뽑아올때 참고 -> 콘솔찍어서 확인
     MainPost.create({
       user_id,
@@ -58,7 +60,6 @@ router.post(
       image4: files[3][0].path,
       image5: files[4][0].path,
     });
-
     res.redirect("/");
   }
 );

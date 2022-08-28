@@ -180,6 +180,7 @@
   height: 100%;
   display: flex;
   position: relative;
+  flex-direction: row-reverse;
 }
 .mainPost {
   width: 290px;
@@ -201,8 +202,10 @@
   font-size: 20px;
 }
 #mainPost_top_profileimg > img {
+  margin-left: 5px;
   border-radius: 50%;
   width: 70px;
+  height: 70px;
 }
 #mainPost_top_userInfo {
   width: 100px;
@@ -237,12 +240,18 @@
 #mainPost_bottom {
   width: 290px;
   height: 150px;
+}
+#mainPost_bottom_createdTime {
+  height: 30%;
+  margin: 10px auto auto 10px;
+}
+#mainPost_bottom_sub {
+  height: 50%;
   display: flex;
   justify-content: space-around;
   align-items: center;
   font-size: 20px;
 }
-
 /* middle size */
 @media screen and (max-width: 768px) {
 }

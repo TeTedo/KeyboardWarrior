@@ -1,3 +1,5 @@
+const { sequelize } = require("../model");
+
 const dot = require("dotenv").config();
 const config = {
   dev: {
@@ -8,4 +10,5 @@ const config = {
     dialect: "mysql",
   },
 };
+
 module.exports = config;

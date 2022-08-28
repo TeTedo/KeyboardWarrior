@@ -138,25 +138,23 @@
           </div>
           <div id="mainPost_middle">
             <div id="mainPost_middle_img">
-              <img src="./images/Example.jpeg" alt="" />
+              <img src="" alt="" />
             </div>
             <div id="mainPost_middle_text"></div>
           </div>
           <div id="mainPost_bottom">
-            <i class="fa-solid fa-heart"></i>좋아요 갯수
-            <i class="fa-solid fa-comment"></i>댓글 갯수
+            <div id="mainPost_bottom_createdTime">생성된시간</div>
+            <div id="mainPost_bottom_sub">
+              <i class="fa-solid fa-heart"></i>좋아요 갯수
+              <i class="fa-solid fa-comment"></i>댓글 갯수
+            </div>
           </div>
         </div>
+        <!-- 포스팅구역 -->
       </div>
     </div>
   </body>
 
-  <script>
-    window.onload = function () {
-      //사이드바 데이터 받아오기
-      getData();
-    };
-  </script>
   <script>
     //로그인 되어있을때 사이드바 데이터 함수
     function getData() {
@@ -189,11 +187,84 @@
   </script>
   <script>
     // 포스팅 데이터 받아오기 함수
-    // 이중 객체 값 뽑아오기
-    let postData = "<%= JSON.stringify(postData) %>";
-    postData = postData.replaceAll("&#34", '"');
-    // console.log(postData);
-    // console.log(postData);
+    // // 이중 객체 값 뽑아오기
+    function setPost() {
+      let postData = "<%= JSON.stringify(postData) %>";
+      postData = postData.replaceAll("&#34;", '"');
+      postData = postData.replaceAll("\\", "/");
+      postData = JSON.parse(postData);
+      const postNumArr = Object.keys(postData);
+      console.log(postNumArr);
+      postNumArr.forEach((el, index) => {
+        const {
+          writer_nickName,
+          writer_like,
+          writer_comment,
+          writer_text,
+          writer_image1,
+          writer_image2,
+          writer_image3,
+          writer_image4,
+          writer_image5,
+          writer_created_at,
+        } = postData[el];
+        const posts = `
+      <div class="mainPost" data-posts = "${postNumArr[index]}">
+          <div id="mainPost_top">
+            <div id="mainPost_top_profileimg">
+              <img src="" alt="프로필이미지공간" />
+            </div>
+            <div id="mainPost_top_userInfo">
+              <div id="mainPost_top_userInfo_nickName">${writer_nickName}</div>
+              <div id="mainPost_top_userInfo_follwer">팔로워숫자</div>
+            </div>
+            <div id="mainPost_top_follwingBtn">
+              <i class="fa-solid fa-user-plus"></i>
+              <i class="fa-solid fa-user-check"></i>
+              <i class="fa-solid fa-message"></i>
+            </div>
+          </div>
+          <div id="mainPost_middle">
+            <div id="mainPost_middle_img">
+              <img src="${writer_image1}" alt="" />
+            </div>
+            <div id="mainPost_middle_text"></div>
+          </div>
+          <div id="mainPost_bottom">
+            <div id="mainPost_bottom_createdTime">${writer_created_at}</div>
+            <div id="mainPost_bottom_sub">
+              <i class="fa-solid fa-heart"></i>${writer_like}
+              <i class="fa-solid fa-comment"></i>${writer_comment}
+            </div>
+          </div>
+        </div>
+      `;
+
+        document.querySelector("#mainContentWrap").innerHTML += posts;
+      });
+    }
+  </script>
+  <script>
+    //클릭시 포스트 페이지 이동
+    function clickToPost() {
+      const clickMain = document.querySelectorAll(".mainPost");
+
+      clickMain.forEach((el) => {
+        el.onclick = function () {
+          location.href = `/posts/${el.dataset.posts}`;
+        };
+      });
+    }
+  </script>
+  <script>
+    //사이드바 데이터 받아오기
+    getData();
+    //포스팅 정렬
+    setPost();
+    window.onload = async function () {
+      //이미지 클릭시 포스트 이동
+      clickToPost();
+    };
   </script>
   <script src="./main/main.js"></script>
 </html>

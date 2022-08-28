@@ -12,8 +12,7 @@ router.get(
       //로그인한 유저 정보
       const { user_id, nick_name } = await getUserInfo(req, res);
       // 게시글들 정보 받아오기
-      const postData = await getMainPostInfo;
-
+      const postData = await getMainPostInfo();
       res.render("main/main", { user_id, nick_name, postData });
     } else {
       next();
@@ -21,7 +20,7 @@ router.get(
   },
   async (req, res) => {
     // 게시글들 정보 받아오기
-    const postData = await getMainPostInfo;
+    const postData = await getMainPostInfo();
 
     res.render("main/main", { user_id: "", nick_name: "", postData });
   }

@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const dot = require("dotenv");
 dot.config();
-const { User } = require("../model/index");
+const { User } = require("../model");
 let user_id;
 
 //user_id 찾기
