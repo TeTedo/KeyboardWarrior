@@ -275,13 +275,6 @@
 @media screen and (max-width: 425px) {
 }
 
-#btn {
-    width: 200px;
-    height: 100px;
-    position: absolute;
-    right: 50%;
-}
-
 /* 여기서부터 스크롤헬퍼 */
 #scrollHelper {
     width: 1000px;
@@ -346,4 +339,17 @@
 /* 스크롤막기용 */
 .block {
     overflow: hidden;
+}
+
+#btn {
+    width: 200px;
+    height: 100px;
+    position: absolute;
+    right: 50%;
+}
+#writBtn {
+    width: 200px;
+    height: 100px;
+    position: absolute;
+    right: 50%;
 }
