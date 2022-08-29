@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css" />
     <script
       src="https://kit.fontawesome.com/3264d39625.js"
       crossorigin="anonymous"
@@ -16,6 +15,7 @@
       crossorigin="anonymous"
     ></script>
   </head>
+  <link rel="stylesheet" href="../../postsModify/style.css" />
   <body>
     <div id="mainPageTop">
       <div id="mainLogo"><a href="/">이건 메인로고</a></div>
@@ -49,12 +49,7 @@
     </div>
     <!-- 포스팅구역 -->
     <!-- multer를 쓰려면  enctype="multipart/form-data" 써줘야함-->
-    <form
-      id="posting"
-      method="post"
-      action="/posting"
-      enctype="multipart/form-data"
-    >
+    <form id="posting" method="post" enctype="multipart/form-data">
       <div id="posting_left">
         <!-- 8.25 img 태그 추가 -->
         <img src="" alt="이미지를 선택하세요" />
@@ -73,6 +68,7 @@
               accept="image/*"
             />
             <label for="filesInput1"><i class="fa-solid fa-image"></i></label>
+            <span><i class="fa-solid fa-circle-xmark"></i></span>
           </div>
           <div>
             <img src="" />
@@ -84,6 +80,7 @@
               accept="image/*"
             />
             <label for="filesInput2"><i class="fa-solid fa-image"></i></label>
+            <span><i class="fa-solid fa-circle-xmark"></i></span>
           </div>
           <div>
             <img src="" />
@@ -95,6 +92,7 @@
               accept="image/*"
             />
             <label for="filesInput3"><i class="fa-solid fa-image"></i></label>
+            <span><i class="fa-solid fa-circle-xmark"></i></span>
           </div>
           <div>
             <img src="" />
@@ -106,6 +104,7 @@
               accept="image/*"
             />
             <label for="filesInput4"><i class="fa-solid fa-image"></i></label>
+            <span><i class="fa-solid fa-circle-xmark"></i></span>
           </div>
           <div>
             <img src="" />
@@ -117,6 +116,7 @@
               accept="image/*"
             />
             <label for="filesInput5"><i class="fa-solid fa-image"></i></label>
+            <span><i class="fa-solid fa-circle-xmark"></i></span>
           </div>
         </div>
         <div id="posting_right_bottom">
@@ -127,7 +127,7 @@
           </div>
           <div id="posting_right_bottom_postingBtn">
             <!-- 8.25 id값 없애고 등록에 div대신 a태그 추가 -->
-            <button href="#" type="submit">등록</button>
+            <button href="#" type="submit">수정</button>
             <a href="/">취소</a>
           </div>
         </div>
@@ -135,5 +135,45 @@
     </form>
     <!-- 포스팅구역 끝 -->
   </body>
-  <script src="postsModify.js"></script>
+  <script src="../../postsModify/postsModify.js"></script>
+  <script>
+    // 불러오면 값넣기
+    window.onload = function () {
+      let postData = "<%= JSON.stringify(postData) %>";
+      postData = postData.replaceAll("&#34;", '"');
+      postData = postData.replaceAll("\\", "/");
+      postData = JSON.parse(postData);
+
+      // 이미지 값 넣어주기
+      let imageArr = [
+        postData.image1,
+        postData.image2,
+        postData.image3,
+        postData.image4,
+        postData.image5,
+      ];
+      imageArr = imageArr.filter((el) => el != null);
+      imageArr.forEach((el, index) => {
+        const imageTag = document.querySelectorAll(
+          "#posting_right_imagePreview img"
+        )[index];
+        imageTag.src = "../../" + el;
+        imageTag.style.display = "block";
+        document.querySelectorAll(".fa-image")[index].style.display = "none";
+        document.querySelectorAll("#posting_right_imagePreview span")[
+          index
+        ].style.display = "flex";
+      });
+      // 왼쪽 이미지 넣기
+      document.querySelector("#posting_left > img").src =
+        "../../" + imageArr[0];
+      // post action값 넣어주기
+      document.querySelector(
+        "#posting"
+      ).action = `/posts/${postData.id}/modify`;
+
+      // textarea 값 채우기
+      document.querySelector("#posting_right > textarea").value = postData.text;
+    };
+  </script>
 </html>

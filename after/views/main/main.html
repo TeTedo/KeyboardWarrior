@@ -201,10 +201,6 @@
           writer_comment,
           writer_text,
           writer_image1,
-          writer_image2,
-          writer_image3,
-          writer_image4,
-          writer_image5,
           writer_created_at,
         } = postData[el];
         const posts = `
@@ -221,11 +217,11 @@
               <i class="fa-solid fa-user-plus"></i>
               <i class="fa-solid fa-user-check"></i>
               <i class="fa-solid fa-message"></i>
-              <a href="">수정하기</a>
+              <a href="/posts/${el}/modify">수정하기</a>
             </div>
           </div>
           <div id="mainPost_middle">
-            <div id="mainPost_middle_img" data-posts = "${postNumArr[index]}">
+            <div id="mainPost_middle_img" data-posts = "${el}">
               <img src="${writer_image1}" alt="" />
             </div>
             <div id="mainPost_middle_text"></div>
