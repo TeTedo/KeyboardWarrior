@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const getUserInfo = require("../functions/getUserInfo");
 const getMainPostInfo = require("../functions/getMainPostInfo");
+const getUserInfo = require("../functions/getUserInfo");
 
 router.get(
   "/",

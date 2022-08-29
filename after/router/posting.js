@@ -44,7 +44,7 @@ router.post(
       if (files[i][0].path) {
         const test = files[i][0].path;
         files[i][0].path = test.replace("views\\", "");
-        files[i][0].path = test.replace("views/", "");
+        files[i][0].path = files[i][0].path.replace("views/", "");
       }
     }
 

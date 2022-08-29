@@ -72,6 +72,7 @@ const posts = require("../router/posts");
 const logout = require("../router/logout");
 const communityPosting = require("../router/communityPosting");
 const communityPost = require("../router/communityPost");
+const postsModify = require("../router/postsModify");
 app.use(
   login,
   logout,
@@ -83,5 +84,6 @@ app.use(
   community_hub,
   community,
   communityPosting,
-  communityPost
+  communityPost,
+  postsModify
 );
