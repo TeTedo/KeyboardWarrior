@@ -8,15 +8,28 @@ router.get("/community/:game_name", loginCheck, async (req, res) => {
     const gameName = req.params.game_name;
     const { user_id: userIdForProfile, nick_name: nickNameForProfile } =
         await getUserInfo(req, res);
+    const filterFunc = function (postData, hashTag) {
+        return postData.filter(post => {
+            console.log(hashTag);
+            return post.posting_data_obj.hashtag_values.includes(hashTag);
+        });
+    };
     CommunityPost.findAll({
         where: { game_name: gameName },
         raw: true,
     })
-        .then(e => {
-            const postData = e;
-            postData.forEach(
-                data => (data.hashtag_values = JSON.parse(data.hashtag_values))
-            );
+        .then(postData => {
+            if (postData) {
+                postData.forEach(data => {
+                    data.hashtag_values = JSON.parse(data.hashtag_values);
+                    data.posting_data_obj = JSON.parse(data.posting_data_obj);
+                    data.posting_data_obj.hashtag_values = JSON.parse(
+                        data.posting_data_obj.hashtag_values
+                    );
+                });
+            } else {
+                postData = null;
+            }
             let data = {};
             switch (gameName) {
                 case "fifa":
@@ -26,6 +39,7 @@ router.get("/community/:game_name", loginCheck, async (req, res) => {
                         postData,
                         userIdForProfile,
                         nickNameForProfile,
+                        filterFunc,
                     };
                     res.render("community/community", { data });
                     break;
@@ -36,6 +50,7 @@ router.get("/community/:game_name", loginCheck, async (req, res) => {
                         postData,
                         userIdForProfile,
                         nickNameForProfile,
+                        filterFunc,
                     };
                     res.render("community/community", { data });
                     break;
@@ -46,6 +61,7 @@ router.get("/community/:game_name", loginCheck, async (req, res) => {
                         postData,
                         userIdForProfile,
                         nickNameForProfile,
+                        filterFunc,
                     };
                     res.render("community/community", { data });
                     break;

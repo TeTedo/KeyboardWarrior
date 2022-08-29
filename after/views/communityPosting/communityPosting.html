@@ -144,6 +144,12 @@
                     const hashtag_values = JSON.stringify(
                         tagify.value.map(el => el.value)
                     );
+                    const posting_data_obj = JSON.stringify({
+                        game_name,
+                        user_id,
+                        text,
+                        hashtag_values,
+                    });
                     $.ajax({
                         url: "/posting/community/create",
                         type: "post",
@@ -155,6 +161,7 @@
                             text,
                             main_html,
                             hashtag_values,
+                            posting_data_obj,
                         },
                     });
                     location.href = `/community/${game_name}`;

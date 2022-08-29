@@ -254,18 +254,58 @@
     width: 290px;
     height: 150px;
 }
-#mainPost_bottom_recomment {
+/* #mainPost_bottom_recomment {
     width: 290px;
 }
 #mainPost_bottom_recomment > span {
     margin: 10px;
-}
+} */
 /* 해시태그 */
-.hashTag {
-    background-color: aliceblue;
-    margin: 5px 0 0 5px;
-    border: 1px solid black;
-    border-radius: 5px;
+#hashTag {
+    display: flex;
+    align-items: center;
+}
+#hashTag > span:first-child {
+    margin: 5px 0 5px 5px;
+    font-weight: bold;
+    font-size: 20px;
+}
+#hashTag_Wrap {
+    display: inline-flex;
+    align-items: center;
+    margin: 5px 0 5px 5px;
+    position: relative;
+    z-index: 1;
+    outline: 0;
+    line-height: normal;
+    cursor: default;
+    transition: 0.13s ease-out;
+    background-color: #e5e5e5;
+    border-color: #ddd;
+    border-radius: 3px;
+    max-width: 100%;
+}
+.hashTag_Box {
+    vertical-align: top;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 5px;
+    color: black;
+    line-height: inherit;
+    border-radius: 3px;
+    white-space: nowrap;
+    transition: 0.13s ease-out;
+}
+#hashTag_Wrap:hover {
+    margin: 2px;
+}
+.hashTag_Box:hover {
+    border-color: #ccc;
+    background-color: #d3e2e2;
+    padding: 8px;
+}
+.hashTag_Box:focus {
+    color: #3595f6;
 }
 /* middle size */
 @media screen and (max-width: 768px) {

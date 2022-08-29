@@ -14,6 +14,14 @@
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
             crossorigin="anonymous"
         ></script>
+        <!-- Tagify 해시태그 -->
+        <script src="https://unpkg.com/@yaireo/tagify"></script>
+        <script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+        <link
+            href="https://unpkg.com/@yaireo/tagify/dist/tagify.css"
+            rel="stylesheet"
+            type="text/css"
+        />
     </head>
     <link rel="stylesheet" href="style.css" />
     <body>
@@ -140,9 +148,16 @@
                             <div id="mainPost_top"></div>
                             <div id="mainPost_middle"><%=post.text%></div>
                             <div id="mainPost_bottom">
-                                <%post.hashtag_values.forEach(hashtag=>{%>
-                                <span class="hashTag"> <%=hashtag%> </span>
-                                <%})%>
+                                <div id="hashTag">
+                                    <span>#</span>
+                                    <%post.hashtag_values.forEach(hashtag=>{%>
+                                    <span id="hashTag_Wrap">
+                                        <span class="hashTag_Box">
+                                            <%=hashtag%>
+                                        </span>
+                                    </span>
+                                    <%})%>
+                                </div>
                             </div>
                         </div>
                         <%})%>
@@ -160,6 +175,7 @@
         <button id="writBtn">글쓰기</button>
         <button id="btn" name="hash" style="right: 70%">클릭</button>
         <label for="">해시태그</label>
+        <input type="text" name="hashTag" />
         <input type="text" list="tag_list" />
         <datalist id="tag_list">
             <option value="잡담"></option>
@@ -182,6 +198,46 @@
             const postId = post.dataset.post_id;
             post.querySelector("#mainPost_middle").onclick = () => {
                 location.href = `/post/${gameName}/${postId}`;
+            };
+        });
+
+        // 해시태그 기능
+
+        const hashTags = document.querySelectorAll(".hashTag_Box");
+        const postData = "<%- data.postData[0].posting_data_obj %>";
+
+        hashTags.forEach(hashTag => {
+            hashTag.onclick = e => {
+                console.log("클릭됨");
+                console.log(postData);
+                const selectedOne = e.target.innerText;
+                console.log(selectedOne);
+                mainContentWrap.innerHTML = `
+                <% data.postData = data.postData.filter(post=>post.hashtag_values.includes('공략')) %>
+                <% data.postData.forEach(post=>{%>
+                <div
+                    class="mainPost"
+                    name = '${selectedOne}'
+                    data-hash_tag="<%= post.hashtag_values%>"
+                    data-post_id="<%= post.id%>"
+                >
+                    <div id="mainPost_top"></div>
+                    <div id="mainPost_middle"><%=post.text%></div>
+                    <div id="mainPost_bottom">
+                        <div id="hashTag">
+                            <span>#</span>
+                            <%post.hashtag_values.forEach(hashtag=>{%>
+                            <span id="hashTag_Wrap">
+                                <span class="hashTag_Box">
+                                    <%=hashtag%>
+                                </span>
+                            </span>
+                            <%})%>
+                        </div>
+                    </div>
+                </div>
+                <%})%>
+                `;
             };
         });
 
@@ -227,26 +283,26 @@
         //     };
         // });
 
-        const hashTags = document.querySelectorAll(".hashTag");
-        hashTags.forEach(hashTag => {
-            hashTag.onclick = e => {
-                let selectedOne = e.target.innerText;
-                mainPost.forEach(post => {
-                    let allHashTag = post.dataset.hash_tag;
-                    if (allHashTag === undefined) return;
-                    else {
-                        console.log(selectedOne);
-                        console.log(allHashTag);
-                        console.log(allHashTag.includes(selectedOne));
-                        if (allHashTag.includes(selectedOne)) {
-                            post.style.display = "block";
-                        } else {
-                            post.style.display = "none";
-                        }
-                    }
-                });
-            };
-        });
+        // const hashTags = document.querySelectorAll(".hashTag");
+        // hashTags.forEach(hashTag => {
+        //     hashTag.onclick = e => {
+        //         let selectedOne = e.target.innerText;
+        //         mainPost.forEach(post => {
+        //             let allHashTag = post.dataset.hash_tag;
+        //             if (allHashTag === undefined) return;
+        //             else {
+        //                 console.log(selectedOne);
+        //                 console.log(allHashTag);
+        //                 console.log(allHashTag.includes(selectedOne));
+        //                 if (allHashTag.includes(selectedOne)) {
+        //                     post.style.display = "block";
+        //                 } else {
+        //                     post.style.display = "none";
+        //                 }
+        //             }
+        //         });
+        //     };
+        // });
 
         console.log(mainPost[1].dataset.hash_tag.includes("잡담"));
     </script>

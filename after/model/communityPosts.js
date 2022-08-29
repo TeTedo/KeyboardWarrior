@@ -32,6 +32,10 @@ class CommunityPost extends Sequelize.Model {
                     // type: Sequelize.ARRAY(Sequelize.ENUM),
                     allowNull: true,
                 },
+                posting_data_obj: {
+                    type: Sequelize.TEXT,
+                    allowNull: false,
+                },
             },
             {
                 sequelize: sequelize,
