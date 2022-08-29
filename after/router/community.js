@@ -8,12 +8,12 @@ router.get("/community/:game_name", loginCheck, async (req, res) => {
     const gameName = req.params.game_name;
     const { user_id: userIdForProfile, nick_name: nickNameForProfile } =
         await getUserInfo(req, res);
-    const filterFunc = function (postData, hashTag) {
-        return postData.filter(post => {
-            console.log(hashTag);
-            return post.posting_data_obj.hashtag_values.includes(hashTag);
-        });
-    };
+    // const = function (postData, hashTag) {
+    //     return postData.filter(post => {
+    //         console.log(hashTag);
+    //         return post.posting_data_obj.hashtag_values.includes(hashTag);
+    //     });
+    // };
     CommunityPost.findAll({
         where: { game_name: gameName },
         raw: true,
@@ -39,7 +39,6 @@ router.get("/community/:game_name", loginCheck, async (req, res) => {
                         postData,
                         userIdForProfile,
                         nickNameForProfile,
-                        filterFunc,
                     };
                     res.render("community/community", { data });
                     break;
@@ -50,7 +49,6 @@ router.get("/community/:game_name", loginCheck, async (req, res) => {
                         postData,
                         userIdForProfile,
                         nickNameForProfile,
-                        filterFunc,
                     };
                     res.render("community/community", { data });
                     break;
@@ -61,7 +59,6 @@ router.get("/community/:game_name", loginCheck, async (req, res) => {
                         postData,
                         userIdForProfile,
                         nickNameForProfile,
-                        filterFunc,
                     };
                     res.render("community/community", { data });
                     break;
@@ -71,9 +68,42 @@ router.get("/community/:game_name", loginCheck, async (req, res) => {
             }
         })
         .catch(e => {
-            // const data = null;
-            // res.render("community/community", { data });
-            res.send("테이블이 없어요 서버 npm start 한번만");
+            let postData = null;
+            switch (gameName) {
+                case "fifa":
+                    data = {
+                        gameName,
+                        title: "FIFFA ONLINE 4",
+                        postData,
+                        userIdForProfile,
+                        nickNameForProfile,
+                    };
+                    res.render("community/community", { data });
+                    break;
+                case "maple":
+                    data = {
+                        gameName,
+                        title: "MAPLE STORY",
+                        postData,
+                        userIdForProfile,
+                        nickNameForProfile,
+                    };
+                    res.render("community/community", { data });
+                    break;
+                case "lineage":
+                    data = {
+                        gameName,
+                        title: "LINEAGE",
+                        postData,
+                        userIdForProfile,
+                        nickNameForProfile,
+                    };
+                    res.render("community/community", { data });
+                    break;
+                default:
+                    // res.redirect("/community_hub");
+                    break;
+            }
         });
 });
 
