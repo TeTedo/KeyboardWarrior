@@ -160,8 +160,14 @@
     border-radius: 10px;
 }
 /* 여기까지 공통 탑 + 사이드바 */
-#contents {
+
+#contentsWrap {
     position: relative;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    width: 1000px;
+    height: 500px;
 }
 /* 게시판 제목 */
 #communityTitle {
@@ -176,14 +182,10 @@
     transform: translate(-50%, -50%);
     font-size: 30px;
 }
-
 /* 포스팅 */
 #mainContent {
     width: 1000px;
-    height: 500px;
     background-color: black;
-    margin: auto;
-    display: flex;
     border: 1px solid;
     overflow-x: scroll;
     overflow-y: hidden;
@@ -258,6 +260,13 @@
 #mainPost_bottom_recomment > span {
     margin: 10px;
 }
+/* 해시태그 */
+.hashTag {
+    background-color: aliceblue;
+    margin: 5px 0 0 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
 /* middle size */
 @media screen and (max-width: 768px) {
 }
@@ -266,90 +275,81 @@
 @media screen and (max-width: 425px) {
 }
 
-#btn {
-    width: 200px;
-    height: 100px;
-    position: absolute;
-    right: 50%;
-}
-
 /* 여기서부터 스크롤헬퍼 */
-.scrollHelper {
-    width: 200px;
-    height: 200px;
+#scrollHelper {
+    width: 1000px;
+    height: 500px;
     position: absolute;
-    left: 80%;
-    top: 0;
     opacity: 0;
     display: flex;
     flex-direction: column;
-    border: 10px solid black;
-    border-radius: 50px;
+    z-index: -1;
+    background-color: #fff;
 }
-.scrollHelper_contents {
+#scrollHelper_contents {
     position: absolute;
     width: max-content;
     left: 50%;
-    top: 50%;
-    transform: translate(-50%, -60%);
+    top: 20%;
+    transform: translate(-50%);
 }
-.scrollHelper_icon {
-    font-size: 100px;
-    font-weight: 600;
+#scrollHelper_icon {
+    font-size: 200px;
+    font-weight: 900;
     transform: translateX(-10px);
     animation: move 0.9s;
     animation-iteration-count: infinite;
 }
-.scrollHelper_text {
-    font-size: 30px;
+#scrollHelper_text {
+    font-size: 60px;
 }
-.scrollHelper.active {
-    /* opacity: 1; */
-    animation: timer 3s;
+#scrollHelper.active {
+    animation: timer 2s;
 }
-.scrollHelper_icon.active {
+#scrollHelper_icon.active {
     font-size: 100px;
     font-weight: bolder;
     opacity: 1;
-}
-.scrollHelper_text.active {
 }
 @keyframes timer {
     0% {
         opacity: 0;
     }
     20% {
-        opacity: 1;
+        z-index: 999;
+        opacity: 0.7;
     }
     80% {
-        opacity: 1;
+        opacity: 0.7;
     }
     100% {
+        z-index: -1;
         opacity: 0;
     }
 }
 @keyframes move {
     50% {
-        transform: translateX(90px);
+        transform: translateX(220px);
     }
     100% {
         transform: translateX(-10px);
     }
 }
-.scrollHelper_arrow {
-    height: 0;
-    width: 0;
-    border-style: solid;
-    border-color: transparent;
-    border-width: 20px;
+
+/* 스크롤막기용 */
+.block {
+    overflow: hidden;
+}
+
+#btn {
+    width: 200px;
+    height: 100px;
     position: absolute;
-    bottom: -40px;
-    left: 45px;
+    right: 50%;
 }
-.arrow {
-    border-top-color: white;
-}
-.arrow-border {
-    border-top-color: black;
-    bottom: -50px;
+#writBtn {
+    width: 200px;
+    height: 100px;
+    position: absolute;
+    right: 50%;
 }
