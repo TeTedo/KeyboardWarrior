@@ -152,7 +152,10 @@
                                     <span>#</span>
                                     <%post.hashtag_values.forEach(hashtag=>{%>
                                     <span id="hashTag_Wrap">
-                                        <span class="hashTag_Box">
+                                        <span
+                                            class="hashTag_Box"
+                                            onclick="update(this)"
+                                        >
                                             <%=hashtag%>
                                         </span>
                                     </span>
@@ -201,44 +204,71 @@
             };
         });
 
-        // 해시태그 기능
-
-        const hashTags = document.querySelectorAll(".hashTag_Box");
-
-        hashTags.forEach(hashTag => {
-            hashTag.onclick = e => {
-                console.log("클릭됨");
-                console.log(postData);
-                const selectedOne = e.target.innerText;
-                console.log(selectedOne);
-                mainContentWrap.innerHTML = `
-                <% data.postData = data.postData.filter(post=>post.hashtag_values.includes('공략')) %>
-                <% data.postData.forEach(post=>{%>
-                <div
-                    class="mainPost"
-                    name = '${selectedOne}'
-                    data-hash_tag="<%= post.hashtag_values%>"
-                    data-post_id="<%= post.id%>"
-                >
-                    <div id="mainPost_top"></div>
-                    <div id="mainPost_middle"><%=post.text%></div>
-                    <div id="mainPost_bottom">
-                        <div id="hashTag">
-                            <span>#</span>
-                            <%post.hashtag_values.forEach(hashtag=>{%>
-                            <span id="hashTag_Wrap">
-                                <span class="hashTag_Box">
-                                    <%=hashtag%>
+        // 해시태그 필터 기능
+        let postData;
+        let isFiltered = "";
+        function uploadData() {
+            postData = "<%=JSON.stringify(data.postData)%>"
+                .replaceAll("&#34;", '"')
+                .replaceAll("&lt;", "<")
+                .replaceAll("&gt;", ">")
+                .replaceAll('""', '"');
+            postData = JSON.parse(postData);
+        }
+        uploadData();
+        function update(target) {
+            let isFiltered = false;
+            let selectedOne = target.innerText;
+            if (!target.classList.contains("active")) {
+                postData = postData.filter(post =>
+                    post.hashtag_values.includes(selectedOne)
+                );
+                isFiltered = true;
+            }
+            let postHtml = "";
+            postData.forEach(filteredPost => {
+                let hashtagHtml = "";
+                filteredPost.hashtag_values.forEach(hashtag => {
+                    hashtagHtml += `
+                    <span id="hashTag_Wrap">
+                                <span class="hashTag_Box" onclick="update(this)">
+                                    ${hashtag}
                                 </span>
                             </span>
-                            <%})%>
+                    `;
+                });
+                postHtml += `
+                <div
+                    class="mainPost"
+                    data-hash_tag=${filteredPost.hashtag_values}
+                    data-post_id=${filteredPost.id}
+                >
+                    <div id="mainPost_top"></div>
+                    <div id="mainPost_middle">${filteredPost.text}</div>
+                    <div id="mainPost_bottom">
+                        <div id="hashTag" >
+                            <span>#</span>
+                            ${hashtagHtml}
                         </div>
                     </div>
                 </div>
-                <%})%>
                 `;
-            };
-        });
+            });
+            mainContentWrap.innerHTML = postHtml;
+            const hashTagBox = document.querySelectorAll(".hashTag_Box");
+            // 선택된 해시태그 css효과
+            if (isFiltered) {
+                hashTagBox.forEach(box => {
+                    if (box.innerText == selectedOne) {
+                        box.classList.add("active");
+                        box.parentNode.classList.add("active");
+                    }
+                });
+            }
+
+            // postData를 서버에서 받아온 데이터로 다시 초기화
+            uploadData();
+        }
 
         // const hashTags = document.querySelectorAll(".hashTag");
         // hashTags.forEach(hashTag => {
@@ -302,8 +332,6 @@
         //         });
         //     };
         // });
-
-        console.log(mainPost[1].dataset.hash_tag.includes("잡담"));
     </script>
     <!-- <script>
         const arr = ["happy", "hi"];

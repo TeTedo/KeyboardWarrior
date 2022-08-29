@@ -184,7 +184,7 @@
 }
 /* 포스팅 */
 #mainContent {
-    width: 1000px;
+    width: max-content;
     background-color: black;
     border: 1px solid;
     overflow-x: scroll;
@@ -273,7 +273,8 @@
 #hashTag_Wrap {
     display: inline-flex;
     align-items: center;
-    margin: 5px 0 5px 5px;
+    margin: 5px;
+    /* margin: 5px 0 5px 5px; */
     position: relative;
     z-index: 1;
     outline: 0;
@@ -297,9 +298,18 @@
     transition: 0.13s ease-out;
 }
 #hashTag_Wrap:hover {
+    /* margin: 2px 0 2px 2px; */
+    margin: 2px;
+}
+#hashTag_Wrap.active {
     margin: 2px;
 }
 .hashTag_Box:hover {
+    border-color: #ccc;
+    background-color: #d3e2e2;
+    padding: 8px;
+}
+.hashTag_Box.active {
     border-color: #ccc;
     background-color: #d3e2e2;
     padding: 8px;

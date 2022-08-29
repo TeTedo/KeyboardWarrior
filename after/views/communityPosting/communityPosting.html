@@ -138,18 +138,18 @@
             const btnFor = e.target.getAttribute("for");
             switch (btnFor) {
                 case "submit":
-                    const text = textAreaDom.value;
+                    // 글없으면 공백넣기
+                    const text = textAreaDom.value || " ";
+                    // 글 공백 방지
+                    // if (!text) {
+                    //     alert("글을 작성해 주세요");
+                    //     return;
+                    // }
                     textAreaDom.innerText = text;
-                    const main_html = posting.innerHTML;
+                    const main_html = JSON.stringify(posting.innerHTML);
                     const hashtag_values = JSON.stringify(
                         tagify.value.map(el => el.value)
                     );
-                    const posting_data_obj = JSON.stringify({
-                        game_name,
-                        user_id,
-                        text,
-                        hashtag_values,
-                    });
                     $.ajax({
                         url: "/posting/community/create",
                         type: "post",
@@ -161,7 +161,6 @@
                             text,
                             main_html,
                             hashtag_values,
-                            posting_data_obj,
                         },
                     });
                     location.href = `/community/${game_name}`;
