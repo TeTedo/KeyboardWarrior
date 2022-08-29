@@ -1,68 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-        <script
-            src="https://kit.fontawesome.com/3264d39625.js"
-            crossorigin="anonymous"
-        ></script>
-        <script
-            src="https://code.jquery.com/jquery-3.6.0.min.js"
-            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-            crossorigin="anonymous"
-        ></script>
-        <!-- Tagify 해시태그 -->
-        <script src="https://unpkg.com/@yaireo/tagify"></script>
-        <script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
-        <link
-            href="https://unpkg.com/@yaireo/tagify/dist/tagify.css"
-            rel="stylesheet"
-            type="text/css"
-        />
-    </head>
-    <link rel="stylesheet" href="style.css" />
-    <body>
-        <div id="mainPageTop">
-            <div id="mainLogo"><a href="/">이건 메인로고</a></div>
-            <ul id="mainPageNav">
-                <li><a href="/community_hub">COMMUNITY</a></li>
-                <li><a href="/minigame">MINI GAME</a></li>
-            </ul>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://kit.fontawesome.com/3264d39625.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <!-- Tagify 해시태그 -->
+    <script src="https://unpkg.com/@yaireo/tagify"></script>
+    <script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+    <link
+      href="https://unpkg.com/@yaireo/tagify/dist/tagify.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <link rel="stylesheet" href="style.css" />
+  <body>
+    <div id="mainPageTop">
+      <div id="mainLogo"><a href="/">이건 메인로고</a></div>
+      <ul id="mainPageNav">
+        <li><a href="/community_hub">COMMUNITY</a></li>
+        <li><a href="/minigame">MINI GAME</a></li>
+      </ul>
 
-            <ul id="mainPageLogo">
-                <li>
-                    <a href="https://github.com/TeTedo/KeyboardWarrior.git"
-                        ><img
-                            class="mainPageLogo_githubLogo"
-                            src="http://rajlab.org/icons/github_white.png"
-                            alt="github"
-                    /></a>
-                </li>
-                <li>
-                    <a
-                        href="https://www.notion.so/Keyboard-Warrior-888a144aa79f437e8f726910c42617a8"
-                        ><img
-                            class="mainPageLogo_notionLogo"
-                            src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png"
-                            alt="notion"
-                    /></a>
-                </li>
-            </ul>
-        </div>
+      <ul id="mainPageLogo">
+        <li>
+          <a href="https://github.com/TeTedo/KeyboardWarrior.git"
+            ><img
+              class="mainPageLogo_githubLogo"
+              src="http://rajlab.org/icons/github_white.png"
+              alt="github"
+          /></a>
+        </li>
+        <li>
+          <a
+            href="https://www.notion.so/Keyboard-Warrior-888a144aa79f437e8f726910c42617a8"
+            ><img
+              class="mainPageLogo_notionLogo"
+              src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png"
+              alt="notion"
+          /></a>
+        </li>
+      </ul>
+    </div>
 
-        <!-- <div id="mainPageSearch">
+    <!-- <div id="mainPageSearch">
       <div id="mainPageSearch_whole">
         <input type="text" id="mainPageSearch_searchBar" />
         <span>검색</span>
       </div>
     </div> -->
-        <!-- 여기까지 탑 공통 부분 -->
+    <!-- 여기까지 탑 공통 부분 -->
 
-        <!-- 사이드바 -->
-        <!-- <div id="sideBar">
+    <!-- 사이드바 -->
+    <!-- <div id="sideBar">
             <div id="sideBar_top">
                 <div id="sideBar_top_up">
                     <ul>
@@ -94,125 +94,117 @@
             </div>
         </div> -->
 
-        <!-- 포스팅 시작 -->
-        <div id="communityTitle">
-            <div id="communityTitle_text">
-                <span><%= data.title %></span>
-            </div>
-        </div>
-        <div id="contents">
-            <div id="contentsWrap">
-                <div id="mainContent">
-                    <div id="mainContentWrap">
-                        <div class="mainPost">
-                            <div id="mainPost_top">
-                                <div id="mainPost_top_profileimg">
-                                    <img
-                                        src="../images/profileimg.jpg"
-                                        alt=""
-                                    />
-                                </div>
-                                <ul id="mainPost_top_button">
-                                    <li>
-                                        <i class="fa-solid fa-heart"></i
-                                        ><i
-                                            class="fa-solid fa-heart-circle-check"
-                                        ></i>
-                                    </li>
-                                    <li>
-                                        <i class="fa-solid fa-share-nodes"></i>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div id="mainPost_middle">
-                                <div id="mainPost_middle_img">
-                                    <img src="../images/Example.jpeg" alt="" />
-                                </div>
-                                <div id="mainPost_middle_text"></div>
-                            </div>
-                            <ul id="mainPost_bottom">
-                                <li id="mainPost_bottom_recomment">
-                                    <span>아이디</span>
-                                    <span>여기서부터 댓글</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- 포스팅 1개끝 -->
-                        <% data.postData.forEach(post=>{%>
-
-                        <div
-                            class="mainPost"
-                            data-hash_tag="<%= post.hashtag_values%>"
-                            data-post_id="<%= post.id%>"
-                        >
-                            <div id="mainPost_top"></div>
-                            <div id="mainPost_middle"><%=post.text%></div>
-                            <div id="mainPost_bottom">
-                                <div id="hashTag">
-                                    <span>#</span>
-                                    <%post.hashtag_values.forEach(hashtag=>{%>
-                                    <span id="hashTag_Wrap">
-                                        <span class="hashTag_Box">
-                                            <%=hashtag%>
-                                        </span>
-                                    </span>
-                                    <%})%>
-                                </div>
-                            </div>
-                        </div>
-                        <%})%>
-                    </div>
+    <!-- 포스팅 시작 -->
+    <div id="communityTitle">
+      <div id="communityTitle_text">
+        <span><%= data.title %></span>
+      </div>
+    </div>
+    <div id="contents">
+      <div id="contentsWrap">
+        <div id="mainContent">
+          <div id="mainContentWrap">
+            <div class="mainPost">
+              <div id="mainPost_top">
+                <div id="mainPost_top_profileimg">
+                  <img src="../images/profileimg.jpg" alt="" />
                 </div>
-                <!-- 여기까지 메인포스팅 슬라이드 -->
-                <div id="scrollHelper">
-                    <div id="scrollHelper_contents">
-                        <div id="scrollHelper_icon">➡️</div>
-                        <div id="scrollHelper_text">SCROLL UP!</div>
-                    </div>
+                <ul id="mainPost_top_button">
+                  <li>
+                    <i class="fa-solid fa-heart"></i
+                    ><i class="fa-solid fa-heart-circle-check"></i>
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-share-nodes"></i>
+                  </li>
+                </ul>
+              </div>
+              <div id="mainPost_middle">
+                <div id="mainPost_middle_img">
+                  <img src="../images/Example.jpeg" alt="" />
                 </div>
+                <div id="mainPost_middle_text"></div>
+              </div>
+              <ul id="mainPost_bottom">
+                <li id="mainPost_bottom_recomment">
+                  <span>아이디</span>
+                  <span>여기서부터 댓글</span>
+                </li>
+              </ul>
             </div>
+            <!-- 포스팅 1개끝 -->
+            <% data.postData.forEach(post=>{%>
+
+            <div
+              class="mainPost"
+              data-hash_tag="<%= post.hashtag_values%>"
+              data-post_id="<%= post.id%>"
+            >
+              <div id="mainPost_top"></div>
+              <div id="mainPost_middle"><%=post.text%></div>
+              <div id="mainPost_bottom">
+                <div id="hashTag">
+                  <span>#</span>
+                  <%post.hashtag_values.forEach(hashtag=>{%>
+                  <span id="hashTag_Wrap">
+                    <span class="hashTag_Box"> <%=hashtag%> </span>
+                  </span>
+                  <%})%>
+                </div>
+              </div>
+            </div>
+            <%})%>
+          </div>
         </div>
-        <button id="writBtn">글쓰기</button>
-        <button id="btn" name="hash" style="right: 70%">클릭</button>
-        <label for="">해시태그</label>
-        <input type="text" name="hashTag" />
-        <input type="text" list="tag_list" />
-        <datalist id="tag_list">
-            <option value="잡담"></option>
-            <option value="거래"></option>
-            <option value="공략"></option>
-        </datalist>
-    </body>
-    <script src="community.js"></script>
-    <script>
-        // 글쓰기버튼
-        const gameName = "<%= data.gameName %>";
-        writBtn.onclick = () => {
-            location.href = `/posting/${gameName}`;
-        };
+        <!-- 여기까지 메인포스팅 슬라이드 -->
+        <div id="scrollHelper">
+          <div id="scrollHelper_contents">
+            <div id="scrollHelper_icon">➡️</div>
+            <div id="scrollHelper_text">SCROLL UP!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button id="writBtn">글쓰기</button>
+    <button id="btn" name="hash" style="right: 70%">클릭</button>
+    <label for="">해시태그</label>
+    <input type="text" name="hashTag" />
+    <input type="text" list="tag_list" />
+    <datalist id="tag_list">
+      <option value="잡담"></option>
+      <option value="거래"></option>
+      <option value="공략"></option>
+    </datalist>
+  </body>
+  <script src="community.js"></script>
+  <script>
+    // 글쓰기버튼
+    const gameName = "<%= data.gameName %>";
+    writBtn.onclick = () => {
+      location.href = `/posting/${gameName}`;
+    };
 
-        // 포스트 클릭시 상세페이지 이동
-        const mainPost = document.querySelectorAll(".mainPost");
-        // const mainPost = Array.from(document.querySelectorAll(".mainPost"));
-        mainPost.forEach(post => {
-            const postId = post.dataset.post_id;
-            post.querySelector("#mainPost_middle").onclick = () => {
-                location.href = `/post/${gameName}/${postId}`;
-            };
-        });
+    // 포스트 클릭시 상세페이지 이동
+    const mainPost = document.querySelectorAll(".mainPost");
+    // const mainPost = Array.from(document.querySelectorAll(".mainPost"));
+    mainPost.forEach((post) => {
+      const postId = post.dataset.post_id;
+      post.querySelector("#mainPost_middle").onclick = () => {
+        location.href = `/post/${gameName}/${postId}`;
+      };
+    });
 
-        // 해시태그 기능
+    // 해시태그 기능
 
-        const hashTags = document.querySelectorAll(".hashTag_Box");
-        const postData = "<%- data.postData[0].posting_data_obj %>";
+    const hashTags = document.querySelectorAll(".hashTag_Box");
 
-        hashTags.forEach(hashTag => {
-            hashTag.onclick = e => {
-                console.log("클릭됨");
-                console.log(postData);
-                const selectedOne = e.target.innerText;
-                console.log(selectedOne);
-                mainContentWrap.innerHTML = `
+    hashTags.forEach((hashTag) => {
+      hashTag.onclick = (e) => {
+        console.log("클릭됨");
+        console.log(postData);
+        const selectedOne = e.target.innerText;
+        console.log(selectedOne);
+        mainContentWrap.innerHTML = `
                 <% data.postData = data.postData.filter(post=>post.hashtag_values.includes('공략')) %>
                 <% data.postData.forEach(post=>{%>
                 <div
@@ -238,75 +230,75 @@
                 </div>
                 <%})%>
                 `;
-            };
-        });
+      };
+    });
 
-        // const hashTags = document.querySelectorAll(".hashTag");
-        // hashTags.forEach(hashTag => {
-        //     hashTag.onclick = e => {
-        //         const filteredPosts = mainPost.filter(post => {
-        //             const allHashTag = post.dataset.hash_tag;
-        //             if (allHashTag == undefined) {
-        //                 return;
-        //             } else {
-        //                 return allHashTag.includes(e.target.innerText);
-        //             }
-        //         });
-        //         // filteredPosts[0].style.display = "none";
-        //         console.log(filteredPosts);
-        //     };
-        // });
+    // const hashTags = document.querySelectorAll(".hashTag");
+    // hashTags.forEach(hashTag => {
+    //     hashTag.onclick = e => {
+    //         const filteredPosts = mainPost.filter(post => {
+    //             const allHashTag = post.dataset.hash_tag;
+    //             if (allHashTag == undefined) {
+    //                 return;
+    //             } else {
+    //                 return allHashTag.includes(e.target.innerText);
+    //             }
+    //         });
+    //         // filteredPosts[0].style.display = "none";
+    //         console.log(filteredPosts);
+    //     };
+    // });
 
-        // const hashTags = document.querySelectorAll(".hashTag");
-        // hashTags.forEach(hashTag => {
-        //     hashTag.onclick = e => {
-        //         const selectedOne = e.target.innerText;
-        //         mainPost.forEach(post => {
-        //             let allHashTag = post.dataset.hash_tag;
-        //             if (allHashTag === undefined) return;
-        //             else {
-        //                 if (allHashTag.includes(",")) {
-        //                     allHashTag = allHashTag.split(",");
-        //                 } else {
-        //                     allHashTag = [allHashTag];
-        //                 }
-        //                 console.log(allHashTag);
-        //                 console.log(selectedOne);
-        //                 console.log(allHashTag.includes(selectedOne));
-        //                 if (allHashTag.includes(selectedOne)) {
-        //                     post.style.display = "block";
-        //                 } else {
-        //                     post.style.display = "none";
-        //                 }
-        //             }
-        //         });
-        //     };
-        // });
+    // const hashTags = document.querySelectorAll(".hashTag");
+    // hashTags.forEach(hashTag => {
+    //     hashTag.onclick = e => {
+    //         const selectedOne = e.target.innerText;
+    //         mainPost.forEach(post => {
+    //             let allHashTag = post.dataset.hash_tag;
+    //             if (allHashTag === undefined) return;
+    //             else {
+    //                 if (allHashTag.includes(",")) {
+    //                     allHashTag = allHashTag.split(",");
+    //                 } else {
+    //                     allHashTag = [allHashTag];
+    //                 }
+    //                 console.log(allHashTag);
+    //                 console.log(selectedOne);
+    //                 console.log(allHashTag.includes(selectedOne));
+    //                 if (allHashTag.includes(selectedOne)) {
+    //                     post.style.display = "block";
+    //                 } else {
+    //                     post.style.display = "none";
+    //                 }
+    //             }
+    //         });
+    //     };
+    // });
 
-        // const hashTags = document.querySelectorAll(".hashTag");
-        // hashTags.forEach(hashTag => {
-        //     hashTag.onclick = e => {
-        //         let selectedOne = e.target.innerText;
-        //         mainPost.forEach(post => {
-        //             let allHashTag = post.dataset.hash_tag;
-        //             if (allHashTag === undefined) return;
-        //             else {
-        //                 console.log(selectedOne);
-        //                 console.log(allHashTag);
-        //                 console.log(allHashTag.includes(selectedOne));
-        //                 if (allHashTag.includes(selectedOne)) {
-        //                     post.style.display = "block";
-        //                 } else {
-        //                     post.style.display = "none";
-        //                 }
-        //             }
-        //         });
-        //     };
-        // });
+    // const hashTags = document.querySelectorAll(".hashTag");
+    // hashTags.forEach(hashTag => {
+    //     hashTag.onclick = e => {
+    //         let selectedOne = e.target.innerText;
+    //         mainPost.forEach(post => {
+    //             let allHashTag = post.dataset.hash_tag;
+    //             if (allHashTag === undefined) return;
+    //             else {
+    //                 console.log(selectedOne);
+    //                 console.log(allHashTag);
+    //                 console.log(allHashTag.includes(selectedOne));
+    //                 if (allHashTag.includes(selectedOne)) {
+    //                     post.style.display = "block";
+    //                 } else {
+    //                     post.style.display = "none";
+    //                 }
+    //             }
+    //         });
+    //     };
+    // });
 
-        console.log(mainPost[1].dataset.hash_tag.includes("잡담"));
-    </script>
-    <!-- <script>
+    console.log(mainPost[1].dataset.hash_tag.includes("잡담"));
+  </script>
+  <!-- <script>
         const arr = ["happy", "hi"];
         const jsonArr = JSON.stringify(arr);
         const stringArr = '["happy", "hi"]';
