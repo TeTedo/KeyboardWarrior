@@ -6,12 +6,6 @@ const ejs = require("ejs");
 const session = require("express-session");
 const FileStore = require("session-file-store")(session);
 
-// 서버열기
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`${PORT}번 포트에 서버열림`);
-});
-
 // DB연결 (db객체에서 sequelize만 빼옴)
 const { sequelize } = require("../model");
 sequelize
@@ -50,6 +44,7 @@ app.engine("html", ejs.renderFile);
 app.set("view engine", "html");
 
 // 바디퍼서
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // 사용할 정적폴더
@@ -76,6 +71,7 @@ const postsModify = require("../router/postsModify");
 app.use(
   login,
   logout,
+  postsModify,
   join,
   main,
   minigame,
@@ -84,6 +80,11 @@ app.use(
   community_hub,
   community,
   communityPosting,
-  communityPost,
-  postsModify
+  communityPost
 );
+
+// 서버열기
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`${PORT}번 포트에 서버열림`);
+});

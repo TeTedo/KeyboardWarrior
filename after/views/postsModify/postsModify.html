@@ -49,13 +49,18 @@
     </div>
     <!-- 포스팅구역 -->
     <!-- multer를 쓰려면  enctype="multipart/form-data" 써줘야함-->
-    <form id="posting" method="post" enctype="multipart/form-data">
+    <form
+      id="posting"
+      action="/modify"
+      method="post"
+      enctype="multipart/form-data"
+    >
       <div id="posting_left">
         <!-- 8.25 img 태그 추가 -->
         <img src="" alt="이미지를 선택하세요" />
       </div>
       <div id="posting_right">
-        <textarea name="text"></textarea>
+        <textarea name="textModify"></textarea>
         <!-- 8.25 div추가 -->
         <div id="posting_right_imagePreview">
           <div>
@@ -127,7 +132,7 @@
           </div>
           <div id="posting_right_bottom_postingBtn">
             <!-- 8.25 id값 없애고 등록에 div대신 a태그 추가 -->
-            <button href="#" type="submit">수정</button>
+            <button type="submit">수정</button>
             <a href="/">취소</a>
           </div>
         </div>
@@ -167,10 +172,6 @@
       // 왼쪽 이미지 넣기
       document.querySelector("#posting_left > img").src =
         "../../" + imageArr[0];
-      // post action값 넣어주기
-      document.querySelector(
-        "#posting"
-      ).action = `/posts/${postData.id}/modify`;
 
       // textarea 값 채우기
       document.querySelector("#posting_right > textarea").value = postData.text;

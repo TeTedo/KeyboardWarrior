@@ -19,16 +19,18 @@ router.get("/posts/:postId/modify", async (req, res) => {
   }
   //정상 수정 구간
   else {
-    console.log(postData);
     res.render("postsModify/postsModify", { postData });
   }
 });
 
-router.post("/posts/:postId/modify", (req, res) => {
+router.post("/modify", (req, res) => {
   console.log(req.body);
-  console.log(req);
-  res.end("끝");
-  // res.redirect("/");
+  const { textModify } = req.body;
+  console.log(textModify);
+  console.log(req.files);
+  console.log("hi");
+  // console.log(req);
+  res.redirect("/");
 });
 
 module.exports = router;
