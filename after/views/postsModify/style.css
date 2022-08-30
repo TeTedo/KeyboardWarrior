@@ -251,13 +251,12 @@ input[type="file"] {
 
 /* 삭제버튼 따로 만듬 */
 #deleteBtn {
-  background-color: black;
-  color: white;
+  color: red;
   font-size: 20px;
   display: inline;
   position: absolute;
-  left: 55%;
-  top: 71%;
+  left: 53%;
+  top: 70%;
   cursor: pointer;
 }
 /* middle size */

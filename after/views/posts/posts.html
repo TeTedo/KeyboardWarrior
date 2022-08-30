@@ -51,6 +51,9 @@
     <!-- 사이드바 -->
     <div id="sideBar">
       <div id="sideBar_top">
+        <div id="sideBar_top_sideBarBtn">
+          <i class="fa-solid fa-arrow-left-long"></i>
+        </div>
         <div id="sideBar_top_up">
           <ul>
             <li>팔로워</li>
@@ -79,6 +82,9 @@
         </div>
         <div id="sideBar_top_profileImg"></div>
       </div>
+    </div>
+    <div class="sideBarOpenBtn">
+      <i class="fa-solid fa-arrow-right-long"></i>
     </div>
     <!-- 사이드바 끝 -->
 
@@ -146,7 +152,7 @@
       postData = postData.replaceAll("&#34;", '"');
       postData = postData.replaceAll("\\", "/");
       postData = JSON.parse(postData);
-      const imageValue = [
+      const imageArr = [
         postData.image1,
         postData.image2,
         postData.image3,
@@ -154,12 +160,8 @@
         postData.image5,
       ];
       // image null인부분 삭제
-      imageValue.forEach((el, index) => {
-        if (!el) {
-          imageValue.splice(index, 5 - index);
-        }
-      });
-
+      imageArr = imageArr.filter((el) => el != null);
+      imageArr.forEach((el, index) => {});
       //닉네임 넣어주기
       document.querySelector("#posts_userInfo_left_nickName").innerHTML =
         postData.nick_name;
