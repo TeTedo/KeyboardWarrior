@@ -408,3 +408,9 @@
 .searched_character {
     background-color: yellow;
 }
+.mainPost .noSearchedPostCaution {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
