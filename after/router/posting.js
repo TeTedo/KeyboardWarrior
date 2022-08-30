@@ -61,8 +61,9 @@ router.post(
       image3: files[2][0].path,
       image4: files[3][0].path,
       image5: files[4][0].path,
+    }).then(() => {
+      res.redirect("/");
     });
-    res.redirect("/");
   }
 );
 
