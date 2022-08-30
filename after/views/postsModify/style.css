@@ -248,6 +248,18 @@ input[type="file"] {
   font-weight: bold;
   cursor: pointer;
 }
+
+/* 삭제버튼 따로 만듬 */
+#deleteBtn {
+  background-color: black;
+  color: white;
+  font-size: 20px;
+  display: inline;
+  position: absolute;
+  left: 55%;
+  top: 71%;
+  cursor: pointer;
+}
 /* middle size */
 @media screen and (max-width: 768px) {
 }

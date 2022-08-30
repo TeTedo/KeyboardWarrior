@@ -70,6 +70,7 @@ const communityPost = require("../router/communityPost");
 const postsModify = require("../router/postsModify");
 const joinModify = require("../router/joinModify");
 const joinModifyEntarance = require("../router/joinModifyEnterance");
+const postsDelete = require("../router/postsdelete");
 app.use(
   login,
   logout,
@@ -84,7 +85,8 @@ app.use(
   communityPost,
   postsModify,
   joinModify,
-  joinModifyEntarance
+  joinModifyEntarance,
+  postsDelete
 );
 
 // 서버열기

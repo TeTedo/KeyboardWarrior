@@ -174,6 +174,7 @@
       <input type="hidden" name="imgUpdate" />
       <input type="hidden" name="imgDelete" />
     </form>
+    <div id="deleteBtn">삭제</div>
     <!-- 포스팅구역 끝 -->
   </body>
   <script src="../../postsModify/postsModify.js"></script>
@@ -184,6 +185,22 @@
       postData = postData.replaceAll("&#34;", '"');
       postData = postData.replaceAll("\\", "/");
       postData = JSON.parse(postData);
+
+      //게시글 삭제
+      document.querySelector("#deleteBtn").onclick = function () {
+        if (confirm("정말로 삭제하시겠습니까?")) {
+          $.ajax({
+            url: `/posts/${postData.id}/delete`,
+            type: "post",
+            data: {
+              deletemotion: true,
+            },
+            success: function (data) {
+              location.href = data;
+            },
+          });
+        }
+      };
 
       // 이미지 값 넣어주기
       let imageArr = [
