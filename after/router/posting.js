@@ -7,8 +7,9 @@ const { MainPost } = require("../model");
 const getUserInfo = require("../functions/getUserInfo");
 const getMainPostInfo = require("../functions/getMainPostInfo");
 
-router.get("/posting", loginCheck, (req, res) => {
-  res.render("posting/posting");
+router.get("/posting", loginCheck, async (req, res) => {
+  const { user_id, nick_name } = await getUserInfo(req, res);
+  res.render("posting/posting", { user_id, nick_name });
 });
 
 fs.readdir("views/uploadsImg/main", (err) => {
