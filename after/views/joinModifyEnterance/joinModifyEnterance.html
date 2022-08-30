@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <link rel="stylesheet" href="../../joinModifyEnterance/style.css" />
+    <body>
+        <div id="mainPageTop">
+            <div id="mainLogo"><a href="/">이건 메인로고</a></div>
+            <ul id="mainPageNav">
+                <li><a href="">COMMUNITY</a></li>
+                <li><a href="">MINI GAME</a></li>
+            </ul>
+            <ul id="mainPageSign"></ul>
+            <ul id="mainPageLogo">
+                <li>
+                    <a href="https://github.com/TeTedo/KeyboardWarrior.git"
+                        ><img
+                            class="mainPageLogo_githubLogo"
+                            src="http://rajlab.org/icons/github_white.png"
+                            alt="github"
+                    /></a>
+                </li>
+                <li>
+                    <a
+                        href="https://www.notion.so/Keyboard-Warrior-888a144aa79f437e8f726910c42617a8"
+                        ><img
+                            class="mainPageLogo_notionLogo"
+                            src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png"
+                            alt="notion"
+                    /></a>
+                </li>
+            </ul>
+        </div>
+        <form action="/join/modify/enterance" method="post">
+            <div id="loginSector">
+                <div id="loginSector_input">
+                    <div id="loginSector_input_pw">
+                        <span>PW: </span>
+                        <input type="password" name="user_pw" />
+                    </div>
+                    <button id="loginSector_loginBtn">비밀번호 확인</button>
+                </div>
+            </div>
+        </form>
+    </body>
+    <script>
+        const isPwWrong = "<%=data%>";
+        if (isPwWrong == "true") {
+            alert("비밀번호를 확인하세요");
+        }
+    </script>
+</html>

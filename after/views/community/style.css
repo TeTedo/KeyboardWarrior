@@ -136,7 +136,7 @@
 }
 #sideBar_top_down_right {
     width: 100%;
-    height: 100%;
+    height: max-content;
 }
 #sideBar_top_down_right > div {
     width: 100%;
