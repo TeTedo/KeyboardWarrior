@@ -113,8 +113,7 @@
       <!-- 포스팅 보여주기 -->
       <div id="posting">
         <div id="posting_left">
-          <!-- 8.25 img 태그 추가 -->
-          이미지 슬라이드로? 휠로?
+          <div id="posting_left_img"></div>
         </div>
         <div id="posting_right">
           <textarea name="text" readonly>포스팅 내용</textarea>
@@ -152,7 +151,7 @@
       postData = postData.replaceAll("&#34;", '"');
       postData = postData.replaceAll("\\", "/");
       postData = JSON.parse(postData);
-      const imageArr = [
+      let imageArr = [
         postData.image1,
         postData.image2,
         postData.image3,
@@ -161,7 +160,53 @@
       ];
       // image null인부분 삭제
       imageArr = imageArr.filter((el) => el != null);
-      imageArr.forEach((el, index) => {});
+      // image 넣어주기
+      const posting_left = document.querySelector("#posting_left");
+      const posting_left_img = document.querySelector("#posting_left_img");
+      posting_left_img.style.left = 0;
+      imageArr.forEach((el, index) => {
+        const divTag = document.createElement("img");
+        divTag.src = "../" + el;
+        posting_left_img.appendChild(divTag);
+      });
+      // 마우스휠로 이동
+      function debounce(func, wait = 100, immediate = true) {
+        var timeout;
+        return function () {
+          var context = this,
+            args = arguments;
+          var later = function () {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+          };
+          var callNow = immediate && !timeout;
+          clearTimeout(timeout);
+          timeout = setTimeout(later, wait); //얘가 시간지나면 timeout을 0(false)로 만들어줌
+          if (callNow) func.apply(context, args);
+        };
+      }
+      //스크롤 움직이기
+      let scrollX = 0;
+      function moveWheel(e) {
+        const imglength = document.querySelectorAll(
+          "#posting_left_img > img"
+        ).length;
+        let maxScrollX = (imglength - 1) * 500;
+        if (e.deltaY > 0) {
+          scrollX += 500;
+          if (scrollX > maxScrollX) {
+            scrollX = maxScrollX;
+          }
+          posting_left.scrollTo({ left: scrollX, behavior: "smooth" });
+        } else {
+          scrollX -= 500;
+          if (scrollX < 0) {
+            scrollX = 0;
+          }
+          posting_left.scrollTo({ left: scrollX, behavior: "smooth" });
+        }
+      }
+      posting_left.addEventListener("wheel", debounce(moveWheel));
       //닉네임 넣어주기
       document.querySelector("#posts_userInfo_left_nickName").innerHTML =
         postData.nick_name;
