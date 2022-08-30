@@ -1,0 +1,127 @@
+:focus-visible {
+    outline: none;
+}
+
+ul {
+    list-style-type: none;
+}
+
+h5 {
+    margin: 0;
+    color: red;
+}
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: transparent;
+}
+
+#mainPageTop {
+    background-color: black;
+    width: 100%;
+    height: 150px;
+    display: flex;
+    color: white;
+    position: fixed;
+    justify-content: space-between;
+    z-index: 1;
+}
+
+#mainPageTop > div {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#mainPageTop > ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+#mainPageTop > ul > li {
+    list-style: none;
+}
+#mainPageNav {
+    width: 30%;
+    display: flex;
+}
+#mainPageSign {
+    width: 10%;
+}
+#mainPageSign > li > a,
+#mainPageNav > li > a,
+#mainLogo > a {
+    text-decoration: none;
+    color: white;
+}
+#mainPageLogo {
+    width: 5%;
+}
+.mainPageLogo_notionLogo,
+.mainPageLogo_githubLogo {
+    width: 30px;
+}
+
+/* 여기까지 공통 부분 */
+
+.space {
+    height: 150px;
+}
+
+.contents {
+    margin-top: 2%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 1000px;
+}
+.contents li {
+    margin-bottom: 20px;
+    height: 55px;
+}
+
+.join {
+    margin-bottom: 20px;
+}
+.join .mobile input {
+    width: 50px;
+}
+.join .mobile select {
+    width: 50px;
+    padding: 1px 2px 1px 2px;
+}
+
+.agree {
+    width: 582px;
+}
+.agree .box {
+    margin-bottom: 20px;
+    height: 135px;
+}
+.agree .box .tittle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.agree .box .textbox {
+    font-size: x-small;
+    border: 1px solid black;
+    height: 100px;
+    overflow: auto;
+}
+
+.btns {
+    margin-top: 20px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.btns button {
+    width: 60px;
+    height: 30px;
+}
+.btns button:first-child {
+    margin-right: 40px;
+}
