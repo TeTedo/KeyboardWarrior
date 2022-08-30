@@ -6,12 +6,6 @@ const ejs = require("ejs");
 const session = require("express-session");
 const FileStore = require("session-file-store")(session);
 
-// 서버열기
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`${PORT}번 포트에 서버열림`);
-});
-
 // DB연결 (db객체에서 sequelize만 빼옴)
 const { sequelize } = require("../model");
 sequelize
