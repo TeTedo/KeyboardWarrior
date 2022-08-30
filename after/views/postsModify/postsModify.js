@@ -49,29 +49,3 @@ document.querySelectorAll("input[type=file]").forEach((el, index) => {
     readURL(this, index, clickPreImg);
   };
 });
-
-//이미지 삭제 버튼
-document
-  .querySelectorAll("#posting_right_imagePreview span")
-  .forEach((el, index) => {
-    el.onclick = function () {
-      const targetTag = document.querySelectorAll(
-        "#posting_right_imagePreview img"
-      )[index];
-      // 왼쪽화면과 삭제하려는 사진이 같으면 왼쪽화면 비우기
-      if (document.querySelector("#posting_left > img").src == targetTag.src) {
-        document.querySelector("#posting_left > img").src = "";
-      }
-      // 미리보기 지우기
-      targetTag.src = "";
-      targetTag.style.display = "none";
-      // 이미지 올리는 버튼 다시 띄우기
-      document.querySelectorAll(".fa-image")[index].style.display = "block";
-      // input files value 비워주기
-      document.querySelectorAll("input[type=file]")[index].value = "";
-      // x버튼 삭제
-      document.querySelectorAll("#posting_right_imagePreview span")[
-        index
-      ].style.display = "none";
-    };
-  });

@@ -48,6 +48,39 @@
       </ul>
     </div>
     <!-- 포스팅구역 -->
+    <!-- 사이드바 -->
+    <div id="sideBar">
+      <div id="sideBar_top">
+        <div id="sideBar_top_up">
+          <ul>
+            <li>팔로워</li>
+            <li>123</li>
+          </ul>
+          <ul>
+            <li>팔로잉</li>
+            <li>111</li>
+          </ul>
+        </div>
+        <div id="sideBar_top_down">
+          <div id="sideBar_top_down_left">
+            <div>아이디</div>
+            <div>닉네임</div>
+          </div>
+          <div id="sideBar_top_down_right">
+            <div>
+              <a href=""><i class="fa-solid fa-bell"></i></a>
+              <a href=""><i class="fa-solid fa-comments"></i></a>
+              <a href="/logout"
+                ><i class="fa-solid fa-right-from-bracket"></i
+              ></a>
+            </div>
+            <a href="/posting">글쓰기</a>
+          </div>
+        </div>
+        <div id="sideBar_top_profileImg"></div>
+      </div>
+    </div>
+    <!-- 사이드바끝 -->
     <!-- multer를 쓰려면  enctype="multipart/form-data" 써줘야함-->
     <form
       id="posting"
@@ -141,4 +174,35 @@
     <!-- 포스팅구역 끝 -->
   </body>
   <script src="posting.js"></script>
+  <script>
+    function getData() {
+      // 값이 들어왔나 안들어왔나 체크용
+      const data = "<%= user_id%>";
+      //데이터 있을때
+      if (data) {
+        // 회원가입 로그인 숨기기
+        const mainPageSign = document.querySelector("#mainPageSign");
+        mainPageSign.style.display = "none";
+        //사이드바 띄우기
+        const sideBar = document.querySelector("#sideBar");
+        sideBar.style.display = "block";
+        //사이드바에 값넣기
+        const insertUser = document.querySelectorAll(
+          "#sideBar_top_down_left > div"
+        );
+
+        insertUser[0].innerHTML = "<%=user_id %>";
+        insertUser[1].innerHTML = "<%=nick_name %>";
+      }
+      //데이터 없을때
+      else {
+        // 회원가입 로그인 버튼 띄우기
+        mainPageSign.style.display = "flex";
+        //사이드바 숨기기
+        sideBar.style.display = "none";
+      }
+    }
+
+    getData();
+  </script>
 </html>
