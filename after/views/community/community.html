@@ -62,7 +62,8 @@
         <!-- 여기까지 탑 공통 부분 -->
 
         <!-- 사이드바 -->
-        <!-- <div id="sideBar">
+
+        <div id="sideBar">
             <div id="sideBar_top">
                 <div id="sideBar_top_up">
                     <ul>
@@ -87,12 +88,18 @@
                                 ><i class="fa-solid fa-right-from-bracket"></i
                             ></a>
                         </div>
-                        <a href="/posting">글쓰기</a>
+                        <a id="writBtn" href="#">글쓰기</a>
+                        <a
+                            id="closeBtn"
+                            href="#"
+                            onclick="{sideBar.style.display = 'none'}"
+                            >버튼</a
+                        >
                     </div>
                 </div>
                 <div id="sideBar_top_profileImg"></div>
             </div>
-        </div> -->
+        </div>
 
         <!-- 포스팅 시작 -->
         <div id="communityTitle">
@@ -175,19 +182,24 @@
                 </div>
             </div>
         </div>
-        <button id="writBtn">글쓰기</button>
         <button id="btn" name="hash" style="right: 70%">클릭</button>
-        <label for="">해시태그</label>
-        <input type="text" name="hashTag" />
-        <input type="text" list="tag_list" />
-        <datalist id="tag_list">
-            <option value="잡담"></option>
-            <option value="거래"></option>
-            <option value="공략"></option>
-        </datalist>
+        <span id="searchBar">
+            <label for="">검색</label>
+            <input type="text" list="tag_list" id="searchBar_input" />
+            <datalist id="tag_list">
+                <!-- <option value="잡담"></option>
+                <option value="거래"></option>
+                <option value="공략"></option> -->
+            </datalist>
+        </span>
     </body>
     <script src="community.js"></script>
     <script>
+        // 사이드바
+        btn.onclick = () => {
+            sideBar.style.display = "block";
+        };
+
         // 글쓰기버튼
         const gameName = "<%= data.gameName %>";
         writBtn.onclick = () => {
@@ -204,9 +216,8 @@
             };
         });
 
-        // 해시태그 필터 기능
+        // 데이터 가공 및 초기화
         let postData;
-        let isFiltered = "";
         function uploadData() {
             postData = "<%=JSON.stringify(data.postData)%>"
                 .replaceAll("&#34;", '"')
@@ -216,13 +227,92 @@
             postData = JSON.parse(postData);
         }
         uploadData();
+
+        // 검색창 드롭리스트에 해시태그 추가
+        let hashtagArr = [];
+        postData.forEach(data => {
+            data.hashtag_values.forEach(hashtag => {
+                if (!hashtagArr.includes(hashtag)) {
+                    hashtagArr.push(hashtag);
+                }
+            });
+        });
+        hashtagArr.forEach(hashtag => {
+            tag_list.innerHTML += `<option value=${hashtag}></option>`;
+        });
+
+        // 검색기능
+        searchBar_input.oninput = e => {
+            const searchedValue = e.target.value;
+            postData = postData.filter(post => {
+                const postText = post.text;
+                const joinedValue = post.hashtag_values.join(",");
+                return (
+                    post.text.includes(searchedValue) ||
+                    joinedValue.includes(searchedValue)
+                );
+            });
+            let postHtml = "";
+            postData.forEach(filteredPost => {
+                let hashtagHtml = "";
+                filteredPost.hashtag_values.forEach(hashtag => {
+                    // 해시태그내에 검색된글자 배경색 변경
+                    if (hashtag.includes(searchedValue)) {
+                        const reg = new RegExp(searchedValue, "i");
+                        hashtag = hashtag.replace(
+                            reg,
+                            `<span class="searched_character">${searchedValue}</span>`
+                        );
+                    }
+                    hashtagHtml += `
+                    <span id="hashTag_Wrap">
+                                <span class="hashTag_Box" onclick="update(this)">
+                                    ${hashtag}
+                                </span>
+                            </span>
+                    `;
+                });
+                // 텍스트내에 검색된글자 배경색 변경
+                if (filteredPost.text.includes(searchedValue)) {
+                    const reg = new RegExp(searchedValue, "i");
+                    filteredPost.text = filteredPost.text.replace(
+                        reg,
+                        `<span class="searched_character">${searchedValue}</span>`
+                    );
+                }
+                postHtml += `
+                <div
+                    class="mainPost"
+                    data-hash_tag=${filteredPost.hashtag_values}
+                    data-post_id=${filteredPost.id}
+                >
+                    <div id="mainPost_top"></div>
+                    <div id="mainPost_middle">${filteredPost.text}</div>
+                    <div id="mainPost_bottom">
+                        <div id="hashTag" >
+                            <span>#</span>
+                            ${hashtagHtml}
+                        </div>
+                    </div>
+                </div>
+                `;
+            });
+            mainContentWrap.innerHTML = postHtml;
+            uploadData();
+        };
+
+        // 해시태그 필터 기능
         function update(target) {
+            searchBar_input.value = "";
             let isFiltered = false;
             let selectedOne = target.innerText;
             if (!target.classList.contains("active")) {
-                postData = postData.filter(post =>
-                    post.hashtag_values.includes(selectedOne)
-                );
+                postData = postData.filter(post => {
+                    return post.hashtag_values.includes(selectedOne);
+                    // 밑에는 검색용으로 쓰기
+                    // const joinedValue = post.hashtag_values.join(",");
+                    // return joinedValue.includes(selectedOne);
+                });
                 isFiltered = true;
             }
             let postHtml = "";
@@ -269,69 +359,6 @@
             // postData를 서버에서 받아온 데이터로 다시 초기화
             uploadData();
         }
-
-        // const hashTags = document.querySelectorAll(".hashTag");
-        // hashTags.forEach(hashTag => {
-        //     hashTag.onclick = e => {
-        //         const filteredPosts = mainPost.filter(post => {
-        //             const allHashTag = post.dataset.hash_tag;
-        //             if (allHashTag == undefined) {
-        //                 return;
-        //             } else {
-        //                 return allHashTag.includes(e.target.innerText);
-        //             }
-        //         });
-        //         // filteredPosts[0].style.display = "none";
-        //         console.log(filteredPosts);
-        //     };
-        // });
-
-        // const hashTags = document.querySelectorAll(".hashTag");
-        // hashTags.forEach(hashTag => {
-        //     hashTag.onclick = e => {
-        //         const selectedOne = e.target.innerText;
-        //         mainPost.forEach(post => {
-        //             let allHashTag = post.dataset.hash_tag;
-        //             if (allHashTag === undefined) return;
-        //             else {
-        //                 if (allHashTag.includes(",")) {
-        //                     allHashTag = allHashTag.split(",");
-        //                 } else {
-        //                     allHashTag = [allHashTag];
-        //                 }
-        //                 console.log(allHashTag);
-        //                 console.log(selectedOne);
-        //                 console.log(allHashTag.includes(selectedOne));
-        //                 if (allHashTag.includes(selectedOne)) {
-        //                     post.style.display = "block";
-        //                 } else {
-        //                     post.style.display = "none";
-        //                 }
-        //             }
-        //         });
-        //     };
-        // });
-
-        // const hashTags = document.querySelectorAll(".hashTag");
-        // hashTags.forEach(hashTag => {
-        //     hashTag.onclick = e => {
-        //         let selectedOne = e.target.innerText;
-        //         mainPost.forEach(post => {
-        //             let allHashTag = post.dataset.hash_tag;
-        //             if (allHashTag === undefined) return;
-        //             else {
-        //                 console.log(selectedOne);
-        //                 console.log(allHashTag);
-        //                 console.log(allHashTag.includes(selectedOne));
-        //                 if (allHashTag.includes(selectedOne)) {
-        //                     post.style.display = "block";
-        //                 } else {
-        //                     post.style.display = "none";
-        //                 }
-        //             }
-        //         });
-        //     };
-        // });
     </script>
     <!-- <script>
         const arr = ["happy", "hi"];

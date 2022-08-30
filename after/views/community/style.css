@@ -71,6 +71,7 @@
 
 /* 사이드바 */
 #sideBar {
+    display: none;
     width: 400px;
     height: 750px;
     background-color: black;
@@ -82,7 +83,7 @@
 
 #sideBar #sideBar_top {
     width: 100%;
-    height: 200px;
+    height: max-content;
     background-color: beige;
     position: relative;
 }
@@ -397,9 +398,13 @@
     position: absolute;
     right: 50%;
 }
-#writBtn {
-    width: 200px;
-    height: 100px;
+
+/* 검색기능 */
+#searchBar {
     position: absolute;
-    right: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.searched_character {
+    background-color: yellow;
 }
