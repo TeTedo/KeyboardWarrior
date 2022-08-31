@@ -12,6 +12,10 @@ class MainComment extends Sequelize.Model {
           type: Sequelize.STRING(16),
           allowNull: false,
         },
+        nick_name: {
+          type: Sequelize.STRING(10),
+          allowNull: false,
+        },
         text: {
           type: Sequelize.TEXT,
           allowNull: false,
