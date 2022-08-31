@@ -237,6 +237,7 @@
     justify-content: center;
     align-items: center;
   } */
+
 /* 새로 추가부분 */
 #posting_right_bottom_postingBtn {
   width: 400px;
@@ -311,11 +312,60 @@
 /* 댓글창 */
 .posts_comment {
   width: 1000px;
-  height: 200px;
+  height: auto;
   display: none;
 }
 .toggle_show {
   display: block;
+}
+
+.posts_comment_recomment {
+  width: 100%;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.posts_comment_recomment img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+.posts_comment_recomment input {
+  width: 880px;
+  height: 20px;
+  font-size: 15px;
+  padding: 3px;
+}
+
+.posts_comment_recomment button {
+  margin-left: 5px;
+  width: 40px;
+  height: 30px;
+}
+.posts_comment_recommentZone {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin: 10px 10px;
+}
+.posts_comment_recommentZone img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+.posts_comment_recommentZone div {
+  width: 880px;
+  height: 30px;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+}
+.posts_comment_recommentZone span:first-child {
+  font-weight: bold;
+  font-size: 20px;
 }
 /* 댓글창끝 */
 /* middle size */
