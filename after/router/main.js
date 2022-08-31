@@ -9,7 +9,7 @@ router.get(
     if (req.session.login) {
       console.log("로그인 되어있는상태로 홈페이지 열었다.");
       //로그인한 유저 정보
-      const { user_id, nick_name } = await getUserInfo(req, res);
+      const { user_id, nick_name, profile_img } = await getUserInfo(req, res);
 
       //게시글 정보
       let writerInfos = {};
@@ -19,6 +19,7 @@ router.get(
         }).then((result) => {
           if (result) {
             for (let i = 0; i < result.length; i++) {
+              const writer_profile_img = result[i].profile_img;
               const write_id = result[i].id;
               const writer = result[i].user_id;
               const writer_nickName = result[i].nick_name;
@@ -33,6 +34,7 @@ router.get(
               const writer_created_at = result[i].createdAt;
 
               writerInfos[write_id] = {
+                writer_profile_img,
                 writer,
                 writer_nickName,
                 writer_like,
@@ -61,7 +63,7 @@ router.get(
 
       // 게시글들 정보 받아오기
       const postData = await getMainPostInfo();
-      res.render("main/main", { user_id, nick_name, postData });
+      res.render("main/main", { user_id, nick_name, profile_img, postData });
     } else {
       next();
     }
@@ -77,6 +79,7 @@ router.get(
       }).then((result) => {
         if (result) {
           for (let i = 0; i < result.length; i++) {
+            const writer_profile_img = result[i].profile_img;
             const write_id = result[i].id;
             const writer = result[i].user_id;
             const writer_nickName = result[i].nick_name;
@@ -91,6 +94,7 @@ router.get(
             const writer_created_at = result[i].createdAt;
 
             writerInfos[write_id] = {
+              writer_profile_img,
               writer,
               writer_nickName,
               writer_like,
@@ -119,7 +123,12 @@ router.get(
 
     const postData = await getMainPostInfo();
 
-    res.render("main/main", { user_id: "", nick_name: "", postData });
+    res.render("main/main", {
+      user_id: "",
+      nick_name: "",
+      profile_img: "",
+      postData,
+    });
   }
 );
 

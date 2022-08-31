@@ -74,11 +74,14 @@
         </div>
         <div id="sideBar_top_down">
           <div id="sideBar_top_down_left">
-            <div>아이디</div>
-            <div>닉네임</div>
+            <div><%= user_id%></div>
+            <div><%= nick_name%></div>
           </div>
           <div id="sideBar_top_down_right">
             <div>
+              <a href="/join/modify/enterance"
+                ><i class="fa-solid fa-gear"></i
+              ></a>
               <a href=""><i class="fa-solid fa-bell"></i></a>
               <a href=""><i class="fa-solid fa-comments"></i></a>
               <a href="/logout"
@@ -88,7 +91,9 @@
             <a href="/posting">글쓰기</a>
           </div>
         </div>
-        <div id="sideBar_top_profileImg"></div>
+        <div id="sideBar_top_profileImg">
+          <img src="<%= profile_img%>" alt="" />
+        </div>
       </div>
     </div>
     <div class="sideBarOpenBtn">
@@ -201,6 +206,7 @@
 
       postNumArr.forEach((el, index) => {
         const {
+          writer_profile_img,
           writer,
           writer_nickName,
           writer_like,
@@ -213,7 +219,7 @@
       <div class="mainPost" data-writer = "${writer}">
           <div id="mainPost_top">
             <div id="mainPost_top_profileimg">
-              <img src="" alt="프로필이미지공간" />
+              <img src="${writer_profile_img}" alt="프로필이미지공간" />
             </div>
             <div id="mainPost_top_userInfo">
               <div id="mainPost_top_userInfo_nickName">${writer_nickName}</div>

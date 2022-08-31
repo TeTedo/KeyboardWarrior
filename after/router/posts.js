@@ -9,7 +9,8 @@ router.get("/posts/:postId", async (req, res) => {
     where: { id: post_id },
     raw: true,
   });
-  const { user_id, nick_name } = await getUserInfo(req, res);
+  let { user_id, nick_name, profile_img } = await getUserInfo(req, res);
+  profile_img = "../" + profile_img;
   const commentData = await MainComment.findAll({
     where: { post_id },
     raw: true,
@@ -21,6 +22,7 @@ router.get("/posts/:postId", async (req, res) => {
   res.render("posts/posts", {
     user_id,
     nick_name,
+    profile_img,
     postData,
     commentData,
     likeData,

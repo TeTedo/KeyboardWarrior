@@ -8,7 +8,7 @@ router.post("/posts/:post_id/like", async (req, res) => {
   const { userLike, userId } = req.body;
   const { user_id, nick_name } = await getUserInfo(req, res);
   const { like } = await MainPost.findOne({
-    where: { user_id },
+    where: { id: post_id },
   });
   // 좋아요 누른아이디와 현재 로그인되어있는 아이디 비교
   if (userId == user_id) {
@@ -23,7 +23,7 @@ router.post("/posts/:post_id/like", async (req, res) => {
           like: like + 1,
         },
         {
-          where: { user_id },
+          where: { id: post_id },
         }
       );
     } else {
@@ -35,7 +35,7 @@ router.post("/posts/:post_id/like", async (req, res) => {
           like: like - 1,
         },
         {
-          where: { user_id },
+          where: { id: post_id },
         }
       );
     }

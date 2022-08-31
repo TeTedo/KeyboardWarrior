@@ -12,6 +12,10 @@ class MainPost extends Sequelize.Model {
           type: Sequelize.STRING(10),
           allowNull: false,
         },
+        profile_img: {
+          type: Sequelize.TEXT,
+          allowNull: false,
+        },
         like: {
           type: Sequelize.INTEGER,
           allowNull: true,

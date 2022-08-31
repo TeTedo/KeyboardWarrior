@@ -49,6 +49,7 @@
     </div>
     <!-- 공용nav -->
     <!-- 사이드바 -->
+
     <div id="sideBar">
       <div id="sideBar_top">
         <div id="sideBar_top_sideBarBtn">
@@ -71,6 +72,9 @@
           </div>
           <div id="sideBar_top_down_right">
             <div>
+              <a href="/join/modify/enterance"
+                ><i class="fa-solid fa-gear"></i
+              ></a>
               <a href=""><i class="fa-solid fa-bell"></i></a>
               <a href=""><i class="fa-solid fa-comments"></i></a>
               <a href="/logout"
@@ -80,12 +84,15 @@
             <a href="/posting">글쓰기</a>
           </div>
         </div>
-        <div id="sideBar_top_profileImg"></div>
+        <div id="sideBar_top_profileImg">
+          <img src="<%= profile_img%>" alt="" />
+        </div>
       </div>
     </div>
     <div class="sideBarOpenBtn">
       <i class="fa-solid fa-arrow-right-long"></i>
     </div>
+
     <!-- 사이드바 끝 -->
 
     <!-- 전체를 posts div로 감싸줌 -->
@@ -259,6 +266,12 @@
       postData = postData.replaceAll("&#34;", '"');
       postData = postData.replaceAll("\\", "/");
       postData = JSON.parse(postData);
+
+      // 프로필 이미지 불러오기
+      let posts_userInfo_left_profileImg = document.querySelector(
+        "#posts_userInfo_left_profileImg > img"
+      );
+      posts_userInfo_left_profileImg.src = "../" + postData.profile_img;
       let imageArr = [
         postData.image1,
         postData.image2,

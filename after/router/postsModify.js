@@ -14,15 +14,20 @@ router.get("/posts/:postId/modify", async (req, res) => {
     raw: true,
   });
 
-  const { user_id, nick_name } = await getUserInfo(req, res);
-
+  let { user_id, nick_name, profile_img } = await getUserInfo(req, res);
+  profile_img = "../../" + profile_img;
   // 로그인 유저와 글 작성자 비교
   if (postData.user_id !== user_id) {
     res.redirect("/");
   }
   //정상 수정 구간
   else {
-    res.render("postsModify/postsModify", { user_id, nick_name, postData });
+    res.render("postsModify/postsModify", {
+      user_id,
+      nick_name,
+      postData,
+      profile_img,
+    });
   }
 });
 
