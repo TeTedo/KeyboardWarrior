@@ -74,6 +74,7 @@ const postsDelete = require("../router/postsdelete");
 const postsComments = require("../router/postsComments");
 const postsCommentsDelete = require("../router/postsCommentsDelete");
 const postsLike = require("../router/postsLike");
+const follow = require("../router/follow");
 app.use(
   login,
   logout,
@@ -92,7 +93,8 @@ app.use(
   postsDelete,
   postsComments,
   postsCommentsDelete,
-  postsLike
+  postsLike,
+  follow
 );
 
 // 서버열기

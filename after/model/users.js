@@ -33,6 +33,14 @@ class User extends Sequelize.Model {
           type: Sequelize.TEXT,
           allowNull: false,
         },
+        follower: {
+          type: Sequelize.INTEGER,
+          allowNull: true,
+        },
+        following: {
+          type: Sequelize.INTEGER,
+          allowNull: true,
+        },
       },
       {
         sequelize: sequelize,

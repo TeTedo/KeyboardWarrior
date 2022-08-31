@@ -166,9 +166,68 @@
       // 댓글 집어넣기
       getCommentData();
       likeData();
+      follow();
     };
   </script>
   <script>
+    //팔로우 관련 함수
+    function follow() {
+      // 넘겨줄 데이터 : 팔로우하는사람, 당하는사람
+      let postData = "<%= JSON.stringify(postData) %>";
+      postData = postData.replaceAll("&#34;", '"');
+      postData = postData.replaceAll("\\", "/");
+      postData = JSON.parse(postData);
+
+      const follower = "<%= user_id%>";
+      const following = postData.user_id;
+
+      // 팔로우
+      const followBtn = document.querySelector(".fa-user-plus");
+      followBtn.onclick = function () {
+        $.ajax({
+          url: "/follow",
+          method: "post",
+          data: {
+            follow: true,
+            follower,
+            following,
+          },
+        });
+        //버튼표시
+        followBtn.style.display = "none";
+        unFollowBtn.style.display = "block";
+      };
+      // 언팔로우
+      const unFollowBtn = document.querySelector(".fa-user-check");
+      unFollowBtn.onclick = function () {
+        $.ajax({
+          url: "/follow",
+          method: "post",
+          data: {
+            follow: false,
+            follower,
+            following,
+          },
+        });
+        //버튼표시
+        followBtn.style.display = "block";
+        unFollowBtn.style.display = "none";
+      };
+
+      //이미 팔로잉 하고 있는 경우 체크되있는 버튼 표시
+      if (
+        follower == "<%= follower_id%>" &&
+        following == "<%= following_id%>"
+      ) {
+        followBtn.style.display = "none";
+        unFollowBtn.style.display = "block";
+      }
+      // 팔로잉 아니면 +버튼 표시
+      else {
+        followBtn.style.display = "block";
+        unFollowBtn.style.display = "none";
+      }
+    }
     //좋아요 관련 함수
     function likeData() {
       let postData = "<%= JSON.stringify(postData) %>";
