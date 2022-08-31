@@ -20,6 +20,10 @@ class MainComment extends Sequelize.Model {
           type: Sequelize.TEXT,
           allowNull: false,
         },
+        profile_img: {
+          type: Sequelize.TEXT,
+          allowNull: false,
+        },
       },
       {
         sequelize: sequelize,
@@ -31,6 +35,12 @@ class MainComment extends Sequelize.Model {
         collate: "utf8_general_ci",
       }
     );
+  }
+  static associate(db) {
+    db.MainComment.belongsTo(db.User, {
+      foreignKey: "user_id",
+      sourceKey: "user_id",
+    });
   }
 }
 

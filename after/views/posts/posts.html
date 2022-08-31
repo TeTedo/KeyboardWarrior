@@ -148,7 +148,7 @@
           action="/posts/<%=postData.id%>/comment"
           method="post"
         >
-          <img src="../images/ClubMstar.jpeg" alt="" /><input
+          <img src="<%= profile_img%>" alt="" /><input
             type="text"
             name="text"
             placeholder="댓글을 입력하세요"
@@ -219,7 +219,7 @@
         commentData.forEach((el) => {
           posts_comment.innerHTML += `
         <div class="posts_comment_recommentZone" data-id="${el.id}">
-          <img src="" alt="" />
+          <img src="../${el.profile_img}" alt="" />
           <div><span class="comment_nickName">${el.nick_name}</span>&nbsp;<span>${el.text}</span></div>
           <span><i class="fa-solid fa-trash-can"></i></span>
         </div>

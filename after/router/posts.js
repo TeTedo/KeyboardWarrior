@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { MainPost, MainComment, MainPostLike } = require("../model");
+const { MainPost, MainComment, MainPostLike, User } = require("../model");
 const getUserInfo = require("../functions/getUserInfo");
 
 router.get("/posts/:postId", async (req, res) => {
