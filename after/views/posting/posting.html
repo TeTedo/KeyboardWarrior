@@ -1,208 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <script
-      src="https://kit.fontawesome.com/3264d39625.js"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://code.jquery.com/jquery-3.6.0.min.js"
-      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-      crossorigin="anonymous"
-    ></script>
-  </head>
-  <link rel="stylesheet" href="style.css" />
-  <body>
-    <div id="mainPageTop">
-      <div id="mainLogo"><a href="/">이건 메인로고</a></div>
-      <ul id="mainPageNav">
-        <li><a href="">COMMUNITY</a></li>
-        <li><a href="">MINI GAME</a></li>
-      </ul>
-      <ul id="mainPageSign">
-        <li><a href="/join">회원가입</a></li>
-        <li><a href="/login">로그인</a></li>
-      </ul>
-      <ul id="mainPageLogo">
-        <li>
-          <a href="https://github.com/TeTedo/KeyboardWarrior.git"
-            ><img
-              class="mainPageLogo_githubLogo"
-              src="http://rajlab.org/icons/github_white.png"
-              alt="github"
-          /></a>
-        </li>
-        <li>
-          <a
-            href="https://www.notion.so/Keyboard-Warrior-888a144aa79f437e8f726910c42617a8"
-            ><img
-              class="mainPageLogo_notionLogo"
-              src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png"
-              alt="notion"
-          /></a>
-        </li>
-      </ul>
-    </div>
-    <!-- 포스팅구역 -->
-    <!-- 사이드바 -->
-    <div id="sideBar">
-      <div id="sideBar_top">
-        <div id="sideBar_top_up">
-          <ul>
-            <li>팔로워</li>
-            <li>123</li>
-          </ul>
-          <ul>
-            <li>팔로잉</li>
-            <li>111</li>
-          </ul>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script
+            src="https://kit.fontawesome.com/3264d39625.js"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"
+        ></script>
+    </head>
+    <link rel="stylesheet" href="style.css" />
+    <body>
+        <div id="mainPageTop">
+            <div id="mainLogo"><a href="/">이건 메인로고</a></div>
+            <ul id="mainPageNav">
+                <li><a href="">COMMUNITY</a></li>
+                <li><a href="">MINI GAME</a></li>
+            </ul>
+            <ul id="mainPageSign">
+                <li><a href="/join">회원가입</a></li>
+                <li><a href="/login">로그인</a></li>
+            </ul>
+            <ul id="mainPageLogo">
+                <li>
+                    <a href="https://github.com/TeTedo/KeyboardWarrior.git"
+                        ><img
+                            class="mainPageLogo_githubLogo"
+                            src="http://rajlab.org/icons/github_white.png"
+                            alt="github"
+                    /></a>
+                </li>
+                <li>
+                    <a
+                        href="https://www.notion.so/Keyboard-Warrior-888a144aa79f437e8f726910c42617a8"
+                        ><img
+                            class="mainPageLogo_notionLogo"
+                            src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png"
+                            alt="notion"
+                    /></a>
+                </li>
+            </ul>
         </div>
-        <div id="sideBar_top_down">
-          <div id="sideBar_top_down_left">
-            <div>아이디</div>
-            <div>닉네임</div>
-          </div>
-          <div id="sideBar_top_down_right">
-            <div>
-              <a href=""><i class="fa-solid fa-bell"></i></a>
-              <a href=""><i class="fa-solid fa-comments"></i></a>
-              <a href="/logout"
-                ><i class="fa-solid fa-right-from-bracket"></i
-              ></a>
+        <!-- 포스팅구역 -->
+        <!-- 사이드바 -->
+        <div id="sideBar">
+            <div id="sideBar_top">
+                <div id="sideBar_top_up">
+                    <ul>
+                        <li>팔로워</li>
+                        <li>123</li>
+                    </ul>
+                    <ul>
+                        <li>팔로잉</li>
+                        <li>111</li>
+                    </ul>
+                </div>
+                <div id="sideBar_top_down">
+                    <div id="sideBar_top_down_left">
+                        <div>아이디</div>
+                        <div>닉네임</div>
+                    </div>
+                    <div id="sideBar_top_down_right">
+                        <div>
+                            <a href=""><i class="fa-solid fa-bell"></i></a>
+                            <a href=""><i class="fa-solid fa-comments"></i></a>
+                            <a href="/logout"
+                                ><i class="fa-solid fa-right-from-bracket"></i
+                            ></a>
+                        </div>
+                        <a href="/posting">글쓰기</a>
+                    </div>
+                </div>
+                <div id="sideBar_top_profileImg"></div>
             </div>
-            <a href="/posting">글쓰기</a>
-          </div>
         </div>
-        <div id="sideBar_top_profileImg"></div>
-      </div>
-    </div>
-    <!-- 사이드바끝 -->
-    <!-- multer를 쓰려면  enctype="multipart/form-data" 써줘야함-->
-    <form
-      id="posting"
-      method="post"
-      action="/posting"
-      enctype="multipart/form-data"
-    >
-      <div id="posting_left">
-        <!-- 8.25 img 태그 추가 -->
-        <img src="" alt="이미지를 선택하세요" />
-      </div>
-      <div id="posting_right">
-        <textarea name="text"></textarea>
-        <!-- 8.25 div추가 -->
-        <div id="posting_right_imagePreview">
-          <div>
-            <img src="" />
-            <input
-              id="filesInput1"
-              type="file"
-              accept="image/*"
-              name="files1"
-              accept="image/*"
-            />
-            <label for="filesInput1"><i class="fa-solid fa-image"></i></label>
-            <span><i class="fa-solid fa-circle-xmark"></i></span>
-          </div>
-          <div>
-            <img src="" />
-            <input
-              id="filesInput2"
-              type="file"
-              accept="image/*"
-              name="files2"
-              accept="image/*"
-            />
-            <label for="filesInput2"><i class="fa-solid fa-image"></i></label>
-            <span><i class="fa-solid fa-circle-xmark"></i></span>
-          </div>
-          <div>
-            <img src="" />
-            <input
-              id="filesInput3"
-              type="file"
-              accept="image/*"
-              name="files3"
-              accept="image/*"
-            />
-            <label for="filesInput3"><i class="fa-solid fa-image"></i></label>
-            <span><i class="fa-solid fa-circle-xmark"></i></span>
-          </div>
-          <div>
-            <img src="" />
-            <input
-              id="filesInput4"
-              type="file"
-              accept="image/*"
-              name="files4"
-              accept="image/*"
-            />
-            <label for="filesInput4"><i class="fa-solid fa-image"></i></label>
-            <span><i class="fa-solid fa-circle-xmark"></i></span>
-          </div>
-          <div>
-            <img src="" />
-            <input
-              id="filesInput5"
-              type="file"
-              accept="image/*"
-              name="files5"
-              accept="image/*"
-            />
-            <label for="filesInput5"><i class="fa-solid fa-image"></i></label>
-            <span><i class="fa-solid fa-circle-xmark"></i></span>
-          </div>
-        </div>
-        <div id="posting_right_bottom">
-          <div id="posting_right_bottom_uploadImg">
-            <!-- 8.25 input 태그 추가 -->
-            <!-- 파일을 여러개 올릴거라 multiple 추가 입력 -->
-            <!-- accept : 이미지 형식만 받으려고 -->
-          </div>
-          <div id="posting_right_bottom_postingBtn">
-            <!-- 8.25 id값 없애고 등록에 div대신 a태그 추가 -->
-            <button href="#" type="submit">등록</button>
-            <a href="/">취소</a>
-          </div>
-        </div>
-      </div>
-    </form>
-    <!-- 포스팅구역 끝 -->
-  </body>
-  <script src="posting.js"></script>
-  <script>
-    function getData() {
-      // 값이 들어왔나 안들어왔나 체크용
-      const data = "<%= user_id%>";
-      //데이터 있을때
-      if (data) {
-        // 회원가입 로그인 숨기기
-        const mainPageSign = document.querySelector("#mainPageSign");
-        mainPageSign.style.display = "none";
-        //사이드바 띄우기
-        const sideBar = document.querySelector("#sideBar");
-        sideBar.style.display = "block";
-        //사이드바에 값넣기
-        const insertUser = document.querySelectorAll(
-          "#sideBar_top_down_left > div"
-        );
+        <!-- 사이드바끝 -->
+        <!-- multer를 쓰려면  enctype="multipart/form-data" 써줘야함-->
+        <form
+            id="posting"
+            method="post"
+            action="/posting"
+            enctype="multipart/form-data"
+        >
+            <div id="posting_left">
+                <!-- 8.25 img 태그 추가 -->
+                <img src="" alt="이미지를 선택하세요" />
+            </div>
+            <div id="posting_right">
+                <textarea name="text"></textarea>
+                <!-- 8.25 div추가 -->
+                <div id="posting_right_imagePreview">
+                    <div>
+                        <img src="" />
+                        <input
+                            id="filesInput1"
+                            type="file"
+                            accept="image/*"
+                            name="files1"
+                            accept="image/*"
+                        />
+                        <label for="filesInput1"
+                            ><i class="fa-solid fa-image"></i
+                        ></label>
+                        <span><i class="fa-solid fa-circle-xmark"></i></span>
+                    </div>
+                    <div>
+                        <img src="" />
+                        <input
+                            id="filesInput2"
+                            type="file"
+                            accept="image/*"
+                            name="files2"
+                            accept="image/*"
+                        />
+                        <label for="filesInput2"
+                            ><i class="fa-solid fa-image"></i
+                        ></label>
+                        <span><i class="fa-solid fa-circle-xmark"></i></span>
+                    </div>
+                    <div>
+                        <img src="" />
+                        <input
+                            id="filesInput3"
+                            type="file"
+                            accept="image/*"
+                            name="files3"
+                            accept="image/*"
+                        />
+                        <label for="filesInput3"
+                            ><i class="fa-solid fa-image"></i
+                        ></label>
+                        <span><i class="fa-solid fa-circle-xmark"></i></span>
+                    </div>
+                    <div>
+                        <img src="" />
+                        <input
+                            id="filesInput4"
+                            type="file"
+                            accept="image/*"
+                            name="files4"
+                            accept="image/*"
+                        />
+                        <label for="filesInput4"
+                            ><i class="fa-solid fa-image"></i
+                        ></label>
+                        <span><i class="fa-solid fa-circle-xmark"></i></span>
+                    </div>
+                    <div>
+                        <img src="" />
+                        <input
+                            id="filesInput5"
+                            type="file"
+                            accept="image/*"
+                            name="files5"
+                            accept="image/*"
+                        />
+                        <label for="filesInput5"
+                            ><i class="fa-solid fa-image"></i
+                        ></label>
+                        <span><i class="fa-solid fa-circle-xmark"></i></span>
+                    </div>
+                </div>
+                <div id="posting_right_bottom">
+                    <div id="posting_right_bottom_uploadImg">
+                        <!-- 8.25 input 태그 추가 -->
+                        <!-- 파일을 여러개 올릴거라 multiple 추가 입력 -->
+                        <!-- accept : 이미지 형식만 받으려고 -->
+                    </div>
+                    <div id="posting_right_bottom_postingBtn">
+                        <!-- 8.25 id값 없애고 등록에 div대신 a태그 추가 -->
+                        <button href="#" type="submit">등록</button>
+                        <a href="/">취소</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- 포스팅구역 끝 -->
+    </body>
+    <script src="posting.js"></script>
+    <script>
+        function getData() {
+            // 값이 들어왔나 안들어왔나 체크용
+            const data = "<%= user_id%>";
+            //데이터 있을때
+            if (data) {
+                // 회원가입 로그인 숨기기
+                const mainPageSign = document.querySelector("#mainPageSign");
+                mainPageSign.style.display = "none";
+                //사이드바 띄우기
+                const sideBar = document.querySelector("#sideBar");
+                sideBar.style.display = "block";
+                //사이드바에 값넣기
+                const insertUser = document.querySelectorAll(
+                    "#sideBar_top_down_left > div"
+                );
 
-        insertUser[0].innerHTML = "<%=user_id %>";
-        insertUser[1].innerHTML = "<%=nick_name %>";
-      }
-      //데이터 없을때
-      else {
-        // 회원가입 로그인 버튼 띄우기
-        mainPageSign.style.display = "flex";
-        //사이드바 숨기기
-        sideBar.style.display = "none";
-      }
-    }
+                insertUser[0].innerHTML = "<%=user_id %>";
+                insertUser[1].innerHTML = "<%=nick_name %>";
+            }
+            //데이터 없을때
+            else {
+                // 회원가입 로그인 버튼 띄우기
+                mainPageSign.style.display = "flex";
+                //사이드바 숨기기
+                sideBar.style.display = "none";
+            }
+        }
 
-    getData();
-  </script>
+        getData();
+    </script>
 </html>

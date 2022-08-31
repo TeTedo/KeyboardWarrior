@@ -26,7 +26,8 @@ router.get("/join", (req, res) => {
 router.post("/join", (req, res) => {
     const { user_id, user_pw, name, nick_name, mobile_number, email } =
         req.body;
-    const profile_img = "uploadsImg/profile/defaultImage.jpg";
+    const randNum = Math.floor(Math.random() * 7 + 1);
+    const profile_img = `uploadsImg/profile/defaultImage${randNum}.jpg`;
     // bcrypt 활용 비밀번호 암호화
     bcrypt.hash(user_pw, 10, (err, encrypted) => {
         User.create({

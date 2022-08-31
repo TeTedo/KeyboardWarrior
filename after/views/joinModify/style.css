@@ -77,13 +77,28 @@ h5 {
     transform: translateX(-50%);
     height: 1000px;
 }
-.contents li {
-    margin-bottom: 20px;
-    height: 55px;
-}
 
 .join {
     margin-bottom: 20px;
+}
+.join li {
+    margin-bottom: 20px;
+    height: 55px;
+}
+.join #profileImgWrap {
+    margin-bottom: 20px;
+    height: 130px;
+}
+.join #profileImgWrap #profileImg_itmes {
+    width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.join #profileImgWrap #profileImg_itmes > img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
 }
 .join .mobile input {
     width: 50px;
@@ -91,25 +106,6 @@ h5 {
 .join .mobile select {
     width: 50px;
     padding: 1px 2px 1px 2px;
-}
-
-.agree {
-    width: 582px;
-}
-.agree .box {
-    margin-bottom: 20px;
-    height: 135px;
-}
-.agree .box .tittle {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.agree .box .textbox {
-    font-size: x-small;
-    border: 1px solid black;
-    height: 100px;
-    overflow: auto;
 }
 
 .btns {

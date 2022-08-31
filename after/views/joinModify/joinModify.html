@@ -47,14 +47,12 @@
                     <li>
                         <h1><strong>회원정보 수정</strong></h1>
                     </li>
-                    <li>
+                    <li id="profileImgWrap">
                         <h4>Profile Image</h4>
-                        <input
-                            type="file"
-                            id="inputImg"
-                            disabled
-                            value="<%= data.userData.user_id %>"
-                        />
+                        <div id="profileImg_itmes">
+                            <img src="../<%= data.profile_img %>" />
+                            <input type="file" name="file" id="inputImg" />
+                        </div>
                     </li>
                     <li>
                         <h4>ID</h4>
@@ -132,6 +130,28 @@
             </div>
         </div>
     </body>
+    <script src="../joinModify/joinModify.js"></script>
+    <script>
+        let inputProfileImg = document.querySelector(
+            "#profileImg_itmes > input"
+        );
+        // console.log(inputProfileImg);
+
+        // 프로필이미지 첨부할때 미리보기 , 이미지 바꿨는지 확인, formData 만들기
+        const inputImg = document.querySelector("#inputImg");
+        const reader = new FileReader();
+        const formData = new FormData();
+        let isProfieImgChanged = false;
+        inputImg.onchange = e => {
+            reader.readAsDataURL(e.target.files[0]); // 이거 써줘야 reader.onload 실행됨
+            reader.onload = el => {
+                e.target.parentNode.querySelector("img").src = el.target.result;
+                // inputProfileImg = el.target.result;
+                formData.append("file", inputProfileImg.files[0]);
+                isProfieImgChanged = true;
+            };
+        };
+    </script>
     <script>
         // 유저 폰번호 앞자리 받아서 select default값 바꾸기 + 유저번호 받아서 미리 넣어놓기
         const options = document.querySelectorAll("option");
@@ -302,8 +322,19 @@
                 ) {
                     // if (true) {
                     alert("회원님의 정보가 성공적으로 수정되었습니다");
+                    // 프로필이미지 안바꿨으면 input 값 null 로 넘겨줌
+
+                    if (isProfieImgChanged) {
+                        $.ajax({
+                            url: "/join/update/image",
+                            type: "post",
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                        });
+                    }
                     $.ajax({
-                        url: "/join/update",
+                        url: "/join/update/data",
                         type: "post",
                         data: {
                             user_id: "<%=data.userData.user_id%>",
@@ -313,8 +344,8 @@
                             updateEmail: email,
                         },
                     });
-                    location.replace("/login");
                 }
+                location.replace("/login");
             };
 
             cancleBtn.onclick = function () {

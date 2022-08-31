@@ -4,10 +4,11 @@ const getUserInfo = require("../functions/getUserInfo");
 const { User } = require("../model");
 const loginCheck = require("../middleware/loginCheck");
 const bcrypt = require("bcrypt");
+const profileImgUpload = require("../middleware/profileImgUpload");
 
 // 정보수정 페이지
 router.get("/join/modify", loginCheck, async (req, res) => {
-    const { user_id } = await getUserInfo(req, res);
+    const { user_id, profile_img } = await getUserInfo(req, res);
     const dbIds = [];
     let dbNickNames = [];
     User.findAll({ raw: true }).then(allData => {
@@ -27,6 +28,7 @@ router.get("/join/modify", loginCheck, async (req, res) => {
         const data = {
             dbIds,
             dbNickNames,
+            profile_img,
             userData,
         };
         res.render("joinModify/joinModify", { data });
@@ -34,7 +36,25 @@ router.get("/join/modify", loginCheck, async (req, res) => {
 });
 
 // 수정된정보 업데이트
-router.post("/join/update", (req, res) => {
+router.post(
+    "/join/update/image",
+    loginCheck,
+    profileImgUpload.single("file"),
+    async (req, res) => {
+        const { user_id } = await getUserInfo(req, res);
+        const updateImgData = req.file;
+        // const updateImg = Object.values(req.file);
+        updateImgData.path = updateImgData.path.replace("views/", "");
+        updateImgData.path = updateImgData.path.replace("views\\", "");
+        User.update(
+            {
+                profile_img: updateImgData.path,
+            },
+            { where: { user_id: user_id } }
+        );
+    }
+);
+router.post("/join/update/data", (req, res) => {
     const {
         user_id,
         updatePw,
