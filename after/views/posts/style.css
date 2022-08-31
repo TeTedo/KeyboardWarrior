@@ -253,6 +253,27 @@
   display: flex;
   justify-content: space-around;
 }
+.fa-heart {
+  cursor: pointer;
+}
+@keyframes likeMotion {
+  0% {
+  }
+  50% {
+    text-shadow: 0 0 10px red, 0 0 20px red, 0 0 40px red, 0 0 80px red,
+      0 0 120px red, 0 0 240px red;
+  }
+  70% {
+    color: red;
+  }
+  100% {
+    color: red;
+  }
+}
+.liked {
+  animation: likeMotion 2s linear;
+  animation-fill-mode: forwards;
+}
 #posting_right_bottom_postingBtn div:nth-child(2) {
   cursor: pointer;
 }
@@ -312,7 +333,9 @@
 /* 댓글창 */
 .posts_comment {
   width: 1000px;
-  height: auto;
+  max-height: 200px;
+  overflow-y: scroll;
+  overflow-x: hidden;
   display: none;
 }
 .toggle_show {
@@ -321,7 +344,7 @@
 
 .posts_comment_recomment {
   width: 100%;
-  padding: 15px;
+  padding: 5px;
   display: flex;
   align-items: center;
 }
@@ -349,6 +372,7 @@
   display: flex;
   align-items: center;
   margin: 10px 10px;
+  position: relative;
 }
 .posts_comment_recommentZone img {
   width: 30px;
@@ -366,6 +390,12 @@
 .posts_comment_recommentZone span:first-child {
   font-weight: bold;
   font-size: 20px;
+}
+
+/* 댓글 삭제 */
+.fa-trash-can {
+  cursor: pointer;
+  display: none;
 }
 /* 댓글창끝 */
 /* middle size */

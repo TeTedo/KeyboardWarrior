@@ -12,8 +12,8 @@ class MainPostLike extends Sequelize.Model {
           type: Sequelize.STRING(16),
           allowNull: false,
         },
-        like: {
-          type: Sequelize.BOOLEAN,
+        nick_name: {
+          type: Sequelize.STRING(10),
           allowNull: false,
         },
       },

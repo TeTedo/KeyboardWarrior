@@ -66,8 +66,8 @@
         </div>
         <div id="sideBar_top_down">
           <div id="sideBar_top_down_left">
-            <div><%= userId%></div>
-            <div><%= userNickName%></div>
+            <div><%= user_id%></div>
+            <div><%= nick_name%></div>
           </div>
           <div id="sideBar_top_down_right">
             <div>
@@ -136,25 +136,18 @@
       <!-- 포스팅 보여주기 끝 -->
       <!-- 댓글창 -->
       <div class="posts_comment">
-        <form class="posts_comment_recomment" action="" method="post">
+        <form
+          class="posts_comment_recomment"
+          action="/posts/<%=postData.id%>/comment"
+          method="post"
+        >
           <img src="../images/ClubMstar.jpeg" alt="" /><input
             type="text"
-            name="comment"
+            name="text"
             placeholder="댓글을 입력하세요"
           />
           <button type="submit">입력</button>
         </form>
-        <div class="posts_comment_recommentZone">
-          <img src="../images/ClubMstar.jpeg" alt="" />
-          <div><span>닉네임</span>&nbsp;<span>댓글내용</span></div>
-        </div>
-        <div class="posts_comment_recommentZone">
-          <img src="../images/ClubMstar.jpeg" alt="" /><input
-            type="text"
-            name="comment"
-            placeholder="댓글을 입력하세요"
-          />
-        </div>
       </div>
       <!-- 댓글창 끝 -->
     </div>
@@ -162,11 +155,106 @@
   <script>
     //데이터 집어넣기
     window.onload = function () {
-      getData();
+      getPostData();
+      // 댓글 집어넣기
+      getCommentData();
+      likeData();
     };
   </script>
   <script>
-    function getData() {
+    //좋아요 관련 함수
+    function likeData() {
+      let postData = "<%= JSON.stringify(postData) %>";
+      postData = postData.replaceAll("&#34;", '"');
+      postData = postData.replaceAll("\\", "/");
+      postData = JSON.parse(postData);
+      const likeBtn = document.querySelector(".fa-heart");
+      const likeNum = document.querySelector(
+        "#posting_right_bottom_postingBtn > div span"
+      );
+
+      let likeData = "<%= JSON.stringify(likeData) %>";
+      likeData = likeData.replaceAll("&#34;", '"');
+      likeData = JSON.parse(likeData);
+      if (likeData) {
+        likeBtn.classList.add("liked");
+      }
+      likeBtn.onclick = function () {
+        const userId = "<%= user_id%>";
+        likeBtn.classList.toggle("liked");
+        if (likeBtn.classList.contains("liked")) {
+          likeNum.innerText = Number(likeNum.innerText) + 1;
+          $.ajax({
+            url: `/posts/${postData.id}/like`,
+            method: "post",
+            data: { userLike: true, userId },
+          });
+        } else {
+          likeNum.innerText = Number(likeNum.innerText) - 1;
+          $.ajax({
+            url: `/posts/${postData.id}/like`,
+            method: "post",
+            data: { userLike: false, userId },
+          });
+        }
+      };
+    }
+
+    //댓글 관련 함수
+    function getCommentData() {
+      //댓글 넣기
+      let commentData = "<%= JSON.stringify(commentData) %>";
+      commentData = commentData.replaceAll("&#34;", '"');
+      commentData = commentData.replaceAll("\\", "/");
+      commentData = JSON.parse(commentData);
+      let posts_comment = document.querySelector(".posts_comment");
+      new Promise((resolve, reject) => {
+        commentData.forEach((el) => {
+          posts_comment.innerHTML += `
+        <div class="posts_comment_recommentZone" data-id="${el.id}">
+          <img src="" alt="" />
+          <div><span class="comment_nickName">${el.nick_name}</span>&nbsp;<span>${el.text}</span></div>
+          <span><i class="fa-solid fa-trash-can"></i></span>
+        </div>
+        `;
+        });
+        resolve("끝");
+      });
+
+      //댓글 삭제
+      const user_nickName = "<%= nick_name%>";
+      const deleteComment = document.querySelectorAll(".fa-trash-can");
+      const deleteNickName = document.querySelectorAll(".comment_nickName");
+      deleteComment.forEach((el, index) => {
+        if (user_nickName == deleteNickName[index].innerText) {
+          deleteComment[index].style.display = "block";
+        }
+      });
+
+      //삭제 데이터 넘기기
+      deleteComment.forEach((el, index) => {
+        const commentId = document.querySelectorAll(
+          ".posts_comment_recommentZone"
+        )[index].dataset.id;
+        el.onclick = function () {
+          if (confirm("정말로 삭제하시겠습니까?")) {
+            $.ajax({
+              url: `/posts/${commentId}/comment/delete`,
+              type: "post",
+              data: {
+                commentId,
+              },
+              success: (data) => {
+                location.href = data;
+              },
+            });
+          }
+        };
+      });
+    }
+
+    // 데이터 받아오는 함수
+    function getPostData() {
       let postData = "<%= JSON.stringify(postData) %>";
       postData = postData.replaceAll("&#34;", '"');
       postData = postData.replaceAll("\\", "/");
