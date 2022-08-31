@@ -116,7 +116,7 @@
             <div id="contentsWrap">
                 <div id="mainContent">
                     <div id="mainContentWrap">
-                        <div class="mainPost">
+                        <!-- <div class="mainPost">
                             <div id="mainPost_top">
                                 <div id="mainPost_top_profileimg">
                                     <img
@@ -148,7 +148,7 @@
                                     <span>여기서부터 댓글</span>
                                 </li>
                             </ul>
-                        </div>
+                        </div> -->
                         <!-- 포스팅 1개끝 -->
                         <% data.postData.forEach(post=>{%>
 
@@ -157,7 +157,27 @@
                             data-hash_tag="<%= post.hashtag_values%>"
                             data-post_id="<%= post.id%>"
                         >
-                            <div id="mainPost_top"></div>
+                            <div id="mainPost_top">
+                                <div id="mainPost_top_profileimg">
+                                    <img src="../<%= data.imageForProfile %>" />
+                                    <div id="mainPost_top_userInfo">
+                                        <div
+                                            id="mainPost_top_userInfo_nickName"
+                                        >
+                                            <%=data.nickNameForProfile%>
+                                        </div>
+                                        <div id="mainPost_top_userInfo_follwer">
+                                            팔로워숫자
+                                        </div>
+                                    </div>
+                                    <div id="mainPost_top_follwingBtn">
+                                        <i class="fa-solid fa-user-plus"></i>
+                                        <i class="fa-solid fa-user-check"></i>
+                                        <i class="fa-solid fa-message"></i>
+                                        <a href="">수정하기</a>
+                                    </div>
+                                </div>
+                            </div>
                             <div id="mainPost_middle"><%=post.text%></div>
                             <div id="mainPost_bottom">
                                 <div id="hashTag">
@@ -172,6 +192,15 @@
                                         </span>
                                     </span>
                                     <%})%>
+                                </div>
+                                <div id="mainPost_bottom_createdTime">
+                                    생성된 시간
+                                </div>
+                                <div id="mainPost_bottom_sub">
+                                    <i class="fa-solid fa-heart"></i
+                                    >좋아요갯수넣기
+                                    <i class="fa-solid fa-comment"></i
+                                    >댓글갯수넣기
                                 </div>
                             </div>
                         </div>
@@ -315,12 +344,29 @@
                     class="mainPost"
                     data-post_id=${filteredPost.id}
                 >
-                    <div id="mainPost_top"></div>
+                    <div id="mainPost_top">
+                        <div id="mainPost_top_profileimg">
+                            <img src="../${filteredPost.profile_img}" alt="프로필이미지공간" />
+                        </div>      
+                        <div id="mainPost_top_userInfo">
+                            <div id="mainPost_top_userInfo_nickName">${filteredPost.nickName}</div>
+                            <div id="mainPost_top_userInfo_follwer">팔로워숫자</div>
+                        </div>
+                        <div id="mainPost_top_follwingBtn">
+                            <i class="fa-solid fa-user-plus"></i>
+                            <i class="fa-solid fa-user-check"></i>
+                            <i class="fa-solid fa-message"></i>
+                            <a href="수정하기페이지경로넣기">수정하기</a>
+                        </div>
+                    </div>
                     <div id="mainPost_middle">${filteredPost.text}</div>
                     <div id="mainPost_bottom">
-                        <div id="hashTag" >
-                            <span>#</span>
-                            ${hashtagHtml}
+                        <span>#</span>
+                        ${hashtagHtml}
+                        <div id="mainPost_bottom_createdTime">${filteredPost.createdAt}</div>
+                        <div id="mainPost_bottom_sub">
+                            <i class="fa-solid fa-heart"></i>좋아요갯수
+                            <i class="fa-solid fa-comment"></i>댓글갯수
                         </div>
                     </div>
                 </div>
@@ -383,6 +429,12 @@
 
             // postData를 서버에서 받아온 데이터로 다시 초기화
             uploadData();
+        }
+
+        // 수정하기 버튼 생성
+        const mainPostsArr = document.querySelectorAll(".mainPost");
+
+        if ("<%= data.nickNameForProfile %>") {
         }
     </script>
     <!-- <script>
