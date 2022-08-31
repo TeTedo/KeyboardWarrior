@@ -162,8 +162,10 @@
                             main_html,
                             hashtag_values,
                         },
+                        success: function (data) {
+                            location.href = data;
+                        },
                     });
-                    location.href = `/community/${game_name}`;
                     break;
                 case "cancle":
                     location.href = `/community/${game_name}`;

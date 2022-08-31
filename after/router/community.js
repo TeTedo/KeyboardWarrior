@@ -6,8 +6,11 @@ const { CommunityPost, User } = require("../model");
 
 router.get("/community/:game_name", loginCheck, async (req, res) => {
     const gameName = req.params.game_name;
-    const { user_id: userIdForProfile, nick_name: nickNameForProfile } =
-        await getUserInfo(req, res);
+    const {
+        user_id: userIdForProfile,
+        nick_name: nickNameForProfile,
+        profile_img: imageForProfile,
+    } = await getUserInfo(req, res);
     CommunityPost.findAll({
         where: { game_name: gameName },
         raw: true,
@@ -29,6 +32,7 @@ router.get("/community/:game_name", loginCheck, async (req, res) => {
                         postData,
                         userIdForProfile,
                         nickNameForProfile,
+                        imageForProfile,
                     };
                     res.render("community/community", { data });
                     break;
@@ -39,6 +43,7 @@ router.get("/community/:game_name", loginCheck, async (req, res) => {
                         postData,
                         userIdForProfile,
                         nickNameForProfile,
+                        imageForProfile,
                     };
                     res.render("community/community", { data });
                     break;
@@ -49,6 +54,7 @@ router.get("/community/:game_name", loginCheck, async (req, res) => {
                         postData,
                         userIdForProfile,
                         nickNameForProfile,
+                        imageForProfile,
                     };
                     res.render("community/community", { data });
                     break;
