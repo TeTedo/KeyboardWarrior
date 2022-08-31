@@ -123,7 +123,7 @@
           <div id="posting_left_img"></div>
         </div>
         <div id="posting_right">
-          <textarea name="text" readonly>포스팅 내용</textarea>
+          <div>포스팅 내용</div>
           <!-- 8.25 div추가 -->
           <div id="posting_right_imagePreview">
             여기다 해쉬태그 넣어? or 날짜?
@@ -332,7 +332,12 @@
       document.querySelector("#posts_userInfo_left_nickName").innerHTML =
         postData.nick_name;
       //포스팅 내용 넣어주기
-      document.querySelector("#posting_right > textarea").innerHTML =
+      //내용 가공하기
+      postData.text = postData.text
+        .replaceAll(/&amp;/g, "&")
+        .replaceAll(/&lt;/g, "<")
+        .replaceAll(/&gt;/g, ">");
+      document.querySelector("#posting_right > div:nth-child(1)").innerHTML =
         postData.text;
       // 좋아요 갯수
       document.querySelector(".fa-heart + span").innerText = postData.like;

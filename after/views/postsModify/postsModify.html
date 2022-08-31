@@ -107,7 +107,7 @@
         <img src="" alt="이미지를 선택하세요" />
       </div>
       <div id="posting_right">
-        <textarea name="text"></textarea>
+        <div id="text" contenteditable="true"></div>
         <!-- 8.25 div추가 -->
         <div id="posting_right_imagePreview">
           <div>
@@ -243,7 +243,26 @@
         "../../" + imageArr[0];
 
       // textarea 값 채우기
-      document.querySelector("#posting_right > textarea").value = postData.text;
+      postData.text = postData.text
+        .replaceAll(/&amp;/g, "&")
+        .replaceAll(/&lt;/g, "<")
+        .replaceAll(/&gt;/g, ">");
+
+      const textValue = document.querySelector("#text");
+      textValue.innerHTML = postData.text;
+
+      // textarea값 따로 보내줘서 수정해주기
+      document.querySelector(
+        "#posting_right_bottom_postingBtn > button"
+      ).onclick = function () {
+        textValue.innerText = textValue.innerText.replace(/(\n|\r\n)/g, "<br>");
+        textValue.innerText = textValue.innerText.replace(/\s/g, "&nbsp;");
+        $.ajax({
+          url: "/textarea/modify",
+          method: "post",
+          data: { textValue: textValue.innerText, post_id: postData.id },
+        });
+      };
 
       //--------------------------------------------------
       //이미지 삭제 버튼

@@ -199,9 +199,11 @@
     // // 이중 객체 값 뽑아오기
     function setPost(callback) {
       let postData = "<%= JSON.stringify(postData) %>";
+      console.log(postData);
       postData = postData.replaceAll("&#34;", '"');
       postData = postData.replaceAll("\\", "/");
       postData = JSON.parse(postData);
+
       const postNumArr = Object.keys(postData);
 
       postNumArr.forEach((el, index) => {
