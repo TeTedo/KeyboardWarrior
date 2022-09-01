@@ -9,16 +9,24 @@ router.get(
     if (req.session.login) {
       console.log("로그인 되어있는상태로 홈페이지 열었다.");
       //로그인한 유저 정보
-      const { user_id, nick_name, profile_img } = await getUserInfo(req, res);
+      const { user_id, nick_name, profile_img, follower, following } =
+        await getUserInfo(req, res);
 
       //게시글 정보
       let writerInfos = {};
       async function getData() {
         await MainPost.findAll({
           raw: true,
-        }).then((result) => {
+        }).then(async (result) => {
           if (result) {
             for (let i = 0; i < result.length; i++) {
+              const follow = await Follow.findOne({
+                where: {
+                  follower_id: user_id,
+                  following_id: result[i].user_id,
+                },
+                raw: true,
+              });
               const writer_profile_img = result[i].profile_img;
               const write_id = result[i].id;
               const writer = result[i].user_id;
@@ -34,6 +42,7 @@ router.get(
               const writer_created_at = result[i].createdAt;
 
               writerInfos[write_id] = {
+                follow,
                 writer_profile_img,
                 writer,
                 writer_nickName,
@@ -64,21 +73,14 @@ router.get(
       // 게시글들 정보 받아오기
       const postData = await getMainPostInfo();
 
-      await new Promise((resolve, reject) => {
-        const postNumArr = Object.keys(postData);
-        postNumArr.forEach(async (el, index) => {
-          postData[el].follower = await Follow.findAll({
-            where: { following_id: postData[el].writer },
-            raw: true,
-            attributes: ["follower_id"],
-          });
-
-          console.log(postData[el].follower);
-        });
-        resolve("끝");
+      res.render("main/main", {
+        user_id,
+        nick_name,
+        profile_img,
+        follower,
+        following,
+        postData,
       });
-      console.log(postData);
-      res.render("main/main", { user_id, nick_name, profile_img, postData });
     } else {
       next();
     }
@@ -94,6 +96,7 @@ router.get(
       }).then((result) => {
         if (result) {
           for (let i = 0; i < result.length; i++) {
+            const follow = null;
             const writer_profile_img = result[i].profile_img;
             const write_id = result[i].id;
             const writer = result[i].user_id;
@@ -109,6 +112,7 @@ router.get(
             const writer_created_at = result[i].createdAt;
 
             writerInfos[write_id] = {
+              follow,
               writer_profile_img,
               writer,
               writer_nickName,
@@ -142,6 +146,8 @@ router.get(
       user_id: "",
       nick_name: "",
       profile_img: "",
+      follower: "",
+      following: "",
       postData,
     });
   }

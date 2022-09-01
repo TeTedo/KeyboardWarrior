@@ -26,13 +26,14 @@ db.MainComment = MainComment;
 User.init(sequelize);
 CommunityPost.init(sequelize);
 MainPost.init(sequelize);
-Follow.init(sequelize);
 MainPostLike.init(sequelize);
 MainComment.init(sequelize);
+Follow.init(sequelize);
 
 User.associate(db);
 CommunityPost.associate(db);
 MainPost.associate(db);
 MainComment.associate(db);
+Follow.associate(db);
 
 module.exports = db;

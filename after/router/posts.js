@@ -3,6 +3,7 @@ const router = express.Router();
 const { MainPost, MainComment, MainPostLike, Follow } = require("../model");
 const getUserInfo = require("../functions/getUserInfo");
 const loginCheck = require("../middleware/loginCheck");
+
 router.get("/posts/:postId", loginCheck, async (req, res) => {
   const post_id = req.params.postId;
   const postData = await MainPost.findOne({
@@ -23,11 +24,17 @@ router.get("/posts/:postId", loginCheck, async (req, res) => {
   let following_id;
   let follower_id;
   await Follow.findOne({
-    where: { follower_id: user_id },
+    where: { follower_id: user_id, following_id: postData.user_id },
+    raw: true,
   })
     .then((result) => {
-      following_id = result.dataValues.following_id;
-      follower_id = result.dataValues.follower_id;
+      if (result) {
+        following_id = result.following_id;
+        follower_id = result.follower_id;
+      } else {
+        following_id = "";
+        follower_id = "";
+      }
     })
     .catch((err) => {
       following_id = "";

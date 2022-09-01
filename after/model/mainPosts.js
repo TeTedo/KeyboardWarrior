@@ -62,9 +62,13 @@ class MainPost extends Sequelize.Model {
     );
   }
   static associate(db) {
-    db.CommunityPost.belongsTo(db.User, {
+    db.MainPost.belongsTo(db.User, {
       foreignKey: "user_id",
       targetKey: "user_id",
+    });
+    db.MainPost.hasMany(db.Follow, {
+      foreignKey: "following_id",
+      sourceKey: "user_id",
     });
   }
 }

@@ -65,11 +65,11 @@
         <div id="sideBar_top_up">
           <ul>
             <li>팔로워</li>
-            <li>123</li>
+            <li><%= follower%></li>
           </ul>
           <ul>
             <li>팔로잉</li>
-            <li>111</li>
+            <li><%=following%></li>
           </ul>
         </div>
         <div id="sideBar_top_down">
@@ -207,6 +207,7 @@
 
       postNumArr.forEach((el, index) => {
         const {
+          follow,
           writer_profile_img,
           writer,
           writer_nickName,
@@ -217,7 +218,7 @@
           writer_created_at,
         } = postData[el];
         const posts = `
-      <div class="mainPost" data-writer = "${writer}">
+      <div class="mainPost" data-writer = "${writer}" data-follow = "${follow}">
           <div id="mainPost_top">
             <div id="mainPost_top_profileimg">
               <img src="${writer_profile_img}" alt="프로필이미지공간" />
@@ -252,7 +253,7 @@
         document.querySelector("#mainContentWrap").innerHTML += posts;
       });
 
-      callback(postData);
+      callback(postData, postNumArr);
     }
 
     // 게시글 세부 버튼 생성
@@ -288,10 +289,48 @@
             const followBtn = document.querySelectorAll(".fa-user-plus")[index];
             const unFollowBtn =
               document.querySelectorAll(".fa-user-check")[index];
+            //팔로우 되있는지 여부확인해서 버튼 띄우기
+            //되있을때 => main라우터에서 값이 넘어옴
+
+            if (el.dataset.follow != "null") {
+              followBtn.style.display = "none";
+              unFollowBtn.style.display = "block";
+            }
+            //안되있을때
+            else {
+              followBtn.style.display = "block";
+              unFollowBtn.style.display = "none";
+            }
             //팔로우
-            followBtn.onclick = function () {};
+            followBtn.onclick = function () {
+              $.ajax({
+                url: "/follow",
+                method: "post",
+                data: {
+                  follow: true,
+                  follower: user_id,
+                  following: el.dataset.writer,
+                },
+              });
+              followBtn.style.display = "none";
+              unFollowBtn.style.display = "block";
+            };
             // 언팔로우
-            unFollowBtn.onclick = function () {};
+            unFollowBtn.onclick = function () {
+              if (confirm("팔로우를 취소하시겠습니까?")) {
+                $.ajax({
+                  url: "/follow",
+                  method: "post",
+                  data: {
+                    follow: false,
+                    follower: user_id,
+                    following: el.dataset.writer,
+                  },
+                });
+                followBtn.style.display = "block";
+                unFollowBtn.style.display = "none";
+              }
+            };
           }
         }
       });
