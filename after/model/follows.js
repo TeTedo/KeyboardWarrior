@@ -7,7 +7,6 @@ class Follow extends Sequelize.Model {
         following_id: {
           type: Sequelize.STRING(16),
           allowNull: false,
-          primaryKey: true,
         },
         follower_id: {
           type: Sequelize.STRING(16),
@@ -24,6 +23,12 @@ class Follow extends Sequelize.Model {
         collate: "utf8_general_ci",
       }
     );
+  }
+  static associate(db) {
+    db.Follow.belongsTo(db.MainPost, {
+      foreignKey: "following_id",
+      targetKey: "user_id",
+    });
   }
 }
 

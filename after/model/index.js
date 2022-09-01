@@ -10,10 +10,10 @@ const CommunityPostLike = require("./communityPostLikes");
 const CommunityComment = require("./communityComments");
 
 const sequelize = new Sequelize(
-    config.dev.database,
-    config.dev.username,
-    config.dev.password,
-    config.dev
+  config.dev.database,
+  config.dev.username,
+  config.dev.password,
+  config.dev
 );
 
 const db = {};
@@ -29,9 +29,9 @@ db.CommunityComment = CommunityComment;
 
 User.init(sequelize);
 MainPost.init(sequelize);
-Follow.init(sequelize);
 MainPostLike.init(sequelize);
 MainComment.init(sequelize);
+Follow.init(sequelize);
 CommunityPost.init(sequelize);
 CommunityPostLike.init(sequelize);
 CommunityComment.init(sequelize);
@@ -40,6 +40,7 @@ User.associate(db);
 CommunityPost.associate(db);
 MainPost.associate(db);
 MainComment.associate(db);
+Follow.associate(db);
 CommunityComment.associate(db);
 
 module.exports = db;

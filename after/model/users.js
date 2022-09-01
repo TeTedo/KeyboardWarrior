@@ -58,11 +58,11 @@ class User extends Sequelize.Model {
       foreignKey: "user_id",
       sourceKey: "user_id",
     });
-    db.User.hasMany(db.MainPost, {
+    db.User.hasMany(db.MainComment, {
       foreignKey: "user_id",
       sourceKey: "user_id",
     });
-    db.User.hasMany(db.MainComment, {
+    db.User.hasMany(db.MainPost, {
       foreignKey: "user_id",
       sourceKey: "user_id",
     });

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const getUserInfo = require("../functions/getUserInfo");
-const { MainPost, Follow } = require("../model");
+const { MainPost, Follow, User, MainPostLike } = require("../model");
 router.get(
   "/",
   async (req, res, next) => {
@@ -9,16 +9,37 @@ router.get(
     if (req.session.login) {
       console.log("로그인 되어있는상태로 홈페이지 열었다.");
       //로그인한 유저 정보
-      const { user_id, nick_name, profile_img } = await getUserInfo(req, res);
+      const { user_id, nick_name, profile_img, follower, following } =
+        await getUserInfo(req, res);
 
       //게시글 정보
       let writerInfos = {};
       async function getData() {
         await MainPost.findAll({
           raw: true,
-        }).then((result) => {
+        }).then(async (result) => {
           if (result) {
             for (let i = 0; i < result.length; i++) {
+              //로그인한 유저가 해당 게시글을 좋아요했는지 구별하기 위해서
+              const userLike = await MainPostLike.findOne({
+                where: { post_id: result[i].id, user_id },
+              });
+              //로그인한 유저와 작성자를 follow 데이터베이스에 검색
+              const follow = await Follow.findOne({
+                where: {
+                  follower_id: user_id,
+                  following_id: result[i].user_id,
+                },
+                raw: true,
+              });
+              // 작성자의 팔로워 숫자 받아오기
+              const writer_follower = await User.findOne({
+                where: { user_id: result[i].user_id },
+                raw: true,
+              }).then((result) => {
+                return result.follower;
+              });
+
               const writer_profile_img = result[i].profile_img;
               const write_id = result[i].id;
               const writer = result[i].user_id;
@@ -34,6 +55,9 @@ router.get(
               const writer_created_at = result[i].createdAt;
 
               writerInfos[write_id] = {
+                userLike,
+                writer_follower,
+                follow,
                 writer_profile_img,
                 writer,
                 writer_nickName,
@@ -64,25 +88,19 @@ router.get(
       // 게시글들 정보 받아오기
       const postData = await getMainPostInfo();
 
-      await new Promise((resolve, reject) => {
-        const postNumArr = Object.keys(postData);
-        postNumArr.forEach(async (el, index) => {
-          postData[el].follower = await Follow.findAll({
-            where: { following_id: postData[el].writer },
-            raw: true,
-            attributes: ["follower_id"],
-          });
-
-          console.log(postData[el].follower);
-        });
-        resolve("끝");
+      res.render("main/main", {
+        user_id,
+        nick_name,
+        profile_img,
+        follower,
+        following,
+        postData,
       });
-      console.log(postData);
-      res.render("main/main", { user_id, nick_name, profile_img, postData });
     } else {
       next();
     }
   },
+  //로그인 안되있을때 실행시키는 곳
   async (req, res) => {
     // 게시글들 정보 받아오기
 
@@ -91,9 +109,17 @@ router.get(
     async function getData() {
       await MainPost.findAll({
         raw: true,
-      }).then((result) => {
+      }).then(async (result) => {
         if (result) {
           for (let i = 0; i < result.length; i++) {
+            const writer_follower = await User.findOne({
+              where: { user_id: result[i].user_id },
+              raw: true,
+            }).then((result) => {
+              return result.follower;
+            });
+            const userLike = null;
+            const follow = null;
             const writer_profile_img = result[i].profile_img;
             const write_id = result[i].id;
             const writer = result[i].user_id;
@@ -109,6 +135,9 @@ router.get(
             const writer_created_at = result[i].createdAt;
 
             writerInfos[write_id] = {
+              userLike,
+              writer_follower,
+              follow,
               writer_profile_img,
               writer,
               writer_nickName,
@@ -142,6 +171,8 @@ router.get(
       user_id: "",
       nick_name: "",
       profile_img: "",
+      follower: "",
+      following: "",
       postData,
     });
   }
