@@ -1,6 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const { MainPost, MainComment, MainPostLike, Follow } = require("../model");
+const {
+  MainPost,
+  MainComment,
+  MainPostLike,
+  Follow,
+  User,
+} = require("../model");
 const getUserInfo = require("../functions/getUserInfo");
 const loginCheck = require("../middleware/loginCheck");
 
@@ -21,6 +27,11 @@ router.get("/posts/:postId", loginCheck, async (req, res) => {
   });
 
   //팔로잉 팔로우 데이터 넘기기
+  // 작성자 팔로워, 팔로잉 수 넘기기
+  const { follower, following } = await User.findOne({
+    where: { user_id: postData.user_id },
+  });
+  // 들어온 유저가 작성자를 팔로우했는지 확인하기 위함
   let following_id;
   let follower_id;
   await Follow.findOne({
@@ -50,6 +61,8 @@ router.get("/posts/:postId", loginCheck, async (req, res) => {
     likeData,
     following_id,
     follower_id,
+    follower,
+    following,
   });
 });
 

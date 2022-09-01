@@ -323,10 +323,9 @@
 }
 #posts_userInfo_left_follow {
   margin-top: 10px;
-}
-#posts_userInfo_left_follow > span {
   font-weight: bold;
 }
+
 #posts_userInfo_right {
   width: 300px;
   display: flex;

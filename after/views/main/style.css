@@ -270,6 +270,9 @@
   font-size: 20px;
   font-weight: bold;
 }
+#mainPost_top_userInfo_follwer {
+  font-weight: bold;
+}
 #mainPost_top_follwingBtn {
   width: 70px;
   justify-content: space-between;
@@ -306,6 +309,27 @@
   justify-content: space-around;
   align-items: center;
   font-size: 20px;
+}
+@keyframes likeMotion {
+  0% {
+  }
+  50% {
+    text-shadow: 0 0 10px red, 0 0 20px red, 0 0 40px red, 0 0 80px red,
+      0 0 120px red, 0 0 240px red;
+  }
+  70% {
+    color: red;
+  }
+  100% {
+    color: red;
+  }
+}
+.fa-heart {
+  cursor: pointer;
+}
+.liked {
+  animation: likeMotion 2s linear;
+  animation-fill-mode: forwards;
 }
 /* middle size */
 @media screen and (max-width: 768px) {

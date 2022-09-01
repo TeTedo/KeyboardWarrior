@@ -106,7 +106,8 @@
           <div id="posts_userInfo_left_info">
             <div id="posts_userInfo_left_nickName">닉네임</div>
             <div id="posts_userInfo_left_follow">
-              팔로워 : <span>숫자</span> 팔로잉 : <span>숫자</span>
+              팔로워 : <span>숫자</span>&nbsp;&nbsp;&nbsp;&nbsp; 팔로잉 :
+              <span>숫자</span>
             </div>
           </div>
         </div>
@@ -173,6 +174,15 @@
   <script>
     //팔로우 관련 함수
     function follow() {
+      // 작성자 팔로워, 팔로잉 받아오기
+      //팔로워 채워넣기
+      document.querySelector(
+        "#posts_userInfo_left_follow > span:nth-child(1)"
+      ).innerText = "<%= follower%>";
+      //팔로잉 채워넣기
+      document.querySelector(
+        "#posts_userInfo_left_follow > span:nth-child(2)"
+      ).innerText = "<%= following%>";
       // 넘겨줄 데이터 : 팔로우하는사람, 당하는사람
       let postData = "<%= JSON.stringify(postData) %>";
       postData = postData.replaceAll("&#34;", '"');
@@ -248,6 +258,7 @@
         }
       }
     }
+
     //좋아요 관련 함수
     function likeData() {
       let postData = "<%= JSON.stringify(postData) %>";
