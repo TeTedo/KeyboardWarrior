@@ -13,7 +13,12 @@ router.get("/community/:game_name", loginCheck, async (req, res) => {
     } = await getUserInfo(req, res);
     CommunityPost.findAll({
         where: { game_name: gameName },
-        raw: true,
+        // raw: true,
+        include: [
+            {
+                model: User,
+            },
+        ],
     })
         .then(postData => {
             if (postData) {

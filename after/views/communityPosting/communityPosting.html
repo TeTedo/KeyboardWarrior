@@ -129,6 +129,7 @@
             switch (btnFor) {
                 case "submit":
                     // 글없으면 공백넣기
+                    // const text = JSON.stringify(textAreaDom.value || " ");
                     const text = textAreaDom.value || " ";
                     // 글 공백 방지
                     // if (!text) {
@@ -140,6 +141,7 @@
                     const hashtag_values = JSON.stringify(
                         tagify.value.map(el => el.value)
                     );
+
                     $.ajax({
                         url: "/posting/community/create",
                         type: "post",

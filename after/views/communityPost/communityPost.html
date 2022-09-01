@@ -6,6 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
     </head>
+    <script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="../../communityPost/style.css" />
     <body>
         <div id="mainPageTop">
@@ -40,4 +45,30 @@
         </div>
         <div id="posting"><%- postData.main_html %></div>
     </body>
+    <script>
+        const urlText = document.location.href;
+        const post_id = urlText[urlText.length - 1];
+        const body = document.querySelector("body");
+        let allData;
+
+        function script() {
+            console.log(allData);
+            body.innerHTML += `<div style="background-color: tomato">하이루염~~~~~~~~~~~~~~~</div>`;
+        }
+        async function uploadData(callback) {
+            await $.ajax({
+                url: "/poster/test/",
+                type: "get",
+                data: {
+                    post_id,
+                },
+                async: true,
+                success: function (data) {
+                    allData = data;
+                },
+            });
+            callback();
+        }
+        uploadData(script);
+    </script>
 </html>

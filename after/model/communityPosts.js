@@ -28,6 +28,10 @@ class CommunityPost extends Sequelize.Model {
                     type: Sequelize.STRING,
                     allowNull: true,
                 },
+                // profile_img: {
+                //     type: Sequelize.TEXT,
+                //     allowNull: true,
+                // },
             },
             {
                 sequelize: sequelize,

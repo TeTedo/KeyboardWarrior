@@ -65,6 +65,9 @@
 
         <div id="sideBar">
             <div id="sideBar_top">
+                <div id="sideBar_top_sideBarBtn">
+                    <i class="fa-solid fa-arrow-left-long"></i>
+                </div>
                 <div id="sideBar_top_up">
                     <ul>
                         <li>팔로워</li>
@@ -82,6 +85,9 @@
                     </div>
                     <div id="sideBar_top_down_right">
                         <div>
+                            <a href="/join/modify/enterance"
+                                ><i class="fa-solid fa-gear"></i
+                            ></a>
                             <a href=""><i class="fa-solid fa-bell"></i></a>
                             <a href=""><i class="fa-solid fa-comments"></i></a>
                             <a href="/logout"
@@ -89,21 +95,15 @@
                             ></a>
                         </div>
                         <a id="writBtn" href="#">글쓰기</a>
-                        <a
-                            id="closeBtn"
-                            href="#"
-                            onclick="{sideBar.style.display = 'none'}"
-                            >버튼</a
-                        >
-                        <a id="modify" href="/join/modify/enterance"
-                            >회원정보수정</a
-                        >
                     </div>
                 </div>
                 <div id="sideBar_top_profileImg">
                     <img src="../<%= data.imageForProfile %>" alt="" />
                 </div>
             </div>
+        </div>
+        <div class="sideBarOpenBtn">
+            <i class="fa-solid fa-arrow-right-long"></i>
         </div>
 
         <!-- 포스팅 시작 -->
@@ -116,40 +116,6 @@
             <div id="contentsWrap">
                 <div id="mainContent">
                     <div id="mainContentWrap">
-                        <!-- <div class="mainPost">
-                            <div id="mainPost_top">
-                                <div id="mainPost_top_profileimg">
-                                    <img
-                                        src="../images/profileimg.jpg"
-                                        alt=""
-                                    />
-                                </div>
-                                <ul id="mainPost_top_button">
-                                    <li>
-                                        <i class="fa-solid fa-heart"></i
-                                        ><i
-                                            class="fa-solid fa-heart-circle-check"
-                                        ></i>
-                                    </li>
-                                    <li>
-                                        <i class="fa-solid fa-share-nodes"></i>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div id="mainPost_middle">
-                                <div id="mainPost_middle_img">
-                                    <img src="../images/Example.jpeg" alt="" />
-                                </div>
-                                <div id="mainPost_middle_text"></div>
-                            </div>
-                            <ul id="mainPost_bottom">
-                                <li id="mainPost_bottom_recomment">
-                                    <span>아이디</span>
-                                    <span>여기서부터 댓글</span>
-                                </li>
-                            </ul>
-                        </div> -->
-                        <!-- 포스팅 1개끝 -->
                         <% data.postData.forEach(post=>{%>
 
                         <div
@@ -159,23 +125,23 @@
                         >
                             <div id="mainPost_top">
                                 <div id="mainPost_top_profileimg">
-                                    <img src="../<%= data.imageForProfile %>" />
-                                    <div id="mainPost_top_userInfo">
-                                        <div
-                                            id="mainPost_top_userInfo_nickName"
-                                        >
-                                            <%=data.nickNameForProfile%>
-                                        </div>
-                                        <div id="mainPost_top_userInfo_follwer">
-                                            팔로워숫자
-                                        </div>
+                                    <img
+                                        src="../<%= post.User.profile_img %>"
+                                    />
+                                </div>
+                                <div id="mainPost_top_userInfo">
+                                    <div id="mainPost_top_userInfo_nickName">
+                                        <%= post.nick_name %>
                                     </div>
-                                    <div id="mainPost_top_follwingBtn">
-                                        <i class="fa-solid fa-user-plus"></i>
-                                        <i class="fa-solid fa-user-check"></i>
-                                        <i class="fa-solid fa-message"></i>
-                                        <a href="">수정하기</a>
+                                    <div id="mainPost_top_userInfo_follwer">
+                                        팔로워숫자
                                     </div>
+                                </div>
+                                <div id="mainPost_top_follwingBtn">
+                                    <i class="fa-solid fa-user-plus"></i>
+                                    <i class="fa-solid fa-user-check"></i>
+                                    <i class="fa-solid fa-message"></i>
+                                    <a href="">수정하기</a>
                                 </div>
                             </div>
                             <div id="mainPost_middle"><%=post.text%></div>
@@ -194,13 +160,11 @@
                                     <%})%>
                                 </div>
                                 <div id="mainPost_bottom_createdTime">
-                                    생성된 시간
+                                    <%=post.createdAt%>
                                 </div>
                                 <div id="mainPost_bottom_sub">
-                                    <i class="fa-solid fa-heart"></i
-                                    >좋아요갯수넣기
-                                    <i class="fa-solid fa-comment"></i
-                                    >댓글갯수넣기
+                                    <i class="fa-solid fa-heart"></i>좋아요갯수
+                                    <i class="fa-solid fa-comment"></i>댓글갯수
                                 </div>
                             </div>
                         </div>
@@ -216,7 +180,6 @@
                 </div>
             </div>
         </div>
-        <button id="btn" name="hash" style="right: 70%">클릭</button>
         <span id="searchBar">
             <label for="">검색</label>
             <input type="text" list="tag_list" id="searchBar_input" />
@@ -229,11 +192,6 @@
     </body>
     <script src="community.js"></script>
     <script>
-        // 사이드바
-        btn.onclick = () => {
-            sideBar.style.display = "block";
-        };
-
         // 글쓰기버튼
         const gameName = "<%= data.gameName %>";
         writBtn.onclick = () => {
@@ -275,167 +233,29 @@
             tag_list.innerHTML += `<option value=${hashtag}></option>`;
         });
 
-        // 검색기능
-        function Debounce(func, wait = 20, immediate = true) {
-            var timeout;
-            return function () {
-                var context = this,
-                    args = arguments;
-                var later = function () {
-                    timeout = null;
-                    if (!immediate) func.apply(context, args);
-                };
-                var callNow = immediate && !timeout;
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait); //얘가 시간지나면 timeout을 0(false)로 만들어줌
-                if (callNow) func.apply(context, args);
-            };
-        }
-        searchBar_input.addEventListener("input", Debounce(search, 100, false));
-        function search(e) {
-            const searchedValue = e.target.value;
-            postData = postData.filter(post => {
-                const postText = post.text;
-                const joinedValue = post.hashtag_values.join(",");
-                return (
-                    post.text.includes(searchedValue) ||
-                    joinedValue.includes(searchedValue)
-                );
-            });
-            if (postData.length == 0) {
-                mainContentWrap.innerHTML = `
-                <div class="mainPost">
-                    <div class="noSearchedPostCaution"> 검색결과 없음 </div>
-                </div>
-                `;
-                uploadData();
-                return;
-            }
-            let postHtml = "";
-            postData.forEach(filteredPost => {
-                let hashtagHtml = "";
-                filteredPost.hashtag_values.forEach(hashtag => {
-                    // 해시태그내에 검색된글자 배경색 변경
-                    if (hashtag.includes(searchedValue)) {
-                        const reg = new RegExp(searchedValue, "i");
-                        hashtag = hashtag.replace(
-                            reg,
-                            `<span class="searched_character">${searchedValue}</span>`
-                        );
-                    }
-                    hashtagHtml += `
-                    <span id="hashTag_Wrap">
-                                <span class="hashTag_Box" onclick="update(this)">
-                                    ${hashtag}
-                                </span>
-                            </span>
-                    `;
-                });
-                // 텍스트내에 검색된글자 배경색 변경
-                if (filteredPost.text.includes(searchedValue)) {
-                    const reg = new RegExp(searchedValue, "i");
-                    filteredPost.text = filteredPost.text.replace(
-                        reg,
-                        `<span class="searched_character">${searchedValue}</span>`
-                    );
-                }
-                postHtml += `
-                <div
-                    class="mainPost"
-                    data-post_id=${filteredPost.id}
-                >
-                    <div id="mainPost_top">
-                        <div id="mainPost_top_profileimg">
-                            <img src="../${filteredPost.profile_img}" alt="프로필이미지공간" />
-                        </div>      
-                        <div id="mainPost_top_userInfo">
-                            <div id="mainPost_top_userInfo_nickName">${filteredPost.nickName}</div>
-                            <div id="mainPost_top_userInfo_follwer">팔로워숫자</div>
-                        </div>
-                        <div id="mainPost_top_follwingBtn">
-                            <i class="fa-solid fa-user-plus"></i>
-                            <i class="fa-solid fa-user-check"></i>
-                            <i class="fa-solid fa-message"></i>
-                            <a href="수정하기페이지경로넣기">수정하기</a>
-                        </div>
-                    </div>
-                    <div id="mainPost_middle">${filteredPost.text}</div>
-                    <div id="mainPost_bottom">
-                        <span>#</span>
-                        ${hashtagHtml}
-                        <div id="mainPost_bottom_createdTime">${filteredPost.createdAt}</div>
-                        <div id="mainPost_bottom_sub">
-                            <i class="fa-solid fa-heart"></i>좋아요갯수
-                            <i class="fa-solid fa-comment"></i>댓글갯수
-                        </div>
-                    </div>
-                </div>
-                `;
-            });
-            mainContentWrap.innerHTML = postHtml;
-            uploadData();
-        }
-
-        // 해시태그 클릭시 필터 기능
-        function update(target) {
-            searchBar_input.value = "";
-            let isFiltered = false;
-            let selectedOne = target.innerText;
-            if (!target.classList.contains("active")) {
-                postData = postData.filter(post => {
-                    return post.hashtag_values.includes(selectedOne);
-                });
-                isFiltered = true;
-            }
-            let postHtml = "";
-            postData.forEach(filteredPost => {
-                let hashtagHtml = "";
-                filteredPost.hashtag_values.forEach(hashtag => {
-                    hashtagHtml += `
-                    <span id="hashTag_Wrap">
-                                <span class="hashTag_Box" onclick="update(this)">
-                                    ${hashtag}
-                                </span>
-                            </span>
-                    `;
-                });
-                postHtml += `
-                <div
-                    class="mainPost"
-                    data-post_id=${filteredPost.id}
-                >
-                    <div id="mainPost_top"></div>
-                    <div id="mainPost_middle">${filteredPost.text}</div>
-                    <div id="mainPost_bottom">
-                        <div id="hashTag" >
-                            <span>#</span>
-                            ${hashtagHtml}
-                        </div>
-                    </div>
-                </div>
-                `;
-            });
-            mainContentWrap.innerHTML = postHtml;
-            const hashTagBox = document.querySelectorAll(".hashTag_Box");
-            // 선택된 해시태그 css효과
-            if (isFiltered) {
-                hashTagBox.forEach(box => {
-                    if (box.innerText == selectedOne) {
-                        box.classList.add("active");
-                        box.parentNode.classList.add("active");
-                    }
-                });
-            }
-
-            // postData를 서버에서 받아온 데이터로 다시 초기화
-            uploadData();
-        }
-
         // 수정하기 버튼 생성
-        const mainPostsArr = document.querySelectorAll(".mainPost");
-
-        if ("<%= data.nickNameForProfile %>") {
+        function makeModifyBtn() {
+            const mainPostsArr = document.querySelectorAll(".mainPost");
+            mainPostsArr.forEach(post => {
+                if (
+                    "<%= data.nickNameForProfile %>" ==
+                    post.querySelector("#mainPost_top_userInfo_nickName")
+                        .innerText
+                ) {
+                    post.querySelectorAll(
+                        "#mainPost_top_follwingBtn > i"
+                    ).forEach(elem => {
+                        elem.style.display = "none";
+                    });
+                    post.querySelector(
+                        "#mainPost_top_follwingBtn > a"
+                    ).style.display = "flex";
+                }
+            });
         }
+        window.onload = () => {
+            makeModifyBtn();
+        };
     </script>
     <!-- <script>
         const arr = ["happy", "hi"];

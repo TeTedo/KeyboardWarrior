@@ -14,7 +14,8 @@ router.get("/posting/:game_name", loginCheck, async (req, res) => {
     });
 });
 
-router.post("/posting/community/create", (req, res) => {
+router.post("/posting/community/create", async (req, res) => {
+    const { profile_img } = await getUserInfo(req, res);
     const { game_name, user_id, nick_name, text, main_html, hashtag_values } =
         req.body;
     CommunityPost.create({
@@ -24,6 +25,7 @@ router.post("/posting/community/create", (req, res) => {
         text,
         main_html,
         hashtag_values,
+        profile_img,
     }).then(() => res.send(`/community/${game_name}`));
 });
 

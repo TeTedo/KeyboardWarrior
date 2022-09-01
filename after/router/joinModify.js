@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const getUserInfo = require("../functions/getUserInfo");
-const { User } = require("../model");
+const { User, MainPost, CommunityPost } = require("../model");
 const loginCheck = require("../middleware/loginCheck");
 const bcrypt = require("bcrypt");
 const profileImgUpload = require("../middleware/profileImgUpload");
@@ -47,6 +47,12 @@ router.post(
         updateImgData.path = updateImgData.path.replace("views/", "");
         updateImgData.path = updateImgData.path.replace("views\\", "");
         User.update(
+            {
+                profile_img: updateImgData.path,
+            },
+            { where: { user_id: user_id } }
+        );
+        MainPost.update(
             {
                 profile_img: updateImgData.path,
             },

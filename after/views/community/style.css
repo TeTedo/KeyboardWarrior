@@ -71,23 +71,62 @@
 
 /* 사이드바 */
 #sideBar {
-    display: none;
     width: 400px;
     height: 750px;
     background-color: black;
 
     position: absolute;
     z-index: 999;
-    overflow-y: scroll;
+    overflow: auto;
+    transition: 1s linear;
 }
 
 #sideBar #sideBar_top {
     width: 100%;
-    height: max-content;
+    height: 200px;
     background-color: beige;
     position: relative;
 }
-
+#sideBar_top_sideBarBtn {
+    position: absolute;
+    right: 30px;
+    font-size: 25px;
+    animation: sideBarAnimation 1s linear infinite;
+    display: flex;
+}
+@keyframes sideBarAnimation {
+    0% {
+        transform: translate(20px);
+    }
+    50% {
+        transform: translate(0px);
+    }
+    100% {
+        transform: translate(20px);
+    }
+}
+#sideBar_top_sideBarBtn {
+    position: absolute;
+    right: 30px;
+    font-size: 25px;
+    animation: sideBarAnimation 1s linear infinite;
+    display: flex;
+}
+.fa-arrow-left-long {
+    cursor: pointer;
+    display: block;
+}
+.sideBarOpenBtn {
+    display: flex;
+    position: absolute;
+    z-index: 1;
+}
+.fa-arrow-right-long {
+    cursor: pointer;
+    font-size: 25px;
+    display: none;
+    animation: sideBarAnimation 1s linear infinite;
+}
 #sideBar_top_up {
     display: flex;
     width: 100%;
@@ -141,7 +180,7 @@
 }
 #sideBar_top_down_right {
     width: 100%;
-    height: max-content;
+    height: 100%;
 }
 #sideBar_top_down_right > div {
     width: 100%;
@@ -165,6 +204,7 @@
     transform: translate(10px, 20px);
     border-radius: 10px;
 }
+
 /* 여기까지 공통 탑 + 사이드바 */
 
 #contentsWrap {
