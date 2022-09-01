@@ -101,11 +101,14 @@
             <div id="posts_userInfo">
                 <div id="posts_userInfo_left">
                     <div id="posts_userInfo_left_profileImg">
-                        <img src="../<%= profile_img%>" alt="" />
+                        <img
+                            src="../../<%= postData.User.profile_img%>"
+                            alt=""
+                        />
                     </div>
                     <div id="posts_userInfo_left_info">
                         <div id="posts_userInfo_left_nickName">
-                            <%= postData.nick_name%>
+                            <%= postData.User.nick_name%>
                         </div>
                         <div id="posts_userInfo_left_follow">
                             팔로워 : <span>숫자</span> 팔로잉 :
@@ -376,16 +379,15 @@
 
         // 데이터 받아오는 함수
         function getPostData() {
-            let postData = "<%= JSON.stringify(postData) %>";
-            postData = postData.replaceAll("&#34;", '"');
-            postData = postData.replaceAll("\\", "/");
+            let postData = "<%= JSON.stringify(postData) %>"
+                .replaceAll("&#34;", '"')
+                .replaceAll("&lt;", "<")
+                .replaceAll("&gt;", ">")
+                .replaceAll('""', '"')
+                .replaceAll("\\", "/");
             postData = JSON.parse(postData);
+            console.log(postData);
 
-            // 프로필 이미지 불러오기
-            let posts_userInfo_left_profileImg = document.querySelector(
-                "#posts_userInfo_left_profileImg > img"
-            );
-            posts_userInfo_left_profileImg.src = "../" + postData.profile_img;
             let imageArr = [
                 postData.image1,
                 postData.image2,
@@ -402,7 +404,7 @@
             posting_left_img.style.left = 0;
             imageArr.forEach((el, index) => {
                 const divTag = document.createElement("img");
-                divTag.src = "../" + el;
+                divTag.src = "../../" + el;
                 posting_left_img.appendChild(divTag);
             });
             // 마우스휠로 이동
@@ -449,9 +451,6 @@
                 }
             }
             posting_left.addEventListener("wheel", debounce(moveWheel));
-            //닉네임 넣어주기
-            document.querySelector("#posts_userInfo_left_nickName").innerHTML =
-                postData.nick_name;
             //포스팅 내용 넣어주기
             //내용 가공하기
             postData.text = postData.text

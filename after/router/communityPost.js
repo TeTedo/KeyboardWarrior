@@ -5,6 +5,7 @@ const {
     Follow,
     CommunityPostLike,
     CommunityComment,
+    User,
 } = require("../model");
 const getUserInfo = require("../functions/getUserInfo");
 const loginCheck = require("../middleware/loginCheck");
@@ -16,7 +17,12 @@ router.get("/post/:game_name/:post_id", async (req, res) => {
     profile_img = "../" + profile_img;
     const postData = await CommunityPost.findOne({
         where: { id: post_id },
-        raw: true,
+        // raw: true,
+        include: [
+            {
+                model: User,
+            },
+        ],
     });
     const commentData = await CommunityComment.findAll({
         where: { post_id },
@@ -39,6 +45,9 @@ router.get("/post/:game_name/:post_id", async (req, res) => {
             follower_id = "";
         });
     console.log(user_id);
+    if (postData) {
+        postData.hashtag_values = JSON.parse(postData.hashtag_values);
+    }
     res.render("communityPost/communityPost", {
         user_id,
         nick_name,
