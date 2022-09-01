@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const getUserInfo = require("../functions/getUserInfo");
-const { MainPost } = require("../model");
+const { MainPost, Follow } = require("../model");
 router.get(
   "/",
   async (req, res, next) => {
@@ -63,6 +63,21 @@ router.get(
 
       // 게시글들 정보 받아오기
       const postData = await getMainPostInfo();
+
+      await new Promise((resolve, reject) => {
+        const postNumArr = Object.keys(postData);
+        postNumArr.forEach(async (el, index) => {
+          postData[el].follower = await Follow.findAll({
+            where: { following_id: postData[el].writer },
+            raw: true,
+            attributes: ["follower_id"],
+          });
+
+          console.log(postData[el].follower);
+        });
+        resolve("끝");
+      });
+      console.log(postData);
       res.render("main/main", { user_id, nick_name, profile_img, postData });
     } else {
       next();

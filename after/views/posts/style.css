@@ -334,6 +334,20 @@
   font-size: 50px;
   align-items: center;
 }
+#posts_userInfo_right > i {
+  cursor: pointer;
+}
+
+#modifyBtn {
+  font-weight: bold;
+  font-size: 50px;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  width: max-content;
+  display: none;
+  cursor: pointer;
+}
 /* userInfo 부분 끝 */
 /* 댓글창 */
 .posts_comment {

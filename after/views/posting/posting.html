@@ -188,8 +188,10 @@
   </body>
   <script src="posting.js"></script>
   <script>
+    // 데이터 보낼때 textarea 글 가공
     const textArea = document.querySelector("#posting_right > textarea");
-    textArea.onchange = function () {
+    const posting = document.querySelector("#posting");
+    posting.onsubmit = function () {
       textArea.value = textArea.value.replace(/(\n|\r\n)/g, "<br>");
       textArea.value = textArea.value.replace(/\s/g, "&nbsp;");
     };

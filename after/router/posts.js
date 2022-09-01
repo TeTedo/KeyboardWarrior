@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 const { MainPost, MainComment, MainPostLike, Follow } = require("../model");
 const getUserInfo = require("../functions/getUserInfo");
-
-router.get("/posts/:postId", async (req, res) => {
+const loginCheck = require("../middleware/loginCheck");
+router.get("/posts/:postId", loginCheck, async (req, res) => {
   const post_id = req.params.postId;
   const postData = await MainPost.findOne({
     where: { id: post_id },
