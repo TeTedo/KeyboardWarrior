@@ -49,6 +49,133 @@
     width: 30px;
 }
 
+/* 사이드바 */
+#sideBar {
+    width: 400px;
+    height: 750px;
+    background-color: black;
+
+    position: absolute;
+    z-index: 999;
+    overflow: auto;
+    transition: 1s linear;
+}
+
+#sideBar #sideBar_top {
+    width: 100%;
+    height: 200px;
+    background-color: beige;
+    position: relative;
+}
+@keyframes sideBarAnimation {
+    0% {
+        transform: translate(20px);
+    }
+    50% {
+        transform: translate(0px);
+    }
+    100% {
+        transform: translate(20px);
+    }
+}
+#sideBar_top_sideBarBtn {
+    position: absolute;
+    right: 30px;
+    font-size: 25px;
+    animation: sideBarAnimation 1s linear infinite;
+    display: flex;
+}
+.fa-arrow-left-long {
+    cursor: pointer;
+    display: block;
+}
+.sideBarOpenBtn {
+    display: flex;
+}
+.fa-arrow-right-long {
+    cursor: pointer;
+    font-size: 25px;
+    display: none;
+    animation: sideBarAnimation 1s linear infinite;
+}
+#sideBar_top_up {
+    display: flex;
+    width: 100%;
+    height: 50%;
+}
+#sideBar_top_up > ul {
+    transform: translateX(150px);
+    margin: 30px;
+    font-size: 20px;
+    font-weight: bold;
+}
+#sideBar_top_up > ul > li {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#sideBar_top_down {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+#sideBar_top_profileImg {
+    position: absolute;
+    top: 20px;
+    left: 50px;
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    border-radius: 50%;
+}
+#sideBar_top_profileImg > img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+#sideBar_top_down_left {
+    width: 100%;
+    height: 50%;
+}
+#sideBar_top_down_left > div:nth-child(1) {
+    font-size: 13px;
+    text-align: center;
+}
+#sideBar_top_down_left > div:nth-child(2) {
+    font-size: 25px;
+    text-align: center;
+    font-weight: bold;
+}
+#sideBar_top_down_right {
+    width: 100%;
+    height: 100%;
+}
+#sideBar_top_down_right > div {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    font-size: 30px;
+}
+#sideBar_top_down_right > div > a {
+    color: black;
+}
+#sideBar_top_down_right > a {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 150px;
+    height: 30px;
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    border: 1px solid black;
+    text-align: center;
+    transform: translate(10px, 20px);
+    border-radius: 10px;
+}
+
 /* 포스팅 부분 */
 #posting {
     width: 1000px;
@@ -69,7 +196,10 @@
     /* border-top-right-radius: 10px;
     border-bottom-right-radius: 10px; */
 }
-
+#posting_left > img {
+    width: 100%;
+    height: 100%;
+}
 #posting_right {
     width: 100%;
     height: 100%;
@@ -106,6 +236,27 @@
     border: none;
     border-bottom: 1px solid black;
 }
+#posting_right_imagePreview {
+    width: 100%;
+    height: 50px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+#posting_right_imagePreview img {
+    cursor: pointer;
+}
+#posting_right_imagePreview span {
+    color: red;
+    font-size: 20px;
+    margin-left: 3px;
+    cursor: pointer;
+    display: none;
+}
+#posting_right_imagePreview span:hover {
+    color: black;
+}
 #posting_right_bottom {
     width: 100%;
     height: 100px;
@@ -113,15 +264,31 @@
     justify-content: space-around;
     align-items: center;
 }
-#posting_right_bottom_uploadImg {
+/* #posting_right_bottom_uploadImg {
     width: 100px;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+} */
+#posting_right_imagePreview > div {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-#posting_right_bottom_uploadImg > i {
+#posting_right_imagePreview > div > label > i {
     font-size: 30px;
+    cursor: pointer;
+}
+#posting_right_imagePreview > div > img {
+    width: 30px;
+    height: 30px;
+    display: none;
+}
+input[type="file"] {
+    display: none;
 }
 #posting_right_bottom_postingBtn {
     width: 400px;
@@ -132,9 +299,17 @@
     font-size: 20px;
     font-weight: bold;
 }
+/* 8.25 추가 */
 #posting_right_bottom_postingBtn > a {
     text-decoration: none;
     color: black;
+}
+#posting_right_bottom_postingBtn > button {
+    border: 0;
+    background: none;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 /* middle size */

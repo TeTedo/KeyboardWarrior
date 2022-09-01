@@ -52,16 +52,66 @@
                 </li>
             </ul>
         </div>
+        <!-- 사이드바 -->
 
-        <div id="posting">
-            <div id="posting_left"></div>
+        <div id="sideBar">
+            <div id="sideBar_top">
+                <div id="sideBar_top_sideBarBtn">
+                    <i class="fa-solid fa-arrow-left-long"></i>
+                </div>
+                <div id="sideBar_top_up">
+                    <ul>
+                        <li>팔로워</li>
+                        <li>123</li>
+                    </ul>
+                    <ul>
+                        <li>팔로잉</li>
+                        <li>111</li>
+                    </ul>
+                </div>
+                <div id="sideBar_top_down">
+                    <div id="sideBar_top_down_left">
+                        <div><%= user_id%></div>
+                        <div><%= nick_name%></div>
+                    </div>
+                    <div id="sideBar_top_down_right">
+                        <div>
+                            <a href="/join/modify/enterance"
+                                ><i class="fa-solid fa-gear"></i
+                            ></a>
+                            <a href=""><i class="fa-solid fa-bell"></i></a>
+                            <a href=""><i class="fa-solid fa-comments"></i></a>
+                            <a href="/logout"
+                                ><i class="fa-solid fa-right-from-bracket"></i
+                            ></a>
+                        </div>
+                        <a href="/posting">글쓰기</a>
+                    </div>
+                </div>
+                <div id="sideBar_top_profileImg">
+                    <img src="../<%= profile_img%>" alt="" />
+                </div>
+            </div>
+        </div>
+        <div class="sideBarOpenBtn">
+            <i class="fa-solid fa-arrow-right-long"></i>
+        </div>
+
+        <!-- 사이드바 끝 -->
+
+        <!-- 포스팅 구역 -->
+        <!-- multer를 쓰려면  enctype="multipart/form-data" 써줘야함-->
+        <form
+            id="posting"
+            method="post"
+            action="/posting/community/create"
+            enctype="multipart/form-data"
+        >
+            <div id="posting_left">
+                <!-- 8.25 img 태그 추가 -->
+                <img src="" alt="이미지를 선택하세요" />
+            </div>
             <div id="posting_right">
-                <!-- <select name="" id="posting_right_selection">
-                    <option value="">잡담</option>
-                    <option value="">거래</option>
-                    <option value="">공략</option>
-                </select> -->
-
                 <!-- 여기서부터 해시태그 -->
                 <div id="posting_right_hashTag">
                     <input
@@ -71,25 +121,107 @@
                     />
                 </div>
                 <!-- 여기까지 해시태그 -->
-                <textarea autofocus></textarea>
+                <textarea name="text"></textarea>
+                <!-- 8.25 div추가 -->
+                <div id="posting_right_imagePreview">
+                    <div>
+                        <img src="" />
+                        <input
+                            id="filesInput1"
+                            type="file"
+                            accept="image/*"
+                            name="files1"
+                            accept="image/*"
+                        />
+                        <label for="filesInput1"
+                            ><i class="fa-solid fa-image"></i
+                        ></label>
+                        <span><i class="fa-solid fa-circle-xmark"></i></span>
+                    </div>
+                    <div>
+                        <img src="" />
+                        <input
+                            id="filesInput2"
+                            type="file"
+                            accept="image/*"
+                            name="files2"
+                            accept="image/*"
+                        />
+                        <label for="filesInput2"
+                            ><i class="fa-solid fa-image"></i
+                        ></label>
+                        <span><i class="fa-solid fa-circle-xmark"></i></span>
+                    </div>
+                    <div>
+                        <img src="" />
+                        <input
+                            id="filesInput3"
+                            type="file"
+                            accept="image/*"
+                            name="files3"
+                            accept="image/*"
+                        />
+                        <label for="filesInput3"
+                            ><i class="fa-solid fa-image"></i
+                        ></label>
+                        <span><i class="fa-solid fa-circle-xmark"></i></span>
+                    </div>
+                    <div>
+                        <img src="" />
+                        <input
+                            id="filesInput4"
+                            type="file"
+                            accept="image/*"
+                            name="files4"
+                            accept="image/*"
+                        />
+                        <label for="filesInput4"
+                            ><i class="fa-solid fa-image"></i
+                        ></label>
+                        <span><i class="fa-solid fa-circle-xmark"></i></span>
+                    </div>
+                    <div>
+                        <img src="" />
+                        <input
+                            id="filesInput5"
+                            type="file"
+                            accept="image/*"
+                            name="files5"
+                            accept="image/*"
+                        />
+                        <label for="filesInput5"
+                            ><i class="fa-solid fa-image"></i
+                        ></label>
+                        <span><i class="fa-solid fa-circle-xmark"></i></span>
+                    </div>
+                </div>
                 <div id="posting_right_bottom">
                     <div id="posting_right_bottom_uploadImg">
-                        <i class="fa-solid fa-image"></i>
+                        <!-- 8.25 input 태그 추가 -->
+                        <!-- 파일을 여러개 올릴거라 multiple 추가 입력 -->
+                        <!-- accept : 이미지 형식만 받으려고 -->
                     </div>
-                    <div id="posting_right_bottom_postingBtn" name="btns">
-                        <a href="#" for="submit">등록</a>
-                        <a href="#" for="cancle">취소</a>
+                    <input
+                        type="text"
+                        name="game_name"
+                        value="<%=game_name%>"
+                        style="display: none"
+                    />
+                    <div id="posting_right_bottom_postingBtn">
+                        <!-- 8.25 id값 없애고 등록에 div대신 a태그 추가 -->
+                        <button href="#" type="submit">등록</button>
+                        <a href="/community/<%=game_name%>">취소</a>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
+        <!-- 포스팅구역 끝 -->
     </body>
     <script src="../communityPosting/communityPosting.js"></script>
     <script>
-        const btns = document.querySelector("div[name=btns");
+        const submit = document.querySelector("button[type=submit");
         const game_name = "<%= game_name %>";
         const user_id = "<%= user_id%>";
-        console.log(user_id);
         const nick_name = "<%= nick_name%>";
         const textAreaDom = document
             .getElementById("posting_right")
@@ -113,7 +245,6 @@
         });
         const tagifyInput = document.querySelector(".tagify__input");
         tagify.on("add", function () {
-            console.log(tagify.value);
             setTimeout(() => {
                 // 드롭다운목록 풀네임 적고 엔터했을때 한글자 밀리는거
                 tagifyInput.innerText = "";
@@ -122,47 +253,91 @@
         tagify.on("input", () => {
             // tagify.loading(true); // 태그입력할때 로딩창
         });
+        console.log(submit);
+        submit.onclick = () => {
+            const hashtag_values = JSON.stringify(
+                tagify.value.map(el => el.value)
+            );
+            $.ajax({
+                url: "/posting/community/create",
+                type: "post",
+                traditional: "true",
+                data: {
+                    hashtag_values,
+                },
+            });
+        };
 
         // 등록 취소 버튼클릭시 이벤트
-        btns.onclick = e => {
-            const btnFor = e.target.getAttribute("for");
-            switch (btnFor) {
-                case "submit":
-                    // 글없으면 공백넣기
-                    // const text = JSON.stringify(textAreaDom.value || " ");
-                    const text = textAreaDom.value || " ";
-                    // 글 공백 방지
-                    // if (!text) {
-                    //     alert("글을 작성해 주세요");
-                    //     return;
-                    // }
-                    textAreaDom.innerText = text;
-                    const main_html = JSON.stringify(posting.innerHTML);
-                    const hashtag_values = JSON.stringify(
-                        tagify.value.map(el => el.value)
-                    );
+        // btns.onclick = e => {
+        //     const btnFor = e.target.getAttribute("for");
+        //     switch (btnFor) {
+        //         case "submit":
+        //             // 글없으면 공백넣기
+        //             // const text = JSON.stringify(textAreaDom.value || " ");
+        //             const text = textAreaDom.value || " ";
+        //             // 글 공백 방지
+        //             // if (!text) {
+        //             //     alert("글을 작성해 주세요");
+        //             //     return;
+        //             // }
+        //             textAreaDom.innerText = text;
+        //          /posting/community/create   const main_html = JSON.stringify(posting.innerHTML);
+        //             const hashtag_values = JSON.stringify(
+        //                 tagify.value.map(el => el.value)
+        //             );
 
-                    $.ajax({
-                        url: "/posting/community/create",
-                        type: "post",
-                        traditional: "true",
-                        data: {
-                            game_name,
-                            user_id,
-                            nick_name,
-                            text,
-                            main_html,
-                            hashtag_values,
-                        },
-                        success: function (data) {
-                            location.href = data;
-                        },
-                    });
-                    break;
-                case "cancle":
-                    location.href = `/community/${game_name}`;
-                    break;
+        //             $.ajax({
+        //                 url: "/posting/community/create",
+        //                 type: "post",
+        //                 traditional: "true",
+        //                 data: {
+        //                     game_name,
+        //                     user_id,
+        //                     nick_name,
+        //                     text,
+        //                     main_html,
+        //                     hashtag_values,
+        //                 },
+        //                 success: function (data) {
+        //                     location.href = data;
+        //                 },
+        //             });
+        //             break;
+        //         case "cancle":
+        //             location.href = `/community/${game_name}`;
+        //             break;
+        //     }
+        // };
+
+        function getData() {
+            // 값이 들어왔나 안들어왔나 체크용
+            const data = "<%= user_id%>";
+            //데이터 있을때
+            if (data) {
+                // 회원가입 로그인 숨기기
+                const mainPageSign = document.querySelector("#mainPageSign");
+                mainPageSign.style.display = "none";
+                //사이드바 띄우기
+                const sideBar = document.querySelector("#sideBar");
+                sideBar.style.display = "block";
+                //사이드바에 값넣기
+                const insertUser = document.querySelectorAll(
+                    "#sideBar_top_down_left > div"
+                );
+
+                insertUser[0].innerHTML = "<%=user_id %>";
+                insertUser[1].innerHTML = "<%=nick_name %>";
             }
-        };
+            //데이터 없을때
+            else {
+                // 회원가입 로그인 버튼 띄우기
+                mainPageSign.style.display = "flex";
+                //사이드바 숨기기
+                sideBar.style.display = "none";
+            }
+        }
+
+        getData();
     </script>
 </html>

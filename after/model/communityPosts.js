@@ -12,26 +12,46 @@ class CommunityPost extends Sequelize.Model {
                     type: Sequelize.STRING(16),
                     allowNull: false,
                 },
-                nick_name: {
-                    type: Sequelize.STRING(10),
-                    allowNull: false,
-                },
                 text: {
                     type: Sequelize.TEXT,
                     allowNull: false,
                 },
-                main_html: {
-                    type: Sequelize.TEXT,
-                    allowNull: false,
-                },
+                // main_html: {
+                //     type: Sequelize.TEXT,
+                //     allowNull: false,
+                // },
                 hashtag_values: {
                     type: Sequelize.STRING,
                     allowNull: true,
                 },
-                // profile_img: {
-                //     type: Sequelize.TEXT,
-                //     allowNull: true,
-                // },
+                image1: {
+                    type: Sequelize.TEXT,
+                    allowNull: true,
+                },
+                image2: {
+                    type: Sequelize.TEXT,
+                    allowNull: true,
+                },
+                image3: {
+                    type: Sequelize.TEXT,
+                    allowNull: true,
+                },
+                image4: {
+                    type: Sequelize.TEXT,
+                    allowNull: true,
+                },
+                image5: {
+                    type: Sequelize.TEXT,
+                    allowNull: true,
+                },
+                like: {
+                    type: Sequelize.INTEGER,
+                    allowNull: true,
+                },
+                comment: {
+                    type: Sequelize.INTEGER,
+                    allowNull: true,
+                },
             },
             {
                 sequelize: sequelize,

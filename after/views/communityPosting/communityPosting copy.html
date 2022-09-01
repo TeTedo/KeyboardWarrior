@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script
+            src="https://kit.fontawesome.com/3264d39625.js"
+            crossorigin="anonymous"
+        ></script>
+        <!-- 제이쿼리 -->
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <!-- Tagify 해시태그 -->
+        <script src="https://unpkg.com/@yaireo/tagify"></script>
+        <script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+        <link
+            href="https://unpkg.com/@yaireo/tagify/dist/tagify.css"
+            rel="stylesheet"
+            type="text/css"
+        />
+    </head>
+    <link rel="stylesheet" href="../communityPosting/style.css" />
+    <body>
+        <div id="mainPageTop">
+            <div id="mainLogo"><a href="/">이건 메인로고</a></div>
+            <ul id="mainPageNav">
+                <li><a href="/community_hub">COMMUNITY</a></li>
+                <li><a href="/minigame">MINI GAME</a></li>
+            </ul>
+            <ul id="mainPageSign">
+                <li><a href="/join">회원가입</a></li>
+                <li><a href="/login">로그인</a></li>
+            </ul>
+            <ul id="mainPageLogo">
+                <li>
+                    <a href="https://github.com/TeTedo/KeyboardWarrior.git"
+                        ><img
+                            class="mainPageLogo_githubLogo"
+                            src="http://rajlab.org/icons/github_white.png"
+                            alt="github"
+                    /></a>
+                </li>
+                <li>
+                    <a
+                        href="https://www.notion.so/Keyboard-Warrior-888a144aa79f437e8f726910c42617a8"
+                        ><img
+                            class="mainPageLogo_notionLogo"
+                            src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png"
+                            alt="notion"
+                    /></a>
+                </li>
+            </ul>
+        </div>
+        <!-- 사이드바 -->
+
+        <div id="sideBar">
+            <div id="sideBar_top">
+                <div id="sideBar_top_sideBarBtn">
+                    <i class="fa-solid fa-arrow-left-long"></i>
+                </div>
+                <div id="sideBar_top_up">
+                    <ul>
+                        <li>팔로워</li>
+                        <li>123</li>
+                    </ul>
+                    <ul>
+                        <li>팔로잉</li>
+                        <li>111</li>
+                    </ul>
+                </div>
+                <div id="sideBar_top_down">
+                    <div id="sideBar_top_down_left">
+                        <div><%= user_id%></div>
+                        <div><%= nick_name%></div>
+                    </div>
+                    <div id="sideBar_top_down_right">
+                        <div>
+                            <a href="/join/modify/enterance"
+                                ><i class="fa-solid fa-gear"></i
+                            ></a>
+                            <a href=""><i class="fa-solid fa-bell"></i></a>
+                            <a href=""><i class="fa-solid fa-comments"></i></a>
+                            <a href="/logout"
+                                ><i class="fa-solid fa-right-from-bracket"></i
+                            ></a>
+                        </div>
+                        <a href="/posting">글쓰기</a>
+                    </div>
+                </div>
+                <div id="sideBar_top_profileImg">
+                    <img src="../<%= profile_img%>" alt="" />
+                </div>
+            </div>
+        </div>
+        <div class="sideBarOpenBtn">
+            <i class="fa-solid fa-arrow-right-long"></i>
+        </div>
+
+        <!-- 사이드바 끝 -->
+
+        <!-- 포스팅 구역 -->
+        <div id="posting">
+            <div id="posting_left"></div>
+            <div id="posting_right">
+                <!-- <select name="" id="posting_right_selection">
+                    <option value="">잡담</option>
+                    <option value="">거래</option>
+                    <option value="">공략</option>
+                </select> -->
+
+                <!-- 여기서부터 해시태그 -->
+                <div id="posting_right_hashTag">
+                    <input
+                        class="hashTag"
+                        name="hashTag"
+                        placeholder="#해시태그"
+                    />
+                </div>
+                <!-- 여기까지 해시태그 -->
+                <textarea autofocus></textarea>
+                <div id="posting_right_bottom">
+                    <div id="posting_right_bottom_uploadImg">
+                        <i class="fa-solid fa-image"></i>
+                    </div>
+                    <div id="posting_right_bottom_postingBtn" name="btns">
+                        <a href="#" for="submit">등록</a>
+                        <a href="#" for="cancle">취소</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="../communityPosting/communityPosting.js"></script>
+    <script>
+        const btns = document.querySelector("div[name=btns");
+        const game_name = "<%= game_name %>";
+        const user_id = "<%= user_id%>";
+        console.log(user_id);
+        const nick_name = "<%= nick_name%>";
+        const textAreaDom = document
+            .getElementById("posting_right")
+            .querySelector("textarea");
+
+        // 해시태그 이벤트
+        const hashTag = document.querySelector("input[name=hashTag]");
+        const tagify = new Tagify(hashTag, {
+            enforceWhitelist: false, // 화이트리스트 목록만 태그등록 가능하게 할건지
+            whitelist: ["잡담", "공략", "거래"], // 드롭다운에 뜰 목록
+            maxTags: 7, // 최대 허용 태그 갯수
+            userInput: true, //false하면 사용자가 직접 입력은 못하고 목록에서 고를수만 있음
+
+            dropdown: {
+                maxItems: 10, // 드롭다운 목록 최대 갯수
+                // classname: "tagify_dropDown", // 드롭다운 css용 클래스네임
+                enabled: 0, // 단어 몇글자입력했을때 드롭다운 띄울지
+                // closeOnSelect: false, // 드롭다운에서 선택하면 자동으로 꺼질지
+                position: "input", //드롭다운 위치 (해시태그 입력창 바로 밑에)
+            },
+        });
+        const tagifyInput = document.querySelector(".tagify__input");
+        tagify.on("add", function () {
+            console.log(tagify.value);
+            setTimeout(() => {
+                // 드롭다운목록 풀네임 적고 엔터했을때 한글자 밀리는거
+                tagifyInput.innerText = "";
+            }, 10);
+        });
+        tagify.on("input", () => {
+            // tagify.loading(true); // 태그입력할때 로딩창
+        });
+
+        // 등록 취소 버튼클릭시 이벤트
+        btns.onclick = e => {
+            const btnFor = e.target.getAttribute("for");
+            switch (btnFor) {
+                case "submit":
+                    // 글없으면 공백넣기
+                    // const text = JSON.stringify(textAreaDom.value || " ");
+                    const text = textAreaDom.value || " ";
+                    // 글 공백 방지
+                    // if (!text) {
+                    //     alert("글을 작성해 주세요");
+                    //     return;
+                    // }
+                    textAreaDom.innerText = text;
+                    const main_html = JSON.stringify(posting.innerHTML);
+                    const hashtag_values = JSON.stringify(
+                        tagify.value.map(el => el.value)
+                    );
+
+                    $.ajax({
+                        url: "/posting/community/create",
+                        type: "post",
+                        traditional: "true",
+                        data: {
+                            game_name,
+                            user_id,
+                            nick_name,
+                            text,
+                            main_html,
+                            hashtag_values,
+                        },
+                        success: function (data) {
+                            location.href = data;
+                        },
+                    });
+                    break;
+                case "cancle":
+                    location.href = `/community/${game_name}`;
+                    break;
+            }
+        };
+    </script>
+</html>
