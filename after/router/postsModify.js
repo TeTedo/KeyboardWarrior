@@ -95,7 +95,6 @@ router.post(
 
     MainPost.update(
       {
-        text,
         image1: files[0][0].path,
         image2: files[1][0].path,
         image3: files[2][0].path,
@@ -108,5 +107,19 @@ router.post(
     res.redirect("/");
   }
 );
+
+router.post("/textarea/modify", async (req, res) => {
+  const { textValue, post_id } = req.body;
+  await MainPost.update(
+    {
+      text: textValue,
+    },
+    {
+      where: {
+        id: post_id,
+      },
+    }
+  );
+});
 
 module.exports = router;

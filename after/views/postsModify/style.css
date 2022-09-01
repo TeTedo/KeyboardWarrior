@@ -202,12 +202,14 @@
   height: 100%;
 }
 
-#posting_right > textarea {
+#posting_right > div:nth-child(1) {
   width: 100%;
   height: 350px;
   padding: 10px;
   font-size: 20px;
   box-sizing: border-box;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 /* 8.25 이미지  추가*/
 #posting_right_imagePreview {
@@ -289,11 +291,6 @@ input[type="file"] {
 /* 삭제버튼 따로 만듬 */
 #deleteBtn {
   color: red;
-  font-size: 20px;
-  display: inline;
-  position: absolute;
-  left: 53%;
-  top: 70%;
   cursor: pointer;
 }
 /* middle size */

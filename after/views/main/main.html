@@ -202,6 +202,7 @@
       postData = postData.replaceAll("&#34;", '"');
       postData = postData.replaceAll("\\", "/");
       postData = JSON.parse(postData);
+
       const postNumArr = Object.keys(postData);
 
       postNumArr.forEach((el, index) => {
@@ -251,24 +252,47 @@
         document.querySelector("#mainContentWrap").innerHTML += posts;
       });
 
-      callback();
+      callback(postData);
     }
 
-    // 수정하기 버튼 생성
-    function makeModifyBtn() {
+    // 게시글 세부 버튼 생성
+    function makeBtn(postData) {
       const mainPost = document.querySelectorAll(".mainPost");
       const user_id = "<%= user_id %>";
-      mainPost.forEach((el) => {
-        console.log(user_id);
-        console.log(el.dataset.writer);
-        if (el.dataset.writer == user_id) {
-          el.querySelectorAll("#mainPost_top_follwingBtn > i").forEach(
-            (elem) => {
+
+      mainPost.forEach((el, index) => {
+        // 로그인 안되있을때
+        if (!user_id) {
+          document
+            .querySelectorAll("#mainPost_top_follwingBtn > i")
+            .forEach((elem) => {
               elem.style.display = "none";
-            }
-          );
-          el.querySelector("#mainPost_top_follwingBtn > a").style.display =
-            "flex";
+            });
+        }
+        //로그인 되있을때
+        else {
+          // 글쓴이랑 로그인한사람이랑 같은지 비교
+          // 같을때
+          if (el.dataset.writer == user_id) {
+            // 수정하기 버튼 만들기
+            el.querySelectorAll("#mainPost_top_follwingBtn > i").forEach(
+              (elem) => {
+                elem.style.display = "none";
+              }
+            );
+            el.querySelector("#mainPost_top_follwingBtn > a").style.display =
+              "flex";
+          }
+          //글쓴이랑 로그인한사람이랑 다를때
+          else {
+            const followBtn = document.querySelectorAll(".fa-user-plus")[index];
+            const unFollowBtn =
+              document.querySelectorAll(".fa-user-check")[index];
+            //팔로우
+            followBtn.onclick = function () {};
+            // 언팔로우
+            unFollowBtn.onclick = function () {};
+          }
         }
       });
     }
@@ -288,7 +312,7 @@
     //사이드바 데이터 받아오기
     getData();
     //포스팅 정렬
-    setPost(makeModifyBtn);
+    setPost(makeBtn);
 
     window.onload = async function () {
       //이미지 클릭시 포스트 이동

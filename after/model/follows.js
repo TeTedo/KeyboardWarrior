@@ -4,12 +4,12 @@ class Follow extends Sequelize.Model {
   static init(sequelize) {
     return super.init(
       {
-        followingId: {
+        following_id: {
           type: Sequelize.STRING(16),
           allowNull: false,
           primaryKey: true,
         },
-        followerId: {
+        follower_id: {
           type: Sequelize.STRING(16),
           allowNull: false,
         },

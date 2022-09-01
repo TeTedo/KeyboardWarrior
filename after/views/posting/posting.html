@@ -188,6 +188,13 @@
   </body>
   <script src="posting.js"></script>
   <script>
+    // 데이터 보낼때 textarea 글 가공
+    const textArea = document.querySelector("#posting_right > textarea");
+    const posting = document.querySelector("#posting");
+    posting.onsubmit = function () {
+      textArea.value = textArea.value.replace(/(\n|\r\n)/g, "<br>");
+      textArea.value = textArea.value.replace(/\s/g, "&nbsp;");
+    };
     function getData() {
       // 값이 들어왔나 안들어왔나 체크용
       const data = "<%= user_id%>";

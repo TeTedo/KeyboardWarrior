@@ -33,5 +33,6 @@ MainComment.init(sequelize);
 User.associate(db);
 CommunityPost.associate(db);
 MainPost.associate(db);
+MainComment.associate(db);
 
 module.exports = db;
