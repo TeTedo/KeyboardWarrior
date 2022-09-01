@@ -83,7 +83,7 @@
                 ><i class="fa-solid fa-gear"></i
               ></a>
               <a href=""><i class="fa-solid fa-bell"></i></a>
-              <a href=""><i class="fa-solid fa-comments"></i></a>
+              <a href="#"><i class="fa-solid fa-comments"></i></a>
               <a href="/logout"
                 ><i class="fa-solid fa-right-from-bracket"></i
               ></a>
@@ -95,6 +95,22 @@
           <img src="<%= profile_img%>" alt="" />
         </div>
       </div>
+      <!-- 채팅창 추가부분 -->
+      <div class="sideBar_Bottom_chat">
+        <div class="sideBar_Bottom_chatRoom">
+          <img src="" alt="보낸사람이미지" />
+          <div>
+            <div class="chatNickName">닉네임</div>
+            <div class="chatMessage">채팅메시지</div>
+          </div>
+        </div>
+        <div class="sideBar_Bottom_chatRoom">
+          <div class="chatFull">
+            <img src="" alt="이미지" />
+            <span class="chatFull_message">채팅</span>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="sideBarOpenBtn">
       <i class="fa-solid fa-arrow-right-long"></i>
@@ -103,69 +119,28 @@
     <!-- 포스팅 예시 -->
     <div id="mainContent">
       <div id="mainContentWrap">
-        <div class="mainPost">
-          <div id="mainPost_top">
-            <div id="mainPost_top_profileimg">
-              <img src="./images/profileimg.jpg" alt="" />
-            </div>
-            <div id="mainPost_top_userInfo">
-              <div id="mainPost_top_userInfo_nickName">닉네임</div>
-              <div id="mainPost_top_userInfo_follwer">팔로워숫자</div>
-            </div>
-            <div id="mainPost_top_follwingBtn">
-              <i class="fa-solid fa-user-plus"></i>
-              <i class="fa-solid fa-user-check"></i>
-              <i class="fa-solid fa-message"></i>
-            </div>
-          </div>
-          <div id="mainPost_middle">
-            <div id="mainPost_middle_img">
-              <img src="./images/Example.jpeg" alt="" />
-            </div>
-            <div id="mainPost_middle_text"></div>
-          </div>
-          <div id="mainPost_bottom">
-            <i class="fa-solid fa-heart"></i>좋아요 갯수
-            <i class="fa-solid fa-comment"></i>댓글 갯수
-          </div>
-        </div>
-
-        <!-- 포스팅 예시끝 -->
         <!-- 포스팅구역 -->
-        <div class="mainPost">
-          <div id="mainPost_top">
-            <div id="mainPost_top_profileimg">
-              <img src="./images/profileimg.jpg" alt="" />
-            </div>
-            <div id="mainPost_top_userInfo">
-              <div id="mainPost_top_userInfo_nickName">닉네임</div>
-              <div id="mainPost_top_userInfo_follwer">팔로워숫자</div>
-            </div>
-            <div id="mainPost_top_follwingBtn">
-              <i class="fa-solid fa-user-plus"></i>
-              <i class="fa-solid fa-user-check"></i>
-              <i class="fa-solid fa-message"></i>
-            </div>
-          </div>
-          <div id="mainPost_middle">
-            <div id="mainPost_middle_img">
-              <img src="" alt="" />
-            </div>
-            <div id="mainPost_middle_text"></div>
-          </div>
-          <div id="mainPost_bottom">
-            <div id="mainPost_bottom_createdTime">생성된시간</div>
-            <div id="mainPost_bottom_sub">
-              <i class="fa-solid fa-heart"></i>좋아요 갯수
-              <i class="fa-solid fa-comment"></i>댓글 갯수
-            </div>
-          </div>
-        </div>
+
         <!-- 포스팅구역 -->
       </div>
     </div>
   </body>
   <script>
+    //채팅창 관련 함수
+    function chat() {
+      //채팅이미지 누르면 채팅창 나오게 하기
+      const chatTag = document.querySelector(".sideBar_Bottom_chat");
+      document.querySelector(".fa-comments").onclick = function () {
+        chatTag.classList.toggle("chatOn");
+      };
+      //채팅창 더블클릭하면 커지게하기
+      const chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
+      chatRoomTag.forEach((el, index) => {
+        el.ondblclick = function () {
+          el.style.height = "300px";
+        };
+      });
+    }
     //로그인 되어있을때 사이드바 데이터 함수
     function getData() {
       // 값이 들어왔나 안들어왔나 체크용
@@ -389,6 +364,7 @@
     window.onload = async function () {
       //이미지 클릭시 포스트 이동
       clickToPost();
+      chat();
     };
   </script>
   <script src="./main/main.js"></script>
