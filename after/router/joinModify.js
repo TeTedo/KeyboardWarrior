@@ -36,6 +36,8 @@ router.get("/join/modify", loginCheck, async (req, res) => {
 });
 
 // 수정된정보 업데이트
+
+// 프사 업데이트
 router.post(
     "/join/update/image",
     loginCheck,
@@ -60,6 +62,7 @@ router.post(
         );
     }
 );
+// 유저데이터 업데이트
 router.post("/join/update/data", (req, res) => {
     const {
         user_id,

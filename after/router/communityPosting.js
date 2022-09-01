@@ -17,12 +17,17 @@ router.get("/posting/:game_name", loginCheck, async (req, res) => {
     });
 });
 
+// 커뮤니티 이미지 폴더 없으면 생성
 fs.readdir("views/uploadsImg/community", err => {
     if (err) {
         fs.mkdirSync("views/uploadsImg/community");
     }
 });
 
+//해시태그값 따로 받기
+// router.post("/posting/community/hashtag/create", (req, res) => {
+//     const { hashtag_values } = req.body;
+// });
 router.post(
     "/posting/community/create",
     loginCheck,
@@ -34,9 +39,11 @@ router.post(
         { name: "files5" },
     ]),
     async (req, res) => {
-        const { user_id } = await getUserInfo(req, res);
-        const { game_name, text, hashtag_values } = req.body;
+        const { game_name, text, hashTag } = req.body;
+        console.log(req.files);
+        console.log(hashTag);
         const files = Object.values(req.files);
+        const { user_id } = await getUserInfo(req, res);
 
         // 이미지 없는자리 null 로 표시
         if (files.length < 5) {
@@ -54,14 +61,13 @@ router.post(
             }
         }
 
-        req.body;
         CommunityPost.create({
             game_name,
             user_id,
             text,
+            hashtag_values: hashTag,
             like: 0,
             comment: 0,
-            hashtag_values,
             image1: files[0][0].path,
             image2: files[1][0].path,
             image3: files[2][0].path,

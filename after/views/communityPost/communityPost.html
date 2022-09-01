@@ -7,6 +7,10 @@
         <title>Document</title>
     </head>
     <script
+        src="https://kit.fontawesome.com/3264d39625.js"
+        crossorigin="anonymous"
+    ></script>
+    <script
         src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
         crossorigin="anonymous"
@@ -16,8 +20,8 @@
         <div id="mainPageTop">
             <div id="mainLogo"><a href="/">이건 메인로고</a></div>
             <ul id="mainPageNav">
-                <li><a href="/community_hub">COMMUNITY</a></li>
-                <li><a href="/minigame">MINI GAME</a></li>
+                <li><a href="">COMMUNITY</a></li>
+                <li><a href="">MINI GAME</a></li>
             </ul>
             <ul id="mainPageSign">
                 <li><a href="/join">회원가입</a></li>
@@ -43,9 +47,126 @@
                 </li>
             </ul>
         </div>
-        <div id="posting"><%- postData.main_html %></div>
+        <!-- 공용nav -->
+        <!-- 사이드바 -->
+
+        <div id="sideBar">
+            <div id="sideBar_top">
+                <div id="sideBar_top_sideBarBtn">
+                    <i class="fa-solid fa-arrow-left-long"></i>
+                </div>
+                <div id="sideBar_top_up">
+                    <ul>
+                        <li>팔로워</li>
+                        <li>123</li>
+                    </ul>
+                    <ul>
+                        <li>팔로잉</li>
+                        <li>111</li>
+                    </ul>
+                </div>
+                <div id="sideBar_top_down">
+                    <div id="sideBar_top_down_left">
+                        <div><%= user_id%></div>
+                        <div><%= nick_name%></div>
+                    </div>
+                    <div id="sideBar_top_down_right">
+                        <div>
+                            <a href="/join/modify/enterance"
+                                ><i class="fa-solid fa-gear"></i
+                            ></a>
+                            <a href=""><i class="fa-solid fa-bell"></i></a>
+                            <a href=""><i class="fa-solid fa-comments"></i></a>
+                            <a href="/logout"
+                                ><i class="fa-solid fa-right-from-bracket"></i
+                            ></a>
+                        </div>
+                        <a href="/posting">글쓰기</a>
+                    </div>
+                </div>
+                <div id="sideBar_top_profileImg">
+                    <img src="../<%= profile_img%>" alt="" />
+                </div>
+            </div>
+        </div>
+        <div class="sideBarOpenBtn">
+            <i class="fa-solid fa-arrow-right-long"></i>
+        </div>
+
+        <!-- 사이드바 끝 -->
+
+        <!-- 전체를 posts div로 감싸줌 -->
+        <div id="posts">
+            <!-- 글쓴이 정보 -->
+            <div id="posts_userInfo">
+                <div id="posts_userInfo_left">
+                    <div id="posts_userInfo_left_profileImg">
+                        <img src="../<%= profile_img%>" alt="" />
+                    </div>
+                    <div id="posts_userInfo_left_info">
+                        <div id="posts_userInfo_left_nickName">
+                            <%= postData.nick_name%>
+                        </div>
+                        <div id="posts_userInfo_left_follow">
+                            팔로워 : <span>숫자</span> 팔로잉 :
+                            <span>숫자</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="posts_userInfo_right">
+                    <span id="modifyBtn">수정하기</span>
+                    <i class="fa-solid fa-user-plus"></i>
+                    <i class="fa-solid fa-user-check"></i>
+                    <i class="fa-solid fa-message"></i>
+                </div>
+            </div>
+            <!-- 글쓴이 정보 끝 -->
+            <!-- 포스팅 보여주기 -->
+            <div id="posting">
+                <div id="posting_left">
+                    <div id="posting_left_img"></div>
+                </div>
+                <div id="posting_right">
+                    <div>포스팅 내용</div>
+                    <!-- 8.25 div추가 -->
+                    <div id="posting_right_imagePreview">
+                        여기다 해쉬태그 넣어? or 날짜?
+                    </div>
+                    <div id="posting_right_bottom">
+                        <div id="posting_right_bottom_postingBtn">
+                            <div>
+                                <i class="fa-solid fa-heart"></i
+                                ><span>좋아요 갯수</span>
+                            </div>
+                            <div>
+                                <i class="fa-solid fa-comment"></i
+                                ><span>댓글 갯수</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 포스팅 보여주기 끝 -->
+            <!-- 댓글창 -->
+            <div class="posts_comment">
+                <form
+                    class="posts_comment_recomment"
+                    action="/posts/<%=postData.id%>/comment"
+                    method="post"
+                >
+                    <img src="../<%= profile_img%>" alt="" /><input
+                        type="text"
+                        name="text"
+                        placeholder="댓글을 입력하세요"
+                    />
+                    <button type="submit">입력</button>
+                </form>
+            </div>
+            <!-- 댓글창 끝 -->
+        </div>
     </body>
-    <script>
+    <script src="../../communityPost/communityPost.js"></script>
+    <!-- <script>
         const urlText = document.location.href;
         const post_id = urlText[urlText.length - 1];
         const body = document.querySelector("body");
@@ -70,5 +191,282 @@
             callback();
         }
         uploadData(script);
+    </script> -->
+
+    <script>
+        //데이터 집어넣기
+        window.onload = function () {
+            getPostData();
+            // 댓글 집어넣기
+            getCommentData();
+            likeData();
+            follow();
+        };
+    </script>
+    <script>
+        //팔로우 관련 함수
+        function follow() {
+            // 넘겨줄 데이터 : 팔로우하는사람, 당하는사람
+            let postData = "<%= JSON.stringify(postData) %>";
+            postData = postData.replaceAll("&#34;", '"');
+            postData = postData.replaceAll("\\", "/");
+            postData = JSON.parse(postData);
+
+            const follower = "<%= user_id%>";
+            const following = postData.user_id;
+
+            // 팔로우
+            const followBtn = document.querySelector(".fa-user-plus");
+            followBtn.onclick = function () {
+                if (follower != following) {
+                    $.ajax({
+                        url: "/follow",
+                        method: "post",
+                        data: {
+                            follow: true,
+                            follower,
+                            following,
+                        },
+                    });
+                    //버튼표시
+                    followBtn.style.display = "none";
+                    unFollowBtn.style.display = "block";
+                }
+            };
+            // 언팔로우
+            const unFollowBtn = document.querySelector(".fa-user-check");
+            unFollowBtn.onclick = function () {
+                if (follower != following) {
+                    if (confirm("팔로우를 취소하시겠습니까?")) {
+                        $.ajax({
+                            url: "/follow",
+                            method: "post",
+                            data: {
+                                follow: false,
+                                follower,
+                                following,
+                            },
+                        });
+                        //버튼표시
+                        followBtn.style.display = "block";
+                        unFollowBtn.style.display = "none";
+                    }
+                }
+            };
+
+            // follower와 following 같으면 버튼 삭제
+            const modifyBtn = document.querySelector("#modifyBtn");
+            const messageBtn = document.querySelector(".fa-message");
+            if (follower == following) {
+                modifyBtn.style.display = "block";
+                followBtn.style.display = "none";
+                unFollowBtn.style.display = "none";
+                messageBtn.style.display = "none";
+
+                modifyBtn.onclick = function () {
+                    location.href = `/posts/${postData.id}/modify`;
+                };
+            } else {
+                //이미 팔로잉 하고 있는 경우 체크되있는 버튼 표시
+                if (
+                    follower == "<%= follower_id%>" &&
+                    following == "<%= following_id%>"
+                ) {
+                    followBtn.style.display = "none";
+                    unFollowBtn.style.display = "block";
+                }
+                // 팔로잉 아니면 +버튼 표시
+                else {
+                    followBtn.style.display = "block";
+                    unFollowBtn.style.display = "none";
+                }
+            }
+        }
+        //좋아요 관련 함수
+        function likeData() {
+            let postData = "<%= JSON.stringify(postData) %>";
+            postData = postData.replaceAll("&#34;", '"');
+            postData = postData.replaceAll("\\", "/");
+            postData = JSON.parse(postData);
+            const likeBtn = document.querySelector(".fa-heart");
+            const likeNum = document.querySelector(
+                "#posting_right_bottom_postingBtn > div span"
+            );
+
+            let likeData = "<%= JSON.stringify(likeData) %>";
+            likeData = likeData.replaceAll("&#34;", '"');
+            likeData = JSON.parse(likeData);
+            if (likeData) {
+                likeBtn.classList.add("liked");
+            }
+            likeBtn.onclick = function () {
+                const userId = "<%= user_id%>";
+                likeBtn.classList.toggle("liked");
+                if (likeBtn.classList.contains("liked")) {
+                    likeNum.innerText = Number(likeNum.innerText) + 1;
+                    $.ajax({
+                        url: `/posts/${postData.id}/like`,
+                        method: "post",
+                        data: { userLike: true, userId },
+                    });
+                } else {
+                    likeNum.innerText = Number(likeNum.innerText) - 1;
+                    $.ajax({
+                        url: `/posts/${postData.id}/like`,
+                        method: "post",
+                        data: { userLike: false, userId },
+                    });
+                }
+            };
+        }
+
+        //댓글 관련 함수
+        function getCommentData() {
+            //댓글 넣기
+            let commentData = "<%= JSON.stringify(commentData) %>";
+            commentData = commentData.replaceAll("&#34;", '"');
+            commentData = commentData.replaceAll("\\", "/");
+            commentData = JSON.parse(commentData);
+            let posts_comment = document.querySelector(".posts_comment");
+            new Promise((resolve, reject) => {
+                commentData.forEach(el => {
+                    posts_comment.innerHTML += `
+            <div class="posts_comment_recommentZone" data-id="${el.id}">
+              <img src="../${el.profile_img}" alt="" />
+              <div><span class="comment_nickName">${el.nick_name}</span>&nbsp;<span>${el.text}</span></div>
+              <span><i class="fa-solid fa-trash-can"></i></span>
+            </div>
+            `;
+                });
+                resolve("끝");
+            });
+
+            //댓글 삭제
+            const user_nickName = "<%= nick_name%>";
+            const deleteComment = document.querySelectorAll(".fa-trash-can");
+            const deleteNickName =
+                document.querySelectorAll(".comment_nickName");
+            deleteComment.forEach((el, index) => {
+                if (user_nickName == deleteNickName[index].innerText) {
+                    deleteComment[index].style.display = "block";
+                }
+            });
+
+            //삭제 데이터 넘기기
+            deleteComment.forEach((el, index) => {
+                const commentId = document.querySelectorAll(
+                    ".posts_comment_recommentZone"
+                )[index].dataset.id;
+                el.onclick = function () {
+                    if (confirm("정말로 삭제하시겠습니까?")) {
+                        $.ajax({
+                            url: `/posts/${commentId}/comment/delete`,
+                            type: "post",
+                            data: {
+                                commentId,
+                            },
+                            success: data => {
+                                location.href = data;
+                            },
+                        });
+                    }
+                };
+            });
+        }
+
+        // 데이터 받아오는 함수
+        function getPostData() {
+            let postData = "<%= JSON.stringify(postData) %>";
+            postData = postData.replaceAll("&#34;", '"');
+            postData = postData.replaceAll("\\", "/");
+            postData = JSON.parse(postData);
+
+            // 프로필 이미지 불러오기
+            let posts_userInfo_left_profileImg = document.querySelector(
+                "#posts_userInfo_left_profileImg > img"
+            );
+            posts_userInfo_left_profileImg.src = "../" + postData.profile_img;
+            let imageArr = [
+                postData.image1,
+                postData.image2,
+                postData.image3,
+                postData.image4,
+                postData.image5,
+            ];
+            // image null인부분 삭제
+            imageArr = imageArr.filter(el => el != null);
+            // image 넣어주기
+            const posting_left = document.querySelector("#posting_left");
+            const posting_left_img =
+                document.querySelector("#posting_left_img");
+            posting_left_img.style.left = 0;
+            imageArr.forEach((el, index) => {
+                const divTag = document.createElement("img");
+                divTag.src = "../" + el;
+                posting_left_img.appendChild(divTag);
+            });
+            // 마우스휠로 이동
+            function debounce(func, wait = 100, immediate = true) {
+                var timeout;
+                return function () {
+                    var context = this,
+                        args = arguments;
+                    var later = function () {
+                        timeout = null;
+                        if (!immediate) func.apply(context, args);
+                    };
+                    var callNow = immediate && !timeout;
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait); //얘가 시간지나면 timeout을 0(false)로 만들어줌
+                    if (callNow) func.apply(context, args);
+                };
+            }
+            //스크롤 움직이기
+            let scrollX = 0;
+            function moveWheel(e) {
+                const imglength = document.querySelectorAll(
+                    "#posting_left_img > img"
+                ).length;
+                let maxScrollX = (imglength - 1) * 500;
+                if (e.deltaY > 0) {
+                    scrollX += 500;
+                    if (scrollX > maxScrollX) {
+                        scrollX = maxScrollX;
+                    }
+                    posting_left.scrollTo({
+                        left: scrollX,
+                        behavior: "smooth",
+                    });
+                } else {
+                    scrollX -= 500;
+                    if (scrollX < 0) {
+                        scrollX = 0;
+                    }
+                    posting_left.scrollTo({
+                        left: scrollX,
+                        behavior: "smooth",
+                    });
+                }
+            }
+            posting_left.addEventListener("wheel", debounce(moveWheel));
+            //닉네임 넣어주기
+            document.querySelector("#posts_userInfo_left_nickName").innerHTML =
+                postData.nick_name;
+            //포스팅 내용 넣어주기
+            //내용 가공하기
+            postData.text = postData.text
+                .replaceAll(/&amp;/g, "&")
+                .replaceAll(/&lt;/g, "<")
+                .replaceAll(/&gt;/g, ">");
+            document.querySelector(
+                "#posting_right > div:nth-child(1)"
+            ).innerHTML = postData.text;
+            // 좋아요 갯수
+            document.querySelector(".fa-heart + span").innerText =
+                postData.like;
+            // 댓글 갯수
+            document.querySelector(".fa-comment + span").innerText =
+                postData.comment;
+        }
     </script>
 </html>

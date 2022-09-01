@@ -1,16 +1,53 @@
 const express = require("express");
-const { CommunityPost } = require("../model");
 const router = express.Router();
+const {
+    CommunityPost,
+    Follow,
+    CommunityPostLike,
+    CommunityComment,
+} = require("../model");
+const getUserInfo = require("../functions/getUserInfo");
+const loginCheck = require("../middleware/loginCheck");
 
-router.get("/post/:game_name/:post_id", (req, res) => {
+router.get("/post/:game_name/:post_id", async (req, res) => {
     const game_name = req.params.game_name;
     const post_id = req.params.post_id;
-    CommunityPost.findOne({
+    let { user_id, nick_name, profile_img } = await getUserInfo(req, res);
+    profile_img = "../" + profile_img;
+    const postData = await CommunityPost.findOne({
         where: { id: post_id },
         raw: true,
-    }).then(postData => {
-        postData.main_html = JSON.parse(postData.main_html);
-        res.render("communityPost/communityPost", { postData });
+    });
+    const commentData = await CommunityComment.findAll({
+        where: { post_id },
+        raw: true,
+    });
+    const likeData = await CommunityPostLike.findOne({
+        where: { post_id, user_id },
+    });
+    let follower_id;
+    let following_id;
+    await Follow.findOne({
+        where: { follower_id: user_id },
+    })
+        .then(result => {
+            following_id = result.dataValues.following_id;
+            follower_id = result.dataValues.follower_id;
+        })
+        .catch(err => {
+            following_id = "";
+            follower_id = "";
+        });
+    console.log(user_id);
+    res.render("communityPost/communityPost", {
+        user_id,
+        nick_name,
+        profile_img,
+        postData,
+        commentData,
+        likeData,
+        following_id,
+        follower_id,
     });
 });
 
@@ -26,7 +63,7 @@ router.get("/poster/test/", (req, res) => {
         where: { id: post_id },
         raw: true,
     }).then(postData => {
-        postData.main_html = JSON.parse(postData.main_html);
+        // postData.main_html = JSON.parse(postData.main_html);
         res.send(postData);
     });
 });

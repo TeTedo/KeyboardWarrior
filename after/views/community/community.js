@@ -132,7 +132,7 @@ function search(e) {
                     <img src="../${filteredPost.User.profile_img}" alt="프로필이미지공간" />
                 </div>      
                 <div id="mainPost_top_userInfo">
-                    <div id="mainPost_top_userInfo_nickName">${filteredPost.nick_name}</div>
+                    <div id="mainPost_top_userInfo_nickName">${filteredPost.User.nick_name}</div>
                     <div id="mainPost_top_userInfo_follwer">팔로워숫자</div>
                 </div>
                 <div id="mainPost_top_follwingBtn">
@@ -193,7 +193,7 @@ function update(target) {
                     <img src="../${filteredPost.User.profile_img}" alt="프로필이미지공간" />
                 </div>      
                 <div id="mainPost_top_userInfo">
-                    <div id="mainPost_top_userInfo_nickName">${filteredPost.nick_name}</div>
+                    <div id="mainPost_top_userInfo_nickName">${filteredPost.User.nick_name}</div>
                     <div id="mainPost_top_userInfo_follwer">팔로워숫자</div>
                 </div>
                 <div id="mainPost_top_follwingBtn">

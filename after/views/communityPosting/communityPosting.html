@@ -219,14 +219,6 @@
     </body>
     <script src="../communityPosting/communityPosting.js"></script>
     <script>
-        const submit = document.querySelector("button[type=submit");
-        const game_name = "<%= game_name %>";
-        const user_id = "<%= user_id%>";
-        const nick_name = "<%= nick_name%>";
-        const textAreaDom = document
-            .getElementById("posting_right")
-            .querySelector("textarea");
-
         // 해시태그 이벤트
         const hashTag = document.querySelector("input[name=hashTag]");
         const tagify = new Tagify(hashTag, {
@@ -253,61 +245,66 @@
         tagify.on("input", () => {
             // tagify.loading(true); // 태그입력할때 로딩창
         });
-        console.log(submit);
-        submit.onclick = () => {
+
+        const formDom = document.querySelector("#posting");
+
+        formDom.onsubmit = () => {
             const hashtag_values = JSON.stringify(
                 tagify.value.map(el => el.value)
             );
-            $.ajax({
-                url: "/posting/community/create",
-                type: "post",
-                traditional: "true",
-                data: {
-                    hashtag_values,
-                },
-            });
+            hashTag.value = hashtag_values;
         };
 
-        // 등록 취소 버튼클릭시 이벤트
-        // btns.onclick = e => {
-        //     const btnFor = e.target.getAttribute("for");
-        //     switch (btnFor) {
-        //         case "submit":
-        //             // 글없으면 공백넣기
-        //             // const text = JSON.stringify(textAreaDom.value || " ");
-        //             const text = textAreaDom.value || " ";
-        //             // 글 공백 방지
-        //             // if (!text) {
-        //             //     alert("글을 작성해 주세요");
-        //             //     return;
-        //             // }
-        //             textAreaDom.innerText = text;
-        //          /posting/community/create   const main_html = JSON.stringify(posting.innerHTML);
-        //             const hashtag_values = JSON.stringify(
-        //                 tagify.value.map(el => el.value)
-        //             );
-
-        //             $.ajax({
-        //                 url: "/posting/community/create",
-        //                 type: "post",
-        //                 traditional: "true",
-        //                 data: {
-        //                     game_name,
-        //                     user_id,
-        //                     nick_name,
-        //                     text,
-        //                     main_html,
-        //                     hashtag_values,
-        //                 },
-        //                 success: function (data) {
-        //                     location.href = data;
-        //                 },
-        //             });
-        //             break;
-        //         case "cancle":
-        //             location.href = `/community/${game_name}`;
-        //             break;
-        //     }
+        // const submit = document.querySelector("button[name=submit]");
+        // const game_name = "<%= game_name %>";
+        // const user_id = "<%= user_id%>";
+        // const nick_name = "<%= nick_name%>";
+        // const textAreaDom = document.querySelector("textarea[name = text]");
+        // const imgFilesInput = document.querySelectorAll("input[type=file]");
+        // const formData = new FormData();
+        // imgFilesInput.forEach(input => {
+        //     input.oninput = e => {
+        //         console.log("실행");
+        //         formData.append("file", e.files);
+        //     };
+        // });
+        // submit.onclick = e => {
+        //     console.log(formData);
+        //     $.ajax({
+        //         url:
+        //     })
+        //     // 글없으면 공백넣기
+        //     // const text = JSON.stringify(textAreaDom.value || " ");
+        //     const text = textAreaDom.value || " ";
+        //     // 글 공백 방지
+        //     // if (!text) {
+        //     //     alert("글을 작성해 주세요");
+        //     //     return;
+        //     // }
+        //     textAreaDom.innerText = text;
+        //     // const main_html = JSON.stringify(posting.innerHTML);
+        //     const hashtag_values = JSON.stringify(
+        //         tagify.value.map(el => el.value)
+        //     );
+        //     // $.ajax({
+        //     //     url: "/posting/community/create",
+        //     //     type: "post",
+        //     //     traditional: "true",
+        //     //     data: {
+        //     //         game_name,
+        //     //         user_id,
+        //     //         text,
+        //     //         hashtag_values,
+        //     //         // image1,
+        //     //         // image2,
+        //     //         // image3,
+        //     //         // image4,
+        //     //         // image5,
+        //     //     },
+        //     //     success: function (data) {
+        //     //         location.href = data;
+        //     //     },
+        //     // });
         // };
 
         function getData() {

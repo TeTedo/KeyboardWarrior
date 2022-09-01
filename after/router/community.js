@@ -24,6 +24,7 @@ router.get("/community/:game_name", loginCheck, async (req, res) => {
             if (postData) {
                 postData.forEach(data => {
                     data.hashtag_values = JSON.parse(data.hashtag_values);
+                    // console.log(data.User);
                 });
             } else {
                 postData = null;
