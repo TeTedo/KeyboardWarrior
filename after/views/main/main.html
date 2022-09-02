@@ -152,7 +152,7 @@
         chatTag.classList.toggle("chatOn");
       };
       // 채팅관련
-      const chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
+      let chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
       chatRoomTag.forEach((el, index) => {
         //채팅창 더블클릭시 채팅창 커지고 데이터 담기
         el.ondblclick = function () {};
@@ -208,14 +208,15 @@
             `;
             const temp = document.querySelector(`#${writerName}`);
             temp.focus();
+            // 받아온 tag 초기화위해서
+            chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
           }
-          // 받아온 tag 초기화위해서
-          chat();
         };
       });
       // 메시지 보내기
       // 개인 방에 넣어주기
       socket.emit("login", "<%=user_id%>");
+
       chatRoomTag.forEach((el) => {
         const messageSend = el.querySelector(".fa-comment-dots");
         //보내기 버튼 클릭시

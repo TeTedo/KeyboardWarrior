@@ -123,6 +123,7 @@ io.on("connect", (socket) => {
     socket.join(user_id);
   });
   socket.on("chat", (speaker, listener, message) => {
+    console.log("gd");
     // 말한사람한테 보낸것
     io.to(speaker).emit("toSpeaker", speaker, listener, message);
     // 듣는사람한테 보낸것
