@@ -200,12 +200,12 @@
 #posting_left::-webkit-scrollbar {
     display: none;
 }
-#posting_left_img {
+/* #posting_left_img {
     display: flex;
     position: absolute;
     left: 0;
-}
-#posting_left_img > img {
+} */
+#posting_left > img {
     width: 500px;
     height: 500px;
 }
