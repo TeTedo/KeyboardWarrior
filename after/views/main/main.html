@@ -97,41 +97,12 @@
         </div>
       </div>
       <!-- 채팅창 추가부분 -->
-      <div class="sideBar_Bottom_chat">
-        <div class="sideBar_Bottom_chatRoom">
-          <div class="sideBar_Bottom_chatRoom_preView">
-            <img src="" alt="보낸사람이미지" />
-            <div>
-              <div class="chatNickName">닉네임</div>
-              <div class="chatMessage">채팅메시지</div>
-            </div>
-          </div>
-          <div class="sideBar_Bottom_chatRoom_top">
-            <span class="chatNickName">
-              <i class="fa-regular fa-envelope"></i><img src="" alt="" />닉네임
-            </span>
-            <span><i class="fa-solid fa-minus"></i>&nbsp;</span>
-          </div>
-          <div class="sideBar_Bottom_chatRoom_middle">
-            <div class="fullchatMessage leftChat">
-              <img src="" alt="d" />
-              <div>채팅메시지</div>
-            </div>
-            <div class="fullchatMessage rightChat">
-              <img src="" alt="" />
-              <div>채팅메시지</div>
-            </div>
-          </div>
-          <div id="chatForm">
-            <input type="text" />
-            <i class="fa-regular fa-comment-dots"></i>
-          </div>
-        </div>
-      </div>
+      <div class="sideBar_Bottom_chat"></div>
     </div>
     <div class="sideBarOpenBtn">
       <i class="fa-solid fa-arrow-right-long"></i>
     </div>
+    <!-- 채팅창 추가부분 -->
     <!-- 사이드바 끝 -->
     <!-- 포스팅 예시 -->
     <div id="mainContent">
@@ -143,8 +114,6 @@
     </div>
   </body>
   <script>
-    //채팅창 관련 함수
-    const socket = io.connect();
     function chat() {
       //채팅이미지 누르면 채팅창 나오게 하기
       const chatTag = document.querySelector(".sideBar_Bottom_chat");
@@ -155,7 +124,19 @@
       let chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
       chatRoomTag.forEach((el, index) => {
         //채팅창 더블클릭시 채팅창 커지고 데이터 담기
-        el.ondblclick = function () {};
+        el.ondblclick = function () {
+          el.querySelector(".sideBar_Bottom_chatRoom_preView").style.display =
+            "none";
+          el.querySelector(".sideBar_Bottom_chatRoom_main").style.display =
+            "block";
+        };
+        // - 버튼 누르면 미리보기창 띄우기
+        el.querySelector(".fa-minus").onclick = function () {
+          el.querySelector(".sideBar_Bottom_chatRoom_preView").style.display =
+            "flex";
+          el.querySelector(".sideBar_Bottom_chatRoom_main").style.display =
+            "none";
+        };
       });
 
       //메인포스트 채팅버튼 누르면 채팅창 생성 및 데이터 받아오기
@@ -168,6 +149,9 @@
           "#mainPost_top_userInfo_nickName"
         ).innerText;
         const writer = el.dataset.writer;
+        const writerImg = el.querySelector(
+          "#mainPost_top_profileimg > img"
+        ).src;
         chatBtn.onclick = function () {
           sideBar.style.transform = "translate(0px)";
           chatTag.classList.add("chatOn");
@@ -175,7 +159,10 @@
           let checkRoomBool = false;
           chatRoomTag.forEach((elem) => {
             const checkRoom = elem.querySelector(".chatNickName").innerText;
-            if (checkRoom == writerName) {
+            const checkRoomPreview = elem.querySelector(
+              ".chatNickName_preview"
+            ).innerText;
+            if (checkRoom == writerName || checkRoomPreview == writerName) {
               // 게시글작성자와 기존있던 채팅방 닉네임 일치하면 거기로 focus하고 sideBar 열어주기
               const messageInput = elem.querySelector("#chatForm > input");
               messageInput.focus();
@@ -187,36 +174,47 @@
             chatTag.innerHTML += `
             <div class="sideBar_Bottom_chatRoom" data-who="${writer}">
               <div class="sideBar_Bottom_chatRoom_preView">
-                <img src="" alt="보낸사람이미지" />
+                <img src="${writerImg}" alt="" />
                 <div>
-                  <div class="chatNickName_preview">닉네임</div>
+                  <div class="chatNickName_preview">${writerName}</div>
                   <div class="chatMessage">채팅메시지</div>
                 </div>
               </div>
-              <div class="sideBar_Bottom_chatRoom_top">
-                <span class="chatNickName">
-                  <i class="fa-regular fa-envelope"></i></i><img src="" alt="" />${writerName}
-                </span>
-                <span><i class="fa-solid fa-minus"></i>&nbsp;</span>
-              </div>
-              <div class="sideBar_Bottom_chatRoom_middle"></div>
-              <div id="chatForm">
-                <input type="text" class="sendMSG" id="${writerName}"/>
-                <i class="fa-regular fa-comment-dots"></i>
+              <div class="sideBar_Bottom_chatRoom_main">
+                <div class="sideBar_Bottom_chatRoom_top">
+                  <span class="chatNickName">
+                    <i class="fa-regular fa-envelope"></i></i><img src="${writerImg}" alt="" />${writerName}
+                  </span>
+                  <span><i class="fa-solid fa-minus"></i>&nbsp;</span>
+                </div>
+                <div class="sideBar_Bottom_chatRoom_middle"></div>
+                <div id="chatForm">
+                  <input type="text" class="sendMSG" id="${writerName}"/>
+                  <i class="fa-regular fa-comment-dots"></i>
+                </div>
               </div>
             </div>
             `;
+            // 미리보기 지우고 메인채팅창 띄우기
+            // document.querySelector();
+            // 입력창에 focus해주기
             const temp = document.querySelector(`#${writerName}`);
             temp.focus();
-            // 받아온 tag 초기화위해서
+            // 받아온 tag 초기화위해서 chatRoomTag한번더 선언해주고 함수 실행
             chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
+            socketChat();
+            chat();
           }
         };
       });
+    }
+    function socketChat() {
+      //채팅창 관련 함수
+      const socket = io.connect();
       // 메시지 보내기
       // 개인 방에 넣어주기
       socket.emit("login", "<%=user_id%>");
-
+      let chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
       chatRoomTag.forEach((el) => {
         const messageSend = el.querySelector(".fa-comment-dots");
         //보내기 버튼 클릭시
@@ -224,17 +222,17 @@
           // 서버로 누가 누구한테 어떤걸 보냈는지 전송
           const speaker = "<%= user_id%>";
           const listener = el.dataset.who;
-          let message = el.querySelector(".sendMSG").value;
+          const message = el.querySelector(".sendMSG").value;
           socket.emit("chat", speaker, listener, message);
           el.querySelector(".sendMSG").value = "";
           el.querySelector(".sendMSG").focus();
         };
         //내가 보낸사람일때 서버로부터 받는곳
-        socket.on("toSpeaker", (speaker, listener, message) => {
+        socket.on("toSpeaker", (speaker, listener, message, speakerImg) => {
           if (el.dataset.who == listener) {
             el.querySelector(".sideBar_Bottom_chatRoom_middle").innerHTML += `
             <div class="fullchatMessage rightChat">
-              <img src="<%= profile_img%>" alt="" />
+              <img src=${speakerImg} alt="" />
               <div>${message}</div>
             </div>
             `;
@@ -244,11 +242,11 @@
           }
         });
         // 내가 받는사람일때 서버로부터 받는곳
-        socket.on("toListener", (speaker, listener, message) => {
+        socket.on("toListener", (speaker, listener, message, speakerImg) => {
           if (el.dataset.who == speaker) {
             el.querySelector(".sideBar_Bottom_chatRoom_middle").innerHTML += `
             <div class="fullchatMessage leftChat">
-              <img src="<%= profile_img%>" alt="" />
+              <img src=${speakerImg} alt="" />
               <div>${message}</div>
             </div>
             `;
@@ -262,6 +260,7 @@
         });
       });
     }
+
     //로그인 되어있을때 사이드바 데이터 함수
     function getData() {
       // 값이 들어왔나 안들어왔나 체크용
@@ -486,6 +485,7 @@
       //이미지 클릭시 포스트 이동
       clickToPost();
       chat();
+      socketChat();
     };
   </script>
   <script src="./main/main.js"></script>
