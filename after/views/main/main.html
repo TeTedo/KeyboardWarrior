@@ -1,236 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-        <script
-            src="https://code.jquery.com/jquery-3.6.0.min.js"
-            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-            crossorigin="anonymous"
-        ></script>
-        <script
-            src="https://kit.fontawesome.com/3264d39625.js"
-            crossorigin="anonymous"
-        ></script>
-    </head>
-    <link rel="stylesheet" href="main/style.css" />
-    <body>
-        <div id="mainPageTop">
-            <div id="mainLogo"><a href="/">이건 메인로고</a></div>
-            <ul id="mainPageNav">
-                <li><a href="/community_hub">COMMUNITY</a></li>
-                <li><a href="/minigame">MINI GAME</a></li>
-            </ul>
-            <ul id="mainPageSign">
-                <li><a href="/join">회원가입</a></li>
-                <li><a href="/login">로그인</a></li>
-            </ul>
-            <ul id="mainPageLogo">
-                <li>
-                    <a href="https://github.com/TeTedo/KeyboardWarrior.git"
-                        ><img
-                            class="mainPageLogo_githubLogo"
-                            src="http://rajlab.org/icons/github_white.png"
-                            alt="github"
-                    /></a>
-                </li>
-                <li>
-                    <a
-                        href="https://www.notion.so/Keyboard-Warrior-888a144aa79f437e8f726910c42617a8"
-                        ><img
-                            class="mainPageLogo_notionLogo"
-                            src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png"
-                            alt="notion"
-                    /></a>
-                </li>
-            </ul>
-        </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>키보드워리어</title>
+    <script src="./socket.io/socket.io.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/3264d39625.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <link rel="stylesheet" href="main/style.css" />
+  <body>
+    <div id="mainPageTop">
+      <div id="mainLogo"><a href="/">이건 메인로고</a></div>
+      <ul id="mainPageNav">
+        <li><a href="/community_hub">COMMUNITY</a></li>
+        <li><a href="/minigame">MINI GAME</a></li>
+      </ul>
+      <ul id="mainPageSign">
+        <li><a href="/join">회원가입</a></li>
+        <li><a href="/login">로그인</a></li>
+      </ul>
+      <ul id="mainPageLogo">
+        <li>
+          <a href="https://github.com/TeTedo/KeyboardWarrior.git"
+            ><img
+              class="mainPageLogo_githubLogo"
+              src="http://rajlab.org/icons/github_white.png"
+              alt="github"
+          /></a>
+        </li>
+        <li>
+          <a
+            href="https://www.notion.so/Keyboard-Warrior-888a144aa79f437e8f726910c42617a8"
+            ><img
+              class="mainPageLogo_notionLogo"
+              src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png"
+              alt="notion"
+          /></a>
+        </li>
+      </ul>
+    </div>
 
-        <!-- <div id="mainPageSearch">
+    <!-- <div id="mainPageSearch">
       <div id="mainPageSearch_whole">
         <input type="text" id="mainPageSearch_searchBar" />
         <span>검색</span>
       </div>
     </div> -->
-        <!-- 여기까지 탑 공통 부분 -->
+    <!-- 여기까지 탑 공통 부분 -->
 
-        <!-- 사이드바 -->
-        <div id="sideBar">
-            <div id="sideBar_top">
-                <div id="sideBar_top_sideBarBtn">
-                    <i class="fa-solid fa-arrow-left-long"></i>
-                </div>
-                <div id="sideBar_top_up">
-                    <ul>
-                        <li>팔로워</li>
-                        <li><%= follower%></li>
-                    </ul>
-                    <ul>
-                        <li>팔로잉</li>
-                        <li><%=following%></li>
-                    </ul>
-                </div>
-                <div id="sideBar_top_down">
-                    <div id="sideBar_top_down_left">
-                        <div><%= user_id%></div>
-                        <div><%= nick_name%></div>
-                    </div>
-                    <div id="sideBar_top_down_right">
-                        <div>
-                            <a href="/join/modify/enterance"
-                                ><i class="fa-solid fa-gear"></i
-                            ></a>
-                            <a href=""><i class="fa-solid fa-bell"></i></a>
-                            <a href=""><i class="fa-solid fa-comments"></i></a>
-                            <a href="/logout"
-                                ><i class="fa-solid fa-right-from-bracket"></i
-                            ></a>
-                        </div>
-                        <a href="/posting">글쓰기</a>
-                    </div>
-                </div>
-                <div id="sideBar_top_profileImg">
-                    <img src="<%= profile_img%>" alt="" />
-                </div>
+    <!-- 사이드바 -->
+    <div id="sideBar">
+      <div id="sideBar_top">
+        <div id="sideBar_top_sideBarBtn">
+          <i class="fa-solid fa-arrow-left-long"></i>
+        </div>
+        <div id="sideBar_top_up">
+          <ul>
+            <li>팔로워</li>
+            <li><%= follower%></li>
+          </ul>
+          <ul>
+            <li>팔로잉</li>
+            <li><%=following%></li>
+          </ul>
+        </div>
+        <div id="sideBar_top_down">
+          <div id="sideBar_top_down_left">
+            <div><%= user_id%></div>
+            <div><%= nick_name%></div>
+          </div>
+          <div id="sideBar_top_down_right">
+            <div>
+              <a href="/join/modify/enterance"
+                ><i class="fa-solid fa-gear"></i
+              ></a>
+              <a href=""><i class="fa-solid fa-bell"></i></a>
+              <a href=""><i class="fa-solid fa-comments"></i></a>
+              <a href="/logout"
+                ><i class="fa-solid fa-right-from-bracket"></i
+              ></a>
             </div>
+            <a href="/posting">글쓰기</a>
+          </div>
         </div>
-        <div class="sideBarOpenBtn">
-            <i class="fa-solid fa-arrow-right-long"></i>
+        <div id="sideBar_top_profileImg">
+          <img src="<%= profile_img%>" alt="" />
         </div>
-        <!-- 사이드바 끝 -->
-        <!-- 포스팅 예시 -->
-        <div id="mainContent">
-            <div id="mainContentWrap">
-                <div class="mainPost">
-                    <div id="mainPost_top">
-                        <div id="mainPost_top_profileimg">
-                            <img src="./images/profileimg.jpg" alt="" />
-                        </div>
-                        <div id="mainPost_top_userInfo">
-                            <div id="mainPost_top_userInfo_nickName">
-                                닉네임
-                            </div>
-                            <div id="mainPost_top_userInfo_follwer">
-                                팔로워숫자
-                            </div>
-                        </div>
-                        <div id="mainPost_top_follwingBtn">
-                            <i class="fa-solid fa-user-plus"></i>
-                            <i class="fa-solid fa-user-check"></i>
-                            <i class="fa-solid fa-message"></i>
-                        </div>
-                    </div>
-                    <div id="mainPost_middle">
-                        <div id="mainPost_middle_img">
-                            <img src="./images/Example.jpeg" alt="" />
-                        </div>
-                        <div id="mainPost_middle_text"></div>
-                    </div>
-                    <div id="mainPost_bottom">
-                        <i class="fa-solid fa-heart"></i>좋아요 갯수
-                        <i class="fa-solid fa-comment"></i>댓글 갯수
-                        <h1>클릭 ㄴㄴ 클릭하면 터져용</h1>
-                    </div>
-                </div>
-
-                <!-- 포스팅 예시끝 -->
-                <!-- 포스팅구역 -->
-                <div class="mainPost">
-                    <div id="mainPost_top">
-                        <div id="mainPost_top_profileimg">
-                            <img src="./images/profileimg.jpg" alt="" />
-                        </div>
-                        <div id="mainPost_top_userInfo">
-                            <div id="mainPost_top_userInfo_nickName">
-                                닉네임
-                            </div>
-                            <div id="mainPost_top_userInfo_follwer">
-                                팔로워숫자
-                            </div>
-                        </div>
-                        <div id="mainPost_top_follwingBtn">
-                            <i class="fa-solid fa-user-plus"></i>
-                            <i class="fa-solid fa-user-check"></i>
-                            <i class="fa-solid fa-message"></i>
-                        </div>
-                    </div>
-                    <div id="mainPost_middle">
-                        <div id="mainPost_middle_img">
-                            <img src="" alt="" />
-                        </div>
-                        <div id="mainPost_middle_text"></div>
-                    </div>
-                    <div id="mainPost_bottom">
-                        <div id="mainPost_bottom_createdTime">
-                            <h3>클릭 ㄴㄴ 하면 터짐</h3>
-                        </div>
-                        <div id="mainPost_bottom_sub">
-                            <i class="fa-solid fa-heart"></i>좋아요 갯수
-                            <i class="fa-solid fa-comment"></i>댓글 갯수
-                        </div>
-                    </div>
-                </div>
-                <!-- 포스팅구역 -->
+      </div>
+    </div>
+    <div class="sideBarOpenBtn">
+      <i class="fa-solid fa-arrow-right-long"></i>
+    </div>
+    <!-- 사이드바 끝 -->
+    <!-- 포스팅 예시 -->
+    <div id="mainContent">
+      <div id="mainContentWrap">
+        <div class="mainPost">
+          <div id="mainPost_top">
+            <div id="mainPost_top_profileimg">
+              <img src="./images/profileimg.jpg" alt="" />
             </div>
+            <div id="mainPost_top_userInfo">
+              <div id="mainPost_top_userInfo_nickName">닉네임</div>
+              <div id="mainPost_top_userInfo_follwer">팔로워숫자</div>
+            </div>
+            <div id="mainPost_top_follwingBtn">
+              <i class="fa-solid fa-user-plus"></i>
+              <i class="fa-solid fa-user-check"></i>
+              <i class="fa-solid fa-message"></i>
+            </div>
+          </div>
+          <div id="mainPost_middle">
+            <div id="mainPost_middle_img">
+              <img src="./images/Example.jpeg" alt="" />
+            </div>
+            <div id="mainPost_middle_text"></div>
+          </div>
+          <div id="mainPost_bottom">
+            <i class="fa-solid fa-heart"></i>좋아요 갯수
+            <i class="fa-solid fa-comment"></i>댓글 갯수
+            <h1>클릭 ㄴㄴ 클릭하면 터져용</h1>
+          </div>
         </div>
-    </body>
-    <script>
-        //로그인 되어있을때 사이드바 데이터 함수
-        function getData() {
-            // 값이 들어왔나 안들어왔나 체크용
-            const data = "<%= user_id%>";
-            //데이터 있을때
-            if (data) {
-                // 회원가입 로그인 숨기기
-                const mainPageSign = document.querySelector("#mainPageSign");
-                mainPageSign.style.display = "none";
-                //사이드바 띄우기
-                const sideBar = document.querySelector("#sideBar");
-                sideBar.style.display = "block";
-                //사이드바에 값넣기
-                const insertUser = document.querySelectorAll(
-                    "#sideBar_top_down_left > div"
-                );
 
-                insertUser[0].innerHTML = "<%=user_id %>";
-                insertUser[1].innerHTML = "<%=nick_name %>";
-            }
-            //데이터 없을때
-            else {
-                // 회원가입 로그인 버튼 띄우기
-                mainPageSign.style.display = "flex";
-                //사이드바 숨기기
-                sideBar.style.display = "none";
-            }
-        }
+        <!-- 포스팅 예시끝 -->
+        <!-- 포스팅구역 -->
+        <div class="mainPost">
+          <div id="mainPost_top">
+            <div id="mainPost_top_profileimg">
+              <img src="./images/profileimg.jpg" alt="" />
+            </div>
+            <div id="mainPost_top_userInfo">
+              <div id="mainPost_top_userInfo_nickName">닉네임</div>
+              <div id="mainPost_top_userInfo_follwer">팔로워숫자</div>
+            </div>
+            <div id="mainPost_top_follwingBtn">
+              <i class="fa-solid fa-user-plus"></i>
+              <i class="fa-solid fa-user-check"></i>
+              <i class="fa-solid fa-message"></i>
+            </div>
+          </div>
+          <div id="mainPost_middle">
+            <div id="mainPost_middle_img">
+              <img src="" alt="" />
+            </div>
+            <div id="mainPost_middle_text"></div>
+          </div>
+          <div id="mainPost_bottom">
+            <div id="mainPost_bottom_createdTime">
+              <h3>클릭 ㄴㄴ 하면 터짐</h3>
+            </div>
+            <div id="mainPost_bottom_sub">
+              <i class="fa-solid fa-heart"></i>좋아요 갯수
+              <i class="fa-solid fa-comment"></i>댓글 갯수
+            </div>
+          </div>
+        </div>
+        <!-- 포스팅구역 -->
+      </div>
+    </div>
+  </body>
+  <script>
+    //로그인 되어있을때 사이드바 데이터 함수
+    function getData() {
+      // 값이 들어왔나 안들어왔나 체크용
+      const data = "<%= user_id%>";
+      //데이터 있을때
+      if (data) {
+        // 회원가입 로그인 숨기기
+        const mainPageSign = document.querySelector("#mainPageSign");
+        mainPageSign.style.display = "none";
+        //사이드바 띄우기
+        const sideBar = document.querySelector("#sideBar");
+        sideBar.style.display = "block";
+        //사이드바에 값넣기
+        const insertUser = document.querySelectorAll(
+          "#sideBar_top_down_left > div"
+        );
 
-        // 포스팅 데이터 받아오기 함수
-        // // 이중 객체 값 뽑아오기
-        function setPost(callback) {
-            let postData = "<%= JSON.stringify(postData) %>";
-            postData = postData.replaceAll("&#34;", '"');
-            postData = postData.replaceAll("\\", "/");
-            postData = JSON.parse(postData);
+        insertUser[0].innerHTML = "<%=user_id %>";
+        insertUser[1].innerHTML = "<%=nick_name %>";
+      }
+      //데이터 없을때
+      else {
+        // 회원가입 로그인 버튼 띄우기
+        mainPageSign.style.display = "flex";
+        //사이드바 숨기기
+        sideBar.style.display = "none";
+      }
+    }
 
-            const postNumArr = Object.keys(postData);
+    // 포스팅 데이터 받아오기 함수
+    // // 이중 객체 값 뽑아오기
+    function setPost(callback) {
+      let postData = "<%= JSON.stringify(postData) %>";
+      postData = postData.replaceAll("&#34;", '"');
+      postData = postData.replaceAll("\\", "/");
+      postData = JSON.parse(postData);
 
-            postNumArr.forEach((el, index) => {
-                const {
-                    userLike,
-                    writer_follower,
-                    follow,
-                    writer_profile_img,
-                    writer,
-                    writer_nickName,
-                    writer_like,
-                    writer_comment,
-                    writer_text,
-                    writer_image1,
-                    writer_created_at,
-                } = postData[el];
-                const posts = `
+      const postNumArr = Object.keys(postData);
+
+      postNumArr.forEach((el, index) => {
+        const {
+          userLike,
+          writer_follower,
+          follow,
+          writer_profile_img,
+          writer,
+          writer_nickName,
+          writer_like,
+          writer_comment,
+          writer_text,
+          writer_image1,
+          writer_created_at,
+        } = postData[el];
+        const posts = `
       <div class="mainPost" data-writer = "${writer}" data-follow = "${follow}" data-like =${userLike} data-id = "${el}" >
           <div id="mainPost_top">
             <div id="mainPost_top_profileimg">
@@ -263,146 +256,145 @@
         </div>
       `;
 
-                document.querySelector("#mainContentWrap").innerHTML += posts;
-            });
+        document.querySelector("#mainContentWrap").innerHTML += posts;
+      });
 
-            callback();
-        }
+      callback();
+    }
 
-        // 게시글 세부 버튼 생성
-        function makeBtn() {
-            const mainPost = document.querySelectorAll(".mainPost");
-            const user_id = "<%= user_id %>";
+    // 게시글 세부 버튼 생성
+    function makeBtn() {
+      const mainPost = document.querySelectorAll(".mainPost");
+      const user_id = "<%= user_id %>";
 
-            mainPost.forEach((el, index) => {
-                // 로그인 안되있을때
-                if (!user_id) {
-                    document
-                        .querySelectorAll("#mainPost_top_follwingBtn > i")
-                        .forEach(elem => {
-                            elem.style.display = "none";
-                        });
-                }
-                //로그인 되있을때
-                else {
-                    //좋아요 해놨으면 빨간색으로 보이기
-                    const likeBtn = el.querySelector(".fa-heart");
-                    const likeNum = el.querySelector(".likeValue");
-                    if (el.dataset.like != "null") {
-                        likeBtn.classList.add("liked");
-                    }
-
-                    //좋아요 클릭시
-                    likeBtn.onclick = function () {
-                        // 클래스네임 liked 있으면 빼고 없으면 넣기
-                        likeBtn.classList.toggle("liked");
-                        //클래스네임이 없었는데 눌러서 생긴경우 (좋아요를 누른경우)
-                        if (likeBtn.classList.contains("liked")) {
-                            likeNum.innerText = Number(likeNum.innerText) + 1;
-                            $.ajax({
-                                url: `/posts/${el.dataset.id}/like`,
-                                method: "post",
-                                data: { userLike: true, userId: user_id },
-                            });
-                        }
-                        //클래스네임 없는경우(좋아요 취소한경우)
-                        else {
-                            likeNum.innerText = Number(likeNum.innerText) - 1;
-                            $.ajax({
-                                url: `/posts/${el.dataset.id}/like`,
-                                method: "post",
-                                data: { userLike: false, userId: user_id },
-                            });
-                        }
-                    };
-
-                    if (el.dataset.writer == user_id) {
-                        // 글쓴이랑 로그인한사람이랑 같은지 비교
-                        // 같을때
-                        // 수정하기 버튼 만들기
-                        el.querySelectorAll(
-                            "#mainPost_top_follwingBtn > i"
-                        ).forEach(elem => {
-                            elem.style.display = "none";
-                        });
-                        el.querySelector(
-                            "#mainPost_top_follwingBtn > a"
-                        ).style.display = "flex";
-                    }
-                    //글쓴이랑 로그인한사람이랑 다를때
-                    else {
-                        const followBtn =
-                            document.querySelectorAll(".fa-user-plus")[index];
-                        const unFollowBtn =
-                            document.querySelectorAll(".fa-user-check")[index];
-                        //팔로우 되있는지 여부확인해서 버튼 띄우기
-                        //되있을때 => main라우터에서 값이 넘어옴
-
-                        if (el.dataset.follow != "null") {
-                            followBtn.style.display = "none";
-                            unFollowBtn.style.display = "block";
-                        }
-                        //안되있을때
-                        else {
-                            followBtn.style.display = "block";
-                            unFollowBtn.style.display = "none";
-                        }
-                        //팔로우
-                        followBtn.onclick = function () {
-                            $.ajax({
-                                url: "/follow",
-                                method: "post",
-                                data: {
-                                    follow: true,
-                                    follower: user_id,
-                                    following: el.dataset.writer,
-                                },
-                            });
-                            followBtn.style.display = "none";
-                            unFollowBtn.style.display = "block";
-                        };
-                        // 언팔로우
-                        unFollowBtn.onclick = function () {
-                            if (confirm("팔로우를 취소하시겠습니까?")) {
-                                $.ajax({
-                                    url: "/follow",
-                                    method: "post",
-                                    data: {
-                                        follow: false,
-                                        follower: user_id,
-                                        following: el.dataset.writer,
-                                    },
-                                });
-                                followBtn.style.display = "block";
-                                unFollowBtn.style.display = "none";
-                            }
-                        };
-                    }
-                }
+      mainPost.forEach((el, index) => {
+        // 로그인 안되있을때
+        if (!user_id) {
+          document
+            .querySelectorAll("#mainPost_top_follwingBtn > i")
+            .forEach((elem) => {
+              elem.style.display = "none";
             });
         }
+        //로그인 되있을때
+        else {
+          //좋아요 해놨으면 빨간색으로 보이기
+          const likeBtn = el.querySelector(".fa-heart");
+          const likeNum = el.querySelector(".likeValue");
+          if (el.dataset.like != "null") {
+            likeBtn.classList.add("liked");
+          }
 
-        //클릭시 포스트 페이지 이동
-        function clickToPost() {
-            const clickMain = document.querySelectorAll("#mainPost_middle_img");
+          //좋아요 클릭시
+          likeBtn.onclick = function () {
+            // 클래스네임 liked 있으면 빼고 없으면 넣기
+            likeBtn.classList.toggle("liked");
+            //클래스네임이 없었는데 눌러서 생긴경우 (좋아요를 누른경우)
+            if (likeBtn.classList.contains("liked")) {
+              likeNum.innerText = Number(likeNum.innerText) + 1;
+              $.ajax({
+                url: `/posts/${el.dataset.id}/like`,
+                method: "post",
+                data: { userLike: true, userId: user_id },
+              });
+            }
+            //클래스네임 없는경우(좋아요 취소한경우)
+            else {
+              likeNum.innerText = Number(likeNum.innerText) - 1;
+              $.ajax({
+                url: `/posts/${el.dataset.id}/like`,
+                method: "post",
+                data: { userLike: false, userId: user_id },
+              });
+            }
+          };
 
-            clickMain.forEach(el => {
-                el.onclick = function () {
-                    location.href = `/posts/${el.dataset.posts}`;
-                };
-            });
+          if (el.dataset.writer == user_id) {
+            // 글쓴이랑 로그인한사람이랑 같은지 비교
+            // 같을때
+            // 수정하기 버튼 만들기
+            el.querySelectorAll("#mainPost_top_follwingBtn > i").forEach(
+              (elem) => {
+                elem.style.display = "none";
+              }
+            );
+            el.querySelector("#mainPost_top_follwingBtn > a").style.display =
+              "flex";
+          }
+          //글쓴이랑 로그인한사람이랑 다를때
+          else {
+            const followBtn = document.querySelectorAll(".fa-user-plus")[index];
+            const unFollowBtn =
+              document.querySelectorAll(".fa-user-check")[index];
+            //팔로우 되있는지 여부확인해서 버튼 띄우기
+            //되있을때 => main라우터에서 값이 넘어옴
+
+            if (el.dataset.follow != "null") {
+              followBtn.style.display = "none";
+              unFollowBtn.style.display = "block";
+            }
+            //안되있을때
+            else {
+              followBtn.style.display = "block";
+              unFollowBtn.style.display = "none";
+            }
+            //팔로우
+            followBtn.onclick = function () {
+              $.ajax({
+                url: "/follow",
+                method: "post",
+                data: {
+                  follow: true,
+                  follower: user_id,
+                  following: el.dataset.writer,
+                },
+              });
+              followBtn.style.display = "none";
+              unFollowBtn.style.display = "block";
+            };
+            // 언팔로우
+            unFollowBtn.onclick = function () {
+              if (confirm("팔로우를 취소하시겠습니까?")) {
+                $.ajax({
+                  url: "/follow",
+                  method: "post",
+                  data: {
+                    follow: false,
+                    follower: user_id,
+                    following: el.dataset.writer,
+                  },
+                });
+                followBtn.style.display = "block";
+                unFollowBtn.style.display = "none";
+              }
+            };
+          }
         }
-    </script>
-    <script>
-        //사이드바 데이터 받아오기
-        getData();
-        //포스팅 정렬
-        setPost(makeBtn);
+      });
+    }
 
-        window.onload = async function () {
-            //이미지 클릭시 포스트 이동
-            clickToPost();
+    //클릭시 포스트 페이지 이동
+    function clickToPost() {
+      const clickMain = document.querySelectorAll("#mainPost_middle_img");
+
+      clickMain.forEach((el) => {
+        el.onclick = function () {
+          location.href = `/posts/${el.dataset.posts}`;
         };
-    </script>
-    <script src="./main/main.js"></script>
+      });
+    }
+  </script>
+  <script>
+    //사이드바 데이터 받아오기
+    getData();
+    //포스팅 정렬
+    setPost(makeBtn);
+
+    window.onload = async function () {
+      //이미지 클릭시 포스트 이동
+      clickToPost();
+      chat();
+    };
+  </script>
+  <script src="./main/main.js"></script>
 </html>
