@@ -1,2 +1,3 @@
 main 사이드바 html 추가 , css추가
 main.html 밑에 스크립트 채팅창 관련 함수 추가
+main.html에 soket.js 추가

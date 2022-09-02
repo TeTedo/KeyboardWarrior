@@ -227,33 +227,114 @@
   transition: 1s;
   overflow-y: scroll;
   overflow-x: hidden;
+  display: block;
+  height: max-content;
 }
 .sideBar_Bottom_chatRoom::-webkit-scrollbar {
   display: none;
 }
-.sideBar_Bottom_chatRoom > img {
+.sideBar_Bottom_chatRoom_preView {
+  position: relative;
+  width: 350px;
+  height: 100px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+}
+.sideBar_Bottom_chatRoom_preView > img {
   width: 70px;
   height: 70px;
   border: 1px solid black;
   margin: 10px;
   border-radius: 50%;
 }
-.sideBar_Bottom_chatRoom > div {
+.sideBar_Bottom_chatRoom_preView > div {
   width: 200px;
   height: 70px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
-.chatNickName {
+.chatNickName_preview {
   font-size: 20px;
   font-weight: bold;
 }
 .chatMessage {
   font-size: 15px;
 }
-.chatFull {
+.sideBar_Bottom_chatRoom_top {
+  height: 50px;
+  border-bottom: 1px solid;
   display: flex;
+  align-items: center;
+  font-size: 25px;
+  font-weight: bold;
+  justify-content: space-between;
+}
+.chatNickName > img {
+  width: 25px;
+  height: 25px;
+  border: 1px solid black;
+  margin-left: 10px;
+  border-radius: 50%;
+  transform: translateY(5px);
+}
+.fa-minus {
+  cursor: pointer;
+}
+.sideBar_Bottom_chatRoom_middle {
+  width: 350px;
+  height: 250px;
+  max-height: 250px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  border-top: 1px solid black;
+}
+.sideBar_Bottom_chatRoom_middle::-webkit-scrollbar {
+  display: none;
+}
+.fullchatMessage {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+}
+.fullchatMessage > img {
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  border: 1px solid black;
+  border-radius: 50%;
+}
+.leftChat {
+  flex-direction: row;
+}
+.rightChat {
+  flex-direction: row-reverse;
+}
+#chatForm {
+  width: 350px;
+  height: 50px;
+  border-top: 1px solid black;
+  display: flex;
+  align-items: center;
+  font-size: 40px;
+}
+#chatForm > input {
+  height: 30px;
+  width: 300px;
+  outline: none;
+  border: 1px solid black;
+  font-size: 20px;
+  padding: 5px 5px 0 5px;
+  border-radius: 15px;
+  position: relative;
+}
+#chatForm > textarea::-webkit-scrollbar {
+  display: none;
+}
+#chatSubmit {
+  display: none;
 }
 /* 채팅창 추가 끝 */
 /* 포스팅 */

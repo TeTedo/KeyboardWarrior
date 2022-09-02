@@ -103,6 +103,23 @@ app.use(
 
 // 서버열기
 const PORT = 3000;
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`${PORT}번 포트에 서버열림`);
+});
+
+//채팅 sokcet 관련
+const socketio = require("socket.io");
+const io = socketio(server);
+
+io.on("connect", (socket) => {
+  console.log("유저접속");
+  socket.on("login", (user_id) => {
+    socket.join(user_id);
+  });
+  socket.on("chat", (speaker, listener, message) => {
+    // 말한사람한테 보낸것
+    io.to(speaker).emit("toSpeaker", speaker, listener, message);
+    // 듣는사람한테 보낸것
+    io.to(listener).emit("toListener", speaker, listener, message);
+  });
 });
