@@ -1,14 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const getUserInfo = require("../functions/getUserInfo");
-const { CommunityPost, CommunityComment, User } = require("../model");
+const { MainPost, MainComment, User } = require("../model");
 
 router.post("/posts/:postId/comment", async (req, res) => {
     const post_id = req.params.postId;
     const { text } = req.body;
     const { user_id, nick_name } = await getUserInfo(req, res);
 
-    const commentNum = await CommunityPost.findOne({
+    const commentNum = await MainPost.findOne({
         where: { id: post_id },
     }).then(result => {
         return result.dataValues.comment;
@@ -18,7 +18,7 @@ router.post("/posts/:postId/comment", async (req, res) => {
         where: { user_id },
     });
 
-    await CommunityPost.update(
+    await MainPost.update(
         {
             comment: commentNum + 1,
         },
@@ -27,7 +27,7 @@ router.post("/posts/:postId/comment", async (req, res) => {
         }
     );
 
-    CommunityComment.create({
+    MainComment.create({
         post_id,
         user_id,
         nick_name,
