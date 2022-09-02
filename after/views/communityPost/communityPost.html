@@ -20,13 +20,10 @@
         <div id="mainPageTop">
             <div id="mainLogo"><a href="/">이건 메인로고</a></div>
             <ul id="mainPageNav">
-                <li><a href="">COMMUNITY</a></li>
+                <li><a href="/community_hub">COMMUNITY</a></li>
                 <li><a href="">MINI GAME</a></li>
             </ul>
-            <ul id="mainPageSign">
-                <li><a href="/join">회원가입</a></li>
-                <li><a href="/login">로그인</a></li>
-            </ul>
+            <ul id="mainPageSign"></ul>
             <ul id="mainPageLogo">
                 <li>
                     <a href="https://github.com/TeTedo/KeyboardWarrior.git"
@@ -121,6 +118,7 @@
                     <i class="fa-solid fa-user-plus"></i>
                     <i class="fa-solid fa-user-check"></i>
                     <i class="fa-solid fa-message"></i>
+                    <i class="fa-solid fa-xmark"></i>
                 </div>
             </div>
             <!-- 글쓴이 정보 끝 -->
@@ -154,7 +152,7 @@
             <div class="posts_comment">
                 <form
                     class="posts_comment_recomment"
-                    action="/posts/<%=postData.id%>/comment"
+                    action="/community/<%=postData.id%>/comment"
                     method="post"
                 >
                     <img src="../<%= profile_img%>" alt="" /><input
@@ -198,6 +196,7 @@
 
     <script>
         //데이터 집어넣기
+
         window.onload = function () {
             getPostData();
             // 댓글 집어넣기
@@ -267,7 +266,7 @@
                 messageBtn.style.display = "none";
 
                 modifyBtn.onclick = function () {
-                    location.href = `/posts/${postData.id}/modify`;
+                    location.href = `/community/${postData.id}/modify`;
                 };
             } else {
                 //이미 팔로잉 하고 있는 경우 체크되있는 버튼 표시
@@ -285,6 +284,7 @@
                 }
             }
         }
+
         //좋아요 관련 함수
         function likeData() {
             let postData = "<%= JSON.stringify(postData) %>";
@@ -308,14 +308,14 @@
                 if (likeBtn.classList.contains("liked")) {
                     likeNum.innerText = Number(likeNum.innerText) + 1;
                     $.ajax({
-                        url: `/posts/${postData.id}/like`,
+                        url: `/community/${postData.id}/like`,
                         method: "post",
                         data: { userLike: true, userId },
                     });
                 } else {
                     likeNum.innerText = Number(likeNum.innerText) - 1;
                     $.ajax({
-                        url: `/posts/${postData.id}/like`,
+                        url: `/community/${postData.id}/like`,
                         method: "post",
                         data: { userLike: false, userId },
                     });
@@ -335,7 +335,7 @@
                 commentData.forEach(el => {
                     posts_comment.innerHTML += `
             <div class="posts_comment_recommentZone" data-id="${el.id}">
-              <img src="../${el.profile_img}" alt="" />
+              <img src="../../${el.profile_img}" alt="" />
               <div><span class="comment_nickName">${el.nick_name}</span>&nbsp;<span>${el.text}</span></div>
               <span><i class="fa-solid fa-trash-can"></i></span>
             </div>
@@ -363,7 +363,7 @@
                 el.onclick = function () {
                     if (confirm("정말로 삭제하시겠습니까?")) {
                         $.ajax({
-                            url: `/posts/${commentId}/comment/delete`,
+                            url: `/community/${commentId}/comment/delete`,
                             type: "post",
                             data: {
                                 commentId,
@@ -386,7 +386,6 @@
                 .replaceAll('""', '"')
                 .replaceAll("\\", "/");
             postData = JSON.parse(postData);
-            console.log(postData);
 
             let imageArr = [
                 postData.image1,
@@ -466,6 +465,12 @@
             // 댓글 갯수
             document.querySelector(".fa-comment + span").innerText =
                 postData.comment;
+
+            //나가기 버튼
+            const exitBtn = document.querySelector(".fa-xmark");
+            exitBtn.onclick = () => {
+                location.href = `/community/${postData.game_name}`;
+            };
         }
     </script>
 </html>

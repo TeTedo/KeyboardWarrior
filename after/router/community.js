@@ -11,7 +11,7 @@ router.get("/community/:game_name", loginCheck, async (req, res) => {
         nick_name: nickNameForProfile,
         profile_img: imageForProfile,
     } = await getUserInfo(req, res);
-    CommunityPost.findAll({
+    await CommunityPost.findAll({
         where: { game_name: gameName },
         // raw: true,
         include: [
@@ -21,14 +21,16 @@ router.get("/community/:game_name", loginCheck, async (req, res) => {
         ],
     })
         .then(postData => {
-            if (postData) {
-                postData.forEach(data => {
+            postData.forEach(data => {
+                // data.text = JSON.parse(data.text);
+                if (data.hashtag_values) {
                     data.hashtag_values = JSON.parse(data.hashtag_values);
-                    // console.log(data.User);
-                });
-            } else {
-                postData = null;
-            }
+                } else {
+                    data.hashtag_values = [];
+                }
+                // console.log(data.User);
+            });
+
             let data = {};
             switch (gameName) {
                 case "fifa":
@@ -70,7 +72,7 @@ router.get("/community/:game_name", loginCheck, async (req, res) => {
             }
         })
         .catch(e => {
-            res.send("오류: ", e);
+            res.send("오류: " + e);
         });
 });
 

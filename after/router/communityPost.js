@@ -10,7 +10,8 @@ const {
 const getUserInfo = require("../functions/getUserInfo");
 const loginCheck = require("../middleware/loginCheck");
 
-router.get("/post/:game_name/:post_id", async (req, res) => {
+// 커뮤니티 포스팅 페이지용
+router.get("/post/:game_name/:post_id", loginCheck, async (req, res) => {
     const game_name = req.params.game_name;
     const post_id = req.params.post_id;
     let { user_id, nick_name, profile_img } = await getUserInfo(req, res);
@@ -49,6 +50,7 @@ router.get("/post/:game_name/:post_id", async (req, res) => {
         postData.hashtag_values = JSON.parse(postData.hashtag_values);
     }
     res.render("communityPost/communityPost", {
+        game_name,
         user_id,
         nick_name,
         profile_img,
@@ -60,8 +62,8 @@ router.get("/post/:game_name/:post_id", async (req, res) => {
     });
 });
 
-// ajax get 테스트용
-router.get("/poster/test/", (req, res) => {
+// ajax get 으로 포스터 데이터 보내주는거
+router.get("/community/post/data", (req, res) => {
     console.log("시작");
     console.log(req.query.post_id);
     const { post_id } = req.query;

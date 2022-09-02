@@ -125,7 +125,6 @@ function search(e) {
         postHtml += `
         <div
             class="mainPost"
-            data-post_id=${filteredPost.id}
         >
             <div id="mainPost_top">
                 <div id="mainPost_top_profileimg">
@@ -139,10 +138,13 @@ function search(e) {
                     <i class="fa-solid fa-user-plus"></i>
                     <i class="fa-solid fa-user-check"></i>
                     <i class="fa-solid fa-message"></i>
-                    <a href="수정하기페이지경로넣기">수정하기</a>
+                    <a href="/community/${filteredPost.id}/modify">수정하기</a>
                 </div>
             </div>
-            <div id="mainPost_middle" readonly>${filteredPost.text}</div>
+            <div id="mainPost_middle" 
+            data-post_id=${filteredPost.id}
+            onclick="{changeToPost(this)}"
+            >${filteredPost.text}</div>
             <div id="mainPost_bottom">
                 <span>#</span>
                 ${hashtagHtml}
@@ -186,7 +188,6 @@ function update(target) {
         postHtml += `
         <div
             class="mainPost"
-            data-post_id=${filteredPost.id}
         >
             <div id="mainPost_top">
                 <div id="mainPost_top_profileimg">
@@ -200,10 +201,13 @@ function update(target) {
                     <i class="fa-solid fa-user-plus"></i>
                     <i class="fa-solid fa-user-check"></i>
                     <i class="fa-solid fa-message"></i>
-                    <a href="수정하기페이지경로넣기">수정하기</a>
+                    <a href="/community/${filteredPost.id}/modify">수정하기</a>
                 </div>
             </div>
-            <div id="mainPost_middle">${filteredPost.text}</div>
+            <div id="mainPost_middle"
+            data-post_id=${filteredPost.id}
+            onclick="{changeToPost(this)}"
+            >${filteredPost.text}</div>
             <div id="mainPost_bottom">
                 <span>#</span>
                 ${hashtagHtml}

@@ -118,11 +118,7 @@
                     <div id="mainContentWrap">
                         <% data.postData.forEach(post=>{%>
 
-                        <div
-                            class="mainPost"
-                            data-hash_tag="<%= post.hashtag_values%>"
-                            data-post_id="<%= post.id%>"
-                        >
+                        <div class="mainPost">
                             <div id="mainPost_top">
                                 <div id="mainPost_top_profileimg">
                                     <img
@@ -141,10 +137,18 @@
                                     <i class="fa-solid fa-user-plus"></i>
                                     <i class="fa-solid fa-user-check"></i>
                                     <i class="fa-solid fa-message"></i>
-                                    <a href="">수정하기</a>
+                                    <a href="/community/<%= post.id%>/modify"
+                                        >수정하기</a
+                                    >
                                 </div>
                             </div>
-                            <div id="mainPost_middle"><%=post.text%></div>
+                            <div
+                                id="mainPost_middle"
+                                data-post_id="<%= post.id%>"
+                                onclick="{changeToPost(this)}"
+                            >
+                                <%=post.text%>
+                            </div>
                             <div id="mainPost_bottom">
                                 <div id="hashTag">
                                     <span>#</span>
@@ -194,6 +198,7 @@
     </body>
     <script src="community.js"></script>
     <script>
+        console.log("<%=data.postData[0].text%>");
         // 글쓰기버튼
         const gameName = "<%= data.gameName %>";
         writBtn.onclick = () => {
@@ -201,26 +206,46 @@
         };
 
         // 포스트 클릭시 상세페이지 이동
-        const mainPost = document.querySelectorAll(".mainPost");
-        // const mainPost = Array.from(document.querySelectorAll(".mainPost"));
-        mainPost.forEach(post => {
-            const postId = post.dataset.post_id;
-            post.querySelector("#mainPost_middle").onclick = () => {
-                location.href = `/post/${gameName}/${postId}`;
-            };
-        });
+        function changeToPost(target) {
+            location.href = `/post/<%=data.gameName%>/${target.dataset.post_id}`;
+        }
+        // mainPost.forEach(post => {
+        //     const postId = post.dataset.post_id;
+        //     post.querySelector("#mainPost_middle").onclick = () => {
+        //         location.href = `/post/${gameName}/${postId}`;
+        //     };
+        // });
 
         // 데이터 가공 및 초기화
         let postData;
         function uploadData() {
-            postData = "<%=JSON.stringify(data.postData)%>"
-                .replaceAll("&#34;", '"')
-                .replaceAll("&lt;", "<")
-                .replaceAll("&gt;", ">")
-                .replaceAll('""', '"');
+            postData = "<%=JSON.stringify(data.postData)%>".replaceAll(
+                "&#34;",
+                '"'
+            );
+            // 밑에는 html 가공용
+            // .replaceAll("&lt;", "<")
+            // .replaceAll("&gt;", ">")
+            // .replaceAll('"', "");
             postData = JSON.parse(postData);
+            // console.log(postData);
+            postData.forEach((post, index) => {
+                post.text = post.text
+                    .replaceAll(/&amp;/g, "&")
+                    .replaceAll(/&lt;/g, "<")
+                    .replaceAll(/&gt;/g, ">");
+            });
         }
+        // 텍스트 넣어주기
         uploadData();
+        const postMiddleText = document.querySelectorAll("#mainPost_middle");
+        postData.forEach((post, index) => {
+            post.text = post.text
+                .replaceAll(/&amp;/g, "&")
+                .replaceAll(/&lt;/g, "<")
+                .replaceAll(/&gt;/g, ">");
+            postMiddleText[index].innerHTML = post.text;
+        });
 
         // 검색창 드롭리스트에 해시태그 추가
         let hashtagArr = [];

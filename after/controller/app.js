@@ -65,12 +65,15 @@ const join = require("../router/join");
 const main = require("../router/main");
 const community_hub = require("../router/community_hub");
 const community = require("../router/community");
+const communityComment = require("../router/communityComment");
+const communityModify = require("../router/communityModify");
+const communityPosting = require("../router/communityPosting");
+const communityPost = require("../router/communityPost");
+const communityPostLike = require("../router/communityPostLike");
 const minigame = require("../router/minigame");
 const posting = require("../router/posting");
 const posts = require("../router/posts");
 const logout = require("../router/logout");
-const communityPosting = require("../router/communityPosting");
-const communityPost = require("../router/communityPost");
 const postsModify = require("../router/postsModify");
 const joinModify = require("../router/joinModify");
 const joinModifyEntarance = require("../router/joinModifyEnterance");
@@ -89,8 +92,11 @@ app.use(
     posts,
     community_hub,
     community,
+    communityComment,
+    communityModify,
     communityPosting,
     communityPost,
+    communityPostLike,
     postsModify,
     joinModify,
     joinModifyEntarance,
