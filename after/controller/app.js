@@ -116,23 +116,49 @@ const server = app.listen(PORT, () => {
 //채팅 sokcet 관련
 const socketio = require("socket.io");
 const io = socketio(server);
-const { User } = require("../model");
+const { User, Chat } = require("../model");
 io.on("connect", (socket) => {
   console.log("유저접속");
+
+  // 로그인하면 자기 아이디 Room에 입장
   socket.on("login", (user_id) => {
     socket.join(user_id);
   });
+
+  //채팅 socket
   socket.on("chat", async (speaker, listener, message) => {
     //말한사람 프로필이미지 얻기
-    let speakerImg = await User.findOne({
+    let speakerData = await User.findOne({
       where: { user_id: speaker },
       raw: true,
     });
-    speakerImg = speakerImg.profile_img;
 
+    //데이터베이스에 추가
+    await Chat.create({
+      speaker,
+      listener,
+      message,
+    });
+
+    const speakerImg = speakerData.profile_img;
+    const speakerNickName = speakerData.nick_name;
     // 말한사람한테 보낸것
-    io.to(speaker).emit("toSpeaker", speaker, listener, message, speakerImg);
+    io.to(speaker).emit(
+      "toSpeaker",
+      speaker,
+      listener,
+      message,
+      speakerImg,
+      speakerNickName
+    );
     // 듣는사람한테 보낸것
-    io.to(listener).emit("toListener", speaker, listener, message, speakerImg);
+    io.to(listener).emit(
+      "toListener",
+      speaker,
+      listener,
+      message,
+      speakerImg,
+      speakerNickName
+    );
   });
 });

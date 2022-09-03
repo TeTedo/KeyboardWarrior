@@ -239,6 +239,10 @@
   background-color: white;
   display: flex;
   align-items: center;
+  cursor: pointer;
+}
+.sideBar_Bottom_chatRoom_preView:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 .sideBar_Bottom_chatRoom_preView > img {
   width: 70px;
@@ -332,8 +336,8 @@
 #chatForm > textarea::-webkit-scrollbar {
   display: none;
 }
-#chatSubmit {
-  display: none;
+.fa-comment-dots {
+  cursor: pointer;
 }
 /* 채팅창 추가 끝 */
 /* 포스팅 */

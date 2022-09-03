@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const getUserInfo = require("../functions/getUserInfo");
-const { MainPost, Follow, User, MainPostLike } = require("../model");
+const { MainPost, Follow, User, MainPostLike, Chat } = require("../model");
 router.get(
   "/",
   async (req, res, next) => {
@@ -88,6 +88,10 @@ router.get(
       // 게시글들 정보 받아오기
       const postData = await getMainPostInfo();
 
+      //채팅 정보 받아오기
+      const chatObj = await Chat.findAll({
+        where: { speaker: user_id },
+      });
       res.render("main/main", {
         user_id,
         nick_name,
@@ -95,6 +99,7 @@ router.get(
         follower,
         following,
         postData,
+        chatObj,
       });
     } else {
       next();
@@ -174,6 +179,7 @@ router.get(
       follower: "",
       following: "",
       postData,
+      chatObj: "",
     });
   }
 );
