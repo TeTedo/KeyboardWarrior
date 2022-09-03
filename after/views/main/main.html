@@ -115,15 +115,65 @@
   </body>
   <script>
     function chat() {
-      const chatLog = "<%=chatObj%>";
-      console.log(chatLog);
-      //채팅이미지 누르면 채팅창 나오게 하기
+      //데이터베이스에 있는 채팅 창 만들어주기
       const chatTag = document.querySelector(".sideBar_Bottom_chat");
+      let chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
+      let chatLog = "<%=JSON.stringify(chatObj)%>";
+      chatLog = chatLog.replaceAll("&#34;", '"');
+      chatLog = chatLog.replaceAll("\\", "/");
+      chatLog = JSON.parse(chatLog);
+      console.log(chatLog);
+      if (!chatLog) return;
+      chatLog.forEach((el, index) => {
+        //만들어져있는 채팅방 있는지 확인
+        const position = el.speaker == "<%= user_id%>" ? "speaker" : "listener";
+        chatRoomTag.forEach((elem) => {
+          // 안만들어져있으면 만들기
+          if (
+            elem.dataset.who != el.speaker &&
+            elem.dataset.who != el.listener
+          ) {
+            chatTag.innerHTML += `
+            <div class="sideBar_Bottom_chatRoom" data-who="${writer}">
+              <div class="sideBar_Bottom_chatRoom_preView" style="display: flex;">
+                <img src="${writerImg}" alt="" />
+                <div>
+                  <div class="chatNickName_preview">${writerName}</div>
+                  <div class="chatMessage"></div>
+                </div>
+              </div>
+              <div class="sideBar_Bottom_chatRoom_main" style="display: none;">
+                <div class="sideBar_Bottom_chatRoom_top">
+                  <span class="chatNickName">
+                    <i class="fa-regular fa-envelope"></i></i><img src="${writerImg}" alt="" />${writerName}
+                  </span>
+                  <span><i class="fa-solid fa-minus"></i>&nbsp;</span>
+                </div>
+                <div class="sideBar_Bottom_chatRoom_middle"></div>
+                <div id="chatForm">
+                  <input type="text" class="sendMSG" id="${writerName}"/>
+                  <i class="fa-regular fa-comment-dots"></i>
+                </div>
+              </div>
+            </div>
+            `;
+
+            if (position == "speaker") {
+              elem.dataset.who = el.listener;
+              elem.document.querySelector(
+                ".sideBar_Bottom_chatRoom_preView > img"
+              ).src = el.User.profile_img;
+            } else {
+            }
+          }
+        });
+      });
+
+      //채팅이미지 누르면 채팅창 나오게 하기
       document.querySelector(".fa-comments").onclick = function () {
         chatTag.classList.toggle("chatOn");
       };
       // 채팅관련
-      let chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
       chatRoomTag.forEach((el, index) => {
         //채팅창 클릭시 채팅창 커지고 데이터 담기
         el.querySelector(".sideBar_Bottom_chatRoom_preView").onclick =
@@ -169,6 +219,12 @@
             if (checkRoom == writerName || checkRoomPreview == writerName) {
               // 게시글작성자와 기존있던 채팅방 닉네임 일치하면 거기로 focus하고 sideBar 열어주기
               const messageInput = elem.querySelector("#chatForm > input");
+              document.querySelector(
+                ".sideBar_Bottom_chatRoom_preView"
+              ).style.display = "none";
+              document.querySelector(
+                ".sideBar_Bottom_chatRoom_main"
+              ).style.display = "block";
               messageInput.focus();
               checkRoomBool = true;
             }
@@ -224,6 +280,7 @@
       chatRoomTag.forEach((el) => {
         forCheckRoom.push(el.dataset.who);
       });
+      console.log(forCheckRoom);
       chatRoomTag.forEach((el) => {
         const messageSend = el.querySelector(".fa-comment-dots");
         //보내기 버튼 클릭시
@@ -257,7 +314,7 @@
           if (el.dataset.who == listener) {
             el.querySelector(".sideBar_Bottom_chatRoom_middle").innerHTML += `
             <div class="fullchatMessage rightChat">
-              <img src=${speakerImg} alt="" />
+              <img src="${speakerImg}" alt="" />
               <div>${message}</div>
             </div>
             `;
@@ -303,7 +360,7 @@
             if (el.dataset.who == speaker) {
               el.querySelector(".sideBar_Bottom_chatRoom_middle").innerHTML += `
             <div class="fullchatMessage leftChat">
-              <img src=${speakerImg} alt="" />
+              <img src="${speakerImg}"" alt="" />
               <div>${message}</div>
             </div>
             `;

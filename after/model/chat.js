@@ -19,7 +19,7 @@ class Chat extends Sequelize.Model {
       },
       {
         sequelize: sequelize,
-        timestamps: false,
+        timestamps: true,
         underscored: true,
         modelName: "Chat",
         tableName: "Chats",
@@ -31,6 +31,10 @@ class Chat extends Sequelize.Model {
   static associate(db) {
     db.Chat.belongsTo(db.User, {
       foreignKey: "speaker",
+      targetKey: "user_id",
+    });
+    db.Chat.belongsTo(db.User, {
+      foreignKey: "listener",
       targetKey: "user_id",
     });
   }

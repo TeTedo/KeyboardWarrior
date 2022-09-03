@@ -89,9 +89,31 @@ router.get(
       const postData = await getMainPostInfo();
 
       //채팅 정보 받아오기
-      const chatObj = await Chat.findAll({
+      let chatObj = await Chat.findAll({
         where: { speaker: user_id },
+        raw: true,
+        include: [
+          {
+            model: User,
+          },
+        ],
       });
+      chatObj = chatObj
+        .concat(
+          await Chat.findAll({
+            where: { listener: user_id },
+            raw: true,
+            include: [
+              {
+                model: User,
+              },
+            ],
+          })
+        )
+        .sort((a, b) => {
+          return a.createdAt - b.createdAt;
+        });
+      console.log(chatObj);
       res.render("main/main", {
         user_id,
         nick_name,
