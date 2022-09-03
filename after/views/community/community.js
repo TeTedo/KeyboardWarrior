@@ -150,8 +150,8 @@ function search(e) {
                 ${hashtagHtml}
                 <div id="mainPost_bottom_createdTime">${filteredPost.createdAt}</div>
                 <div id="mainPost_bottom_sub">
-                    <i class="fa-solid fa-heart"></i>좋아요갯수
-                    <i class="fa-solid fa-comment"></i>댓글갯수
+                    <i class="fa-solid fa-heart"></i>${filteredPost.like}
+                    <i class="fa-solid fa-comment"></i>${filteredPost.comment}
                 </div>
             </div>
         </div>
@@ -213,8 +213,8 @@ function update(target) {
                 ${hashtagHtml}
                 <div id="mainPost_bottom_createdTime">${filteredPost.createdAt}</div>
                 <div id="mainPost_bottom_sub">
-                    <i class="fa-solid fa-heart"></i>좋아요갯수
-                    <i class="fa-solid fa-comment"></i>댓글갯수
+                    <i class="fa-solid fa-heart"></i>${filteredPost.like}
+                    <i class="fa-solid fa-comment"></i>${filteredPost.comment}
                 </div>
             </div>
         </div>

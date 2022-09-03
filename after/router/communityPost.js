@@ -10,7 +10,7 @@ const {
 const getUserInfo = require("../functions/getUserInfo");
 const loginCheck = require("../middleware/loginCheck");
 
-// 커뮤니티 포스팅 페이지용
+// 커뮤니티 포스트 페이지용
 router.get("/post/:game_name/:post_id", loginCheck, async (req, res) => {
     const game_name = req.params.game_name;
     const post_id = req.params.post_id;
@@ -45,7 +45,6 @@ router.get("/post/:game_name/:post_id", loginCheck, async (req, res) => {
             following_id = "";
             follower_id = "";
         });
-    console.log(user_id);
     if (postData) {
         postData.hashtag_values = JSON.parse(postData.hashtag_values);
     }

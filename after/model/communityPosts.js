@@ -70,6 +70,19 @@ class CommunityPost extends Sequelize.Model {
             targetKey: "user_id",
         });
     }
+    // static associate(db) {
+    //     db.CommunityPost.belongsToMany(db.User, {
+    //         through: "User_CommunityPost",
+    //         foreignKey: "user_id",
+    //         sourceKey: "user_id",
+    //     });
+    // }
+    // static associate(db) {
+    //     db.CommunityPost.hasMany(db.CommunityPostLike, {
+    //         foreignKey: "post_id",
+    //         sourceKey: "id",
+    //     });
+    // }
 }
 
 module.exports = CommunityPost;

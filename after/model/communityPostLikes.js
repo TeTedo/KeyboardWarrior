@@ -28,6 +28,12 @@ class CommunityPostLike extends Sequelize.Model {
             }
         );
     }
+    static associate(db) {
+        db.CommunityPostLike.belongsTo(db.CommunityPost, {
+            foreignKey: "post_id",
+            targetKey: "id",
+        });
+    }
 }
 
 module.exports = CommunityPostLike;

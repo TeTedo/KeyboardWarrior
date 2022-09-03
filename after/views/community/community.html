@@ -167,8 +167,10 @@
                                     <%=post.createdAt%>
                                 </div>
                                 <div id="mainPost_bottom_sub">
-                                    <i class="fa-solid fa-heart"></i>좋아요갯수
-                                    <i class="fa-solid fa-comment"></i>댓글갯수
+                                    <i class="fa-solid fa-heart"></i
+                                    ><%=post.like%>
+                                    <i class="fa-solid fa-comment"></i
+                                    ><%=post.comment%>
                                 </div>
                             </div>
                         </div>
@@ -198,42 +200,68 @@
     </body>
     <script src="community.js"></script>
     <script>
-        console.log("<%=data.postData[0].text%>");
         // 글쓰기버튼
         const gameName = "<%= data.gameName %>";
         writBtn.onclick = () => {
             location.href = `/posting/${gameName}`;
         };
 
-        // 포스트 클릭시 상세페이지 이동
+        // 포스트 클릭시 상세페이지 이동 펑션
         function changeToPost(target) {
             location.href = `/post/<%=data.gameName%>/${target.dataset.post_id}`;
         }
-        // mainPost.forEach(post => {
-        //     const postId = post.dataset.post_id;
-        //     post.querySelector("#mainPost_middle").onclick = () => {
-        //         location.href = `/post/${gameName}/${postId}`;
-        //     };
-        // });
+        //좋아요 관련 함수
+        function likeData() {
+            let postData = "<%= JSON.stringify(data.postData) %>";
+            postData = postData.replaceAll("&#34;", '"');
+            postData = postData.replaceAll("\\", "/");
+            postData = JSON.parse(postData);
+            const likeBtn = document.querySelector(".fa-heart");
+            const likeNum = document.querySelector(
+                "#posting_right_bottom_postingBtn > div span"
+            );
+
+            let likeData =
+                "<%= JSON.stringify(data.postData.CommunityPostLike) %>";
+            likeData = likeData.replaceAll("&#34;", '"');
+            likeData = JSON.parse(likeData);
+            if (likeData) {
+                likeBtn.classList.add("liked");
+            }
+            likeBtn.onclick = function () {
+                const userId = "<%= data.user_id%>";
+                likeBtn.classList.toggle("liked");
+                if (likeBtn.classList.contains("liked")) {
+                    likeNum.innerText = Number(likeNum.innerText) + 1;
+                    $.ajax({
+                        url: `/community/${postData.id}/like`,
+                        method: "post",
+                        data: { userLike: true, userId },
+                    });
+                } else {
+                    likeNum.innerText = Number(likeNum.innerText) - 1;
+                    $.ajax({
+                        url: `/community/${postData.id}/like`,
+                        method: "post",
+                        data: { userLike: false, userId },
+                    });
+                }
+            };
+        }
 
         // 데이터 가공 및 초기화
         let postData;
         function uploadData() {
-            postData = "<%=JSON.stringify(data.postData)%>".replaceAll(
-                "&#34;",
-                '"'
-            );
-            // 밑에는 html 가공용
-            // .replaceAll("&lt;", "<")
-            // .replaceAll("&gt;", ">")
-            // .replaceAll('"', "");
+            postData = "<%=JSON.stringify(data.postData)%>"
+                .replaceAll("&#34;", '"')
+                .replaceAll("\\", "@?@?");
             postData = JSON.parse(postData);
-            // console.log(postData);
             postData.forEach((post, index) => {
                 post.text = post.text
                     .replaceAll(/&amp;/g, "&")
                     .replaceAll(/&lt;/g, "<")
-                    .replaceAll(/&gt;/g, ">");
+                    .replaceAll(/&gt;/g, ">")
+                    .replaceAll("@?@?", "\\");
             });
         }
         // 텍스트 넣어주기
@@ -282,6 +310,7 @@
         }
         window.onload = () => {
             makeModifyBtn();
+            likeData();
         };
     </script>
     <!-- <script>

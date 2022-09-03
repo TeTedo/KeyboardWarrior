@@ -2,7 +2,7 @@ const express = require("express");
 const getUserInfo = require("../functions/getUserInfo");
 const router = express.Router();
 const loginCheck = require("../middleware/loginCheck");
-const { CommunityPost, User } = require("../model");
+const { CommunityPost, User, CommunityPostLike } = require("../model");
 
 router.get("/community/:game_name", loginCheck, async (req, res) => {
     const gameName = req.params.game_name;
