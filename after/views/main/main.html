@@ -97,7 +97,30 @@
         </div>
       </div>
       <!-- 채팅창 추가부분 -->
-      <div class="sideBar_Bottom_chat"></div>
+      <div class="sideBar_Bottom_chat">
+        <div class="sideBar_Bottom_chatRoom" data-who="" style="display: none">
+          <div class="sideBar_Bottom_chatRoom_preView" >
+            <img src="" alt="" />
+            <div>
+              <div class="chatNickName_preview"></div>
+              <div class="chatMessage"></div>
+            </div>
+          </div>
+          <div class="sideBar_Bottom_chatRoom_main" >
+            <div class="sideBar_Bottom_chatRoom_top">
+              <span class="chatNickName">
+                <i class="fa-regular fa-envelope"></i></i><img src="" alt="" />
+              </span>
+              <span><i class="fa-solid fa-minus"></i>&nbsp;</span>
+            </div>
+            <div class="sideBar_Bottom_chatRoom_middle"></div>
+            <div id="chatForm">
+              <input type="text" class="sendMSG" id=""/>
+              <i class="fa-regular fa-comment-dots"></i>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="sideBarOpenBtn">
       <i class="fa-solid fa-arrow-right-long"></i>
@@ -114,7 +137,7 @@
     </div>
   </body>
   <script>
-    function chat() {
+    function chatDataBase(callback) {
       //데이터베이스에 있는 채팅 창 만들어주기
       const chatTag = document.querySelector(".sideBar_Bottom_chat");
       let chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
@@ -126,48 +149,91 @@
       if (!chatLog) return;
       chatLog.forEach((el, index) => {
         //만들어져있는 채팅방 있는지 확인
-        const position = el.speaker == "<%= user_id%>" ? "speaker" : "listener";
+        // 상대방 아이디 받아오기
+        const opponent = el.speaker || el.listener;
+        let checkRoom = false;
+        //만들어져있으면 checkRoom에 true주기
         chatRoomTag.forEach((elem) => {
-          // 안만들어져있으면 만들기
-          if (
-            elem.dataset.who != el.speaker &&
-            elem.dataset.who != el.listener
-          ) {
-            chatTag.innerHTML += `
-            <div class="sideBar_Bottom_chatRoom" data-who="${writer}">
+          if (elem.dataset.who == opponent) {
+            return (checkRoom = true);
+          }
+        });
+        //만들어져있으면 return
+        if (checkRoom) return;
+
+        // 안만들어져있으면 만들기
+        chatTag.innerHTML += `
+            <div class="sideBar_Bottom_chatRoom" data-who="${opponent}">
               <div class="sideBar_Bottom_chatRoom_preView" style="display: flex;">
-                <img src="${writerImg}" alt="" />
+                <img src="${el.profile_img}" alt="" />
                 <div>
-                  <div class="chatNickName_preview">${writerName}</div>
+                  <div class="chatNickName_preview">${el.nick_name}</div>
                   <div class="chatMessage"></div>
                 </div>
               </div>
               <div class="sideBar_Bottom_chatRoom_main" style="display: none;">
                 <div class="sideBar_Bottom_chatRoom_top">
                   <span class="chatNickName">
-                    <i class="fa-regular fa-envelope"></i></i><img src="${writerImg}" alt="" />${writerName}
+                    <i class="fa-regular fa-envelope"></i></i><img src="${el.profile_img}" alt="" />${el.nick_name}
                   </span>
                   <span><i class="fa-solid fa-minus"></i>&nbsp;</span>
                 </div>
                 <div class="sideBar_Bottom_chatRoom_middle"></div>
                 <div id="chatForm">
-                  <input type="text" class="sendMSG" id="${writerName}"/>
+                  <input type="text" class="sendMSG" id="${el.nick_name}"/>
                   <i class="fa-regular fa-comment-dots"></i>
                 </div>
               </div>
             </div>
             `;
+        //태그 받아온거 초기화
+        chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
+      });
 
-            if (position == "speaker") {
-              elem.dataset.who = el.listener;
-              elem.document.querySelector(
-                ".sideBar_Bottom_chatRoom_preView > img"
-              ).src = el.User.profile_img;
-            } else {
+      //만들어진 채팅방에 콜백으로 값 넣기
+      callback(chatLog);
+    }
+
+    function chatDataCallBack(chatLog) {
+      let chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
+      // 내 프로필사진
+      const profile_img = "<%= profile_img%>";
+      chatLog.forEach((el) => {
+        const opponent = el.speaker || el.listener;
+        chatRoomTag.forEach((elem) => {
+          // 상대방과의 채팅방 찾기
+          if (elem.dataset.who == opponent) {
+            //상대방이 speaker일떄
+            if (opponent == el.speaker) {
+              elem.querySelector(".chatMessage").innerText = el.message;
+              elem.querySelector(
+                ".sideBar_Bottom_chatRoom_middle"
+              ).innerHTML += `
+            <div class="fullchatMessage leftChat">
+              <img src="${el.profile_img}" alt="" />
+              <div>${el.message}</div>
+            </div>
+            `;
+            }
+            //상대방이 listener 일때
+            else {
+              elem.querySelector(".chatMessage").innerText = el.message;
+              elem.querySelector(
+                ".sideBar_Bottom_chatRoom_middle"
+              ).innerHTML += `
+            <div class="fullchatMessage rightChat">
+              <img src="${profile_img}" alt="" />
+              <div>${el.message}</div>
+            </div>
+            `;
             }
           }
         });
       });
+    }
+    function chat() {
+      const chatTag = document.querySelector(".sideBar_Bottom_chat");
+      let chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
 
       //채팅이미지 누르면 채팅창 나오게 하기
       document.querySelector(".fa-comments").onclick = function () {
@@ -183,6 +249,9 @@
             el.querySelector(".sideBar_Bottom_chatRoom_main").style.display =
               "block";
             el.querySelector(".sendMSG").focus();
+            // 스크롤바 젤 아래로 내리기
+            el.querySelector(".sideBar_Bottom_chatRoom_middle").scrollTop =
+              el.querySelector(".sideBar_Bottom_chatRoom_middle").scrollHeight;
           };
         // - 버튼 누르면 미리보기창 띄우기
         el.querySelector(".fa-minus").onclick = function () {
@@ -219,10 +288,10 @@
             if (checkRoom == writerName || checkRoomPreview == writerName) {
               // 게시글작성자와 기존있던 채팅방 닉네임 일치하면 거기로 focus하고 sideBar 열어주기
               const messageInput = elem.querySelector("#chatForm > input");
-              document.querySelector(
+              elem.querySelector(
                 ".sideBar_Bottom_chatRoom_preView"
               ).style.display = "none";
-              document.querySelector(
+              elem.querySelector(
                 ".sideBar_Bottom_chatRoom_main"
               ).style.display = "block";
               messageInput.focus();
@@ -260,10 +329,11 @@
             // 입력창에 focus해주기
             const temp = document.querySelector(`#${writerName}`);
             temp.focus();
-            // 받아온 tag 초기화위해서 chatRoomTag한번더 선언해주고 함수 실행
-            chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
-            socketChat();
+
+            // 받아온 tag 초기화위해서 함수 실행
+            
             chat();
+            socketChat()
           }
         };
       });
@@ -275,29 +345,12 @@
       // 개인 방에 넣어주기
       socket.emit("login", "<%=user_id%>");
       let chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
-      // 기존에 채팅창 있는지 확인하기 위해
-      let forCheckRoom = [];
-      chatRoomTag.forEach((el) => {
-        forCheckRoom.push(el.dataset.who);
-      });
-      console.log(forCheckRoom);
-      chatRoomTag.forEach((el) => {
-        const messageSend = el.querySelector(".fa-comment-dots");
-        //보내기 버튼 클릭시
-        messageSend.onclick = function () {
-          if (el.querySelector(".sendMSG").value != "") {
-            // 서버로 누가 누구한테 어떤걸 보냈는지 전송
-            const speaker = "<%= user_id%>";
-            const listener = el.dataset.who;
-            const message = el.querySelector(".sendMSG").value;
-            socket.emit("chat", speaker, listener, message);
-            el.querySelector(".sendMSG").value = "";
-            el.querySelector(".sendMSG").focus();
-          }
-        };
-        //엔터로 메시지 보내기
-        el.querySelector(".sendMSG").onkeyup = function (e) {
-          if (e.keyCode == 13) {
+
+        //채팅방이 하나라도 있을때
+        chatRoomTag.forEach((el) => {
+          const messageSend = el.querySelector(".fa-comment-dots");
+          //보내기 버튼 클릭시
+          messageSend.onclick = function () {
             if (el.querySelector(".sendMSG").value != "") {
               // 서버로 누가 누구한테 어떤걸 보냈는지 전송
               const speaker = "<%= user_id%>";
@@ -307,60 +360,27 @@
               el.querySelector(".sendMSG").value = "";
               el.querySelector(".sendMSG").focus();
             }
-          }
-        };
-        //내가 보낸사람일때 서버로부터 받는곳
-        socket.on("toSpeaker", (speaker, listener, message, speakerImg) => {
-          if (el.dataset.who == listener) {
-            el.querySelector(".sideBar_Bottom_chatRoom_middle").innerHTML += `
+          };
+          //엔터로 메시지 보내기
+          el.querySelector(".sendMSG").onkeyup = function (e) {
+            if (e.keyCode == 13) {
+              if (el.querySelector(".sendMSG").value != "") {
+                // 서버로 누가 누구한테 어떤걸 보냈는지 전송
+                const speaker = "<%= user_id%>";
+                const listener = el.dataset.who;
+                const message = el.querySelector(".sendMSG").value;
+                socket.emit("chat", speaker, listener, message);
+                el.querySelector(".sendMSG").value = "";
+                el.querySelector(".sendMSG").focus();
+              }
+            }
+          };
+          //내가 보낸사람일때 서버로부터 받는곳
+          socket.on("toSpeaker", (speaker, listener, message, speakerImg) => {
+            if (el.dataset.who == listener) {
+              el.querySelector(".sideBar_Bottom_chatRoom_middle").innerHTML += `
             <div class="fullchatMessage rightChat">
               <img src="${speakerImg}" alt="" />
-              <div>${message}</div>
-            </div>
-            `;
-            //스크롤바 맨 아래로 내리기
-            el.querySelector(".sideBar_Bottom_chatRoom_middle").scrollTop =
-              el.querySelector(".sideBar_Bottom_chatRoom_middle").scrollHeight;
-
-            // 미리보기창에 마지막문자 띄우기
-            el.querySelector(".chatMessage").innerText = message;
-          }
-        });
-        // 내가 받는사람일때 서버로부터 받는곳
-        socket.on(
-          "toListener",
-          (speaker, listener, message, speakerImg, speakerNickName) => {
-            //채팅창없으면 채팅창 만들어주기
-            if (forCheckRoom.indexOf(el.dataset.who) == -1) {
-              document.querySelector(".sideBar_Bottom_chat").innerHTML += `
-            <div class="sideBar_Bottom_chatRoom" data-who="${speaker}">
-              <div class="sideBar_Bottom_chatRoom_preView">
-                <img src="${speakerImg}" alt="" />
-                <div>
-                  <div class="chatNickName_preview">${speakerNickName}</div>
-                  <div class="chatMessage"></div>
-                </div>
-              </div>
-              <div class="sideBar_Bottom_chatRoom_main">
-                <div class="sideBar_Bottom_chatRoom_top">
-                  <span class="chatNickName">
-                    <i class="fa-regular fa-envelope"></i></i><img src="${speakerImg}" alt="" />${speakerNickName}
-                  </span>
-                  <span><i class="fa-solid fa-minus"></i>&nbsp;</span>
-                </div>
-                <div class="sideBar_Bottom_chatRoom_middle"></div>
-                <div id="chatForm">
-                  <input type="text" class="sendMSG" id="${speakerNickName}"/>
-                  <i class="fa-regular fa-comment-dots"></i>
-                </div>
-              </div>
-            </div>
-            `;
-            }
-            if (el.dataset.who == speaker) {
-              el.querySelector(".sideBar_Bottom_chatRoom_middle").innerHTML += `
-            <div class="fullchatMessage leftChat">
-              <img src="${speakerImg}"" alt="" />
               <div>${message}</div>
             </div>
             `;
@@ -373,11 +393,78 @@
               // 미리보기창에 마지막문자 띄우기
               el.querySelector(".chatMessage").innerText = message;
             }
+          });
+          // 내가 받는사람일때 서버로부터 받는곳
+          // 채팅창 있는지 확인
+          socket.on(
+            "toListener",
+            (speaker, listener, message, speakerImg, speakerNickName) => {
+              console.log('접속')
+              //채팅방 있는지 확인
+              
 
-            //
-          }
-        );
-      });
+              //채팅방 있을떄
+              if (el.dataset.who == speaker) {
+                el.querySelector(
+                  ".sideBar_Bottom_chatRoom_middle"
+                ).innerHTML += `
+            <div class="fullchatMessage leftChat">
+              <img src="${speakerImg}"" alt="" />
+              <div>${message}</div>
+            </div>
+            `;
+                //스크롤바 맨 아래로 내리기
+                el.querySelector(".sideBar_Bottom_chatRoom_middle").scrollTop =
+                  el.querySelector(
+                    ".sideBar_Bottom_chatRoom_middle"
+                  ).scrollHeight;
+
+                // 미리보기창에 마지막문자 띄우기
+                el.querySelector(".chatMessage").innerText = message;
+
+              }
+
+            //   //채팅방 없을때
+            //   if (!checkRoom) {
+            //     document.querySelector(".sideBar_Bottom_chat").innerHTML += `
+            // <div class="sideBar_Bottom_chatRoom" data-who="${speaker}">
+            //   <div class="sideBar_Bottom_chatRoom_preView">
+            //     <img src="${speakerImg}" alt="" />
+            //     <div>
+            //       <div class="chatNickName_preview">${speakerNickName}</div>
+            //       <div class="chatMessage">${message}</div>
+            //     </div>
+            //   </div>
+            //   <div class="sideBar_Bottom_chatRoom_main">
+            //     <div class="sideBar_Bottom_chatRoom_top">
+            //       <span class="chatNickName">
+            //         <i class="fa-regular fa-envelope"></i></i><img src="${speakerImg}" alt="" />${speakerNickName}
+            //       </span>
+            //       <span><i class="fa-solid fa-minus"></i>&nbsp;</span>
+            //     </div>
+            //     <div class="sideBar_Bottom_chatRoom_middle">
+            //       <div class="fullchatMessage leftChat">
+            //         <img src="${speakerImg}"" alt="" />
+            //         <div>${message}</div>
+            //       </div>
+            //     </div>
+            //     <div id="chatForm">
+            //       <input type="text" class="sendMSG" id="${speakerNickName}"/>
+            //       <i class="fa-regular fa-comment-dots"></i>
+            //     </div>
+            //   </div>
+            // </div>
+            // `;
+
+            //     // 태그 초기화
+            //     chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
+            //      chat();
+                
+            //   }
+            }
+          );
+        });
+      
     }
 
     //로그인 되어있을때 사이드바 데이터 함수
@@ -603,6 +690,7 @@
     window.onload = async function () {
       //이미지 클릭시 포스트 이동
       clickToPost();
+      chatDataBase(chatDataCallBack);
       chat();
       socketChat();
     };

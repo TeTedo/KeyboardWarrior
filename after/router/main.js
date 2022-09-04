@@ -87,33 +87,49 @@ router.get(
 
       // 게시글들 정보 받아오기
       const postData = await getMainPostInfo();
-
+      let chatObj = [];
       //채팅 정보 받아오기
-      let chatObj = await Chat.findAll({
+      // for of 문으로 한 이유 : forEach에서 await를 안기다림, 외래키에서 원하는값 불러오기 실패
+      await Chat.findAll({
         where: { speaker: user_id },
         raw: true,
-        include: [
-          {
-            model: User,
-          },
-        ],
-      });
-      chatObj = chatObj
-        .concat(
-          await Chat.findAll({
-            where: { listener: user_id },
+        attributes: ["listener", "message", "createdAt"],
+      }).then(async (result) => {
+        for (const value of result) {
+          await User.findOne({
+            where: { user_id: value.listener },
+            attributes: ["profile_img", "nick_name"],
             raw: true,
-            include: [
-              {
-                model: User,
-              },
-            ],
-          })
-        )
-        .sort((a, b) => {
-          return a.createdAt - b.createdAt;
-        });
-      console.log(chatObj);
+          }).then((data) => {
+            value.profile_img = data.profile_img;
+            value.nick_name = data.nick_name;
+            chatObj.push(value);
+          });
+        }
+      });
+
+      await Chat.findAll({
+        where: { listener: user_id },
+        raw: true,
+        attributes: ["speaker", "message", "createdAt"],
+      }).then(async (result) => {
+        for (const value of result) {
+          await User.findOne({
+            where: { user_id: value.speaker },
+            attributes: ["profile_img", "nick_name"],
+            raw: true,
+          }).then((data) => {
+            value.profile_img = data.profile_img;
+            value.nick_name = data.nick_name;
+            chatObj.push(value);
+          });
+        }
+      });
+
+      chatObj.sort((a, b) => {
+        return a.createdAt - b.createdAt;
+      });
+
       res.render("main/main", {
         user_id,
         nick_name,
