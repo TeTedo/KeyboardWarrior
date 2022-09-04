@@ -14,7 +14,8 @@ const loginCheck = require("../middleware/loginCheck");
 router.get("/post/:game_name/:post_id", loginCheck, async (req, res) => {
     const game_name = req.params.game_name;
     const post_id = req.params.post_id;
-    let { user_id, nick_name, profile_img } = await getUserInfo(req, res);
+    let { user_id, nick_name, profile_img, follower, following } =
+        await getUserInfo(req, res);
     profile_img = "../" + profile_img;
     const postData = await CommunityPost.findOne({
         where: { id: post_id },
@@ -58,6 +59,8 @@ router.get("/post/:game_name/:post_id", loginCheck, async (req, res) => {
         likeData,
         following_id,
         follower_id,
+        follower,
+        following,
     });
 });
 
