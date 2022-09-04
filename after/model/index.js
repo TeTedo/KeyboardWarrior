@@ -11,10 +11,10 @@ const CommunityComment = require("./communityComments");
 const Chat = require("./chat");
 
 const sequelize = new Sequelize(
-  config.dev.database,
-  config.dev.username,
-  config.dev.password,
-  config.dev
+    config.dev.database,
+    config.dev.username,
+    config.dev.password,
+    config.dev
 );
 
 const db = {};
@@ -40,11 +40,10 @@ CommunityComment.init(sequelize);
 Chat.init(sequelize);
 
 User.associate(db);
-CommunityPost.associate(db);
 MainPost.associate(db);
 MainComment.associate(db);
-Follow.associate(db);
+CommunityPost.associate(db);
+CommunityPostLike.associate(db);
 CommunityComment.associate(db);
 Chat.associate(db);
-
 module.exports = db;

@@ -2,19 +2,21 @@ const express = require("express");
 const getUserInfo = require("../functions/getUserInfo");
 const router = express.Router();
 const loginCheck = require("../middleware/loginCheck");
-const { CommunityPost, User, CommunityPostLike } = require("../model");
+const { CommunityPost, User, CommunityPostLike, Follow } = require("../model");
 
 router.get("/community/:game_name", loginCheck, async (req, res) => {
     const gameName = req.params.game_name;
-    const {
-        user_id: userIdForProfile,
-        nick_name: nickNameForProfile,
-        profile_img: imageForProfile,
-    } = await getUserInfo(req, res);
+    const loginedUserData = await getUserInfo(req, res);
+    const followingUsers = await Follow.findAll({
+        where: { follower_id: loginedUserData.user_id },
+        attributes: ["following_id"],
+    });
     await CommunityPost.findAll({
         where: { game_name: gameName },
-        // raw: true,
         include: [
+            {
+                model: CommunityPostLike,
+            },
             {
                 model: User,
             },
@@ -22,15 +24,12 @@ router.get("/community/:game_name", loginCheck, async (req, res) => {
     })
         .then(postData => {
             postData.forEach(data => {
-                // data.text = JSON.parse(data.text);
                 if (data.hashtag_values) {
                     data.hashtag_values = JSON.parse(data.hashtag_values);
                 } else {
                     data.hashtag_values = [];
                 }
-                // console.log(data.User);
             });
-
             let data = {};
             switch (gameName) {
                 case "fifa":
@@ -38,9 +37,8 @@ router.get("/community/:game_name", loginCheck, async (req, res) => {
                         gameName,
                         title: "FIFFA ONLINE 4",
                         postData,
-                        userIdForProfile,
-                        nickNameForProfile,
-                        imageForProfile,
+                        loginedUserData,
+                        followingUsers,
                     };
                     res.render("community/community", { data });
                     break;
@@ -49,9 +47,8 @@ router.get("/community/:game_name", loginCheck, async (req, res) => {
                         gameName,
                         title: "MAPLE STORY",
                         postData,
-                        userIdForProfile,
-                        nickNameForProfile,
-                        imageForProfile,
+                        loginedUserData,
+                        followingUsers,
                     };
                     res.render("community/community", { data });
                     break;
@@ -60,9 +57,8 @@ router.get("/community/:game_name", loginCheck, async (req, res) => {
                         gameName,
                         title: "LINEAGE",
                         postData,
-                        userIdForProfile,
-                        nickNameForProfile,
-                        imageForProfile,
+                        loginedUserData,
+                        followingUsers,
                     };
                     res.render("community/community", { data });
                     break;

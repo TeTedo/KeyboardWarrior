@@ -9,38 +9,38 @@ const FileStore = require("session-file-store")(session);
 // DB연결 (db객체에서 sequelize만 빼옴)
 const { sequelize } = require("../model");
 sequelize
-  .sync({ force: false })
-  .then(() => {
-    console.log("DB연결됨");
-  })
-  .catch((err) => {
-    console.log("DB에러");
-    console.log(err);
-  });
+    .sync({ force: false })
+    .then(() => {
+        console.log("DB연결됨");
+    })
+    .catch(err => {
+        console.log("DB에러");
+        console.log(err);
+    });
 
 // 여기서 sequelize만 빼왔는데 User 테이블 정보를 어케알고 생성하는거지??
 // model에 index.js에서 init매서드 실행시키면 sequelize안에 정보가 담기는건가?
 // User 테이블은 model폴더 users.js에 있는 생성코드를 index.js에서 init으로 실행시켜줌 -> 그래서 생성됨
 
 //업로드 이미지 폴더 없으면 생성
-fs.readdir("views/uploadsImg", (err) => {
-  if (err) {
-    fs.mkdirSync("views/uploadsImg");
-  }
+fs.readdir("views/uploadsImg", err => {
+    if (err) {
+        fs.mkdirSync("views/uploadsImg");
+    }
 });
-fs.readdir("views/uploadsImg/profile", (err) => {
-  if (err) {
-    fs.mkdirSync("views/uploadsImg/profile");
-  }
+fs.readdir("views/uploadsImg/profile", err => {
+    if (err) {
+        fs.mkdirSync("views/uploadsImg/profile");
+    }
 });
 // 세션 설정
 app.use(
-  session({
-    secret: process.env.SESSION_KEY,
-    resave: false,
-    saveUninitialized: true,
-    // store: new FileStore(),
-  })
+    session({
+        secret: process.env.SESSION_KEY,
+        resave: false,
+        saveUninitialized: true,
+        // store: new FileStore(),
+    })
 );
 
 // 뷰엔진 설정
@@ -83,49 +83,49 @@ const postsCommentsDelete = require("../router/postsCommentsDelete");
 const postsLike = require("../router/postsLike");
 const follow = require("../router/follow");
 app.use(
-  login,
-  logout,
-  join,
-  main,
-  minigame,
-  posting,
-  posts,
-  community_hub,
-  community,
-  communityComment,
-  communityModify,
-  communityPosting,
-  communityPost,
-  communityPostLike,
-  postsModify,
-  joinModify,
-  joinModifyEntarance,
-  postsDelete,
-  postsComments,
-  postsCommentsDelete,
-  postsLike,
-  follow
+    login,
+    logout,
+    join,
+    main,
+    minigame,
+    posting,
+    posts,
+    community_hub,
+    community,
+    communityComment,
+    communityModify,
+    communityPosting,
+    communityPost,
+    communityPostLike,
+    postsModify,
+    joinModify,
+    joinModifyEntarance,
+    postsDelete,
+    postsComments,
+    postsCommentsDelete,
+    postsLike,
+    follow
 );
 
 // 서버열기
 const PORT = 3000;
 const server = app.listen(PORT, () => {
-  console.log(`${PORT}번 포트에 서버열림`);
+    console.log(`${PORT}번 포트에 서버열림`);
 });
 
 //채팅 sokcet 관련
 const socketio = require("socket.io");
 const io = socketio(server);
 
-io.on("connect", (socket) => {
-  console.log("유저접속");
-  socket.on("login", (user_id) => {
-    socket.join(user_id);
-  });
-  socket.on("chat", (speaker, listener, message) => {
-    // 말한사람한테 보낸것
-    io.to(speaker).emit("toSpeaker", speaker, listener, message);
-    // 듣는사람한테 보낸것
-    io.to(listener).emit("toListener", speaker, listener, message);
-  });
+io.on("connect", socket => {
+    console.log("유저접속");
+    socket.on("login", user_id => {
+        socket.join(user_id);
+    });
+    socket.on("chat", (speaker, listener, message) => {
+        // 말한사람한테 보낸것
+        io.to(speaker).emit("toSpeaker", speaker, listener, message);
+        // 듣는사람한테 보낸것
+        io.to(listener).emit("toListener", speaker, listener, message);
+    });
 });
