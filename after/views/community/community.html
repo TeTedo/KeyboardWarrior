@@ -71,17 +71,19 @@
                 <div id="sideBar_top_up">
                     <ul>
                         <li>팔로워</li>
-                        <li>123</li>
+                        <li><%=data.loginedUserData.follower%></li>
                     </ul>
                     <ul>
                         <li>팔로잉</li>
-                        <li>111</li>
+                        <li class="followingAmount">
+                            <%=data.loginedUserData.following%>
+                        </li>
                     </ul>
                 </div>
                 <div id="sideBar_top_down">
                     <div id="sideBar_top_down_left">
-                        <div><%= data.userIdForProfile %></div>
-                        <div><%= data.nickNameForProfile %></div>
+                        <div><%= data.loginedUserData.user_id%></div>
+                        <div><%= data.loginedUserData.nick_name%></div>
                     </div>
                     <div id="sideBar_top_down_right">
                         <div>
@@ -94,11 +96,16 @@
                                 ><i class="fa-solid fa-right-from-bracket"></i
                             ></a>
                         </div>
-                        <a id="writBtn" href="#">글쓰기</a>
+                        <a id="writBtn" href="/posting/<%=data.gameName%>"
+                            >글쓰기</a
+                        >
                     </div>
                 </div>
                 <div id="sideBar_top_profileImg">
-                    <img src="../<%= data.imageForProfile %>" alt="" />
+                    <img
+                        src="../<%= data.loginedUserData.profile_img%>"
+                        alt=""
+                    />
                 </div>
             </div>
         </div>
@@ -118,7 +125,11 @@
                     <div id="mainContentWrap">
                         <% data.postData.forEach(post=>{%>
 
-                        <div class="mainPost">
+                        <div
+                            class="mainPost"
+                            name="post<%= post.id%>"
+                            data-userId="<%=post.User.user_id%>"
+                        >
                             <div id="mainPost_top">
                                 <div id="mainPost_top_profileimg">
                                     <img
@@ -130,12 +141,21 @@
                                         <%= post.User.nick_name %>
                                     </div>
                                     <div id="mainPost_top_userInfo_follwer">
-                                        팔로워숫자
+                                        <i class="fa-solid fa-user-group"></i>
+                                        <span class="followerAmount"
+                                            ><%= post.User.follower %></span
+                                        >
                                     </div>
                                 </div>
                                 <div id="mainPost_top_follwingBtn">
-                                    <i class="fa-solid fa-user-plus"></i>
-                                    <i class="fa-solid fa-user-check"></i>
+                                    <i
+                                        class="fa-solid fa-user-plus"
+                                        onclick="updateFollow(this)"
+                                    ></i>
+                                    <i
+                                        class="fa-solid fa-user-check"
+                                        onclick="updateFollow(this)"
+                                    ></i>
                                     <i class="fa-solid fa-message"></i>
                                     <a href="/community/<%= post.id%>/modify"
                                         >수정하기</a
@@ -147,7 +167,17 @@
                                 data-post_id="<%= post.id%>"
                                 onclick="{changeToPost(this)}"
                             >
-                                <%=post.text%>
+                                <% if(post.image1){%>
+                                <img
+                                    id="mainPost_middle_img"
+                                    src="../<%=post.image1%>"
+                                    alt=""
+                                />
+                                <%}else{%>
+                                <div id="mainPost_middle_text">
+                                    <%=post.text%>
+                                </div>
+                                <%}%>
                             </div>
                             <div id="mainPost_bottom">
                                 <div id="hashTag">
@@ -167,8 +197,17 @@
                                     <%=post.createdAt%>
                                 </div>
                                 <div id="mainPost_bottom_sub">
-                                    <i class="fa-solid fa-heart"></i>좋아요갯수
-                                    <i class="fa-solid fa-comment"></i>댓글갯수
+                                    <i
+                                        class="fa-solid fa-heart"
+                                        onclick="updateLike(this)"
+                                    ></i
+                                    ><span class="likeAmount"
+                                        ><%=post.like%></span
+                                    >
+                                    <i class="fa-solid fa-comment"></i
+                                    ><span class="commentAmount"
+                                        ><%=post.comment%></span
+                                    >
                                 </div>
                             </div>
                         </div>
@@ -186,86 +225,169 @@
                 </div>
             </div>
         </div>
-        <span id="searchBar">
-            <label for="">검색</label>
+        <div id="searchBar">
+            <label for="">검색창</label>
             <input type="text" list="tag_list" id="searchBar_input" />
-            <datalist id="tag_list">
-                <!-- <option value="잡담"></option>
-                <option value="거래"></option>
-                <option value="공략"></option> -->
-            </datalist>
-        </span>
+            <datalist id="tag_list"> </datalist>
+        </div>
     </body>
     <script src="community.js"></script>
     <script>
-        console.log("<%=data.postData[0].text%>");
-        // 글쓰기버튼
-        const gameName = "<%= data.gameName %>";
-        writBtn.onclick = () => {
-            location.href = `/posting/${gameName}`;
-        };
-
-        // 포스트 클릭시 상세페이지 이동
-        function changeToPost(target) {
-            location.href = `/post/<%=data.gameName%>/${target.dataset.post_id}`;
-        }
-        // mainPost.forEach(post => {
-        //     const postId = post.dataset.post_id;
-        //     post.querySelector("#mainPost_middle").onclick = () => {
-        //         location.href = `/post/${gameName}/${postId}`;
-        //     };
-        // });
-
         // 데이터 가공 및 초기화
         let postData;
         function uploadData() {
-            postData = "<%=JSON.stringify(data.postData)%>".replaceAll(
-                "&#34;",
-                '"'
-            );
-            // 밑에는 html 가공용
-            // .replaceAll("&lt;", "<")
-            // .replaceAll("&gt;", ">")
-            // .replaceAll('"', "");
+            postData = "<%=JSON.stringify(data.postData)%>"
+                .replaceAll("&#34;", '"')
+                .replaceAll("\\", "@?@?");
             postData = JSON.parse(postData);
-            // console.log(postData);
             postData.forEach((post, index) => {
                 post.text = post.text
                     .replaceAll(/&amp;/g, "&")
                     .replaceAll(/&lt;/g, "<")
-                    .replaceAll(/&gt;/g, ">");
+                    .replaceAll(/&gt;/g, ">")
+                    .replaceAll("@?@?", "\\");
             });
         }
-        // 텍스트 넣어주기
         uploadData();
-        const postMiddleText = document.querySelectorAll("#mainPost_middle");
-        postData.forEach((post, index) => {
-            post.text = post.text
-                .replaceAll(/&amp;/g, "&")
-                .replaceAll(/&lt;/g, "<")
-                .replaceAll(/&gt;/g, ">");
-            postMiddleText[index].innerHTML = post.text;
-        });
 
-        // 검색창 드롭리스트에 해시태그 추가
-        let hashtagArr = [];
-        postData.forEach(data => {
-            data.hashtag_values.forEach(hashtag => {
-                if (!hashtagArr.includes(hashtag)) {
-                    hashtagArr.push(hashtag);
+        // 포스트 클릭시 상세페이지 이동 펑션
+        function changeToPost(target) {
+            location.href = `/post/<%=data.gameName%>/${target.dataset.post_id}`;
+        }
+
+        // 로그인유저가 해당글작성자 팔로우했는지 펑션
+        const followingUsersArr = JSON.parse(
+            "<%=JSON.stringify(data.followingUsers)%>".replaceAll("&#34;", '"')
+        );
+        const followingIdsArr = followingUsersArr.map(
+            each => each.following_id
+        );
+        function checkIsFollow() {
+            const allMainPosts = document.querySelectorAll(".mainPost");
+            allMainPosts.forEach(post => {
+                const postUserId = post.dataset.userid;
+                if (followingIdsArr.includes(postUserId)) {
+                    post.querySelector(".fa-user-plus").style.display = "none";
+                } else {
+                    post.querySelector(".fa-user-check").style.display = "none";
                 }
             });
-        });
-        hashtagArr.forEach(hashtag => {
-            tag_list.innerHTML += `<option value=${hashtag}></option>`;
-        });
+        }
+        checkIsFollow();
+
+        // 팔로우하기 펑션
+        function updateFollow(target) {
+            // 팔로우 안되있을때
+            if (target.classList.contains("fa-user-plus")) {
+                target.style.display = "none";
+                target.parentNode.querySelector(
+                    ".fa-user-check"
+                ).style.display = "block";
+                const following =
+                    target.parentNode.parentNode.parentNode.dataset.userid;
+
+                target.parentNode.parentNode.querySelector(".followerAmount")
+                    .innerHTML++;
+
+                document.querySelector("#sideBar_top_up .followingAmount")
+                    .innerHTML++;
+
+                $.ajax({
+                    url: "/follow",
+                    type: "post",
+                    data: {
+                        follow: "true",
+                        follower: "<%=data.loginedUserData.user_id%>",
+                        following,
+                    },
+                });
+            }
+            // 팔로우 취소
+            else {
+                if (confirm("정말 팔로우를 취소하시겠습니까?")) {
+                    target.style.display = "none";
+                    target.parentNode.querySelector(
+                        ".fa-user-plus"
+                    ).style.display = "block";
+                    const following =
+                        target.parentNode.parentNode.parentNode.dataset.userid;
+
+                    target.parentNode.parentNode.querySelector(
+                        ".followerAmount"
+                    ).innerHTML--;
+
+                    document.querySelector("#sideBar_top_up .followingAmount")
+                        .innerHTML--;
+                    $.ajax({
+                        url: "/follow",
+                        type: "post",
+                        data: {
+                            follow: "false",
+                            follower: "<%=data.loginedUserData.user_id%>",
+                            following,
+                        },
+                    });
+                }
+            }
+        }
+
+        // 로그인유저가 해당글 좋야요 했는지 펑션
+        function checkIsLiked() {
+            postData.forEach(post => {
+                let isLiked = false;
+                if (post.CommunityPostLikes) {
+                    post.CommunityPostLikes.forEach(el => {
+                        if (el.user_id == "<%=data.loginedUserData.user_id%>")
+                            isLiked = true;
+                    });
+                }
+                if (isLiked) {
+                    const targetHeart = document
+                        .querySelector(`.mainPost[name=post${post.id}]`)
+                        .querySelector(".fa-heart");
+                    targetHeart.classList.add("liked");
+                }
+            });
+        }
+        checkIsLiked();
+
+        // 좋아요누르기 펑션
+        function updateLike(target) {
+            const post_id =
+                target.parentNode.parentNode.parentNode.querySelector(
+                    "#mainPost_middle"
+                ).dataset.post_id;
+            if (target.classList.contains("liked")) {
+                target.classList.remove("liked");
+                target.parentNode.querySelector(".likeAmount").innerHTML--;
+                $.ajax({
+                    url: `/community/${post_id}/like`,
+                    type: "post",
+                    data: {
+                        userLike: "false",
+                        userId: "<%=data.loginedUserData.user_id%>",
+                    },
+                });
+            } else {
+                target.classList.add("liked");
+                target.parentNode.querySelector(".likeAmount").innerHTML++;
+                $.ajax({
+                    url: `/community/${post_id}/like`,
+                    type: "post",
+                    data: {
+                        userLike: "true",
+                        userId: "<%=data.loginedUserData.user_id%>",
+                    },
+                });
+            }
+        }
 
         // 수정하기 버튼 생성
         function makeModifyBtn() {
             const mainPostsArr = document.querySelectorAll(".mainPost");
             mainPostsArr.forEach(post => {
                 if (
-                    "<%= data.nickNameForProfile %>" ==
+                    "<%= data.loginedUserData.nick_name %>" ==
                     post.querySelector("#mainPost_top_userInfo_nickName")
                         .innerText
                 ) {
@@ -282,6 +404,37 @@
         }
         window.onload = () => {
             makeModifyBtn();
+            // 텍스트만 있는 포스팅 텍스트 고쳐서 넣어주기
+            const postMiddleText = document.querySelectorAll(
+                "#mainPost_middle #mainPost_middle_text"
+            );
+            postMiddleText.forEach(text => {
+                text.innerHTML = text.innerHTML
+                    .replaceAll(/&amp;/g, "&")
+                    .replaceAll(/&lt;/g, "<")
+                    .replaceAll(/&gt;/g, ">");
+            });
+
+            // postData.forEach((post, index) => {
+            //     post.text = post.text
+            //         .replaceAll(/&amp;/g, "&")
+            //         .replaceAll(/&lt;/g, "<")
+            //         .replaceAll(/&gt;/g, ">");
+            //     postMiddleText[index].innerHTML = post.text;
+            // });
+
+            // 검색창 드롭리스트에 해시태그 추가
+            let hashtagArr = [];
+            postData.forEach(data => {
+                data.hashtag_values.forEach(hashtag => {
+                    if (!hashtagArr.includes(hashtag)) {
+                        hashtagArr.push(hashtag);
+                    }
+                });
+            });
+            hashtagArr.forEach(hashtag => {
+                tag_list.innerHTML += `<option value=${hashtag}></option>`;
+            });
         };
     </script>
     <!-- <script>

@@ -8,8 +8,11 @@ const { User, CommunityPost } = require("../model");
 
 router.get("/posting/:game_name", loginCheck, async (req, res) => {
     const game_name = req.params.game_name;
-    const { user_id, nick_name, profile_img } = await getUserInfo(req, res);
+    const { user_id, nick_name, profile_img, follower, following } =
+        await getUserInfo(req, res);
     res.render("communityPosting/communityPosting", {
+        follower,
+        following,
         game_name,
         user_id,
         nick_name,

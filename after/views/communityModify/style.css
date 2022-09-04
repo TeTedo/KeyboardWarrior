@@ -200,11 +200,11 @@
 #posting_left::-webkit-scrollbar {
     display: none;
 }
-/* #posting_left_img {
+#posting_left_img {
     display: flex;
     position: absolute;
     left: 0;
-} */
+}
 #posting_left > img {
     width: 500px;
     height: 500px;
@@ -236,7 +236,7 @@
     border-bottom: 1px solid black;
 }
 /* 여기까지 해시태그 */
-#posting_right > textarea {
+#posting_right > #mainText {
     width: 100%;
     height: 400px;
     padding: 10px;

@@ -211,12 +211,26 @@
     height: 100%;
 }
 
-#posting_right > div:nth-child(1) {
+#posting_right > div:nth-child(2) {
     width: 100%;
     height: 350px;
     padding: 10px;
     font-size: 20px;
     box-sizing: border-box;
+}
+/* 여기서부터는 해시태그 */
+#posting_right_hashTag {
+    display: flex;
+    align-items: center;
+    margin: 5px 0 5px 0;
+}
+.hashTag {
+    border: none;
+}
+.tagify {
+    width: 100%;
+    font-weight: bold;
+    font-stretch: expanded;
 }
 /* 8.25 이미지  추가*/
 #posting_right_imagePreview {

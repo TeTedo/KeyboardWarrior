@@ -4,10 +4,6 @@ class CommunityPostLike extends Sequelize.Model {
     static init(sequelize) {
         return super.init(
             {
-                post_id: {
-                    type: Sequelize.INTEGER,
-                    allowNull: false,
-                },
                 user_id: {
                     type: Sequelize.STRING(16),
                     allowNull: false,
@@ -27,6 +23,12 @@ class CommunityPostLike extends Sequelize.Model {
                 collate: "utf8_general_ci",
             }
         );
+    }
+    static associate(db) {
+        db.CommunityPostLike.belongsTo(db.CommunityPost, {
+            foreignKey: "post_id",
+            targetKey: "id",
+        });
     }
 }
 

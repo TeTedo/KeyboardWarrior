@@ -70,10 +70,6 @@ class User extends Sequelize.Model {
       foreignKey: "speaker",
       sourceKey: "user_id",
     });
-    db.User.hasMany(db.Chat, {
-      foreignKey: "listener",
-      sourceKey: "user_id",
-    });
   }
 }
 

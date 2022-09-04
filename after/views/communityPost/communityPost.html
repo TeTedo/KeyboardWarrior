@@ -15,6 +15,14 @@
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
         crossorigin="anonymous"
     ></script>
+    <!-- Tagify 해시태그 -->
+    <script src="https://unpkg.com/@yaireo/tagify"></script>
+    <script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+    <link
+        href="https://unpkg.com/@yaireo/tagify/dist/tagify.css"
+        rel="stylesheet"
+        type="text/css"
+    />
     <link rel="stylesheet" href="../../communityPost/style.css" />
     <body>
         <div id="mainPageTop">
@@ -55,11 +63,11 @@
                 <div id="sideBar_top_up">
                     <ul>
                         <li>팔로워</li>
-                        <li>123</li>
+                        <li><%=follower%></li>
                     </ul>
                     <ul>
                         <li>팔로잉</li>
-                        <li>111</li>
+                        <li><%=following%></li>
                     </ul>
                 </div>
                 <div id="sideBar_top_down">
@@ -78,7 +86,7 @@
                                 ><i class="fa-solid fa-right-from-bracket"></i
                             ></a>
                         </div>
-                        <a href="/posting">글쓰기</a>
+                        <a href="/posting/<%=game_name%>">글쓰기</a>
                     </div>
                 </div>
                 <div id="sideBar_top_profileImg">
@@ -128,11 +136,19 @@
                     <div id="posting_left_img"></div>
                 </div>
                 <div id="posting_right">
-                    <div>포스팅 내용</div>
-                    <!-- 8.25 div추가 -->
-                    <div id="posting_right_imagePreview">
-                        여기다 해쉬태그 넣어? or 날짜?
+                    <!-- 여기서부터 해시태그 -->
+                    <div id="posting_right_hashTag">
+                        <h2>&nbsp&nbsp#&nbsp</h2>
+                        <input
+                            class="hashTag"
+                            name="hashTag"
+                            placeholder="#해시태그"
+                            readonly
+                            value="<%=postData.hashtag_values%>"
+                        />
                     </div>
+                    <!-- 여기까지 해시태그 -->
+                    <div>포스팅 내용</div>
                     <div id="posting_right_bottom">
                         <div id="posting_right_bottom_postingBtn">
                             <div>
@@ -167,32 +183,32 @@
         </div>
     </body>
     <script src="../../communityPost/communityPost.js"></script>
-    <!-- <script>
-        const urlText = document.location.href;
-        const post_id = urlText[urlText.length - 1];
-        const body = document.querySelector("body");
-        let allData;
+    <script>
+        // const urlText = document.location.href;
+        // const post_id = urlText[urlText.length - 1];
+        // const body = document.querySelector("body");
+        // let allData;
 
-        function script() {
-            console.log(allData);
-            body.innerHTML += `<div style="background-color: tomato">하이루염~~~~~~~~~~~~~~~</div>`;
-        }
-        async function uploadData(callback) {
-            await $.ajax({
-                url: "/poster/test/",
-                type: "get",
-                data: {
-                    post_id,
-                },
-                async: true,
-                success: function (data) {
-                    allData = data;
-                },
-            });
-            callback();
-        }
-        uploadData(script);
-    </script> -->
+        // function script() {
+        //     console.log(allData);
+        //     body.innerHTML += `<div style="background-color: tomato">하이루염~~~~~~~~~~~~~~~</div>`;
+        // }
+        // async function uploadData(callback) {
+        //     await $.ajax({
+        //         url: "/poster/test/",
+        //         type: "get",
+        //         data: {
+        //             post_id,
+        //         },
+        //         async: true,
+        //         success: function (data) {
+        //             allData = data;
+        //         },
+        //     });
+        //     callback();
+        // }
+        // uploadData(script);
+    </script>
 
     <script>
         //데이터 집어넣기
@@ -204,6 +220,11 @@
             likeData();
             follow();
         };
+    </script>
+    <script>
+        // 해시태그
+        const hashTag = document.querySelector("input[name=hashTag]");
+        const tagify = new Tagify(hashTag);
     </script>
     <script>
         //팔로우 관련 함수
@@ -457,7 +478,7 @@
                 .replaceAll(/&lt;/g, "<")
                 .replaceAll(/&gt;/g, ">");
             document.querySelector(
-                "#posting_right > div:nth-child(1)"
+                "#posting_right > div:nth-child(2)"
             ).innerHTML = postData.text;
             // 좋아요 갯수
             document.querySelector(".fa-heart + span").innerText =

@@ -40,9 +40,8 @@ function clickPreImg() {
 //함수 실행 부분
 document.querySelectorAll("input[type=file]").forEach((el, index) => {
     el.onchange = function () {
-        document.querySelectorAll("#posting_right_imagePreview span")[
-            index
-        ].style.display = "block";
+        document.querySelectorAll(".fa-circle-xmark")[index].style.display =
+            "block";
         // label display none
         document.querySelectorAll(".fa-image")[index].style.display = "none";
         // 파일 미리보기

@@ -101,7 +101,7 @@
         <form
             id="posting"
             method="post"
-            action="/posting/community/create"
+            action="/community/<%=postData.id%>/modify"
             enctype="multipart/form-data"
         >
             <div id="posting_left">
@@ -115,10 +115,11 @@
                         class="hashTag"
                         name="hashTag"
                         placeholder="#해시태그"
+                        value="<%=postData.hashtag_values%>"
                     />
                 </div>
                 <!-- 여기까지 해시태그 -->
-                <textarea name="text"></textarea>
+                <div id="mainText" contenteditable="true"></div>
                 <!-- 8.25 div추가 -->
                 <div id="posting_right_imagePreview">
                     <div>
@@ -206,12 +207,14 @@
                     />
                     <div id="posting_right_bottom_postingBtn">
                         <!-- 8.25 id값 없애고 등록에 div대신 a태그 추가 -->
-                        <a href="">삭제</a>
+                        <a href="/community/<%=postData.id%>/delete">삭제</a>
                         <button href="#" type="submit">수정</button>
                         <a href="/community/<%=postData.game_name%>">취소</a>
                     </div>
                 </div>
             </div>
+            <input type="hidden" name="text" />
+            <input type="hidden" name="imgUpdate" />
         </form>
         <!-- 포스팅구역 끝 -->
     </body>
@@ -219,7 +222,7 @@
     <script>
         // 데이터 불러오기
         let allData;
-        async function uploadData(callback) {
+        async function uploadData(func) {
             await $.ajax({
                 url: "/community/post/data",
                 type: "get",
@@ -231,11 +234,16 @@
                     allData = data;
                 },
             });
-            callback();
+            func();
         }
         //데이터 불러온걸로 돌릴 스크립트
         function script() {
             console.log(allData);
+
+            // 원래있던 텍스트 띄워주기
+            const mainText = document.querySelector("#mainText");
+            mainText.innerHTML = allData.text;
+
             // 원래있던 사진 띄워주기
             let images = [
                 allData.image1,
@@ -248,11 +256,8 @@
             // 큰이미지
             document.querySelector("#posting_left> img").src =
                 "../../" + images[0];
+            // 작은이미지
             images.forEach((imageSrc, index) => {
-                // 큰이미지
-                // const mainImgWrap = document.querySelector("#posting_left_img");
-                // mainImgWrap.innerHTML += `<img src=../../${imageSrc}>`;
-                // 작은이미지
                 const imgPreviewDom = document.querySelectorAll(
                     "#posting_right_imagePreview > div"
                 );
@@ -265,7 +270,54 @@
                 img.style.display = "block";
                 delBtn.style.display = "block";
                 uploadBtn.style.display = "none";
+                document.querySelector("input[name=imgUpdate]").value += `"${
+                    index + 1
+                }":"${imageSrc}",`;
             });
+
+            //이미지 삭제 버튼
+            document
+                .querySelectorAll("#posting_right_imagePreview span")
+                .forEach((el, index) => {
+                    el.onclick = function (e) {
+                        //삭제하면 기존데이터에서 삭제
+                        document.querySelector("input[name=imgUpdate]").value =
+                            document
+                                .querySelector("input[name=imgUpdate]")
+                                .value.replace(
+                                    `"${index + 1}":"${images[index]}",`,
+                                    ""
+                                );
+
+                        const targetTag = document.querySelectorAll(
+                            "#posting_right_imagePreview img"
+                        )[index];
+
+                        // 왼쪽화면과 삭제하려는 사진이 같으면 왼쪽화면 비우기
+                        if (
+                            document.querySelector("#posting_left > img").src ==
+                            targetTag.src
+                        ) {
+                            document.querySelector("#posting_left > img").src =
+                                "";
+                        }
+                        // 미리보기 지우기
+                        targetTag.src = "";
+                        targetTag.style.display = "none";
+                        // 이미지 올리는 버튼 다시 띄우기
+                        document.querySelectorAll(".fa-image")[
+                            index
+                        ].style.display = "block";
+                        // input files value 비워주기
+                        document.querySelectorAll("input[type=file]")[
+                            index
+                        ].value = "";
+                        // x버튼 삭제
+                        document.querySelectorAll(".fa-circle-xmark")[
+                            index
+                        ].style.display = "none";
+                    };
+                });
         }
         uploadData(script);
     </script>
@@ -295,21 +347,27 @@
         });
         tagify.on("input", () => {
             // tagify.loading(true); // 태그입력할때 로딩창
+            // console.log(tagify.value);
         });
 
         // 수정버튼 눌렸을때 텍스트랑 해시태그 가공해주는거
         const formDom = document.querySelector("#posting");
         formDom.onsubmit = () => {
+            // 해시태그 가공
             const hashtag_values = JSON.stringify(
                 tagify.value.map(el => el.value)
             );
-            const textArea = document.querySelector(
-                "#posting_right > textarea"
-            );
-            textArea.value = textArea.value.replace(/(\n|\r\n)/g, "<br>");
-            textArea.value = textArea.value.replace(/\s/g, "&nbsp;");
-            // textArea.value = JSON.stringify(textArea.value);
+            // 텍스트 가공
+            const updatedText = document.querySelector("#mainText");
+            const inputText = document.querySelector("input[name=text]");
+            // 기존이미지 가공
+            const existingImg = document.querySelector("input[name=imgUpdate]");
             hashTag.value = hashtag_values;
+            inputText.value = updatedText.innerHTML
+                .replace(/(\n|\r\n)/g, "<br>")
+                .replace(/\s/g, "&nbsp;");
+            existingImg.value = existingImg.value.slice(0, -1);
+            existingImg.value = `{${existingImg.value}}`;
         };
 
         function getData() {
@@ -342,52 +400,7 @@
 
         getData();
     </script>
-    <script>
-        //이미지 삭제 버튼
-        document
-            .querySelectorAll("#posting_right_imagePreview span")
-            .forEach((el, index) => {
-                el.onclick = function (e) {
-                    //삭제하면 기존데이터에서 삭제
-                    document.querySelector("input[name=imgUpdate]").value =
-                        document
-                            .querySelector("input[name=imgUpdate]")
-                            .value.replace(
-                                "existImageValue" + imageArr[index],
-                                ""
-                            );
-
-                    // //서버에 저장되있던 이미지 삭제
-                    // document.querySelector("input[name=imgDelete]").value +=
-                    //   "existImageValue" + imageArr[index];
-                    const targetTag = document.querySelectorAll(
-                        "#posting_right_imagePreview img"
-                    )[index];
-
-                    // 왼쪽화면과 삭제하려는 사진이 같으면 왼쪽화면 비우기
-                    if (
-                        document.querySelector("#posting_left > img").src ==
-                        targetTag.src
-                    ) {
-                        document.querySelector("#posting_left > img").src = "";
-                    }
-                    // 미리보기 지우기
-                    targetTag.src = "";
-                    targetTag.style.display = "none";
-                    // 이미지 올리는 버튼 다시 띄우기
-                    document.querySelectorAll(".fa-image")[
-                        index
-                    ].style.display = "block";
-                    // input files value 비워주기
-                    document.querySelectorAll("input[type=file]")[index].value =
-                        "";
-                    // x버튼 삭제
-                    document.querySelectorAll(
-                        "#posting_right_imagePreview span"
-                    )[index].style.display = "none";
-                };
-            });
-    </script>
+    <script></script>
     <script>
         // 스크롤 이벤트
         function debounce(func, wait = 100, immediate = true) {

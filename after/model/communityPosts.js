@@ -69,6 +69,10 @@ class CommunityPost extends Sequelize.Model {
             foreignKey: "user_id",
             targetKey: "user_id",
         });
+        db.CommunityPost.hasMany(db.CommunityPostLike, {
+            foreignKey: "post_id",
+            sourceKey: "id",
+        });
     }
 }
 
