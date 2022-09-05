@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div id="mainPageTop">
+        <div id="mainLogo"><a href="/">이건 메인로고</a></div>
+        <ul id="mainPageNav">
+          <li><a href="/community_hub">COMMUNITY</a></li>
+          <li><a href="/minigame">MINI GAME</a></li>
+        </ul>
+        <ul id="mainPageSign">
+          <li><a href="/join">회원가입</a></li>
+          <li><a href="/login">로그인</a></li>
+        </ul>
+        <ul id="mainPageLogo">
+          <li>
+            <a href="https://github.com/TeTedo/KeyboardWarrior.git"
+              ><img
+                class="mainPageLogo_githubLogo"
+                src="http://rajlab.org/icons/github_white.png"
+                alt="github"
+            /></a>
+          </li>
+          <li>
+            <a
+              href="https://www.notion.so/Keyboard-Warrior-888a144aa79f437e8f726910c42617a8"
+              ><img
+                class="mainPageLogo_notionLogo"
+                src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png"
+                alt="notion"
+            /></a>
+          </li>
+        </ul>
+      </div>
+  
+      <!-- <div id="mainPageSearch">
+        <div id="mainPageSearch_whole">
+          <input type="text" id="mainPageSearch_searchBar" />
+          <span>검색</span>
+        </div>
+      </div> -->
+      <!-- 여기까지 탑 공통 부분 -->
+  
+      <!-- 사이드바 -->
+      <div id="sideBar">
+        <div id="sideBar_top">
+          <div id="sideBar_top_sideBarBtn">
+            <i class="fa-solid fa-arrow-left-long"></i>
+          </div>
+          <div id="sideBar_top_up">
+            <ul>
+              <li>팔로워</li>
+              <li><%= follower%></li>
+            </ul>
+            <ul>
+              <li>팔로잉</li>
+              <li><%=following%></li>
+            </ul>
+          </div>
+          <div id="sideBar_top_down">
+            <div id="sideBar_top_down_left">
+              <div><%= user_id%></div>
+              <div><%= nick_name%></div>
+            </div>
+            <div id="sideBar_top_down_right">
+              <div>
+                <a href="/join/modify/enterance"
+                  ><i class="fa-solid fa-gear"></i
+                ></a>
+                <a href=""><i class="fa-solid fa-bell"></i></a>
+                <a href="#"><i class="fa-solid fa-comments"></i></a>
+                <a href="/logout"
+                  ><i class="fa-solid fa-right-from-bracket"></i
+                ></a>
+              </div>
+              <a href="/posting">글쓰기</a>
+            </div>
+          </div>
+          <div id="sideBar_top_profileImg">
+            <img src="<%= profile_img%>" alt="" />
+          </div>
+        </div>
+        <!-- 채팅창 추가부분 -->
+        <div class="sideBar_Bottom_chat">
+          <div class="sideBar_Bottom_chatRoom" data-who="" style="display: none">
+            <div class="sideBar_Bottom_chatRoom_preView" >
+              <img src="" alt="" />
+              <div>
+                <div class="chatNickName_preview"></div>
+                <div class="chatMessage"></div>
+              </div>
+            </div>
+            <div class="sideBar_Bottom_chatRoom_main" >
+              <div class="sideBar_Bottom_chatRoom_top">
+                <span class="chatNickName">
+                  <i class="fa-regular fa-envelope"></i></i><img src="" alt="" />
+                </span>
+                <span><i class="fa-solid fa-minus"></i>&nbsp;</span>
+              </div>
+              <div class="sideBar_Bottom_chatRoom_middle"></div>
+              <div id="chatForm">
+                <input type="text" class="sendMSG" id=""/>
+                <i class="fa-regular fa-comment-dots"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sideBarOpenBtn">
+        <i class="fa-solid fa-arrow-right-long"></i>
+      </div>
+      <!-- 채팅창 추가부분 -->
+      <!-- 사이드바 끝 -->
+      <div id="mainContent">
+        <div id="mainContentWrap">
+          <!-- 포스팅구역 -->
+  
+          <!-- 포스팅구역 -->
+        </div>
+      </div>
+</body>
+<script src="./profile.js"></script>
+</html>

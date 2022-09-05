@@ -1,0 +1,485 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+#mainPageTop {
+  background-color: black;
+  width: 100%;
+  height: 150px;
+  display: flex;
+  color: white;
+  position: relative;
+  justify-content: space-between;
+}
+
+#mainPageTop > div {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#mainPageTop > ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+#mainPageTop > ul > li {
+  list-style: none;
+}
+#mainPageNav {
+  width: 30%;
+  display: flex;
+}
+#mainPageSign {
+  width: 10%;
+}
+#mainPageSign > li > a,
+#mainPageNav > li > a,
+#mainLogo > a {
+  text-decoration: none;
+  color: white;
+}
+#mainPageLogo {
+  width: 5%;
+}
+.mainPageLogo_notionLogo,
+.mainPageLogo_githubLogo {
+  width: 30px;
+}
+#mainPageSearch {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+#mainPageSearch_whole {
+  width: 70%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+#mainPageSearch_searchBar {
+  height: 50px;
+  width: 90%;
+  font-size: 30px;
+  padding: 5px;
+}
+/* 여기까지 공통 부분 */
+
+/* 사이드바 */
+#sideBar {
+  width: 400px;
+  height: 750px;
+  background-color: black;
+
+  position: absolute;
+  z-index: 999;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  transition: 1s linear;
+}
+#sideBar::-webkit-scrollbar {
+  display: none;
+}
+#sideBar #sideBar_top {
+  width: 100%;
+  height: 200px;
+  background-color: beige;
+  position: relative;
+}
+@keyframes sideBarAnimation {
+  0% {
+    transform: translate(20px);
+  }
+  50% {
+    transform: translate(0px);
+  }
+  100% {
+    transform: translate(20px);
+  }
+}
+#sideBar_top_sideBarBtn {
+  position: absolute;
+  right: 30px;
+  font-size: 25px;
+  animation: sideBarAnimation 1s linear infinite;
+  display: flex;
+}
+.fa-arrow-left-long {
+  cursor: pointer;
+  display: block;
+}
+.sideBarOpenBtn {
+  display: flex;
+}
+.fa-arrow-right-long {
+  cursor: pointer;
+  font-size: 25px;
+  display: none;
+  animation: sideBarAnimation 1s linear infinite;
+}
+#sideBar_top_up {
+  display: flex;
+  width: 100%;
+  height: 50%;
+}
+#sideBar_top_up > ul {
+  transform: translateX(150px);
+  margin: 30px;
+  font-size: 20px;
+  font-weight: bold;
+}
+#sideBar_top_up > ul > li {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#sideBar_top_down {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+#sideBar_top_profileImg {
+  position: absolute;
+  top: 20px;
+  left: 50px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+#sideBar_top_profileImg > img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+#sideBar_top_down_left {
+  width: 100%;
+  height: 50%;
+}
+#sideBar_top_down_left > div:nth-child(1) {
+  font-size: 13px;
+  text-align: center;
+}
+#sideBar_top_down_left > div:nth-child(2) {
+  font-size: 25px;
+  text-align: center;
+  font-weight: bold;
+}
+#sideBar_top_down_right {
+  width: 100%;
+  height: 100%;
+}
+#sideBar_top_down_right > div {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  font-size: 30px;
+}
+#sideBar_top_down_right > div > a {
+  color: black;
+}
+#sideBar_top_down_right > a {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 150px;
+  height: 30px;
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+  border: 1px solid black;
+  text-align: center;
+  transform: translate(10px, 20px);
+  border-radius: 10px;
+}
+#sideBar_top_down_right > i {
+  display: flex;
+  align-items: center;
+}
+
+/* 채팅창 추가부분 */
+.sideBar_Bottom_chat {
+  width: 100%;
+  min-height: 550px;
+  background-color: beige;
+  padding: 20px;
+  transform: translateX(-500px);
+  transition: 1s;
+}
+.chatOn {
+  transform: translateX(0px);
+}
+.sideBar_Bottom_chatRoom {
+  position: relative;
+  width: 350px;
+  height: 100px;
+  background-color: white;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  transition: 1s;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: block;
+  height: max-content;
+}
+.sideBar_Bottom_chatRoom::-webkit-scrollbar {
+  display: none;
+}
+.sideBar_Bottom_chatRoom_preView {
+  position: relative;
+  width: 350px;
+  height: 100px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.sideBar_Bottom_chatRoom_preView:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.sideBar_Bottom_chatRoom_preView > img {
+  width: 70px;
+  height: 70px;
+  margin: 10px;
+  border-radius: 50%;
+}
+.sideBar_Bottom_chatRoom_preView > div {
+  width: 200px;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.chatNickName_preview {
+  font-size: 20px;
+  font-weight: bold;
+}
+.chatMessage {
+  font-size: 15px;
+}
+.sideBar_Bottom_chatRoom_main {
+  display: none;
+}
+.sideBar_Bottom_chatRoom_top {
+  height: 50px;
+  border-bottom: 1px solid;
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+  font-weight: bold;
+  justify-content: space-between;
+}
+.chatNickName > img {
+  width: 25px;
+  height: 25px;
+  margin-left: 10px;
+  border-radius: 50%;
+  transform: translateY(5px);
+}
+.fa-minus {
+  cursor: pointer;
+}
+.sideBar_Bottom_chatRoom_middle {
+  width: 350px;
+  height: 250px;
+  max-height: 250px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  border-top: 1px solid black;
+}
+.sideBar_Bottom_chatRoom_middle::-webkit-scrollbar {
+  display: none;
+}
+.fullchatMessage {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+}
+.fullchatMessage > img {
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 50%;
+}
+.leftChat {
+  flex-direction: row;
+}
+.rightChat {
+  flex-direction: row-reverse;
+}
+#chatForm {
+  width: 350px;
+  height: 50px;
+  border-top: 1px solid black;
+  display: flex;
+  align-items: center;
+  font-size: 40px;
+}
+#chatForm > input {
+  height: 30px;
+  width: 300px;
+  outline: none;
+  border: 1px solid black;
+  font-size: 20px;
+  padding: 5px 5px 0 5px;
+  border-radius: 15px;
+  position: relative;
+}
+#chatForm > textarea::-webkit-scrollbar {
+  display: none;
+}
+.fa-comment-dots {
+  cursor: pointer;
+}
+/* 채팅창 추가 끝 */
+/* 포스팅 */
+#mainContent {
+  width: 1000px;
+  height: 500px;
+  background-color: black;
+  margin: auto;
+  display: flex;
+  border: 1px solid;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  position: relative;
+  margin-top: 50px;
+}
+#mainContent::-webkit-scrollbar {
+  display: none;
+}
+#mainContentWrap {
+  width: max-content;
+  height: 100%;
+  display: flex;
+  position: relative;
+  flex-direction: row-reverse;
+}
+.mainPost {
+  width: 290px;
+  height: 450px;
+  background-color: white;
+  margin: 30px 20px;
+}
+#mainPost_top {
+  width: 290px;
+  height: 100px;
+  display: flex;
+  border: 1px solid;
+}
+#mainPost_top_profileimg,
+#mainPost_top_follwingBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+#mainPost_top_follwingBtn > i {
+  cursor: pointer;
+}
+#mainPost_top_follwingBtn > a {
+  width: 100px;
+  height: 50px;
+  font-size: 15px;
+  background-color: black;
+  color: white;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  font-weight: bold;
+  display: none;
+}
+
+#mainPost_top_profileimg > img {
+  margin-left: 5px;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+}
+#mainPost_top_userInfo {
+  width: 100px;
+  padding: 10px;
+}
+#mainPost_top_userInfo_nickName {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+#mainPost_top_userInfo_follwer {
+  font-weight: bold;
+}
+#mainPost_top_follwingBtn {
+  width: 70px;
+  justify-content: space-between;
+  font-size: 25px;
+}
+#mainPost_middle {
+  width: 290px;
+  height: 200px;
+  border: 1px solid;
+}
+#mainPost_middle_img {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#mainPost_middle_img > img {
+  width: 280px;
+  height: 190px;
+}
+#mainPost_bottom {
+  width: 290px;
+  height: 150px;
+}
+#mainPost_bottom_createdTime {
+  height: 30%;
+  margin: 10px auto auto 10px;
+}
+#mainPost_bottom_sub {
+  height: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 20px;
+}
+@keyframes likeMotion {
+  0% {
+  }
+  50% {
+    text-shadow: 0 0 10px red, 0 0 20px red, 0 0 40px red, 0 0 80px red,
+      0 0 120px red, 0 0 240px red;
+  }
+  70% {
+    color: red;
+  }
+  100% {
+    color: red;
+  }
+}
+.fa-heart {
+  cursor: pointer;
+}
+.liked {
+  animation: likeMotion 2s linear;
+  animation-fill-mode: forwards;
+}
+/* middle size */
+@media screen and (max-width: 768px) {
+}
+
+/* small size */
+@media screen and (max-width: 425px) {
+}
