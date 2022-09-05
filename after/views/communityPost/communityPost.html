@@ -1,497 +1,835 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-    </head>
-    <script
-        src="https://kit.fontawesome.com/3264d39625.js"
-        crossorigin="anonymous"
-    ></script>
-    <script
-        src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-        crossorigin="anonymous"
-    ></script>
-    <!-- Tagify 해시태그 -->
-    <script src="https://unpkg.com/@yaireo/tagify"></script>
-    <script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
-    <link
-        href="https://unpkg.com/@yaireo/tagify/dist/tagify.css"
-        rel="stylesheet"
-        type="text/css"
-    />
-    <link rel="stylesheet" href="../../communityPost/style.css" />
-    <body>
-        <div id="mainPageTop">
-            <div id="mainLogo"><a href="/">이건 메인로고</a></div>
-            <ul id="mainPageNav">
-                <li><a href="/community_hub">COMMUNITY</a></li>
-                <li><a href="">MINI GAME</a></li>
-            </ul>
-            <ul id="mainPageSign"></ul>
-            <ul id="mainPageLogo">
-                <li>
-                    <a href="https://github.com/TeTedo/KeyboardWarrior.git"
-                        ><img
-                            class="mainPageLogo_githubLogo"
-                            src="http://rajlab.org/icons/github_white.png"
-                            alt="github"
-                    /></a>
-                </li>
-                <li>
-                    <a
-                        href="https://www.notion.so/Keyboard-Warrior-888a144aa79f437e8f726910c42617a8"
-                        ><img
-                            class="mainPageLogo_notionLogo"
-                            src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png"
-                            alt="notion"
-                    /></a>
-                </li>
-            </ul>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script src="../../socket.io/socket.io.js"></script>
+  <script
+    src="https://kit.fontawesome.com/3264d39625.js"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"
+  ></script>
+  <!-- Tagify 해시태그 -->
+  <script src="https://unpkg.com/@yaireo/tagify"></script>
+  <script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+  <link
+    href="https://unpkg.com/@yaireo/tagify/dist/tagify.css"
+    rel="stylesheet"
+    type="text/css"
+  />
+  <link rel="stylesheet" href="../../communityPost/style.css" />
+  <body>
+    <div id="mainPageTop">
+      <div id="mainLogo"><a href="/">이건 메인로고</a></div>
+      <ul id="mainPageNav">
+        <li><a href="/community_hub">COMMUNITY</a></li>
+        <li><a href="">MINI GAME</a></li>
+      </ul>
+      <ul id="mainPageSign"></ul>
+      <ul id="mainPageLogo">
+        <li>
+          <a href="https://github.com/TeTedo/KeyboardWarrior.git"
+            ><img
+              class="mainPageLogo_githubLogo"
+              src="http://rajlab.org/icons/github_white.png"
+              alt="github"
+          /></a>
+        </li>
+        <li>
+          <a
+            href="https://www.notion.so/Keyboard-Warrior-888a144aa79f437e8f726910c42617a8"
+            ><img
+              class="mainPageLogo_notionLogo"
+              src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png"
+              alt="notion"
+          /></a>
+        </li>
+      </ul>
+    </div>
+    <!-- 공용nav -->
+    <!-- 사이드바 -->
+    <div id="sideBar">
+      <div id="sideBar_top">
+        <div id="sideBar_top_sideBarBtn">
+          <i class="fa-solid fa-arrow-left-long"></i>
         </div>
-        <!-- 공용nav -->
-        <!-- 사이드바 -->
-
-        <div id="sideBar">
-            <div id="sideBar_top">
-                <div id="sideBar_top_sideBarBtn">
-                    <i class="fa-solid fa-arrow-left-long"></i>
-                </div>
-                <div id="sideBar_top_up">
-                    <ul>
-                        <li>팔로워</li>
-                        <li><%=follower%></li>
-                    </ul>
-                    <ul>
-                        <li>팔로잉</li>
-                        <li><%=following%></li>
-                    </ul>
-                </div>
-                <div id="sideBar_top_down">
-                    <div id="sideBar_top_down_left">
-                        <div><%= user_id%></div>
-                        <div><%= nick_name%></div>
-                    </div>
-                    <div id="sideBar_top_down_right">
-                        <div>
-                            <a href="/join/modify/enterance"
-                                ><i class="fa-solid fa-gear"></i
-                            ></a>
-                            <a href=""><i class="fa-solid fa-bell"></i></a>
-                            <a href=""><i class="fa-solid fa-comments"></i></a>
-                            <a href="/logout"
-                                ><i class="fa-solid fa-right-from-bracket"></i
-                            ></a>
-                        </div>
-                        <a href="/posting/<%=game_name%>">글쓰기</a>
-                    </div>
-                </div>
-                <div id="sideBar_top_profileImg">
-                    <img src="../<%= profile_img%>" alt="" />
-                </div>
-            </div>
+        <div id="sideBar_top_up">
+          <ul>
+            <li>팔로워</li>
+            <li><%= follower%></li>
+          </ul>
+          <ul>
+            <li>팔로잉</li>
+            <li><%=following%></li>
+          </ul>
         </div>
-        <div class="sideBarOpenBtn">
-            <i class="fa-solid fa-arrow-right-long"></i>
+        <div id="sideBar_top_down">
+          <div id="sideBar_top_down_left">
+            <div><%= user_id%></div>
+            <div><%= nick_name%></div>
+          </div>
+          <div id="sideBar_top_down_right">
+            <div class="alarm">
+              <span>99</span>
+              <span>2</span>
+            </div>
+            <div>
+              <a href="/join/modify/enterance"
+                ><i class="fa-solid fa-gear"></i
+              ></a>
+              <a href="#"><i class="fa-solid fa-bell"></i></a>
+              <a href="#"><i class="fa-solid fa-comments"></i></a>
+              <a href="/logout"
+                ><i class="fa-solid fa-right-from-bracket"></i
+              ></a>
+            </div>
+            <a href="/posting">글쓰기</a>
+          </div>
         </div>
-
-        <!-- 사이드바 끝 -->
-
-        <!-- 전체를 posts div로 감싸줌 -->
-        <div id="posts">
-            <!-- 글쓴이 정보 -->
-            <div id="posts_userInfo">
-                <div id="posts_userInfo_left">
-                    <div id="posts_userInfo_left_profileImg">
-                        <img
-                            src="../../<%= postData.User.profile_img%>"
-                            alt=""
-                        />
-                    </div>
-                    <div id="posts_userInfo_left_info">
-                        <div id="posts_userInfo_left_nickName">
-                            <%= postData.User.nick_name%>
-                        </div>
-                        <div id="posts_userInfo_left_follow">
-                            팔로워 : <span>숫자</span> 팔로잉 :
-                            <span>숫자</span>
-                        </div>
-                    </div>
-                </div>
-                <div id="posts_userInfo_right">
-                    <span id="modifyBtn">수정하기</span>
-                    <i class="fa-solid fa-user-plus"></i>
-                    <i class="fa-solid fa-user-check"></i>
-                    <i class="fa-solid fa-message"></i>
-                    <i class="fa-solid fa-xmark"></i>
-                </div>
-            </div>
-            <!-- 글쓴이 정보 끝 -->
-            <!-- 포스팅 보여주기 -->
-            <div id="posting">
-                <div id="posting_left">
-                    <div id="posting_left_img"></div>
-                </div>
-                <div id="posting_right">
-                    <!-- 여기서부터 해시태그 -->
-                    <div id="posting_right_hashTag">
-                        <h2>&nbsp&nbsp#&nbsp</h2>
-                        <input
-                            class="hashTag"
-                            name="hashTag"
-                            placeholder="#해시태그"
-                            readonly
-                            value="<%=postData.hashtag_values%>"
-                        />
-                    </div>
-                    <!-- 여기까지 해시태그 -->
-                    <div>포스팅 내용</div>
-                    <div id="posting_right_bottom">
-                        <div id="posting_right_bottom_postingBtn">
-                            <div>
-                                <i class="fa-solid fa-heart"></i
-                                ><span>좋아요 갯수</span>
-                            </div>
-                            <div>
-                                <i class="fa-solid fa-comment"></i
-                                ><span>댓글 갯수</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 포스팅 보여주기 끝 -->
-            <!-- 댓글창 -->
-            <div class="posts_comment">
-                <form
-                    class="posts_comment_recomment"
-                    action="/community/<%=postData.id%>/comment"
-                    method="post"
-                >
-                    <img src="../<%= profile_img%>" alt="" /><input
-                        type="text"
-                        name="text"
-                        placeholder="댓글을 입력하세요"
-                    />
-                    <button type="submit">입력</button>
-                </form>
-            </div>
-            <!-- 댓글창 끝 -->
+        <div id="sideBar_top_profileImg">
+          <img src="<%= profile_img%>" alt="" />
         </div>
-    </body>
-    <script src="../../communityPost/communityPost.js"></script>
-    <script>
-        // const urlText = document.location.href;
-        // const post_id = urlText[urlText.length - 1];
-        // const body = document.querySelector("body");
-        // let allData;
+      </div>
+      <!-- 채팅창 추가부분 -->
+      <div class="sideBar_Bottom_chat"></div>
+    </div>
+    <div class="sideBarOpenBtn">
+      <i class="fa-solid fa-arrow-right-long"></i>
+    </div>
+    <!-- 채팅창 추가부분 -->
+    <!-- 사이드바 끝 -->
 
-        // function script() {
-        //     console.log(allData);
-        //     body.innerHTML += `<div style="background-color: tomato">하이루염~~~~~~~~~~~~~~~</div>`;
-        // }
-        // async function uploadData(callback) {
-        //     await $.ajax({
-        //         url: "/poster/test/",
-        //         type: "get",
-        //         data: {
-        //             post_id,
-        //         },
-        //         async: true,
-        //         success: function (data) {
-        //             allData = data;
-        //         },
-        //     });
-        //     callback();
-        // }
-        // uploadData(script);
-    </script>
+    <!-- 전체를 posts div로 감싸줌 -->
+    <div id="posts">
+      <!-- 글쓴이 정보 -->
+      <div id="posts_userInfo">
+        <div id="posts_userInfo_left">
+          <div id="posts_userInfo_left_profileImg">
+            <img src="../../<%= postData.User.profile_img%>" alt="" />
+          </div>
+          <div id="posts_userInfo_left_info">
+            <div id="posts_userInfo_left_nickName">
+              <%= postData.User.nick_name%>
+            </div>
+            <div id="posts_userInfo_left_follow">
+              팔로워 : <span>숫자</span> 팔로잉 :
+              <span>숫자</span>
+            </div>
+          </div>
+        </div>
+        <div id="posts_userInfo_right">
+          <span id="modifyBtn">수정하기</span>
+          <i class="fa-solid fa-user-plus"></i>
+          <i class="fa-solid fa-user-check"></i>
+          <i class="fa-solid fa-message"></i>
+          <i class="fa-solid fa-xmark"></i>
+        </div>
+      </div>
+      <!-- 글쓴이 정보 끝 -->
+      <!-- 포스팅 보여주기 -->
+      <div id="posting">
+        <div id="posting_left">
+          <div id="posting_left_img"></div>
+        </div>
+        <div id="posting_right">
+          <!-- 여기서부터 해시태그 -->
+          <div id="posting_right_hashTag">
+            <h2>&nbsp&nbsp#&nbsp</h2>
+            <input
+              class="hashTag"
+              name="hashTag"
+              placeholder="#해시태그"
+              readonly
+              value="<%=postData.hashtag_values%>"
+            />
+          </div>
+          <!-- 여기까지 해시태그 -->
+          <div>포스팅 내용</div>
+          <div id="posting_right_bottom">
+            <div id="posting_right_bottom_postingBtn">
+              <div>
+                <i class="fa-solid fa-heart"></i><span>좋아요 갯수</span>
+              </div>
+              <div>
+                <i class="fa-solid fa-comment"></i><span>댓글 갯수</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 포스팅 보여주기 끝 -->
+      <!-- 댓글창 -->
+      <div class="posts_comment">
+        <form
+          class="posts_comment_recomment"
+          action="/community/<%=postData.id%>/comment"
+          method="post"
+        >
+          <img src="../<%= profile_img%>" alt="" /><input
+            type="text"
+            name="text"
+            placeholder="댓글을 입력하세요"
+          />
+          <button type="submit">입력</button>
+        </form>
+      </div>
+      <!-- 댓글창 끝 -->
+    </div>
+  </body>
+  <script src="../../communityPost/communityPost.js"></script>
+  <script>
+    // const urlText = document.location.href;
+    // const post_id = urlText[urlText.length - 1];
+    // const body = document.querySelector("body");
+    // let allData;
 
-    <script>
-        //데이터 집어넣기
+    // function script() {
+    //     console.log(allData);
+    //     body.innerHTML += `<div style="background-color: tomato">하이루염~~~~~~~~~~~~~~~</div>`;
+    // }
+    // async function uploadData(callback) {
+    //     await $.ajax({
+    //         url: "/poster/test/",
+    //         type: "get",
+    //         data: {
+    //             post_id,
+    //         },
+    //         async: true,
+    //         success: function (data) {
+    //             allData = data;
+    //         },
+    //     });
+    //     callback();
+    // }
+    // uploadData(script);
+  </script>
 
-        window.onload = function () {
-            getPostData();
-            // 댓글 집어넣기
-            getCommentData();
-            likeData();
-            follow();
+  <script>
+    //데이터 집어넣기
+
+    window.onload = function () {
+      getPostData();
+      // 댓글 집어넣기
+      getCommentData();
+      likeData();
+      follow();
+    };
+  </script>
+  <script>
+    // 해시태그
+    const hashTag = document.querySelector("input[name=hashTag]");
+    const tagify = new Tagify(hashTag);
+  </script>
+  <script>
+    //팔로우 관련 함수
+    function follow() {
+      // 넘겨줄 데이터 : 팔로우하는사람, 당하는사람
+      let postData = "<%= JSON.stringify(postData) %>";
+      postData = postData.replaceAll("&#34;", '"');
+      postData = postData.replaceAll("\\", "/");
+      postData = JSON.parse(postData);
+
+      const follower = "<%= user_id%>";
+      const following = postData.user_id;
+
+      // 팔로우
+      const followBtn = document.querySelector(".fa-user-plus");
+      followBtn.onclick = function () {
+        if (follower != following) {
+          $.ajax({
+            url: "/follow",
+            method: "post",
+            data: {
+              follow: true,
+              follower,
+              following,
+            },
+          });
+          //버튼표시
+          followBtn.style.display = "none";
+          unFollowBtn.style.display = "block";
+        }
+      };
+      // 언팔로우
+      const unFollowBtn = document.querySelector(".fa-user-check");
+      unFollowBtn.onclick = function () {
+        if (follower != following) {
+          if (confirm("팔로우를 취소하시겠습니까?")) {
+            $.ajax({
+              url: "/follow",
+              method: "post",
+              data: {
+                follow: false,
+                follower,
+                following,
+              },
+            });
+            //버튼표시
+            followBtn.style.display = "block";
+            unFollowBtn.style.display = "none";
+          }
+        }
+      };
+
+      // follower와 following 같으면 버튼 삭제
+      const modifyBtn = document.querySelector("#modifyBtn");
+      const messageBtn = document.querySelector(".fa-message");
+      if (follower == following) {
+        modifyBtn.style.display = "block";
+        followBtn.style.display = "none";
+        unFollowBtn.style.display = "none";
+        messageBtn.style.display = "none";
+
+        modifyBtn.onclick = function () {
+          location.href = `/community/${postData.id}/modify`;
         };
-    </script>
-    <script>
-        // 해시태그
-        const hashTag = document.querySelector("input[name=hashTag]");
-        const tagify = new Tagify(hashTag);
-    </script>
-    <script>
-        //팔로우 관련 함수
-        function follow() {
-            // 넘겨줄 데이터 : 팔로우하는사람, 당하는사람
-            let postData = "<%= JSON.stringify(postData) %>";
-            postData = postData.replaceAll("&#34;", '"');
-            postData = postData.replaceAll("\\", "/");
-            postData = JSON.parse(postData);
-
-            const follower = "<%= user_id%>";
-            const following = postData.user_id;
-
-            // 팔로우
-            const followBtn = document.querySelector(".fa-user-plus");
-            followBtn.onclick = function () {
-                if (follower != following) {
-                    $.ajax({
-                        url: "/follow",
-                        method: "post",
-                        data: {
-                            follow: true,
-                            follower,
-                            following,
-                        },
-                    });
-                    //버튼표시
-                    followBtn.style.display = "none";
-                    unFollowBtn.style.display = "block";
-                }
-            };
-            // 언팔로우
-            const unFollowBtn = document.querySelector(".fa-user-check");
-            unFollowBtn.onclick = function () {
-                if (follower != following) {
-                    if (confirm("팔로우를 취소하시겠습니까?")) {
-                        $.ajax({
-                            url: "/follow",
-                            method: "post",
-                            data: {
-                                follow: false,
-                                follower,
-                                following,
-                            },
-                        });
-                        //버튼표시
-                        followBtn.style.display = "block";
-                        unFollowBtn.style.display = "none";
-                    }
-                }
-            };
-
-            // follower와 following 같으면 버튼 삭제
-            const modifyBtn = document.querySelector("#modifyBtn");
-            const messageBtn = document.querySelector(".fa-message");
-            if (follower == following) {
-                modifyBtn.style.display = "block";
-                followBtn.style.display = "none";
-                unFollowBtn.style.display = "none";
-                messageBtn.style.display = "none";
-
-                modifyBtn.onclick = function () {
-                    location.href = `/community/${postData.id}/modify`;
-                };
-            } else {
-                //이미 팔로잉 하고 있는 경우 체크되있는 버튼 표시
-                if (
-                    follower == "<%= follower_id%>" &&
-                    following == "<%= following_id%>"
-                ) {
-                    followBtn.style.display = "none";
-                    unFollowBtn.style.display = "block";
-                }
-                // 팔로잉 아니면 +버튼 표시
-                else {
-                    followBtn.style.display = "block";
-                    unFollowBtn.style.display = "none";
-                }
-            }
+      } else {
+        //이미 팔로잉 하고 있는 경우 체크되있는 버튼 표시
+        if (
+          follower == "<%= follower_id%>" &&
+          following == "<%= following_id%>"
+        ) {
+          followBtn.style.display = "none";
+          unFollowBtn.style.display = "block";
         }
-
-        //좋아요 관련 함수
-        function likeData() {
-            let postData = "<%= JSON.stringify(postData) %>";
-            postData = postData.replaceAll("&#34;", '"');
-            postData = postData.replaceAll("\\", "/");
-            postData = JSON.parse(postData);
-            const likeBtn = document.querySelector(".fa-heart");
-            const likeNum = document.querySelector(
-                "#posting_right_bottom_postingBtn > div span"
-            );
-
-            let likeData = "<%= JSON.stringify(likeData) %>";
-            likeData = likeData.replaceAll("&#34;", '"');
-            likeData = JSON.parse(likeData);
-            if (likeData) {
-                likeBtn.classList.add("liked");
-            }
-            likeBtn.onclick = function () {
-                const userId = "<%= user_id%>";
-                likeBtn.classList.toggle("liked");
-                if (likeBtn.classList.contains("liked")) {
-                    likeNum.innerText = Number(likeNum.innerText) + 1;
-                    $.ajax({
-                        url: `/community/${postData.id}/like`,
-                        method: "post",
-                        data: { userLike: true, userId },
-                    });
-                } else {
-                    likeNum.innerText = Number(likeNum.innerText) - 1;
-                    $.ajax({
-                        url: `/community/${postData.id}/like`,
-                        method: "post",
-                        data: { userLike: false, userId },
-                    });
-                }
-            };
+        // 팔로잉 아니면 +버튼 표시
+        else {
+          followBtn.style.display = "block";
+          unFollowBtn.style.display = "none";
         }
+      }
+    }
 
-        //댓글 관련 함수
-        function getCommentData() {
-            //댓글 넣기
-            let commentData = "<%= JSON.stringify(commentData) %>";
-            commentData = commentData.replaceAll("&#34;", '"');
-            commentData = commentData.replaceAll("\\", "/");
-            commentData = JSON.parse(commentData);
-            let posts_comment = document.querySelector(".posts_comment");
-            new Promise((resolve, reject) => {
-                commentData.forEach(el => {
-                    posts_comment.innerHTML += `
+    //좋아요 관련 함수
+    function likeData() {
+      let postData = "<%= JSON.stringify(postData) %>";
+      postData = postData.replaceAll("&#34;", '"');
+      postData = postData.replaceAll("\\", "/");
+      postData = JSON.parse(postData);
+      const likeBtn = document.querySelector(".fa-heart");
+      const likeNum = document.querySelector(
+        "#posting_right_bottom_postingBtn > div span"
+      );
+
+      let likeData = "<%= JSON.stringify(likeData) %>";
+      likeData = likeData.replaceAll("&#34;", '"');
+      likeData = JSON.parse(likeData);
+      if (likeData) {
+        likeBtn.classList.add("liked");
+      }
+      likeBtn.onclick = function () {
+        const userId = "<%= user_id%>";
+        likeBtn.classList.toggle("liked");
+        if (likeBtn.classList.contains("liked")) {
+          likeNum.innerText = Number(likeNum.innerText) + 1;
+          $.ajax({
+            url: `/community/${postData.id}/like`,
+            method: "post",
+            data: { userLike: true, userId },
+          });
+        } else {
+          likeNum.innerText = Number(likeNum.innerText) - 1;
+          $.ajax({
+            url: `/community/${postData.id}/like`,
+            method: "post",
+            data: { userLike: false, userId },
+          });
+        }
+      };
+    }
+
+    //댓글 관련 함수
+    function getCommentData() {
+      //댓글 넣기
+      let commentData = "<%= JSON.stringify(commentData) %>";
+      commentData = commentData.replaceAll("&#34;", '"');
+      commentData = commentData.replaceAll("\\", "/");
+      commentData = JSON.parse(commentData);
+      let posts_comment = document.querySelector(".posts_comment");
+      new Promise((resolve, reject) => {
+        commentData.forEach((el) => {
+          posts_comment.innerHTML += `
             <div class="posts_comment_recommentZone" data-id="${el.id}">
               <img src="../../${el.profile_img}" alt="" />
               <div><span class="comment_nickName">${el.nick_name}</span>&nbsp;<span>${el.text}</span></div>
               <span><i class="fa-solid fa-trash-can"></i></span>
             </div>
             `;
-                });
-                resolve("끝");
-            });
+        });
+        resolve("끝");
+      });
 
-            //댓글 삭제
-            const user_nickName = "<%= nick_name%>";
-            const deleteComment = document.querySelectorAll(".fa-trash-can");
-            const deleteNickName =
-                document.querySelectorAll(".comment_nickName");
-            deleteComment.forEach((el, index) => {
-                if (user_nickName == deleteNickName[index].innerText) {
-                    deleteComment[index].style.display = "block";
-                }
-            });
-
-            //삭제 데이터 넘기기
-            deleteComment.forEach((el, index) => {
-                const commentId = document.querySelectorAll(
-                    ".posts_comment_recommentZone"
-                )[index].dataset.id;
-                el.onclick = function () {
-                    if (confirm("정말로 삭제하시겠습니까?")) {
-                        $.ajax({
-                            url: `/community/${commentId}/comment/delete`,
-                            type: "post",
-                            data: {
-                                commentId,
-                            },
-                            success: data => {
-                                location.href = data;
-                            },
-                        });
-                    }
-                };
-            });
+      //댓글 삭제
+      const user_nickName = "<%= nick_name%>";
+      const deleteComment = document.querySelectorAll(".fa-trash-can");
+      const deleteNickName = document.querySelectorAll(".comment_nickName");
+      deleteComment.forEach((el, index) => {
+        if (user_nickName == deleteNickName[index].innerText) {
+          deleteComment[index].style.display = "block";
         }
+      });
 
-        // 데이터 받아오는 함수
-        function getPostData() {
-            let postData = "<%= JSON.stringify(postData) %>"
-                .replaceAll("&#34;", '"')
-                .replaceAll("&lt;", "<")
-                .replaceAll("&gt;", ">")
-                .replaceAll('""', '"')
-                .replaceAll("\\", "/");
-            postData = JSON.parse(postData);
-
-            let imageArr = [
-                postData.image1,
-                postData.image2,
-                postData.image3,
-                postData.image4,
-                postData.image5,
-            ];
-            // image null인부분 삭제
-            imageArr = imageArr.filter(el => el != null);
-            // image 넣어주기
-            const posting_left = document.querySelector("#posting_left");
-            const posting_left_img =
-                document.querySelector("#posting_left_img");
-            posting_left_img.style.left = 0;
-            imageArr.forEach((el, index) => {
-                const divTag = document.createElement("img");
-                divTag.src = "../../" + el;
-                posting_left_img.appendChild(divTag);
+      //삭제 데이터 넘기기
+      deleteComment.forEach((el, index) => {
+        const commentId = document.querySelectorAll(
+          ".posts_comment_recommentZone"
+        )[index].dataset.id;
+        el.onclick = function () {
+          if (confirm("정말로 삭제하시겠습니까?")) {
+            $.ajax({
+              url: `/community/${commentId}/comment/delete`,
+              type: "post",
+              data: {
+                commentId,
+              },
+              success: (data) => {
+                location.href = data;
+              },
             });
-            // 마우스휠로 이동
-            function debounce(func, wait = 100, immediate = true) {
-                var timeout;
-                return function () {
-                    var context = this,
-                        args = arguments;
-                    var later = function () {
-                        timeout = null;
-                        if (!immediate) func.apply(context, args);
-                    };
-                    var callNow = immediate && !timeout;
-                    clearTimeout(timeout);
-                    timeout = setTimeout(later, wait); //얘가 시간지나면 timeout을 0(false)로 만들어줌
-                    if (callNow) func.apply(context, args);
-                };
-            }
-            //스크롤 움직이기
-            let scrollX = 0;
-            function moveWheel(e) {
-                const imglength = document.querySelectorAll(
-                    "#posting_left_img > img"
-                ).length;
-                let maxScrollX = (imglength - 1) * 500;
-                if (e.deltaY > 0) {
-                    scrollX += 500;
-                    if (scrollX > maxScrollX) {
-                        scrollX = maxScrollX;
-                    }
-                    posting_left.scrollTo({
-                        left: scrollX,
-                        behavior: "smooth",
-                    });
-                } else {
-                    scrollX -= 500;
-                    if (scrollX < 0) {
-                        scrollX = 0;
-                    }
-                    posting_left.scrollTo({
-                        left: scrollX,
-                        behavior: "smooth",
-                    });
-                }
-            }
-            posting_left.addEventListener("wheel", debounce(moveWheel));
-            //포스팅 내용 넣어주기
-            //내용 가공하기
-            postData.text = postData.text
-                .replaceAll(/&amp;/g, "&")
-                .replaceAll(/&lt;/g, "<")
-                .replaceAll(/&gt;/g, ">");
-            document.querySelector(
-                "#posting_right > div:nth-child(2)"
-            ).innerHTML = postData.text;
-            // 좋아요 갯수
-            document.querySelector(".fa-heart + span").innerText =
-                postData.like;
-            // 댓글 갯수
-            document.querySelector(".fa-comment + span").innerText =
-                postData.comment;
+          }
+        };
+      });
+    }
 
-            //나가기 버튼
-            const exitBtn = document.querySelector(".fa-xmark");
-            exitBtn.onclick = () => {
-                location.href = `/community/${postData.game_name}`;
-            };
+    // 데이터 받아오는 함수
+    function getPostData() {
+      let postData = "<%= JSON.stringify(postData) %>"
+        .replaceAll("&#34;", '"')
+        .replaceAll("&lt;", "<")
+        .replaceAll("&gt;", ">")
+        .replaceAll('""', '"')
+        .replaceAll("\\", "/");
+      postData = JSON.parse(postData);
+
+      let imageArr = [
+        postData.image1,
+        postData.image2,
+        postData.image3,
+        postData.image4,
+        postData.image5,
+      ];
+      // image null인부분 삭제
+      imageArr = imageArr.filter((el) => el != null);
+      // image 넣어주기
+      const posting_left = document.querySelector("#posting_left");
+      const posting_left_img = document.querySelector("#posting_left_img");
+      posting_left_img.style.left = 0;
+      imageArr.forEach((el, index) => {
+        const divTag = document.createElement("img");
+        divTag.src = "../../" + el;
+        posting_left_img.appendChild(divTag);
+      });
+      // 마우스휠로 이동
+      function debounce(func, wait = 100, immediate = true) {
+        var timeout;
+        return function () {
+          var context = this,
+            args = arguments;
+          var later = function () {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+          };
+          var callNow = immediate && !timeout;
+          clearTimeout(timeout);
+          timeout = setTimeout(later, wait); //얘가 시간지나면 timeout을 0(false)로 만들어줌
+          if (callNow) func.apply(context, args);
+        };
+      }
+      //스크롤 움직이기
+      let scrollX = 0;
+      function moveWheel(e) {
+        const imglength = document.querySelectorAll(
+          "#posting_left_img > img"
+        ).length;
+        let maxScrollX = (imglength - 1) * 500;
+        if (e.deltaY > 0) {
+          scrollX += 500;
+          if (scrollX > maxScrollX) {
+            scrollX = maxScrollX;
+          }
+          posting_left.scrollTo({
+            left: scrollX,
+            behavior: "smooth",
+          });
+        } else {
+          scrollX -= 500;
+          if (scrollX < 0) {
+            scrollX = 0;
+          }
+          posting_left.scrollTo({
+            left: scrollX,
+            behavior: "smooth",
+          });
         }
-    </script>
+      }
+      posting_left.addEventListener("wheel", debounce(moveWheel));
+      //포스팅 내용 넣어주기
+      //내용 가공하기
+      postData.text = postData.text
+        .replaceAll(/&amp;/g, "&")
+        .replaceAll(/&lt;/g, "<")
+        .replaceAll(/&gt;/g, ">");
+      document.querySelector("#posting_right > div:nth-child(2)").innerHTML =
+        postData.text;
+      // 좋아요 갯수
+      document.querySelector(".fa-heart + span").innerText = postData.like;
+      // 댓글 갯수
+      document.querySelector(".fa-comment + span").innerText = postData.comment;
+
+      //나가기 버튼
+      const exitBtn = document.querySelector(".fa-xmark");
+      exitBtn.onclick = () => {
+        location.href = `/community/${postData.game_name}`;
+      };
+    }
+  </script>
+  <script>
+    function chatDataBase(callback) {
+      //데이터베이스에 있는 채팅 창 만들어주기
+      const chatTag = document.querySelector(".sideBar_Bottom_chat");
+      let chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
+      let chatLog = "<%=JSON.stringify(chatObj)%>";
+      chatLog = chatLog.replaceAll("&#34;", '"');
+      chatLog = chatLog.replaceAll("\\", "/");
+      chatLog = JSON.parse(chatLog);
+      if (!chatLog) return;
+      chatLog.forEach((el, index) => {
+        //만들어져있는 채팅방 있는지 확인
+        // 상대방 아이디 받아오기
+        const opponent = el.speaker || el.listener;
+        let checkRoom = false;
+        //만들어져있으면 checkRoom에 true주기
+        chatRoomTag.forEach((elem) => {
+          if (elem.dataset.who == opponent) {
+            return (checkRoom = true);
+          }
+        });
+        //만들어져있으면 return
+        if (checkRoom) return;
+
+        // 안만들어져있으면 만들기
+        chatTag.innerHTML += `
+            <div class="sideBar_Bottom_chatRoom" data-who="${opponent}">
+              <div class="sideBar_Bottom_chatRoom_preView" style="display: flex;">
+                <img src="${el.profile_img}" alt="" />
+                <div>
+                  <div class="chatNickName_preview">${el.nick_name}</div>
+                  <div class="chatMessage"></div>
+                </div>
+                <div class="preViewAlarm"></div>
+              </div>
+              <div class="sideBar_Bottom_chatRoom_main" style="display: none;">
+                <div class="sideBar_Bottom_chatRoom_top">
+                  <span class="chatNickName">
+                    <i class="fa-regular fa-envelope"></i></i><img src="${el.profile_img}" alt="" />${el.nick_name}
+                  </span>
+                  <span><i class="fa-solid fa-minus"></i>&nbsp;</span>
+                </div>
+                <div class="sideBar_Bottom_chatRoom_middle"></div>
+                <div id="chatForm">
+                  <input type="text" class="sendMSG" id="${el.nick_name}"/>
+                  <i class="fa-regular fa-comment-dots"></i>
+                </div>
+              </div>
+            </div>
+            `;
+        //태그 받아온거 초기화
+        chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
+      });
+
+      //만들어진 채팅방에 콜백으로 값 넣기
+      callback(chatLog);
+    }
+
+    function chatDataCallBack(chatLog) {
+      let chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
+      // 내 프로필사진
+      const profile_img = "<%= profile_img%>";
+      chatLog.forEach((el) => {
+        const opponent = el.speaker || el.listener;
+        chatRoomTag.forEach((elem) => {
+          // 상대방과의 채팅방 찾기
+          if (elem.dataset.who == opponent) {
+            //상대방이 speaker일떄
+            if (opponent == el.speaker) {
+              elem.querySelector(".chatMessage").innerText = el.message;
+              elem.querySelector(
+                ".sideBar_Bottom_chatRoom_middle"
+              ).innerHTML += `
+            <div class="fullchatMessage leftChat">
+              <img src="${el.profile_img}" alt="" />
+              <div>${el.message}</div>
+            </div>
+            `;
+            }
+            //상대방이 listener 일때
+            else {
+              elem.querySelector(".chatMessage").innerText = el.message;
+              elem.querySelector(
+                ".sideBar_Bottom_chatRoom_middle"
+              ).innerHTML += `
+            <div class="fullchatMessage rightChat">
+              <img src="${profile_img}" alt="" />
+              <div>${el.message}</div>
+            </div>
+            `;
+            }
+          }
+        });
+      });
+    }
+    function chat() {
+      const chatTag = document.querySelector(".sideBar_Bottom_chat");
+      let chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
+
+      //채팅이미지 누르면 채팅창 나오게 하기
+      document.querySelector(".fa-comments").onclick = function () {
+        //채팅창 여닫이
+        chatTag.classList.toggle("chatOn");
+        // 열때 알람 안보이게하기
+        if (chatTag.classList.contains("chatOn")) {
+          // display none으로 하면 위치가 바뀜
+          document.querySelector(
+            ".alarm > span:nth-child(2)"
+          ).style.visibility = "hidden";
+          document.querySelector(".alarm > span:nth-child(2)").innerText = 0;
+        }
+      };
+      // 채팅관련
+      chatRoomTag.forEach((el, index) => {
+        //채팅창 클릭시 채팅창 커지고 데이터 담기
+        el.querySelector(".sideBar_Bottom_chatRoom_preView").onclick =
+          function () {
+            el.querySelector(".sideBar_Bottom_chatRoom_preView").style.display =
+              "none";
+            el.querySelector(".sideBar_Bottom_chatRoom_main").style.display =
+              "block";
+            el.querySelector(".sendMSG").focus();
+            // 스크롤바 젤 아래로 내리기
+            el.querySelector(".sideBar_Bottom_chatRoom_middle").scrollTop =
+              el.querySelector(".sideBar_Bottom_chatRoom_middle").scrollHeight;
+          };
+        // - 버튼 누르면 미리보기창 띄우기
+        el.querySelector(".fa-minus").onclick = function () {
+          el.querySelector(".sideBar_Bottom_chatRoom_preView").style.display =
+            "flex";
+          el.querySelector(".sideBar_Bottom_chatRoom_main").style.display =
+            "none";
+        };
+      });
+    }
+    function enterSend() {
+      const socket = io.connect();
+      const chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
+      chatRoomTag.forEach((el) => {
+        el.onkeydown = function (e) {
+          el.querySelector(".sendMSG").onkeyup = function (e) {
+            if (e.keyCode == 13) {
+              if (el.querySelector(".sendMSG").value != "") {
+                // 서버로 누가 누구한테 어떤걸 보냈는지 전송
+                const speaker = "<%= user_id%>";
+                const listener = el.dataset.who;
+                const message = el.querySelector(".sendMSG").value;
+                socket.emit("chat", speaker, listener, message);
+                el.querySelector(".sendMSG").value = "";
+                el.querySelector(".sendMSG").focus();
+              }
+            }
+          };
+        };
+      });
+    }
+
+    function socketChat() {
+      //채팅창 관련 함수
+      const socket = io.connect();
+      // 메시지 보내기
+      // 개인 방에 넣어주기
+      socket.emit("login", "<%=user_id%>");
+      const sideBar = document.querySelector("#sideBar");
+      //클릭하면 메시지보내기
+      sideBar.onclick = function (e) {
+        if (e.target.classList.contains("fa-comment-dots")) {
+          // 제이쿼리로 부모를 잡음 => 부모요소 전체를 잡기 위함
+          const parent = $(e.target).parents()[2];
+          if (parent.querySelector(".sendMSG").value != "") {
+            // 서버로 누가 누구한테 어떤걸 보냈는지 전송
+            const speaker = "<%= user_id%>";
+            const listener = parent.dataset.who;
+            const message = parent.querySelector(".sendMSG").value;
+            socket.emit("chat", speaker, listener, message);
+            parent.querySelector(".sendMSG").value = "";
+            parent.querySelector(".sendMSG").focus();
+
+            //스크롤바 맨 아래로 내리기
+            parent.querySelector(".sideBar_Bottom_chatRoom_middle").scrollTop =
+              parent.querySelector(
+                ".sideBar_Bottom_chatRoom_middle"
+              ).scrollHeight;
+          }
+        }
+      };
+
+      //엔터키로 메시지 보내기
+      enterSend();
+      //받는사람일때 받는곳
+      socket.on("toListener", toListener);
+      //내가 보낸사람일때 서버로부터 받는곳
+      socket.on("toSpeaker", toSpeaker);
+    }
+
+    // socket 메시지 받는 함수
+    function toListener(
+      speaker,
+      listener,
+      message,
+      speakerImg,
+      speakerNickName
+    ) {
+      speakerImg = "../../" + speakerImg;
+      //채팅 알람 숫자 올리기
+      const alarm = document.querySelector(".alarm > span:nth-child(2)");
+      alarm.innerText = Number(alarm.innerText) + 1;
+      let chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
+      if (chatRoomTag.length == 0) {
+        document.querySelector(".sideBar_Bottom_chat").innerHTML += `
+            <div class="sideBar_Bottom_chatRoom" data-who="${speaker}">
+              <div class="sideBar_Bottom_chatRoom_preView">
+                <img src="${speakerImg}" alt="" />
+                <div>
+                  <div class="chatNickName_preview">${speakerNickName}</div>
+                  <div class="chatMessage">${message}</div>
+                </div>
+                <div class="preViewAlarm"></div>
+              </div>
+              <div class="sideBar_Bottom_chatRoom_main">
+                <div class="sideBar_Bottom_chatRoom_top">
+                  <span class="chatNickName">
+                    <i class="fa-regular fa-envelope"></i></i><img src="${speakerImg}" alt="" />${speakerNickName}
+                  </span>
+                  <span><i class="fa-solid fa-minus"></i>&nbsp;</span>
+                </div>
+                <div class="sideBar_Bottom_chatRoom_middle">
+                  <div class="fullchatMessage leftChat">
+                    <img src="${speakerImg}"" alt="" />
+                    <div>${message}</div>
+                  </div>
+                </div>
+                <div id="chatForm">
+                  <input type="text" class="sendMSG" id="${speakerNickName}"/>
+                  <i class="fa-regular fa-comment-dots"></i>
+                </div>
+              </div>
+            </div>
+            `;
+
+        // 태그 초기화
+        chat();
+        enterSend();
+      } else {
+        //채팅방 있는지 확인
+        let whoArr = [];
+        chatRoomTag.forEach((el) => {
+          whoArr.push(el.dataset.who);
+        });
+        chatRoomTag.forEach((el) => {
+          //채팅방 있을떄
+          new Promise((resolve, reject) => {
+            if (el.dataset.who == speaker) {
+              el.querySelector(".sideBar_Bottom_chatRoom_middle").innerHTML += `
+          <div class="fullchatMessage leftChat">
+            <img src="${speakerImg}"" alt="" />
+            <div>${message}</div>
+          </div>
+          `;
+              //스크롤바 맨 아래로 내리기
+              el.querySelector(".sideBar_Bottom_chatRoom_middle").scrollTop =
+                el.querySelector(
+                  ".sideBar_Bottom_chatRoom_middle"
+                ).scrollHeight;
+
+              // 미리보기창에 마지막문자 띄우기
+              el.querySelector(".chatMessage").innerText = message;
+              return;
+            } else {
+              resolve("채팅방 없음");
+            }
+          }).then(() => {
+            //채팅방 없을때
+            if (whoArr.indexOf(speaker) == -1) {
+              document.querySelector(".sideBar_Bottom_chat").innerHTML += `
+          <div class="sideBar_Bottom_chatRoom" data-who="${speaker}">
+            <div class="sideBar_Bottom_chatRoom_preView">
+              <img src="${speakerImg}" alt="" />
+              <div>
+                <div class="chatNickName_preview">${speakerNickName}</div>
+                <div class="chatMessage">${message}</div>
+              </div>
+              <div class="preViewAlarm"></div>
+            </div>
+            <div class="sideBar_Bottom_chatRoom_main">
+              <div class="sideBar_Bottom_chatRoom_top">
+                <span class="chatNickName">
+                  <i class="fa-regular fa-envelope"></i></i><img src="${speakerImg}" alt="" />${speakerNickName}
+                </span>
+                <span><i class="fa-solid fa-minus"></i>&nbsp;</span>
+              </div>
+              <div class="sideBar_Bottom_chatRoom_middle">
+                <div class="fullchatMessage leftChat">
+                  <img src="${speakerImg}"" alt="" />
+                  <div>${message}</div>
+                </div>
+              </div>
+              <div id="chatForm">
+                <input type="text" class="sendMSG" id="${speakerNickName}"/>
+                <i class="fa-regular fa-comment-dots"></i>
+              </div>
+            </div>
+          </div>
+          `;
+
+              // 태그 초기화
+              chat();
+              enterSend();
+            }
+            return;
+          });
+        });
+      }
+      return;
+    }
+
+    function toSpeaker(speaker, listener, message, speakerImg) {
+      speakerImg = "../../" + speakerImg;
+      let chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
+      chatRoomTag.forEach((el) => {
+        if (el.dataset.who == listener) {
+          el.querySelector(".sideBar_Bottom_chatRoom_middle").innerHTML += `
+              <div class="fullchatMessage rightChat">
+                <img src="${speakerImg}" alt="" />
+                <div>${message}</div>
+              </div>
+              `;
+          //스크롤바 맨 아래로 내리기
+          el.querySelector(".sideBar_Bottom_chatRoom_middle").scrollTop =
+            el.querySelector(".sideBar_Bottom_chatRoom_middle").scrollHeight;
+
+          // 미리보기창에 마지막문자 띄우기
+          el.querySelector(".chatMessage").innerText = message;
+        }
+      });
+      return;
+    }
+    chatDataBase(chatDataCallBack);
+    chat();
+    socketChat();
+    enterSend();
+  </script>
 </html>

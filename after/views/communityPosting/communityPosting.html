@@ -1,296 +1,624 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-        <script
-            src="https://kit.fontawesome.com/3264d39625.js"
-            crossorigin="anonymous"
-        ></script>
-        <!-- 제이쿼리 -->
-        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-        <!-- Tagify 해시태그 -->
-        <script src="https://unpkg.com/@yaireo/tagify"></script>
-        <script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
-        <link
-            href="https://unpkg.com/@yaireo/tagify/dist/tagify.css"
-            rel="stylesheet"
-            type="text/css"
-        />
-    </head>
-    <link rel="stylesheet" href="../communityPosting/style.css" />
-    <body>
-        <div id="mainPageTop">
-            <div id="mainLogo"><a href="/">이건 메인로고</a></div>
-            <ul id="mainPageNav">
-                <li><a href="/community_hub">COMMUNITY</a></li>
-                <li><a href="/minigame">MINI GAME</a></li>
-            </ul>
-            <ul id="mainPageSign">
-                <li><a href="/join">회원가입</a></li>
-                <li><a href="/login">로그인</a></li>
-            </ul>
-            <ul id="mainPageLogo">
-                <li>
-                    <a href="https://github.com/TeTedo/KeyboardWarrior.git"
-                        ><img
-                            class="mainPageLogo_githubLogo"
-                            src="http://rajlab.org/icons/github_white.png"
-                            alt="github"
-                    /></a>
-                </li>
-                <li>
-                    <a
-                        href="https://www.notion.so/Keyboard-Warrior-888a144aa79f437e8f726910c42617a8"
-                        ><img
-                            class="mainPageLogo_notionLogo"
-                            src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png"
-                            alt="notion"
-                    /></a>
-                </li>
-            </ul>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../socket.io/socket.io.js"></script>
+    <script
+      src="https://kit.fontawesome.com/3264d39625.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- 제이쿼리 -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <!-- Tagify 해시태그 -->
+    <script src="https://unpkg.com/@yaireo/tagify"></script>
+    <script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+    <link
+      href="https://unpkg.com/@yaireo/tagify/dist/tagify.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <link rel="stylesheet" href="../communityPosting/style.css" />
+  <body>
+    <div id="mainPageTop">
+      <div id="mainLogo"><a href="/">이건 메인로고</a></div>
+      <ul id="mainPageNav">
+        <li><a href="/community_hub">COMMUNITY</a></li>
+        <li><a href="/minigame">MINI GAME</a></li>
+      </ul>
+      <ul id="mainPageSign">
+        <li><a href="/join">회원가입</a></li>
+        <li><a href="/login">로그인</a></li>
+      </ul>
+      <ul id="mainPageLogo">
+        <li>
+          <a href="https://github.com/TeTedo/KeyboardWarrior.git"
+            ><img
+              class="mainPageLogo_githubLogo"
+              src="http://rajlab.org/icons/github_white.png"
+              alt="github"
+          /></a>
+        </li>
+        <li>
+          <a
+            href="https://www.notion.so/Keyboard-Warrior-888a144aa79f437e8f726910c42617a8"
+            ><img
+              class="mainPageLogo_notionLogo"
+              src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png"
+              alt="notion"
+          /></a>
+        </li>
+      </ul>
+    </div>
+    <!-- 사이드바 -->
+    <div id="sideBar">
+      <div id="sideBar_top">
+        <div id="sideBar_top_sideBarBtn">
+          <i class="fa-solid fa-arrow-left-long"></i>
         </div>
-        <!-- 사이드바 -->
-
-        <div id="sideBar">
-            <div id="sideBar_top">
-                <div id="sideBar_top_sideBarBtn">
-                    <i class="fa-solid fa-arrow-left-long"></i>
-                </div>
-                <div id="sideBar_top_up">
-                    <ul>
-                        <li>팔로워</li>
-                        <li><%=follower%></li>
-                    </ul>
-                    <ul>
-                        <li>팔로잉</li>
-                        <li><%=following%></li>
-                    </ul>
-                </div>
-                <div id="sideBar_top_down">
-                    <div id="sideBar_top_down_left">
-                        <div><%= user_id%></div>
-                        <div><%= nick_name%></div>
-                    </div>
-                    <div id="sideBar_top_down_right">
-                        <div>
-                            <a href="/join/modify/enterance"
-                                ><i class="fa-solid fa-gear"></i
-                            ></a>
-                            <a href=""><i class="fa-solid fa-bell"></i></a>
-                            <a href=""><i class="fa-solid fa-comments"></i></a>
-                            <a href="/logout"
-                                ><i class="fa-solid fa-right-from-bracket"></i
-                            ></a>
-                        </div>
-                        <a id="writBtn" href="/posting/<%=game_name%>"
-                            >글쓰기</a
-                        >
-                    </div>
-                </div>
-                <div id="sideBar_top_profileImg">
-                    <img src="../<%= profile_img%>" alt="" />
-                </div>
-            </div>
+        <div id="sideBar_top_up">
+          <ul>
+            <li>팔로워</li>
+            <li><%= follower%></li>
+          </ul>
+          <ul>
+            <li>팔로잉</li>
+            <li><%=following%></li>
+          </ul>
         </div>
-        <div class="sideBarOpenBtn">
-            <i class="fa-solid fa-arrow-right-long"></i>
+        <div id="sideBar_top_down">
+          <div id="sideBar_top_down_left">
+            <div><%= user_id%></div>
+            <div><%= nick_name%></div>
+          </div>
+          <div id="sideBar_top_down_right">
+            <div class="alarm">
+              <span>99</span>
+              <span>2</span>
+            </div>
+            <div>
+              <a href="/join/modify/enterance"
+                ><i class="fa-solid fa-gear"></i
+              ></a>
+              <a href="#"><i class="fa-solid fa-bell"></i></a>
+              <a href="#"><i class="fa-solid fa-comments"></i></a>
+              <a href="/logout"
+                ><i class="fa-solid fa-right-from-bracket"></i
+              ></a>
+            </div>
+            <a href="/posting">글쓰기</a>
+          </div>
         </div>
+        <div id="sideBar_top_profileImg">
+          <img src="<%= profile_img%>" alt="" />
+        </div>
+      </div>
+      <!-- 채팅창 추가부분 -->
+      <div class="sideBar_Bottom_chat"></div>
+    </div>
+    <div class="sideBarOpenBtn">
+      <i class="fa-solid fa-arrow-right-long"></i>
+    </div>
+    <!-- 채팅창 추가부분 -->
+    <!-- 사이드바 끝 -->
 
-        <!-- 사이드바 끝 -->
+    <!-- 포스팅 구역 -->
+    <!-- multer를 쓰려면  enctype="multipart/form-data" 써줘야함-->
+    <form
+      id="posting"
+      method="post"
+      action="/posting/community/create"
+      enctype="multipart/form-data"
+    >
+      <div id="posting_left">
+        <!-- 8.25 img 태그 추가 -->
+        <img src="" alt="이미지를 선택하세요" />
+      </div>
+      <div id="posting_right">
+        <!-- 여기서부터 해시태그 -->
+        <div id="posting_right_hashTag">
+          <input class="hashTag" name="hashTag" placeholder="#해시태그" />
+        </div>
+        <!-- 여기까지 해시태그 -->
+        <textarea name="text"></textarea>
+        <!-- 8.25 div추가 -->
+        <div id="posting_right_imagePreview">
+          <div>
+            <img src="" />
+            <input
+              id="filesInput1"
+              type="file"
+              accept="image/*"
+              name="files1"
+              accept="image/*"
+            />
+            <label for="filesInput1"><i class="fa-solid fa-image"></i></label>
+            <span><i class="fa-solid fa-circle-xmark"></i></span>
+          </div>
+          <div>
+            <img src="" />
+            <input
+              id="filesInput2"
+              type="file"
+              accept="image/*"
+              name="files2"
+              accept="image/*"
+            />
+            <label for="filesInput2"><i class="fa-solid fa-image"></i></label>
+            <span><i class="fa-solid fa-circle-xmark"></i></span>
+          </div>
+          <div>
+            <img src="" />
+            <input
+              id="filesInput3"
+              type="file"
+              accept="image/*"
+              name="files3"
+              accept="image/*"
+            />
+            <label for="filesInput3"><i class="fa-solid fa-image"></i></label>
+            <span><i class="fa-solid fa-circle-xmark"></i></span>
+          </div>
+          <div>
+            <img src="" />
+            <input
+              id="filesInput4"
+              type="file"
+              accept="image/*"
+              name="files4"
+              accept="image/*"
+            />
+            <label for="filesInput4"><i class="fa-solid fa-image"></i></label>
+            <span><i class="fa-solid fa-circle-xmark"></i></span>
+          </div>
+          <div>
+            <img src="" />
+            <input
+              id="filesInput5"
+              type="file"
+              accept="image/*"
+              name="files5"
+              accept="image/*"
+            />
+            <label for="filesInput5"><i class="fa-solid fa-image"></i></label>
+            <span><i class="fa-solid fa-circle-xmark"></i></span>
+          </div>
+        </div>
+        <div id="posting_right_bottom">
+          <div id="posting_right_bottom_uploadImg">
+            <!-- 8.25 input 태그 추가 -->
+            <!-- 파일을 여러개 올릴거라 multiple 추가 입력 -->
+            <!-- accept : 이미지 형식만 받으려고 -->
+          </div>
+          <input
+            type="text"
+            name="game_name"
+            value="<%=game_name%>"
+            style="display: none"
+          />
+          <div id="posting_right_bottom_postingBtn">
+            <!-- 8.25 id값 없애고 등록에 div대신 a태그 추가 -->
+            <button href="#" type="submit">등록</button>
+            <a href="/community/<%=game_name%>">취소</a>
+          </div>
+        </div>
+      </div>
+    </form>
+    <!-- 포스팅구역 끝 -->
+  </body>
+  <script src="../communityPosting/communityPosting.js"></script>
+  <script>
+    // 해시태그 이벤트
+    const hashTag = document.querySelector("input[name=hashTag]");
+    const tagify = new Tagify(hashTag, {
+      enforceWhitelist: false, // 화이트리스트 목록만 태그등록 가능하게 할건지
+      whitelist: ["잡담", "공략", "거래"], // 드롭다운에 뜰 목록
+      maxTags: 7, // 최대 허용 태그 갯수
+      userInput: true, //false하면 사용자가 직접 입력은 못하고 목록에서 고를수만 있음
 
-        <!-- 포스팅 구역 -->
-        <!-- multer를 쓰려면  enctype="multipart/form-data" 써줘야함-->
-        <form
-            id="posting"
-            method="post"
-            action="/posting/community/create"
-            enctype="multipart/form-data"
-        >
-            <div id="posting_left">
-                <!-- 8.25 img 태그 추가 -->
-                <img src="" alt="이미지를 선택하세요" />
+      dropdown: {
+        maxItems: 10, // 드롭다운 목록 최대 갯수
+        // classname: "tagify_dropDown", // 드롭다운 css용 클래스네임
+        enabled: 0, // 단어 몇글자입력했을때 드롭다운 띄울지
+        // closeOnSelect: false, // 드롭다운에서 선택하면 자동으로 꺼질지
+        position: "input", //드롭다운 위치 (해시태그 입력창 바로 밑에)
+      },
+    });
+    const tagifyInput = document.querySelector(".tagify__input");
+    tagify.on("add", function () {
+      setTimeout(() => {
+        // 드롭다운목록 풀네임 적고 엔터했을때 한글자 밀리는거
+        tagifyInput.innerText = "";
+      }, 10);
+    });
+    tagify.on("input", () => {
+      // tagify.loading(true); // 태그입력할때 로딩창
+    });
+
+    // 등록버튼 눌렀을때
+    const formDom = document.querySelector("#posting");
+    formDom.onsubmit = () => {
+      const hashtag_values = JSON.stringify(tagify.value.map((el) => el.value));
+      const textArea = document.querySelector("#posting_right > textarea");
+      textArea.value = textArea.value.replace(/(\n|\r\n)/g, "<br>");
+      textArea.value = textArea.value.replace(/\s/g, "&nbsp;");
+      // textArea.value = JSON.stringify(textArea.value);
+      hashTag.value = hashtag_values;
+    };
+
+    function getData() {
+      // 값이 들어왔나 안들어왔나 체크용
+      const data = "<%= user_id%>";
+      //데이터 있을때
+      if (data) {
+        // 회원가입 로그인 숨기기
+        const mainPageSign = document.querySelector("#mainPageSign");
+        mainPageSign.style.display = "none";
+        //사이드바 띄우기
+        const sideBar = document.querySelector("#sideBar");
+        sideBar.style.display = "block";
+        //사이드바에 값넣기
+        const insertUser = document.querySelectorAll(
+          "#sideBar_top_down_left > div"
+        );
+
+        insertUser[0].innerHTML = "<%=user_id %>";
+        insertUser[1].innerHTML = "<%=nick_name %>";
+      }
+      //데이터 없을때
+      else {
+        // 회원가입 로그인 버튼 띄우기
+        mainPageSign.style.display = "flex";
+        //사이드바 숨기기
+        sideBar.style.display = "none";
+      }
+    }
+
+    getData();
+  </script>
+  <script>
+    function chatDataBase(callback) {
+      //데이터베이스에 있는 채팅 창 만들어주기
+      const chatTag = document.querySelector(".sideBar_Bottom_chat");
+      let chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
+      let chatLog = "<%=JSON.stringify(chatObj)%>";
+      chatLog = chatLog.replaceAll("&#34;", '"');
+      chatLog = chatLog.replaceAll("\\", "/");
+      chatLog = JSON.parse(chatLog);
+      if (!chatLog) return;
+      chatLog.forEach((el, index) => {
+        //만들어져있는 채팅방 있는지 확인
+        // 상대방 아이디 받아오기
+        const opponent = el.speaker || el.listener;
+        let checkRoom = false;
+        //만들어져있으면 checkRoom에 true주기
+        chatRoomTag.forEach((elem) => {
+          if (elem.dataset.who == opponent) {
+            return (checkRoom = true);
+          }
+        });
+        //만들어져있으면 return
+        if (checkRoom) return;
+
+        // 안만들어져있으면 만들기
+        chatTag.innerHTML += `
+            <div class="sideBar_Bottom_chatRoom" data-who="${opponent}">
+              <div class="sideBar_Bottom_chatRoom_preView" style="display: flex;">
+                <img src="${el.profile_img}" alt="" />
+                <div>
+                  <div class="chatNickName_preview">${el.nick_name}</div>
+                  <div class="chatMessage"></div>
+                </div>
+                <div class="preViewAlarm"></div>
+              </div>
+              <div class="sideBar_Bottom_chatRoom_main" style="display: none;">
+                <div class="sideBar_Bottom_chatRoom_top">
+                  <span class="chatNickName">
+                    <i class="fa-regular fa-envelope"></i></i><img src="${el.profile_img}" alt="" />${el.nick_name}
+                  </span>
+                  <span><i class="fa-solid fa-minus"></i>&nbsp;</span>
+                </div>
+                <div class="sideBar_Bottom_chatRoom_middle"></div>
+                <div id="chatForm">
+                  <input type="text" class="sendMSG" id="${el.nick_name}"/>
+                  <i class="fa-regular fa-comment-dots"></i>
+                </div>
+              </div>
             </div>
-            <div id="posting_right">
-                <!-- 여기서부터 해시태그 -->
-                <div id="posting_right_hashTag">
-                    <input
-                        class="hashTag"
-                        name="hashTag"
-                        placeholder="#해시태그"
-                    />
-                </div>
-                <!-- 여기까지 해시태그 -->
-                <textarea name="text"></textarea>
-                <!-- 8.25 div추가 -->
-                <div id="posting_right_imagePreview">
-                    <div>
-                        <img src="" />
-                        <input
-                            id="filesInput1"
-                            type="file"
-                            accept="image/*"
-                            name="files1"
-                            accept="image/*"
-                        />
-                        <label for="filesInput1"
-                            ><i class="fa-solid fa-image"></i
-                        ></label>
-                        <span><i class="fa-solid fa-circle-xmark"></i></span>
-                    </div>
-                    <div>
-                        <img src="" />
-                        <input
-                            id="filesInput2"
-                            type="file"
-                            accept="image/*"
-                            name="files2"
-                            accept="image/*"
-                        />
-                        <label for="filesInput2"
-                            ><i class="fa-solid fa-image"></i
-                        ></label>
-                        <span><i class="fa-solid fa-circle-xmark"></i></span>
-                    </div>
-                    <div>
-                        <img src="" />
-                        <input
-                            id="filesInput3"
-                            type="file"
-                            accept="image/*"
-                            name="files3"
-                            accept="image/*"
-                        />
-                        <label for="filesInput3"
-                            ><i class="fa-solid fa-image"></i
-                        ></label>
-                        <span><i class="fa-solid fa-circle-xmark"></i></span>
-                    </div>
-                    <div>
-                        <img src="" />
-                        <input
-                            id="filesInput4"
-                            type="file"
-                            accept="image/*"
-                            name="files4"
-                            accept="image/*"
-                        />
-                        <label for="filesInput4"
-                            ><i class="fa-solid fa-image"></i
-                        ></label>
-                        <span><i class="fa-solid fa-circle-xmark"></i></span>
-                    </div>
-                    <div>
-                        <img src="" />
-                        <input
-                            id="filesInput5"
-                            type="file"
-                            accept="image/*"
-                            name="files5"
-                            accept="image/*"
-                        />
-                        <label for="filesInput5"
-                            ><i class="fa-solid fa-image"></i
-                        ></label>
-                        <span><i class="fa-solid fa-circle-xmark"></i></span>
-                    </div>
-                </div>
-                <div id="posting_right_bottom">
-                    <div id="posting_right_bottom_uploadImg">
-                        <!-- 8.25 input 태그 추가 -->
-                        <!-- 파일을 여러개 올릴거라 multiple 추가 입력 -->
-                        <!-- accept : 이미지 형식만 받으려고 -->
-                    </div>
-                    <input
-                        type="text"
-                        name="game_name"
-                        value="<%=game_name%>"
-                        style="display: none"
-                    />
-                    <div id="posting_right_bottom_postingBtn">
-                        <!-- 8.25 id값 없애고 등록에 div대신 a태그 추가 -->
-                        <button href="#" type="submit">등록</button>
-                        <a href="/community/<%=game_name%>">취소</a>
-                    </div>
-                </div>
+            `;
+        //태그 받아온거 초기화
+        chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
+      });
+
+      //만들어진 채팅방에 콜백으로 값 넣기
+      callback(chatLog);
+    }
+
+    function chatDataCallBack(chatLog) {
+      let chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
+      // 내 프로필사진
+      const profile_img = "<%= profile_img%>";
+      chatLog.forEach((el) => {
+        const opponent = el.speaker || el.listener;
+        chatRoomTag.forEach((elem) => {
+          // 상대방과의 채팅방 찾기
+          if (elem.dataset.who == opponent) {
+            //상대방이 speaker일떄
+            if (opponent == el.speaker) {
+              elem.querySelector(".chatMessage").innerText = el.message;
+              elem.querySelector(
+                ".sideBar_Bottom_chatRoom_middle"
+              ).innerHTML += `
+            <div class="fullchatMessage leftChat">
+              <img src="${el.profile_img}" alt="" />
+              <div>${el.message}</div>
             </div>
-        </form>
-        <!-- 포스팅구역 끝 -->
-    </body>
-    <script src="../communityPosting/communityPosting.js"></script>
-    <script>
-        // 해시태그 이벤트
-        const hashTag = document.querySelector("input[name=hashTag]");
-        const tagify = new Tagify(hashTag, {
-            enforceWhitelist: false, // 화이트리스트 목록만 태그등록 가능하게 할건지
-            whitelist: ["잡담", "공략", "거래"], // 드롭다운에 뜰 목록
-            maxTags: 7, // 최대 허용 태그 갯수
-            userInput: true, //false하면 사용자가 직접 입력은 못하고 목록에서 고를수만 있음
-
-            dropdown: {
-                maxItems: 10, // 드롭다운 목록 최대 갯수
-                // classname: "tagify_dropDown", // 드롭다운 css용 클래스네임
-                enabled: 0, // 단어 몇글자입력했을때 드롭다운 띄울지
-                // closeOnSelect: false, // 드롭다운에서 선택하면 자동으로 꺼질지
-                position: "input", //드롭다운 위치 (해시태그 입력창 바로 밑에)
-            },
-        });
-        const tagifyInput = document.querySelector(".tagify__input");
-        tagify.on("add", function () {
-            setTimeout(() => {
-                // 드롭다운목록 풀네임 적고 엔터했을때 한글자 밀리는거
-                tagifyInput.innerText = "";
-            }, 10);
-        });
-        tagify.on("input", () => {
-            // tagify.loading(true); // 태그입력할때 로딩창
-        });
-
-        // 등록버튼 눌렀을때
-        const formDom = document.querySelector("#posting");
-        formDom.onsubmit = () => {
-            const hashtag_values = JSON.stringify(
-                tagify.value.map(el => el.value)
-            );
-            const textArea = document.querySelector(
-                "#posting_right > textarea"
-            );
-            textArea.value = textArea.value.replace(/(\n|\r\n)/g, "<br>");
-            textArea.value = textArea.value.replace(/\s/g, "&nbsp;");
-            // textArea.value = JSON.stringify(textArea.value);
-            hashTag.value = hashtag_values;
-        };
-
-        function getData() {
-            // 값이 들어왔나 안들어왔나 체크용
-            const data = "<%= user_id%>";
-            //데이터 있을때
-            if (data) {
-                // 회원가입 로그인 숨기기
-                const mainPageSign = document.querySelector("#mainPageSign");
-                mainPageSign.style.display = "none";
-                //사이드바 띄우기
-                const sideBar = document.querySelector("#sideBar");
-                sideBar.style.display = "block";
-                //사이드바에 값넣기
-                const insertUser = document.querySelectorAll(
-                    "#sideBar_top_down_left > div"
-                );
-
-                insertUser[0].innerHTML = "<%=user_id %>";
-                insertUser[1].innerHTML = "<%=nick_name %>";
+            `;
             }
-            //데이터 없을때
+            //상대방이 listener 일때
             else {
-                // 회원가입 로그인 버튼 띄우기
-                mainPageSign.style.display = "flex";
-                //사이드바 숨기기
-                sideBar.style.display = "none";
+              elem.querySelector(".chatMessage").innerText = el.message;
+              elem.querySelector(
+                ".sideBar_Bottom_chatRoom_middle"
+              ).innerHTML += `
+            <div class="fullchatMessage rightChat">
+              <img src="${profile_img}" alt="" />
+              <div>${el.message}</div>
+            </div>
+            `;
             }
-        }
+          }
+        });
+      });
+    }
+    function chat() {
+      const chatTag = document.querySelector(".sideBar_Bottom_chat");
+      let chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
 
-        getData();
-    </script>
+      //채팅이미지 누르면 채팅창 나오게 하기
+      document.querySelector(".fa-comments").onclick = function () {
+        //채팅창 여닫이
+        chatTag.classList.toggle("chatOn");
+        // 열때 알람 안보이게하기
+        if (chatTag.classList.contains("chatOn")) {
+          // display none으로 하면 위치가 바뀜
+          document.querySelector(
+            ".alarm > span:nth-child(2)"
+          ).style.visibility = "hidden";
+          document.querySelector(".alarm > span:nth-child(2)").innerText = 0;
+        }
+      };
+      // 채팅관련
+      chatRoomTag.forEach((el, index) => {
+        //채팅창 클릭시 채팅창 커지고 데이터 담기
+        el.querySelector(".sideBar_Bottom_chatRoom_preView").onclick =
+          function () {
+            el.querySelector(".sideBar_Bottom_chatRoom_preView").style.display =
+              "none";
+            el.querySelector(".sideBar_Bottom_chatRoom_main").style.display =
+              "block";
+            el.querySelector(".sendMSG").focus();
+            // 스크롤바 젤 아래로 내리기
+            el.querySelector(".sideBar_Bottom_chatRoom_middle").scrollTop =
+              el.querySelector(".sideBar_Bottom_chatRoom_middle").scrollHeight;
+          };
+        // - 버튼 누르면 미리보기창 띄우기
+        el.querySelector(".fa-minus").onclick = function () {
+          el.querySelector(".sideBar_Bottom_chatRoom_preView").style.display =
+            "flex";
+          el.querySelector(".sideBar_Bottom_chatRoom_main").style.display =
+            "none";
+        };
+      });
+    }
+    function enterSend() {
+      const socket = io.connect();
+      const chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
+      chatRoomTag.forEach((el) => {
+        el.onkeydown = function (e) {
+          el.querySelector(".sendMSG").onkeyup = function (e) {
+            if (e.keyCode == 13) {
+              if (el.querySelector(".sendMSG").value != "") {
+                // 서버로 누가 누구한테 어떤걸 보냈는지 전송
+                const speaker = "<%= user_id%>";
+                const listener = el.dataset.who;
+                const message = el.querySelector(".sendMSG").value;
+                socket.emit("chat", speaker, listener, message);
+                el.querySelector(".sendMSG").value = "";
+                el.querySelector(".sendMSG").focus();
+              }
+            }
+          };
+        };
+      });
+    }
+
+    function socketChat() {
+      //채팅창 관련 함수
+      const socket = io.connect();
+      // 메시지 보내기
+      // 개인 방에 넣어주기
+      socket.emit("login", "<%=user_id%>");
+      const sideBar = document.querySelector("#sideBar");
+      //클릭하면 메시지보내기
+      sideBar.onclick = function (e) {
+        if (e.target.classList.contains("fa-comment-dots")) {
+          // 제이쿼리로 부모를 잡음 => 부모요소 전체를 잡기 위함
+          const parent = $(e.target).parents()[2];
+          if (parent.querySelector(".sendMSG").value != "") {
+            // 서버로 누가 누구한테 어떤걸 보냈는지 전송
+            const speaker = "<%= user_id%>";
+            const listener = parent.dataset.who;
+            const message = parent.querySelector(".sendMSG").value;
+            socket.emit("chat", speaker, listener, message);
+            parent.querySelector(".sendMSG").value = "";
+            parent.querySelector(".sendMSG").focus();
+
+            //스크롤바 맨 아래로 내리기
+            parent.querySelector(".sideBar_Bottom_chatRoom_middle").scrollTop =
+              parent.querySelector(
+                ".sideBar_Bottom_chatRoom_middle"
+              ).scrollHeight;
+          }
+        }
+      };
+
+      //엔터키로 메시지 보내기
+      enterSend();
+      //받는사람일때 받는곳
+      socket.on("toListener", toListener);
+      //내가 보낸사람일때 서버로부터 받는곳
+      socket.on("toSpeaker", toSpeaker);
+    }
+
+    // socket 메시지 받는 함수
+    function toListener(
+      speaker,
+      listener,
+      message,
+      speakerImg,
+      speakerNickName
+    ) {
+      speakerImg = "../" + speakerImg;
+      //채팅 알람 숫자 올리기
+      const alarm = document.querySelector(".alarm > span:nth-child(2)");
+      alarm.innerText = Number(alarm.innerText) + 1;
+      let chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
+      if (chatRoomTag.length == 0) {
+        document.querySelector(".sideBar_Bottom_chat").innerHTML += `
+            <div class="sideBar_Bottom_chatRoom" data-who="${speaker}">
+              <div class="sideBar_Bottom_chatRoom_preView">
+                <img src="${speakerImg}" alt="" />
+                <div>
+                  <div class="chatNickName_preview">${speakerNickName}</div>
+                  <div class="chatMessage">${message}</div>
+                </div>
+                <div class="preViewAlarm"></div>
+              </div>
+              <div class="sideBar_Bottom_chatRoom_main">
+                <div class="sideBar_Bottom_chatRoom_top">
+                  <span class="chatNickName">
+                    <i class="fa-regular fa-envelope"></i></i><img src="${speakerImg}" alt="" />${speakerNickName}
+                  </span>
+                  <span><i class="fa-solid fa-minus"></i>&nbsp;</span>
+                </div>
+                <div class="sideBar_Bottom_chatRoom_middle">
+                  <div class="fullchatMessage leftChat">
+                    <img src="${speakerImg}"" alt="" />
+                    <div>${message}</div>
+                  </div>
+                </div>
+                <div id="chatForm">
+                  <input type="text" class="sendMSG" id="${speakerNickName}"/>
+                  <i class="fa-regular fa-comment-dots"></i>
+                </div>
+              </div>
+            </div>
+            `;
+
+        // 태그 초기화
+        chat();
+        enterSend();
+      } else {
+        //채팅방 있는지 확인
+        let whoArr = [];
+        chatRoomTag.forEach((el) => {
+          whoArr.push(el.dataset.who);
+        });
+        chatRoomTag.forEach((el) => {
+          //채팅방 있을떄
+          new Promise((resolve, reject) => {
+            if (el.dataset.who == speaker) {
+              el.querySelector(".sideBar_Bottom_chatRoom_middle").innerHTML += `
+          <div class="fullchatMessage leftChat">
+            <img src="${speakerImg}"" alt="" />
+            <div>${message}</div>
+          </div>
+          `;
+              //스크롤바 맨 아래로 내리기
+              el.querySelector(".sideBar_Bottom_chatRoom_middle").scrollTop =
+                el.querySelector(
+                  ".sideBar_Bottom_chatRoom_middle"
+                ).scrollHeight;
+
+              // 미리보기창에 마지막문자 띄우기
+              el.querySelector(".chatMessage").innerText = message;
+              return;
+            } else {
+              resolve("채팅방 없음");
+            }
+          }).then(() => {
+            //채팅방 없을때
+            if (whoArr.indexOf(speaker) == -1) {
+              document.querySelector(".sideBar_Bottom_chat").innerHTML += `
+          <div class="sideBar_Bottom_chatRoom" data-who="${speaker}">
+            <div class="sideBar_Bottom_chatRoom_preView">
+              <img src="${speakerImg}" alt="" />
+              <div>
+                <div class="chatNickName_preview">${speakerNickName}</div>
+                <div class="chatMessage">${message}</div>
+              </div>
+              <div class="preViewAlarm"></div>
+            </div>
+            <div class="sideBar_Bottom_chatRoom_main">
+              <div class="sideBar_Bottom_chatRoom_top">
+                <span class="chatNickName">
+                  <i class="fa-regular fa-envelope"></i></i><img src="${speakerImg}" alt="" />${speakerNickName}
+                </span>
+                <span><i class="fa-solid fa-minus"></i>&nbsp;</span>
+              </div>
+              <div class="sideBar_Bottom_chatRoom_middle">
+                <div class="fullchatMessage leftChat">
+                  <img src="${speakerImg}"" alt="" />
+                  <div>${message}</div>
+                </div>
+              </div>
+              <div id="chatForm">
+                <input type="text" class="sendMSG" id="${speakerNickName}"/>
+                <i class="fa-regular fa-comment-dots"></i>
+              </div>
+            </div>
+          </div>
+          `;
+
+              // 태그 초기화
+              chat();
+              enterSend();
+            }
+            return;
+          });
+        });
+      }
+      return;
+    }
+
+    function toSpeaker(speaker, listener, message, speakerImg) {
+      speakerImg = "../" + speakerImg;
+      let chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
+      chatRoomTag.forEach((el) => {
+        if (el.dataset.who == listener) {
+          el.querySelector(".sideBar_Bottom_chatRoom_middle").innerHTML += `
+              <div class="fullchatMessage rightChat">
+                <img src="${speakerImg}" alt="" />
+                <div>${message}</div>
+              </div>
+              `;
+          //스크롤바 맨 아래로 내리기
+          el.querySelector(".sideBar_Bottom_chatRoom_middle").scrollTop =
+            el.querySelector(".sideBar_Bottom_chatRoom_middle").scrollHeight;
+
+          // 미리보기창에 마지막문자 띄우기
+          el.querySelector(".chatMessage").innerText = message;
+        }
+      });
+      return;
+    }
+    chatDataBase(chatDataCallBack);
+    chat();
+    socketChat();
+    enterSend();
+  </script>
 </html>

@@ -11,7 +11,6 @@ router.get(
       //로그인한 유저 정보
       const { user_id, nick_name, profile_img, follower, following } =
         await getUserInfo(req, res);
-      console.log(profile_img);
       //게시글 정보
       let writerInfos = {};
       async function getData() {
