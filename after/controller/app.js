@@ -33,6 +33,11 @@ fs.readdir("views/uploadsImg/profile", (err) => {
     fs.mkdirSync("views/uploadsImg/profile");
   }
 });
+fs.readdir("views/uploadsImg/main", (err) => {
+  if (err) {
+    fs.mkdirSync("views/uploadsImg/main");
+  }
+});
 // 세션 설정
 app.use(
   session({
