@@ -624,6 +624,78 @@
             "none";
         };
       });
+      let postData = "<%= JSON.stringify(postData) %>";
+      postData = postData.replaceAll("&#34;", '"');
+      postData = postData.replaceAll("\\", "/");
+      postData = JSON.parse(postData);
+
+      const chatBtn = document.querySelector(".fa-message");
+      const writerName = "<%= postData.User.nick_name%>";
+      const writer = postData.user_id;
+      const writerImg = "../../<%= postData.User.profile_img%>";
+
+      chatBtn.onclick = function () {
+        sideBar.style.transform = "translate(0px)";
+        chatTag.classList.add("chatOn");
+        // 기존 채팅창이 있는지 없는지 확인
+        chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
+        let checkRoomBool = false;
+        chatRoomTag.forEach((elem) => {
+          const checkRoom = elem.querySelector(".chatNickName").innerText;
+          const checkRoomPreview = elem.querySelector(
+            ".chatNickName_preview"
+          ).innerText;
+          if (checkRoom == writerName || checkRoomPreview == writerName) {
+            // 게시글작성자와 기존있던 채팅방 닉네임 일치하면 거기로 focus하고 sideBar 열어주기
+            const messageInput = elem.querySelector("#chatForm > input");
+            elem.querySelector(
+              ".sideBar_Bottom_chatRoom_preView"
+            ).style.display = "none";
+            elem.querySelector(".sideBar_Bottom_chatRoom_main").style.display =
+              "block";
+            messageInput.focus();
+            checkRoomBool = true;
+          }
+        });
+        //기존 채팅방 없을시
+        if (!checkRoomBool) {
+          chatTag.innerHTML += `
+            <div class="sideBar_Bottom_chatRoom" data-who="${writer}">
+              <div class="sideBar_Bottom_chatRoom_preView" style="display: none;">
+                <img src="${writerImg}" alt="" />
+                <div>
+                  <div class="chatNickName_preview">${writerName}</div>
+                  <div class="chatMessage"></div>
+                </div>
+                <div class="preViewAlarm"></div>
+              </div>
+              <div class="sideBar_Bottom_chatRoom_main" style="display: block;">
+                <div class="sideBar_Bottom_chatRoom_top">
+                  <span class="chatNickName">
+                    <i class="fa-regular fa-envelope"></i></i><img src="${writerImg}" alt="" />${writerName}
+                  </span>
+                  <span><i class="fa-solid fa-minus"></i>&nbsp;</span>
+                </div>
+                <div class="sideBar_Bottom_chatRoom_middle"></div>
+                <div id="chatForm">
+                  <input type="text" class="sendMSG" id="${writerName}"/>
+                  <i class="fa-regular fa-comment-dots"></i>
+                </div>
+              </div>
+            </div>
+            `;
+          // 미리보기 지우고 메인채팅창 띄우기
+          // document.querySelector();
+          // 입력창에 focus해주기
+          const temp = document.querySelector(`#${writerName}`);
+          temp.focus();
+
+          // 받아온 tag 초기화위해서 함수 실행
+          chat();
+          // 엔터키로 메시지보내기
+          enterSend();
+        }
+      };
     }
     function enterSend() {
       const socket = io.connect();
