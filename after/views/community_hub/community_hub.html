@@ -1,235 +1,600 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-    </head>
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script
-        src="https://kit.fontawesome.com/3264d39625.js"
-        crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="style.css" />
-    <body>
-        <div id="mainPageTop">
-            <div id="mainLogo"><a href="/">이건 메인로고</a></div>
-            <ul id="mainPageNav">
-                <li><a href="/community_hub">COMMUNITY</a></li>
-                <li><a href="/minigame">MINI GAME</a></li>
-            </ul>
-            <ul id="mainPageLogo">
-                <li>
-                    <a href="https://github.com/TeTedo/KeyboardWarrior.git"
-                        ><img
-                            class="mainPageLogo_githubLogo"
-                            src="http://rajlab.org/icons/github_white.png"
-                            alt="github"
-                    /></a>
-                </li>
-                <li>
-                    <a
-                        href="https://www.notion.so/Keyboard-Warrior-888a144aa79f437e8f726910c42617a8"
-                        ><img
-                            class="mainPageLogo_notionLogo"
-                            src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png"
-                            alt="notion"
-                    /></a>
-                </li>
-            </ul>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script src="../socket.io/socket.io.js"></script>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script
+    src="https://kit.fontawesome.com/3264d39625.js"
+    crossorigin="anonymous"
+  ></script>
+  <link rel="stylesheet" href="style.css" />
+  <body>
+    <div id="mainPageTop">
+      <div id="mainLogo"><a href="/">이건 메인로고</a></div>
+      <ul id="mainPageNav">
+        <li><a href="/community_hub">COMMUNITY</a></li>
+        <li><a href="/minigame">MINI GAME</a></li>
+      </ul>
+      <ul id="mainPageLogo">
+        <li>
+          <a href="https://github.com/TeTedo/KeyboardWarrior.git"
+            ><img
+              class="mainPageLogo_githubLogo"
+              src="http://rajlab.org/icons/github_white.png"
+              alt="github"
+          /></a>
+        </li>
+        <li>
+          <a
+            href="https://www.notion.so/Keyboard-Warrior-888a144aa79f437e8f726910c42617a8"
+            ><img
+              class="mainPageLogo_notionLogo"
+              src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png"
+              alt="notion"
+          /></a>
+        </li>
+      </ul>
+    </div>
+    <!-- 여기까지 탑 공통 부분 -->
+
+    <!-- 사이드바 -->
+    <div id="sideBar">
+      <div id="sideBar_top">
+        <div id="sideBar_top_sideBarBtn">
+          <i class="fa-solid fa-arrow-left-long"></i>
         </div>
-        <!-- 여기까지 탑 공통 부분 -->
-        <div id="contents">
-            <div id="contentsWrap">
-                <div id="mainContent">
-                    <div id="mainContentWrap">
-                        <div class="mainPost" data-link="fifa">
-                            <video autoplay muted loop preload="none">
-                                <source
-                                    src="../videos/fifa.mp4"
-                                    type="video/mp4"
-                                />
-                            </video>
-                        </div>
-                        <div class="mainPost" data-link="maple">
-                            <video autoplay muted loop preload="none">
-                                <source
-                                    src="../videos/maple.mp4"
-                                    type="video/mp4"
-                                />
-                            </video>
-                        </div>
-                        <div class="mainPost" data-link="lineage">
-                            <video autoplay muted loop preload="none">
-                                <source
-                                    src="../videos/lineage.mp4"
-                                    type="video/mp4"
-                                />
-                            </video>
-                        </div>
-                        <div
-                            class="mainPost"
-                            style="background-color: tomato"
-                        ></div>
-                        <div
-                            class="mainPost"
-                            style="background-color: blue"
-                        ></div>
-                        <div
-                            class="mainPost"
-                            style="background-color: green"
-                        ></div>
-                        <div
-                            class="mainPost"
-                            style="background-color: pink"
-                        ></div>
-                        <div
-                            class="mainPost"
-                            style="background-color: orange"
-                        ></div>
-                    </div>
-                    <!-- 여기까지 동영상 슬라이드 -->
-                    <div id="mainTitleWrap">
-                        <div class="mainTitle">
-                            <a data-link="fifa">FIFFA ONLINE 4</a>
-                        </div>
-                        <div class="mainTitle">
-                            <a data-link="maple">MAPLE STORY</a>
-                        </div>
-                        <div class="mainTitle">
-                            <a data-link="lineage">LINEAGE</a>
-                        </div>
-                        <div class="mainTitle"></div>
-                        <div class="mainTitle"></div>
-                        <div class="mainTitle"></div>
-                    </div>
-                    <!-- 여기까지 게임제목 슬라이드 -->
-                </div>
-                <!-- 여기까지 mainContents -->
-                <div class="scrollHelper">
-                    <div class="scrollHelper_contents">
-                        <div class="scrollHelper_icon">
-                            <i class="fa-solid fa-arrows-left-right"></i>
-                        </div>
-                        <div class="scrollHelper_text">SCROLL UP!</div>
-                    </div>
-                </div>
+        <div id="sideBar_top_up">
+          <ul>
+            <li>팔로워</li>
+            <li><%= follower%></li>
+          </ul>
+          <ul>
+            <li>팔로잉</li>
+            <li><%=following%></li>
+          </ul>
+        </div>
+        <div id="sideBar_top_down">
+          <div id="sideBar_top_down_left">
+            <div><%= user_id%></div>
+            <div><%= nick_name%></div>
+          </div>
+          <div id="sideBar_top_down_right">
+            <div class="alarm">
+              <span>99</span>
+              <span>2</span>
             </div>
+            <div>
+              <a href="/join/modify/enterance"
+                ><i class="fa-solid fa-gear"></i
+              ></a>
+              <a href="#"><i class="fa-solid fa-bell"></i></a>
+              <a href="#"><i class="fa-solid fa-comments"></i></a>
+              <a href="/logout"
+                ><i class="fa-solid fa-right-from-bracket"></i
+              ></a>
+            </div>
+            <a href="/posting">글쓰기</a>
+          </div>
         </div>
-    </body>
-    <!-- <script src="community_hub.js"></script> -->
-    <script>
-        const contentsWrap = document.getElementById("contentsWrap");
-        const mainContent = document.getElementById("mainContent");
-        const mainContentWrap = document.getElementById("mainContentWrap");
-        const mainPosts = document.querySelectorAll(".mainPost");
-        const mainTitles = document.querySelectorAll(".mainTitle a");
-        const scrollHelper = document.querySelector(".scrollHelper");
-        const scrollHelperText = document.querySelector(".scrollHelper_text");
-        const scrollHelperIcon = document.querySelector(".scrollHelper_icon");
-        const body = document.querySelector("body");
+        <div id="sideBar_top_profileImg">
+          <img src="<%= profile_img%>" alt="" />
+        </div>
+      </div>
+      <!-- 채팅창 추가부분 -->
+      <div class="sideBar_Bottom_chat"></div>
+    </div>
+    <div class="sideBarOpenBtn">
+      <i class="fa-solid fa-arrow-right-long"></i>
+    </div>
+    <!-- 채팅창 추가부분 -->
+    <!-- 사이드바 끝 -->
+    <div id="contents">
+      <div id="contentsWrap">
+        <div id="mainContent">
+          <div id="mainContentWrap">
+            <div class="mainPost" data-link="fifa">
+              <video autoplay muted loop preload="none">
+                <source src="../videos/fifa.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="mainPost" data-link="maple">
+              <video autoplay muted loop preload="none">
+                <source src="../videos/maple.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="mainPost" data-link="lineage">
+              <video autoplay muted loop preload="none">
+                <source src="../videos/lineage.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="mainPost" style="background-color: tomato"></div>
+            <div class="mainPost" style="background-color: blue"></div>
+            <div class="mainPost" style="background-color: green"></div>
+            <div class="mainPost" style="background-color: pink"></div>
+            <div class="mainPost" style="background-color: orange"></div>
+          </div>
+          <!-- 여기까지 동영상 슬라이드 -->
+          <div id="mainTitleWrap">
+            <div class="mainTitle">
+              <a data-link="fifa">FIFFA ONLINE 4</a>
+            </div>
+            <div class="mainTitle">
+              <a data-link="maple">MAPLE STORY</a>
+            </div>
+            <div class="mainTitle">
+              <a data-link="lineage">LINEAGE</a>
+            </div>
+            <div class="mainTitle"></div>
+            <div class="mainTitle"></div>
+            <div class="mainTitle"></div>
+          </div>
+          <!-- 여기까지 게임제목 슬라이드 -->
+        </div>
+        <!-- 여기까지 mainContents -->
+        <div class="scrollHelper">
+          <div class="scrollHelper_contents">
+            <div class="scrollHelper_icon">
+              <i class="fa-solid fa-arrows-left-right"></i>
+            </div>
+            <div class="scrollHelper_text">SCROLL UP!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    function chatDataBase(callback) {
+      //데이터베이스에 있는 채팅 창 만들어주기
+      const chatTag = document.querySelector(".sideBar_Bottom_chat");
+      let chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
+      let chatLog = "<%=JSON.stringify(chatObj)%>";
+      chatLog = chatLog.replaceAll("&#34;", '"');
+      chatLog = chatLog.replaceAll("\\", "/");
+      chatLog = JSON.parse(chatLog);
+      if (!chatLog) return;
+      chatLog.forEach((el, index) => {
+        //만들어져있는 채팅방 있는지 확인
+        // 상대방 아이디 받아오기
+        const opponent = el.speaker || el.listener;
+        let checkRoom = false;
+        //만들어져있으면 checkRoom에 true주기
+        chatRoomTag.forEach((elem) => {
+          if (elem.dataset.who == opponent) {
+            return (checkRoom = true);
+          }
+        });
+        //만들어져있으면 return
+        if (checkRoom) return;
 
-        // 슬라이드 이벤트
-        let move = 0;
-        let isOnScroll = true;
-        contentsWrap.onwheel = e => slide(e);
-        function slide(e) {
-            offAnimation(); // 스크롤핼퍼 끄기
-            contentsWrap.onwheel = null;
-            const maxScroll =
-                mainContentWrap.offsetWidth - mainContent.offsetWidth + 2;
-            if (isOnScroll) {
-                isOnScroll = false;
-                setTimeout(
-                    () => (
-                        (isOnScroll = true),
-                        (contentsWrap.onwheel = e => slide(e))
-                    ),
-                    500
-                );
-                move += e.wheelDelta < 0 ? 485 : -485;
-                move = move < 0 ? maxScroll : move;
-                move = move > maxScroll ? 0 : move;
-                mainContent.scrollTo({ left: move, behavior: "smooth" });
-            } else if (!isOnScroll) {
-                return;
+        // 안만들어져있으면 만들기
+        chatTag.innerHTML += `
+            <div class="sideBar_Bottom_chatRoom" data-who="${opponent}">
+              <div class="sideBar_Bottom_chatRoom_preView" style="display: flex;">
+                <img src="${el.profile_img}" alt="" />
+                <div>
+                  <div class="chatNickName_preview">${el.nick_name}</div>
+                  <div class="chatMessage"></div>
+                </div>
+                <div class="preViewAlarm"></div>
+              </div>
+              <div class="sideBar_Bottom_chatRoom_main" style="display: none;">
+                <div class="sideBar_Bottom_chatRoom_top">
+                  <span class="chatNickName">
+                    <i class="fa-regular fa-envelope"></i></i><img src="${el.profile_img}" alt="" />${el.nick_name}
+                  </span>
+                  <span><i class="fa-solid fa-minus"></i>&nbsp;</span>
+                </div>
+                <div class="sideBar_Bottom_chatRoom_middle"></div>
+                <div id="chatForm">
+                  <input type="text" class="sendMSG" id="${el.nick_name}"/>
+                  <i class="fa-regular fa-comment-dots"></i>
+                </div>
+              </div>
+            </div>
+            `;
+        //태그 받아온거 초기화
+        chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
+      });
+
+      //만들어진 채팅방에 콜백으로 값 넣기
+      callback(chatLog);
+    }
+
+    function chatDataCallBack(chatLog) {
+      let chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
+      // 내 프로필사진
+      const profile_img = "<%= profile_img%>";
+      chatLog.forEach((el) => {
+        const opponent = el.speaker || el.listener;
+        chatRoomTag.forEach((elem) => {
+          // 상대방과의 채팅방 찾기
+          if (elem.dataset.who == opponent) {
+            //상대방이 speaker일떄
+            if (opponent == el.speaker) {
+              elem.querySelector(".chatMessage").innerText = el.message;
+              elem.querySelector(
+                ".sideBar_Bottom_chatRoom_middle"
+              ).innerHTML += `
+            <div class="fullchatMessage leftChat">
+              <img src="${el.profile_img}" alt="" />
+              <div>${el.message}</div>
+            </div>
+            `;
             }
-        }
-
-        // 비디오 슬라이드 재생 중단 기능
-        function controlVideo(e) {
-            mainPosts.forEach(post => {
-                if (
-                    post.getBoundingClientRect().left -
-                        mainContent.getBoundingClientRect().left >=
-                        30 &&
-                    post.getBoundingClientRect().left -
-                        mainContent.getBoundingClientRect().left <=
-                        520
-                ) {
-                    if (post.querySelector("video")) {
-                        post.querySelector("video").play();
-                    }
-                } else {
-                    if (post.querySelector("video")) {
-                        post.querySelector("video").pause();
-                    }
-                }
-            });
-        }
-        function debounce(func, wait = 20, immediate = true) {
-            var timeout;
-            return function () {
-                var context = this,
-                    args = arguments;
-                var later = function () {
-                    timeout = null;
-                    if (!immediate) func.apply(context, args);
-                };
-                var callNow = immediate && !timeout;
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait); //얘가 시간지나면 timeout을 0(false)로 만들어줌
-                if (callNow) func.apply(context, args);
-            };
-        }
-        mainContent.addEventListener(
-            "scroll",
-            debounce(controlVideo, 20, false)
-        );
-
-        // 게임제목 클릭시 커뮤니티로 이동
-        mainTitles.forEach(el => {
-            const title = el.innerText;
-            el.onclick = () => {
-                location.href = `/community/${el.dataset.link}`;
-            };
+            //상대방이 listener 일때
+            else {
+              elem.querySelector(".chatMessage").innerText = el.message;
+              elem.querySelector(
+                ".sideBar_Bottom_chatRoom_middle"
+              ).innerHTML += `
+            <div class="fullchatMessage rightChat">
+              <img src="${profile_img}" alt="" />
+              <div>${el.message}</div>
+            </div>
+            `;
+            }
+          }
         });
-        // 포스트 클릭시 커뮤니티로 이동
-        mainPosts.forEach(post => {
-            post.onclick = () => {
-                location.href = `/community/${post.dataset.link}`;
-            };
-        });
+      });
+    }
+    function chat() {
+      const chatTag = document.querySelector(".sideBar_Bottom_chat");
+      let chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
 
-        // 스크롤헬퍼 이벤트
-        function offAnimation() {
-            scrollHelper.classList.remove("active");
-            scrollHelperText.classList.remove("active");
-            scrollHelperIcon.classList.remove("active");
-        } // 이거 스크롤기능에도 넣어줘야함(스크롤하면 꺼지게)
-        function onAnimation() {
-            body.classList.add("block"); // 작은화면에서 슬라이드할때 윈도우 스크롤 막기용
-            scrollHelper.classList.add("active");
-            scrollHelperText.classList.add("active");
-            scrollHelperIcon.classList.add("active");
+      //채팅이미지 누르면 채팅창 나오게 하기
+      document.querySelector(".fa-comments").onclick = function () {
+        //채팅창 여닫이
+        chatTag.classList.toggle("chatOn");
+        // 열때 알람 안보이게하기
+        if (chatTag.classList.contains("chatOn")) {
+          // display none으로 하면 위치가 바뀜
+          document.querySelector(
+            ".alarm > span:nth-child(2)"
+          ).style.visibility = "hidden";
+          document.querySelector(".alarm > span:nth-child(2)").innerText = 0;
         }
-        contentsWrap.onmouseenter = () => onAnimation();
-        // contentsWrap.onmousemove = () => onAnimation();
-        contentsWrap.onmouseleave = () => {
-            body.classList.remove("block");
-            offAnimation();
+      };
+      // 채팅관련
+      chatRoomTag.forEach((el, index) => {
+        //채팅창 클릭시 채팅창 커지고 데이터 담기
+        el.querySelector(".sideBar_Bottom_chatRoom_preView").onclick =
+          function () {
+            el.querySelector(".sideBar_Bottom_chatRoom_preView").style.display =
+              "none";
+            el.querySelector(".sideBar_Bottom_chatRoom_main").style.display =
+              "block";
+            el.querySelector(".sendMSG").focus();
+            // 스크롤바 젤 아래로 내리기
+            el.querySelector(".sideBar_Bottom_chatRoom_middle").scrollTop =
+              el.querySelector(".sideBar_Bottom_chatRoom_middle").scrollHeight;
+          };
+        // - 버튼 누르면 미리보기창 띄우기
+        el.querySelector(".fa-minus").onclick = function () {
+          el.querySelector(".sideBar_Bottom_chatRoom_preView").style.display =
+            "flex";
+          el.querySelector(".sideBar_Bottom_chatRoom_main").style.display =
+            "none";
         };
-        contentsWrap.onclick = () => offAnimation();
-    </script>
+      });
+    }
+    function enterSend() {
+      const socket = io.connect();
+      const chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
+      chatRoomTag.forEach((el) => {
+        el.onkeydown = function (e) {
+          el.querySelector(".sendMSG").onkeyup = function (e) {
+            if (e.keyCode == 13) {
+              if (el.querySelector(".sendMSG").value != "") {
+                // 서버로 누가 누구한테 어떤걸 보냈는지 전송
+                const speaker = "<%= user_id%>";
+                const listener = el.dataset.who;
+                const message = el.querySelector(".sendMSG").value;
+                socket.emit("chat", speaker, listener, message);
+                el.querySelector(".sendMSG").value = "";
+                el.querySelector(".sendMSG").focus();
+              }
+            }
+          };
+        };
+      });
+    }
+
+    function socketChat() {
+      //채팅창 관련 함수
+      const socket = io.connect();
+      // 메시지 보내기
+      // 개인 방에 넣어주기
+      socket.emit("login", "<%=user_id%>");
+      const sideBar = document.querySelector("#sideBar");
+      //클릭하면 메시지보내기
+      sideBar.onclick = function (e) {
+        if (e.target.classList.contains("fa-comment-dots")) {
+          // 제이쿼리로 부모를 잡음 => 부모요소 전체를 잡기 위함
+          const parent = $(e.target).parents()[2];
+          if (parent.querySelector(".sendMSG").value != "") {
+            // 서버로 누가 누구한테 어떤걸 보냈는지 전송
+            const speaker = "<%= user_id%>";
+            const listener = parent.dataset.who;
+            const message = parent.querySelector(".sendMSG").value;
+            socket.emit("chat", speaker, listener, message);
+            parent.querySelector(".sendMSG").value = "";
+            parent.querySelector(".sendMSG").focus();
+
+            //스크롤바 맨 아래로 내리기
+            parent.querySelector(".sideBar_Bottom_chatRoom_middle").scrollTop =
+              parent.querySelector(
+                ".sideBar_Bottom_chatRoom_middle"
+              ).scrollHeight;
+          }
+        }
+      };
+
+      //엔터키로 메시지 보내기
+      enterSend();
+      //받는사람일때 받는곳
+      socket.on("toListener", toListener);
+      //내가 보낸사람일때 서버로부터 받는곳
+      socket.on("toSpeaker", toSpeaker);
+    }
+
+    // socket 메시지 받는 함수
+    function toListener(
+      speaker,
+      listener,
+      message,
+      speakerImg,
+      speakerNickName
+    ) {
+      speakerImg = "../" + speakerImg;
+      //채팅 알람 숫자 올리기
+      const alarm = document.querySelector(".alarm > span:nth-child(2)");
+      alarm.innerText = Number(alarm.innerText) + 1;
+      let chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
+      if (chatRoomTag.length == 0) {
+        document.querySelector(".sideBar_Bottom_chat").innerHTML += `
+            <div class="sideBar_Bottom_chatRoom" data-who="${speaker}">
+              <div class="sideBar_Bottom_chatRoom_preView">
+                <img src="${speakerImg}" alt="" />
+                <div>
+                  <div class="chatNickName_preview">${speakerNickName}</div>
+                  <div class="chatMessage">${message}</div>
+                </div>
+                <div class="preViewAlarm"></div>
+              </div>
+              <div class="sideBar_Bottom_chatRoom_main">
+                <div class="sideBar_Bottom_chatRoom_top">
+                  <span class="chatNickName">
+                    <i class="fa-regular fa-envelope"></i></i><img src="${speakerImg}" alt="" />${speakerNickName}
+                  </span>
+                  <span><i class="fa-solid fa-minus"></i>&nbsp;</span>
+                </div>
+                <div class="sideBar_Bottom_chatRoom_middle">
+                  <div class="fullchatMessage leftChat">
+                    <img src="${speakerImg}"" alt="" />
+                    <div>${message}</div>
+                  </div>
+                </div>
+                <div id="chatForm">
+                  <input type="text" class="sendMSG" id="${speakerNickName}"/>
+                  <i class="fa-regular fa-comment-dots"></i>
+                </div>
+              </div>
+            </div>
+            `;
+
+        // 태그 초기화
+        chat();
+        enterSend();
+      } else {
+        //채팅방 있는지 확인
+        let whoArr = [];
+        chatRoomTag.forEach((el) => {
+          whoArr.push(el.dataset.who);
+        });
+        chatRoomTag.forEach((el) => {
+          //채팅방 있을떄
+          new Promise((resolve, reject) => {
+            if (el.dataset.who == speaker) {
+              el.querySelector(".sideBar_Bottom_chatRoom_middle").innerHTML += `
+          <div class="fullchatMessage leftChat">
+            <img src="${speakerImg}"" alt="" />
+            <div>${message}</div>
+          </div>
+          `;
+              //스크롤바 맨 아래로 내리기
+              el.querySelector(".sideBar_Bottom_chatRoom_middle").scrollTop =
+                el.querySelector(
+                  ".sideBar_Bottom_chatRoom_middle"
+                ).scrollHeight;
+
+              // 미리보기창에 마지막문자 띄우기
+              el.querySelector(".chatMessage").innerText = message;
+              return;
+            } else {
+              resolve("채팅방 없음");
+            }
+          }).then(() => {
+            //채팅방 없을때
+            if (whoArr.indexOf(speaker) == -1) {
+              document.querySelector(".sideBar_Bottom_chat").innerHTML += `
+          <div class="sideBar_Bottom_chatRoom" data-who="${speaker}">
+            <div class="sideBar_Bottom_chatRoom_preView">
+              <img src="${speakerImg}" alt="" />
+              <div>
+                <div class="chatNickName_preview">${speakerNickName}</div>
+                <div class="chatMessage">${message}</div>
+              </div>
+              <div class="preViewAlarm"></div>
+            </div>
+            <div class="sideBar_Bottom_chatRoom_main">
+              <div class="sideBar_Bottom_chatRoom_top">
+                <span class="chatNickName">
+                  <i class="fa-regular fa-envelope"></i></i><img src="${speakerImg}" alt="" />${speakerNickName}
+                </span>
+                <span><i class="fa-solid fa-minus"></i>&nbsp;</span>
+              </div>
+              <div class="sideBar_Bottom_chatRoom_middle">
+                <div class="fullchatMessage leftChat">
+                  <img src="${speakerImg}"" alt="" />
+                  <div>${message}</div>
+                </div>
+              </div>
+              <div id="chatForm">
+                <input type="text" class="sendMSG" id="${speakerNickName}"/>
+                <i class="fa-regular fa-comment-dots"></i>
+              </div>
+            </div>
+          </div>
+          `;
+
+              // 태그 초기화
+              chat();
+              enterSend();
+            }
+            return;
+          });
+        });
+      }
+      return;
+    }
+
+    function toSpeaker(speaker, listener, message, speakerImg) {
+      speakerImg = "../" + speakerImg;
+      let chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
+      chatRoomTag.forEach((el) => {
+        if (el.dataset.who == listener) {
+          el.querySelector(".sideBar_Bottom_chatRoom_middle").innerHTML += `
+              <div class="fullchatMessage rightChat">
+                <img src="${speakerImg}" alt="" />
+                <div>${message}</div>
+              </div>
+              `;
+          //스크롤바 맨 아래로 내리기
+          el.querySelector(".sideBar_Bottom_chatRoom_middle").scrollTop =
+            el.querySelector(".sideBar_Bottom_chatRoom_middle").scrollHeight;
+
+          // 미리보기창에 마지막문자 띄우기
+          el.querySelector(".chatMessage").innerText = message;
+        }
+      });
+      return;
+    }
+    chatDataBase(chatDataCallBack);
+    chat();
+    socketChat();
+    enterSend();
+  </script>
+  <!-- <script src="community_hub.js"></script> -->
+  <script>
+    const contentsWrap = document.getElementById("contentsWrap");
+    const mainContent = document.getElementById("mainContent");
+    const mainContentWrap = document.getElementById("mainContentWrap");
+    const mainPosts = document.querySelectorAll(".mainPost");
+    const mainTitles = document.querySelectorAll(".mainTitle a");
+    const scrollHelper = document.querySelector(".scrollHelper");
+    const scrollHelperText = document.querySelector(".scrollHelper_text");
+    const scrollHelperIcon = document.querySelector(".scrollHelper_icon");
+    const body = document.querySelector("body");
+
+    // 슬라이드 이벤트
+    let move = 0;
+    let isOnScroll = true;
+    contentsWrap.onwheel = (e) => slide(e);
+    function slide(e) {
+      offAnimation(); // 스크롤핼퍼 끄기
+      contentsWrap.onwheel = null;
+      const maxScroll =
+        mainContentWrap.offsetWidth - mainContent.offsetWidth + 2;
+      if (isOnScroll) {
+        isOnScroll = false;
+        setTimeout(
+          () => ((isOnScroll = true), (contentsWrap.onwheel = (e) => slide(e))),
+          500
+        );
+        move += e.wheelDelta < 0 ? 485 : -485;
+        move = move < 0 ? maxScroll : move;
+        move = move > maxScroll ? 0 : move;
+        mainContent.scrollTo({ left: move, behavior: "smooth" });
+      } else if (!isOnScroll) {
+        return;
+      }
+    }
+
+    // 비디오 슬라이드 재생 중단 기능
+    function controlVideo(e) {
+      mainPosts.forEach((post) => {
+        if (
+          post.getBoundingClientRect().left -
+            mainContent.getBoundingClientRect().left >=
+            30 &&
+          post.getBoundingClientRect().left -
+            mainContent.getBoundingClientRect().left <=
+            520
+        ) {
+          if (post.querySelector("video")) {
+            post.querySelector("video").play();
+          }
+        } else {
+          if (post.querySelector("video")) {
+            post.querySelector("video").pause();
+          }
+        }
+      });
+    }
+    function debounce(func, wait = 20, immediate = true) {
+      var timeout;
+      return function () {
+        var context = this,
+          args = arguments;
+        var later = function () {
+          timeout = null;
+          if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait); //얘가 시간지나면 timeout을 0(false)로 만들어줌
+        if (callNow) func.apply(context, args);
+      };
+    }
+    mainContent.addEventListener("scroll", debounce(controlVideo, 20, false));
+
+    // 게임제목 클릭시 커뮤니티로 이동
+    mainTitles.forEach((el) => {
+      const title = el.innerText;
+      el.onclick = () => {
+        location.href = `/community/${el.dataset.link}`;
+      };
+    });
+    // 포스트 클릭시 커뮤니티로 이동
+    mainPosts.forEach((post) => {
+      post.onclick = () => {
+        location.href = `/community/${post.dataset.link}`;
+      };
+    });
+
+    // 스크롤헬퍼 이벤트
+    function offAnimation() {
+      scrollHelper.classList.remove("active");
+      scrollHelperText.classList.remove("active");
+      scrollHelperIcon.classList.remove("active");
+    } // 이거 스크롤기능에도 넣어줘야함(스크롤하면 꺼지게)
+    function onAnimation() {
+      body.classList.add("block"); // 작은화면에서 슬라이드할때 윈도우 스크롤 막기용
+      scrollHelper.classList.add("active");
+      scrollHelperText.classList.add("active");
+      scrollHelperIcon.classList.add("active");
+    }
+    contentsWrap.onmouseenter = () => onAnimation();
+    // contentsWrap.onmousemove = () => onAnimation();
+    contentsWrap.onmouseleave = () => {
+      body.classList.remove("block");
+      offAnimation();
+    };
+    contentsWrap.onclick = () => offAnimation();
+  </script>
 </html>
