@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { User, Chat } = require("../model");
+const { User, Chat, MainPost, CommunityPost } = require("../model");
 const getUserInfo = require("../functions/getUserInfo");
 const loginCheck = require("../middleware/loginCheck");
 
@@ -8,6 +8,51 @@ router.get("/profile/:user_id", loginCheck, async (req, res) => {
   let { user_id, nick_name, profile_img, follower, following } =
     await getUserInfo(req, res);
   profile_img = "../" + profile_img;
+  // 프로필정보
+  const writer = req.params.user_id;
+  const writerData = await User.findOne({
+    where: { user_id: writer },
+    raw: true,
+  });
+  writerData.profile_img = "../" + writerData.profile_img;
+
+  //프로필 주인이 쓴글들 모아오기
+  let postArr = [];
+
+  await MainPost.findAll({
+    where: { user_id: writer },
+    raw: true,
+    attributes: ["id", "image1", "text", "createdAt", "like", "comment"],
+  }).then((result) => {
+    result.forEach((el) => {
+      el.image1 = "../" + el.image1;
+      postArr.push(el);
+    });
+  });
+
+  await CommunityPost.findAll({
+    where: { user_id: writer },
+    raw: true,
+    attributes: [
+      "id",
+      "image1",
+      "text",
+      "createdAt",
+      "hashtag_values",
+      "game_name",
+      "like",
+      "comment",
+    ],
+  }).then((result) => {
+    result.forEach((el) => {
+      el.image1 = "../" + el.image1;
+      postArr.push(el);
+    });
+  });
+  postArr.sort((a, b) => {
+    return a.createdAt - b.createdAt;
+  });
+  console.log(postArr);
   let chatObj = [];
   //채팅 정보 받아오기
   // for of 문으로 한 이유 : forEach에서 await를 안기다림, 외래키에서 원하는값 불러오기 실패
@@ -58,6 +103,8 @@ router.get("/profile/:user_id", loginCheck, async (req, res) => {
     follower,
     following,
     chatObj,
+    writerData,
+    postArr,
   });
 });
 

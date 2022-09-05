@@ -1,0 +1,8 @@
+태그 추가부분 : a태그 추가
+css mainPost_top_profileimg 찾아서 조절
+
+const writerImg = el.querySelector(
+          "#mainPost_top_profileimg > a> img"
+        ).src;
+
+        

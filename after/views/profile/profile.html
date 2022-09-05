@@ -130,12 +130,12 @@
       <div id="mainContent">
         <div class="userProfile">
           <div class="userProfile_img">
-            <img src="" alt="">
+            <img src="<%=writerData.profile_img%>" alt="">
           </div>
           <div class="userProfile_info">
-            <div class="userProfile_info_nickName">닉네임</div>
+            <div class="userProfile_info_nickName"><%= writerData.nick_name%></div>
             <div class="userProfile_info_follow">
-              follower : <span>팔로워수</span> following : <span>팔로잉수</span>
+              follower : <span><%= writerData.follower%></span> following : <span><%= writerData.following%></span>
             </div>
           </div>
           <div class="userProfile_icon">
@@ -146,13 +146,44 @@
         </div>
         <div id="mainContentWrap">
           <!-- 포스팅구역 -->
-  
+          <div class="mainPost"></div>
+          <div class="mainPost"></div>
+          <div class="mainPost"></div>
+          <div class="mainPost"></div>
           <!-- 포스팅구역 -->
         </div>
       </div>
 </body>
 <script src="profile.js"></script>
 <script>
+  //포스트 관련 script
+  function getPostData(){
+    let allPost = "<%=JSON.stringify(postArr)%>";
+    allPost = allPost.replaceAll("&#34;", '"')
+        .replaceAll("&amp;", "&")
+        .replaceAll("&lt;", "<")
+        .replaceAll("&gt;", ">")
+        .replaceAll('""', '"')
+        .replaceAll("\\", "/");
+    allPost = JSON.parse(allPost);
+    console.log(allPost)
+    const mainContentWrap = document.querySelector('#mainContentWrap')
+    allPost.forEach((el)=>{
+      //해쉬태그 있는 경우 communitypost
+      
+      if(el.hastag_values){
+        mainContentWrap.innerHTML += ``
+      }
+      //해쉬태그 없는 경우 -> mainpost
+      else{
+        mainContentWrap.innerHTML += ``
+      }
+    })
+  }
+  getPostData()
+</script>
+<script>
+  //채팅관련 script
   function chatDataBase(callback) {
       //데이터베이스에 있는 채팅 창 만들어주기
       const chatTag = document.querySelector(".sideBar_Bottom_chat");
