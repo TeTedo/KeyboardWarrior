@@ -606,7 +606,6 @@
           </div>
           <div id="mainPost_middle">
             <div id="mainPost_middle_img" data-posts = "${el}">
-              <img src="${writer_image1}" alt="" />
             </div>
             <div id="mainPost_middle_text"></div>
           </div>
@@ -621,6 +620,20 @@
       `;
 
         document.querySelector("#mainContentWrap").innerHTML += posts;
+        //이미지 있을때
+        if (writer_image1) {
+          document.querySelectorAll("#mainPost_middle_img")[
+            index
+          ].innerHTML = `<img src="${writer_image1}" alt="" />`;
+        } else {
+          //이미지 없을때
+          document.querySelectorAll("#mainPost_middle_img")[
+            index
+          ].innerHTML = `<div>${writer_text}</div>`;
+          document.querySelectorAll("#mainPost_middle_img")[
+            index
+          ].style.display = "block";
+        }
       });
 
       callback();
