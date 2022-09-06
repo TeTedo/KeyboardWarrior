@@ -17,7 +17,7 @@ router.post("/login", (req, res) => {
   })
     .then((result) => {
       const data = result.dataValues;
-      bcrypt.compare(user_pw, data.user_pw, (err, same) => {
+      bcrypt.compare(user_pw, data.user_pw, async (err, same) => {
         if (same) {
           //로그인 성공
           // access token
@@ -48,14 +48,23 @@ router.post("/login", (req, res) => {
 
           req.session.access_token = access_token;
           req.session.refresh_token = refresh_token;
+          await User.update(
+            {
+              login: login + 1,
+            },
+            {
+              where: { user_id },
+            }
+          );
           res.redirect("/");
         } else {
-          console.log("비밀번호 오류 입니다.");
+          res.render("error/loginError", { login: "pwError" });
         }
       });
     })
     .catch((err) => {
       console.log("존재하지 않는 아이디 입니다.");
+      res.render("error/loginError", { login: "idError" });
     });
 });
 

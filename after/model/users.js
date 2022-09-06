@@ -41,6 +41,10 @@ class User extends Sequelize.Model {
           type: Sequelize.INTEGER,
           allowNull: true,
         },
+        login: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+        },
       },
       {
         sequelize: sequelize,
