@@ -388,16 +388,21 @@
 }
 
 /* 포스팅 */
+#main {
+  width: 1000px;
+  overflow: hidden;
+  margin: auto;
+  border: 1px solid black;
+  border-radius: 15px;
+}
 #mainContent {
   width: 1000px;
-  height: 700px;
+  height: 500px;
   background-color: black;
-  margin: auto;
   border: 1px solid;
   overflow-x: scroll;
   overflow-y: hidden;
   position: relative;
-  margin-top: 50px;
 }
 #mainContent::-webkit-scrollbar {
   display: none;
@@ -415,7 +420,49 @@
   background-color: white;
   margin: 30px 20px;
 }
-
+.mainPost > div:nth-child(2n + 1) {
+  background-color: black;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.mainPost > div:nth-child(2) {
+  width: 100%;
+  height: 250px;
+}
+.mainPost > div:nth-child(2n + 1) > div {
+  width: 50px;
+  height: 30px;
+  background-color: white;
+}
+.mainPost_post {
+  width: 290px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.mainPost_post > img {
+  width: 280px;
+  height: 190px;
+}
+.mainPost > div > a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+.mainPost_tag {
+  width: 290px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: bold;
+}
 @keyframes likeMotion {
   0% {
   }

@@ -46,6 +46,9 @@ router.get("/profile/:user_id", loginCheck, async (req, res) => {
   }).then((result) => {
     result.forEach((el) => {
       el.image1 = "../" + el.image1;
+      if (el.hashtag_values) {
+        el.hashtag_values = JSON.parse(el.hashtag_values);
+      }
       postArr.push(el);
     });
   });

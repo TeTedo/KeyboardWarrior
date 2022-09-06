@@ -127,7 +127,7 @@
       </div>
       <!-- 채팅창 추가부분 -->
       <!-- 사이드바 끝 -->
-      <div id="mainContent">
+      <div id="main">
         <div class="userProfile">
           <div class="userProfile_img">
             <img src="<%=writerData.profile_img%>" alt="">
@@ -144,39 +144,80 @@
            <i class="fa-solid fa-message"></i>
           </div>
         </div>
-        <div id="mainContentWrap">
-          <!-- 포스팅구역 -->
-          <div class="mainPost"></div>
-          <div class="mainPost"></div>
-          <div class="mainPost"></div>
-          <div class="mainPost"></div>
-          <!-- 포스팅구역 -->
+        <div id="mainContent">
+          <div id="mainContentWrap">
+            <!-- 포스팅구역 -->
+
+            <!-- 포스팅구역 -->
+          </div>
         </div>
       </div>
+      
 </body>
 <script src="profile.js"></script>
 <script>
   //포스트 관련 script
   function getPostData(){
     let allPost = "<%=JSON.stringify(postArr)%>";
-    allPost = allPost.replaceAll("&#34;", '"')
-        .replaceAll("&amp;", "&")
-        .replaceAll("&lt;", "<")
-        .replaceAll("&gt;", ">")
-        .replaceAll('""', '"')
-        .replaceAll("\\", "/");
+    allPost = allPost
+    .replaceAll("&#34;", '"')
+    .replaceAll("&amp;", "&")
+    .replaceAll("&lt;", "<")
+    .replaceAll("&gt;", ">")
+    .replaceAll('""', '"')
+    .replaceAll("\\", "/");
+    
     allPost = JSON.parse(allPost);
     console.log(allPost)
     const mainContentWrap = document.querySelector('#mainContentWrap')
-    allPost.forEach((el)=>{
-      //해쉬태그 있는 경우 communitypost
+    allPost.forEach((el,index)=>{
       
-      if(el.hastag_values){
-        mainContentWrap.innerHTML += ``
+      //해쉬태그 있는 경우 communitypost
+      if(el.game_name){
+         const post = `
+         <div class="mainPost">
+          <div><div></div><div></div></div>
+          <div>
+            <a href="/post/${el.game_name}/${el.id}"><div class="mainPost_post">
+            </div></a>
+            <div class="mainPost_tag">${el.game_name.toUpperCase()}</div>
+          </div>
+          <div><div></div><div></div></div>
+        </div>
+        `;
+        mainContentWrap.innerHTML += post
+        //이미지 없을때
+        if(el.image1 == "../null"){
+          mainContentWrap.querySelectorAll('.mainPost_post')[index].innerHTML = `
+          ${el.text}
+          `
+        }
+        // 이미지 있을때
+        else{
+          mainContentWrap.querySelectorAll('.mainPost_post')[index].innerHTML = `<img src="${el.image1}" alt="">`
+        }
       }
       //해쉬태그 없는 경우 -> mainpost
       else{
-        mainContentWrap.innerHTML += ``
+        const post = `
+        <div class="mainPost">
+          <div><div></div><div></div></div>
+          <div>
+          <a href="/posts/${el.id}"><div class="mainPost_post"></div></a>
+            <div class="mainPost_tag">MAIN</div>
+          </div>
+          <div><div></div><div></div></div>
+        </div>
+        `;
+        mainContentWrap.innerHTML += post
+        //이미지 없을때
+        if(el.image1 == "../null"){
+          mainContentWrap.querySelectorAll('.mainPost_post')[index].innerHTML = el.text
+        }
+        // 이미지 있을때
+        else{
+          mainContentWrap.querySelectorAll('.mainPost_post')[index].innerHTML = `<img src="${el.image1}" alt="">`
+        }
       }
     })
   }
