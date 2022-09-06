@@ -589,6 +589,11 @@
               ).style.display = "block";
               messageInput.focus();
               checkRoomBool = true;
+              //스크롤바 맨 아래로 내리기
+              elem.querySelector(".sideBar_Bottom_chatRoom_middle").scrollTop =
+                elem.querySelector(
+                  ".sideBar_Bottom_chatRoom_middle"
+                ).scrollHeight;
             }
           });
           //기존 채팅방 없을시

@@ -386,7 +386,9 @@
   justify-content: space-around;
   font-size: 30px;
 }
-
+.userProfile_icon > i {
+  cursor: pointer;
+}
 /* 포스팅 */
 #main {
   width: 1000px;

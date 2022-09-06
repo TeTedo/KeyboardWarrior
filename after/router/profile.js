@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { User, Chat, MainPost, CommunityPost } = require("../model");
+const { User, Chat, MainPost, CommunityPost, Follow } = require("../model");
 const getUserInfo = require("../functions/getUserInfo");
 const loginCheck = require("../middleware/loginCheck");
 
@@ -55,7 +55,7 @@ router.get("/profile/:user_id", loginCheck, async (req, res) => {
   postArr.sort((a, b) => {
     return a.createdAt - b.createdAt;
   });
-  console.log(postArr);
+
   let chatObj = [];
   //채팅 정보 받아오기
   // for of 문으로 한 이유 : forEach에서 await를 안기다림, 외래키에서 원하는값 불러오기 실패
@@ -99,6 +99,10 @@ router.get("/profile/:user_id", loginCheck, async (req, res) => {
     return a.createdAt - b.createdAt;
   });
 
+  //팔로우 여부
+  const follow = await Follow.findOne({
+    where: { follower_id: user_id, following_id: writerData.user_id },
+  });
   res.render("profile/profile", {
     user_id,
     nick_name,
@@ -108,6 +112,7 @@ router.get("/profile/:user_id", loginCheck, async (req, res) => {
     chatObj,
     writerData,
     postArr,
+    follow,
   });
 });
 
