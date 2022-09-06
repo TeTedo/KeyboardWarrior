@@ -230,6 +230,12 @@
           .replaceAll(/&lt;/g, "<")
           .replaceAll(/&gt;/g, ">")
           .replaceAll("@?@?", "\\");
+
+        //시간 가공
+        post.createdAt = post.createdAt.replace(/...$/, "");
+        document.querySelectorAll("#mainPost_bottom_createdTime")[
+          index
+        ].innerText = post.createdAt;
       });
     }
     uploadData();

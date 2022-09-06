@@ -858,6 +858,10 @@
       document.querySelector(".fa-heart + span").innerText = postData.like;
       // 댓글 갯수
       document.querySelector(".fa-comment + span").innerText = postData.comment;
+      // 시간 넣어주기
+      postData.createdAt = postData.createdAt.replace(/...$/, "");
+      document.querySelector("#posting_right_imagePreview").innerText =
+        postData.createdAt;
     }
   </script>
   <script src="posts.js"></script>

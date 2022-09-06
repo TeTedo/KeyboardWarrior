@@ -574,7 +574,7 @@
       const postNumArr = Object.keys(postData);
 
       postNumArr.forEach((el, index) => {
-        const {
+        let {
           userLike,
           writer_follower,
           follow,
@@ -587,6 +587,8 @@
           writer_image1,
           writer_created_at,
         } = postData[el];
+        writer_created_at = writer_created_at.replace(/...$/, "");
+
         const posts = `
       <div class="mainPost" data-writer = "${writer}" data-follow = "${follow}" data-like =${userLike} data-id = "${el}" >
           <div id="mainPost_top">

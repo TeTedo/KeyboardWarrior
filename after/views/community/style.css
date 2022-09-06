@@ -497,8 +497,11 @@
   height: 150px;
 }
 #mainPost_bottom_createdTime {
-  height: 30%;
+  height: 10%;
   margin: 10px auto auto 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #mainPost_bottom_sub {
   height: 50%;
