@@ -147,6 +147,13 @@ io.on("connect", (socket) => {
       message,
     });
 
+    let time;
+    if (new Date().getMinutes() < 10) {
+      time = `${new Date().getHours()}:0${new Date().getMinutes()}`;
+    } else {
+      time = `${new Date().getHours()}:${new Date().getMinutes()}`;
+    }
+
     const speakerImg = speakerData.profile_img;
     const speakerNickName = speakerData.nick_name;
     // 말한사람한테 보낸것
@@ -156,7 +163,7 @@ io.on("connect", (socket) => {
       listener,
       message,
       speakerImg,
-      speakerNickName
+      time
     );
     // 듣는사람한테 보낸것
     io.to(listener).emit(
@@ -165,7 +172,8 @@ io.on("connect", (socket) => {
       listener,
       message,
       speakerImg,
-      speakerNickName
+      speakerNickName,
+      time
     );
   });
 });

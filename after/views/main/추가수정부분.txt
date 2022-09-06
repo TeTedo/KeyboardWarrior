@@ -1,8 +1,21 @@
-태그 추가부분 : a태그 추가
-css mainPost_top_profileimg 찾아서 조절
+chat toSpeaker, toListener, 데이터베이스 채팅추가
+        css 추가
 
-const writerImg = el.querySelector(
-          "#mainPost_top_profileimg > a> img"
-        ).src;
+        const profile_img = "<%= profile_img%>";
+       
+       //시간
+        let time = new Date(el.createdAt);
+        if (time.getMinutes() < 10) {
+          time = `${time.getHours()}:0${time.getMinutes()}`;
+        } else {
+          time = `${time.getHours()}:${time.getMinutes()}`;
+        }
 
-        
+        <div class="chatTimeStamp">${time}</div>
+
+
+
+
+        const alarm = document.querySelector(".alarm > span:nth-child(2)");
+
+        <div class="chatTimeStamp">${time}</div>

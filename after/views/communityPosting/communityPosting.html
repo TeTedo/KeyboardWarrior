@@ -342,6 +342,16 @@
       // 내 프로필사진
       const profile_img = "<%= profile_img%>";
       chatLog.forEach((el) => {
+        //시간
+        let time = new Date(el.createdAt);
+        if (time.getMinutes() < 10) {
+          time = `${time.getHours()}:0${time.getMinutes()}`;
+        } else {
+          time = `${time.getHours()}:${time.getMinutes()}`;
+        }
+
+        <div class="chatTimeStamp">${time}</div>;
+
         const opponent = el.speaker || el.listener;
         chatRoomTag.forEach((elem) => {
           // 상대방과의 채팅방 찾기
@@ -355,6 +365,7 @@
             <div class="fullchatMessage leftChat">
               <img src="${el.profile_img}" alt="" />
               <div>${el.message}</div>
+              <div class="chatTimeStamp">${time}</div>
             </div>
             `;
             }
@@ -367,6 +378,7 @@
             <div class="fullchatMessage rightChat">
               <img src="${profile_img}" alt="" />
               <div>${el.message}</div>
+              <div class="chatTimeStamp">${time}</div>
             </div>
             `;
             }
@@ -509,6 +521,7 @@
                   <div class="fullchatMessage leftChat">
                     <img src="${speakerImg}"" alt="" />
                     <div>${message}</div>
+                    <div class="chatTimeStamp">${time}</div>
                   </div>
                 </div>
                 <div id="chatForm">
@@ -536,6 +549,7 @@
           <div class="fullchatMessage leftChat">
             <img src="${speakerImg}"" alt="" />
             <div>${message}</div>
+            <div class="chatTimeStamp">${time}</div>
           </div>
           `;
               //스크롤바 맨 아래로 내리기
@@ -574,6 +588,7 @@
                 <div class="fullchatMessage leftChat">
                   <img src="${speakerImg}"" alt="" />
                   <div>${message}</div>
+                  <div class="chatTimeStamp">${time}</div>
                 </div>
               </div>
               <div id="chatForm">
@@ -604,6 +619,7 @@
               <div class="fullchatMessage rightChat">
                 <img src="${speakerImg}" alt="" />
                 <div>${message}</div>
+                <div class="chatTimeStamp">${time}</div>
               </div>
               `;
           //스크롤바 맨 아래로 내리기

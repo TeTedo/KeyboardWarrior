@@ -315,6 +315,13 @@
 .rightChat {
   flex-direction: row-reverse;
 }
+.chatTimeStamp {
+  height: 100%;
+  width: 40px;
+  color: gray;
+  font-size: 10px;
+  transform: translateY(10px);
+}
 #chatForm {
   width: 350px;
   height: 50px;
