@@ -1,356 +1,347 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-    </head>
-    <link rel="stylesheet" href="../joinModify/style.css" />
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <body>
-        <div id="mainPageTop_for_fix">
-            <div id="mainPageTop">
-                <div id="mainLogo"><a href="/">이건 메인로고</a></div>
-                <ul id="mainPageNav">
-                    <li><a href="/community_hub">COMMUNITY</a></li>
-                    <li><a href="/minigame">MINI GAME</a></li>
-                </ul>
-                <ul id="mainPageSign"></ul>
-                <ul id="mainPageLogo">
-                    <li>
-                        <a href="https://github.com/TeTedo/KeyboardWarrior.git"
-                            ><img
-                                class="mainPageLogo_githubLogo"
-                                src="http://rajlab.org/icons/github_white.png"
-                                alt="github"
-                        /></a>
-                    </li>
-                    <li>
-                        <a
-                            href="https://www.notion.so/Keyboard-Warrior-888a144aa79f437e8f726910c42617a8"
-                            ><img
-                                class="mainPageLogo_notionLogo"
-                                src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png"
-                                alt="notion"
-                        /></a>
-                    </li>
-                </ul>
-            </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <link rel="stylesheet" href="../joinModify/style.css" />
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <body>
+    <div id="mainPageTop_for_fix">
+      <div id="mainPageTop">
+        <div id="mainLogo">
+          <a href="/"><img src="../images/mainlogo.png" alt="" /></a>
         </div>
+        <ul id="mainPageNav">
+          <li><a href="/community_hub">COMMUNITY</a></li>
+          <!-- <li><a href="/minigame">MINI GAME</a></li> -->
+        </ul>
+        <ul id="mainPageSign"></ul>
+        <ul id="mainPageLogo">
+          <li>
+            <a href="https://github.com/TeTedo/KeyboardWarrior.git"
+              ><img
+                class="mainPageLogo_githubLogo"
+                src="http://rajlab.org/icons/github_white.png"
+                alt="github"
+            /></a>
+          </li>
+          <li>
+            <a
+              href="https://www.notion.so/Keyboard-Warrior-888a144aa79f437e8f726910c42617a8"
+              ><img
+                class="mainPageLogo_notionLogo"
+                src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png"
+                alt="notion"
+            /></a>
+          </li>
+        </ul>
+      </div>
+    </div>
 
-        <!-- 여기까지가 공통 탑부분 -->
-        <div class="space"></div>
-        <div class="contents">
-            <div class="join">
-                <ul>
-                    <li>
-                        <h1><strong>회원정보 수정</strong></h1>
-                    </li>
-                    <li id="profileImgWrap">
-                        <h4>Profile Image</h4>
-                        <div id="profileImg_itmes">
-                            <img src="../<%= data.profile_img %>" />
-                            <input type="file" name="file" id="inputImg" />
-                        </div>
-                    </li>
-                    <li>
-                        <h4>ID</h4>
-                        <input
-                            type="text"
-                            id="inputId"
-                            disabled
-                            value="<%= data.userData.user_id %>"
-                        />
-                    </li>
-                    <li>
-                        <h4>PASSWORD</h4>
-                        <input type="password" id="inputPassword" />
-                        <span
-                            >(영문 대소문자/숫자/특수문자 하나이상 포함,
-                            8~16자)</span
-                        >
-                        <h5 id="passwordWarn"></h5>
-                    </li>
-                    <li>
-                        <h4>PASSWORD CONFIRM</h4>
-                        <input type="password" id="inputPasswordRe" />
-                        <h5 id="passwordConfirmWarn"></h5>
-                    </li>
-                    <li>
-                        <h4>NAME</h4>
-                        <input
-                            type="text"
-                            id="inputName"
-                            value="<%=data.userData.name%>"
-                            disabled
-                        />
-                        <h5 id="nameWarn"></h5>
-                    </li>
-                    <li>
-                        <h4>NICK NAME</h4>
-                        <input
-                            type="text"
-                            id="inputNickName"
-                            value="<%=data.userData.nick_name%>"
-                        />
-                        <span>(특수문자 사용 불가)</span>
-                        <h5 id="nickNameWarn"></h5>
-                    </li>
-                    <li class="mobile">
-                        <h4>MOBILE</h4>
-                        <select name="" id="inputNum1" value="">
-                            <option value="010">010</option>
-                            <option value="011">011</option>
-                            <option value="016">016</option>
-                            <option value="017">017</option>
-                            <option value="018">018</option>
-                            <option value="019">019</option>
-                        </select>
-                        -
-                        <input type="tel" id="inputNum2" />
-                        -
-                        <input type="tel" id="inputNum3" />
-                        <h5 id="mobileWarn"></h5>
-                    </li>
-                    <li>
-                        <h4>E-MAIL</h4>
-                        <input
-                            type="email"
-                            id="inputEmail"
-                            value="<%=data.userData.email%>"
-                        />
-                        <h5 id="emailWarn"></h5>
-                    </li>
-                </ul>
+    <!-- 여기까지가 공통 탑부분 -->
+    <div class="space"></div>
+    <div class="contents">
+      <div class="join">
+        <ul>
+          <li>
+            <h1><strong>회원정보 수정</strong></h1>
+          </li>
+          <li id="profileImgWrap">
+            <h4>Profile Image</h4>
+            <div id="profileImg_itmes">
+              <img src="../<%= data.profile_img %>" />
+              <input type="file" name="file" id="inputImg" />
             </div>
-            <div class="btns">
-                <button id="finishBtn">완료</button>
-                <button id="cancleBtn">취소</button>
-            </div>
-        </div>
-    </body>
-    <script src="../joinModify/joinModify.js"></script>
-    <script>
-        let inputProfileImg = document.querySelector(
-            "#profileImg_itmes > input"
-        );
-        // console.log(inputProfileImg);
+          </li>
+          <li>
+            <h4>ID</h4>
+            <input
+              type="text"
+              id="inputId"
+              disabled
+              value="<%= data.userData.user_id %>"
+            />
+          </li>
+          <li>
+            <h4>PASSWORD</h4>
+            <input type="password" id="inputPassword" />
+            <span>(영문 대소문자/숫자/특수문자 하나이상 포함, 8~16자)</span>
+            <h5 id="passwordWarn"></h5>
+          </li>
+          <li>
+            <h4>PASSWORD CONFIRM</h4>
+            <input type="password" id="inputPasswordRe" />
+            <h5 id="passwordConfirmWarn"></h5>
+          </li>
+          <li>
+            <h4>NAME</h4>
+            <input
+              type="text"
+              id="inputName"
+              value="<%=data.userData.name%>"
+              disabled
+            />
+            <h5 id="nameWarn"></h5>
+          </li>
+          <li>
+            <h4>NICK NAME</h4>
+            <input
+              type="text"
+              id="inputNickName"
+              value="<%=data.userData.nick_name%>"
+            />
+            <span>(특수문자 사용 불가)</span>
+            <h5 id="nickNameWarn"></h5>
+          </li>
+          <li class="mobile">
+            <h4>MOBILE</h4>
+            <select name="" id="inputNum1" value="">
+              <option value="010">010</option>
+              <option value="011">011</option>
+              <option value="016">016</option>
+              <option value="017">017</option>
+              <option value="018">018</option>
+              <option value="019">019</option>
+            </select>
+            -
+            <input type="tel" id="inputNum2" />
+            -
+            <input type="tel" id="inputNum3" />
+            <h5 id="mobileWarn"></h5>
+          </li>
+          <li>
+            <h4>E-MAIL</h4>
+            <input
+              type="email"
+              id="inputEmail"
+              value="<%=data.userData.email%>"
+            />
+            <h5 id="emailWarn"></h5>
+          </li>
+        </ul>
+      </div>
+      <div class="btns">
+        <button id="finishBtn">완료</button>
+        <button id="cancleBtn">취소</button>
+      </div>
+    </div>
+  </body>
+  <script src="../joinModify/joinModify.js"></script>
+  <script>
+    let inputProfileImg = document.querySelector("#profileImg_itmes > input");
+    // console.log(inputProfileImg);
 
-        // 프로필이미지 첨부할때 미리보기 , 이미지 바꿨는지 확인, formData 만들기
-        const inputImg = document.querySelector("#inputImg");
-        const reader = new FileReader();
-        const formData = new FormData();
-        let isProfieImgChanged = false;
-        inputImg.onchange = e => {
-            reader.readAsDataURL(e.target.files[0]); // 이거 써줘야 reader.onload 실행됨
-            reader.onload = el => {
-                e.target.parentNode.querySelector("img").src = el.target.result;
-                // inputProfileImg = el.target.result;
-                formData.append("file", inputProfileImg.files[0]);
-                isProfieImgChanged = true;
-            };
-        };
-    </script>
-    <script>
-        // 유저 폰번호 앞자리 받아서 select default값 바꾸기 + 유저번호 받아서 미리 넣어놓기
-        const options = document.querySelectorAll("option");
-        const userMobileNum = "<%=data.userData.mobile_number%>";
-        const userFirstNum = userMobileNum.slice(0, 3);
-        options.forEach(option => {
-            if (option.value === userFirstNum)
-                option.setAttribute("selected", "");
-        });
-        let userMiddleNum =
-            userMobileNum.length === 10
-                ? userMobileNum.slice(3, 6)
-                : userMobileNum.slice(3, 7);
-        let userLastNum =
-            userMobileNum.length === 11
-                ? userMobileNum.slice(7, 11)
-                : userMobileNum.slice(6, 10);
-        inputNum2.value = userMiddleNum;
-        inputNum3.value = userLastNum;
+    // 프로필이미지 첨부할때 미리보기 , 이미지 바꿨는지 확인, formData 만들기
+    const inputImg = document.querySelector("#inputImg");
+    const reader = new FileReader();
+    const formData = new FormData();
+    let isProfieImgChanged = false;
+    inputImg.onchange = (e) => {
+      reader.readAsDataURL(e.target.files[0]); // 이거 써줘야 reader.onload 실행됨
+      reader.onload = (el) => {
+        e.target.parentNode.querySelector("img").src = el.target.result;
+        // inputProfileImg = el.target.result;
+        formData.append("file", inputProfileImg.files[0]);
+        isProfieImgChanged = true;
+      };
+    };
+  </script>
+  <script>
+    // 유저 폰번호 앞자리 받아서 select default값 바꾸기 + 유저번호 받아서 미리 넣어놓기
+    const options = document.querySelectorAll("option");
+    const userMobileNum = "<%=data.userData.mobile_number%>";
+    const userFirstNum = userMobileNum.slice(0, 3);
+    options.forEach((option) => {
+      if (option.value === userFirstNum) option.setAttribute("selected", "");
+    });
+    let userMiddleNum =
+      userMobileNum.length === 10
+        ? userMobileNum.slice(3, 6)
+        : userMobileNum.slice(3, 7);
+    let userLastNum =
+      userMobileNum.length === 11
+        ? userMobileNum.slice(7, 11)
+        : userMobileNum.slice(6, 10);
+    inputNum2.value = userMiddleNum;
+    inputNum3.value = userLastNum;
 
-        window.onload = () => {
-            // 한글자 입력될때마다 이벤트발생해서 그 글자에대한 검사이므로 g 빼버림
-            const passwordTest = new RegExp(
-                /(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]/
-            );
-            const nameTest = new RegExp(/[^가-힣]/);
-            const nickNameTest = new RegExp(/[^가-힣a-z0-9]/);
-            const numTest = new RegExp(/[^0-9]/);
-            const emailTest = new RegExp(
-                /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/
-            );
+    window.onload = () => {
+      // 한글자 입력될때마다 이벤트발생해서 그 글자에대한 검사이므로 g 빼버림
+      const passwordTest = new RegExp(
+        /(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]/
+      );
+      const nameTest = new RegExp(/[^가-힣]/);
+      const nickNameTest = new RegExp(/[^가-힣a-z0-9]/);
+      const numTest = new RegExp(/[^0-9]/);
+      const emailTest = new RegExp(
+        /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/
+      );
 
-            const mobile = document.querySelector(".mobile");
-            let id;
-            let password;
-            let passwordRe;
-            let name;
-            let nickName;
-            let mobileNumber;
-            let email;
-            let isPwConfirmed;
-            let isPwReConfirmed;
-            let isNickNameConfirmed;
-            let isMiddleNumConfirmed;
-            let isLastNumConfirmed;
-            let isEmailConfiremd;
+      const mobile = document.querySelector(".mobile");
+      let id;
+      let password;
+      let passwordRe;
+      let name;
+      let nickName;
+      let mobileNumber;
+      let email;
+      let isPwConfirmed;
+      let isPwReConfirmed;
+      let isNickNameConfirmed;
+      let isMiddleNumConfirmed;
+      let isLastNumConfirmed;
+      let isEmailConfiremd;
 
-            function checkPw() {
-                password = inputPassword.value;
-                isPwConfirmed = false;
-                if (password.length == 0) {
-                    passwordWarn.innerHTML = "입력하세요.";
-                } else {
-                    if (passwordTest.test(password)) {
-                        if (password.length < 8 || password.length > 16) {
-                            passwordWarn.innerHTML =
-                                "Password를 8~16자 사이로 쓰세요.";
-                        } else {
-                            passwordWarn.innerHTML = ``;
-                            isPwConfirmed = !isPwConfirmed;
-                        }
-                    } else {
-                        passwordWarn.innerHTML = "Password형식이 틀렸습니다.";
-                    }
-                }
+      function checkPw() {
+        password = inputPassword.value;
+        isPwConfirmed = false;
+        if (password.length == 0) {
+          passwordWarn.innerHTML = "입력하세요.";
+        } else {
+          if (passwordTest.test(password)) {
+            if (password.length < 8 || password.length > 16) {
+              passwordWarn.innerHTML = "Password를 8~16자 사이로 쓰세요.";
+            } else {
+              passwordWarn.innerHTML = ``;
+              isPwConfirmed = !isPwConfirmed;
             }
-            function checkPwRe() {
-                passwordRe = inputPasswordRe.value;
-                isPwReConfirmed = false;
-                if (passwordRe.length == 0) {
-                    passwordConfirmWarn.innerHTML = "입력하세요.";
-                } else {
-                    if (!(password == passwordRe)) {
-                        passwordConfirmWarn.innerHTML =
-                            "비밀번호랑 같게 쓰세요.";
-                    } else {
-                        passwordConfirmWarn.innerHTML = "";
-                        isPwReConfirmed = !isPwReConfirmed;
-                    }
-                }
+          } else {
+            passwordWarn.innerHTML = "Password형식이 틀렸습니다.";
+          }
+        }
+      }
+      function checkPwRe() {
+        passwordRe = inputPasswordRe.value;
+        isPwReConfirmed = false;
+        if (passwordRe.length == 0) {
+          passwordConfirmWarn.innerHTML = "입력하세요.";
+        } else {
+          if (!(password == passwordRe)) {
+            passwordConfirmWarn.innerHTML = "비밀번호랑 같게 쓰세요.";
+          } else {
+            passwordConfirmWarn.innerHTML = "";
+            isPwReConfirmed = !isPwReConfirmed;
+          }
+        }
+      }
+      function checkNickName() {
+        const dbNickNames = "<%= data.dbNickNames%>".split(",");
+        nickNameWarn.style.color = "red";
+        nickName = inputNickName.value;
+        isNickNameConfirmed = false;
+        if (nickName.length == 0) {
+          nickNameWarn.innerHTML = "입력해주세요.";
+        } else {
+          if (nickNameTest.test(nickName)) {
+            nickNameWarn.innerHTML = "한글, 영문자, 숫자만 사용해주세요.";
+          } else {
+            if (dbNickNames.includes(nickName)) {
+              nickNameWarn.innerHTML = `'${nickName}' 는(은) 사용중인 닉네임 입니다.`;
+            } else {
+              nickNameWarn.style.color = "green";
+              nickNameWarn.innerHTML = `'${nickName}' 는(은) 사용가능한 닉네임 입니다.`;
+              isNickNameConfirmed = !isNickNameConfirmed;
             }
-            function checkNickName() {
-                const dbNickNames = "<%= data.dbNickNames%>".split(",");
-                nickNameWarn.style.color = "red";
-                nickName = inputNickName.value;
-                isNickNameConfirmed = false;
-                if (nickName.length == 0) {
-                    nickNameWarn.innerHTML = "입력해주세요.";
-                } else {
-                    if (nickNameTest.test(nickName)) {
-                        nickNameWarn.innerHTML =
-                            "한글, 영문자, 숫자만 사용해주세요.";
-                    } else {
-                        if (dbNickNames.includes(nickName)) {
-                            nickNameWarn.innerHTML = `'${nickName}' 는(은) 사용중인 닉네임 입니다.`;
-                        } else {
-                            nickNameWarn.style.color = "green";
-                            nickNameWarn.innerHTML = `'${nickName}' 는(은) 사용가능한 닉네임 입니다.`;
-                            isNickNameConfirmed = !isNickNameConfirmed;
-                        }
-                    }
-                }
+          }
+        }
+      }
+      function checkMobileNum() {
+        firstNum = inputNum1.value;
+        middleNum = inputNum2.value;
+        lastNum = inputNum3.value;
+        isMiddleNumConfirmed = false;
+        isLastNumConfirmed = false;
+        mobileNumber = firstNum + middleNum + lastNum;
+        if (middleNum.length == 0 || lastNum.length == 0) {
+          mobileWarn.innerHTML = "빠짐없이 입력해주세요.";
+        } else {
+          mobileWarn.innerHTML = "";
+          if (numTest.test(middleNum) || numTest.test(lastNum)) {
+            mobileWarn.innerHTML = "숫자만 입력하세요.";
+          } else {
+            if (middleNum.length < 3 || middleNum.length > 4) {
+              mobileWarn.innerHTML += " 2번째칸 3~4자리로 입력하세요.";
+            } else {
+              isMiddleNumConfirmed = !isMiddleNumConfirmed;
             }
-            function checkMobileNum() {
-                firstNum = inputNum1.value;
-                middleNum = inputNum2.value;
-                lastNum = inputNum3.value;
-                isMiddleNumConfirmed = false;
-                isLastNumConfirmed = false;
-                mobileNumber = firstNum + middleNum + lastNum;
-                if (middleNum.length == 0 || lastNum.length == 0) {
-                    mobileWarn.innerHTML = "빠짐없이 입력해주세요.";
-                } else {
-                    mobileWarn.innerHTML = "";
-                    if (numTest.test(middleNum) || numTest.test(lastNum)) {
-                        mobileWarn.innerHTML = "숫자만 입력하세요.";
-                    } else {
-                        if (middleNum.length < 3 || middleNum.length > 4) {
-                            mobileWarn.innerHTML +=
-                                " 2번째칸 3~4자리로 입력하세요.";
-                        } else {
-                            isMiddleNumConfirmed = !isMiddleNumConfirmed;
-                        }
-                        if (!(lastNum.length == 4)) {
-                            mobileWarn.innerHTML +=
-                                " 3번째칸 4자리로 입력하세요.";
-                        } else {
-                            isLastNumConfirmed = !isLastNumConfirmed;
-                        }
-                    }
-                }
+            if (!(lastNum.length == 4)) {
+              mobileWarn.innerHTML += " 3번째칸 4자리로 입력하세요.";
+            } else {
+              isLastNumConfirmed = !isLastNumConfirmed;
             }
-            function checkEmail() {
-                email = inputEmail.value;
-                isEmailConfiremd = false;
-                if (email.length == 0) {
-                    emailWarn.innerHTML = "입력해주세요.";
-                } else {
-                    emailTest.innerHTML = "";
-                    if (emailTest.test(email)) {
-                        emailWarn.innerHTML = "";
-                        isEmailConfiremd = !isEmailConfiremd;
-                        return email;
-                    } else {
-                        emailWarn.innerHTML = "이메일 형식이 틀렸습니다.";
-                    }
-                }
-            }
-            inputPassword.oninput = () => checkPw();
-            inputPasswordRe.oninput = () => checkPwRe();
-            inputNickName.oninput = () => checkNickName();
-            mobile.oninput = () => checkMobileNum();
-            inputEmail.oninput = () => checkEmail();
-            finishBtn.onclick = function () {
-                checkPw();
-                checkPwRe();
-                checkNickName();
-                checkMobileNum();
-                checkEmail();
-                //회원가입 성공
-                if (
-                    isPwConfirmed &&
-                    isPwReConfirmed &&
-                    isNickNameConfirmed &&
-                    isMiddleNumConfirmed &&
-                    isLastNumConfirmed &&
-                    isEmailConfiremd
-                ) {
-                    // if (true) {
-                    alert("회원님의 정보가 성공적으로 수정되었습니다");
-                    // 프로필이미지 안바꿨으면 input 값 null 로 넘겨줌
+          }
+        }
+      }
+      function checkEmail() {
+        email = inputEmail.value;
+        isEmailConfiremd = false;
+        if (email.length == 0) {
+          emailWarn.innerHTML = "입력해주세요.";
+        } else {
+          emailTest.innerHTML = "";
+          if (emailTest.test(email)) {
+            emailWarn.innerHTML = "";
+            isEmailConfiremd = !isEmailConfiremd;
+            return email;
+          } else {
+            emailWarn.innerHTML = "이메일 형식이 틀렸습니다.";
+          }
+        }
+      }
+      inputPassword.oninput = () => checkPw();
+      inputPasswordRe.oninput = () => checkPwRe();
+      inputNickName.oninput = () => checkNickName();
+      mobile.oninput = () => checkMobileNum();
+      inputEmail.oninput = () => checkEmail();
+      finishBtn.onclick = function () {
+        checkPw();
+        checkPwRe();
+        checkNickName();
+        checkMobileNum();
+        checkEmail();
+        //회원가입 성공
+        if (
+          isPwConfirmed &&
+          isPwReConfirmed &&
+          isNickNameConfirmed &&
+          isMiddleNumConfirmed &&
+          isLastNumConfirmed &&
+          isEmailConfiremd
+        ) {
+          // if (true) {
+          alert("회원님의 정보가 성공적으로 수정되었습니다");
+          // 프로필이미지 안바꿨으면 input 값 null 로 넘겨줌
 
-                    if (isProfieImgChanged) {
-                        $.ajax({
-                            url: "/join/update/image",
-                            type: "post",
-                            data: formData,
-                            processData: false,
-                            contentType: false,
-                        });
-                    }
-                    $.ajax({
-                        url: "/join/update/data",
-                        type: "post",
-                        data: {
-                            user_id: "<%=data.userData.user_id%>",
-                            updatePw: password,
-                            updateNickName: nickName,
-                            updateMobileNumber: mobileNumber,
-                            updateEmail: email,
-                        },
-                    });
-                }
-                location.replace("/login");
-            };
+          if (isProfieImgChanged) {
+            $.ajax({
+              url: "/join/update/image",
+              type: "post",
+              data: formData,
+              processData: false,
+              contentType: false,
+            });
+          }
+          $.ajax({
+            url: "/join/update/data",
+            type: "post",
+            data: {
+              user_id: "<%=data.userData.user_id%>",
+              updatePw: password,
+              updateNickName: nickName,
+              updateMobileNumber: mobileNumber,
+              updateEmail: email,
+            },
+          });
+        }
+        location.replace("/login");
+      };
 
-            cancleBtn.onclick = function () {
-                location.replace("/");
-            };
-        };
-    </script>
+      cancleBtn.onclick = function () {
+        location.replace("/");
+      };
+    };
+  </script>
 </html>

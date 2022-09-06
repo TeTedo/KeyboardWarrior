@@ -24,10 +24,12 @@
   <link rel="stylesheet" href="../../communityModify/style.css" />
   <body>
     <div id="mainPageTop">
-      <div id="mainLogo"><a href="/">이건 메인로고</a></div>
+      <div id="mainLogo">
+        <a href="/"><img src="../../images/mainlogo.png" alt="" /></a>
+      </div>
       <ul id="mainPageNav">
         <li><a href="/community_hub">COMMUNITY</a></li>
-        <li><a href="/minigame">MINI GAME</a></li>
+        <!-- <li><a href="/minigame">MINI GAME</a></li> -->
       </ul>
       <ul id="mainPageSign"></ul>
       <ul id="mainPageLogo">
@@ -502,7 +504,6 @@
           time = `${time.getHours()}:${time.getMinutes()}`;
         }
 
-        <div class="chatTimeStamp">${time}</div>;
         const opponent = el.speaker || el.listener;
         chatRoomTag.forEach((elem) => {
           // 상대방과의 채팅방 찾기
