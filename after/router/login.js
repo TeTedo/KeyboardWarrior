@@ -17,6 +17,7 @@ router.post("/login", (req, res) => {
   })
     .then((result) => {
       const data = result.dataValues;
+      const login = data.login;
       bcrypt.compare(user_pw, data.user_pw, async (err, same) => {
         if (same) {
           //로그인 성공

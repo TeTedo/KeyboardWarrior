@@ -104,11 +104,33 @@
       </div>
       <!-- 채팅창 추가부분 -->
       <div class="sideBar_Bottom_chat"></div>
+      <!-- 채팅창 추가부분 -->
+      <!-- 알람 추가부분 -->
+      <div class="sideBar_Bottom_notification">
+        <a href=""
+          ><div class="sideBar_Bottom_notification_notice">
+            <img src="" alt="" /><span>부</span>님이 내 게시글을 좋아합니다
+          </div></a
+        >
+        <a href=""
+          ><div class="sideBar_Bottom_notification_notice">
+            <img src="" alt="" /><span>부</span>님이 나를 팔로우합니다.
+          </div></a
+        >
+        <a href=""
+          ><div class="sideBar_Bottom_notification_notice">
+            <img src="" alt="" />
+            <span class="notice_what">
+              <div>부락부락</div>
+              <div>님이 내 게시글에 댓글을 남겼습니다.</div>
+            </span>
+          </div></a
+        >
+      </div>
     </div>
     <div class="sideBarOpenBtn">
       <i class="fa-solid fa-arrow-right-long"></i>
     </div>
-    <!-- 채팅창 추가부분 -->
     <!-- 사이드바 끝 -->
     <div id="mainContent">
       <div id="mainContentWrap">
@@ -119,6 +141,16 @@
     </div>
   </body>
   <script>
+    function notification() {
+      const bell = document.querySelector(".fa-bell");
+      const notificationTag = document.querySelector(
+        ".sideBar_Bottom_notification"
+      );
+      bell.onclick = function () {
+        notificationTag.classList.toggle("noticeOn");
+      };
+    }
+    notification();
     function chatDataBase(callback) {
       //데이터베이스에 있는 채팅 창 만들어주기
       const chatTag = document.querySelector(".sideBar_Bottom_chat");

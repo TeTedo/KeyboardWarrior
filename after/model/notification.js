@@ -16,6 +16,10 @@ class Notification extends Sequelize.Model {
           type: Sequelize.TEXT,
           allowNull: false,
         },
+        check: {
+          type: Sequelize.TEXT,
+          allowNull: false,
+        },
       },
       {
         sequelize: sequelize,
