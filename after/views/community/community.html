@@ -132,7 +132,9 @@
             >
               <div id="mainPost_top">
                 <div id="mainPost_top_profileimg">
-                  <img src="../<%= post.User.profile_img %>" />
+                  <a href="/profile/<%= post.User.user_id %>"
+                    ><img src="../<%= post.User.profile_img %>"
+                  /></a>
                 </div>
                 <div id="mainPost_top_userInfo">
                   <div id="mainPost_top_userInfo_nickName">
@@ -566,7 +568,7 @@
         ).innerText;
         const writer = el.dataset.user_id;
         const writerImg = el.querySelector(
-          "#mainPost_top_profileimg > img"
+          "#mainPost_top_profileimg > a>img"
         ).src;
         chatBtn.onclick = function () {
           sideBar.style.transform = "translate(0px)";

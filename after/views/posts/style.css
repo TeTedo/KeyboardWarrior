@@ -490,7 +490,7 @@
   justify-content: center;
   align-items: center;
 }
-#posts_userInfo_left_profileImg > img {
+#posts_userInfo_left_profileImg > a > img {
   width: 100px;
   height: 100px;
   border-radius: 50%;

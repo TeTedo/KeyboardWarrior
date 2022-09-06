@@ -112,7 +112,9 @@
       <div id="posts_userInfo">
         <div id="posts_userInfo_left">
           <div id="posts_userInfo_left_profileImg">
-            <img src="../../<%= postData.User.profile_img%>" alt="" />
+            <a href="/profile/<%=postData.user_id%>"
+              ><img src="../../<%= postData.User.profile_img%>" alt=""
+            /></a>
           </div>
           <div id="posts_userInfo_left_info">
             <div id="posts_userInfo_left_nickName">

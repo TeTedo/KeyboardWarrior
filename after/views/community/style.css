@@ -454,7 +454,7 @@
   display: none;
 }
 
-#mainPost_top_profileimg > img {
+#mainPost_top_profileimg > a > img {
   margin-left: 5px;
   border-radius: 50%;
   width: 70px;

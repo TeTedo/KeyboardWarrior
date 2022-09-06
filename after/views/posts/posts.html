@@ -107,7 +107,7 @@
       <div id="posts_userInfo">
         <div id="posts_userInfo_left">
           <div id="posts_userInfo_left_profileImg">
-            <img src="" alt="" />
+            <a href="/profile/<%=postData.user_id%>"><img src="" alt="" /></a>
           </div>
           <div id="posts_userInfo_left_info">
             <div id="posts_userInfo_left_nickName">닉네임</div>
@@ -784,7 +784,7 @@
 
       // 프로필 이미지 불러오기
       let posts_userInfo_left_profileImg = document.querySelector(
-        "#posts_userInfo_left_profileImg > img"
+        "#posts_userInfo_left_profileImg > a> img"
       );
       posts_userInfo_left_profileImg.src = "../" + postData.profile_img;
       let imageArr = [
