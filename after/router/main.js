@@ -126,7 +126,7 @@ router.get(
       });
 
       chatObj.sort((a, b) => {
-        return a.createdAt - b.createdAt;
+        return new Date(a.createdAt) - new Date(b.createdAt);
       });
 
       res.render("main/main", {

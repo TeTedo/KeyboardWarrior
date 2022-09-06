@@ -49,7 +49,7 @@ router.get("/community_hub", loginCheck, async (req, res) => {
   });
 
   chatObj.sort((a, b) => {
-    return a.createdAt - b.createdAt;
+    return new Date(a.createdAt) - new Date(b.createdAt);
   });
 
   res.render("community_hub/community_hub", {

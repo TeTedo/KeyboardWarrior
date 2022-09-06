@@ -53,7 +53,7 @@ router.get("/profile/:user_id", loginCheck, async (req, res) => {
     });
   });
   postArr.sort((a, b) => {
-    return a.createdAt - b.createdAt;
+    return new Date(a.createdAt) - new Date(b.createdAt);
   });
 
   let chatObj = [];
@@ -96,7 +96,7 @@ router.get("/profile/:user_id", loginCheck, async (req, res) => {
   });
 
   chatObj.sort((a, b) => {
-    return a.createdAt - b.createdAt;
+    return new Date(a.createdAt) - new Date(b.createdAt);
   });
 
   //팔로우 여부

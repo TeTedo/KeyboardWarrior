@@ -91,7 +91,7 @@ router.get("/post/:game_name/:post_id", loginCheck, async (req, res) => {
   });
 
   chatObj.sort((a, b) => {
-    return a.createdAt - b.createdAt;
+    return new Date(a.createdAt) - new Date(b.createdAt);
   });
   res.render("communityPost/communityPost", {
     game_name,

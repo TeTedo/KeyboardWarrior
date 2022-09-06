@@ -350,6 +350,13 @@
 .rightChat {
   flex-direction: row-reverse;
 }
+.chatTime {
+  width: 50px;
+  height: 20px;
+  border-radius: 15px;
+  font-size: 10px;
+  color: gray;
+}
 #chatForm {
   width: 350px;
   height: 50px;
