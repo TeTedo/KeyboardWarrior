@@ -112,6 +112,8 @@
       </div>
       <!-- 채팅창 추가부분 -->
       <div class="sideBar_Bottom_chat"></div>
+      <!-- 알람 추가부분 -->
+      <div class="sideBar_Bottom_notification"></div>
     </div>
     <div class="sideBarOpenBtn">
       <i class="fa-solid fa-arrow-right-long"></i>
@@ -291,6 +293,8 @@
             following,
           },
         });
+        const socket = io.connect();
+        socket.emit("follow", "<%=data.loginedUserData.user_id%>", following);
       }
       // 팔로우 취소
       else {
@@ -356,6 +360,13 @@
             userId: "<%=data.loginedUserData.user_id%>",
           },
         });
+        const socket = io.connect();
+        socket.emit(
+          "like",
+          "<%=data.loginedUserData.user_id%>",
+          post_id,
+          "community"
+        );
       } else {
         target.classList.add("liked");
         target.parentNode.querySelector(".likeAmount").innerHTML++;
@@ -542,6 +553,10 @@
 
       //채팅이미지 누르면 채팅창 나오게 하기
       document.querySelector(".fa-comments").onclick = function () {
+        //notification 닫기
+        document
+          .querySelector(".sideBar_Bottom_notification ")
+          .classList.remove("noticeOn");
         //채팅창 여닫이
         chatTag.classList.toggle("chatOn");
         // 열때 알람 안보이게하기
@@ -865,6 +880,24 @@
       });
       return;
     }
+    function notification() {
+      const socket = io.connect();
+      const bell = document.querySelector(".fa-bell");
+      const notificationTag = document.querySelector(
+        ".sideBar_Bottom_notification"
+      );
+      const alarmNum = document.querySelector(".alarm > span:nth-child(1)");
+      bell.onclick = function () {
+        notificationTag.classList.toggle("noticeOn");
+        document
+          .querySelector(".sideBar_Bottom_chat")
+          .classList.remove("chatOn");
+
+        alarmNum.style.visibility = "hidden";
+        alarmNum.innerText = 0;
+      };
+    }
+    notification();
     chatDataBase(chatDataCallBack);
     chat();
     socketChat();

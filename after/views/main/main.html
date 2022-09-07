@@ -82,8 +82,8 @@
           </div>
           <div id="sideBar_top_down_right">
             <div class="alarm">
-              <span>99</span>
-              <span>2</span>
+              <span>0</span>
+              <span>0</span>
             </div>
             <div>
               <a href="/join/modify/enterance"
@@ -110,7 +110,7 @@
       <!-- 알람 추가부분 -->
       <div class="sideBar_Bottom_notification">
         <a href=""
-          ><div class="sideBar_Bottom_notification_notice">
+          ><div class="sideBar_Bottom_notification_notice" data-id="1">
             <img src="" alt="" /><span>부</span>님이 내 게시글을 좋아합니다
           </div></a
         >
@@ -143,13 +143,79 @@
     </div>
   </body>
   <script>
+    function noticeSocket() {
+      const socket = io.connect();
+      // 팔로우했을때
+      socket.emit("login", "<%=user_id%>");
+
+      socket.on("follow", (user_id, user_nickName, user_profileImg) => {
+        const noticeTag = document.querySelector(
+          ".sideBar_Bottom_notification"
+        );
+        noticeTag.innerHTML += `
+        <a href="/profile/${user_id}"
+          ><div class="sideBar_Bottom_notification_notice">
+            <img src="${user_profileImg}" alt="" />
+            <span class="notice_what">
+              <div>${user_nickName}</div>
+              <div>님이 나를 팔로우합니다.</div>
+            </span>
+          </div></a
+        >
+        `;
+      });
+
+      socket.on(
+        "like",
+        (id, user_nickName, user_profileImg, where, game_name) => {
+          const noticeTag = document.querySelector(
+            ".sideBar_Bottom_notification"
+          );
+          if (where == "main") {
+            // 메인포스트
+            noticeTag.innerHTML += `
+        <a href="/posts/${id}"
+          ><div class="sideBar_Bottom_notification_notice">
+            <img src="${user_profileImg}" alt="" />
+            <span class="notice_what">
+              <div>${user_nickName}</div>
+              <div>님이 내 게시글을 좋아합니다.</div>
+            </span>
+          </div></a
+        >
+        `;
+          } else {
+            // 커뮤니티 포스트
+            noticeTag.innerHTML += `
+        <a href="/post/${game_name}/${id}"
+          ><div class="sideBar_Bottom_notification_notice">
+            <img src="${user_profileImg}" alt="" />
+            <span class="notice_what">
+              <div>${user_nickName}</div>
+              <div>님이 내 게시글을 좋아합니다.</div>
+            </span>
+          </div></a
+        >
+        `;
+          }
+        }
+      );
+    }
+    noticeSocket();
     function notification() {
       const bell = document.querySelector(".fa-bell");
       const notificationTag = document.querySelector(
         ".sideBar_Bottom_notification"
       );
+      const alarmNum = document.querySelector(".alarm > span:nth-child(1)");
       bell.onclick = function () {
         notificationTag.classList.toggle("noticeOn");
+        document
+          .querySelector(".sideBar_Bottom_chat")
+          .classList.remove("chatOn");
+
+        alarmNum.style.visibility = "hidden";
+        alarmNum.innerText = 0;
       };
     }
     notification();
@@ -262,6 +328,10 @@
 
       //채팅이미지 누르면 채팅창 나오게 하기
       document.querySelector(".fa-comments").onclick = function () {
+        //notification 닫기
+        document
+          .querySelector(".sideBar_Bottom_notification ")
+          .classList.remove("noticeOn");
         //채팅창 여닫이
         chatTag.classList.toggle("chatOn");
         // 열때 알람 안보이게하기
@@ -729,6 +799,9 @@
                 method: "post",
                 data: { userLike: true, userId: user_id },
               });
+
+              const socket = io.connect();
+              socket.emit("like", "<%=user_id%>", el.dataset.id, "main");
             }
             //클래스네임 없는경우(좋아요 취소한경우)
             else {
@@ -781,6 +854,8 @@
                   following: el.dataset.writer,
                 },
               });
+              const socket = io.connect();
+              socket.emit("follow", "<%=user_id%>", el.dataset.writer);
               followBtn.style.display = "none";
               unFollowBtn.style.display = "block";
             };

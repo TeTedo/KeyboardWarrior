@@ -500,3 +500,40 @@
 /* small size */
 @media screen and (max-width: 425px) {
 }
+.sideBar_Bottom_notification {
+  width: 400px;
+  min-height: 550px;
+  background-color: beige;
+  padding: 20px;
+  transition: 1s;
+  position: absolute;
+  top: 200px;
+  left: -550px;
+}
+.noticeOn {
+  left: 0;
+}
+.sideBar_Bottom_notification_notice {
+  width: 350px;
+  height: 100px;
+  background-color: white;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  transition: 1s;
+}
+.sideBar_Bottom_notification > a {
+  text-decoration: none;
+  color: black;
+}
+.sideBar_Bottom_notification_notice > img {
+  margin: auto 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.sideBar_Bottom_notification_notice > span > div:nth-child(1) {
+  font-size: 20px;
+  font-weight: bold;
+}

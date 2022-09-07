@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const { Follow, User } = require("../model");
 const getUserInfo = require("../functions/getUserInfo");
-
 router.post("/follow", async (req, res) => {
   const { follow, follower, following } = req.body;
   const { following: followingNum } = await getUserInfo(req, res);
@@ -55,6 +54,7 @@ router.post("/follow", async (req, res) => {
       }
     );
   }
+  res.send("끝");
 });
 
 module.exports = router;

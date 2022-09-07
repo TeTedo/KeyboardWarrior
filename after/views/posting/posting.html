@@ -94,6 +94,8 @@
       </div>
       <!-- 채팅창 추가부분 -->
       <div class="sideBar_Bottom_chat"></div>
+      <!-- 알람 추가부분 -->
+      <div class="sideBar_Bottom_notification"></div>
     </div>
     <div class="sideBarOpenBtn">
       <i class="fa-solid fa-arrow-right-long"></i>
@@ -338,6 +340,10 @@
 
       //채팅이미지 누르면 채팅창 나오게 하기
       document.querySelector(".fa-comments").onclick = function () {
+        //notification 닫기
+        document
+          .querySelector(".sideBar_Bottom_notification ")
+          .classList.remove("noticeOn");
         //채팅창 여닫이
         chatTag.classList.toggle("chatOn");
         // 열때 알람 안보이게하기
@@ -579,7 +585,24 @@
       });
       return;
     }
+    function notification() {
+      const socket = io.connect();
+      const bell = document.querySelector(".fa-bell");
+      const notificationTag = document.querySelector(
+        ".sideBar_Bottom_notification"
+      );
+      const alarmNum = document.querySelector(".alarm > span:nth-child(1)");
+      bell.onclick = function () {
+        notificationTag.classList.toggle("noticeOn");
+        document
+          .querySelector(".sideBar_Bottom_chat")
+          .classList.remove("chatOn");
 
+        alarmNum.style.visibility = "hidden";
+        alarmNum.innerText = 0;
+      };
+    }
+    notification();
     getData();
     chatDataBase(chatDataCallBack);
     chat();

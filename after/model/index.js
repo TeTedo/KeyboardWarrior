@@ -48,4 +48,5 @@ CommunityPost.associate(db);
 CommunityPostLike.associate(db);
 CommunityComment.associate(db);
 Chat.associate(db);
+Notification.associate(db);
 module.exports = db;

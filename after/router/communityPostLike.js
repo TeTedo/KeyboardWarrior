@@ -40,6 +40,7 @@ router.post("/community/:post_id/like", async (req, res) => {
         }
       );
     }
+    res.send("끝");
   } else {
     res.redirect(`/post/${game_name}/${post_id}`);
   }

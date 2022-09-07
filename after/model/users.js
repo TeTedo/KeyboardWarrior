@@ -74,6 +74,10 @@ class User extends Sequelize.Model {
       foreignKey: "speaker",
       sourceKey: "user_id",
     });
+    db.User.hasMany(db.Notification, {
+      foreignKey: "user_id",
+      sourceKey: "user_id",
+    });
   }
 }
 

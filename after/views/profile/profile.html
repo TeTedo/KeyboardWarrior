@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="../socket.io/socket.io.js"></script>
     <script
@@ -15,165 +15,147 @@
       src="https://kit.fontawesome.com/3264d39625.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div id="mainPageTop">
-        <div id="mainLogo"><a href="/"><img src="../images/mainlogo.png" alt="" /></a></div>
-        <ul id="mainPageNav">
-          <li><a href="/community_hub">COMMUNITY</a></li>
-          <!-- <li><a href="/minigame">MINI GAME</a></li> -->
-        </ul>
-        <ul id="mainPageSign">
-
-        </ul>
-        <ul id="mainPageLogo">
-          <li>
-            <a href="https://github.com/TeTedo/KeyboardWarrior.git"
-              ><img
-                class="mainPageLogo_githubLogo"
-                src="http://rajlab.org/icons/github_white.png"
-                alt="github"
-            /></a>
-          </li>
-          <li>
-            <a
-              href="https://www.notion.so/Keyboard-Warrior-888a144aa79f437e8f726910c42617a8"
-              ><img
-                class="mainPageLogo_notionLogo"
-                src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png"
-                alt="notion"
-            /></a>
-          </li>
-        </ul>
+      <div id="mainLogo">
+        <a href="/"><img src="../images/mainlogo.png" alt="" /></a>
       </div>
-  
-      <!-- <div id="mainPageSearch">
+      <ul id="mainPageNav">
+        <li><a href="/community_hub">COMMUNITY</a></li>
+        <!-- <li><a href="/minigame">MINI GAME</a></li> -->
+      </ul>
+      <ul id="mainPageSign"></ul>
+      <ul id="mainPageLogo">
+        <li>
+          <a href="https://github.com/TeTedo/KeyboardWarrior.git"
+            ><img
+              class="mainPageLogo_githubLogo"
+              src="http://rajlab.org/icons/github_white.png"
+              alt="github"
+          /></a>
+        </li>
+        <li>
+          <a
+            href="https://www.notion.so/Keyboard-Warrior-888a144aa79f437e8f726910c42617a8"
+            ><img
+              class="mainPageLogo_notionLogo"
+              src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png"
+              alt="notion"
+          /></a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- <div id="mainPageSearch">
         <div id="mainPageSearch_whole">
           <input type="text" id="mainPageSearch_searchBar" />
           <span>검색</span>
         </div>
       </div> -->
-      <!-- 여기까지 탑 공통 부분 -->
-  
-      <!-- 사이드바 -->
-      <div id="sideBar">
-        <div id="sideBar_top">
-          <div id="sideBar_top_sideBarBtn">
-            <i class="fa-solid fa-arrow-left-long"></i>
+    <!-- 여기까지 탑 공통 부분 -->
+
+    <!-- 사이드바 -->
+    <div id="sideBar">
+      <div id="sideBar_top">
+        <div id="sideBar_top_sideBarBtn">
+          <i class="fa-solid fa-arrow-left-long"></i>
+        </div>
+        <div id="sideBar_top_up">
+          <ul>
+            <li>팔로워</li>
+            <li><%= follower%></li>
+          </ul>
+          <ul>
+            <li>팔로잉</li>
+            <li><%=following%></li>
+          </ul>
+        </div>
+        <div id="sideBar_top_down">
+          <div id="sideBar_top_down_left">
+            <div><%= user_id%></div>
+            <div><%= nick_name%></div>
           </div>
-          <div id="sideBar_top_up">
-            <ul>
-              <li>팔로워</li>
-              <li><%= follower%></li>
-            </ul>
-            <ul>
-              <li>팔로잉</li>
-              <li><%=following%></li>
-            </ul>
-          </div>
-          <div id="sideBar_top_down">
-            <div id="sideBar_top_down_left">
-              <div><%= user_id%></div>
-              <div><%= nick_name%></div>
+          <div id="sideBar_top_down_right">
+            <div>
+              <a href="/join/modify/enterance"
+                ><i class="fa-solid fa-gear"></i
+              ></a>
+              <a href=""><i class="fa-solid fa-bell"></i></a>
+              <a href="#"><i class="fa-solid fa-comments"></i></a>
+              <a href="/logout"
+                ><i class="fa-solid fa-right-from-bracket"></i
+              ></a>
             </div>
-            <div id="sideBar_top_down_right">
-              <div>
-                <a href="/join/modify/enterance"
-                  ><i class="fa-solid fa-gear"></i
-                ></a>
-                <a href=""><i class="fa-solid fa-bell"></i></a>
-                <a href="#"><i class="fa-solid fa-comments"></i></a>
-                <a href="/logout"
-                  ><i class="fa-solid fa-right-from-bracket"></i
-                ></a>
-              </div>
-              <a href="/posting">글쓰기</a>
-            </div>
-          </div>
-          <div id="sideBar_top_profileImg">
-            <a href="/profile/<%=user_id%>"><img src="<%= profile_img%>" alt="" /></a>
+            <a href="/posting">글쓰기</a>
           </div>
         </div>
-        <!-- 채팅창 추가부분 -->
-        <div class="sideBar_Bottom_chat">
-          <div class="sideBar_Bottom_chatRoom" data-who="" style="display: none">
-            <div class="sideBar_Bottom_chatRoom_preView" >
-              <img src="" alt="" />
-              <div>
-                <div class="chatNickName_preview"></div>
-                <div class="chatMessage"></div>
-              </div>
-            </div>
-            <div class="sideBar_Bottom_chatRoom_main" >
-              <div class="sideBar_Bottom_chatRoom_top">
-                <span class="chatNickName">
-                  <i class="fa-regular fa-envelope"></i></i><img src="" alt="" />
-                </span>
-                <span><i class="fa-solid fa-minus"></i>&nbsp;</span>
-              </div>
-              <div class="sideBar_Bottom_chatRoom_middle"></div>
-              <div id="chatForm">
-                <input type="text" class="sendMSG" id=""/>
-                <i class="fa-regular fa-comment-dots"></i>
-              </div>
-            </div>
-          </div>
+        <div id="sideBar_top_profileImg">
+          <a href="/profile/<%=user_id%>"
+            ><img src="<%= profile_img%>" alt=""
+          /></a>
         </div>
-      </div>
-      <div class="sideBarOpenBtn">
-        <i class="fa-solid fa-arrow-right-long"></i>
       </div>
       <!-- 채팅창 추가부분 -->
-      <!-- 사이드바 끝 -->
-      <div id="main">
-        <div class="userProfile">
-          <div class="userProfile_img">
-            <img src="<%=writerData.profile_img%>" alt="">
+      <div class="sideBar_Bottom_chat"></div>
+      <!-- 알람 추가부분 -->
+      <div class="sideBar_Bottom_notification"></div>
+    </div>
+    <div class="sideBarOpenBtn">
+      <i class="fa-solid fa-arrow-right-long"></i>
+    </div>
+    <!-- 채팅창 추가부분 -->
+    <!-- 사이드바 끝 -->
+    <div id="main">
+      <div class="userProfile">
+        <div class="userProfile_img">
+          <img src="<%=writerData.profile_img%>" alt="" />
+        </div>
+        <div class="userProfile_info">
+          <div class="userProfile_info_nickName">
+            <%= writerData.nick_name%>
           </div>
-          <div class="userProfile_info">
-            <div class="userProfile_info_nickName"><%= writerData.nick_name%></div>
-            <div class="userProfile_info_follow">
-              follower : <span><%= writerData.follower%></span> following : <span><%= writerData.following%></span>
-            </div>
-          </div>
-          <div class="userProfile_icon">
-            <i class="fa-solid fa-user-plus"></i>
-            <i class="fa-solid fa-user-check"></i>
-           <i class="fa-solid fa-message"></i>
+          <div class="userProfile_info_follow">
+            follower : <span><%= writerData.follower%></span> following :
+            <span><%= writerData.following%></span>
           </div>
         </div>
-        <div id="mainContent">
-          <div id="mainContentWrap">
-            <!-- 포스팅구역 -->
-
-            <!-- 포스팅구역 -->
-          </div>
+        <div class="userProfile_icon">
+          <i class="fa-solid fa-user-plus"></i>
+          <i class="fa-solid fa-user-check"></i>
+          <i class="fa-solid fa-message"></i>
         </div>
       </div>
-      
-</body>
-<script src="profile.js"></script>
-<script>
-  //포스트 관련 script
-  function getPostData(){
-    let allPost = "<%=JSON.stringify(postArr)%>";
-    allPost = allPost
-    .replaceAll("&#34;", '"')
-    .replaceAll("&amp;", "&")
-    .replaceAll("&lt;", "<")
-    .replaceAll("&gt;", ">")
-    .replaceAll('""', '"')
-    .replaceAll("\\", "/");
-    
-    allPost = JSON.parse(allPost);
-    
-    const mainContentWrap = document.querySelector('#mainContentWrap')
-    allPost.forEach((el,index)=>{
-      
-      //해쉬태그 있는 경우 communitypost
-      if(el.game_name){
-         const post = `
+      <div id="mainContent">
+        <div id="mainContentWrap">
+          <!-- 포스팅구역 -->
+
+          <!-- 포스팅구역 -->
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="profile.js"></script>
+  <script>
+    //포스트 관련 script
+    function getPostData() {
+      let allPost = "<%=JSON.stringify(postArr)%>";
+      allPost = allPost
+        .replaceAll("&#34;", '"')
+        .replaceAll("&amp;", "&")
+        .replaceAll("&lt;", "<")
+        .replaceAll("&gt;", ">")
+        .replaceAll('""', '"')
+        .replaceAll("\\", "/");
+
+      allPost = JSON.parse(allPost);
+
+      const mainContentWrap = document.querySelector("#mainContentWrap");
+      allPost.forEach((el, index) => {
+        //해쉬태그 있는 경우 communitypost
+        if (el.game_name) {
+          const post = `
          <div class="mainPost">
           <div><div></div><div></div></div>
           <div>
@@ -184,21 +166,25 @@
           <div><div></div><div></div></div>
         </div>
         `;
-        mainContentWrap.innerHTML += post
-        //이미지 없을때
-        if(el.image1 == "../null"){
-          mainContentWrap.querySelectorAll('.mainPost_post')[index].innerHTML = `
+          mainContentWrap.innerHTML += post;
+          //이미지 없을때
+          if (el.image1 == "../null") {
+            mainContentWrap.querySelectorAll(".mainPost_post")[
+              index
+            ].innerHTML = `
           ${el.text}
-          `
+          `;
+          }
+          // 이미지 있을때
+          else {
+            mainContentWrap.querySelectorAll(".mainPost_post")[
+              index
+            ].innerHTML = `<img src="${el.image1}" alt="">`;
+          }
         }
-        // 이미지 있을때
-        else{
-          mainContentWrap.querySelectorAll('.mainPost_post')[index].innerHTML = `<img src="${el.image1}" alt="">`
-        }
-      }
-      //해쉬태그 없는 경우 -> mainpost
-      else{
-        const post = `
+        //해쉬태그 없는 경우 -> mainpost
+        else {
+          const post = `
         <div class="mainPost">
           <div><div></div><div></div></div>
           <div>
@@ -208,74 +194,79 @@
           <div><div></div><div></div></div>
         </div>
         `;
-        mainContentWrap.innerHTML += post
-        //이미지 없을때
-        if(el.image1 == "../null"){
-          mainContentWrap.querySelectorAll('.mainPost_post')[index].innerHTML = el.text
+          mainContentWrap.innerHTML += post;
+          //이미지 없을때
+          if (el.image1 == "../null") {
+            mainContentWrap.querySelectorAll(".mainPost_post")[
+              index
+            ].innerHTML = el.text;
+          }
+          // 이미지 있을때
+          else {
+            mainContentWrap.querySelectorAll(".mainPost_post")[
+              index
+            ].innerHTML = `<img src="${el.image1}" alt="">`;
+          }
         }
-        // 이미지 있을때
-        else{
-          mainContentWrap.querySelectorAll('.mainPost_post')[index].innerHTML = `<img src="${el.image1}" alt="">`
-        }
+      });
+    }
+    getPostData();
+
+    //팔로우 관련
+    function follow() {
+      // 내 프로필창 들어갔을때 팔로우, 채팅창 안보이게
+      if ("<%= user_id%>" == "<%= writerData.user_id%>") {
+        document.querySelector(".userProfile_icon").style.display = "none";
       }
-    })
-  }
-  getPostData()
 
-  //팔로우 관련
-  function follow (){
-    // 내 프로필창 들어갔을때 팔로우, 채팅창 안보이게
-    if("<%= user_id%>" == "<%= writerData.user_id%>"){
-      document.querySelector('.userProfile_icon').style.display = "none"
+      const followBtn = document.querySelector(".fa-user-plus");
+      const unFollowBtn = document.querySelector(".fa-user-check");
+      // 팔로잉 되어있으면
+      if ("<%= follow%>") {
+        unFollowBtn.style.display = "block";
+        followBtn.style.display = "none";
+      }
+      // 안되있으면
+      else {
+        unFollowBtn.style.display = "none";
+        followBtn.style.display = "block";
+      }
+      followBtn.onclick = function () {
+        $.ajax({
+          url: "/follow",
+          method: "post",
+          data: {
+            follow: true,
+            follower: "<%= user_id%>",
+            following: "<%= writerData.user_id%>",
+          },
+        });
+        const socket = io.connect();
+        socket.emit("follow", "<%=user_id%>", el.dataset.writer);
+        followBtn.style.display = "none";
+        unFollowBtn.style.display = "block";
+      };
+      unFollowBtn.onclick = function () {
+        if (confirm("팔로우를 취소하시겠습니까?")) {
+          $.ajax({
+            url: "/follow",
+            method: "post",
+            data: {
+              follow: false,
+              follower: "<%= user_id%>",
+              following: "<%= writerData.user_id%>",
+            },
+          });
+          followBtn.style.display = "block";
+          unFollowBtn.style.display = "none";
+        }
+      };
     }
-
-    const followBtn = document.querySelector(".fa-user-plus");
-    const unFollowBtn = document.querySelector(".fa-user-check");
-    // 팔로잉 되어있으면
-    if("<%= follow%>"){
-      unFollowBtn.style.display = "block"
-      followBtn.style.display = "none"
-    }
-    // 안되있으면
-    else{
-      unFollowBtn.style.display = "none"
-      followBtn.style.display = "block"
-    }
-    followBtn.onclick = function(){
-      $.ajax({
-                url: "/follow",
-                method: "post",
-                data: {
-                  follow: true,
-                  follower: "<%= user_id%>",
-                  following: "<%= writerData.user_id%>",
-                },
-              });
-              followBtn.style.display = "none";
-              unFollowBtn.style.display = "block";
-    }
-    unFollowBtn.onclick = function(){
-      if (confirm("팔로우를 취소하시겠습니까?")) {
-                $.ajax({
-                  url: "/follow",
-                  method: "post",
-                  data: {
-                    follow: false,
-                    follower: "<%= user_id%>",
-                    following: "<%= writerData.user_id%>",
-                  },
-                });
-                followBtn.style.display = "block";
-                unFollowBtn.style.display = "none";
-              }
-    }
-
-  }
-  follow()
-</script>
-<script>
-  //채팅관련 script
-  function chatDataBase(callback) {
+    follow();
+  </script>
+  <script>
+    //채팅관련 script
+    function chatDataBase(callback) {
       //데이터베이스에 있는 채팅 창 만들어주기
       const chatTag = document.querySelector(".sideBar_Bottom_chat");
       let chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
@@ -384,6 +375,10 @@
 
       //채팅이미지 누르면 채팅창 나오게 하기
       document.querySelector(".fa-comments").onclick = function () {
+        //notification 닫기
+        document
+          .querySelector(".sideBar_Bottom_notification ")
+          .classList.remove("noticeOn");
         //채팅창 여닫이
         chatTag.classList.toggle("chatOn");
         // 열때 알람 안보이게하기
@@ -446,7 +441,7 @@
             checkRoomBool = true;
             //스크롤바 맨 아래로 내리기
             elem.querySelector(".sideBar_Bottom_chatRoom_middle").scrollTop =
-            elem.querySelector(
+              elem.querySelector(
                 ".sideBar_Bottom_chatRoom_middle"
               ).scrollHeight;
           }
@@ -557,7 +552,8 @@
       listener,
       message,
       speakerImg,
-      speakerNickName,time
+      speakerNickName,
+      time
     ) {
       speakerImg = "../" + speakerImg;
       //채팅 알람 숫자 올리기
@@ -675,7 +671,7 @@
       return;
     }
 
-    function toSpeaker(speaker, listener, message, speakerImg,time) {
+    function toSpeaker(speaker, listener, message, speakerImg, time) {
       speakerImg = "../" + speakerImg;
       let chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
       chatRoomTag.forEach((el) => {
@@ -697,9 +693,27 @@
       });
       return;
     }
+    function notification() {
+      const socket = io.connect();
+      const bell = document.querySelector(".fa-bell");
+      const notificationTag = document.querySelector(
+        ".sideBar_Bottom_notification"
+      );
+      const alarmNum = document.querySelector(".alarm > span:nth-child(1)");
+      bell.onclick = function () {
+        notificationTag.classList.toggle("noticeOn");
+        document
+          .querySelector(".sideBar_Bottom_chat")
+          .classList.remove("chatOn");
+
+        alarmNum.style.visibility = "hidden";
+        alarmNum.innerText = 0;
+      };
+    }
+    notification();
     chatDataBase(chatDataCallBack);
     chat();
     socketChat();
     enterSend();
-</script>
+  </script>
 </html>

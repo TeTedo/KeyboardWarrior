@@ -123,7 +123,13 @@ const server = app.listen(PORT, () => {
 //채팅 sokcet 관련
 const socketio = require("socket.io");
 const io = socketio(server);
-const { User, Chat } = require("../model");
+const {
+  User,
+  Chat,
+  Notification,
+  MainPost,
+  CommunityPost,
+} = require("../model");
 io.on("connect", (socket) => {
   console.log("유저접속");
 
@@ -131,7 +137,62 @@ io.on("connect", (socket) => {
   socket.on("login", (user_id) => {
     socket.join(user_id);
   });
+  // 팔로우 알림 소켓
+  socket.on("follow", async (user_id, opponent_id) => {
+    const userData = await User.findOne({
+      where: { user_id },
+      raw: true,
+    });
 
+    await Notification.create({
+      user_id,
+      opponent_id,
+      what: "follow",
+      check: false,
+    });
+    const user_nickName = userData.nick_name;
+    const user_profileImg = userData.profile_img;
+    io.to(opponent_id).emit("follow", user_id, user_nickName, user_profileImg);
+  });
+
+  // 댓글 알림 소켓
+  socket.on("comment", async (user_id, opponent_id) => {});
+
+  // 좋아요 알림 소켓
+  socket.on("like", async (user_id, id, where) => {
+    let opponent_id;
+    let game_name;
+    if (where == "main") {
+      const data = await MainPost.findOne({
+        where: { id },
+        raw: true,
+      });
+      opponent_id = data.user_id;
+    } else {
+      const data = await CommunityPost.findOne({
+        where: { id },
+        raw: true,
+      });
+      opponent_id = data.user_id;
+      game_name = data.game_name;
+    }
+
+    const data = await User.findOne({
+      where: { user_id },
+      raw: true,
+    });
+    const user_nickName = data.nick_name;
+    const user_profileImg = data.profile_img;
+
+    io.to(opponent_id).emit(
+      "like",
+      id,
+      user_nickName,
+      user_profileImg,
+      where,
+      game_name
+    );
+  });
   //채팅 socket
   socket.on("chat", async (speaker, listener, message) => {
     //말한사람 프로필이미지 얻기

@@ -39,6 +39,7 @@ router.post("/posts/:post_id/like", async (req, res) => {
         }
       );
     }
+    res.send("끝");
   } else {
     res.redirect(`/posts/${post_id}`);
   }

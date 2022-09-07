@@ -32,6 +32,13 @@ class Notification extends Sequelize.Model {
       }
     );
   }
+
+  static associate(db) {
+    db.Notification.belongsTo(db.User, {
+      foreignKey: "user_id",
+      targetKey: "user_id",
+    });
+  }
 }
 
 module.exports = Notification;
