@@ -99,6 +99,9 @@ function search(e) {
   let postHtml = "";
   postData.forEach((filteredPost) => {
     let hashtagHtml = "";
+    if (filteredPost.image1) {
+      filteredPost.image1 = filteredPost.image1.replaceAll("@?@?", "/");
+    }
     filteredPost.hashtag_values.forEach((hashtag) => {
       // 해시태그내에 검색된글자 배경색 변경
       if (hashtag.includes(searchedValue)) {
@@ -205,6 +208,10 @@ function update(target) {
   }
   let postHtml = "";
   postData.forEach((filteredPost) => {
+    if (filteredPost.image1) {
+      filteredPost.image1 = filteredPost.image1.replaceAll("@?@?", "/");
+    }
+    console.log(filteredPost.image1);
     let hashtagHtml = "";
     filteredPost.hashtag_values.forEach((hashtag) => {
       hashtagHtml += `
