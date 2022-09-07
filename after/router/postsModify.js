@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { MainPost, Chat, User } = require("../model");
+const { MainPost, Chat, User, Notification } = require("../model");
 const getUserInfo = require("../functions/getUserInfo");
 const imgUpload = require("../middleware/imgUpload");
 const fs = require("fs");
@@ -58,6 +58,14 @@ router.get("/posts/:postId/modify", async (req, res) => {
     return new Date(a.createdAt) - new Date(b.createdAt);
   });
 
+  const noticeData = await Notification.findAll({
+    where: { opponent_id: user_id },
+    include: [
+      {
+        model: User,
+      },
+    ],
+  });
   profile_img = "../../" + profile_img;
 
   // 로그인 유저와 글 작성자 비교
@@ -74,6 +82,7 @@ router.get("/posts/:postId/modify", async (req, res) => {
       chatObj,
       follower,
       following,
+      noticeData,
     });
   }
 });

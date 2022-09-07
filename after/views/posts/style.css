@@ -659,3 +659,15 @@
 #sideBar {
   background-color: beige;
 }
+.alarm > span:nth-child(1) {
+  visibility: hidden;
+}
+.preViewAlarm {
+  display: none;
+}
+.alarm > span:nth-child(2) {
+  visibility: hidden;
+}
+#posts {
+  z-index: -1;
+}

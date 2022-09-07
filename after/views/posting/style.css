@@ -6,7 +6,7 @@
 #mainPageTop {
   background-color: black;
   width: 100%;
-  height: 150px;
+  height: 9.375rem;
   display: flex;
   color: white;
   position: relative;
@@ -46,12 +46,12 @@
 }
 .mainPageLogo_notionLogo,
 .mainPageLogo_githubLogo {
-  width: 30px;
+  width: 1.875rem;
 }
 /* 사이드바 */
 #sideBar {
-  width: 400px;
-  height: 750px;
+  width: 25rem;
+  height: 46.875rem;
   background-color: black;
 
   position: absolute;
@@ -65,25 +65,25 @@
 }
 #sideBar #sideBar_top {
   width: 100%;
-  height: 200px;
+  height: 12.5rem;
   background-color: beige;
   position: relative;
 }
 @keyframes sideBarAnimation {
   0% {
-    transform: translate(20px);
+    transform: translate(1.25rem);
   }
   50% {
-    transform: translate(0px);
+    transform: translate(0rem);
   }
   100% {
-    transform: translate(20px);
+    transform: translate(1.25rem);
   }
 }
 #sideBar_top_sideBarBtn {
   position: absolute;
-  right: 30px;
-  font-size: 25px;
+  right: 1.875rem;
+  font-size: 1.5625rem;
   animation: sideBarAnimation 1s linear infinite;
   display: flex;
 }
@@ -96,7 +96,7 @@
 }
 .fa-arrow-right-long {
   cursor: pointer;
-  font-size: 25px;
+  font-size: 1.5625rem;
   display: none;
   animation: sideBarAnimation 1s linear infinite;
 }
@@ -106,9 +106,9 @@
   height: 50%;
 }
 #sideBar_top_up > ul {
-  transform: translateX(150px);
-  margin: 30px;
-  font-size: 20px;
+  transform: translateX(9.375rem);
+  margin: 1.875rem;
+  font-size: 1.25rem;
   font-weight: bold;
 }
 #sideBar_top_up > ul > li {
@@ -126,27 +126,27 @@
 }
 #sideBar_top_profileImg {
   position: absolute;
-  top: 20px;
-  left: 50px;
-  width: 100px;
-  height: 100px;
+  top: 1.25rem;
+  left: 3.125rem;
+  width: 6.25rem;
+  height: 6.25rem;
   border-radius: 50%;
 }
 #sideBar_top_profileImg > a > img {
   border-radius: 50%;
-  width: 100px;
-  height: 100px;
+  width: 6.25rem;
+  height: 6.25rem;
 }
 #sideBar_top_down_left {
   width: 100%;
   height: 50%;
 }
 #sideBar_top_down_left > div:nth-child(1) {
-  font-size: 13px;
+  font-size: 0.8125rem;
   text-align: center;
 }
 #sideBar_top_down_left > div:nth-child(2) {
-  font-size: 25px;
+  font-size: 1.5625rem;
   text-align: center;
   font-weight: bold;
 }
@@ -159,25 +159,25 @@
   width: 100%;
   display: flex;
   justify-content: space-around;
-  font-size: 30px;
+  font-size: 1.875rem;
 }
 .alarm {
   position: absolute;
-  width: 100px;
+  width: 6.25rem;
   display: flex;
   justify-content: space-around;
-  left: 60px;
+  left: 3.75rem;
 }
 .alarm > span {
-  width: 20px;
-  height: 20px;
+  width: 1.25rem;
+  height: 1.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: bold;
-  border: 1px solid white;
+  border: 0.0625rem solid white;
   border-radius: 50%;
   background-color: red;
 }
@@ -187,15 +187,15 @@
 #sideBar_top_down_right > a {
   display: inline-block;
   box-sizing: border-box;
-  width: 150px;
-  height: 30px;
+  width: 9.375rem;
+  height: 1.875rem;
   text-decoration: none;
   color: black;
-  font-size: 20px;
-  border: 1px solid black;
+  font-size: 1.25rem;
+  border: 0.0625rem solid black;
   text-align: center;
-  transform: translate(10px, 20px);
-  border-radius: 10px;
+  transform: translate(0.625rem, 1.25rem);
+  border-radius: 0.625rem;
 }
 #sideBar_top_down_right > i {
   display: flex;
@@ -205,22 +205,22 @@
 /* 채팅창 추가부분 */
 .sideBar_Bottom_chat {
   width: 100%;
-  min-height: 550px;
+  min-height: 34.375rem;
   background-color: beige;
-  padding: 20px;
-  transform: translateX(-500px);
+  padding: 1.25rem;
+  transform: translateX(-31.25rem);
   transition: 1s;
 }
 .chatOn {
-  transform: translateX(0px);
+  transform: translateX(0rem);
 }
 .sideBar_Bottom_chatRoom {
   position: relative;
-  width: 350px;
-  height: 100px;
+  width: 21.875rem;
+  height: 6.25rem;
   background-color: white;
-  border-radius: 10px;
-  margin-bottom: 20px;
+  border-radius: 0.625rem;
+  margin-bottom: 1.25rem;
   display: flex;
   align-items: center;
   transition: 1s;
@@ -234,8 +234,8 @@
 }
 .sideBar_Bottom_chatRoom_preView {
   position: relative;
-  width: 350px;
-  height: 100px;
+  width: 21.875rem;
+  height: 6.25rem;
   background-color: white;
   display: flex;
   align-items: center;
@@ -245,32 +245,32 @@
   background-color: rgba(0, 0, 0, 0.1);
 }
 .sideBar_Bottom_chatRoom_preView > img {
-  width: 70px;
-  height: 70px;
-  margin: 10px;
+  width: 4.375rem;
+  height: 4.375rem;
+  margin: 0.625rem;
   border-radius: 50%;
 }
 .sideBar_Bottom_chatRoom_preView > div:nth-child(1) {
-  width: 200px;
-  height: 70px;
+  width: 12.5rem;
+  height: 4.375rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
 .chatNickName_preview {
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: bold;
 }
 .chatMessage {
-  font-size: 15px;
+  font-size: 0.9375rem;
 }
 .preViewAlarm {
   position: absolute;
-  right: 10px;
-  width: 30px;
-  height: 30px;
+  right: 0.625rem;
+  width: 1.875rem;
+  height: 1.875rem;
   color: white;
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: bold;
   background-color: red;
   border-radius: 50%;
@@ -282,31 +282,31 @@
   display: none;
 }
 .sideBar_Bottom_chatRoom_top {
-  height: 50px;
-  border-bottom: 1px solid;
+  height: 3.125rem;
+  border-bottom: 0.0625rem solid;
   display: flex;
   align-items: center;
-  font-size: 25px;
+  font-size: 1.5625rem;
   font-weight: bold;
   justify-content: space-between;
 }
 .chatNickName > img {
-  width: 25px;
-  height: 25px;
-  margin-left: 10px;
+  width: 1.5625rem;
+  height: 1.5625rem;
+  margin-left: 0.625rem;
   border-radius: 50%;
-  transform: translateY(5px);
+  transform: translateY(0.3125rem);
 }
 .fa-minus {
   cursor: pointer;
 }
 .sideBar_Bottom_chatRoom_middle {
-  width: 350px;
-  height: 250px;
-  max-height: 250px;
+  width: 21.875rem;
+  height: 15.625rem;
+  max-height: 15.625rem;
   overflow-x: hidden;
   overflow-y: scroll;
-  border-top: 1px solid black;
+  border-top: 0.0625rem solid black;
 }
 .sideBar_Bottom_chatRoom_middle::-webkit-scrollbar {
   display: none;
@@ -318,9 +318,9 @@
   height: max-content;
 }
 .fullchatMessage > img {
-  width: 30px;
-  height: 30px;
-  margin: 5px;
+  width: 1.875rem;
+  height: 1.875rem;
+  margin: 0.3125rem;
   border-radius: 50%;
 }
 .leftChat {
@@ -331,27 +331,27 @@
 }
 .chatTimeStamp {
   height: 100%;
-  width: 40px;
+  width: 2.5rem;
   color: gray;
-  font-size: 10px;
-  transform: translateY(10px);
+  font-size: 0.625rem;
+  transform: translateY(0.625rem);
 }
 #chatForm {
-  width: 350px;
-  height: 50px;
-  border-top: 1px solid black;
+  width: 21.875rem;
+  height: 3.125rem;
+  border-top: 0.0625rem solid black;
   display: flex;
   align-items: center;
-  font-size: 40px;
+  font-size: 2.5rem;
 }
 #chatForm > input {
-  height: 30px;
-  width: 300px;
+  height: 1.875rem;
+  width: 18.75rem;
   outline: none;
-  border: 1px solid black;
-  font-size: 20px;
-  padding: 5px 5px 0 5px;
-  border-radius: 15px;
+  border: 0.0625rem solid black;
+  font-size: 1.25rem;
+  padding: 0.3125rem 0.3125rem 0 0.3125rem;
+  border-radius: 0.9375rem;
   position: relative;
 }
 #chatForm > textarea::-webkit-scrollbar {
@@ -363,10 +363,10 @@
 /* 채팅창 추가 끝 */
 /* 포스팅 부분 */
 #posting {
-  width: 1000px;
-  height: 500px;
-  border: 1px solid black;
-  border-radius: 10px;
+  width: 62.5rem;
+  height: 31.25rem;
+  border: 0.0625rem solid black;
+  border-radius: 0.625rem;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -376,7 +376,7 @@
 #posting_left {
   width: 100%;
   height: 100%;
-  border: 1px solid black;
+  border: 0.0625rem solid black;
 }
 /* 8.25 img css 추가 */
 #posting_left > img {
@@ -390,16 +390,16 @@
 
 #posting_right > textarea {
   width: 100%;
-  height: 350px;
-  padding: 10px;
-  font-size: 20px;
+  height: 21.875rem;
+  padding: 0.625rem;
+  font-size: 1.25rem;
   box-sizing: border-box;
 }
 /* 8.25 이미지  추가*/
 #posting_right_imagePreview {
   width: 100%;
-  height: 50px;
-  border: 1px solid black;
+  height: 3.125rem;
+  border: 0.0625rem solid black;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -409,8 +409,8 @@
 }
 #posting_right_imagePreview span {
   color: red;
-  font-size: 20px;
-  margin-left: 3px;
+  font-size: 1.25rem;
+  margin-left: 0.1875rem;
   cursor: pointer;
   display: none;
 }
@@ -419,44 +419,44 @@
 }
 #posting_right_bottom {
   width: 100%;
-  height: 100px;
+  height: 6.25rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 /* #posting_right_bottom_uploadImg {
-  width: 100px;
+  width: 6.25rem;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 } */
 #posting_right_imagePreview > div {
-  width: 30px;
-  height: 30px;
+  width: 1.875rem;
+  height: 1.875rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 #posting_right_imagePreview > div > label > i {
-  font-size: 30px;
+  font-size: 1.875rem;
   cursor: pointer;
 }
 #posting_right_imagePreview > div > img {
-  width: 30px;
-  height: 30px;
+  width: 1.875rem;
+  height: 1.875rem;
   display: none;
 }
 input[type="file"] {
   display: none;
 }
 #posting_right_bottom_postingBtn {
-  width: 400px;
+  width: 25rem;
   height: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: bold;
 }
 /* 8.25 추가 */
@@ -467,36 +467,36 @@ input[type="file"] {
 #posting_right_bottom_postingBtn > button {
   border: 0;
   background: none;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: bold;
   cursor: pointer;
 }
 /* middle size */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 48rem) {
 }
 
 /* small size */
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 26.5625rem) {
 }
 .sideBar_Bottom_notification {
-  width: 400px;
-  min-height: 550px;
+  width: 25rem;
+  min-height: 34.375rem;
   background-color: beige;
-  padding: 20px;
+  padding: 1.25rem;
   transition: 1s;
   position: absolute;
-  top: 200px;
-  left: -550px;
+  top: 12.5rem;
+  left: -34.375rem;
 }
 .noticeOn {
   left: 0;
 }
 .sideBar_Bottom_notification_notice {
-  width: 350px;
-  height: 100px;
+  width: 21.875rem;
+  height: 6.25rem;
   background-color: white;
-  border-radius: 10px;
-  margin-bottom: 20px;
+  border-radius: 0.625rem;
+  margin-bottom: 1.25rem;
   display: flex;
   align-items: center;
   transition: 1s;
@@ -506,13 +506,13 @@ input[type="file"] {
   color: black;
 }
 .sideBar_Bottom_notification_notice > img {
-  margin: auto 10px;
-  width: 50px;
-  height: 50px;
+  margin: auto 0.625rem;
+  width: 3.125rem;
+  height: 3.125rem;
   border-radius: 50%;
 }
 .sideBar_Bottom_notification_notice > span > div:nth-child(1) {
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: bold;
 }
 .sideBar_Bottom_chat {
@@ -527,4 +527,16 @@ input[type="file"] {
 }
 #sideBar {
   background-color: beige;
+}
+.alarm > span:nth-child(1) {
+  visibility: hidden;
+}
+.preViewAlarm {
+  display: none;
+}
+.alarm > span:nth-child(2) {
+  visibility: hidden;
+}
+#posts {
+  z-index: -1;
 }

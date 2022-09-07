@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const getUserInfo = require("../functions/getUserInfo");
 const loginCheck = require("../middleware/loginCheck");
-const { CommunityPost, User, Chat } = require("../model");
+const { CommunityPost, User, Chat, Notification } = require("../model");
 const imgUpload = require("../middleware/communityImgUpload");
 
 // 수정페이지
@@ -58,6 +58,14 @@ router.get("/community/:post_id/modify", loginCheck, async (req, res) => {
     return new Date(a.createdAt) - new Date(b.createdAt);
   });
 
+  const noticeData = await Notification.findAll({
+    where: { opponent_id: user_id },
+    include: [
+      {
+        model: User,
+      },
+    ],
+  });
   res.render("communityModify/communityModify", {
     user_id,
     nick_name,
@@ -66,6 +74,7 @@ router.get("/community/:post_id/modify", loginCheck, async (req, res) => {
     following,
     postData,
     chatObj,
+    noticeData,
   });
 });
 

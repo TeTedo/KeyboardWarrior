@@ -7,6 +7,7 @@ const {
   CommunityComment,
   User,
   Chat,
+  Notification,
 } = require("../model");
 const getUserInfo = require("../functions/getUserInfo");
 const loginCheck = require("../middleware/loginCheck");
@@ -93,6 +94,14 @@ router.get("/post/:game_name/:post_id", loginCheck, async (req, res) => {
   chatObj.sort((a, b) => {
     return new Date(a.createdAt) - new Date(b.createdAt);
   });
+  const noticeData = await Notification.findAll({
+    where: { opponent_id: user_id },
+    include: [
+      {
+        model: User,
+      },
+    ],
+  });
   res.render("communityPost/communityPost", {
     game_name,
     user_id,
@@ -106,6 +115,7 @@ router.get("/post/:game_name/:post_id", loginCheck, async (req, res) => {
     follower,
     following,
     chatObj,
+    noticeData,
   });
 });
 

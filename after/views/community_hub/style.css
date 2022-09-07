@@ -6,7 +6,7 @@
 #mainPageTop {
   background-color: black;
   width: 100%;
-  height: 150px;
+  height: 9.375rem;
   display: flex;
   color: white;
   position: relative;
@@ -46,13 +46,13 @@
 }
 .mainPageLogo_notionLogo,
 .mainPageLogo_githubLogo {
-  width: 30px;
+  width: 1.875rem;
 }
 /* 여기까지 공통 탑 부분 */
 /* 사이드바 */
 #sideBar {
-  width: 400px;
-  height: 750px;
+  width: 25rem;
+  height: 46.875rem;
   background-color: black;
 
   position: absolute;
@@ -66,25 +66,25 @@
 }
 #sideBar #sideBar_top {
   width: 100%;
-  height: 200px;
+  height: 12.5rem;
   background-color: beige;
   position: relative;
 }
 @keyframes sideBarAnimation {
   0% {
-    transform: translate(20px);
+    transform: translate(1.25rem);
   }
   50% {
-    transform: translate(0px);
+    transform: translate(0rem);
   }
   100% {
-    transform: translate(20px);
+    transform: translate(1.25rem);
   }
 }
 #sideBar_top_sideBarBtn {
   position: absolute;
-  right: 30px;
-  font-size: 25px;
+  right: 1.875rem;
+  font-size: 1.5625rem;
   animation: sideBarAnimation 1s linear infinite;
   display: flex;
 }
@@ -97,7 +97,7 @@
 }
 .fa-arrow-right-long {
   cursor: pointer;
-  font-size: 25px;
+  font-size: 1.5625rem;
   display: none;
   animation: sideBarAnimation 1s linear infinite;
 }
@@ -107,9 +107,9 @@
   height: 50%;
 }
 #sideBar_top_up > ul {
-  transform: translateX(150px);
-  margin: 30px;
-  font-size: 20px;
+  transform: translateX(9.375rem);
+  margin: 1.875rem;
+  font-size: 1.25rem;
   font-weight: bold;
 }
 #sideBar_top_up > ul > li {
@@ -127,27 +127,27 @@
 }
 #sideBar_top_profileImg {
   position: absolute;
-  top: 20px;
-  left: 50px;
-  width: 100px;
-  height: 100px;
+  top: 1.25rem;
+  left: 3.125rem;
+  width: 6.25rem;
+  height: 6.25rem;
   border-radius: 50%;
 }
 #sideBar_top_profileImg > a > img {
   border-radius: 50%;
-  width: 100px;
-  height: 100px;
+  width: 6.25rem;
+  height: 6.25rem;
 }
 #sideBar_top_down_left {
   width: 100%;
   height: 50%;
 }
 #sideBar_top_down_left > div:nth-child(1) {
-  font-size: 13px;
+  font-size: 0.8125rem;
   text-align: center;
 }
 #sideBar_top_down_left > div:nth-child(2) {
-  font-size: 25px;
+  font-size: 1.5625rem;
   text-align: center;
   font-weight: bold;
 }
@@ -160,25 +160,25 @@
   width: 100%;
   display: flex;
   justify-content: space-around;
-  font-size: 30px;
+  font-size: 1.875rem;
 }
 .alarm {
   position: absolute;
-  width: 100px;
+  width: 6.25rem;
   display: flex;
   justify-content: space-around;
-  left: 60px;
+  left: 3.75rem;
 }
 .alarm > span {
-  width: 20px;
-  height: 20px;
+  width: 1.25rem;
+  height: 1.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: bold;
-  border: 1px solid white;
+  border: 0.0625rem solid white;
   border-radius: 50%;
   background-color: red;
 }
@@ -188,15 +188,15 @@
 #sideBar_top_down_right > a {
   display: inline-block;
   box-sizing: border-box;
-  width: 150px;
-  height: 30px;
+  width: 9.375rem;
+  height: 1.875rem;
   text-decoration: none;
   color: black;
-  font-size: 20px;
-  border: 1px solid black;
+  font-size: 1.25rem;
+  border: 0.0625rem solid black;
   text-align: center;
-  transform: translate(10px, 20px);
-  border-radius: 10px;
+  transform: translate(0.625rem, 1.25rem);
+  border-radius: 0.625rem;
 }
 #sideBar_top_down_right > i {
   display: flex;
@@ -206,22 +206,22 @@
 /* 채팅창 추가부분 */
 .sideBar_Bottom_chat {
   width: 100%;
-  min-height: 550px;
+  min-height: 34.375rem;
   background-color: beige;
-  padding: 20px;
-  transform: translateX(-500px);
+  padding: 1.25rem;
+  transform: translateX(-31.25rem);
   transition: 1s;
 }
 .chatOn {
-  transform: translateX(0px);
+  transform: translateX(0rem);
 }
 .sideBar_Bottom_chatRoom {
   position: relative;
-  width: 350px;
-  height: 100px;
+  width: 21.875rem;
+  height: 6.25rem;
   background-color: white;
-  border-radius: 10px;
-  margin-bottom: 20px;
+  border-radius: 0.625rem;
+  margin-bottom: 1.25rem;
   display: flex;
   align-items: center;
   transition: 1s;
@@ -235,8 +235,8 @@
 }
 .sideBar_Bottom_chatRoom_preView {
   position: relative;
-  width: 350px;
-  height: 100px;
+  width: 21.875rem;
+  height: 6.25rem;
   background-color: white;
   display: flex;
   align-items: center;
@@ -246,32 +246,32 @@
   background-color: rgba(0, 0, 0, 0.1);
 }
 .sideBar_Bottom_chatRoom_preView > img {
-  width: 70px;
-  height: 70px;
-  margin: 10px;
+  width: 4.375rem;
+  height: 4.375rem;
+  margin: 0.625rem;
   border-radius: 50%;
 }
 .sideBar_Bottom_chatRoom_preView > div:nth-child(1) {
-  width: 200px;
-  height: 70px;
+  width: 12.5rem;
+  height: 4.375rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
 .chatNickName_preview {
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: bold;
 }
 .chatMessage {
-  font-size: 15px;
+  font-size: 0.9375rem;
 }
 .preViewAlarm {
   position: absolute;
-  right: 10px;
-  width: 30px;
-  height: 30px;
+  right: 0.625rem;
+  width: 1.875rem;
+  height: 1.875rem;
   color: white;
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: bold;
   background-color: red;
   border-radius: 50%;
@@ -283,31 +283,31 @@
   display: none;
 }
 .sideBar_Bottom_chatRoom_top {
-  height: 50px;
-  border-bottom: 1px solid;
+  height: 3.125rem;
+  border-bottom: 0.0625rem solid;
   display: flex;
   align-items: center;
-  font-size: 25px;
+  font-size: 1.5625rem;
   font-weight: bold;
   justify-content: space-between;
 }
 .chatNickName > img {
-  width: 25px;
-  height: 25px;
-  margin-left: 10px;
+  width: 1.5625rem;
+  height: 1.5625rem;
+  margin-left: 0.625rem;
   border-radius: 50%;
-  transform: translateY(5px);
+  transform: translateY(0.3125rem);
 }
 .fa-minus {
   cursor: pointer;
 }
 .sideBar_Bottom_chatRoom_middle {
-  width: 350px;
-  height: 250px;
-  max-height: 250px;
+  width: 21.875rem;
+  height: 15.625rem;
+  max-height: 15.625rem;
   overflow-x: hidden;
   overflow-y: scroll;
-  border-top: 1px solid black;
+  border-top: 0.0625rem solid black;
 }
 .sideBar_Bottom_chatRoom_middle::-webkit-scrollbar {
   display: none;
@@ -319,9 +319,9 @@
   height: max-content;
 }
 .fullchatMessage > img {
-  width: 30px;
-  height: 30px;
-  margin: 5px;
+  width: 1.875rem;
+  height: 1.875rem;
+  margin: 0.3125rem;
   border-radius: 50%;
 }
 .leftChat {
@@ -332,27 +332,27 @@
 }
 .chatTimeStamp {
   height: 100%;
-  width: 40px;
+  width: 2.5rem;
   color: gray;
-  font-size: 10px;
-  transform: translateY(10px);
+  font-size: 0.625rem;
+  transform: translateY(0.625rem);
 }
 #chatForm {
-  width: 350px;
-  height: 50px;
-  border-top: 1px solid black;
+  width: 21.875rem;
+  height: 3.125rem;
+  border-top: 0.0625rem solid black;
   display: flex;
   align-items: center;
-  font-size: 40px;
+  font-size: 2.5rem;
 }
 #chatForm > input {
-  height: 30px;
-  width: 300px;
+  height: 1.875rem;
+  width: 18.75rem;
   outline: none;
-  border: 1px solid black;
-  font-size: 20px;
-  padding: 5px 5px 0 5px;
-  border-radius: 15px;
+  border: 0.0625rem solid black;
+  font-size: 1.25rem;
+  padding: 0.3125rem 0.3125rem 0 0.3125rem;
+  border-radius: 0.9375rem;
   position: relative;
 }
 #chatForm > textarea::-webkit-scrollbar {
@@ -367,15 +367,15 @@
   position: relative;
   display: flex;
   justify-content: center;
-  width: 1000px;
-  height: 700px;
+  width: 62.5rem;
+  height: 43.75rem;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 3.125rem;
 }
 /* 메인슬라이드 */
 #mainContent {
   background-color: black;
-  border: 1px solid;
+  border: 0.0625rem solid;
   overflow-x: scroll;
   overflow-y: hidden;
   position: relative;
@@ -385,24 +385,24 @@
 } */
 #mainContentWrap {
   width: max-content;
-  height: 500px;
+  height: 31.25rem;
   display: flex;
   /* position: absolute; */
 }
 #mainContentWrap .mainPost {
-  width: 455px;
-  height: 450px;
+  width: 28.4375rem;
+  height: 28.125rem;
   background-color: white;
-  margin: 30px 0px 0px 30px;
+  margin: 1.875rem 0rem 0rem 1.875rem;
   position: relative;
   overflow: hidden;
   cursor: pointer;
 }
 #mainContentWrap .mainPost:last-child {
-  width: 455px;
-  height: 450px;
+  width: 28.4375rem;
+  height: 28.125rem;
   background-color: white;
-  margin: 30px 30px 0px 30px;
+  margin: 1.875rem 1.875rem 0rem 1.875rem;
 }
 #mainContentWrap .mainPost > video {
   width: max-content;
@@ -413,14 +413,14 @@
 }
 #mainTitleWrap {
   /* background-color: whitesmoke; */
-  width: 3000px;
-  height: 200px;
+  width: 187.5rem;
+  height: 12.5rem;
   display: flex;
 }
 #mainTitleWrap .mainTitle {
-  width: 455px;
+  width: 28.4375rem;
   background-color: black;
-  margin: 15px 0px 30px 30px;
+  margin: 0.9375rem 0rem 1.875rem 1.875rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -429,21 +429,21 @@
   text-decoration: none;
   color: rgb(120, 116, 116);
   font-weight: bold;
-  font-size: 35px;
+  font-size: 2.1875rem;
   cursor: pointer;
 }
 #mainTitleWrap .mainTitle > a:hover {
   color: #fff;
   transition: 0.5s;
-  font-size: 55px;
-  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff, 0 0 80px #fff,
-    0 0 120px #fff, 0 0 240px #fff;
+  font-size: 3.4375rem;
+  text-shadow: 0 0 0.625rem #fff, 0 0 1.25rem #fff, 0 0 2.5rem #fff,
+    0 0 5rem #fff, 0 0 7.5rem #fff, 0 0 15rem #fff;
 }
 
 /* 여기서부터 스크롤헬퍼 */
 .scrollHelper {
-  width: 1000px;
-  height: 700px;
+  width: 62.5rem;
+  height: 43.75rem;
   position: absolute;
   opacity: 0;
   display: flex;
@@ -459,20 +459,20 @@
   transform: translateX(-50%);
 }
 .scrollHelper_icon {
-  font-size: 200px;
+  font-size: 12.5rem;
   font-weight: 900;
-  transform: translateX(-10px);
+  transform: translateX(-0.625rem);
   animation: move 0.9s;
   animation-iteration-count: infinite;
 }
 .scrollHelper_text {
-  font-size: 60px;
+  font-size: 3.75rem;
 }
 .scrollHelper.active {
   animation: timer 2s;
 }
 .scrollHelper_icon.active {
-  font-size: 100px;
+  font-size: 6.25rem;
   font-weight: bolder;
   opacity: 1;
 }
@@ -496,10 +496,10 @@
 }
 @keyframes move {
   50% {
-    transform: translateX(220px);
+    transform: translateX(13.75rem);
   }
   100% {
-    transform: translateX(-10px);
+    transform: translateX(-0.625rem);
   }
 }
 
@@ -508,24 +508,24 @@
   overflow: hidden;
 }
 .sideBar_Bottom_notification {
-  width: 400px;
-  min-height: 550px;
+  width: 25rem;
+  min-height: 34.375rem;
   background-color: beige;
-  padding: 20px;
+  padding: 1.25rem;
   transition: 1s;
   position: absolute;
-  top: 200px;
-  left: -550px;
+  top: 12.5rem;
+  left: -34.375rem;
 }
 .noticeOn {
   left: 0;
 }
 .sideBar_Bottom_notification_notice {
-  width: 350px;
-  height: 100px;
+  width: 21.875rem;
+  height: 6.25rem;
   background-color: white;
-  border-radius: 10px;
-  margin-bottom: 20px;
+  border-radius: 0.625rem;
+  margin-bottom: 1.25rem;
   display: flex;
   align-items: center;
   transition: 1s;
@@ -535,13 +535,13 @@
   color: black;
 }
 .sideBar_Bottom_notification_notice > img {
-  margin: auto 10px;
-  width: 50px;
-  height: 50px;
+  margin: auto 0.625rem;
+  width: 3.125rem;
+  height: 3.125rem;
   border-radius: 50%;
 }
 .sideBar_Bottom_notification_notice > span > div:nth-child(1) {
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: bold;
 }
 .sideBar_Bottom_chat {
@@ -556,4 +556,13 @@
 }
 #sideBar {
   background-color: beige;
+}
+.alarm > span:nth-child(1) {
+  visibility: hidden;
+}
+.preViewAlarm {
+  display: none;
+}
+.alarm > span:nth-child(2) {
+  visibility: hidden;
 }

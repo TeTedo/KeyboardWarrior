@@ -8,6 +8,7 @@ const {
   CommunityPostLike,
   Follow,
   Chat,
+  Notification,
 } = require("../model");
 
 router.get("/community/:game_name", loginCheck, async (req, res) => {
@@ -58,6 +59,14 @@ router.get("/community/:game_name", loginCheck, async (req, res) => {
     return new Date(a.createdAt) - new Date(b.createdAt);
   });
 
+  const noticeData = await Notification.findAll({
+    where: { opponent_id: loginedUserData.user_id },
+    include: [
+      {
+        model: User,
+      },
+    ],
+  });
   const followingUsers = await Follow.findAll({
     where: { follower_id: loginedUserData.user_id },
     attributes: ["following_id"],
@@ -91,7 +100,7 @@ router.get("/community/:game_name", loginCheck, async (req, res) => {
             loginedUserData,
             followingUsers,
           };
-          res.render("community/community", { data, chatObj });
+          res.render("community/community", { data, chatObj, noticeData });
           break;
         case "maple":
           data = {
@@ -101,7 +110,7 @@ router.get("/community/:game_name", loginCheck, async (req, res) => {
             loginedUserData,
             followingUsers,
           };
-          res.render("community/community", { data, chatObj });
+          res.render("community/community", { data, chatObj, noticeData });
           break;
         case "lineage":
           data = {
@@ -111,7 +120,7 @@ router.get("/community/:game_name", loginCheck, async (req, res) => {
             loginedUserData,
             followingUsers,
           };
-          res.render("community/community", { data, chatObj });
+          res.render("community/community", { data, chatObj, noticeData });
           break;
         default:
           // res.redirect("/community_hub");

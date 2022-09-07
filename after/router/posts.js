@@ -7,6 +7,7 @@ const {
   Follow,
   User,
   Chat,
+  Notification,
 } = require("../model");
 const getUserInfo = require("../functions/getUserInfo");
 const loginCheck = require("../middleware/loginCheck");
@@ -102,6 +103,14 @@ router.get("/posts/:postId", loginCheck, async (req, res) => {
     return new Date(a.createdAt) - new Date(b.createdAt);
   });
 
+  const noticeData = await Notification.findAll({
+    where: { opponent_id: user_id },
+    include: [
+      {
+        model: User,
+      },
+    ],
+  });
   res.render("posts/posts", {
     user_id,
     nick_name,
@@ -116,6 +125,7 @@ router.get("/posts/:postId", loginCheck, async (req, res) => {
     user_follower,
     user_following,
     chatObj,
+    noticeData,
   });
 });
 

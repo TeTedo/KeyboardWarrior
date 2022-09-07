@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const loginCheck = require("../middleware/loginCheck");
 const getUserInfo = require("../functions/getUserInfo");
-const { User, Chat } = require("../model");
+const { User, Chat, Notification } = require("../model");
 
 router.get("/community_hub", loginCheck, async (req, res) => {
   let { user_id, nick_name, profile_img, follower, following } =
@@ -52,6 +52,14 @@ router.get("/community_hub", loginCheck, async (req, res) => {
     return new Date(a.createdAt) - new Date(b.createdAt);
   });
 
+  const noticeData = await Notification.findAll({
+    where: { opponent_id: user_id },
+    include: [
+      {
+        model: User,
+      },
+    ],
+  });
   res.render("community_hub/community_hub", {
     user_id,
     nick_name,
@@ -59,6 +67,7 @@ router.get("/community_hub", loginCheck, async (req, res) => {
     follower,
     following,
     chatObj,
+    noticeData,
   });
 });
 

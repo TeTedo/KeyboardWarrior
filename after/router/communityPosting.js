@@ -4,7 +4,7 @@ const router = express.Router();
 const getUserInfo = require("../functions/getUserInfo");
 const loginCheck = require("../middleware/loginCheck");
 const imgUpload = require("../middleware/communityImgUpload");
-const { User, CommunityPost, Chat } = require("../model");
+const { User, CommunityPost, Chat, Notification } = require("../model");
 
 router.get("/posting/:game_name", loginCheck, async (req, res) => {
   const game_name = req.params.game_name;
@@ -55,6 +55,14 @@ router.get("/posting/:game_name", loginCheck, async (req, res) => {
   chatObj.sort((a, b) => {
     return new Date(a.createdAt) - new Date(b.createdAt);
   });
+  const noticeData = await Notification.findAll({
+    where: { opponent_id: user_id },
+    include: [
+      {
+        model: User,
+      },
+    ],
+  });
   res.render("communityPosting/communityPosting", {
     follower,
     following,
@@ -63,6 +71,7 @@ router.get("/posting/:game_name", loginCheck, async (req, res) => {
     nick_name,
     profile_img,
     chatObj,
+    noticeData,
   });
 });
 

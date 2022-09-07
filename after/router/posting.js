@@ -3,7 +3,7 @@ const router = express.Router();
 const loginCheck = require("../middleware/loginCheck");
 const fs = require("fs");
 const imgUpload = require("../middleware/imgUpload");
-const { MainPost, Chat, User } = require("../model");
+const { MainPost, Chat, User, Notification } = require("../model");
 const getUserInfo = require("../functions/getUserInfo");
 
 router.get("/posting", loginCheck, async (req, res) => {
@@ -54,6 +54,14 @@ router.get("/posting", loginCheck, async (req, res) => {
     return new Date(a.createdAt) - new Date(b.createdAt);
   });
 
+  const noticeData = await Notification.findAll({
+    where: { opponent_id: user_id },
+    include: [
+      {
+        model: User,
+      },
+    ],
+  });
   res.render("posting/posting", {
     user_id,
     nick_name,
@@ -61,6 +69,7 @@ router.get("/posting", loginCheck, async (req, res) => {
     follower,
     following,
     chatObj,
+    noticeData,
   });
 });
 

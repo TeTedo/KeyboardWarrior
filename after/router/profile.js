@@ -1,6 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const { User, Chat, MainPost, CommunityPost, Follow } = require("../model");
+const {
+  User,
+  Chat,
+  MainPost,
+  CommunityPost,
+  Follow,
+  Notification,
+} = require("../model");
 const getUserInfo = require("../functions/getUserInfo");
 const loginCheck = require("../middleware/loginCheck");
 
@@ -99,6 +106,14 @@ router.get("/profile/:user_id", loginCheck, async (req, res) => {
     return new Date(a.createdAt) - new Date(b.createdAt);
   });
 
+  const noticeData = await Notification.findAll({
+    where: { opponent_id: user_id },
+    include: [
+      {
+        model: User,
+      },
+    ],
+  });
   //팔로우 여부
   const follow = await Follow.findOne({
     where: { follower_id: user_id, following_id: writerData.user_id },
@@ -113,6 +128,7 @@ router.get("/profile/:user_id", loginCheck, async (req, res) => {
     writerData,
     postArr,
     follow,
+    noticeData,
   });
 });
 
