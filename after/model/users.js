@@ -62,14 +62,12 @@ class User extends Sequelize.Model {
       foreignKey: "user_id",
       sourceKey: "user_id",
     });
-    db.User.hasMany(db.MainComment, {
-      foreignKey: "user_id",
-      sourceKey: "user_id",
-    });
+
     db.User.hasMany(db.MainPost, {
       foreignKey: "user_id",
       sourceKey: "user_id",
     });
+
     db.User.hasMany(db.Chat, {
       foreignKey: "speaker",
       sourceKey: "user_id",
@@ -80,6 +78,14 @@ class User extends Sequelize.Model {
     });
     db.User.hasMany(db.Notification, {
       foreignKey: "user_id",
+      sourceKey: "user_id",
+    });
+    db.User.hasMany(db.Follow, {
+      foreignKey: "following_id",
+      sourceKey: "user_id",
+    });
+    db.User.hasMany(db.Follow, {
+      foreignKey: "follower_id",
       sourceKey: "user_id",
     });
   }

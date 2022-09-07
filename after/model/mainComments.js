@@ -37,9 +37,9 @@ class MainComment extends Sequelize.Model {
     );
   }
   static associate(db) {
-    db.MainComment.belongsTo(db.User, {
-      foreignKey: "user_id",
-      targetKey: "user_id",
+    db.MainComment.belongsTo(db.MainPost, {
+      foreignKey: "post_id",
+      targetKey: "id",
     });
   }
 }

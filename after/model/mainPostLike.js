@@ -28,6 +28,12 @@ class MainPostLike extends Sequelize.Model {
       }
     );
   }
+  static associate(db) {
+    db.MainPostLike.belongsTo(db.MainPost, {
+      foreignKey: "post_id",
+      targetKey: "id",
+    });
+  }
 }
 
 module.exports = MainPostLike;

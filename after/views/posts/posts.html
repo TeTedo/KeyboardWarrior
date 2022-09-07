@@ -368,7 +368,7 @@
             // 메인포스트
             noticeTag.innerHTML += `
         <a href="/posts/${id}"
-          ><div class="sideBar_Bottom_notification_notice" data-id="${noticeId}>
+          ><div class="sideBar_Bottom_notification_notice" data-id="${noticeId}">
             <img src="../${user_profileImg}" alt="" />
             <span class="notice_what">
               <div>${user_nickName}</div>
@@ -382,7 +382,7 @@
             // 커뮤니티 포스트
             noticeTag.innerHTML += `
         <a href="/post/${game_name}/${id}"
-          ><div class="sideBar_Bottom_notification_notice" data-id="${noticeId}>
+          ><div class="sideBar_Bottom_notification_notice" data-id="${noticeId}">
             <img src="../${user_profileImg}" alt="" />
             <span class="notice_what">
               <div>${user_nickName}</div>
@@ -413,7 +413,7 @@
             // 메인포스트
             noticeTag.innerHTML += `
         <a href="/posts/${id}"
-          ><div class="sideBar_Bottom_notification_notice" data-id="${noticeId}>
+          ><div class="sideBar_Bottom_notification_notice" data-id="${noticeId}">
             <img src="../${user_profileImg}" alt="" />
             <span class="notice_what">
               <div>${user_nickName}</div>
@@ -427,7 +427,7 @@
             // 커뮤니티 포스트
             noticeTag.innerHTML += `
         <a href="/post/${game_name}/${id}"
-          ><div class="sideBar_Bottom_notification_notice" data-id="${noticeId}>
+          ><div class="sideBar_Bottom_notification_notice" data-id="${noticeId}">
             <img src="../${user_profileImg}" alt="" />
             <span class="notice_what">
               <div>${user_nickName}</div>
@@ -939,7 +939,7 @@
             },
           });
           const socket = io.connect();
-          socket.emit("follow", "<%=user_id%>", el.dataset.writer);
+          socket.emit("follow", "<%=user_id%>", postData.user_id);
           //버튼표시
           followBtn.style.display = "none";
           unFollowBtn.style.display = "block";
