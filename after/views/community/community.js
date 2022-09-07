@@ -14,10 +14,10 @@ openSideBar.onclick = function () {
 let scrollx = 0;
 // 가로로 스크롤 이동
 const contentsWrap = document.querySelector("#contentsWrap");
+const mainContentWrap = document.querySelector("#mainContentWrap");
 contentsWrap.onwheel = function (e) {
   window.onwheel = null;
   const mainContent = document.querySelector("#mainContent");
-  const mainContentWrap = document.querySelector("#mainContentWrap");
 
   const maxScroll = mainContentWrap.offsetWidth - mainContent.offsetWidth;
   scrollx = scrollx < 0 ? 0 : scrollx > maxScroll ? maxScroll : scrollx;

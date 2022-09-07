@@ -105,7 +105,9 @@
           </div>
         </div>
         <div id="sideBar_top_profileImg">
-          <img src="<%= data.loginedUserData.profile_img%>" alt="" />
+          <a href="/profile/<%=data.loginedUserData.user_id%>"
+            ><img src="<%= data.loginedUserData.profile_img%>" alt=""
+          /></a>
         </div>
       </div>
       <!-- 채팅창 추가부분 -->
