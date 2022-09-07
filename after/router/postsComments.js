@@ -10,7 +10,7 @@ router.post("/posts/:postId/comment", async (req, res) => {
 
   const commentNum = await MainPost.findOne({
     where: { id: post_id },
-  }).then(result => {
+  }).then((result) => {
     return result.dataValues.comment;
   });
 
@@ -34,7 +34,7 @@ router.post("/posts/:postId/comment", async (req, res) => {
     text,
     profile_img,
   }).then(() => {
-    res.redirect(`/posts/${post_id}`);
+    res.send(`/posts/${post_id}`);
   });
 });
 

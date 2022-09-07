@@ -1,7 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const getUserInfo = require("../functions/getUserInfo");
-const { MainPost, Follow, User, MainPostLike, Chat } = require("../model");
+const {
+  MainPost,
+  Follow,
+  User,
+  MainPostLike,
+  Chat,
+  Notification,
+} = require("../model");
 router.get(
   "/",
   async (req, res, next) => {
@@ -129,6 +136,14 @@ router.get(
         return new Date(a.createdAt) - new Date(b.createdAt);
       });
 
+      const noticeData = await Notification.findAll({
+        where: { opponent_id: user_id },
+        include: [
+          {
+            model: User,
+          },
+        ],
+      });
       res.render("main/main", {
         user_id,
         nick_name,
@@ -137,6 +152,7 @@ router.get(
         following,
         postData,
         chatObj,
+        noticeData,
       });
     } else {
       next();
@@ -217,6 +233,7 @@ router.get(
       following: "",
       postData,
       chatObj: "",
+      noticeData: "",
     });
   }
 );

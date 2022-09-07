@@ -566,3 +566,23 @@
   font-size: 20px;
   font-weight: bold;
 }
+.sideBar_Bottom_chat {
+  min-height: 0;
+  display: flex;
+  flex-direction: column-reverse;
+}
+.sideBar_Bottom_notification {
+  min-height: 0;
+  display: flex;
+  flex-direction: column-reverse;
+}
+#sideBar {
+  background-color: beige;
+}
+.notice_what > div:nth-child(3) {
+  font-size: 10px;
+  color: gray;
+}
+.alarm > span:nth-child(1) {
+  visibility: hidden;
+}

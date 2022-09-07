@@ -175,24 +175,62 @@
       <!-- 포스팅 보여주기 끝 -->
       <!-- 댓글창 -->
       <div class="posts_comment">
-        <form
+        <div
           class="posts_comment_recomment"
           action="/community/<%=postData.id%>/comment"
           method="post"
         >
           <img src="../<%= profile_img%>" alt="" /><input
             type="text"
-            name="text"
+            class="commentText"
             placeholder="댓글을 입력하세요"
           />
-          <button type="submit">입력</button>
-        </form>
+          <button class="commentBtn" onclick="comment()">입력</button>
+        </div>
       </div>
       <!-- 댓글창 끝 -->
     </div>
   </body>
   <script src="../../communityPost/communityPost.js"></script>
   <script>
+    document.querySelector(".posts_comment").onkeydown = function (e) {
+      if (e.target == document.querySelector(".commentText")) {
+        if (e.keyCode == 13) {
+          let postData = "<%= JSON.stringify(postData) %>";
+          postData = postData.replaceAll("&#34;", '"');
+          postData = postData.replaceAll("\\", "/");
+          postData = JSON.parse(postData);
+          const text = document.querySelector(".commentText").value;
+          const socket = io.connect();
+          socket.emit("comment", "<%=user_id%>", postData.id, "main");
+          $.ajax({
+            url: `/posts/${postData.id}/comment`,
+            method: "post",
+            data: { text },
+            success: function (data) {
+              location.href = data;
+            },
+          });
+        }
+      }
+    };
+    function comment() {
+      let postData = "<%= JSON.stringify(postData) %>";
+      postData = postData.replaceAll("&#34;", '"');
+      postData = postData.replaceAll("\\", "/");
+      postData = JSON.parse(postData);
+      const text = document.querySelector(".commentText").value;
+      const socket = io.connect();
+      socket.emit("comment", "<%=user_id%>", postData.id, "community");
+      $.ajax({
+        url: `/community/${postData.id}/comment`,
+        method: "post",
+        data: { text },
+        success: function (data) {
+          location.href = data;
+        },
+      });
+    }
     // const urlText = document.location.href;
     // const post_id = urlText[urlText.length - 1];
     // const body = document.querySelector("body");
@@ -345,7 +383,7 @@
             data: { userLike: true, userId },
           });
           const socket = io.connect();
-          socket.emit("like", userId, postData.id, "main");
+          socket.emit("like", userId, postData.id, "community");
         } else {
           likeNum.innerText = Number(likeNum.innerText) - 1;
           $.ajax({

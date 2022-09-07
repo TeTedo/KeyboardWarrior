@@ -154,18 +154,18 @@
       <!-- 포스팅 보여주기 끝 -->
       <!-- 댓글창 -->
       <div class="posts_comment">
-        <form
+        <div
           class="posts_comment_recomment"
           action="/posts/<%=postData.id%>/comment"
           method="post"
         >
           <img src="<%= profile_img%>" alt="" /><input
             type="text"
-            name="text"
+            class="commentText"
             placeholder="댓글을 입력하세요"
           />
-          <button type="submit">입력</button>
-        </form>
+          <button class="commentBtn" onclick="comment()">입력</button>
+        </div>
       </div>
       <!-- 댓글창 끝 -->
     </div>
@@ -185,6 +185,46 @@
     };
   </script>
   <script>
+    document.querySelector(".posts_comment").onkeydown = function (e) {
+      if (e.target == document.querySelector(".commentText")) {
+        if (e.keyCode == 13) {
+          let postData = "<%= JSON.stringify(postData) %>";
+          postData = postData.replaceAll("&#34;", '"');
+          postData = postData.replaceAll("\\", "/");
+          postData = JSON.parse(postData);
+          const text = document.querySelector(".commentText").value;
+          const socket = io.connect();
+          socket.emit("comment", "<%=user_id%>", postData.id, "main");
+          $.ajax({
+            url: `/posts/${postData.id}/comment`,
+            method: "post",
+            data: { text },
+            success: function (data) {
+              location.href = data;
+            },
+          });
+        }
+      }
+    };
+
+    function comment() {
+      let postData = "<%= JSON.stringify(postData) %>";
+      postData = postData.replaceAll("&#34;", '"');
+      postData = postData.replaceAll("\\", "/");
+      postData = JSON.parse(postData);
+      const text = document.querySelector(".commentText").value;
+      const socket = io.connect();
+      socket.emit("comment", "<%=user_id%>", postData.id, "main");
+      $.ajax({
+        url: `/posts/${postData.id}/comment`,
+        method: "post",
+        data: { text },
+        success: function (data) {
+          location.href = data;
+        },
+      });
+    }
+
     function notification() {
       const socket = io.connect();
       const bell = document.querySelector(".fa-bell");

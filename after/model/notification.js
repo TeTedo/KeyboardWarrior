@@ -20,6 +20,18 @@ class Notification extends Sequelize.Model {
           type: Sequelize.TEXT,
           allowNull: false,
         },
+        where: {
+          type: Sequelize.TEXT,
+          allowNull: true,
+        },
+        game_name: {
+          type: Sequelize.TEXT,
+          allowNull: true,
+        },
+        post_id: {
+          type: Sequelize.INTEGER,
+          allowNull: true,
+        },
       },
       {
         sequelize: sequelize,

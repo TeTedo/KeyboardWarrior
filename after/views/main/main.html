@@ -108,27 +108,7 @@
       <div class="sideBar_Bottom_chat"></div>
       <!-- 채팅창 추가부분 -->
       <!-- 알람 추가부분 -->
-      <div class="sideBar_Bottom_notification">
-        <a href=""
-          ><div class="sideBar_Bottom_notification_notice" data-id="1">
-            <img src="" alt="" /><span>부</span>님이 내 게시글을 좋아합니다
-          </div></a
-        >
-        <a href=""
-          ><div class="sideBar_Bottom_notification_notice">
-            <img src="" alt="" /><span>부</span>님이 나를 팔로우합니다.
-          </div></a
-        >
-        <a href=""
-          ><div class="sideBar_Bottom_notification_notice">
-            <img src="" alt="" />
-            <span class="notice_what">
-              <div>부락부락</div>
-              <div>님이 내 게시글에 댓글을 남겼습니다.</div>
-            </span>
-          </div></a
-        >
-      </div>
+      <div class="sideBar_Bottom_notification"></div>
     </div>
     <div class="sideBarOpenBtn">
       <i class="fa-solid fa-arrow-right-long"></i>
@@ -143,31 +123,142 @@
     </div>
   </body>
   <script>
-    function noticeSocket() {
-      const socket = io.connect();
-      // 팔로우했을때
-      socket.emit("login", "<%=user_id%>");
+    function noticeDB() {
+      let noticeData = "<%= JSON.stringify(noticeData) %>";
+      noticeData = noticeData.replaceAll("&#34;", '"');
+      noticeData = noticeData.replaceAll("\\", "/");
+      noticeData = JSON.parse(noticeData);
+      console.log(noticeData);
+      noticeData.forEach((el) => {
+        let today = new Date();
+        today.setHours(today.getHours() + 9);
+        let time = today.toISOString().replace("T", " ").substring(0, 19);
+        time = time.replace(/...$/, "");
 
-      socket.on("follow", (user_id, user_nickName, user_profileImg) => {
         const noticeTag = document.querySelector(
           ".sideBar_Bottom_notification"
         );
-        noticeTag.innerHTML += `
-        <a href="/profile/${user_id}"
-          ><div class="sideBar_Bottom_notification_notice">
-            <img src="${user_profileImg}" alt="" />
+        const alarm = document.querySelector(".alarm > span:nth-child(1)");
+        if (el.check == 0) {
+          alarm.style.visibility = "visible";
+          alarm.innerText = Number(alarm.innerText) + 1;
+        }
+        if (el.what == "follow") {
+          noticeTag.innerHTML += `
+        <a href="/profile/${el.user_id}"
+          ><div class="sideBar_Bottom_notification_notice" data-id="${el.id}">
+            <img src="${el.User.profile_img}" alt="" />
             <span class="notice_what">
-              <div>${user_nickName}</div>
+              <div>${el.User.nick_name}</div>
               <div>님이 나를 팔로우합니다.</div>
+              <div>${time}</div>
             </span>
           </div></a
         >
         `;
+        } else if (el.what == "comment") {
+          if (el.where == "main") {
+            noticeTag.innerHTML += `
+        <a href="/posts/${el.post_id}"
+          ><div class="sideBar_Bottom_notification_notice" data-id="${el.id}">
+            <img src="${el.User.profile_img}" alt="" />
+            <span class="notice_what">
+              <div>${el.User.nick_name}</div>
+              <div>님이 내 게시글에 댓글을 남겼습니다.</div>
+              <div>${time}</div>
+            </span>
+          </div></a
+        >
+        `;
+          } else {
+            noticeTag.innerHTML += `
+        <a href="/post/${el.game_name}/${el.post_id}"
+          ><div class="sideBar_Bottom_notification_notice" data-id="${el.id}">
+            <img src="${el.User.profile_img}" alt="" />
+            <span class="notice_what">
+              <div>${el.User.nick_name}</div>
+              <div>님이 내 게시글을 좋아합니다.</div>
+              <div>${time}</div>
+            </span>
+          </div></a
+        >
+        `;
+          }
+        } else {
+          if (el.where == "main") {
+            noticeTag.innerHTML += `
+            <a href="/posts/${el.post_id}"
+          ><div class="sideBar_Bottom_notification_notice" data-id="${el.id}">
+            <img src="${el.User.profile_img}" alt="" />
+            <span class="notice_what">
+              <div>${el.User.nick_name}</div>
+              <div>님이 내 게시글에 댓글을 남겼습니다.</div>
+              <div>${time}</div>
+            </span>
+          </div></a
+        >
+        `;
+          } else {
+            noticeTag.innerHTML += `
+            <a href="/post/${el.game_name}/${el.post_id}"
+          ><div class="sideBar_Bottom_notification_notice" data-id="${el.id}">
+            <img src="${el.User.profile_img}" alt="" />
+            <span class="notice_what">
+              <div>${el.User.nick_name}</div>
+              <div>님이 내 게시글을 좋아합니다.</div>
+              <div>${time}</div>
+            </span>
+          </div></a
+        >
+        `;
+          }
+        }
       });
+    }
+    noticeDB();
+    function noticeSocket() {
+      const socket = io.connect();
+      // 팔로우했을때
+      socket.emit("login", "<%=user_id%>");
+      const alarm = document.querySelector(".alarm > span:nth-child(1)");
+      socket.on(
+        "follow",
+        (user_id, user_nickName, user_profileImg, noticeId) => {
+          alarm.style.visibility = "visible";
+          alarm.innerText = Number(alarm.innerText) + 1;
+          let today = new Date();
+          today.setHours(today.getHours() + 9);
+          let time = today.toISOString().replace("T", " ").substring(0, 19);
+          time = time.replace(/...$/, "");
+
+          const noticeTag = document.querySelector(
+            ".sideBar_Bottom_notification"
+          );
+          noticeTag.innerHTML += `
+        <a href="/profile/${user_id}"
+          ><div class="sideBar_Bottom_notification_notice" data-id="${noticeId}">
+            <img src="${user_profileImg}" alt="" />
+            <span class="notice_what">
+              <div>${user_nickName}</div>
+              <div>님이 나를 팔로우합니다.</div>
+              <div>${time}</div>
+            </span>
+          </div></a
+        >
+        `;
+        }
+      );
 
       socket.on(
         "like",
-        (id, user_nickName, user_profileImg, where, game_name) => {
+        (id, user_nickName, user_profileImg, where, game_name, noticeId) => {
+          alarm.style.visibility = "visible";
+          alarm.innerText = Number(alarm.innerText) + 1;
+          let today = new Date();
+          today.setHours(today.getHours() + 9);
+          let time = today.toISOString().replace("T", " ").substring(0, 19);
+          time = time.replace(/...$/, "");
+
           const noticeTag = document.querySelector(
             ".sideBar_Bottom_notification"
           );
@@ -175,11 +266,12 @@
             // 메인포스트
             noticeTag.innerHTML += `
         <a href="/posts/${id}"
-          ><div class="sideBar_Bottom_notification_notice">
+          ><div class="sideBar_Bottom_notification_notice" data-id="${noticeId}>
             <img src="${user_profileImg}" alt="" />
             <span class="notice_what">
               <div>${user_nickName}</div>
               <div>님이 내 게시글을 좋아합니다.</div>
+              <div>${time}</div>
             </span>
           </div></a
         >
@@ -188,11 +280,57 @@
             // 커뮤니티 포스트
             noticeTag.innerHTML += `
         <a href="/post/${game_name}/${id}"
-          ><div class="sideBar_Bottom_notification_notice">
+          ><div class="sideBar_Bottom_notification_notice" data-id="${noticeId}>
             <img src="${user_profileImg}" alt="" />
             <span class="notice_what">
               <div>${user_nickName}</div>
               <div>님이 내 게시글을 좋아합니다.</div>
+              <div>${time}</div>
+            </span>
+          </div></a
+        >
+        `;
+          }
+        }
+      );
+
+      socket.on(
+        "comment",
+        (id, user_nickName, user_profileImg, where, game_name, noticeId) => {
+          alarm.style.visibility = "visible";
+          alarm.innerText = Number(alarm.innerText) + 1;
+          let today = new Date();
+          today.setHours(today.getHours() + 9);
+          let time = today.toISOString().replace("T", " ").substring(0, 19);
+          time = time.replace(/...$/, "");
+
+          const noticeTag = document.querySelector(
+            ".sideBar_Bottom_notification"
+          );
+          if (where == "main") {
+            // 메인포스트
+            noticeTag.innerHTML += `
+        <a href="/posts/${id}"
+          ><div class="sideBar_Bottom_notification_notice" data-id="${noticeId}>
+            <img src="${user_profileImg}" alt="" />
+            <span class="notice_what">
+              <div>${user_nickName}</div>
+              <div>님이 내 게시글에 댓글을 남겼습니다.</div>
+              <div>${time}</div>
+            </span>
+          </div></a
+        >
+        `;
+          } else {
+            // 커뮤니티 포스트
+            noticeTag.innerHTML += `
+        <a href="/post/${game_name}/${id}"
+          ><div class="sideBar_Bottom_notification_notice" data-id="${noticeId}>
+            <img src="${user_profileImg}" alt="" />
+            <span class="notice_what">
+              <div>${user_nickName}</div>
+              <div>님이 내 게시글에 댓글을 남겼습니다.</div>
+              <div>${time}</div>
             </span>
           </div></a
         >
@@ -213,9 +351,22 @@
         document
           .querySelector(".sideBar_Bottom_chat")
           .classList.remove("chatOn");
-
-        alarmNum.style.visibility = "hidden";
-        alarmNum.innerText = 0;
+        if (notificationTag.classList.contains("noticeOn")) {
+          alarmNum.style.visibility = "hidden";
+          alarmNum.innerText = 0;
+          const noticeDataTag = document.querySelectorAll(
+            ".sideBar_Bottom_notification_notice"
+          );
+          const postid = [];
+          noticeDataTag.forEach((el) => {
+            postid.push(el.dataset.id);
+          });
+          $.ajax({
+            url: "/notification",
+            method: "post",
+            data: { postid },
+          });
+        }
       };
     }
     notification();

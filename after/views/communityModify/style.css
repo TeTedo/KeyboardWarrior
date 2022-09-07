@@ -557,3 +557,16 @@ input[type="file"] {
   font-size: 20px;
   font-weight: bold;
 }
+.sideBar_Bottom_chat {
+  min-height: 0;
+  display: flex;
+  flex-direction: column-reverse;
+}
+.sideBar_Bottom_notification {
+  min-height: 0;
+  display: flex;
+  flex-direction: column-reverse;
+}
+#sideBar {
+  background-color: beige;
+}

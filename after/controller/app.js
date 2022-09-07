@@ -88,6 +88,7 @@ const postsCommentsDelete = require("../router/postsCommentsDelete");
 const postsLike = require("../router/postsLike");
 const follow = require("../router/follow");
 const profile = require("../router/profile");
+const notification = require("../router/notification");
 app.use(
   login,
   logout,
@@ -111,7 +112,8 @@ app.use(
   postsCommentsDelete,
   postsLike,
   follow,
-  profile
+  profile,
+  notification
 );
 
 // 서버열기
@@ -143,31 +145,40 @@ io.on("connect", (socket) => {
       where: { user_id },
       raw: true,
     });
-
+    let noticeId;
     await Notification.create({
       user_id,
       opponent_id,
       what: "follow",
       check: false,
+    }).then((data) => {
+      noticeId = data.dataValues.id;
     });
     const user_nickName = userData.nick_name;
     const user_profileImg = userData.profile_img;
-    io.to(opponent_id).emit("follow", user_id, user_nickName, user_profileImg);
+
+    io.to(opponent_id).emit(
+      "follow",
+      user_id,
+      user_nickName,
+      user_profileImg,
+      noticeId
+    );
   });
 
   // 댓글 알림 소켓
-  socket.on("comment", async (user_id, opponent_id) => {});
-
-  // 좋아요 알림 소켓
-  socket.on("like", async (user_id, id, where) => {
+  socket.on("comment", async (user_id, id, where) => {
     let opponent_id;
     let game_name;
+    let wherepost;
+    let noticeId;
     if (where == "main") {
       const data = await MainPost.findOne({
         where: { id },
         raw: true,
       });
       opponent_id = data.user_id;
+      wherepost = "main";
     } else {
       const data = await CommunityPost.findOne({
         where: { id },
@@ -175,6 +186,7 @@ io.on("connect", (socket) => {
       });
       opponent_id = data.user_id;
       game_name = data.game_name;
+      wherepost = "community";
     }
 
     const data = await User.findOne({
@@ -184,15 +196,84 @@ io.on("connect", (socket) => {
     const user_nickName = data.nick_name;
     const user_profileImg = data.profile_img;
 
-    io.to(opponent_id).emit(
-      "like",
-      id,
-      user_nickName,
-      user_profileImg,
-      where,
-      game_name
-    );
+    if (user_id != opponent_id) {
+      await Notification.create({
+        user_id,
+        opponent_id,
+        what: "comment",
+        check: false,
+        where: wherepost,
+        game_name,
+        post_id: id,
+      }).then((data) => {
+        noticeId = data.dataValues.id;
+      });
+
+      io.to(opponent_id).emit(
+        "comment",
+        id,
+        user_nickName,
+        user_profileImg,
+        where,
+        game_name,
+        noticeId
+      );
+    }
   });
+
+  // 좋아요 알림 소켓
+  socket.on("like", async (user_id, id, where) => {
+    let opponent_id;
+    let game_name;
+    let wherepost;
+    let noticeId;
+    if (where == "main") {
+      const data = await MainPost.findOne({
+        where: { id },
+        raw: true,
+      });
+      opponent_id = data.user_id;
+      wherepost = "main";
+    } else {
+      const data = await CommunityPost.findOne({
+        where: { id },
+        raw: true,
+      });
+      opponent_id = data.user_id;
+      game_name = data.game_name;
+      wherepost = "community";
+    }
+
+    const data = await User.findOne({
+      where: { user_id },
+      raw: true,
+    });
+    const user_nickName = data.nick_name;
+    const user_profileImg = data.profile_img;
+    if (user_id != opponent_id) {
+      await Notification.create({
+        user_id,
+        opponent_id,
+        what: "like",
+        check: false,
+        where: wherepost,
+        game_name,
+        post_id: id,
+      }).then((data) => {
+        noticeId = data.dataValues.id;
+      });
+      io.to(opponent_id).emit(
+        "like",
+        id,
+        user_nickName,
+        user_profileImg,
+        where,
+        game_name,
+        noticeId
+      );
+    }
+  });
+
   //채팅 socket
   socket.on("chat", async (speaker, listener, message) => {
     //말한사람 프로필이미지 얻기

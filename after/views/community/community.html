@@ -360,13 +360,6 @@
             userId: "<%=data.loginedUserData.user_id%>",
           },
         });
-        const socket = io.connect();
-        socket.emit(
-          "like",
-          "<%=data.loginedUserData.user_id%>",
-          post_id,
-          "community"
-        );
       } else {
         target.classList.add("liked");
         target.parentNode.querySelector(".likeAmount").innerHTML++;
@@ -378,6 +371,13 @@
             userId: "<%=data.loginedUserData.user_id%>",
           },
         });
+        const socket = io.connect();
+        socket.emit(
+          "like",
+          "<%=data.loginedUserData.user_id%>",
+          post_id,
+          "community"
+        );
       }
     }
 
@@ -600,7 +600,7 @@
         const writerName = el.querySelector(
           "#mainPost_top_userInfo_nickName"
         ).innerText;
-        const writer = el.dataset.user_id;
+        const writer = el.dataset.userid;
         const writerImg = el.querySelector(
           "#mainPost_top_profileimg > a>img"
         ).src;
