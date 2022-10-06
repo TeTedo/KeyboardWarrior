@@ -95,7 +95,46 @@
    추가로 아이디와 닉네임은 중복이 되면 안되므로 입력할때마다 기존 DB와 비교한다.
    <img src="https://user-images.githubusercontent.com/107897812/194188518-4b207be1-43f2-4445-a48a-19234618000a.png" width=400 height=200>
 
+   회원가입시 기본 프로필 이미지 7가지 중 랜덤으로 1개를 제공한다.
+   ![image](https://user-images.githubusercontent.com/107897812/194188876-92c02d04-6caf-4f45-8ec5-ed5b7955bc91.png)
+
 2. ### 로그인
+
+   **Access Token & Refresh Token**<br/>
+   로그인 하면 권한을 부여하기 위해 토큰 부여 - express 쿠키에 저장
+
+   Access Token : 10분마다 만료 <br/>
+
+   ```JS
+   const access_token = jwt.sign(
+      {
+        alg: "HS256",
+        typ: "JWT",
+        userId: data.user_id,
+      },
+      process.env.ACCSESS_TOKEN,
+      {
+        expiresIn: "10m",
+      }
+    );
+   ```
+
+   Refresh Token : 1시간마다 만료, Access 토큰만 만료되었을 경우 Access Token을 다시 만들어 준다.
+
+   ```JS
+   const refresh_token = jwt.sign(
+      {
+        alg: "HS256",
+        typ: "JWT",
+        userId: data.user_id,
+      },
+      process.env.REFRESH_TOKEN,
+      {
+        expiresIn: "1h",
+      }
+   );
+   ```
+
 3. ### 프로필 수정
 4. ### 글작성
 5. ### 수정 및 삭제
