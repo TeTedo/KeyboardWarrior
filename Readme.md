@@ -36,6 +36,7 @@
   - #### [글작성](#글작성)
   - #### [수정 및 삭제](#수정-및-삭제)
   - #### [좋아요](#좋아요)
+  - #### [댓글](#댓글)
   - #### [팔로우](#팔로우)
   - #### [채팅](#채팅)
   - #### [알람](#알람)
@@ -71,7 +72,7 @@
 
 ## 주요 기능
 
-1. ### 회원가입
+1. ### **회원가입**
 
    ![회원입](https://user-images.githubusercontent.com/107897812/194187494-b1158660-9165-4867-8e93-3389aecbf6a4.png)
 
@@ -98,12 +99,12 @@
    회원가입시 기본 프로필 이미지 7가지 중 랜덤으로 1개를 제공한다.
    ![image](https://user-images.githubusercontent.com/107897812/194188876-92c02d04-6caf-4f45-8ec5-ed5b7955bc91.png)
 
-2. ### 로그인
+2. ### **로그인**
 
    **Access Token & Refresh Token**<br/>
    로그인 하면 권한을 부여하기 위해 토큰 부여 - express 쿠키에 저장
 
-   Access Token : 10분마다 만료 <br/>
+   **Access Token** : 10분마다 만료 <br/>
 
    ```JS
    const access_token = jwt.sign(
@@ -119,7 +120,7 @@
     );
    ```
 
-   Refresh Token : 1시간마다 만료, Access 토큰만 만료되었을 경우 Access Token을 다시 만들어 준다.
+   **Refresh Token** : 1시간마다 만료
 
    ```JS
    const refresh_token = jwt.sign(
@@ -135,10 +136,86 @@
    );
    ```
 
-3. ### 프로필 수정
-4. ### 글작성
-5. ### 수정 및 삭제
-6. ### 좋아요
-7. ### 팔로우
-8. ### 채팅
-9. ### 알람
+   Access 토큰만 만료되었을 경우 Refresh Token이 존재한다면 Access Token을 다시 만들어 준다.<br/><br/>
+
+   **로그인 미들웨어 함수**
+
+   ```js
+   const loginStatus = (req, res, next) => {
+     const { access_token, refresh_token } = req.session;
+
+     jwt.verify(access_token, process.env.ACCSESS_TOKEN, (err, acc_decoded) => {
+       // access_token expired
+       if (err) {
+         jwt.verify(
+           refresh_token,
+           process.env.REFRESH_TOKEN,
+           (error, ref_decoded) => {
+             if (error) {
+               // 로그인 만료
+               next();
+             } else {
+               // accesstoken 다시 만들기
+               const accessToken = jwt.sign(
+                 {
+                   alg: ref_decoded.alg,
+                   typ: ref_decoded.typ,
+                   userId: ref_decoded.userId,
+                 },
+                 process.env.ACCSESS_TOKEN,
+                 {
+                   expiresIn: "10m",
+                 }
+               );
+               req.session.access_token = accessToken;
+               console.log("토큰 교체 완료");
+               next();
+             }
+           }
+         );
+       } else {
+         console.log("정상 로그인");
+         next();
+       }
+     });
+   };
+   ```
+
+3. ### **프로필 수정**
+
+   ![profile](https://user-images.githubusercontent.com/107897812/194441576-1b4b50cd-f479-47bb-a674-fad2c27d5ebe.png)
+   로그인 후 왼쪽 사이드바 톱니바퀴 모양을 클릭하면 프로필 수정 페이지에 들어갈수 있다.<br/><br/>
+
+   ![middleware](https://user-images.githubusercontent.com/107897812/194441736-5f2fccc2-1cf7-4898-abf3-dd6618440736.png)
+   들어가기전 비밀번호 확인<br/><br/>
+   ![modify](https://user-images.githubusercontent.com/107897812/194441737-702489f4-5f9e-467f-a66a-8f6e0df51cb4.png)
+   아이디와 닉네임을 제외한 것들을 수정할 수 있다.<br/> 회원가입 할때와 똑같이 중복검사, 정규표현식 검사를 실시한다.<br/><br/>
+
+4. ### **글작성**
+
+   ![post](https://user-images.githubusercontent.com/107897812/194442408-4649f295-dd04-48dc-a06e-500c72e7e91b.png)
+   왼쪽 사이드바에 글쓰기 버튼 클릭으로 글쓰기 페이지 접근<br/><br/>
+   ![post](https://user-images.githubusercontent.com/107897812/194443090-eaaf0e9a-3b9f-4159-b33e-b2b370aac149.png)
+   화면 중단 쯤에 있는 사진 모양을 클릭하면 이미지를 올릴수 있다. 이미지를 올리면 왼쪽에 미리보기가 뜬다.<br/>
+   중단에 있는 이미지 미리보기 창 오른쪽 X버튼을 누르면 올린 이미지를 취소할 수 있다.<br/><br/>
+   ![commu post](https://user-images.githubusercontent.com/107897812/194443465-308d9249-c7b6-4b43-90d1-198bff87263f.png)
+   상단 네비게이션 바에 있는 COMMUNITY로 들어가서 글을 쓰면 해쉬태그를 추가하는 칸이 있다.<br/><br/>
+   ![post](https://user-images.githubusercontent.com/107897812/194444770-0a03b304-56b8-4764-bded-c655b2f748a2.png)
+   메인 페이지에 글이 추가된 모습<br/><br/>
+   ![post](https://user-images.githubusercontent.com/107897812/194444977-e2b244e0-0a06-489f-951e-8ba60ad7d71e.png)
+   글을 클릭하면 글로 이동<br/><br/>
+
+5. ### **수정 및 삭제**
+   자기가 쓴 글에만 수정하기 버튼이 활성화 된다.
+   ![modify](https://user-images.githubusercontent.com/107897812/194445223-60c12568-1b24-4b11-ac26-133f26c18111.png)
+   해당 페이지에서 삭제, 수정 가능
+6. ### **좋아요**
+7. ### **댓글**
+8. ### **팔로우**
+9. ### **채팅**
+10. ### **알람**
+
+## **코드 설명**
+
+사이드바 접기, 펴기
+펑션들 소개, 프로필 비밀번호 대조 코드
