@@ -26,25 +26,25 @@
 
 ## 목차
 
-- ### [**목적**](#목적)
-  - #### [기존 커뮤니티와 차별점](#기존-커뮤니티와-차별점)
-- ### [**사용한 기술**](#사용한-기술)
-- ### [**주요 기능**](#주요-기능)
-  - #### [회원가입](#회원가입)
-  - #### [로그인](#로그인)
-  - #### [프로필 수정](#프로필-수정)
-  - #### [글작성](#글작성)
-  - #### [수정 및 삭제](#수정-및-삭제)
-  - #### [좋아요](#좋아요)
-  - #### [댓글](#댓글)
-  - #### [팔로우](#팔로우)
-  - #### [채팅](#채팅)
-  - #### [알람](#알람)
-- ### [**코드 설명**](#코드-설명)
-- ### [**상세 설명**](#상세-설명)
-  - #### [DB구조](#DB구조)
-  - #### [전체 흐름도](#전체-흐름도)
-  - #### [PPT](PPT)
+- ### [**목적**](##목적)
+  - #### [기존 커뮤니티와 차별점](###기존-커뮤니티와-차별점)
+- ### [**사용한 기술**](##사용한-기술)
+- ### [**주요 기능**](##주요-기능)
+  - #### [회원가입](###회원가입)
+  - #### [로그인](###로그인)
+  - #### [프로필 수정](###프로필-수정)
+  - #### [글작성](###글작성)
+  - #### [수정 및 삭제](###수정-및-삭제)
+  - #### [좋아요](###좋아요)
+  - #### [댓글](###댓글)
+  - #### [팔로우](###팔로우)
+  - #### [채팅](###채팅)
+  - #### [알람](###알람)
+- ### [**코드 설명**](##코드-설명)
+- ### [**상세 설명**](##상세-설명)
+  - #### [DB구조](###DB구조)
+  - #### [전체 흐름도](###전체-흐름도)
+  - #### [PPT](###PPT)
 
 ---
 
@@ -72,7 +72,7 @@
 
 ## 주요 기능
 
-### **회원가입**
+1. ### **회원가입**
 
 ![회원입](https://user-images.githubusercontent.com/107897812/194187494-b1158660-9165-4867-8e93-3389aecbf6a4.png)
 
@@ -99,7 +99,7 @@ const emailTest = new RegExp(
 회원가입시 기본 프로필 이미지 7가지 중 랜덤으로 1개를 제공한다.
 ![image](https://user-images.githubusercontent.com/107897812/194188876-92c02d04-6caf-4f45-8ec5-ed5b7955bc91.png)
 
-### **로그인**
+2. ### **로그인**
 
 **Access Token & Refresh Token**<br/>
 로그인 하면 권한을 부여하기 위해 토큰 부여 - express 쿠키에 저장
@@ -147,32 +147,28 @@ const loginStatus = (req, res, next) => {
   jwt.verify(access_token, process.env.ACCSESS_TOKEN, (err, acc_decoded) => {
     // access_token expired
     if (err) {
-      jwt.verify(
-        refresh_token,
-        process.env.REFRESH_TOKEN,
-        (error, ref_decoded) => {
-          if (error) {
-            // 로그인 만료
-            next();
-          } else {
-            // accesstoken 다시 만들기
-            const accessToken = jwt.sign(
-              {
-                alg: ref_decoded.alg,
-                typ: ref_decoded.typ,
-                userId: ref_decoded.userId,
-              },
-              process.env.ACCSESS_TOKEN,
-              {
-                expiresIn: "10m",
-              }
-            );
-            req.session.access_token = accessToken;
-            console.log("토큰 교체 완료");
-            next();
-          }
+      jwt.verify(refresh_token, process.env.REFRESH_TOKEN, (error, ref_decoded) => {
+        if (error) {
+          // 로그인 만료
+          next();
+        } else {
+          // accesstoken 다시 만들기
+          const accessToken = jwt.sign(
+            {
+              alg: ref_decoded.alg,
+              typ: ref_decoded.typ,
+              userId: ref_decoded.userId,
+            },
+            process.env.ACCSESS_TOKEN,
+            {
+              expiresIn: "10m",
+            }
+          );
+          req.session.access_token = accessToken;
+          console.log("토큰 교체 완료");
+          next();
         }
-      );
+      });
     } else {
       console.log("정상 로그인");
       next();
@@ -181,7 +177,7 @@ const loginStatus = (req, res, next) => {
 };
 ```
 
-### **프로필 수정**
+3. ### **프로필 수정**
 
 ![profile](https://user-images.githubusercontent.com/107897812/194441576-1b4b50cd-f479-47bb-a674-fad2c27d5ebe.png)
 로그인 후 왼쪽 사이드바 톱니바퀴 모양을 클릭하면 프로필 수정 페이지에 들어갈수 있다.<br/><br/>
@@ -191,7 +187,7 @@ const loginStatus = (req, res, next) => {
 ![modify](https://user-images.githubusercontent.com/107897812/194441737-702489f4-5f9e-467f-a66a-8f6e0df51cb4.png)
 아이디와 닉네임을 제외한 것들을 수정할 수 있다.<br/> 회원가입 할때와 똑같이 중복검사, 정규표현식 검사를 실시한다.<br/><br/>
 
-### **글작성**
+4. ### **글작성**
 
 ![post](https://user-images.githubusercontent.com/107897812/194442408-4649f295-dd04-48dc-a06e-500c72e7e91b.png)
 왼쪽 사이드바에 글쓰기 버튼 클릭으로 글쓰기 페이지 접근<br/><br/>
@@ -205,21 +201,21 @@ const loginStatus = (req, res, next) => {
 ![post](https://user-images.githubusercontent.com/107897812/194444977-e2b244e0-0a06-489f-951e-8ba60ad7d71e.png)
 글을 클릭하면 글로 이동<br/><br/>
 
-### **수정 및 삭제**
+5. ### **수정 및 삭제**
 
 자기가 쓴 글에만 수정하기 버튼이 활성화 된다.
 ![modify](https://user-images.githubusercontent.com/107897812/194445223-60c12568-1b24-4b11-ac26-133f26c18111.png)
 해당 페이지에서 삭제, 수정 가능
 
-### **좋아요**
+6. ### **좋아요**
 
-### **댓글**
+7. ### **댓글**
 
-### **팔로우**
+8. ### **팔로우**
 
-### **채팅**
+9. ### **채팅**
 
-### **알람**
+10. ### **알람**
 
 ## **코드 설명**
 
