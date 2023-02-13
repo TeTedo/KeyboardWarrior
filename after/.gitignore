@@ -3,4 +3,4 @@ sessions/
 node_modules
 sessions
 *.pem
-.env
+*.env
