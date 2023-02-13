@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "nodemon controller/app.js"
+    "start": "nodemon controller/app.js",
+    "production": "node productApp.js"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
