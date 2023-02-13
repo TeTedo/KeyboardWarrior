@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "nodemon controller/app.js",
-    "production": "node productApp.js",
+    "production": "npx pm2 start controller/app.js",
     "db": "docker-compose up -d"
   },
   "devDependencies": {
