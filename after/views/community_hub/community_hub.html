@@ -8,10 +8,7 @@
   </head>
   <script src="../socket.io/socket.io.js"></script>
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-  <script
-    src="https://kit.fontawesome.com/3264d39625.js"
-    crossorigin="anonymous"
-  ></script>
+  <script src="https://kit.fontawesome.com/3264d39625.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="style.css" />
   <body>
     <div id="mainPageTop">
@@ -32,8 +29,7 @@
           /></a>
         </li>
         <li>
-          <a
-            href="https://www.notion.so/Keyboard-Warrior-888a144aa79f437e8f726910c42617a8"
+          <a href="https://www.notion.so/Keyboard-Warrior-888a144aa79f437e8f726910c42617a8"
             ><img
               class="mainPageLogo_notionLogo"
               src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png"
@@ -71,22 +67,16 @@
               <span>0</span>
             </div>
             <div>
-              <a href="/join/modify/enterance"
-                ><i class="fa-solid fa-gear"></i
-              ></a>
+              <a href="/join/modify/enterance"><i class="fa-solid fa-gear"></i></a>
               <a href="#"><i class="fa-solid fa-bell"></i></a>
               <a href="#"><i class="fa-solid fa-comments"></i></a>
-              <a href="/logout"
-                ><i class="fa-solid fa-right-from-bracket"></i
-              ></a>
+              <a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a>
             </div>
             <a href="/posting">글쓰기</a>
           </div>
         </div>
         <div id="sideBar_top_profileImg">
-          <a href="/profile/<%=user_id%>"
-            ><img src="<%= profile_img%>" alt=""
-          /></a>
+          <a href="/profile/<%=user_id%>"><img src="<%= profile_img%>" alt="" /></a>
         </div>
       </div>
       <!-- 채팅창 추가부분 -->
@@ -155,26 +145,24 @@
   </body>
   <script>
     function noticeDB() {
-      let noticeData = "<%= JSON.stringify(noticeData) %>";
-      noticeData = noticeData.replaceAll("&#34;", '"');
-      noticeData = noticeData.replaceAll("\\", "/");
+      let noticeData = '<%= JSON.stringify(noticeData) %>';
+      noticeData = noticeData.replaceAll('&#34;', '"');
+      noticeData = noticeData.replaceAll('\\', '/');
       noticeData = JSON.parse(noticeData);
       console.log(noticeData);
-      noticeData.forEach((el) => {
+      noticeData.forEach(el => {
         let today = new Date();
         today.setHours(today.getHours() + 9);
-        let time = today.toISOString().replace("T", " ").substring(0, 19);
-        time = time.replace(/...$/, "");
+        let time = today.toISOString().replace('T', ' ').substring(0, 19);
+        time = time.replace(/...$/, '');
 
-        const noticeTag = document.querySelector(
-          ".sideBar_Bottom_notification"
-        );
-        const alarm = document.querySelector(".alarm > span:nth-child(1)");
+        const noticeTag = document.querySelector('.sideBar_Bottom_notification');
+        const alarm = document.querySelector('.alarm > span:nth-child(1)');
         if (el.check == 0) {
-          alarm.style.visibility = "visible";
+          alarm.style.visibility = 'visible';
           alarm.innerText = Number(alarm.innerText) + 1;
         }
-        if (el.what == "follow") {
+        if (el.what == 'follow') {
           noticeTag.innerHTML += `
         <a href="/profile/${el.user_id}"
           ><div class="sideBar_Bottom_notification_notice" data-id="${el.id}">
@@ -187,8 +175,8 @@
           </div></a
         >
         `;
-        } else if (el.what == "comment") {
-          if (el.where == "main") {
+        } else if (el.what == 'comment') {
+          if (el.where == 'main') {
             noticeTag.innerHTML += `
         <a href="/posts/${el.post_id}"
           ><div class="sideBar_Bottom_notification_notice" data-id="${el.id}">
@@ -216,7 +204,7 @@
         `;
           }
         } else {
-          if (el.where == "main") {
+          if (el.where == 'main') {
             noticeTag.innerHTML += `
             <a href="/posts/${el.post_id}"
           ><div class="sideBar_Bottom_notification_notice" data-id="${el.id}">
@@ -250,22 +238,18 @@
     function noticeSocket() {
       const socket = io.connect();
       // 팔로우했을때
-      socket.emit("login", "<%=user_id%>");
-      const alarm = document.querySelector(".alarm > span:nth-child(1)");
-      socket.on(
-        "follow",
-        (user_id, user_nickName, user_profileImg, noticeId) => {
-          alarm.style.visibility = "visible";
-          alarm.innerText = Number(alarm.innerText) + 1;
-          let today = new Date();
-          today.setHours(today.getHours() + 9);
-          let time = today.toISOString().replace("T", " ").substring(0, 19);
-          time = time.replace(/...$/, "");
+      socket.emit('login', '<%=user_id%>');
+      const alarm = document.querySelector('.alarm > span:nth-child(1)');
+      socket.on('follow', (user_id, user_nickName, user_profileImg, noticeId) => {
+        alarm.style.visibility = 'visible';
+        alarm.innerText = Number(alarm.innerText) + 1;
+        let today = new Date();
+        today.setHours(today.getHours() + 9);
+        let time = today.toISOString().replace('T', ' ').substring(0, 19);
+        time = time.replace(/...$/, '');
 
-          const noticeTag = document.querySelector(
-            ".sideBar_Bottom_notification"
-          );
-          noticeTag.innerHTML += `
+        const noticeTag = document.querySelector('.sideBar_Bottom_notification');
+        noticeTag.innerHTML += `
         <a href="/profile/${user_id}"
           ><div class="sideBar_Bottom_notification_notice" data-id="${noticeId}">
             <img src="../${user_profileImg}" alt="" />
@@ -277,25 +261,20 @@
           </div></a
         >
         `;
-        }
-      );
+      });
 
-      socket.on(
-        "like",
-        (id, user_nickName, user_profileImg, where, game_name, noticeId) => {
-          alarm.style.visibility = "visible";
-          alarm.innerText = Number(alarm.innerText) + 1;
-          let today = new Date();
-          today.setHours(today.getHours() + 9);
-          let time = today.toISOString().replace("T", " ").substring(0, 19);
-          time = time.replace(/...$/, "");
+      socket.on('like', (id, user_nickName, user_profileImg, where, game_name, noticeId) => {
+        alarm.style.visibility = 'visible';
+        alarm.innerText = Number(alarm.innerText) + 1;
+        let today = new Date();
+        today.setHours(today.getHours() + 9);
+        let time = today.toISOString().replace('T', ' ').substring(0, 19);
+        time = time.replace(/...$/, '');
 
-          const noticeTag = document.querySelector(
-            ".sideBar_Bottom_notification"
-          );
-          if (where == "main") {
-            // 메인포스트
-            noticeTag.innerHTML += `
+        const noticeTag = document.querySelector('.sideBar_Bottom_notification');
+        if (where == 'main') {
+          // 메인포스트
+          noticeTag.innerHTML += `
         <a href="/posts/${id}"
           ><div class="sideBar_Bottom_notification_notice" data-id="${noticeId}">
             <img src="../${user_profileImg}" alt="" />
@@ -307,9 +286,9 @@
           </div></a
         >
         `;
-          } else {
-            // 커뮤니티 포스트
-            noticeTag.innerHTML += `
+        } else {
+          // 커뮤니티 포스트
+          noticeTag.innerHTML += `
         <a href="/post/${game_name}/${id}"
           ><div class="sideBar_Bottom_notification_notice" data-id="${noticeId}">
             <img src="../${user_profileImg}" alt="" />
@@ -321,26 +300,21 @@
           </div></a
         >
         `;
-          }
         }
-      );
+      });
 
-      socket.on(
-        "comment",
-        (id, user_nickName, user_profileImg, where, game_name, noticeId) => {
-          alarm.style.visibility = "visible";
-          alarm.innerText = Number(alarm.innerText) + 1;
-          let today = new Date();
-          today.setHours(today.getHours() + 9);
-          let time = today.toISOString().replace("T", " ").substring(0, 19);
-          time = time.replace(/...$/, "");
+      socket.on('comment', (id, user_nickName, user_profileImg, where, game_name, noticeId) => {
+        alarm.style.visibility = 'visible';
+        alarm.innerText = Number(alarm.innerText) + 1;
+        let today = new Date();
+        today.setHours(today.getHours() + 9);
+        let time = today.toISOString().replace('T', ' ').substring(0, 19);
+        time = time.replace(/...$/, '');
 
-          const noticeTag = document.querySelector(
-            ".sideBar_Bottom_notification"
-          );
-          if (where == "main") {
-            // 메인포스트
-            noticeTag.innerHTML += `
+        const noticeTag = document.querySelector('.sideBar_Bottom_notification');
+        if (where == 'main') {
+          // 메인포스트
+          noticeTag.innerHTML += `
         <a href="/posts/${id}"
           ><div class="sideBar_Bottom_notification_notice" data-id="${noticeId}">
             <img src="../${user_profileImg}" alt="" />
@@ -352,9 +326,9 @@
           </div></a
         >
         `;
-          } else {
-            // 커뮤니티 포스트
-            noticeTag.innerHTML += `
+        } else {
+          // 커뮤니티 포스트
+          noticeTag.innerHTML += `
         <a href="/post/${game_name}/${id}"
           ><div class="sideBar_Bottom_notification_notice" data-id="${noticeId}">
             <img src="../${user_profileImg}" alt="" />
@@ -366,35 +340,28 @@
           </div></a
         >
         `;
-          }
         }
-      );
+      });
     }
     noticeSocket();
     function notification() {
-      const bell = document.querySelector(".fa-bell");
-      const notificationTag = document.querySelector(
-        ".sideBar_Bottom_notification"
-      );
-      const alarmNum = document.querySelector(".alarm > span:nth-child(1)");
+      const bell = document.querySelector('.fa-bell');
+      const notificationTag = document.querySelector('.sideBar_Bottom_notification');
+      const alarmNum = document.querySelector('.alarm > span:nth-child(1)');
       bell.onclick = function () {
-        notificationTag.classList.toggle("noticeOn");
-        document
-          .querySelector(".sideBar_Bottom_chat")
-          .classList.remove("chatOn");
-        if (notificationTag.classList.contains("noticeOn")) {
-          alarmNum.style.visibility = "hidden";
+        notificationTag.classList.toggle('noticeOn');
+        document.querySelector('.sideBar_Bottom_chat').classList.remove('chatOn');
+        if (notificationTag.classList.contains('noticeOn')) {
+          alarmNum.style.visibility = 'hidden';
           alarmNum.innerText = 0;
-          const noticeDataTag = document.querySelectorAll(
-            ".sideBar_Bottom_notification_notice"
-          );
+          const noticeDataTag = document.querySelectorAll('.sideBar_Bottom_notification_notice');
           const postid = [];
-          noticeDataTag.forEach((el) => {
+          noticeDataTag.forEach(el => {
             postid.push(el.dataset.id);
           });
           $.ajax({
-            url: "/notification",
-            method: "post",
+            url: '/notification',
+            method: 'post',
             data: { postid },
           });
         }
@@ -403,11 +370,11 @@
     notification();
     function chatDataBase(callback) {
       //데이터베이스에 있는 채팅 창 만들어주기
-      const chatTag = document.querySelector(".sideBar_Bottom_chat");
-      let chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
-      let chatLog = "<%=JSON.stringify(chatObj)%>";
-      chatLog = chatLog.replaceAll("&#34;", '"');
-      chatLog = chatLog.replaceAll("\\", "/");
+      const chatTag = document.querySelector('.sideBar_Bottom_chat');
+      let chatRoomTag = document.querySelectorAll('.sideBar_Bottom_chatRoom');
+      let chatLog = '<%=JSON.stringify(chatObj)%>';
+      chatLog = chatLog.replaceAll('&#34;', '"');
+      chatLog = chatLog.replaceAll('\\', '/');
       chatLog = JSON.parse(chatLog);
       if (!chatLog) return;
       chatLog.forEach((el, index) => {
@@ -416,7 +383,7 @@
         const opponent = el.speaker || el.listener;
         let checkRoom = false;
         //만들어져있으면 checkRoom에 true주기
-        chatRoomTag.forEach((elem) => {
+        chatRoomTag.forEach(elem => {
           if (elem.dataset.who == opponent) {
             return (checkRoom = true);
           }
@@ -451,7 +418,7 @@
             </div>
             `;
         //태그 받아온거 초기화
-        chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
+        chatRoomTag = document.querySelectorAll('.sideBar_Bottom_chatRoom');
       });
 
       //만들어진 채팅방에 콜백으로 값 넣기
@@ -459,10 +426,10 @@
     }
 
     function chatDataCallBack(chatLog) {
-      let chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
+      let chatRoomTag = document.querySelectorAll('.sideBar_Bottom_chatRoom');
       // 내 프로필사진
-      const profile_img = "<%= profile_img%>";
-      chatLog.forEach((el) => {
+      const profile_img = '<%= profile_img%>';
+      chatLog.forEach(el => {
         //시간
         let time = new Date(el.createdAt);
         if (time.getMinutes() < 10) {
@@ -471,15 +438,13 @@
           time = `${time.getHours()}:${time.getMinutes()}`;
         }
         const opponent = el.speaker || el.listener;
-        chatRoomTag.forEach((elem) => {
+        chatRoomTag.forEach(elem => {
           // 상대방과의 채팅방 찾기
           if (elem.dataset.who == opponent) {
             //상대방이 speaker일떄
             if (opponent == el.speaker) {
-              elem.querySelector(".chatMessage").innerText = el.message;
-              elem.querySelector(
-                ".sideBar_Bottom_chatRoom_middle"
-              ).innerHTML += `
+              elem.querySelector('.chatMessage').innerText = el.message;
+              elem.querySelector('.sideBar_Bottom_chatRoom_middle').innerHTML += `
             <div class="fullchatMessage leftChat">
               <img src="${el.profile_img}" alt="" />
               <div>${el.message}</div>
@@ -489,10 +454,8 @@
             }
             //상대방이 listener 일때
             else {
-              elem.querySelector(".chatMessage").innerText = el.message;
-              elem.querySelector(
-                ".sideBar_Bottom_chatRoom_middle"
-              ).innerHTML += `
+              elem.querySelector('.chatMessage').innerText = el.message;
+              elem.querySelector('.sideBar_Bottom_chatRoom_middle').innerHTML += `
             <div class="fullchatMessage rightChat">
               <img src="${profile_img}" alt="" />
               <div>${el.message}</div>
@@ -505,64 +468,56 @@
       });
     }
     function chat() {
-      const chatTag = document.querySelector(".sideBar_Bottom_chat");
-      let chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
+      const chatTag = document.querySelector('.sideBar_Bottom_chat');
+      let chatRoomTag = document.querySelectorAll('.sideBar_Bottom_chatRoom');
 
       //채팅이미지 누르면 채팅창 나오게 하기
-      document.querySelector(".fa-comments").onclick = function () {
+      document.querySelector('.fa-comments').onclick = function () {
         //notification 닫기
-        document
-          .querySelector(".sideBar_Bottom_notification ")
-          .classList.remove("noticeOn");
+        document.querySelector('.sideBar_Bottom_notification ').classList.remove('noticeOn');
         //채팅창 여닫이
-        chatTag.classList.toggle("chatOn");
+        chatTag.classList.toggle('chatOn');
         // 열때 알람 안보이게하기
-        if (chatTag.classList.contains("chatOn")) {
+        if (chatTag.classList.contains('chatOn')) {
           // display none으로 하면 위치가 바뀜
-          document.querySelector(
-            ".alarm > span:nth-child(2)"
-          ).style.visibility = "hidden";
-          document.querySelector(".alarm > span:nth-child(2)").innerText = 0;
+          document.querySelector('.alarm > span:nth-child(2)').style.visibility = 'hidden';
+          document.querySelector('.alarm > span:nth-child(2)').innerText = 0;
         }
       };
       // 채팅관련
       chatRoomTag.forEach((el, index) => {
         //채팅창 클릭시 채팅창 커지고 데이터 담기
-        el.querySelector(".sideBar_Bottom_chatRoom_preView").onclick =
-          function () {
-            el.querySelector(".sideBar_Bottom_chatRoom_preView").style.display =
-              "none";
-            el.querySelector(".sideBar_Bottom_chatRoom_main").style.display =
-              "block";
-            el.querySelector(".sendMSG").focus();
-            // 스크롤바 젤 아래로 내리기
-            el.querySelector(".sideBar_Bottom_chatRoom_middle").scrollTop =
-              el.querySelector(".sideBar_Bottom_chatRoom_middle").scrollHeight;
-          };
+        el.querySelector('.sideBar_Bottom_chatRoom_preView').onclick = function () {
+          el.querySelector('.sideBar_Bottom_chatRoom_preView').style.display = 'none';
+          el.querySelector('.sideBar_Bottom_chatRoom_main').style.display = 'block';
+          el.querySelector('.sendMSG').focus();
+          // 스크롤바 젤 아래로 내리기
+          el.querySelector('.sideBar_Bottom_chatRoom_middle').scrollTop = el.querySelector(
+            '.sideBar_Bottom_chatRoom_middle'
+          ).scrollHeight;
+        };
         // - 버튼 누르면 미리보기창 띄우기
-        el.querySelector(".fa-minus").onclick = function () {
-          el.querySelector(".sideBar_Bottom_chatRoom_preView").style.display =
-            "flex";
-          el.querySelector(".sideBar_Bottom_chatRoom_main").style.display =
-            "none";
+        el.querySelector('.fa-minus').onclick = function () {
+          el.querySelector('.sideBar_Bottom_chatRoom_preView').style.display = 'flex';
+          el.querySelector('.sideBar_Bottom_chatRoom_main').style.display = 'none';
         };
       });
     }
     function enterSend() {
       const socket = io.connect();
-      const chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
-      chatRoomTag.forEach((el) => {
+      const chatRoomTag = document.querySelectorAll('.sideBar_Bottom_chatRoom');
+      chatRoomTag.forEach(el => {
         el.onkeydown = function (e) {
-          el.querySelector(".sendMSG").onkeyup = function (e) {
+          el.querySelector('.sendMSG').onkeyup = function (e) {
             if (e.keyCode == 13) {
-              if (el.querySelector(".sendMSG").value != "") {
+              if (el.querySelector('.sendMSG').value != '') {
                 // 서버로 누가 누구한테 어떤걸 보냈는지 전송
-                const speaker = "<%= user_id%>";
+                const speaker = '<%= user_id%>';
                 const listener = el.dataset.who;
-                const message = el.querySelector(".sendMSG").value;
-                socket.emit("chat", speaker, listener, message);
-                el.querySelector(".sendMSG").value = "";
-                el.querySelector(".sendMSG").focus();
+                const message = el.querySelector('.sendMSG').value;
+                socket.emit('chat', speaker, listener, message);
+                el.querySelector('.sendMSG').value = '';
+                el.querySelector('.sendMSG').focus();
               }
             }
           };
@@ -575,27 +530,25 @@
       const socket = io.connect();
       // 메시지 보내기
       // 개인 방에 넣어주기
-      socket.emit("login", "<%=user_id%>");
-      const sideBar = document.querySelector("#sideBar");
+      socket.emit('login', '<%=user_id%>');
+      const sideBar = document.querySelector('#sideBar');
       //클릭하면 메시지보내기
       sideBar.onclick = function (e) {
-        if (e.target.classList.contains("fa-comment-dots")) {
+        if (e.target.classList.contains('fa-comment-dots')) {
           // 제이쿼리로 부모를 잡음 => 부모요소 전체를 잡기 위함
           const parent = $(e.target).parents()[2];
-          if (parent.querySelector(".sendMSG").value != "") {
+          if (parent.querySelector('.sendMSG').value != '') {
             // 서버로 누가 누구한테 어떤걸 보냈는지 전송
-            const speaker = "<%= user_id%>";
+            const speaker = '<%= user_id%>';
             const listener = parent.dataset.who;
-            const message = parent.querySelector(".sendMSG").value;
-            socket.emit("chat", speaker, listener, message);
-            parent.querySelector(".sendMSG").value = "";
-            parent.querySelector(".sendMSG").focus();
+            const message = parent.querySelector('.sendMSG').value;
+            socket.emit('chat', speaker, listener, message);
+            parent.querySelector('.sendMSG').value = '';
+            parent.querySelector('.sendMSG').focus();
 
             //스크롤바 맨 아래로 내리기
-            parent.querySelector(".sideBar_Bottom_chatRoom_middle").scrollTop =
-              parent.querySelector(
-                ".sideBar_Bottom_chatRoom_middle"
-              ).scrollHeight;
+            parent.querySelector('.sideBar_Bottom_chatRoom_middle').scrollTop =
+              parent.querySelector('.sideBar_Bottom_chatRoom_middle').scrollHeight;
           }
         }
       };
@@ -603,27 +556,20 @@
       //엔터키로 메시지 보내기
       enterSend();
       //받는사람일때 받는곳
-      socket.on("toListener", toListener);
+      socket.on('toListener', toListener);
       //내가 보낸사람일때 서버로부터 받는곳
-      socket.on("toSpeaker", toSpeaker);
+      socket.on('toSpeaker', toSpeaker);
     }
 
     // socket 메시지 받는 함수
-    function toListener(
-      speaker,
-      listener,
-      message,
-      speakerImg,
-      speakerNickName,
-      time
-    ) {
-      speakerImg = "../" + speakerImg;
+    function toListener(speaker, listener, message, speakerImg, speakerNickName, time) {
+      speakerImg = '../' + speakerImg;
       //채팅 알람 숫자 올리기
-      const alarm = document.querySelector(".alarm > span:nth-child(2)");
+      const alarm = document.querySelector('.alarm > span:nth-child(2)');
       alarm.innerText = Number(alarm.innerText) + 1;
-      let chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
+      let chatRoomTag = document.querySelectorAll('.sideBar_Bottom_chatRoom');
       if (chatRoomTag.length == 0) {
-        document.querySelector(".sideBar_Bottom_chat").innerHTML += `
+        document.querySelector('.sideBar_Bottom_chat').innerHTML += `
             <div class="sideBar_Bottom_chatRoom" data-who="${speaker}">
               <div class="sideBar_Bottom_chatRoom_preView">
                 <img src="${speakerImg}" alt="" />
@@ -661,14 +607,14 @@
       } else {
         //채팅방 있는지 확인
         let whoArr = [];
-        chatRoomTag.forEach((el) => {
+        chatRoomTag.forEach(el => {
           whoArr.push(el.dataset.who);
         });
-        chatRoomTag.forEach((el) => {
+        chatRoomTag.forEach(el => {
           //채팅방 있을떄
           new Promise((resolve, reject) => {
             if (el.dataset.who == speaker) {
-              el.querySelector(".sideBar_Bottom_chatRoom_middle").innerHTML += `
+              el.querySelector('.sideBar_Bottom_chatRoom_middle').innerHTML += `
           <div class="fullchatMessage leftChat">
             <img src="${speakerImg}"" alt="" />
             <div>${message}</div>
@@ -676,21 +622,20 @@
           </div>
           `;
               //스크롤바 맨 아래로 내리기
-              el.querySelector(".sideBar_Bottom_chatRoom_middle").scrollTop =
-                el.querySelector(
-                  ".sideBar_Bottom_chatRoom_middle"
-                ).scrollHeight;
+              el.querySelector('.sideBar_Bottom_chatRoom_middle').scrollTop = el.querySelector(
+                '.sideBar_Bottom_chatRoom_middle'
+              ).scrollHeight;
 
               // 미리보기창에 마지막문자 띄우기
-              el.querySelector(".chatMessage").innerText = message;
+              el.querySelector('.chatMessage').innerText = message;
               return;
             } else {
-              resolve("채팅방 없음");
+              resolve('채팅방 없음');
             }
           }).then(() => {
             //채팅방 없을때
             if (whoArr.indexOf(speaker) == -1) {
-              document.querySelector(".sideBar_Bottom_chat").innerHTML += `
+              document.querySelector('.sideBar_Bottom_chat').innerHTML += `
           <div class="sideBar_Bottom_chatRoom" data-who="${speaker}">
             <div class="sideBar_Bottom_chatRoom_preView">
               <img src="${speakerImg}" alt="" />
@@ -734,11 +679,11 @@
     }
 
     function toSpeaker(speaker, listener, message, speakerImg, time) {
-      speakerImg = "../" + speakerImg;
-      let chatRoomTag = document.querySelectorAll(".sideBar_Bottom_chatRoom");
-      chatRoomTag.forEach((el) => {
+      speakerImg = '../' + speakerImg;
+      let chatRoomTag = document.querySelectorAll('.sideBar_Bottom_chatRoom');
+      chatRoomTag.forEach(el => {
         if (el.dataset.who == listener) {
-          el.querySelector(".sideBar_Bottom_chatRoom_middle").innerHTML += `
+          el.querySelector('.sideBar_Bottom_chatRoom_middle').innerHTML += `
               <div class="fullchatMessage rightChat">
                 <img src="${speakerImg}" alt="" />
                 <div>${message}</div>
@@ -746,11 +691,12 @@
               </div>
               `;
           //스크롤바 맨 아래로 내리기
-          el.querySelector(".sideBar_Bottom_chatRoom_middle").scrollTop =
-            el.querySelector(".sideBar_Bottom_chatRoom_middle").scrollHeight;
+          el.querySelector('.sideBar_Bottom_chatRoom_middle').scrollTop = el.querySelector(
+            '.sideBar_Bottom_chatRoom_middle'
+          ).scrollHeight;
 
           // 미리보기창에 마지막문자 띄우기
-          el.querySelector(".chatMessage").innerText = message;
+          el.querySelector('.chatMessage').innerText = message;
         }
       });
       return;
@@ -762,35 +708,34 @@
   </script>
   <!-- <script src="community_hub.js"></script> -->
   <script>
-    const contentsWrap = document.getElementById("contentsWrap");
-    const mainContent = document.getElementById("mainContent");
-    const mainContentWrap = document.getElementById("mainContentWrap");
-    const mainPosts = document.querySelectorAll(".mainPost");
-    const mainTitles = document.querySelectorAll(".mainTitle a");
-    const scrollHelper = document.querySelector(".scrollHelper");
-    const scrollHelperText = document.querySelector(".scrollHelper_text");
-    const scrollHelperIcon = document.querySelector(".scrollHelper_icon");
-    const body = document.querySelector("body");
+    const contentsWrap = document.getElementById('contentsWrap');
+    const mainContent = document.getElementById('mainContent');
+    const mainContentWrap = document.getElementById('mainContentWrap');
+    const mainPosts = document.querySelectorAll('.mainPost');
+    const mainTitles = document.querySelectorAll('.mainTitle a');
+    const scrollHelper = document.querySelector('.scrollHelper');
+    const scrollHelperText = document.querySelector('.scrollHelper_text');
+    const scrollHelperIcon = document.querySelector('.scrollHelper_icon');
+    const body = document.querySelector('body');
 
     // 슬라이드 이벤트
     let move = 0;
     let isOnScroll = true;
-    contentsWrap.onwheel = (e) => slide(e);
+    contentsWrap.onwheel = e => slide(e);
     function slide(e) {
       offAnimation(); // 스크롤핼퍼 끄기
       contentsWrap.onwheel = null;
-      const maxScroll =
-        mainContentWrap.offsetWidth - mainContent.offsetWidth + 2;
+      const maxScroll = mainContentWrap.offsetWidth - mainContent.offsetWidth + 2;
       if (isOnScroll) {
         isOnScroll = false;
-        setTimeout(
-          () => ((isOnScroll = true), (contentsWrap.onwheel = (e) => slide(e))),
-          500
-        );
+        setTimeout(() => {
+          isOnScroll = true;
+          contentsWrap.onwheel = e => slide(e);
+        }, 500);
         move += e.wheelDelta < 0 ? 485 : -485;
         move = move < 0 ? maxScroll : move;
         move = move > maxScroll ? 0 : move;
-        mainContent.scrollTo({ left: move, behavior: "smooth" });
+        mainContent.scrollTo({ left: move, behavior: 'smooth' });
       } else if (!isOnScroll) {
         return;
       }
@@ -798,21 +743,17 @@
 
     // 비디오 슬라이드 재생 중단 기능
     function controlVideo(e) {
-      mainPosts.forEach((post) => {
+      mainPosts.forEach(post => {
         if (
-          post.getBoundingClientRect().left -
-            mainContent.getBoundingClientRect().left >=
-            30 &&
-          post.getBoundingClientRect().left -
-            mainContent.getBoundingClientRect().left <=
-            520
+          post.getBoundingClientRect().left - mainContent.getBoundingClientRect().left >= 30 &&
+          post.getBoundingClientRect().left - mainContent.getBoundingClientRect().left <= 520
         ) {
-          if (post.querySelector("video")) {
-            post.querySelector("video").play();
+          if (post.querySelector('video')) {
+            post.querySelector('video').play();
           }
         } else {
-          if (post.querySelector("video")) {
-            post.querySelector("video").pause();
+          if (post.querySelector('video')) {
+            post.querySelector('video').pause();
           }
         }
       });
@@ -832,17 +773,17 @@
         if (callNow) func.apply(context, args);
       };
     }
-    mainContent.addEventListener("scroll", debounce(controlVideo, 20, false));
+    mainContent.addEventListener('scroll', debounce(controlVideo, 20, false));
 
     // 게임제목 클릭시 커뮤니티로 이동
-    mainTitles.forEach((el) => {
+    mainTitles.forEach(el => {
       const title = el.innerText;
       el.onclick = () => {
         location.href = `/community/${el.dataset.link}`;
       };
     });
     // 포스트 클릭시 커뮤니티로 이동
-    mainPosts.forEach((post) => {
+    mainPosts.forEach(post => {
       post.onclick = () => {
         location.href = `/community/${post.dataset.link}`;
       };
@@ -850,20 +791,20 @@
 
     // 스크롤헬퍼 이벤트
     function offAnimation() {
-      scrollHelper.classList.remove("active");
-      scrollHelperText.classList.remove("active");
-      scrollHelperIcon.classList.remove("active");
+      scrollHelper.classList.remove('active');
+      scrollHelperText.classList.remove('active');
+      scrollHelperIcon.classList.remove('active');
     } // 이거 스크롤기능에도 넣어줘야함(스크롤하면 꺼지게)
     function onAnimation() {
-      body.classList.add("block"); // 작은화면에서 슬라이드할때 윈도우 스크롤 막기용
-      scrollHelper.classList.add("active");
-      scrollHelperText.classList.add("active");
-      scrollHelperIcon.classList.add("active");
+      body.classList.add('block'); // 작은화면에서 슬라이드할때 윈도우 스크롤 막기용
+      scrollHelper.classList.add('active');
+      scrollHelperText.classList.add('active');
+      scrollHelperIcon.classList.add('active');
     }
     contentsWrap.onmouseenter = () => onAnimation();
     // contentsWrap.onmousemove = () => onAnimation();
     contentsWrap.onmouseleave = () => {
-      body.classList.remove("block");
+      body.classList.remove('block');
       offAnimation();
     };
     contentsWrap.onclick = () => offAnimation();

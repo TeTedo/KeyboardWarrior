@@ -161,16 +161,16 @@ const loginStatus = (req, res, next) => {
             },
             process.env.ACCSESS_TOKEN,
             {
-              expiresIn: "10m",
+              expiresIn: '10m',
             }
           );
           req.session.access_token = accessToken;
-          console.log("토큰 교체 완료");
+          console.log('토큰 교체 완료');
           next();
         }
       });
     } else {
-      console.log("정상 로그인");
+      console.log('정상 로그인');
       next();
     }
   });
@@ -209,13 +209,69 @@ const loginStatus = (req, res, next) => {
 
 6. ### **좋아요**
 
+좋아요를 누르지 않은 게시물은 검으색 하트로 보이고
+![like detail](https://user-images.githubusercontent.com/107898015/217189411-6042af32-7c2b-494f-9821-45bf3d8b840c.png)
+검은색 하트를 누르면 빨간색으로 바뀌면서 좋아요 갯수가 올라간다
+![like](https://user-images.githubusercontent.com/107898015/217189037-69809f0a-7e8c-4fc3-b927-4676957251ea.png)
+이는 게시글 상세페이지에도 적용된다.
+![like detail](https://user-images.githubusercontent.com/107898015/217189201-a09c5777-0742-4561-a51d-6d06c6f8b23e.png)
+
 7. ### **댓글**
+
+   글 상세페이지에서 댓글을 작성할수 있다. <br>
+   본인이 작성한 댓글은 휴지통 아이콘을 클릭하여 삭제할수 있다.
+   <img width="1512" alt="image" src="https://user-images.githubusercontent.com/107898015/218322432-204a8baa-98c8-47b2-88a4-862f17ed7a0a.png">
 
 8. ### **팔로우**
 
-9. ### **채팅**
+   사람모양의 팔로잉 아이콘을 누르면 상대팡의 팔로워, 나의 팔로잉 숫자가 1 늘어남과 함께 팔로잉 아이콘 모양이 변경된다.<br>
+   ![image](https://user-images.githubusercontent.com/107898015/218349103-59f05b55-c459-42a7-9778-c1cf180f78f1.png)
+   ![image](https://user-images.githubusercontent.com/107898015/218349226-399de153-9ab0-4170-b2bc-138bbcef6061.png)
+   이미 팔로잉 하고있는 대상의 게시글에 활성화된 언팔로잉 버튼을 누르면 팔로잉 숫자가 다시 내려가면서 언팔로우 된다.
 
-10. ### **알람**
+9. ### **검색**
+
+   커뮤니티 게시판에서는 글 검색기능이 있다.<br>
+   검색창에서 직접 키워드를 검색하게 되면,<br>
+   해당 키워드를 해시태그 혹은 게시글 내용에 포함하고 있는 글만 검색된다.<br>
+   <img width="1506" alt="image" src="https://user-images.githubusercontent.com/107898015/218347279-f7433cb9-ca68-4f9f-b75b-577c1ade42e4.png">
+   또한 원하는 해시태그를 클릭하게 되면 해당 해시태그가 달린 글들만 따로 분류된다.
+   <img width="1511" alt="image" src="https://user-images.githubusercontent.com/107898015/218347372-853385a0-7955-4e7a-b1f9-cc968ac39fcc.png">
+
+10. ### **스크롤**
+    일정갯수 이상의 게시글 및 게시판들의 페이지네이셔닝은 스크롤을 통해서 가능하도록 하였다.<br>
+    가로스크롤이 힘든 유저의 환경을 고려하여, 상하 스크롤이 가로스크롤로 인식 되도록 하는 코드를 구현하였다.
+    ![image](https://user-images.githubusercontent.com/107898015/218350437-c8edbbe6-c99e-4f6d-a1b5-e6ca311248ca.png)
+
+```js
+let move = 0;
+let isOnScroll = true;
+
+contentsWrap.onwheel = e => slide(e);
+
+function slide(e) {
+  offAnimation();
+  contentsWrap.onwheel = null;
+  const maxScroll = mainContentWrap.offsetWidth - mainContent.offsetWidth + 2;
+  if (isOnScroll) {
+    isOnScroll = false;
+    setTimeout(() => {
+      isOnScroll = true;
+      contentsWrap.onwheel = e => slide(e);
+    }, 500);
+    move += e.wheelDelta < 0 ? 485 : -485;
+    move = move < 0 ? maxScroll : move;
+    move = move > maxScroll ? 0 : move;
+    mainContent.scrollTo({ left: move, behavior: 'smooth' });
+  } else if (!isOnScroll) {
+    return;
+  }
+}
+```
+
+11. ### **채팅**
+
+12. ### **알람**
 
 ## **코드 설명**
 
