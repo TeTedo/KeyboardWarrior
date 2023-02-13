@@ -3,7 +3,7 @@ const { sequelize } = require("../model");
 const dot = require("dotenv").config();
 const config = {
   dev: {
-    username: "root",
+    username: "keboard_warrior",
     password: process.env.DB_PASSWORD,
     database: "keboard_warrior",
     host: "localhost",
@@ -18,7 +18,7 @@ const config = {
     },
   },
   prod: {
-    username: "root",
+    username: "keboard_warrior",
     password: process.env.DB_PASSWORD,
     database: "keboard_warrior",
     host: "localhost",
