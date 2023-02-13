@@ -1,7 +1,8 @@
 {
   "scripts": {
     "start": "nodemon controller/app.js",
-    "production": "node productApp.js"
+    "production": "node productApp.js",
+    "db": "docker-compose up -d"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
