@@ -26,25 +26,23 @@
 
 ## 목차
 
-- ### [**목적**](#목적)
-  - #### [기존 커뮤니티와 차별점](#기존-커뮤니티와-차별점)
-- ### [**사용한 기술**](#사용한-기술)
-- ### [**주요 기능**](#주요-기능)
-  - #### [회원가입](#1-회원가입)
-  - #### [로그인](#2-로그인)
-  - #### [프로필 수정](#3-프로필-수정)
-  - #### [글작성](#4-글작성)
-  - #### [수정 및 삭제](#수정-및-삭제)
-  - #### [좋아요](#좋아요)
-  - #### [댓글](#댓글)
-  - #### [팔로우](#팔로우)
-  - #### [채팅](#채팅)
-  - #### [알람](#알람)
-- ### [**코드 설명**](#코드-설명)
-- ### [**상세 설명**](#상세-설명)
-  - #### [DB구조](#db구조)
-  - #### [전체 흐름도](#전체-흐름도)
-  - #### [PPT](#PPT)
+- ### [**목적**](#목적-1)
+  - #### [기존 커뮤니티와 차별점](#기존-커뮤니티와-차별점-1)
+- ### [**사용한 기술**](#사용한-기술-1)
+- ### [**주요 기능**](#주요-기능-1)
+  - #### [회원가입](#회원가입-1)
+  - #### [로그인](#로그인-1)
+  - #### [프로필 수정](#프로필-수정-1)
+  - #### [글작성](#글작성-1)
+  - #### [수정 및 삭제](#수정-및-삭제-1)
+  - #### [좋아요](#좋아요-1)
+  - #### [댓글](#댓글-1)
+  - #### [팔로우](#팔로우-1)
+  - #### [채팅](#채팅-1)
+  - #### [알람](#알람-1)
+- ### [**상세 설명**](#상세-설명-1)
+  - #### [DB구조](#DB구조-1)
+  - #### [PPT](#PPT-1)
 
 ---
 
@@ -147,30 +145,34 @@ const loginStatus = (req, res, next) => {
   jwt.verify(access_token, process.env.ACCSESS_TOKEN, (err, acc_decoded) => {
     // access_token expired
     if (err) {
-      jwt.verify(refresh_token, process.env.REFRESH_TOKEN, (error, ref_decoded) => {
-        if (error) {
-          // 로그인 만료
-          next();
-        } else {
-          // accesstoken 다시 만들기
-          const accessToken = jwt.sign(
-            {
-              alg: ref_decoded.alg,
-              typ: ref_decoded.typ,
-              userId: ref_decoded.userId,
-            },
-            process.env.ACCSESS_TOKEN,
-            {
-              expiresIn: '10m',
-            }
-          );
-          req.session.access_token = accessToken;
-          console.log('토큰 교체 완료');
-          next();
+      jwt.verify(
+        refresh_token,
+        process.env.REFRESH_TOKEN,
+        (error, ref_decoded) => {
+          if (error) {
+            // 로그인 만료
+            next();
+          } else {
+            // accesstoken 다시 만들기
+            const accessToken = jwt.sign(
+              {
+                alg: ref_decoded.alg,
+                typ: ref_decoded.typ,
+                userId: ref_decoded.userId,
+              },
+              process.env.ACCSESS_TOKEN,
+              {
+                expiresIn: "10m",
+              }
+            );
+            req.session.access_token = accessToken;
+            console.log("토큰 교체 완료");
+            next();
+          }
         }
-      });
+      );
     } else {
-      console.log('정상 로그인');
+      console.log("정상 로그인");
       next();
     }
   });
@@ -247,7 +249,7 @@ const loginStatus = (req, res, next) => {
 let move = 0;
 let isOnScroll = true;
 
-contentsWrap.onwheel = e => slide(e);
+contentsWrap.onwheel = (e) => slide(e);
 
 function slide(e) {
   offAnimation();
@@ -257,12 +259,12 @@ function slide(e) {
     isOnScroll = false;
     setTimeout(() => {
       isOnScroll = true;
-      contentsWrap.onwheel = e => slide(e);
+      contentsWrap.onwheel = (e) => slide(e);
     }, 500);
     move += e.wheelDelta < 0 ? 485 : -485;
     move = move < 0 ? maxScroll : move;
     move = move > maxScroll ? 0 : move;
-    mainContent.scrollTo({ left: move, behavior: 'smooth' });
+    mainContent.scrollTo({ left: move, behavior: "smooth" });
   } else if (!isOnScroll) {
     return;
   }
@@ -271,9 +273,26 @@ function slide(e) {
 
 11. ### **채팅**
 
+<img width="300" alt="image" src="https://user-images.githubusercontent.com/107897812/219322428-d2516ff6-e2a0-4a0c-81f1-e64cffc58bae.png">
+<img width="300" alt="image" src="https://user-images.githubusercontent.com/107897812/219322406-d39a564d-ed9a-4608-85c7-133dc1ee8d7b.png">
+
+socket을 이용한 실시간 채팅 구현
+
 12. ### **알람**
 
-## **코드 설명**
+<img width="300" alt="image" src="https://user-images.githubusercontent.com/107897812/219322799-e499d6d2-9ca3-472f-8378-99ef6d90556a.png">
 
-사이드바 접기, 펴기
-펑션들 소개, 프로필 비밀번호 대조 코드
+팔로우, 좋아요, 댓글 알림기능
+
+보지 않았던 알림 갯수만큼 숫자 표시
+
+해당 알람 클릭시 팔로우-> 해당유저 프로필페이지 이동, 좋아요,댓글 -> 해당 게시글로 이동
+
+## **상세 설명**
+
+1. ### **DB구조**
+
+![image](https://user-images.githubusercontent.com/107897812/219322026-7cd95be5-0532-48a4-8fbf-9473d3bc39a9.png)
+
+2. ### **PPT**
+   [발표PPT](https://github.com/TeTedo/KeyboardWarrior-ejs-SNS/files/10754170/ppt.pptx)

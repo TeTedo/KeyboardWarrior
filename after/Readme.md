@@ -40,9 +40,8 @@
   - #### [팔로우](#팔로우-1)
   - #### [채팅](#채팅-1)
   - #### [알람](#알람-1)
-- ### [**코드 설명**](#코드-설명-1)
 - ### [**상세 설명**](#상세-설명-1)
-  - #### [DB구조](#db구조-1)
+  - #### [DB구조](#DB구조-1)
   - #### [PPT](#PPT-1)
 
 ---
@@ -274,9 +273,26 @@ function slide(e) {
 
 11. ### **채팅**
 
+<img width="300" alt="image" src="https://user-images.githubusercontent.com/107897812/219322428-d2516ff6-e2a0-4a0c-81f1-e64cffc58bae.png">
+<img width="300" alt="image" src="https://user-images.githubusercontent.com/107897812/219322406-d39a564d-ed9a-4608-85c7-133dc1ee8d7b.png">
+
+socket을 이용한 실시간 채팅 구현
+
 12. ### **알람**
 
-## **코드 설명**
+<img width="300" alt="image" src="https://user-images.githubusercontent.com/107897812/219322799-e499d6d2-9ca3-472f-8378-99ef6d90556a.png">
 
-사이드바 접기, 펴기
-펑션들 소개, 프로필 비밀번호 대조 코드
+팔로우, 좋아요, 댓글 알림기능
+
+보지 않았던 알림 갯수만큼 숫자 표시
+
+해당 알람 클릭시 팔로우-> 해당유저 프로필페이지 이동, 좋아요,댓글 -> 해당 게시글로 이동
+
+## **상세 설명**
+
+1. ### **DB구조**
+
+![image](https://user-images.githubusercontent.com/107897812/219322026-7cd95be5-0532-48a4-8fbf-9473d3bc39a9.png)
+
+2. ### **PPT**
+   [발표PPT](https://github.com/TeTedo/KeyboardWarrior-ejs-SNS/files/10754170/ppt.pptx)
