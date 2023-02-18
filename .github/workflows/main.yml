@@ -1,1 +1,24 @@
+name: CD
 
+on:
+  push:
+    branches:
+      - prod
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to prod
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST_DEV }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: 22
+          script: |
+            cd KeyboardWarrior-ejs-SNS/after/
+            npx pm2 kill
+            git pull
+            npm i
+            npm run production
